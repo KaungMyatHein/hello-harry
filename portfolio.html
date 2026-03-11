@@ -279,15 +279,10 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   flex:1;
 }
 
-.proj-index{
-  font-family:'Space Mono',monospace;
-  font-size:11px;letter-spacing:0.1em;
-  color:var(--accent);
-  margin-bottom:14px;
-}
+.proj-index{display:none;}
 
 .proj-tags{
-  display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;
+  display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;align-items:center;
 }
 .proj-tag{
   font-family:'Space Mono',monospace;
@@ -298,6 +293,23 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   transition:all 0.3s;
 }
 .project:hover .proj-tag{border-color:rgba(240,230,211,0.2)}
+.proj-status{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:5px 12px;border-radius:999px;
+  margin-left:auto;
+}
+.proj-status::before{
+  content:'';display:block;width:6px;height:6px;border-radius:50%;flex-shrink:0;
+}
+.proj-status.live{
+  color:#7eb87e;border:1px solid rgba(126,184,126,0.3);background:rgba(126,184,126,0.06);
+}
+.proj-status.live::before{background:#7eb87e;box-shadow:0 0 6px #7eb87e;}
+.proj-status.draft{
+  color:rgba(240,230,211,0.35);border:1px solid rgba(240,230,211,0.1);background:rgba(240,230,211,0.03);
+}
+.proj-status.draft::before{background:rgba(240,230,211,0.25);}
 
 .proj-title{
   font-family:'Instrument Serif',serif;
@@ -982,6 +994,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
         <span class="proj-tag">Retail</span>
         <span class="proj-tag">Redesign</span>
         <span class="proj-tag">2025</span>
+
       </div>
       <h3 class="proj-title">From Feedback to 427% ROI: Redesigning the Return Process</h3>
       <p class="proj-desc">Transformed a broken return flow into a streamlined operation, directly impacting business bottom-line through research-driven redesign.</p>
@@ -1046,6 +1059,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
         <span class="proj-tag">Dashboard</span>
         <span class="proj-tag">Finance</span>
         <span class="proj-tag">2022</span>
+
       </div>
       <h3 class="proj-title">Saved 0.5 Man-Hours Per Day for Finance Operations</h3>
       <p class="proj-desc">Streamlined finance dashboard workflows, eliminating operational bottlenecks and saving measurable daily hours across the org.</p>
@@ -1097,68 +1111,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
   </div>
 
-  <!-- ── Project 05 ── -->
-  <div class="project sr" data-project>
-    <div class="proj-thumb">
-      <img src="images/coverphoto/3.svg" alt="Multi-Level Design System">
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">05</div>
-      <div class="proj-tags">
-        <span class="proj-tag">Design Systems</span>
-        <span class="proj-tag">Architecture</span>
-        <span class="proj-tag">2024</span>
-      </div>
-      <h3 class="proj-title">Multi-Level Design System: 90% Faster Design-to-Dev Handover</h3>
-      <p class="proj-desc">Architected a scalable multi-level component system that eliminated design-dev inconsistencies and achieved 100% visual consistency across products.</p>
-      <div class="proj-metrics">
-        <div><div class="pm-val">90%</div><div class="pm-label">Faster Handover</div></div>
-        <div><div class="pm-val">100%</div><div class="pm-label">Consistency</div></div>
-      </div>
-      <a href="case-study-design-system.html" class="case-study-link">
-        View Full Case Study
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <div class="proj-arrow" data-toggle>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-      </div>
-    </div>
-    <div class="proj-detail">
-      <div class="proj-detail-inner">
-        <div class="pd-block">
-          <div class="pd-label">The Problem</div>
-          <p class="pd-text">Design-to-development handover was a bottleneck — designers and developers interpreted components differently, causing visual inconsistencies and rework. No standardized component architecture existed across the product suite.</p>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">My Process</div>
-          <ul class="pd-list">
-            <li>Audited existing components across all products</li>
-            <li>Designed multi-level architecture (atoms → molecules → organisms → templates)</li>
-            <li>Created token system for colors, spacing, typography, and elevation</li>
-            <li>Built comprehensive documentation with usage guidelines</li>
-            <li>Implemented version control and change management process</li>
-          </ul>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">The Solution</div>
-          <p class="pd-text">Built a multi-level design system with atomic component architecture, shared design tokens, and auto-syncing between Figma and code. Included a governance model for updates and a visual regression testing pipeline.</p>
-        </div>
-        <div class="pd-metrics">
-          <div class="pd-metric"><div class="pd-metric-val">90%</div><div class="pd-metric-label">Faster Handover</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">100%</div><div class="pd-metric-label">Visual Consistency</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">60+</div><div class="pd-metric-label">Components</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">4</div><div class="pd-metric-label">Architecture Levels</div></div>
-        </div>
-        <div class="pd-tools">
-          <span class="pd-tools-label">Tools:</span>
-          <span class="pd-tool">Figma</span>
-          <span class="pd-tool">Storybook</span>
-          <span class="pd-tool">Zeroheight</span>
-          <span class="pd-tool">GitHub</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- ── Project 05 (Draft — hidden) ── -->
 
   <!-- ── Project 06 ── -->
   <div class="project sr" data-project>
@@ -1171,6 +1124,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
         <span class="proj-tag">Figma Plugin</span>
         <span class="proj-tag">Design Tokens</span>
         <span class="proj-tag">2024</span>
+
       </div>
       <h3 class="proj-title">Design Tokens Generator: 50% Time Reduction, ~100% Error Free</h3>
       <p class="proj-desc">Built a Figma plugin that automates design token export to multiple platforms, eliminating manual translation errors and cutting handover time in half.</p>
@@ -1233,6 +1187,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
         <span class="proj-tag">Mobile App</span>
         <span class="proj-tag">Entertainment</span>
         <span class="proj-tag">2021</span>
+
       </div>
       <h3 class="proj-title">Karaoke App: Research-Driven Design During COVID Lockdown</h3>
       <p class="proj-desc">Conducted 20 user interviews to design a karaoke application addressing Myanmar's entertainment needs during lockdown, with 85% KBZ Pay integration preference validated.</p>
