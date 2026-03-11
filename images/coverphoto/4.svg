@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+<defs>
+  <radialGradient id="bg4" cx="50%" cy="55%" r="70%">
+    <stop offset="0%" stop-color="#2b1d13"/>
+    <stop offset="55%" stop-color="#161210"/>
+    <stop offset="100%" stop-color="#0d0b09"/>
+  </radialGradient>
+  <radialGradient id="glow4" cx="50%" cy="50%" r="40%">
+    <stop offset="0%" stop-color="#e8734a" stop-opacity="0.2"/>
+    <stop offset="100%" stop-color="#e8734a" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="soft4">
+    <feGaussianBlur stdDeviation="30"/>
+  </filter>
+  <marker id="arr4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L8,3 z" fill="#e8734a" opacity="0.55"/>
+  </marker>
+  <marker id="arr4b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L0,6 L8,3 z" fill="#f0e6d3" opacity="0.2"/>
+  </marker>
+</defs>
+
+<!-- Background -->
+<rect width="1200" height="675" fill="url(#bg4)"/>
+<!-- Glow at center hub -->
+<ellipse cx="540" cy="338" rx="200" ry="180" fill="url(#glow4)" filter="url(#soft4)"/>
+
+<!-- ── TITLE ── -->
+<text x="80" y="68" font-family="Courier New,monospace" font-size="9" fill="#e8734a" opacity="0.5" letter-spacing="3">DESIGN TOKEN PIPELINE</text>
+<line x1="80" y1="76" x2="1120" y2="76" stroke="#f0e6d3" stroke-width="0.5" opacity="0.08"/>
+
+<!-- ── SOURCE BLOCK (left) ── -->
+<rect x="66" y="200" width="260" height="276" rx="10" fill="#1a1714" stroke="#e8734a" stroke-width="1.2" opacity="0.8"/>
+<rect x="66" y="200" width="260" height="6" rx="5" fill="#e8734a" opacity="0.6"/>
+<text x="196" y="226" font-family="Courier New,monospace" font-size="8.5" fill="#e8734a" opacity="0.65" text-anchor="middle" letter-spacing="2">DESIGN DECISIONS</text>
+<text x="196" y="242" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.22" text-anchor="middle">1 source of truth</text>
+<line x1="88" y1="252" x2="304" y2="252" stroke="#f0e6d3" stroke-width="0.5" opacity="0.1"/>
+
+<!-- Token rows inside source block -->
+<!-- Color -->
+<rect x="88" y="264" width="216" height="34" rx="4" fill="#221e18"/>
+<circle cx="108" cy="281" r="9" fill="#e8734a" opacity="0.9"/>
+<text x="126" y="277" font-family="Courier New,monospace" font-size="7.5" fill="#e8734a" opacity="0.75">color/accent</text>
+<text x="126" y="289" font-family="Courier New,monospace" font-size="6.5" fill="#f0e6d3" opacity="0.3">#e8734a  ·  rgb(232,115,74)</text>
+
+<!-- Typography -->
+<rect x="88" y="306" width="216" height="34" rx="4" fill="#1e1b17"/>
+<text x="108" y="319" font-family="Georgia,serif" font-size="16" fill="#f0e6d3" opacity="0.45">Aa</text>
+<text x="132" y="319" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.55">font/sans</text>
+<text x="132" y="331" font-family="Courier New,monospace" font-size="6.5" fill="#f0e6d3" opacity="0.28">Syne · 400 / 600 / 700</text>
+
+<!-- Spacing -->
+<rect x="88" y="348" width="216" height="34" rx="4" fill="#1e1b17"/>
+<line x1="104" y1="365" x2="120" y2="365" stroke="#f0e6d3" stroke-width="1.2" opacity="0.5" stroke-dasharray="3,2"/>
+<line x1="104" y1="362" x2="104" y2="368" stroke="#f0e6d3" stroke-width="1.2" opacity="0.6"/>
+<line x1="120" y1="362" x2="120" y2="368" stroke="#f0e6d3" stroke-width="1.2" opacity="0.6"/>
+<text x="132" y="361" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.55">spacing/scale</text>
+<text x="132" y="373" font-family="Courier New,monospace" font-size="6.5" fill="#f0e6d3" opacity="0.28">4 · 8 · 16 · 24 · 48px</text>
+
+<!-- Radius -->
+<rect x="88" y="390" width="216" height="34" rx="4" fill="#1e1b17"/>
+<rect x="100" y="400" width="20" height="14" rx="5" fill="none" stroke="#f0e6d3" stroke-width="1" opacity="0.4"/>
+<text x="132" y="409" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.45">radius/md</text>
+<text x="132" y="421" font-family="Courier New,monospace" font-size="6.5" fill="#f0e6d3" opacity="0.25">4 · 8 · 12 · 999px</text>
+
+<!-- Motion -->
+<rect x="88" y="432" width="216" height="26" rx="4" fill="#1e1b17"/>
+<text x="108" y="449" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.35">motion/fast  150ms ease-out</text>
+
+<!-- Token count -->
+<text x="196" y="466" font-family="Courier New,monospace" font-size="7.5" fill="#7eb87e" opacity="0.6" text-anchor="middle">✓ 48 tokens · validated</text>
+
+<!-- ── CENTRAL HUB ── -->
+<circle cx="540" cy="338" r="52" fill="#1e1a14" stroke="#e8734a" stroke-width="1.5" opacity="0.9"/>
+<circle cx="540" cy="338" r="40" fill="none" stroke="#e8734a" stroke-width="0.5" opacity="0.2"/>
+<text x="540" y="330" font-family="Courier New,monospace" font-size="8" fill="#e8734a" opacity="0.8" text-anchor="middle" letter-spacing="1">48</text>
+<text x="540" y="346" font-family="Courier New,monospace" font-size="7" fill="#e8734a" opacity="0.6" text-anchor="middle">TOKENS</text>
+<text x="540" y="360" font-family="Courier New,monospace" font-size="6" fill="#f0e6d3" opacity="0.3" text-anchor="middle">style-dictionary</text>
+
+<!-- Source → Hub connector -->
+<line x1="326" y1="338" x2="486" y2="338" stroke="#e8734a" stroke-width="1.5" opacity="0.5" marker-end="url(#arr4)"/>
+
+<!-- ── OUTPUT SPOKES ── -->
+
+<!-- CSS Variables (top-right) -->
+<line x1="584" y1="308" x2="736" y2="196" stroke="#e8734a" stroke-width="1.2" opacity="0.45" marker-end="url(#arr4)"/>
+<rect x="740" y="152" width="188" height="80" rx="8" fill="#1e1a14" stroke="#e8734a" stroke-width="1.2" opacity="0.85"/>
+<rect x="740" y="152" width="6" height="80" rx="4" fill="#e8734a" opacity="0.7"/>
+<text x="760" y="176" font-family="Courier New,monospace" font-size="9" fill="#e8734a" opacity="0.8" letter-spacing="1">CSS VARIABLES</text>
+<text x="760" y="193" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.35">--color-accent: #e8734a;</text>
+<text x="760" y="208" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.25">--font-sans: 'Syne';</text>
+<text x="760" y="222" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.18">--space-4: 16px;</text>
+
+<!-- Swift Constants (right) -->
+<line x1="592" y1="330" x2="780" y2="310" stroke="#e8734a" stroke-width="1.2" opacity="0.35" marker-end="url(#arr4)"/>
+<rect x="784" y="278" width="170" height="72" rx="8" fill="#1e1a14" stroke="#e8734a" stroke-width="1" opacity="0.65"/>
+<rect x="784" y="278" width="6" height="72" rx="4" fill="#e8734a" opacity="0.45"/>
+<text x="804" y="300" font-family="Courier New,monospace" font-size="9" fill="#e8734a" opacity="0.65" letter-spacing="1">SWIFT</text>
+<text x="804" y="317" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.3">Color.accent</text>
+<text x="804" y="332" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.2">Font.sans</text>
+<text x="804" y="345" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.15">Spacing.base</text>
+
+<!-- JSON Dictionary (right center) -->
+<line x1="592" y1="348" x2="780" y2="390" stroke="#e8734a" stroke-width="1.2" opacity="0.35" marker-end="url(#arr4)"/>
+<rect x="784" y="362" width="170" height="72" rx="8" fill="#1e1a14" stroke="#e8734a" stroke-width="1" opacity="0.6"/>
+<rect x="784" y="362" width="6" height="72" rx="4" fill="#e8734a" opacity="0.4"/>
+<text x="804" y="384" font-family="Courier New,monospace" font-size="9" fill="#e8734a" opacity="0.6" letter-spacing="1">JSON</text>
+<text x="804" y="401" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.28">"color": {"accent":</text>
+<text x="804" y="416" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.2">  {"value": "#e8734a"}}</text>
+<text x="804" y="429" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.15">…</text>
+
+<!-- Kotlin / Android (bottom right) -->
+<line x1="576" y1="376" x2="736" y2="468" stroke="#f0e6d3" stroke-width="1" opacity="0.2" marker-end="url(#arr4b)"/>
+<rect x="740" y="442" width="170" height="66" rx="8" fill="#1e1a14" stroke="#2a2724" stroke-width="1" opacity="0.5"/>
+<rect x="740" y="442" width="6" height="66" rx="4" fill="#e8734a" opacity="0.25"/>
+<text x="760" y="463" font-family="Courier New,monospace" font-size="8.5" fill="#f0e6d3" opacity="0.35" letter-spacing="1">KOTLIN / XML</text>
+<text x="760" y="479" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.2">R.color.accent</text>
+<text x="760" y="494" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.15">@dimen/spacing_4</text>
+
+<!-- SCSS (top, slight arc up) -->
+<line x1="562" y1="288" x2="736" y2="136" stroke="#f0e6d3" stroke-width="1" opacity="0.18" marker-end="url(#arr4b)"/>
+<rect x="740" y="96" width="160" height="56" rx="8" fill="#1e1a14" stroke="#2a2724" stroke-width="1" opacity="0.45"/>
+<rect x="740" y="96" width="6" height="56" rx="4" fill="#e8734a" opacity="0.25"/>
+<text x="760" y="118" font-family="Courier New,monospace" font-size="8.5" fill="#f0e6d3" opacity="0.3" letter-spacing="1">SCSS</text>
+<text x="760" y="135" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.18">$color-accent: #e8734a;</text>
+<text x="760" y="148" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.12">$spacing-4: 16px;</text>
+
+<!-- ── OUTCOME ROW ── -->
+<text x="66" y="520" font-family="Courier New,monospace" font-size="8" fill="#e8734a" opacity="0.45" letter-spacing="1">BEFORE</text>
+<line x1="122" y1="521" x2="390" y2="521" stroke="#f0e6d3" stroke-width="0.5" opacity="0.08"/>
+<text x="66" y="538" font-family="Courier New,monospace" font-size="8.5" fill="#f0e6d3" opacity="0.28">5 separate style sheets · manual sync · drift errors</text>
+<text x="66" y="556" font-family="Courier New,monospace" font-size="8.5" fill="#f0e6d3" opacity="0.2">each platform diverging over time</text>
+
+<text x="66" y="586" font-family="Courier New,monospace" font-size="8" fill="#e8734a" opacity="0.55" letter-spacing="1">AFTER</text>
+<line x1="114" y1="587" x2="390" y2="587" stroke="#e8734a" stroke-width="0.5" opacity="0.15"/>
+<text x="66" y="604" font-family="Courier New,monospace" font-size="8.5" fill="#f0e6d3" opacity="0.45">1 token file · 5 outputs · auto-generated · ~100% error-free</text>
+<text x="66" y="620" font-family="Courier New,monospace" font-size="8.5" fill="#e8734a" opacity="0.35">50% faster design-dev handoff</text>
+
+<!-- Tagline -->
+<text x="600" y="654" font-family="Georgia,'Times New Roman',serif" font-size="17" fill="#f0e6d3" opacity="0.6" text-anchor="middle" font-style="italic">50% faster. ~100% error-free. One source of truth.</text>
+</svg>

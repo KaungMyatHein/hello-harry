@@ -79,7 +79,7 @@
     var toggle = proj.querySelector('[data-toggle]');
     if (!toggle) return;
 
-    function handleToggle(e) {
+    function handleToggle() {
       /* Close other open projects */
       document.querySelectorAll('[data-project].open').forEach(function (p) {
         if (p !== proj) p.classList.remove('open');
@@ -101,14 +101,89 @@
   });
 
   /* ─────────────────────────────────────
-     HERO PARALLAX GLOW (landing page)
+     HERO INTERACTIVITY (landing page)
+     · Glow tracks mouse position
+     · Name block subtle 3D tilt
+     · Scroll parallax + fade on glow
      ───────────────────────────────────── */
-  var heroGlow = document.querySelector('.hero-glow');
-  if (heroGlow) {
-    window.addEventListener('scroll', function () {
-      var s = window.scrollY;
-      heroGlow.style.transform = 'translate(-50%, calc(-55% + ' + (s * 0.2) + 'px))';
-      heroGlow.style.opacity   = Math.max(0, 1 - s / 600);
+  var heroGlow      = document.querySelector('.hero-glow');
+  var heroSection   = document.querySelector('.hero');
+  var heroNameBlock = document.querySelector('.hero-name-block');
+
+  var glowBaseX = -50, glowBaseY = -55, scrollOff = 0;
+
+  function applyGlowTransform() {
+    if (heroGlow) {
+      heroGlow.style.transform =
+        'translate(' + glowBaseX + '%, calc(' + glowBaseY + '% + ' + scrollOff + 'px))';
+    }
+  }
+
+  /* Scroll: vertical parallax + fade */
+  window.addEventListener('scroll', function () {
+    scrollOff = window.scrollY * 0.2;
+    if (heroGlow) {
+      applyGlowTransform();
+      heroGlow.style.opacity = Math.max(0, 1 - window.scrollY / 600);
+    }
+  });
+
+  /* Mouse: glow follows cursor, name tilts in 3D */
+  if (heroSection) {
+    heroSection.addEventListener('mousemove', function (e) {
+      var rect = heroSection.getBoundingClientRect();
+      var x = (e.clientX - rect.left)  / rect.width  - 0.5;  /* -0.5 → 0.5 */
+      var y = (e.clientY - rect.top)   / rect.height - 0.5;
+
+      glowBaseX = -50 + x * 22;
+      glowBaseY = -55 + y * 16;
+      applyGlowTransform();
+
+      if (heroNameBlock) {
+        heroNameBlock.style.transform =
+          'perspective(900px) rotateX(' + (-y * 4) + 'deg) rotateY(' + (x * 6) + 'deg)';
+      }
+    });
+
+    heroSection.addEventListener('mouseleave', function () {
+      glowBaseX = -50; glowBaseY = -55;
+      applyGlowTransform();
+      if (heroNameBlock) heroNameBlock.style.transform = '';
+    });
+  }
+
+  /* ─────────────────────────────────────
+     HERO STAT COUNTER ANIMATION
+     Numbers count up when scrolled into view
+     ───────────────────────────────────── */
+  var hsNums = document.querySelectorAll('.hs-num');
+  if (hsNums.length && 'IntersectionObserver' in window) {
+    hsNums.forEach(function (el) {
+      var raw   = el.textContent.trim();
+      var match = raw.match(/^([\d.]+)(.*)$/);
+      if (!match) return;
+      var target  = parseFloat(match[1]);
+      var suffix  = match[2];
+      var started = false;
+
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting || started) return;
+          started = true;
+          var t0 = null, dur = 1400;
+          requestAnimationFrame(function tick(ts) {
+            if (!t0) t0 = ts;
+            var p     = Math.min((ts - t0) / dur, 1);
+            var eased = 1 - Math.pow(1 - p, 3); /* ease-out cubic */
+            el.textContent = Math.floor(eased * target) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = raw;
+          });
+          obs.disconnect();
+        });
+      }, { threshold: 0.8 });
+
+      obs.observe(el);
     });
   }
 

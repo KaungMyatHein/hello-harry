@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <!-- Shared atom-level components -->
-<link rel="stylesheet" href="atoms.css">
+<link rel="stylesheet" href="css/atoms.css">
 <style>
 /* Custom cursor — hides OS cursor on this page only */
 body { cursor: none; }
@@ -61,7 +61,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 .hero-top{
   grid-row:2;
-  display:flex;align-items:center;gap:16px;
+  display:flex;align-items:center;justify-content:center;gap:16px;
   padding-bottom:40px;
   opacity:0;animation:fadeUp 0.8s 0.3s forwards;
 }
@@ -96,6 +96,8 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   flex-direction:column;
   align-items:center;
   text-align:center;
+  transition:transform 0.25s cubic-bezier(.25,.1,.25,1);
+  will-change:transform;
 }
 
 .hero-name{
@@ -326,13 +328,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 }
 
 .proj-arrow{
-  position:absolute;bottom:28px;right:28px;
-  width:40px;height:40px;
-  border:1px solid var(--cream-faint);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.4s cubic-bezier(.25,.1,.25,1);
-  cursor:none;
+  display:none;
 }
 .proj-arrow svg{
   width:16px;height:16px;stroke:var(--cream-dim);
@@ -371,57 +367,69 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 }
 .highlight-inner{
   max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;gap:60px;
-  align-items:center;
 }
-.highlight-text .hl-tag{
+.highlight-inner .hl-header{
+  margin-bottom:40px;
+}
+.highlight-inner .hl-tag{
   font-family:'Space Mono',monospace;font-size:10px;
   letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:16px;
+  color:var(--accent);margin-bottom:12px;
   display:flex;align-items:center;gap:8px;
 }
-.highlight-text .hl-tag::before{content:'';width:20px;height:1px;background:var(--accent)}
-.highlight-text h2{
-  font-family:'Instrument Serif',serif;font-size:42px;
+.highlight-inner .hl-tag::before{content:'';width:20px;height:1px;background:var(--accent)}
+.highlight-inner h2{
+  font-family:'Instrument Serif',serif;font-size:38px;
   font-weight:400;line-height:1.2;letter-spacing:-0.02em;
-  margin-bottom:20px;
 }
-.highlight-text p{
-  font-size:15px;line-height:1.8;color:var(--cream-dim);
-  margin-bottom:24px;max-width:480px;
+.sp-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
 }
-.highlight-text .hl-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:14px 28px;
-  background:var(--accent);color:var(--dark);
-  border-radius:8px;font-family:'Space Mono',monospace;
-  font-size:12px;font-weight:700;letter-spacing:0.08em;
-  text-transform:uppercase;cursor:none;
-  transition:all 0.3s ease;
-  border:none;text-decoration:none;
-}
-.highlight-text .hl-btn:hover{
-  box-shadow:0 0 40px var(--accent-glow);transform:translateY(-2px);
-}
-.highlight-text .hl-btn svg{width:16px;height:16px;stroke:currentColor;transition:transform 0.3s}
-.highlight-text .hl-btn:hover svg{transform:translateX(4px)}
-.highlight-preview{
-  position:relative;
-  border-radius:16px;overflow:hidden;
-  border:1.5px solid var(--cream-faint);
-  aspect-ratio:16/10;
+.sp-card{
   background:var(--dark-3);
-  box-shadow:0 20px 80px rgba(0,0,0,0.4);
+  border:1.5px solid var(--cream-faint);
+  border-radius:16px;
+  padding:32px;
+  display:flex;flex-direction:column;gap:16px;
+  transition:border-color 0.3s,transform 0.3s;
+  text-decoration:none;color:inherit;
 }
-.highlight-preview iframe{
-  width:100%;height:100%;border:none;
-  border-radius:14px;
+.sp-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-4px);
 }
-.highlight-preview .preview-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 60%,rgba(10,10,10,0.8));
-  pointer-events:none;z-index:2;
+.sp-card-tag{
+  font-family:'Space Mono',monospace;font-size:9px;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--accent);
 }
+.sp-card h3{
+  font-family:'Instrument Serif',serif;font-size:24px;
+  font-weight:400;line-height:1.2;letter-spacing:-0.01em;
+  color:var(--cream);
+}
+.sp-card p{
+  font-size:14px;line-height:1.75;color:var(--cream-dim);flex:1;
+}
+.sp-card-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:16px;border-top:1px solid var(--cream-faint);
+}
+.sp-card-url{
+  font-family:'Space Mono',monospace;font-size:10px;
+  color:var(--cream-dim);letter-spacing:0.05em;
+}
+.sp-card-arrow{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--cream-faint);
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.3s,border-color 0.3s;
+}
+.sp-card:hover .sp-card-arrow{
+  background:var(--accent);border-color:var(--accent);
+}
+.sp-card-arrow svg{width:14px;height:14px;stroke:var(--cream-dim);transition:stroke 0.3s,transform 0.3s}
+.sp-card:hover .sp-card-arrow svg{stroke:var(--dark);transform:translate(2px,-2px)}
 .highlight-preview .preview-badge{
   position:absolute;top:16px;right:16px;z-index:3;
   font-family:'Space Mono',monospace;font-size:9px;
@@ -432,14 +440,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 /* ── Project Detail Panel ── */
 .proj-detail{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height 0.6s cubic-bezier(.25,.1,.25,1),padding 0.4s;
-  background:var(--dark-2);
-  border-top:1px solid var(--cream-ghost);
-}
-.project.open .proj-detail{
-  max-height:800px;
+  display:none;
 }
 
 .proj-detail-inner{
@@ -584,6 +585,16 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   font-size:15px;color:var(--cream-dim);
   line-height:1.75;margin-bottom:20px;
   max-width:520px;
+}
+.exp-list{
+  list-style:none;padding:0;margin:0 0 20px;max-width:520px;
+}
+.exp-list li{
+  font-size:14px;color:var(--cream-dim);line-height:1.7;
+  padding:3px 0 3px 16px;position:relative;
+}
+.exp-list li::before{
+  content:'•';position:absolute;left:0;color:var(--accent);font-size:12px;top:4px;
 }
 .exp-tags{display:flex;flex-wrap:wrap;gap:8px}
 .exp-tag{
@@ -866,8 +877,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   .edu-card{grid-template-columns:1fr;gap:32px;padding:36px}
   .cta{padding:100px 24px}
   .highlight-section{padding:60px 24px}
-  .highlight-inner{grid-template-columns:1fr;gap:40px}
-  .highlight-text h2{font-size:32px}
+  .sp-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   .hero-lines{display:none}
@@ -888,7 +898,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   <div class="nav-links">
     <a href="#work">Work</a>
     <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
+
     <a href="#contact" class="nav-cta">Let's Talk</a>
   </div>
 </nav>
@@ -916,7 +926,6 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     <div class="hero-stats">
       <div class="hero-stat"><div class="hs-num">7+</div><div class="hs-label">Years</div></div>
       <div class="hero-stat"><div class="hs-num">50+</div><div class="hs-label">Projects</div></div>
-      <div class="hero-stat"><div class="hs-num">30+</div><div class="hs-label">Clients</div></div>
     </div>
     <div class="hero-scroll">
       <div class="hero-scroll-line"></div>
@@ -965,8 +974,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   <!-- ── Project 01 ── -->
   <div class="project sr" data-project>
     <div class="proj-thumb">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span class="proj-thumb-label">Project Image</span>
+      <img src="images/coverphoto/1.svg" alt="From Feedback to 427% ROI">
     </div>
     <div class="proj-info">
       <div class="proj-index">01</div>
@@ -1030,8 +1038,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   <!-- ── Project 02 ── -->
   <div class="project sr" data-project>
     <div class="proj-thumb">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span class="proj-thumb-label">Project Image</span>
+      <img src="images/coverphoto/2.svg" alt="Saved 0.5 Man-Hours Per Day">
     </div>
     <div class="proj-info">
       <div class="proj-index">02</div>
@@ -1090,75 +1097,10 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
   </div>
 
-  <!-- ── Project 03 ── -->
-  <div class="project sr" data-project>
-    <div class="proj-thumb">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span class="proj-thumb-label">Project Image</span>
-    </div>
-    <div class="proj-info">
-      <div class="proj-index">03</div>
-      <div class="proj-tags">
-        <span class="proj-tag">POS</span>
-        <span class="proj-tag">Design System</span>
-        <span class="proj-tag">2024</span>
-      </div>
-      <h3 class="proj-title">The Island Where Nothing Matched: POS &amp; Design System</h3>
-      <p class="proj-desc">Built a unified design system and redesigned the POS from scratch at Raytail, Maldives — reducing 47 button styles to one system and saving $10K monthly.</p>
-      <div class="proj-metrics">
-        <div><div class="pm-val">200%</div><div class="pm-label">UX ROI</div></div>
-        <div><div class="pm-val">$10K</div><div class="pm-label">Monthly Savings</div></div>
-      </div>
-      <a href="case-study-pos.html" class="case-study-link">
-        View Full Case Study
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <div class="proj-arrow" data-toggle>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-      </div>
-    </div>
-    <div class="proj-detail">
-      <div class="proj-detail-inner">
-        <div class="pd-block">
-          <div class="pd-label">The Problem</div>
-          <p class="pd-text">Raytail ran 4 product lines across Maldives islands — POS, Admin, Inventory, and Customer — each looking like a different company. 47 button styles, 12 shades of "brand blue", and cashiers needed 14 taps per transaction with memorized workarounds.</p>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">My Process</div>
-          <ul class="pd-list">
-            <li>Shadowed store cashiers to observe real workflows firsthand</li>
-            <li>Ran component audit across all 4 products</li>
-            <li>Proposed design system first, POS as proof of concept</li>
-            <li>Built token architecture with semantic naming</li>
-            <li>Created custom Figma plugin for token export</li>
-          </ul>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">The Solution</div>
-          <p class="pd-text">Delivered a unified design system with semantic tokens, a redesigned POS reducing 14 taps to 6, and a custom Figma plugin for automated token export. The system proved itself when a new company website was built in 2 weeks instead of a month.</p>
-        </div>
-        <div class="pd-metrics">
-          <div class="pd-metric"><div class="pd-metric-val">200%</div><div class="pd-metric-label">UX ROI</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">$10K</div><div class="pd-metric-label">Monthly Savings</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">40%</div><div class="pd-metric-label">Faster Handoff</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">14→6</div><div class="pd-metric-label">Taps per Transaction</div></div>
-        </div>
-        <div class="pd-tools">
-          <span class="pd-tools-label">Tools:</span>
-          <span class="pd-tool">Figma</span>
-          <span class="pd-tool">Figma Plugin API</span>
-          <span class="pd-tool">FigJam</span>
-          <span class="pd-tool">User Research</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- ── Project 05 ── -->
   <div class="project sr" data-project>
     <div class="proj-thumb">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span class="proj-thumb-label">Project Image</span>
+      <img src="images/coverphoto/3.svg" alt="Multi-Level Design System">
     </div>
     <div class="proj-info">
       <div class="proj-index">05</div>
@@ -1221,8 +1163,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   <!-- ── Project 06 ── -->
   <div class="project sr" data-project>
     <div class="proj-thumb">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span class="proj-thumb-label">Project Image</span>
+      <img src="images/coverphoto/4.svg" alt="Design Tokens Generator">
     </div>
     <div class="proj-info">
       <div class="proj-index">06</div>
@@ -1284,8 +1225,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   <!-- ── Project 08 ── -->
   <div class="project sr" data-project>
     <div class="proj-thumb">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span class="proj-thumb-label">Project Image</span>
+      <img src="images/coverphoto/5.svg" alt="Karaoke App">
     </div>
     <div class="proj-info">
       <div class="proj-index">08</div>
@@ -1350,20 +1290,29 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 <!-- ═══════ DESIGN FLASH CARDS HIGHLIGHT ═══════ -->
 <div class="highlight-section" id="projects">
   <div class="highlight-inner sr">
-    <div class="highlight-text">
-      <div class="hl-tag">Side Project Highlight</div>
-      <h2>Design Flash Cards</h2>
-      <p>A bilingual (English/Myanmar) learning web app I built to help designers master UX principles through active recall. Turning complex design psychology into bite-sized, memorable flash cards.</p>
-      <p style="font-size:13px;margin-top:-12px">Built with modern web technologies — featuring spaced repetition, category filtering, and a clean study interface.</p>
-      <a href="https://design-flash-card.vercel.app/" target="_blank" rel="noopener" class="hl-btn">
-        Try It Live
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+    <div class="hl-header">
+      <div class="hl-tag">Side Projects</div>
+      <h2>Things I Built for Fun</h2>
     </div>
-    <div class="highlight-preview">
-      <div class="preview-badge">Live App</div>
-      <iframe src="https://design-flash-card.vercel.app/" loading="lazy" title="Design Flash Cards App"></iframe>
-      <div class="preview-overlay"></div>
+    <div class="sp-grid">
+      <a href="https://design-flash-card.vercel.app/" target="_blank" rel="noopener" class="sp-card">
+        <div class="sp-card-tag">Web App · Learning Tool</div>
+        <h3>Design Flash Cards</h3>
+        <p>A bilingual (English/Myanmar) learning app to help designers master UX principles through active recall. Features spaced repetition, category filtering, and a clean study interface.</p>
+        <div class="sp-card-footer">
+          <span class="sp-card-url">design-flash-card.vercel.app</span>
+          <div class="sp-card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
+        </div>
+      </a>
+      <a href="https://orchestra.figma.site/" target="_blank" rel="noopener" class="sp-card">
+        <div class="sp-card-tag">Figma Site · Design</div>
+        <h3>Orchestra</h3>
+        <p>A design concept exploring visual composition and layout systems — built and published directly with Figma Sites as a design exploration project.</p>
+        <div class="sp-card-footer">
+          <span class="sp-card-url">orchestra.figma.site</span>
+          <div class="sp-card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
+        </div>
+      </a>
     </div>
   </div>
 </div>
@@ -1380,17 +1329,25 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   <div class="exp-item sr">
     <div class="exp-left">
       <div class="exp-company">Raytail</div>
-      <div class="exp-role">UX Designer</div>
-      <div class="exp-period">Dec 2023 — Present<br>Maldives · Remote</div>
+      <div class="exp-role">UX Lead</div>
+      <div class="exp-period">Dec 2023 — Dec 2025<br>Maldives · Remote</div>
     </div>
     <div class="exp-right">
-      <p class="exp-desc">Crafting the POS System UX, building the Design System Foundation for the multi-product ecosystem. Collaborating cross-functionally with IS and Dev.</p>
+      <ul class="exp-list">
+        <li>Achieved 200% UX ROI through data-driven implementation of user-centric design strategies</li>
+        <li>Generated $10K in monthly operational savings by streamlining Point-of-Sale (POS) workflows</li>
+        <li>Established a comprehensive Design System Foundation, ensuring multi-product ecosystem consistency</li>
+        <li>Collaborated with remote, cross-cultural teams using asynchronous workflows (Maldives focus)</li>
+        <li>Applied rigorous WCAG accessibility standards, guaranteeing inclusive user experiences</li>
+        <li>Validated optimization strategies and resolved design debt utilizing A/B testing and user analytics</li>
+      </ul>
       <div class="exp-tags">
         <span class="exp-tag hl">200% UX ROI</span>
         <span class="exp-tag hl">$10K Savings</span>
         <span class="exp-tag">Design System</span>
         <span class="exp-tag">WCAG</span>
         <span class="exp-tag">A/B Testing</span>
+        <span class="exp-tag">Async Remote</span>
       </div>
     </div>
   </div>
@@ -1398,15 +1355,22 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   <div class="exp-item sr">
     <div class="exp-left">
       <div class="exp-company">Lexagle</div>
-      <div class="exp-role">Senior UX/UI Designer</div>
+      <div class="exp-role">Senior UX Designer</div>
       <div class="exp-period">Oct 2022 — Apr 2023<br>Singapore · Remote</div>
     </div>
     <div class="exp-right">
-      <p class="exp-desc">Owned obligation management features end-to-end. Designed public link forms to streamline contract inquiries in legal tech.</p>
+      <ul class="exp-list">
+        <li>Owned and delivered obligation management features from concept to deployment</li>
+        <li>Developed a public link form that significantly streamlined the contract inquiry process</li>
+        <li>Partnered with UI Designers to maintain rigorous design consistency across features</li>
+        <li>Coordinated closely with Product Managers to align design specifications with core business objectives</li>
+        <li>Optimized the contract inquiry workflow utilizing user-centric design methodologies</li>
+      </ul>
       <div class="exp-tags">
         <span class="exp-tag hl">Feature Ownership</span>
         <span class="exp-tag">Legal Tech</span>
         <span class="exp-tag">Product Collab</span>
+        <span class="exp-tag">Design Consistency</span>
       </div>
     </div>
   </div>
@@ -1415,14 +1379,21 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     <div class="exp-left">
       <div class="exp-company">Treedots</div>
       <div class="exp-role">UX/UI Designer</div>
-      <div class="exp-period">Nov 2021 — Oct 2022<br>Singapore</div>
+      <div class="exp-period">Nov 2021 — Oct 2022<br>Singapore · Remote</div>
     </div>
     <div class="exp-right">
-      <p class="exp-desc">Designed B2B Supplier Portal, addressed UX debts through research. Built and launched the company's first Design System.</p>
+      <ul class="exp-list">
+        <li>Designed comprehensive B2B Supplier Portal serving a diverse user base</li>
+        <li>Systematically reduced UX debt through user research, site mapping, and flow documentation</li>
+        <li>Created high-fidelity prototypes utilizing advanced Figma features (Auto-layout, Interactive Components)</li>
+        <li>Built and launched Design System ensuring consistency across all product features</li>
+        <li>Managed design operations, ensuring seamless design-to-development handoffs</li>
+      </ul>
       <div class="exp-tags">
         <span class="exp-tag hl">Launched DS</span>
         <span class="exp-tag">B2B Portal</span>
         <span class="exp-tag">UX Research</span>
+        <span class="exp-tag">Dev Handoff</span>
       </div>
     </div>
   </div>
@@ -1434,11 +1405,18 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
       <div class="exp-period">Sep 2020 — Nov 2021<br>Myanmar</div>
     </div>
     <div class="exp-right">
-      <p class="exp-desc">Cross-functional design across diverse industries. Wireframing, prototyping, and client presentations for 5+ shipped products.</p>
+      <ul class="exp-list">
+        <li>Partnered with cross-functional teams to execute diverse industry projects</li>
+        <li>Developed tailored designs meeting varying requirements across multiple client industries</li>
+        <li>Conceptualized design concepts through detailed wireframes</li>
+        <li>Constructed high-fidelity prototypes for usability testing and client presentations</li>
+        <li>Articulated design rationale and quantifiable user benefits to clients and stakeholders</li>
+      </ul>
       <div class="exp-tags">
-        <span class="exp-tag hl">5+ Products</span>
-        <span class="exp-tag">Multi-industry</span>
-        <span class="exp-tag">Figma</span>
+        <span class="exp-tag hl">Multi-industry</span>
+        <span class="exp-tag">Wireframing</span>
+        <span class="exp-tag">Prototyping</span>
+        <span class="exp-tag">Client Presentations</span>
       </div>
     </div>
   </div>
@@ -1450,74 +1428,81 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
       <div class="exp-period">Dec 2018 — Sep 2020<br>Myanmar</div>
     </div>
     <div class="exp-right">
-      <p class="exp-desc">Transitioned from Software Engineer to Designer. Engineering-informed prototypes bridging the gap between design and development.</p>
+      <ul class="exp-list">
+        <li>Spearheaded successful role transition from Software Engineer to UI/UX Designer</li>
+        <li>Developed high-fidelity prototypes that effectively merged design specifications with development requirements</li>
+        <li>Presented technical designs to clients, balancing user needs with implementation feasibility</li>
+        <li>Collaborated closely with development teams, leveraging prior engineering expertise</li>
+        <li>Engineered developer-friendly design solutions by applying extensive technical knowledge</li>
+      </ul>
       <div class="exp-tags">
-        <span class="exp-tag hl">10+ Products</span>
-        <span class="exp-tag">Eng → Design</span>
+        <span class="exp-tag hl">Eng → Design</span>
         <span class="exp-tag">Dev Collab</span>
+        <span class="exp-tag">Hi-Fi Prototypes</span>
+        <span class="exp-tag">Client Presentations</span>
       </div>
     </div>
   </div>
 </div>
 
 <!-- SKILLS HEADER -->
-<div class="sec-head" id="skills">
+<div class="sec-head" id="skills" style="display:none">
   <div class="sec-num sr">03 — Expertise</div>
   <h2 class="sec-title sr sr-d1">What I Bring</h2>
   <p class="sec-sub sr sr-d2">Deep expertise spanning product design, research, AI-driven design, and strategic thinking.</p>
 </div>
 
 <!-- SKILLS -->
-<div class="skills-section">
+<div class="skills-section" style="display:none">
   <div class="skills-inner">
     <div class="skills-grid">
       <div class="skill-card sr">
         <div class="sk-header"><div class="sk-icon"></div><div class="sk-name">Product & UX/UI</div></div>
         <div class="sk-row">UX Design <span class="sk-badge expert">Expert</span></div>
         <div class="sk-row">UI Design <span class="sk-badge expert">Expert</span></div>
-        <div class="sk-row">Interaction Design <span class="sk-badge">Pro</span></div>
+        <div class="sk-row">Visual Design <span class="sk-badge">Pro</span></div>
         <div class="sk-row">Design Systems <span class="sk-badge">Pro</span></div>
-        <div class="sk-row">Mobile Design <span class="sk-badge">Pro</span></div>
+        <div class="sk-row">Mobile App Design <span class="sk-badge">Pro</span></div>
       </div>
       <div class="skill-card sr sr-d1">
         <div class="sk-header"><div class="sk-icon"></div><div class="sk-name">UX Research</div></div>
         <div class="sk-row">User Interviews <span class="sk-badge">Pro</span></div>
+        <div class="sk-row">Qualitative Research <span class="sk-badge">Pro</span></div>
         <div class="sk-row">Usability Testing <span class="sk-badge">Pro</span></div>
         <div class="sk-row">A/B Testing <span class="sk-badge">Advanced</span></div>
         <div class="sk-row">Journey Mapping <span class="sk-badge">Pro</span></div>
-        <div class="sk-row">CSAT Metrics <span class="sk-badge">Advanced</span></div>
       </div>
       <div class="skill-card sr sr-d2">
         <div class="sk-header"><div class="sk-icon"></div><div class="sk-name">AI-First Design</div></div>
         <div class="sk-row">AI Prototyping <span class="sk-badge">Pro</span></div>
         <div class="sk-row">Prompt Engineering <span class="sk-badge">Pro</span></div>
+        <div class="sk-row">AI Tool Integration <span class="sk-badge">Pro</span></div>
         <div class="sk-row">Generative Design <span class="sk-badge">Advanced</span></div>
-        <div class="sk-row">ML-Enhanced UX <span class="sk-badge">Advanced</span></div>
-        <div class="sk-row">AI Ethics <span class="sk-badge">Advanced</span></div>
+        <div class="sk-row">AI Design Ethics <span class="sk-badge">Advanced</span></div>
       </div>
       <div class="skill-card sr">
-        <div class="sk-header"><div class="sk-icon"></div><div class="sk-name">Design Process</div></div>
-        <div class="sk-row">Ideation <span class="sk-badge expert">Expert</span></div>
-        <div class="sk-row">Design Thinking <span class="sk-badge">Pro</span></div>
-        <div class="sk-row">Rapid Prototyping <span class="sk-badge">Pro</span></div>
-        <div class="sk-row">Design Sprints <span class="sk-badge">Advanced</span></div>
-        <div class="sk-row">Problem Framing <span class="sk-badge">Pro</span></div>
+        <div class="sk-header"><div class="sk-icon"></div><div class="sk-name">Computer Science</div></div>
+        <div class="sk-row">HTML / CSS <span class="sk-badge expert">Expert</span></div>
+        <div class="sk-row">JavaScript / TS <span class="sk-badge">Pro</span></div>
+        <div class="sk-row">React / Node <span class="sk-badge">Advanced</span></div>
+        <div class="sk-row">JSON / API <span class="sk-badge">Pro</span></div>
+        <div class="sk-row">HCI <span class="sk-badge expert">Expert</span></div>
       </div>
       <div class="skill-card sr sr-d1">
-        <div class="sk-header"><div class="sk-icon"></div><div class="sk-name">Product Strategy</div></div>
+        <div class="sk-header"><div class="sk-icon"></div><div class="sk-name">Product Management</div></div>
         <div class="sk-row">Product Strategy <span class="sk-badge">Pro</span></div>
         <div class="sk-row">Roadmap Planning <span class="sk-badge">Advanced</span></div>
-        <div class="sk-row">Agile & Scrum <span class="sk-badge">Advanced</span></div>
-        <div class="sk-row">UX ROI Analysis <span class="sk-badge">Pro</span></div>
         <div class="sk-row">Stakeholder Mgmt <span class="sk-badge">Pro</span></div>
+        <div class="sk-row">Agile & Scrum <span class="sk-badge">Advanced</span></div>
+        <div class="sk-row">Data-Driven Decisions <span class="sk-badge">Pro</span></div>
       </div>
       <div class="skill-card sr sr-d2">
-        <div class="sk-header"><div class="sk-icon"></div><div class="sk-name">Accessibility</div></div>
+        <div class="sk-header"><div class="sk-icon"></div><div class="sk-name">Accessibility & Inclusion</div></div>
         <div class="sk-row">WCAG Compliance <span class="sk-badge">Advanced</span></div>
         <div class="sk-row">Inclusive Design <span class="sk-badge">Advanced</span></div>
-        <div class="sk-row">Cognitive Psych <span class="sk-badge">Advanced</span></div>
-        <div class="sk-row">Cross-Cultural UX <span class="sk-badge">Pro</span></div>
-        <div class="sk-row">DEI Practices <span class="sk-badge">Advanced</span></div>
+        <div class="sk-row">Cognitive Psychology <span class="sk-badge">Advanced</span></div>
+        <div class="sk-row">Cross-Cultural Design <span class="sk-badge">Pro</span></div>
+        <div class="sk-row">Info Architecture <span class="sk-badge">Pro</span></div>
       </div>
     </div>
   </div>
@@ -1525,7 +1510,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 <!-- TESTIMONIALS HEADER -->
 <div class="sec-head">
-  <div class="sec-num sr">04 — Voices</div>
+  <div class="sec-num sr">03 — Voices</div>
   <h2 class="sec-title sr sr-d1">What They Say</h2>
   <p class="sec-sub sr sr-d2">Words from leads, managers, and collaborators I've worked with.</p>
 </div>
@@ -1570,7 +1555,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 <!-- EDUCATION -->
 <div class="sec-head">
-  <div class="sec-num sr">05 — Education</div>
+  <div class="sec-num sr">04 — Education</div>
   <h2 class="sec-title sr sr-d1">Foundation</h2>
 </div>
 
@@ -1617,6 +1602,6 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 </footer>
 
 <!-- Shared atom behaviors: cursor, scroll-reveal, smooth-scroll, project toggle, parallax -->
-<script src="atoms.js"></script>
+<script src="js/atoms.js"></script>
 </body>
 </html>
