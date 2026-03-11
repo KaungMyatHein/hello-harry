@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI-Powered Product Design: Bringing Ideas to Market in 2 Weeks — Harry Hein</title>
-  <style>/*!
+  <style>
+:root{--r-background-color:var(--dark);--r-main-font-size:22px;--r-link-color:var(--accent);--blue:#6ba3d6;--yellow:#e8c94a;--red:#d66b6b;}/*!
 * reveal.js 4.5.0
 * https://revealjs.com
 * MIT licensed
@@ -13,23 +14,14 @@
 */.reveal .r-stretch,.reveal .stretch{max-width:none;max-height:none}.reveal pre.r-stretch code,.reveal pre.stretch code{height:100%;max-height:100%;box-sizing:border-box}.reveal .r-fit-text{display:inline-block;white-space:nowrap}.reveal .r-stack{display:grid}.reveal .r-stack>*{grid-area:1/1;margin:auto}.reveal .r-hstack,.reveal .r-vstack{display:flex}.reveal .r-hstack img,.reveal .r-hstack video,.reveal .r-vstack img,.reveal .r-vstack video{min-width:0;min-height:0;object-fit:contain}.reveal .r-vstack{flex-direction:column;align-items:center;justify-content:center}.reveal .r-hstack{flex-direction:row;align-items:center;justify-content:center}.reveal .items-stretch{align-items:stretch}.reveal .items-start{align-items:flex-start}.reveal .items-center{align-items:center}.reveal .items-end{align-items:flex-end}.reveal .justify-between{justify-content:space-between}.reveal .justify-around{justify-content:space-around}.reveal .justify-start{justify-content:flex-start}.reveal .justify-center{justify-content:center}.reveal .justify-end{justify-content:flex-end}html.reveal-full-page{width:100%;height:100%;height:100vh;height:calc(var(--vh,1vh) * 100);overflow:hidden}.reveal-viewport{height:100%;overflow:hidden;position:relative;line-height:1;margin:0;background-color:#fff;color:#000}.reveal-viewport:fullscreen{top:0!important;left:0!important;width:100%!important;height:100%!important;transform:none!important}.reveal .fragment{transition:all .2s ease}.reveal .fragment:not(.custom){opacity:0;visibility:hidden;will-change:opacity}.reveal .fragment.visible{opacity:1;visibility:inherit}.reveal .fragment.disabled{transition:none}.reveal .fragment.grow{opacity:1;visibility:inherit}.reveal .fragment.grow.visible{transform:scale(1.3)}.reveal .fragment.shrink{opacity:1;visibility:inherit}.reveal .fragment.shrink.visible{transform:scale(.7)}.reveal .fragment.zoom-in{transform:scale(.1)}.reveal .fragment.zoom-in.visible{transform:none}.reveal .fragment.fade-out{opacity:1;visibility:inherit}.reveal .fragment.fade-out.visible{opacity:0;visibility:hidden}.reveal .fragment.semi-fade-out{opacity:1;visibility:inherit}.reveal .fragment.semi-fade-out.visible{opacity:.5;visibility:inherit}.reveal .fragment.strike{opacity:1;visibility:inherit}.reveal .fragment.strike.visible{text-decoration:line-through}.reveal .fragment.fade-up{transform:translate(0,40px)}.reveal .fragment.fade-up.visible{transform:translate(0,0)}.reveal .fragment.fade-down{transform:translate(0,-40px)}.reveal .fragment.fade-down.visible{transform:translate(0,0)}.reveal .fragment.fade-right{transform:translate(-40px,0)}.reveal .fragment.fade-right.visible{transform:translate(0,0)}.reveal .fragment.fade-left{transform:translate(40px,0)}.reveal .fragment.fade-left.visible{transform:translate(0,0)}.reveal .fragment.current-visible,.reveal .fragment.fade-in-then-out{opacity:0;visibility:hidden}.reveal .fragment.current-visible.current-fragment,.reveal .fragment.fade-in-then-out.current-fragment{opacity:1;visibility:inherit}.reveal .fragment.fade-in-then-semi-out{opacity:0;visibility:hidden}.reveal .fragment.fade-in-then-semi-out.visible{opacity:.5;visibility:inherit}.reveal .fragment.fade-in-then-semi-out.current-fragment{opacity:1;visibility:inherit}.reveal .fragment.highlight-blue,.reveal .fragment.highlight-current-blue,.reveal .fragment.highlight-current-green,.reveal .fragment.highlight-current-red,.reveal .fragment.highlight-green,.reveal .fragment.highlight-red{opacity:1;visibility:inherit}.reveal .fragment.highlight-red.visible{color:#ff2c2d}.reveal .fragment.highlight-green.visible{color:#17ff2e}.reveal .fragment.highlight-blue.visible{color:#1b91ff}.reveal .fragment.highlight-current-red.current-fragment{color:#ff2c2d}.reveal .fragment.highlight-current-green.current-fragment{color:#17ff2e}.reveal .fragment.highlight-current-blue.current-fragment{color:#1b91ff}.reveal:after{content:"";font-style:italic}.reveal iframe{z-index:1}.reveal a{position:relative}@keyframes bounce-right{0%,10%,25%,40%,50%{transform:translateX(0)}20%{transform:translateX(10px)}30%{transform:translateX(-5px)}}@keyframes bounce-left{0%,10%,25%,40%,50%{transform:translateX(0)}20%{transform:translateX(-10px)}30%{transform:translateX(5px)}}@keyframes bounce-down{0%,10%,25%,40%,50%{transform:translateY(0)}20%{transform:translateY(10px)}30%{transform:translateY(-5px)}}.reveal .controls{display:none;position:absolute;top:auto;bottom:12px;right:12px;left:auto;z-index:11;color:#000;pointer-events:none;font-size:10px}.reveal .controls button{position:absolute;padding:0;background-color:transparent;border:0;outline:0;cursor:pointer;color:currentColor;transform:scale(.9999);transition:color .2s ease,opacity .2s ease,transform .2s ease;z-index:2;pointer-events:auto;font-size:inherit;visibility:hidden;opacity:0;-webkit-appearance:none;-webkit-tap-highlight-color:transparent}.reveal .controls .controls-arrow:after,.reveal .controls .controls-arrow:before{content:"";position:absolute;top:0;left:0;width:2.6em;height:.5em;border-radius:.25em;background-color:currentColor;transition:all .15s ease,background-color .8s ease;transform-origin:.2em 50%;will-change:transform}.reveal .controls .controls-arrow{position:relative;width:3.6em;height:3.6em}.reveal .controls .controls-arrow:before{transform:translateX(.5em) translateY(1.55em) rotate(45deg)}.reveal .controls .controls-arrow:after{transform:translateX(.5em) translateY(1.55em) rotate(-45deg)}.reveal .controls .controls-arrow:hover:before{transform:translateX(.5em) translateY(1.55em) rotate(40deg)}.reveal .controls .controls-arrow:hover:after{transform:translateX(.5em) translateY(1.55em) rotate(-40deg)}.reveal .controls .controls-arrow:active:before{transform:translateX(.5em) translateY(1.55em) rotate(36deg)}.reveal .controls .controls-arrow:active:after{transform:translateX(.5em) translateY(1.55em) rotate(-36deg)}.reveal .controls .navigate-left{right:6.4em;bottom:3.2em;transform:translateX(-10px)}.reveal .controls .navigate-left.highlight{animation:bounce-left 2s 50 both ease-out}.reveal .controls .navigate-right{right:0;bottom:3.2em;transform:translateX(10px)}.reveal .controls .navigate-right .controls-arrow{transform:rotate(180deg)}.reveal .controls .navigate-right.highlight{animation:bounce-right 2s 50 both ease-out}.reveal .controls .navigate-up{right:3.2em;bottom:6.4em;transform:translateY(-10px)}.reveal .controls .navigate-up .controls-arrow{transform:rotate(90deg)}.reveal .controls .navigate-down{right:3.2em;bottom:-1.4em;padding-bottom:1.4em;transform:translateY(10px)}.reveal .controls .navigate-down .controls-arrow{transform:rotate(-90deg)}.reveal .controls .navigate-down.highlight{animation:bounce-down 2s 50 both ease-out}.reveal .controls[data-controls-back-arrows=faded] .navigate-up.enabled{opacity:.3}.reveal .controls[data-controls-back-arrows=faded] .navigate-up.enabled:hover{opacity:1}.reveal .controls[data-controls-back-arrows=hidden] .navigate-up.enabled{opacity:0;visibility:hidden}.reveal .controls .enabled{visibility:visible;opacity:.9;cursor:pointer;transform:none}.reveal .controls .enabled.fragmented{opacity:.5}.reveal .controls .enabled.fragmented:hover,.reveal .controls .enabled:hover{opacity:1}.reveal:not(.rtl) .controls[data-controls-back-arrows=faded] .navigate-left.enabled{opacity:.3}.reveal:not(.rtl) .controls[data-controls-back-arrows=faded] .navigate-left.enabled:hover{opacity:1}.reveal:not(.rtl) .controls[data-controls-back-arrows=hidden] .navigate-left.enabled{opacity:0;visibility:hidden}.reveal.rtl .controls[data-controls-back-arrows=faded] .navigate-right.enabled{opacity:.3}.reveal.rtl .controls[data-controls-back-arrows=faded] .navigate-right.enabled:hover{opacity:1}.reveal.rtl .controls[data-controls-back-arrows=hidden] .navigate-right.enabled{opacity:0;visibility:hidden}.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-down,.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-up{display:none}.reveal:not(.has-vertical-slides) .controls .navigate-left,.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-left{bottom:1.4em;right:5.5em}.reveal:not(.has-vertical-slides) .controls .navigate-right,.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-right{bottom:1.4em;right:.5em}.reveal:not(.has-horizontal-slides) .controls .navigate-up{right:1.4em;bottom:5em}.reveal:not(.has-horizontal-slides) .controls .navigate-down{right:1.4em;bottom:.5em}.reveal.has-dark-background .controls{color:#fff}.reveal.has-light-background .controls{color:#000}.reveal.no-hover .controls .controls-arrow:active:before,.reveal.no-hover .controls .controls-arrow:hover:before{transform:translateX(.5em) translateY(1.55em) rotate(45deg)}.reveal.no-hover .controls .controls-arrow:active:after,.reveal.no-hover .controls .controls-arrow:hover:after{transform:translateX(.5em) translateY(1.55em) rotate(-45deg)}@media screen and (min-width:500px){.reveal .controls[data-controls-layout=edges]{top:0;right:0;bottom:0;left:0}.reveal .controls[data-controls-layout=edges] .navigate-down,.reveal .controls[data-controls-layout=edges] .navigate-left,.reveal .controls[data-controls-layout=edges] .navigate-right,.reveal .controls[data-controls-layout=edges] .navigate-up{bottom:auto;right:auto}.reveal .controls[data-controls-layout=edges] .navigate-left{top:50%;left:.8em;margin-top:-1.8em}.reveal .controls[data-controls-layout=edges] .navigate-right{top:50%;right:.8em;margin-top:-1.8em}.reveal .controls[data-controls-layout=edges] .navigate-up{top:.8em;left:50%;margin-left:-1.8em}.reveal .controls[data-controls-layout=edges] .navigate-down{bottom:-.3em;left:50%;margin-left:-1.8em}}.reveal .progress{position:absolute;display:none;height:3px;width:100%;bottom:0;left:0;z-index:10;background-color:rgba(0,0,0,.2);color:#fff}.reveal .progress:after{content:"";display:block;position:absolute;height:10px;width:100%;top:-10px}.reveal .progress span{display:block;height:100%;width:100%;background-color:currentColor;transition:transform .8s cubic-bezier(.26,.86,.44,.985);transform-origin:0 0;transform:scaleX(0)}.reveal .slide-number{position:absolute;display:block;right:8px;bottom:8px;z-index:31;font-family:Helvetica,sans-serif;font-size:12px;line-height:1;color:#fff;background-color:rgba(0,0,0,.4);padding:5px}.reveal .slide-number a{color:currentColor}.reveal .slide-number-delimiter{margin:0 3px}.reveal{position:relative;width:100%;height:100%;overflow:hidden;touch-action:pinch-zoom}.reveal.embedded{touch-action:pan-y}.reveal .slides{position:absolute;width:100%;height:100%;top:0;right:0;bottom:0;left:0;margin:auto;pointer-events:none;overflow:visible;z-index:1;text-align:center;perspective:600px;perspective-origin:50% 40%}.reveal .slides>section{perspective:600px}.reveal .slides>section,.reveal .slides>section>section{display:none;position:absolute;width:100%;pointer-events:auto;z-index:10;transform-style:flat;transition:transform-origin .8s cubic-bezier(.26,.86,.44,.985),transform .8s cubic-bezier(.26,.86,.44,.985),visibility .8s cubic-bezier(.26,.86,.44,.985),opacity .8s cubic-bezier(.26,.86,.44,.985)}.reveal[data-transition-speed=fast] .slides section{transition-duration:.4s}.reveal[data-transition-speed=slow] .slides section{transition-duration:1.2s}.reveal .slides section[data-transition-speed=fast]{transition-duration:.4s}.reveal .slides section[data-transition-speed=slow]{transition-duration:1.2s}.reveal .slides>section.stack{padding-top:0;padding-bottom:0;pointer-events:none;height:100%}.reveal .slides>section.present,.reveal .slides>section>section.present{display:block;z-index:11;opacity:1}.reveal .slides>section:empty,.reveal .slides>section>section:empty,.reveal .slides>section>section[data-background-interactive],.reveal .slides>section[data-background-interactive]{pointer-events:none}.reveal.center,.reveal.center .slides,.reveal.center .slides section{min-height:0!important}.reveal .slides>section:not(.present),.reveal .slides>section>section:not(.present){pointer-events:none}.reveal.overview .slides>section,.reveal.overview .slides>section>section{pointer-events:auto}.reveal .slides>section.future,.reveal .slides>section.future>section,.reveal .slides>section.past,.reveal .slides>section.past>section,.reveal .slides>section>section.future,.reveal .slides>section>section.past{opacity:0}.reveal .slides>section[data-transition=slide].past,.reveal .slides>section[data-transition~=slide-out].past,.reveal.slide .slides>section:not([data-transition]).past{transform:translate(-150%,0)}.reveal .slides>section[data-transition=slide].future,.reveal .slides>section[data-transition~=slide-in].future,.reveal.slide .slides>section:not([data-transition]).future{transform:translate(150%,0)}.reveal .slides>section>section[data-transition=slide].past,.reveal .slides>section>section[data-transition~=slide-out].past,.reveal.slide .slides>section>section:not([data-transition]).past{transform:translate(0,-150%)}.reveal .slides>section>section[data-transition=slide].future,.reveal .slides>section>section[data-transition~=slide-in].future,.reveal.slide .slides>section>section:not([data-transition]).future{transform:translate(0,150%)}.reveal .slides>section[data-transition=linear].past,.reveal .slides>section[data-transition~=linear-out].past,.reveal.linear .slides>section:not([data-transition]).past{transform:translate(-150%,0)}.reveal .slides>section[data-transition=linear].future,.reveal .slides>section[data-transition~=linear-in].future,.reveal.linear .slides>section:not([data-transition]).future{transform:translate(150%,0)}.reveal .slides>section>section[data-transition=linear].past,.reveal .slides>section>section[data-transition~=linear-out].past,.reveal.linear .slides>section>section:not([data-transition]).past{transform:translate(0,-150%)}.reveal .slides>section>section[data-transition=linear].future,.reveal .slides>section>section[data-transition~=linear-in].future,.reveal.linear .slides>section>section:not([data-transition]).future{transform:translate(0,150%)}.reveal .slides section[data-transition=default].stack,.reveal.default .slides section.stack{transform-style:preserve-3d}.reveal .slides>section[data-transition=default].past,.reveal .slides>section[data-transition~=default-out].past,.reveal.default .slides>section:not([data-transition]).past{transform:translate3d(-100%,0,0) rotateY(-90deg) translate3d(-100%,0,0)}.reveal .slides>section[data-transition=default].future,.reveal .slides>section[data-transition~=default-in].future,.reveal.default .slides>section:not([data-transition]).future{transform:translate3d(100%,0,0) rotateY(90deg) translate3d(100%,0,0)}.reveal .slides>section>section[data-transition=default].past,.reveal .slides>section>section[data-transition~=default-out].past,.reveal.default .slides>section>section:not([data-transition]).past{transform:translate3d(0,-300px,0) rotateX(70deg) translate3d(0,-300px,0)}.reveal .slides>section>section[data-transition=default].future,.reveal .slides>section>section[data-transition~=default-in].future,.reveal.default .slides>section>section:not([data-transition]).future{transform:translate3d(0,300px,0) rotateX(-70deg) translate3d(0,300px,0)}.reveal .slides section[data-transition=convex].stack,.reveal.convex .slides section.stack{transform-style:preserve-3d}.reveal .slides>section[data-transition=convex].past,.reveal .slides>section[data-transition~=convex-out].past,.reveal.convex .slides>section:not([data-transition]).past{transform:translate3d(-100%,0,0) rotateY(-90deg) translate3d(-100%,0,0)}.reveal .slides>section[data-transition=convex].future,.reveal .slides>section[data-transition~=convex-in].future,.reveal.convex .slides>section:not([data-transition]).future{transform:translate3d(100%,0,0) rotateY(90deg) translate3d(100%,0,0)}.reveal .slides>section>section[data-transition=convex].past,.reveal .slides>section>section[data-transition~=convex-out].past,.reveal.convex .slides>section>section:not([data-transition]).past{transform:translate3d(0,-300px,0) rotateX(70deg) translate3d(0,-300px,0)}.reveal .slides>section>section[data-transition=convex].future,.reveal .slides>section>section[data-transition~=convex-in].future,.reveal.convex .slides>section>section:not([data-transition]).future{transform:translate3d(0,300px,0) rotateX(-70deg) translate3d(0,300px,0)}.reveal .slides section[data-transition=concave].stack,.reveal.concave .slides section.stack{transform-style:preserve-3d}.reveal .slides>section[data-transition=concave].past,.reveal .slides>section[data-transition~=concave-out].past,.reveal.concave .slides>section:not([data-transition]).past{transform:translate3d(-100%,0,0) rotateY(90deg) translate3d(-100%,0,0)}.reveal .slides>section[data-transition=concave].future,.reveal .slides>section[data-transition~=concave-in].future,.reveal.concave .slides>section:not([data-transition]).future{transform:translate3d(100%,0,0) rotateY(-90deg) translate3d(100%,0,0)}.reveal .slides>section>section[data-transition=concave].past,.reveal .slides>section>section[data-transition~=concave-out].past,.reveal.concave .slides>section>section:not([data-transition]).past{transform:translate3d(0,-80%,0) rotateX(-70deg) translate3d(0,-80%,0)}.reveal .slides>section>section[data-transition=concave].future,.reveal .slides>section>section[data-transition~=concave-in].future,.reveal.concave .slides>section>section:not([data-transition]).future{transform:translate3d(0,80%,0) rotateX(70deg) translate3d(0,80%,0)}.reveal .slides section[data-transition=zoom],.reveal.zoom .slides section:not([data-transition]){transition-timing-function:ease}.reveal .slides>section[data-transition=zoom].past,.reveal .slides>section[data-transition~=zoom-out].past,.reveal.zoom .slides>section:not([data-transition]).past{visibility:hidden;transform:scale(16)}.reveal .slides>section[data-transition=zoom].future,.reveal .slides>section[data-transition~=zoom-in].future,.reveal.zoom .slides>section:not([data-transition]).future{visibility:hidden;transform:scale(.2)}.reveal .slides>section>section[data-transition=zoom].past,.reveal .slides>section>section[data-transition~=zoom-out].past,.reveal.zoom .slides>section>section:not([data-transition]).past{transform:scale(16)}.reveal .slides>section>section[data-transition=zoom].future,.reveal .slides>section>section[data-transition~=zoom-in].future,.reveal.zoom .slides>section>section:not([data-transition]).future{transform:scale(.2)}.reveal.cube .slides{perspective:1300px}.reveal.cube .slides section{padding:30px;min-height:700px;backface-visibility:hidden;box-sizing:border-box;transform-style:preserve-3d}.reveal.center.cube .slides section{min-height:0}.reveal.cube .slides section:not(.stack):before{content:"";position:absolute;display:block;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.1);border-radius:4px;transform:translateZ(-20px)}.reveal.cube .slides section:not(.stack):after{content:"";position:absolute;display:block;width:90%;height:30px;left:5%;bottom:0;background:0 0;z-index:1;border-radius:4px;box-shadow:0 95px 25px rgba(0,0,0,.2);transform:translateZ(-90px) rotateX(65deg)}.reveal.cube .slides>section.stack{padding:0;background:0 0}.reveal.cube .slides>section.past{transform-origin:100% 0;transform:translate3d(-100%,0,0) rotateY(-90deg)}.reveal.cube .slides>section.future{transform-origin:0 0;transform:translate3d(100%,0,0) rotateY(90deg)}.reveal.cube .slides>section>section.past{transform-origin:0 100%;transform:translate3d(0,-100%,0) rotateX(90deg)}.reveal.cube .slides>section>section.future{transform-origin:0 0;transform:translate3d(0,100%,0) rotateX(-90deg)}.reveal.page .slides{perspective-origin:0 50%;perspective:3000px}.reveal.page .slides section{padding:30px;min-height:700px;box-sizing:border-box;transform-style:preserve-3d}.reveal.page .slides section.past{z-index:12}.reveal.page .slides section:not(.stack):before{content:"";position:absolute;display:block;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.1);transform:translateZ(-20px)}.reveal.page .slides section:not(.stack):after{content:"";position:absolute;display:block;width:90%;height:30px;left:5%;bottom:0;background:0 0;z-index:1;border-radius:4px;box-shadow:0 95px 25px rgba(0,0,0,.2);-webkit-transform:translateZ(-90px) rotateX(65deg)}.reveal.page .slides>section.stack{padding:0;background:0 0}.reveal.page .slides>section.past{transform-origin:0 0;transform:translate3d(-40%,0,0) rotateY(-80deg)}.reveal.page .slides>section.future{transform-origin:100% 0;transform:translate3d(0,0,0)}.reveal.page .slides>section>section.past{transform-origin:0 0;transform:translate3d(0,-40%,0) rotateX(80deg)}.reveal.page .slides>section>section.future{transform-origin:0 100%;transform:translate3d(0,0,0)}.reveal .slides section[data-transition=fade],.reveal.fade .slides section:not([data-transition]),.reveal.fade .slides>section>section:not([data-transition]){transform:none;transition:opacity .5s}.reveal.fade.overview .slides section,.reveal.fade.overview .slides>section>section{transition:none}.reveal .slides section[data-transition=none],.reveal.none .slides section:not([data-transition]){transform:none;transition:none}.reveal .pause-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#000;visibility:hidden;opacity:0;z-index:100;transition:all 1s ease}.reveal .pause-overlay .resume-button{position:absolute;bottom:20px;right:20px;color:#ccc;border-radius:2px;padding:6px 14px;border:2px solid #ccc;font-size:16px;background:0 0;cursor:pointer}.reveal .pause-overlay .resume-button:hover{color:#fff;border-color:#fff}.reveal.paused .pause-overlay{visibility:visible;opacity:1}.reveal .no-transition,.reveal .no-transition *,.reveal .slides.disable-slide-transitions section{transition:none!important}.reveal .slides.disable-slide-transitions section{transform:none!important}.reveal .backgrounds{position:absolute;width:100%;height:100%;top:0;left:0;perspective:600px}.reveal .slide-background{display:none;position:absolute;width:100%;height:100%;opacity:0;visibility:hidden;overflow:hidden;background-color:rgba(0,0,0,0);transition:all .8s cubic-bezier(.26,.86,.44,.985)}.reveal .slide-background-content{position:absolute;width:100%;height:100%;background-position:50% 50%;background-repeat:no-repeat;background-size:cover}.reveal .slide-background.stack{display:block}.reveal .slide-background.present{opacity:1;visibility:visible;z-index:2}.print-pdf .reveal .slide-background{opacity:1!important;visibility:visible!important}.reveal .slide-background video{position:absolute;width:100%;height:100%;max-width:none;max-height:none;top:0;left:0;object-fit:cover}.reveal .slide-background[data-background-size=contain] video{object-fit:contain}.reveal>.backgrounds .slide-background[data-background-transition=none],.reveal[data-background-transition=none]>.backgrounds .slide-background:not([data-background-transition]){transition:none}.reveal>.backgrounds .slide-background[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background:not([data-background-transition]){opacity:1}.reveal>.backgrounds .slide-background.past[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background.past:not([data-background-transition]){transform:translate(-100%,0)}.reveal>.backgrounds .slide-background.future[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background.future:not([data-background-transition]){transform:translate(100%,0)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background>.slide-background.past:not([data-background-transition]){transform:translate(0,-100%)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background>.slide-background.future:not([data-background-transition]){transform:translate(0,100%)}.reveal>.backgrounds .slide-background.past[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background.past:not([data-background-transition]){opacity:0;transform:translate3d(-100%,0,0) rotateY(-90deg) translate3d(-100%,0,0)}.reveal>.backgrounds .slide-background.future[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background.future:not([data-background-transition]){opacity:0;transform:translate3d(100%,0,0) rotateY(90deg) translate3d(100%,0,0)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background>.slide-background.past:not([data-background-transition]){opacity:0;transform:translate3d(0,-100%,0) rotateX(90deg) translate3d(0,-100%,0)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background>.slide-background.future:not([data-background-transition]){opacity:0;transform:translate3d(0,100%,0) rotateX(-90deg) translate3d(0,100%,0)}.reveal>.backgrounds .slide-background.past[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background.past:not([data-background-transition]){opacity:0;transform:translate3d(-100%,0,0) rotateY(90deg) translate3d(-100%,0,0)}.reveal>.backgrounds .slide-background.future[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background.future:not([data-background-transition]){opacity:0;transform:translate3d(100%,0,0) rotateY(-90deg) translate3d(100%,0,0)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background>.slide-background.past:not([data-background-transition]){opacity:0;transform:translate3d(0,-100%,0) rotateX(-90deg) translate3d(0,-100%,0)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background>.slide-background.future:not([data-background-transition]){opacity:0;transform:translate3d(0,100%,0) rotateX(90deg) translate3d(0,100%,0)}.reveal>.backgrounds .slide-background[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background:not([data-background-transition]){transition-timing-function:ease}.reveal>.backgrounds .slide-background.past[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background.past:not([data-background-transition]){opacity:0;visibility:hidden;transform:scale(16)}.reveal>.backgrounds .slide-background.future[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background.future:not([data-background-transition]){opacity:0;visibility:hidden;transform:scale(.2)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background>.slide-background.past:not([data-background-transition]){opacity:0;visibility:hidden;transform:scale(16)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background>.slide-background.future:not([data-background-transition]){opacity:0;visibility:hidden;transform:scale(.2)}.reveal[data-transition-speed=fast]>.backgrounds .slide-background{transition-duration:.4s}.reveal[data-transition-speed=slow]>.backgrounds .slide-background{transition-duration:1.2s}.reveal [data-auto-animate-target^=unmatched]{will-change:opacity}.reveal section[data-auto-animate]:not(.stack):not([data-auto-animate=running]) [data-auto-animate-target^=unmatched]{opacity:0}.reveal.overview{perspective-origin:50% 50%;perspective:700px}.reveal.overview .slides{-moz-transform-style:preserve-3d}.reveal.overview .slides section{height:100%;top:0!important;opacity:1!important;overflow:hidden;visibility:visible!important;cursor:pointer;box-sizing:border-box}.reveal.overview .slides section.present,.reveal.overview .slides section:hover{outline:10px solid rgba(150,150,150,.4);outline-offset:10px}.reveal.overview .slides section .fragment{opacity:1;transition:none}.reveal.overview .slides section:after,.reveal.overview .slides section:before{display:none!important}.reveal.overview .slides>section.stack{padding:0;top:0!important;background:0 0;outline:0;overflow:visible}.reveal.overview .backgrounds{perspective:inherit;-moz-transform-style:preserve-3d}.reveal.overview .backgrounds .slide-background{opacity:1;visibility:visible;outline:10px solid rgba(150,150,150,.1);outline-offset:10px}.reveal.overview .backgrounds .slide-background.stack{overflow:visible}.reveal.overview .slides section,.reveal.overview-deactivating .slides section{transition:none}.reveal.overview .backgrounds .slide-background,.reveal.overview-deactivating .backgrounds .slide-background{transition:none}.reveal.rtl .slides,.reveal.rtl .slides h1,.reveal.rtl .slides h2,.reveal.rtl .slides h3,.reveal.rtl .slides h4,.reveal.rtl .slides h5,.reveal.rtl .slides h6{direction:rtl;font-family:sans-serif}.reveal.rtl code,.reveal.rtl pre{direction:ltr}.reveal.rtl ol,.reveal.rtl ul{text-align:right}.reveal.rtl .progress span{transform-origin:100% 0}.reveal.has-parallax-background .backgrounds{transition:all .8s ease}.reveal.has-parallax-background[data-transition-speed=fast] .backgrounds{transition-duration:.4s}.reveal.has-parallax-background[data-transition-speed=slow] .backgrounds{transition-duration:1.2s}.reveal>.overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1000;background:rgba(0,0,0,.9);transition:all .3s ease}.reveal>.overlay .spinner{position:absolute;display:block;top:50%;left:50%;width:32px;height:32px;margin:-16px 0 0 -16px;z-index:10;background-image:url(data:image/gif;base64,R0lGODlhIAAgAPMAAJmZmf%2F%2F%2F6%2Bvr8nJybW1tcDAwOjo6Nvb26ioqKOjo7Ozs%2FLy8vz8%2FAAAAAAAAAAAACH%2FC05FVFNDQVBFMi4wAwEAAAAh%2FhpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh%2BQQJCgAAACwAAAAAIAAgAAAE5xDISWlhperN52JLhSSdRgwVo1ICQZRUsiwHpTJT4iowNS8vyW2icCF6k8HMMBkCEDskxTBDAZwuAkkqIfxIQyhBQBFvAQSDITM5VDW6XNE4KagNh6Bgwe60smQUB3d4Rz1ZBApnFASDd0hihh12BkE9kjAJVlycXIg7CQIFA6SlnJ87paqbSKiKoqusnbMdmDC2tXQlkUhziYtyWTxIfy6BE8WJt5YJvpJivxNaGmLHT0VnOgSYf0dZXS7APdpB309RnHOG5gDqXGLDaC457D1zZ%2FV%2FnmOM82XiHRLYKhKP1oZmADdEAAAh%2BQQJCgAAACwAAAAAIAAgAAAE6hDISWlZpOrNp1lGNRSdRpDUolIGw5RUYhhHukqFu8DsrEyqnWThGvAmhVlteBvojpTDDBUEIFwMFBRAmBkSgOrBFZogCASwBDEY%2FCZSg7GSE0gSCjQBMVG023xWBhklAnoEdhQEfyNqMIcKjhRsjEdnezB%2BA4k8gTwJhFuiW4dokXiloUepBAp5qaKpp6%2BHo7aWW54wl7obvEe0kRuoplCGepwSx2jJvqHEmGt6whJpGpfJCHmOoNHKaHx61WiSR92E4lbFoq%2BB6QDtuetcaBPnW6%2BO7wDHpIiK9SaVK5GgV543tzjgGcghAgAh%2BQQJCgAAACwAAAAAIAAgAAAE7hDISSkxpOrN5zFHNWRdhSiVoVLHspRUMoyUakyEe8PTPCATW9A14E0UvuAKMNAZKYUZCiBMuBakSQKG8G2FzUWox2AUtAQFcBKlVQoLgQReZhQlCIJesQXI5B0CBnUMOxMCenoCfTCEWBsJColTMANldx15BGs8B5wlCZ9Po6OJkwmRpnqkqnuSrayqfKmqpLajoiW5HJq7FL1Gr2mMMcKUMIiJgIemy7xZtJsTmsM4xHiKv5KMCXqfyUCJEonXPN2rAOIAmsfB3uPoAK%2B%2BG%2Bw48edZPK%2BM6hLJpQg484enXIdQFSS1u6UhksENEQAAIfkECQoAAAAsAAAAACAAIAAABOcQyEmpGKLqzWcZRVUQnZYg1aBSh2GUVEIQ2aQOE%2BG%2BcD4ntpWkZQj1JIiZIogDFFyHI0UxQwFugMSOFIPJftfVAEoZLBbcLEFhlQiqGp1Vd140AUklUN3eCA51C1EWMzMCezCBBmkxVIVHBWd3HHl9JQOIJSdSnJ0TDKChCwUJjoWMPaGqDKannasMo6WnM562R5YluZRwur0wpgqZE7NKUm%2BFNRPIhjBJxKZteWuIBMN4zRMIVIhffcgojwCF117i4nlLnY5ztRLsnOk%2BaV%2BoJY7V7m76PdkS4trKcdg0Zc0tTcKkRAAAIfkECQoAAAAsAAAAACAAIAAABO4QyEkpKqjqzScpRaVkXZWQEximw1BSCUEIlDohrft6cpKCk5xid5MNJTaAIkekKGQkWyKHkvhKsR7ARmitkAYDYRIbUQRQjWBwJRzChi9CRlBcY1UN4g0%2FVNB0AlcvcAYHRyZPdEQFYV8ccwR5HWxEJ02YmRMLnJ1xCYp0Y5idpQuhopmmC2KgojKasUQDk5BNAwwMOh2RtRq5uQuPZKGIJQIGwAwGf6I0JXMpC8C7kXWDBINFMxS4DKMAWVWAGYsAdNqW5uaRxkSKJOZKaU3tPOBZ4DuK2LATgJhkPJMgTwKCdFjyPHEnKxFCDhEAACH5BAkKAAAALAAAAAAgACAAAATzEMhJaVKp6s2nIkolIJ2WkBShpkVRWqqQrhLSEu9MZJKK9y1ZrqYK9WiClmvoUaF8gIQSNeF1Er4MNFn4SRSDARWroAIETg1iVwuHjYB1kYc1mwruwXKC9gmsJXliGxc%2BXiUCby9ydh1sOSdMkpMTBpaXBzsfhoc5l58Gm5yToAaZhaOUqjkDgCWNHAULCwOLaTmzswadEqggQwgHuQsHIoZCHQMMQgQGubVEcxOPFAcMDAYUA85eWARmfSRQCdcMe0zeP1AAygwLlJtPNAAL19DARdPzBOWSm1brJBi45soRAWQAAkrQIykShQ9wVhHCwCQCACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiRMDjI0Fd30%2FiI2UA5GSS5UDj2l6NoqgOgN4gksEBgYFf0FDqKgHnyZ9OX8HrgYHdHpcHQULXAS2qKpENRg7eAMLC7kTBaixUYFkKAzWAAnLC7FLVxLWDBLKCwaKTULgEwbLA4hJtOkSBNqITT3xEgfLpBtzE%2FjiuL04RGEBgwWhShRgQExHBAAh%2BQQJCgAAACwAAAAAIAAgAAAE7xDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfZiCqGk5dTESJeaOAlClzsJsqwiJwiqnFrb2nS9kmIcgEsjQydLiIlHehhpejaIjzh9eomSjZR%2BipslWIRLAgMDOR2DOqKogTB9pCUJBagDBXR6XB0EBkIIsaRsGGMMAxoDBgYHTKJiUYEGDAzHC9EACcUGkIgFzgwZ0QsSBcXHiQvOwgDdEwfFs0sDzt4S6BK4xYjkDOzn0unFeBzOBijIm1Dgmg5YFQwsCMjp1oJ8LyIAACH5BAkKAAAALAAAAAAgACAAAATwEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GGl6NoiPOH16iZKNlH6KmyWFOggHhEEvAwwMA0N9GBsEC6amhnVcEwavDAazGwIDaH1ipaYLBUTCGgQDA8NdHz0FpqgTBwsLqAbWAAnIA4FWKdMLGdYGEgraigbT0OITBcg5QwPT4xLrROZL6AuQAPUS7bxLpoWidY0JtxLHKhwwMJBTHgPKdEQAACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GAULDJCRiXo1CpGXDJOUjY%2BYip9DhToJA4RBLwMLCwVDfRgbBAaqqoZ1XBMHswsHtxtFaH1iqaoGNgAIxRpbFAgfPQSqpbgGBqUD1wBXeCYp1AYZ19JJOYgH1KwA4UBvQwXUBxPqVD9L3sbp2BNk2xvvFPJd%2BMFCN6HAAIKgNggY0KtEBAAh%2BQQJCgAAACwAAAAAIAAgAAAE6BDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfYIDMaAFdTESJeaEDAIMxYFqrOUaNW4E4ObYcCXaiBVEgULe0NJaxxtYksjh2NLkZISgDgJhHthkpU4mW6blRiYmZOlh4JWkDqILwUGBnE6TYEbCgevr0N1gH4At7gHiRpFaLNrrq8HNgAJA70AWxQIH1%2BvsYMDAzZQPC9VCNkDWUhGkuE5PxJNwiUK4UfLzOlD4WvzAHaoG9nxPi5d%2BjYUqfAhhykOFwJWiAAAIfkECQoAAAAsAAAAACAAIAAABPAQyElpUqnqzaciSoVkXVUMFaFSwlpOCcMYlErAavhOMnNLNo8KsZsMZItJEIDIFSkLGQoQTNhIsFehRww2CQLKF0tYGKYSg%2BygsZIuNqJksKgbfgIGepNo2cIUB3V1B3IvNiBYNQaDSTtfhhx0CwVPI0UJe0%2Bbm4g5VgcGoqOcnjmjqDSdnhgEoamcsZuXO1aWQy8KAwOAuTYYGwi7w5h%2BKr0SJ8MFihpNbx%2B4Erq7BYBuzsdiH1jCAzoSfl0rVirNbRXlBBlLX%2BBP0XJLAPGzTkAuAOqb0WT5AH7OcdCm5B8TgRwSRKIHQtaLCwg1RAAAOwAAAAAAAAAAAA%3D%3D);visibility:visible;opacity:.6;transition:all .3s ease}.reveal>.overlay header{position:absolute;left:0;top:0;width:100%;padding:5px;z-index:2;box-sizing:border-box}.reveal>.overlay header a{display:inline-block;width:40px;height:40px;line-height:36px;padding:0 10px;float:right;opacity:.6;box-sizing:border-box}.reveal>.overlay header a:hover{opacity:1}.reveal>.overlay header a .icon{display:inline-block;width:20px;height:20px;background-position:50% 50%;background-size:100%;background-repeat:no-repeat}.reveal>.overlay header a.close .icon{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABkklEQVRYR8WX4VHDMAxG6wnoJrABZQPYBCaBTWAD2g1gE5gg6OOsXuxIlr40d81dfrSJ9V4c2VLK7spHuTJ/5wpM07QXuXc5X0opX2tEJcadjHuV80li/FgxTIEK/5QBCICBD6xEhSMGHgQPgBgLiYVAB1dpSqKDawxTohFw4JSEA3clzgIBPCURwE2JucBR7rhPJJv5OpJwDX+SfDjgx1wACQeJG1aChP9K/IMmdZ8DtESV1WyP3Bt4MwM6sj4NMxMYiqUWHQu4KYA/SYkIjOsm3BXYWMKFDwU2khjCQ4ELJUJ4SmClRArOCmSXGuKma0fYD5CbzHxFpCSGAhfAVSSUGDUk2BWZaff2g6GE15BsBQ9nwmpIGDiyHQddwNTMKkbZaf9fajXQca1EX44puJZUsnY0ObGmITE3GVLCbEhQUjGVt146j6oasWN+49Vph2w1pZ5EansNZqKBm1txbU57iRRcZ86RWMDdWtBJUHBHwoQPi1GV+JCbntmvok7iTX4/Up9mgyTc/FJYDTcndgH/AA5A/CHsyEkVAAAAAElFTkSuQmCC)}.reveal>.overlay header a.external .icon{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAcElEQVRYR+2WSQoAIQwEzf8f7XiOMkUQxUPlGkM3hVmiQfQR9GYnH1SsAQlI4DiBqkCMoNb9y2e90IAEJPAcgdznU9+engMaeJ7Azh5Y1U67gAho4DqBqmB1buAf0MB1AlVBek83ZPkmJMGc1wAR+AAqod/B97TRpQAAAABJRU5ErkJggg==)}.reveal>.overlay .viewport{position:absolute;display:flex;top:50px;right:0;bottom:0;left:0}.reveal>.overlay.overlay-preview .viewport iframe{width:100%;height:100%;max-width:100%;max-height:100%;border:0;opacity:0;visibility:hidden;transition:all .3s ease}.reveal>.overlay.overlay-preview.loaded .viewport iframe{opacity:1;visibility:visible}.reveal>.overlay.overlay-preview.loaded .viewport-inner{position:absolute;z-index:-1;left:0;top:45%;width:100%;text-align:center;letter-spacing:normal}.reveal>.overlay.overlay-preview .x-frame-error{opacity:0;transition:opacity .3s ease .3s}.reveal>.overlay.overlay-preview.loaded .x-frame-error{opacity:1}.reveal>.overlay.overlay-preview.loaded .spinner{opacity:0;visibility:hidden;transform:scale(.2)}.reveal>.overlay.overlay-help .viewport{overflow:auto;color:#fff}.reveal>.overlay.overlay-help .viewport .viewport-inner{width:600px;margin:auto;padding:20px 20px 80px 20px;text-align:center;letter-spacing:normal}.reveal>.overlay.overlay-help .viewport .viewport-inner .title{font-size:20px}.reveal>.overlay.overlay-help .viewport .viewport-inner table{border:1px solid #fff;border-collapse:collapse;font-size:16px}.reveal>.overlay.overlay-help .viewport .viewport-inner table td,.reveal>.overlay.overlay-help .viewport .viewport-inner table th{width:200px;padding:14px;border:1px solid #fff;vertical-align:middle}.reveal>.overlay.overlay-help .viewport .viewport-inner table th{padding-top:20px;padding-bottom:20px}.reveal .playback{position:absolute;left:15px;bottom:20px;z-index:30;cursor:pointer;transition:all .4s ease;-webkit-tap-highlight-color:transparent}.reveal.overview .playback{opacity:0;visibility:hidden}.reveal .hljs{min-height:100%}.reveal .hljs table{margin:initial}.reveal .hljs-ln-code,.reveal .hljs-ln-numbers{padding:0;border:0}.reveal .hljs-ln-numbers{opacity:.6;padding-right:.75em;text-align:right;vertical-align:top}.reveal .hljs.has-highlights tr:not(.highlight-line){opacity:.4}.reveal .hljs.has-highlights.fragment{transition:all .2s ease}.reveal .hljs:not(:first-child).fragment{position:absolute;top:0;left:0;width:100%;box-sizing:border-box}.reveal pre[data-auto-animate-target]{overflow:hidden}.reveal pre[data-auto-animate-target] code{height:100%}.reveal .roll{display:inline-block;line-height:1.2;overflow:hidden;vertical-align:top;perspective:400px;perspective-origin:50% 50%}.reveal .roll:hover{background:0 0;text-shadow:none}.reveal .roll span{display:block;position:relative;padding:0 2px;pointer-events:none;transition:all .4s ease;transform-origin:50% 0;transform-style:preserve-3d;backface-visibility:hidden}.reveal .roll:hover span{background:rgba(0,0,0,.5);transform:translate3d(0,0,-45px) rotateX(90deg)}.reveal .roll span:after{content:attr(data-title);display:block;position:absolute;left:0;top:0;padding:0 2px;backface-visibility:hidden;transform-origin:50% 0;transform:translate3d(0,110%,0) rotateX(-90deg)}.reveal aside.notes{display:none}.reveal .speaker-notes{display:none;position:absolute;width:33.3333333333%;height:100%;top:0;left:100%;padding:14px 18px 14px 18px;z-index:1;font-size:18px;line-height:1.4;border:1px solid rgba(0,0,0,.05);color:#222;background-color:#f5f5f5;overflow:auto;box-sizing:border-box;text-align:left;font-family:Helvetica,sans-serif;-webkit-overflow-scrolling:touch}.reveal .speaker-notes .notes-placeholder{color:#ccc;font-style:italic}.reveal .speaker-notes:focus{outline:0}.reveal .speaker-notes:before{content:"Speaker notes";display:block;margin-bottom:10px;opacity:.5}.reveal.show-notes{max-width:75%;overflow:visible}.reveal.show-notes .speaker-notes{display:block}@media screen and (min-width:1600px){.reveal .speaker-notes{font-size:20px}}@media screen and (max-width:1024px){.reveal.show-notes{border-left:0;max-width:none;max-height:70%;max-height:70vh;overflow:visible}.reveal.show-notes .speaker-notes{top:100%;left:0;width:100%;height:30vh;border:0}}@media screen and (max-width:600px){.reveal.show-notes{max-height:60%;max-height:60vh}.reveal.show-notes .speaker-notes{top:100%;height:40vh}.reveal .speaker-notes{font-size:14px}}.reveal .jump-to-slide{position:absolute;top:15px;left:15px;z-index:30;font-size:32px;-webkit-tap-highlight-color:transparent}.reveal .jump-to-slide-input{background:0 0;padding:8px;font-size:inherit;color:currentColor;border:0}.reveal .jump-to-slide-input::placeholder{color:currentColor;opacity:.5}.reveal.has-dark-background .jump-to-slide-input{color:#fff}.reveal.has-light-background .jump-to-slide-input{color:#222}.reveal .jump-to-slide-input:focus{outline:0}.zoomed .reveal *,.zoomed .reveal :after,.zoomed .reveal :before{backface-visibility:visible!important}.zoomed .reveal .controls,.zoomed .reveal .progress{opacity:0}.zoomed .reveal .roll span{background:0 0}.zoomed .reveal .roll span:after{visibility:hidden}html.print-pdf *{-webkit-print-color-adjust:exact}html.print-pdf{width:100%;height:100%;overflow:visible}html.print-pdf body{margin:0 auto!important;border:0;padding:0;float:none!important;overflow:visible}html.print-pdf .nestedarrow,html.print-pdf .reveal .controls,html.print-pdf .reveal .playback,html.print-pdf .reveal .progress,html.print-pdf .reveal.overview,html.print-pdf .state-background{display:none!important}html.print-pdf .reveal pre code{overflow:hidden!important}html.print-pdf .reveal{width:auto!important;height:auto!important;overflow:hidden!important}html.print-pdf .reveal .slides{position:static;width:100%!important;height:auto!important;zoom:1!important;pointer-events:initial;left:auto;top:auto;margin:0!important;padding:0!important;overflow:visible;display:block;perspective:none;perspective-origin:50% 50%}html.print-pdf .reveal .slides .pdf-page{position:relative;overflow:hidden;z-index:1;page-break-after:always}html.print-pdf .reveal .slides section{visibility:visible!important;display:block!important;position:absolute!important;margin:0!important;padding:0!important;box-sizing:border-box!important;min-height:1px;opacity:1!important;transform-style:flat!important;transform:none!important}html.print-pdf .reveal section.stack{position:relative!important;margin:0!important;padding:0!important;page-break-after:avoid!important;height:auto!important;min-height:auto!important}html.print-pdf .reveal img{box-shadow:none}html.print-pdf .reveal .backgrounds{display:none}html.print-pdf .reveal .slide-background{display:block!important;position:absolute;top:0;left:0;width:100%;height:100%;z-index:auto!important}html.print-pdf .reveal.show-notes{max-width:none;max-height:none}html.print-pdf .reveal .speaker-notes-pdf{display:block;width:100%;height:auto;max-height:none;top:auto;right:auto;bottom:auto;left:auto;z-index:100}html.print-pdf .reveal .speaker-notes-pdf[data-layout=separate-page]{position:relative;color:inherit;background-color:transparent;padding:20px;page-break-after:always;border:0}html.print-pdf .reveal .slide-number-pdf{display:block;position:absolute;font-size:14px}html.print-pdf .aria-status{display:none}@media print{html:not(.print-pdf){overflow:visible;width:auto;height:auto}html:not(.print-pdf) body{margin:0;padding:0;overflow:visible}html:not(.print-pdf) .reveal{background:#fff;font-size:20pt}html:not(.print-pdf) .reveal .backgrounds,html:not(.print-pdf) .reveal .controls,html:not(.print-pdf) .reveal .progress,html:not(.print-pdf) .reveal .slide-number,html:not(.print-pdf) .reveal .state-background{display:none!important}html:not(.print-pdf) .reveal li,html:not(.print-pdf) .reveal p,html:not(.print-pdf) .reveal td{font-size:20pt!important;color:#000}html:not(.print-pdf) .reveal h1,html:not(.print-pdf) .reveal h2,html:not(.print-pdf) .reveal h3,html:not(.print-pdf) .reveal h4,html:not(.print-pdf) .reveal h5,html:not(.print-pdf) .reveal h6{color:#000!important;height:auto;line-height:normal;text-align:left;letter-spacing:normal}html:not(.print-pdf) .reveal h1{font-size:28pt!important}html:not(.print-pdf) .reveal h2{font-size:24pt!important}html:not(.print-pdf) .reveal h3{font-size:22pt!important}html:not(.print-pdf) .reveal h4{font-size:22pt!important;font-variant:small-caps}html:not(.print-pdf) .reveal h5{font-size:21pt!important}html:not(.print-pdf) .reveal h6{font-size:20pt!important;font-style:italic}html:not(.print-pdf) .reveal a:link,html:not(.print-pdf) .reveal a:visited{color:#000!important;font-weight:700;text-decoration:underline}html:not(.print-pdf) .reveal div,html:not(.print-pdf) .reveal ol,html:not(.print-pdf) .reveal p,html:not(.print-pdf) .reveal ul{visibility:visible;position:static;width:auto;height:auto;display:block;overflow:visible;margin:0;text-align:left!important}html:not(.print-pdf) .reveal pre,html:not(.print-pdf) .reveal table{margin-left:0;margin-right:0}html:not(.print-pdf) .reveal pre code{padding:20px}html:not(.print-pdf) .reveal blockquote{margin:20px 0}html:not(.print-pdf) .reveal .slides{position:static!important;width:auto!important;height:auto!important;left:0!important;top:0!important;margin-left:0!important;margin-top:0!important;padding:0!important;zoom:1!important;transform:none!important;overflow:visible!important;display:block!important;text-align:left!important;perspective:none;perspective-origin:50% 50%}html:not(.print-pdf) .reveal .slides section{visibility:visible!important;position:static!important;width:auto!important;height:auto!important;display:block!important;overflow:visible!important;left:0!important;top:0!important;margin-left:0!important;margin-top:0!important;padding:60px 20px!important;z-index:auto!important;opacity:1!important;page-break-after:always!important;transform-style:flat!important;transform:none!important;transition:none!important}html:not(.print-pdf) .reveal .slides section.stack{padding:0!important}html:not(.print-pdf) .reveal .slides section:last-of-type{page-break-after:avoid!important}html:not(.print-pdf) .reveal .slides section .fragment{opacity:1!important;visibility:visible!important;transform:none!important}html:not(.print-pdf) .reveal .r-fit-text{white-space:normal!important}html:not(.print-pdf) .reveal section img{display:block;margin:15px 0;background:#fff;border:1px solid #666;box-shadow:none}html:not(.print-pdf) .reveal section small{font-size:.8em}html:not(.print-pdf) .reveal .hljs{max-height:100%;white-space:pre-wrap;word-wrap:break-word;word-break:break-word;font-size:15pt}html:not(.print-pdf) .reveal .hljs .hljs-ln-numbers{white-space:nowrap}html:not(.print-pdf) .reveal .hljs td{font-size:inherit!important;color:inherit!important}}</style>
   <style>@font-face{font-family:'Source Sans Pro';src:url(fonts/source-sans-pro/source-sans-pro-regular.eot);src:url(fonts/source-sans-pro/source-sans-pro-regular.eot?#iefix) format('embedded-opentype'),url(fonts/source-sans-pro/source-sans-pro-regular.woff) format('woff'),url(fonts/source-sans-pro/source-sans-pro-regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:'Source Sans Pro';src:url(fonts/source-sans-pro/source-sans-pro-italic.eot);src:url(fonts/source-sans-pro/source-sans-pro-italic.eot?#iefix) format('embedded-opentype'),url(fonts/source-sans-pro/source-sans-pro-italic.woff) format('woff'),url(fonts/source-sans-pro/source-sans-pro-italic.ttf) format('truetype');font-weight:400;font-style:italic}@font-face{font-family:'Source Sans Pro';src:url(fonts/source-sans-pro/source-sans-pro-semibold.eot);src:url(fonts/source-sans-pro/source-sans-pro-semibold.eot?#iefix) format('embedded-opentype'),url(fonts/source-sans-pro/source-sans-pro-semibold.woff) format('woff'),url(fonts/source-sans-pro/source-sans-pro-semibold.ttf) format('truetype');font-weight:600;font-style:normal}@font-face{font-family:'Source Sans Pro';src:url(fonts/source-sans-pro/source-sans-pro-semibolditalic.eot);src:url(fonts/source-sans-pro/source-sans-pro-semibolditalic.eot?#iefix) format('embedded-opentype'),url(fonts/source-sans-pro/source-sans-pro-semibolditalic.woff) format('woff'),url(fonts/source-sans-pro/source-sans-pro-semibolditalic.ttf) format('truetype');font-weight:600;font-style:italic}section.has-light-background,section.has-light-background h1,section.has-light-background h2,section.has-light-background h3,section.has-light-background h4,section.has-light-background h5,section.has-light-background h6{color:#222}:root{--r-background-color:#191919;--r-main-font:Source Sans Pro,Helvetica,sans-serif;--r-main-font-size:42px;--r-main-color:#fff;--r-block-margin:20px;--r-heading-margin:0 0 20px 0;--r-heading-font:Source Sans Pro,Helvetica,sans-serif;--r-heading-color:#fff;--r-heading-line-height:1.2;--r-heading-letter-spacing:normal;--r-heading-text-transform:uppercase;--r-heading-text-shadow:none;--r-heading-font-weight:600;--r-heading1-text-shadow:none;--r-heading1-size:2.5em;--r-heading2-size:1.6em;--r-heading3-size:1.3em;--r-heading4-size:1em;--r-code-font:monospace;--r-link-color:#42affa;--r-link-color-dark:#068de9;--r-link-color-hover:#8dcffc;--r-selection-background-color:rgba(66, 175, 250, 0.75);--r-selection-color:#fff}
 .reveal-viewport{background:#191919;background-color:var(--r-background-color)}.reveal{font-family:var(--r-main-font);font-size:var(--r-main-font-size);font-weight:400;color:var(--r-main-color)}.reveal ::selection{color:var(--r-selection-color);background:var(--r-selection-background-color);text-shadow:none}.reveal ::-moz-selection{color:var(--r-selection-color);background:var(--r-selection-background-color);text-shadow:none}.reveal .slides section,.reveal .slides section>section{line-height:1.3;font-weight:inherit}.reveal h1,.reveal h2,.reveal h3,.reveal h4,.reveal h5,.reveal h6{margin:var(--r-heading-margin);color:var(--r-heading-color);font-family:var(--r-heading-font);font-weight:var(--r-heading-font-weight);line-height:var(--r-heading-line-height);letter-spacing:var(--r-heading-letter-spacing);text-transform:var(--r-heading-text-transform);text-shadow:var(--r-heading-text-shadow);word-wrap:break-word}.reveal h1{font-size:var(--r-heading1-size)}.reveal h2{font-size:var(--r-heading2-size)}.reveal h3{font-size:var(--r-heading3-size)}.reveal h4{font-size:var(--r-heading4-size)}.reveal h1{text-shadow:var(--r-heading1-text-shadow)}.reveal p{margin:var(--r-block-margin) 0;line-height:1.3}.reveal h1:last-child,.reveal h2:last-child,.reveal h3:last-child,.reveal h4:last-child,.reveal h5:last-child,.reveal h6:last-child{margin-bottom:0}.reveal iframe,.reveal img,.reveal video{max-width:95%;max-height:95%}.reveal b,.reveal strong{font-weight:700}.reveal em{font-style:italic}.reveal dl,.reveal ol,.reveal ul{display:inline-block;text-align:left;margin:0 0 0 1em}.reveal ol{list-style-type:decimal}.reveal ul{list-style-type:disc}.reveal ul ul{list-style-type:square}.reveal ul ul ul{list-style-type:circle}.reveal ol ol,.reveal ol ul,.reveal ul ol,.reveal ul ul{display:block;margin-left:40px}.reveal dt{font-weight:700}.reveal dd{margin-left:40px}.reveal blockquote{display:block;position:relative;width:70%;margin:var(--r-block-margin) auto;padding:5px;font-style:italic;background:rgba(255,255,255,.05);box-shadow:0 0 2px rgba(0,0,0,.2)}.reveal blockquote p:first-child,.reveal blockquote p:last-child{display:inline-block}.reveal q{font-style:italic}.reveal pre{display:block;position:relative;width:90%;margin:var(--r-block-margin) auto;text-align:left;font-size:.55em;font-family:var(--r-code-font);line-height:1.2em;word-wrap:break-word;box-shadow:0 5px 15px rgba(0,0,0,.15)}.reveal code{font-family:var(--r-code-font);text-transform:none;tab-size:2}.reveal pre code{display:block;padding:5px;overflow:auto;max-height:400px;word-wrap:normal}.reveal .code-wrapper{white-space:normal}.reveal .code-wrapper code{white-space:pre}.reveal table{margin:auto;border-collapse:collapse;border-spacing:0}.reveal table th{font-weight:700}.reveal table td,.reveal table th{text-align:left;padding:.2em .5em .2em .5em;border-bottom:1px solid}.reveal table td[align=center],.reveal table th[align=center]{text-align:center}.reveal table td[align=right],.reveal table th[align=right]{text-align:right}.reveal table tbody tr:last-child td,.reveal table tbody tr:last-child th{border-bottom:none}.reveal sup{vertical-align:super;font-size:smaller}.reveal sub{vertical-align:sub;font-size:smaller}.reveal small{display:inline-block;font-size:.6em;line-height:1.2em;vertical-align:top}.reveal small *{vertical-align:top}.reveal img{margin:var(--r-block-margin) 0}.reveal a{color:var(--r-link-color);text-decoration:none;transition:color .15s ease}.reveal a:hover{color:var(--r-link-color-hover);text-shadow:none;border:none}.reveal .roll span:after{color:#fff;background:var(--r-link-color-dark)}.reveal .r-frame{border:4px solid var(--r-main-color);box-shadow:0 0 10px rgba(0,0,0,.15)}.reveal a .r-frame{transition:all .15s linear}.reveal a:hover .r-frame{border-color:var(--r-link-color);box-shadow:0 0 20px rgba(0,0,0,.55)}.reveal .controls{color:var(--r-link-color)}.reveal .progress{background:rgba(0,0,0,.2);color:var(--r-link-color)}@media print{.backgrounds{background-color:var(--r-background-color)}}</style>
+<!-- Shared atom-level tokens & components -->
+<link rel="stylesheet" href="atoms.css">
   <style>
-    /* CSS Variables */
-    :root {
-      --dark: #0a0a0a;
-      --dark-2: #111;
-      --dark-3: #1a1a1a;
-      --dark-4: #222;
-      --cream: #f0e6d3;
-      --cream-dim: rgba(240, 230, 211, 0.5);
-      --cream-faint: rgba(240, 230, 211, 0.12);
-      --cream-ghost: rgba(240, 230, 211, 0.06);
-      --accent: #e8734a;
-      --blue: #6ba3d6;
-      --yellow: #e8c94a;
-      --red: #d66b6b;
-      --green: #7eb87e;
-    --r-main-font-size:22px;--r-main-font:'Syne',sans-serif;--r-heading-font:'Instrument Serif',serif;--r-heading-text-transform:none;--r-heading-font-weight:400;--r-background-color:var(--dark);--r-main-color:var(--cream);--r-heading-color:var(--cream);--r-link-color:var(--accent);}
+.reveal{font-family:'Syne',sans-serif;font-size:22px;color:var(--cream)}
+.reveal h1,.reveal h2,.reveal h3{font-family:'Instrument Serif',serif;font-weight:400;text-transform:none;letter-spacing:-.02em}
+.reveal h1{font-size:2.6em;line-height:1.1}
+.reveal h2{font-size:1.8em;line-height:1.15}
+.reveal h3{font-size:1.3em}
 
     @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
 
@@ -179,6 +171,7 @@
       align-items: center;
       gap: 0.4em;
     }
+    .insight .tag svg { width: 14px; height: 14px; flex-shrink: 0; }
 
     .insight .title {
       font-family: 'Instrument Serif', serif;
@@ -287,6 +280,219 @@
       color: var(--green);
       font-weight: 700;
     }
+
+    /* Annotated UI Screenshots */
+    .annotated-ui {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto;
+    }
+
+    .annotated-ui img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+      display: block;
+    }
+
+    .annotated-ui .placeholder-ui {
+      width: 580px;
+      max-width: 100%;
+      height: 360px;
+      background: var(--dark-3);
+      border: 2px dashed var(--cream-faint);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--cream-dim);
+    }
+
+    .annotated-ui .placeholder-ui svg {
+      width: 48px;
+      height: 48px;
+      stroke: var(--cream-faint);
+    }
+
+    .annotated-ui .placeholder-ui span {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .marker {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: white;
+      pointer-events: none;
+      z-index: 2;
+      transform: translate(-50%, -50%);
+    }
+
+    .marker.red {
+      background: var(--red);
+      box-shadow: 0 0 0 3px rgba(214, 107, 107, 0.35);
+      animation: pulse-r 2s infinite;
+    }
+
+    .marker.green {
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(126, 184, 126, 0.35);
+      animation: pulse-g 2s infinite;
+    }
+
+    @keyframes pulse-r {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(214, 107, 107, 0.35); }
+      50% { box-shadow: 0 0 0 7px rgba(214, 107, 107, 0.15); }
+    }
+
+    @keyframes pulse-g {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(126, 184, 126, 0.35); }
+      50% { box-shadow: 0 0 0 7px rgba(126, 184, 126, 0.15); }
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em 0.8em;
+      justify-content: center;
+      margin-top: 0.7em;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55em;
+      color: var(--cream-dim);
+    }
+
+    .legend-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .legend-num.red { background: var(--red); }
+    .legend-num.green { background: var(--green); }
+    .legend-text { line-height: 1.3; }
+
+    /* Expand Button */
+    .expand-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(240, 230, 211, 0.2);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+      transition: all 0.25s ease;
+      opacity: 0.6;
+    }
+
+    .expand-btn:hover {
+      opacity: 1;
+      background: rgba(10, 10, 10, 0.9);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .expand-btn svg {
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+    }
+
+    /* Fullscreen Overlay */
+    .ui-fullscreen {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(5, 5, 5, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      cursor: zoom-out;
+    }
+
+    .ui-fullscreen.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .ui-fullscreen img {
+      max-width: 92vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+      object-fit: contain;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+
+    .ui-fullscreen.active img {
+      transform: scale(1);
+    }
+
+    .ui-fullscreen .close-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: rgba(240, 230, 211, 0.4);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ROI Hero */
+    .roi-hero {
+      font-family: 'Instrument Serif', serif;
+      font-size: 4em;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3em;
+    }
+
 
     /* Step Grid */
     .step-grid {
@@ -623,303 +829,297 @@
   <div class="reveal">
     <div class="slides">
 
-      <!-- ===== ACT 1: THE PROBLEM ===== -->
+      
+      <!-- ===== ACT 1: THE HOOK ===== -->
 
       <!-- Slide 1: Cover -->
       <section>
-        <h1>AI-Powered Product Design</h1>
-        <p style="font-size: 0.9em; color: var(--cream-dim); margin-top: 1.2em;">Bringing Ideas to Market in Just 2 Weeks</p>
+        <p style="font-family:'Space Mono',monospace;font-size:0.5em;text-transform:uppercase;letter-spacing:0.15em;color:var(--accent);margin-bottom:1.5em;">Case Study &bull; Make MVP Category &bull; 2025</p>
+        <h1 style="font-size:2.2em;line-height:1.2">AI-Powered Product Design</h1>
+        <p style="font-family:'Space Mono',monospace;font-size:0.55em;letter-spacing:.1em;color:var(--cream-dim);margin-top:.4em">Harry's Brain &mdash; AI Learning Platform</p>
+        <p style="font-size:0.85em;color:var(--cream-dim);margin-top:0.8em;max-width:500px;margin-left:auto;margin-right:auto;">How ruthless prioritization + AI tools launched a community platform in just <strong style="color:var(--accent)">2 weeks</strong></p>
 
-        <div class="metric-row" style="margin-top: 2em;">
+        <div class="metric-row" style="margin-top:2em;">
           <div class="metric">
             <div class="val">34.8%</div>
             <div class="lbl">Engagement Rate</div>
           </div>
           <div class="metric">
             <div class="val">2 Weeks</div>
-            <div class="lbl">Launch Timeline</div>
+            <div class="lbl">Idea to Launch</div>
           </div>
           <div class="metric">
             <div class="val">80%</div>
             <div class="lbl">Dev Time Saved</div>
           </div>
         </div>
-
-        <p style="font-size: 0.7em; color: var(--cream-dim); margin-top: 1.8em; font-family: 'Space Mono', monospace; letter-spacing: 0.06em;">2025 • Make MVP Category</p>
-        <span class="fragment" style="display:none"></span>
       </section>
 
-      <!-- Slide 2: Problem Statement -->
+      <!-- Slide 2: Meet the Founder -->
       <section>
-        <span class="section-label">Act 1: The Problem</span>
-        <h2>Knowledge Trapped Behind Language Barriers</h2>
+        <span class="section-label">Act 1 &mdash; The Problem</span>
+        <h2>A Personal Frustration</h2>
 
-        <div style="margin-top: 1.2em;">
-          <div class="chat-row centered" style="margin-bottom: 1em;">
-            <div style="flex: 1;">
-              <div class="avatar">👤</div>
-              <div class="avatar-name">Community Member</div>
+        <div style="margin-top:1.2em;">
+          <div class="chat-row centered" style="margin-bottom:1em;">
+            <div style="flex:1;">
+              <div class="avatar">&#x1f4d6;</div>
+              <div class="avatar-name">The Founder</div>
             </div>
           </div>
-          <div class="bubble solo">
-            I've found amazing resources for learning, but they're all in English. How can I <span class="hl">share what I've learned with people in my own language?</span>
+          <div class="bubble solo" style="max-width:480px;">
+            I&rsquo;ve spent years learning from English-language resources. I have notebooks full of insights. But how do I <span class="hl">share this with people who speak my language?</span>
           </div>
         </div>
 
-        <p style="font-size: 0.75em; color: var(--cream-dim); margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto;">Language minority communities globally lack accessible learning resources in their native languages. The knowledge exists but remains scattered, personal, and unshared.</p>
-        <span class="fragment" style="display:none"></span>
+        <div class="narration" style="margin-top:1.5em;">
+          This wasn&rsquo;t just one person&rsquo;s problem. Millions of learners in language-minority communities face the same barrier every day.
+        </div>
       </section>
 
-      <!-- Slide 3: The Scale of the Problem -->
+      <!-- Slide 3: The Scale -->
       <section>
-        <h3>Millions of Learners Left Behind</h3>
+        <h3>Knowledge Trapped Behind Language Walls</h3>
 
-        <div style="margin-top: 1.5em;">
+        <div style="margin-top:1.5em;">
           <div class="pain">
             <div class="pain-title">Knowledge Silos</div>
-            <div class="pain-desc">Learning notes stay locked in personal notebooks. Communities never benefit from accumulated wisdom.</div>
+            <div class="pain-desc">Learning notes locked in personal notebooks. Communities never benefit from accumulated wisdom.</div>
           </div>
           <div class="pain">
             <div class="pain-title">Language Gap</div>
-            <div class="pain-desc">Quality resources exist, but rarely in minority languages. Learners must struggle through foreign-language content.</div>
+            <div class="pain-desc">Quality resources exist in English, but rarely in minority languages. Learners struggle through foreign content.</div>
           </div>
           <div class="pain">
-            <div class="pain-title">No Sharing Mechanism</div>
-            <div class="pain-desc">Even when individuals want to share, there's no platform designed for multilingual, community-driven learning.</div>
+            <div class="pain-title">No Platform</div>
+            <div class="pain-desc">Even when individuals want to share, there&rsquo;s no tool designed for multilingual, community-driven learning.</div>
           </div>
         </div>
 
-        <p style="font-size: 0.75em; color: var(--cream-dim); margin-top: 1.5em;">Without a solution, communities can't grow. Knowledge stays siloed. Potential remains untapped.</p>
+        <p style="font-size:0.72em;color:var(--cream-dim);margin-top:1.2em;">Without a solution, communities can&rsquo;t grow. Knowledge stays siloed. Potential remains untapped.</p>
         <span class="fragment" style="display:none"></span>
       </section>
 
       <!-- Slide 4: The Opportunity -->
       <section>
-        <h3>What If We Could Fix This?</h3>
-
-        <div class="narration" style="margin-top: 1.5em;">
-          Build a <span class="hl">community-driven platform</span> where individuals share learning notes and insights in their own languages—democratizing knowledge for millions.
+        <div class="bubble solo" style="max-width:500px;margin-bottom:0.8em;">
+          The founder&rsquo;s notebooks were full of learning insights. What if they could become <span class="hl">a community resource?</span>
         </div>
+        <h2>What If We Could <span style="color:var(--accent)">Democratize Knowledge?</span></h2>
 
-        <div style="margin-top: 1.8em; max-width: 500px; margin-left: auto; margin-right: auto;">
-          <p style="font-size: 0.8em; color: var(--cream-dim); line-height: 1.6;">The founder had a personal problem: accumulated learning notes but no way to share them. This constraint became the seed for a bigger solution—a platform that could serve entire communities.</p>
+        <div class="narration" style="margin-top:1.5em;">
+          Transform personal notes into a collaborative platform &mdash; where anyone can share learning in their own language.
         </div>
+        <span class="fragment" style="display:none"></span>
       </section>
 
-      <!-- ===== ACT 2: RESEARCH ===== -->
+      <!-- ===== ACT 2: STRATEGY ===== -->
 
-      <!-- Slide 5: The Approach -->
+      <!-- Slide 5: Psychology Insight -->
       <section>
-        <span class="section-label">Act 2: Research & Strategy</span>
-        <h2>7-Step Framework</h2>
+        <div class="insight">
+          <div class="tag">&#x1f9e0; Psychology Principle</div>
+          <div class="title">Self-Determination Theory</div>
+          <div class="desc">People are most engaged when they feel <strong>autonomy</strong> (choosing what to learn), <strong>competence</strong> (tracking progress), and <strong>relatedness</strong> (community connection). This framed every design decision.</div>
+        </div>
+        <span class="fragment" style="display:none"></span>
+      </section>
+
+      <!-- Slide 6: The 7-Step Framework -->
+      <section>
+        <span class="section-label">Act 2 &mdash; Strategy</span>
+        <h2>7-Step Action Framework</h2>
 
         <div class="step-grid">
           <div class="step-box">
             <div class="step-num">Step 1</div>
-            <p><strong>Choose Tech Stack</strong></p>
+            <p><strong>Choose Tech Stack</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Speed over perfection</span></p>
           </div>
           <div class="step-box">
             <div class="step-num">Step 2</div>
-            <p><strong>Prepare Notes</strong></p>
+            <p><strong>Prepare Content</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Structure raw notes</span></p>
           </div>
           <div class="step-box">
             <div class="step-num">Step 3</div>
-            <p><strong>Product Backlog</strong></p>
+            <p><strong>Feature Backlog</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Map all possibilities</span></p>
           </div>
           <div class="step-box">
             <div class="step-num">Step 4</div>
-            <p><strong>Define Goals</strong></p>
+            <p><strong>North Star Goals</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">2 quarterly objectives</span></p>
           </div>
           <div class="step-box">
             <div class="step-num">Step 5</div>
-            <p><strong>Prioritize</strong></p>
+            <p><strong>MoSCoW Priority</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Cut 80% of scope</span></p>
           </div>
           <div class="step-box">
             <div class="step-num">Step 6</div>
-            <p><strong>Implement</strong></p>
+            <p><strong>Build with AI</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Figma Make sprint</span></p>
           </div>
-          <div class="step-box">
+          <div class="step-box" style="grid-column:1/-1;max-width:260px;margin:0 auto;">
             <div class="step-num">Step 7</div>
-            <p><strong>Launch & Measure</strong></p>
+            <p><strong>Launch &amp; Measure</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Validate with data</span></p>
           </div>
         </div>
-
-        <p style="font-size: 0.7em; color: var(--cream-dim); margin-top: 1.2em;">A structured action plan from idea to launch</p>
       </section>
 
-      <!-- Slide 6: Feature Inventory -->
+      <!-- Slide 7: Prioritization — The Cut -->
       <section>
-        <h3>Possibility Space</h3>
+        <h3>Saying No to 80% of Features</h3>
 
-        <p style="margin-top: 0.8em; color: var(--cream-dim); font-size: 0.85em;">Dozens of features across 5 categories considered:</p>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; max-width: 550px; margin: 1.2em auto; font-size: 0.75em;">
-          <div>
-            <div class="tool-tag" style="margin-bottom: 0.4em;">Content</div>
-            <p style="color: var(--cream-dim); font-size: 0.75em; text-align: left;">Publishing, tagging, multilingual support, search</p>
-          </div>
-          <div>
-            <div class="tool-tag" style="margin-bottom: 0.4em;">Discovery</div>
-            <p style="color: var(--cream-dim); font-size: 0.75em; text-align: left;">Recommendations, trending, categories</p>
-          </div>
-          <div>
-            <div class="tool-tag" style="margin-bottom: 0.4em;">Community</div>
-            <p style="color: var(--cream-dim); font-size: 0.75em; text-align: left;">Comments, followers, events, messaging</p>
-          </div>
-          <div>
-            <div class="tool-tag" style="margin-bottom: 0.4em;">Analytics</div>
-            <p style="color: var(--cream-dim); font-size: 0.75em; text-align: left;">Views, engagement metrics, dashboards</p>
-          </div>
-          <div>
-            <div class="tool-tag" style="margin-bottom: 0.4em;">Monetization</div>
-            <p style="color: var(--cream-dim); font-size: 0.75em; text-align: left;">Pro mode, premium content, subscriptions</p>
-          </div>
-        </div>
-
-        <p style="font-size: 0.7em; color: var(--cream-dim);">The question wasn't <em>what could we build</em>—it was <em>what should we prioritize</em>?</p>
-        <span class="fragment" style="display:none"></span>
-      </section>
-
-      <!-- Slide 7: Prioritization Framework -->
-      <section>
-        <h3>MoSCoW + North Star Goals</h3>
-
-        <div style="margin-top: 1.2em;">
+        <div style="margin-top:1.2em;">
           <div class="insight">
             <div class="tag">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              QUARTERLY NORTH STARS
+              TWO NORTH STAR GOALS
             </div>
-            <div class="title">Two Core Goals</div>
+            <div class="title">Every Feature Decision = Yes or No</div>
             <div class="desc">
-              <strong>Goal 1:</strong> Achieve Great Content Engagement<br>
-              <strong>Goal 2:</strong> Build a Delightful Reading Experience
+              <strong>Goal 1:</strong> Achieve great content engagement<br>
+              <strong>Goal 2:</strong> Build a delightful reading experience<br><br>
+              If a feature didn&rsquo;t serve these two goals, it was <strong>cut.</strong>
             </div>
           </div>
         </div>
-
-        <p style="margin-top: 1em; font-size: 0.75em; color: var(--cream-dim);">Every feature decision: Does it serve these two goals?</p>
-        <p style="font-size: 0.7em; color: var(--cream-dim); margin-top: 0.5em;"><strong style="color: var(--cream);">Result:</strong> 80% of features deferred. Scope ruthlessly cut to avoid feature creep.</p>
         <span class="fragment" style="display:none"></span>
       </section>
 
-      <!-- Slide 8: Trade-offs -->
+      <!-- Slide 8: Trade-offs Table -->
       <section>
         <h3>Shipping vs. Perfection</h3>
 
-        <table class="perf-table" style="margin-top: 1.2em;">
+        <table class="perf-table" style="margin-top:1.2em;">
           <tr>
             <th>What We Said No To</th>
-            <th>Timeline Impact</th>
+            <th>Timeline Saved</th>
           </tr>
           <tr>
             <td>Pro Mode / Monetization</td>
-            <td class="good">-4 weeks</td>
+            <td class="good">&minus;4 weeks</td>
           </tr>
           <tr>
             <td>Community Events</td>
-            <td class="good">-3 weeks</td>
+            <td class="good">&minus;3 weeks</td>
           </tr>
           <tr>
-            <td>Advanced Analytics</td>
-            <td class="good">-2 weeks</td>
+            <td>Advanced Analytics Dashboard</td>
+            <td class="good">&minus;2 weeks</td>
           </tr>
           <tr>
             <td>Messaging System</td>
-            <td class="good">-2 weeks</td>
+            <td class="good">&minus;2 weeks</td>
           </tr>
         </table>
 
-        <div class="narration" style="margin-top: 1.2em;">
-          By saying no to secondary features, we compressed a 6-8 week roadmap into <span class="hl">2 focused weeks</span>.
+        <div class="narration" style="margin-top:1.2em;">
+          By cutting secondary features, a 6&ndash;8 week roadmap compressed into <span class="hl">2 focused weeks.</span>
         </div>
       </section>
 
       <!-- ===== ACT 3: DESIGN & BUILD ===== -->
 
-      <!-- Slide 9: Tool Choice -->
+      <!-- Slide 9: Figma Make -->
       <section>
-        <span class="section-label">Act 3: Design & Implementation</span>
-        <h2>Figma Make: AI-Powered Prototyping</h2>
+        <span class="section-label">Act 3 &mdash; Design &amp; Build</span>
+        <h2>AI-Powered Prototyping with Figma Make</h2>
 
-        <p style="margin-top: 0.8em; color: var(--cream-dim); font-size: 0.85em;">Why traditional design tools would have killed our timeline:</p>
-
-        <div style="margin-top: 1.2em; display: grid; grid-template-columns: 1fr 1fr; gap: 1em; max-width: 520px; margin-left: auto; margin-right: auto;">
-          <div>
-            <p style="font-size: 0.75em; color: var(--cream-dim); font-weight: 700; margin-bottom: 0.4em;">Traditional Approach</p>
-            <p style="font-size: 0.7em; color: var(--red); line-height: 1.5;">Sketches → Wireframes → Mockups → Handoff → Development<br><strong>Timeline: 6-8 weeks</strong></p>
+        <div style="margin-top:1.2em;display:grid;grid-template-columns:1fr 1fr;gap:1em;max-width:520px;margin-left:auto;margin-right:auto;">
+          <div style="background:var(--dark-3);border-radius:10px;padding:1em;border-left:3px solid var(--red);">
+            <p style="font-size:0.7em;color:var(--red);font-weight:700;margin-bottom:0.4em;">Traditional Approach</p>
+            <p style="font-size:0.65em;color:var(--cream-dim);line-height:1.5;">Sketches &rarr; Wireframes &rarr; Mockups &rarr; Handoff &rarr; Dev</p>
+            <p style="font-size:0.75em;color:var(--red);font-weight:700;margin-top:0.5em;">6&ndash;8 weeks</p>
           </div>
-          <div>
-            <p style="font-size: 0.75em; color: var(--cream-dim); font-weight: 700; margin-bottom: 0.4em;">Figma Make</p>
-            <p style="font-size: 0.7em; color: var(--green); line-height: 1.5;">Concept → Interactive Prototype → Dev Ready<br><strong>Timeline: 2 weeks</strong></p>
+          <div style="background:var(--dark-3);border-radius:10px;padding:1em;border-left:3px solid var(--green);">
+            <p style="font-size:0.7em;color:var(--green);font-weight:700;margin-bottom:0.4em;">Figma Make</p>
+            <p style="font-size:0.65em;color:var(--cream-dim);line-height:1.5;">Concept &rarr; Interactive Prototype &rarr; Dev Ready</p>
+            <p style="font-size:0.75em;color:var(--green);font-weight:700;margin-top:0.5em;">2 weeks</p>
           </div>
         </div>
 
-        <p style="margin-top: 1.2em; font-size: 0.7em; color: var(--cream-dim);">AI-powered components compressed iteration cycles from days to hours.</p>
+        <p style="margin-top:1em;font-size:0.7em;color:var(--cream-dim);">AI compressed iteration cycles from <strong style="color:var(--cream)">days to hours.</strong></p>
         <span class="fragment" style="display:none"></span>
       </section>
 
-      <!-- Slide 10: Features Delivered -->
+      <!-- Slide 10: Annotated UI — Dashboard -->
       <section>
-        <h3>What We Built</h3>
-
-        <div style="margin-top: 1.2em; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8em; max-width: 520px; margin-left: auto; margin-right: auto;">
-          <div class="step-box">
-            <div class="step-num">Core</div>
-            <p><strong>Dashboard</strong><br><span style="font-size: 0.75em; color: var(--cream-dim);">Weekly reading goals</span></p>
+        <h3 style="margin-bottom:0.4em">Dashboard &mdash; <span style="color:var(--green)">4 Design Decisions</span></h3>
+        <div class="annotated-ui">
+          <div class="placeholder-ui">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Dashboard UI &mdash; Add Screenshot</span>
           </div>
-          <div class="step-box">
-            <div class="step-num">Core</div>
-            <p><strong>Discovery</strong><br><span style="font-size: 0.75em; color: var(--cream-dim);">Browse content</span></p>
-          </div>
-          <div class="step-box">
-            <div class="step-num">Core</div>
-            <p><strong>Profile & Progress</strong><br><span style="font-size: 0.75em; color: var(--cream-dim);">Badges, milestones</span></p>
-          </div>
-          <div class="step-box">
-            <div class="step-num">Core</div>
-            <p><strong>Leaderboard</strong><br><span style="font-size: 0.75em; color: var(--cream-dim);">Community engagement</span></p>
-          </div>
-          <div class="step-box">
-            <div class="step-num">Core</div>
-            <p><strong>Dark/Light Mode</strong><br><span style="font-size: 0.75em; color: var(--cream-dim);">User preference</span></p>
-          </div>
-          <div class="step-box">
-            <div class="step-num">Core</div>
-            <p><strong>Responsive Design</strong><br><span style="font-size: 0.75em; color: var(--cream-dim);">Mobile-first</span></p>
-          </div>
+          <div class="marker green" style="top:15%;left:20%">1</div>
+          <div class="marker green" style="top:15%;left:75%">2</div>
+          <div class="marker green" style="top:55%;left:25%">3</div>
+          <div class="marker green" style="top:70%;left:70%">4</div>
+          <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-num green">1</span><span class="legend-text">Weekly Reading Goal &mdash; gamified progress (0/5)</span></div>
+          <div class="legend-item"><span class="legend-num green">2</span><span class="legend-text">Activity Overview &mdash; at-a-glance engagement</span></div>
+          <div class="legend-item"><span class="legend-num green">3</span><span class="legend-text">Content Recommendations &mdash; personalized feed</span></div>
+          <div class="legend-item"><span class="legend-num green">4</span><span class="legend-text">In-Progress Reading &mdash; quick resume access</span></div>
         </div>
       </section>
 
-      <!-- Slide 11: Design Decisions -->
+      <!-- Slide 11: Annotated UI — Discovery -->
       <section>
-        <h3>Every Decision Traced Back to Goals</h3>
-
-        <div class="insight" style="margin-top: 1.2em;">
-          <div class="tag">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-            GOAL-DRIVEN DESIGN
+        <h3 style="margin-bottom:0.4em">Content Discovery &mdash; <span style="color:var(--green)">3 Key Features</span></h3>
+        <div class="annotated-ui">
+          <div class="placeholder-ui">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Discovery Page &mdash; Add Screenshot</span>
           </div>
-          <div class="title">The North Star Framework</div>
-          <div class="desc">
-            Instead of <strong>"should we build this?"</strong><br>
-            We asked: <strong>"does this improve engagement or reading experience?"</strong><br>
-            If no, we cut it.
-          </div>
+          <div class="marker green" style="top:12%;left:50%">1</div>
+          <div class="marker green" style="top:40%;left:30%">2</div>
+          <div class="marker green" style="top:65%;left:65%">3</div>
+          <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
         </div>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-num green">1</span><span class="legend-text">Category Filters &mdash; organized by learning topic</span></div>
+          <div class="legend-item"><span class="legend-num green">2</span><span class="legend-text">Curated Library &mdash; quality over quantity</span></div>
+          <div class="legend-item"><span class="legend-num green">3</span><span class="legend-text">Search &mdash; find notes in native language</span></div>
+        </div>
+        <span class="fragment" style="display:none"></span>
+      </section>
 
-        <p style="margin-top: 1.2em; font-size: 0.72em; color: var(--cream-dim); max-width: 500px; margin-left: auto; margin-right: auto;">This eliminated endless debates about features. Clear metrics = clear decisions.</p>
+      <!-- Slide 12: Annotated UI — Profile & Gamification -->
+      <section>
+        <h3 style="margin-bottom:0.4em">Profile &amp; Gamification &mdash; <span style="color:var(--green)">3 Engagement Hooks</span></h3>
+        <div class="annotated-ui">
+          <div class="placeholder-ui">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Profile Page &mdash; Add Screenshot</span>
+          </div>
+          <div class="marker green" style="top:20%;left:50%">1</div>
+          <div class="marker green" style="top:50%;left:35%">2</div>
+          <div class="marker green" style="top:75%;left:60%">3</div>
+          <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-num green">1</span><span class="legend-text">Achievement Badges &mdash; community recognition</span></div>
+          <div class="legend-item"><span class="legend-num green">2</span><span class="legend-text">Reading Streaks &mdash; habit formation</span></div>
+          <div class="legend-item"><span class="legend-num green">3</span><span class="legend-text">Leaderboard &mdash; social motivation</span></div>
+        </div>
+      </section>
+
+      <!-- Slide 13: Design Principle -->
+      <section>
+        <div class="insight">
+          <div class="tag">&#x1f9e0; Design Principle</div>
+          <div class="title">Goal Gradient Effect</div>
+          <div class="desc">People accelerate behavior as they approach a goal. The weekly reading goals (0/5), progress bars, and streaks all leverage this principle &mdash; <strong>making progress visible drives completion.</strong></div>
+        </div>
         <span class="fragment" style="display:none"></span>
       </section>
 
       <!-- ===== ACT 4: RESULTS ===== -->
 
-      <!-- Slide 12: Metrics -->
+      <!-- Slide 14: Results -->
       <section>
-        <span class="section-label">Act 4: Results</span>
-        <h2>What Happened After Launch</h2>
+        <span class="section-label">Act 4 &mdash; Results</span>
+        <h2>What the Data Showed</h2>
 
-        <div class="metric-row" style="margin-top: 1.2em;">
+        <div class="metric-row" style="margin-top:1.2em;">
           <div class="metric">
             <div class="val">46</div>
             <div class="lbl">Registered Users</div>
@@ -934,24 +1134,24 @@
           </div>
         </div>
 
-        <p style="margin-top: 1.2em; font-size: 0.75em; color: var(--cream-dim);">All delivered in <strong style="color: var(--accent);">2 weeks</strong>.</p>
+        <p style="margin-top:1.2em;font-size:0.75em;color:var(--cream-dim);">All delivered in <strong style="color:var(--accent)">2 weeks</strong> &mdash; from idea to launched product.</p>
         <span class="fragment" style="display:none"></span>
       </section>
 
-      <!-- Slide 13: Engagement -->
+      <!-- Slide 15: Performance vs Industry -->
       <section>
-        <h3>Engagement Above Industry Benchmark</h3>
+        <h3>39% Above Industry Standard</h3>
 
-        <table class="perf-table" style="margin-top: 1.2em;">
+        <table class="perf-table" style="margin-top:1.2em;">
           <tr>
             <th>Metric</th>
-            <th>Harry's Brain</th>
+            <th>Harry&rsquo;s Brain</th>
             <th>Industry Avg</th>
           </tr>
           <tr>
             <td>Engagement Rate</td>
             <td class="good">34.8%</td>
-            <td>20-25%</td>
+            <td>20&ndash;25%</td>
           </tr>
           <tr>
             <td>Content Consumption</td>
@@ -961,92 +1161,116 @@
           <tr>
             <td>Dev Time Saved</td>
             <td class="good">80%</td>
-            <td>—</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>Time to Market</td>
+            <td class="good">2 weeks</td>
+            <td>6&ndash;8 weeks</td>
           </tr>
         </table>
-
-        <div class="narration" style="margin-top: 1.2em;">
-          <strong style="color: var(--accent);">39% above standard.</strong> Focused scope created genuine user value.
-        </div>
         <span class="fragment" style="display:none"></span>
       </section>
 
-      <!-- Slide 14: Key Learnings -->
+      <!-- Slide 16: ROI Calculation -->
       <section>
-        <h3>What We Learned</h3>
-
-        <div style="margin-top: 1.2em;">
-          <div class="insight" style="margin-bottom: 1em;">
-            <div class="tag">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              LEARNING 1
-            </div>
-            <div class="title">AI is a Friend</div>
-            <div class="desc">AI-powered tools don't replace design thinking—they <strong>accelerate it.</strong> Figma Make transformed a 6-8 week cycle into a 2-week sprint by handling repetitive design tasks.</div>
+        <h3 style="margin-bottom:0.3em">Measuring the Return</h3>
+        <div class="metric-row" style="margin-top:0.8em;">
+          <div class="metric">
+            <div class="val" style="font-size:3em">80%</div>
+            <div class="lbl">Development Time Saved</div>
           </div>
-
-          <div class="insight">
-            <div class="tag">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              LEARNING 2
-            </div>
-            <div class="title">Goals Are Your North Star</div>
-            <div class="desc">Clear quarterly goals eliminate feature creep and decision ambiguity. Every feature either serves your goals or gets cut. <strong>Constraints breed focus.</strong></div>
-          </div>
+        </div>
+        <div style="max-width:520px;margin:0 auto;text-align:left;font-size:0.75em;color:var(--cream-dim);line-height:1.7">
+          <strong style="color:var(--cream)">Traditional timeline:</strong> 6&ndash;8 weeks (avg 7 weeks)<br>
+          <strong style="color:var(--cream)">Actual timeline:</strong> 2 weeks with Figma Make + AI<br>
+          <strong style="color:var(--cream)">Time saved:</strong> 5 weeks of design &amp; dev effort<br>
+          <strong style="color:var(--cream)">Engagement result:</strong> 34.8% &mdash; <span style="color:var(--green);font-weight:700">39% above benchmark</span><br>
+          <strong style="color:var(--accent)">The constraint didn&rsquo;t limit quality &mdash; it focused it.</strong>
         </div>
       </section>
 
-      <!-- Slide 15: The Journey -->
+      <!-- Slide 17: Business × Design Lessons -->
       <section>
-        <h3>From Idea to Market</h3>
-
-        <div style="margin-top: 1.5em; max-width: 500px; margin-left: auto; margin-right: auto;">
-          <p style="font-size: 0.8em; color: var(--cream-dim); line-height: 1.8; margin-bottom: 1em;">
-            The founder's personal problem became a community solution. A 2-week sprint proved that ruthless prioritization + AI acceleration = real product impact.
-          </p>
-          <p style="font-size: 0.75em; color: var(--accent); font-weight: 700; margin-bottom: 1.2em;">
-            Harry's Brain now serves 46 users with 34.8% engagement—39% above industry standard.
-          </p>
-        </div>
-
-        <div class="tools-row" style="margin-top: 1.5em;">
-          <div class="tool-tag">Product Prioritization</div>
-          <div class="tool-tag">AI Prototyping</div>
-          <div class="tool-tag">Goal Setting</div>
-          <div class="tool-tag">Data Analytics</div>
-        </div>
-      </section>
-
-      <!-- Slide 16: End Slide -->
-      <section>
-        <h2>More Case Studies</h2>
-
-        <div style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; font-size: 0.75em;">
-            <a href="case-study-retail.html" style="padding: 0.8em; background: var(--dark-3); border: 1px solid var(--cream-faint); border-radius: 8px; text-decoration: none; color: var(--cream); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--cream-faint)'">
-              <strong>Return Process Redesign</strong>
-            </a>
-            <a href="case-study-pos.html" style="padding: 0.8em; background: var(--dark-3); border: 1px solid var(--cream-faint); border-radius: 8px; text-decoration: none; color: var(--cream); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--cream-faint)'">
-              <strong>POS System Rebuild</strong>
-            </a>
-            <a href="case-study-dashboard.html" style="padding: 0.8em; background: var(--dark-3); border: 1px solid var(--cream-faint); border-radius: 8px; text-decoration: none; color: var(--cream); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--cream-faint)'">
-              <strong>Dashboard Redesign</strong>
-            </a>
-            <a href="case-study-mentorship.html" style="padding: 0.8em; background: var(--dark-3); border: 1px solid var(--cream-faint); border-radius: 8px; text-decoration: none; color: var(--cream); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--cream-faint)'">
-              <strong>Mentorship Community</strong>
-            </a>
-            <a href="case-study-karaoke.html" style="padding: 0.8em; background: var(--dark-3); border: 1px solid var(--cream-faint); border-radius: 8px; text-decoration: none; color: var(--cream); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--cream-faint)'">
-              <strong>Karaoke App Design</strong>
-            </a>
-            <a href="case-study-design-system.html" style="padding: 0.8em; background: var(--dark-3); border: 1px solid var(--cream-faint); border-radius: 8px; text-decoration: none; color: var(--cream); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--cream-faint)'">
-              <strong>Design Systems</strong>
-            </a>
-            <a href="case-study-tokens.html" style="padding: 0.8em; background: var(--dark-3); border: 1px solid var(--cream-faint); border-radius: 8px; text-decoration: none; color: var(--cream); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--cream-faint)'">
-              <strong>Design Tokens Generator</strong>
-            </a>
+        <h3 style="margin-bottom:0.6em">Business &times; Design Lessons</h3>
+        <div style="max-width:520px;margin:0 auto;">
+          <div class="pain" style="border-left-color:var(--accent)">
+            <div class="pain-title" style="color:var(--accent)">Constraints breed innovation</div>
+            <div class="pain-desc">A 2-week deadline forced ruthless prioritization. The result wasn&rsquo;t a worse product &mdash; it was a more focused one.</div>
+          </div>
+          <div class="pain" style="border-left-color:var(--blue)">
+            <div class="pain-title" style="color:var(--blue)">AI accelerates, doesn&rsquo;t replace</div>
+            <div class="pain-desc">Figma Make handled repetitive design tasks. The designer focused on strategy, user journeys, and business goals.</div>
+          </div>
+          <div class="pain" style="border-left-color:var(--yellow)">
+            <div class="pain-title" style="color:var(--yellow)">Goals eliminate feature creep</div>
+            <div class="pain-desc">Two clear quarterly goals turned every feature decision into a binary yes/no. No debates, no scope creep.</div>
+          </div>
+          <div class="pain" style="border-left-color:var(--green)">
+            <div class="pain-title" style="color:var(--green)">Launch fast, learn faster</div>
+            <div class="pain-desc">2 weeks of real user data beats 2 months of assumptions. Quick validation enabled data-driven iteration.</div>
           </div>
         </div>
       </section>
+
+      <!-- Slide 18: Key Takeaway -->
+      <section>
+        <div class="insight">
+          <div class="tag">&#x1f4a1; Key Takeaway</div>
+          <div class="title">Focused features &gt; feature count.</div>
+          <div class="desc">34.8% engagement &mdash; nearly double industry average &mdash; validates that solving a real problem with focused features creates genuine value far exceeding products with extensive but unfocused feature sets.</div>
+        </div>
+      </section>
+
+      <!-- Slide 19: Skills & Tools -->
+      <section>
+        <h2 style="margin-bottom:0.8em">Skills &amp; Tools</h2>
+        <div class="tools-row">
+          <span class="tool-tag">Product Prioritization</span>
+          <span class="tool-tag">AI Prototyping</span>
+          <span class="tool-tag">Goal Setting</span>
+          <span class="tool-tag">Data Analytics</span>
+        </div>
+        <div class="tools-row" style="margin-top:0.5em;">
+          <span class="tool-tag" style="border-color:var(--accent);color:var(--accent)">Figma Make</span>
+          <span class="tool-tag" style="border-color:var(--accent);color:var(--accent)">Figma</span>
+          <span class="tool-tag" style="border-color:var(--accent);color:var(--accent)">Notion</span>
+        </div>
+      </section>
+
+      <section data-background-color="#0a0a0a" style="text-align:left">
+  <div class="cs-nav-header" style="margin-bottom:1.5em">
+    <div class="sec-num">More Stories</div>
+    <h2 class="sec-title" style="font-size:clamp(24px,2.5vw,38px)">Explore More Work</h2>
+  </div>
+  <div class="cs-nav-grid">
+    <a href="case-study-pos.html" class="cs-nav-card">
+      <div class="proj-thumb" style="aspect-ratio:unset;height:110px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      </div>
+      <div class="proj-info">
+        <div class="cs-nav-direction"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Previous</div>
+        <div class="proj-tags"><span class="proj-tag">POS</span><span class="proj-tag">Design System</span><span class="proj-tag">2024</span></div>
+        <h3 class="proj-title">The Island Where Nothing Matched: POS &amp; Design System</h3>
+        <div class="proj-metrics"><div><div class="pm-val">200%</div><div class="pm-label">UX ROI</div></div><div><div class="pm-val">$10K</div><div class="pm-label">Monthly Savings</div></div></div>
+        <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
+      </div>
+    </a>
+    <a href="case-study-design-system.html" class="cs-nav-card">
+      <div class="proj-thumb" style="aspect-ratio:unset;height:110px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      </div>
+      <div class="proj-info">
+        <div class="cs-nav-direction"> Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="proj-tags"><span class="proj-tag">Design Systems</span><span class="proj-tag">Architecture</span><span class="proj-tag">2024</span></div>
+        <h3 class="proj-title">Multi-Level Design System: 90% Faster Design-to-Dev Handover</h3>
+        <div class="proj-metrics"><div><div class="pm-val">90%</div><div class="pm-label">Faster Handover</div></div><div><div class="pm-val">100%</div><div class="pm-label">Consistency</div></div></div>
+        <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
+      </div>
+    </a>
+  </div>
+  <p style="margin-top:1.5em;font-family:'Space Mono',monospace;font-size:10px;color:rgba(240,230,211,0.4);letter-spacing:.12em;text-align:center">HARRY HEIN &bull; SENIOR PRODUCT DESIGNER</p>
+</section>
 
     </div><!-- end .slides -->
   </div><!-- end .reveal -->
@@ -1054,52 +1278,76 @@
   <!-- Popup System -->
   <div class="popup-backdrop" id="popupBackdrop"></div>
   <div class="popup-overlay">
-    <!-- Business Insight 1: Knowledge Silos -->
+    <!-- Biz 1: Knowledge Silos (slide 2, index 2) -->
     <div class="popup-card biz" data-popup-slide="2">
       <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
-      <div class="popup-title">Knowledge Silos</div>
-      <div class="popup-desc">When communities can't access knowledge in their language, the cost is measured in <strong>lost potential and opportunity.</strong></div>
+      <div class="popup-title">Hidden Market Cost</div>
+      <div class="popup-desc">When communities can&rsquo;t share knowledge in their language, the cost is measured in <strong>lost potential &amp; missed opportunity.</strong></div>
       <div class="popup-foot">Problem Impact</div>
     </div>
 
-    <!-- Business Insight 2: Scope Discipline -->
+    <!-- UX 1: Self-Determination (slide 4, index 4) -->
+    <div class="popup-card ux" data-popup-slide="3">
+      <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
+      <div class="popup-title">Motivation Framework</div>
+      <div class="popup-desc">Self-Determination Theory gives us <strong>3 levers for engagement:</strong> autonomy, competence, relatedness.</div>
+      <div class="popup-foot">Psychology Foundation</div>
+    </div>
+
+    <!-- UX 2: Psychology (slide 5, index 4) -->
+    <div class="popup-card ux" data-popup-slide="4">
+      <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
+      <div class="popup-title">Design Grounded in Science</div>
+      <div class="popup-desc">Every feature maps to a psychological need: <strong>reading goals = competence, community = relatedness.</strong></div>
+      <div class="popup-foot">Research Application</div>
+    </div>
+
+    <!-- Biz 2: Scope Discipline (slide 7, index 6) -->
     <div class="popup-card biz" data-popup-slide="6">
       <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
-      <div class="popup-title">Scope Discipline</div>
-      <div class="popup-desc">Saying no to 80% of features enabled 80% faster launch—<strong>constraints bred focused execution.</strong></div>
+      <div class="popup-title">Scope = Speed</div>
+      <div class="popup-desc">Saying no to 80% of features enabled <strong>80% faster launch.</strong> Constraints bred focused execution.</div>
       <div class="popup-foot">Prioritization Strategy</div>
     </div>
 
-    <!-- UX Insight 1: AI as Accelerator -->
-    <div class="popup-card ux" data-popup-slide="8">
-      <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
-      <div class="popup-title">AI as Accelerator</div>
-      <div class="popup-desc">AI tools don't replace design thinking—they <strong>compress iteration cycles,</strong> letting you explore more concepts faster.</div>
-      <div class="popup-foot">Design Tool Strategy</div>
-    </div>
-
-    <!-- Business Insight 3: Goal-Driven Design -->
-    <div class="popup-card biz" data-popup-slide="10">
+    <!-- Biz 3: AI Accelerator (slide 9, index 8) -->
+    <div class="popup-card biz" data-popup-slide="8">
       <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
-      <div class="popup-title">Goal-Driven Design</div>
-      <div class="popup-desc">Clear quarterly goals eliminated ambiguity, turning <strong>every feature decision into a measurable yes/no.</strong></div>
-      <div class="popup-foot">Decision Framework</div>
+      <div class="popup-title">AI as Force Multiplier</div>
+      <div class="popup-desc">Figma Make compressed iteration from days to hours. <strong>5 weeks of effort eliminated</strong> without quality loss.</div>
+      <div class="popup-foot">Tool Strategy</div>
     </div>
 
-    <!-- Business Insight 4: Compound Returns -->
-    <div class="popup-card biz" data-popup-slide="12">
+    <!-- UX 3: Annotated UI (slide 11, index 10) -->
+    <div class="popup-card ux" data-popup-slide="10">
+      <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
+      <div class="popup-title">Information Scent</div>
+      <div class="popup-desc">Organized categories and search reduce <strong>cognitive load</strong> &mdash; users find content through clear &ldquo;scent trails.&rdquo;</div>
+      <div class="popup-foot">Navigation Design</div>
+    </div>
+
+    <!-- UX 4: Goal Gradient (slide 13, index 12) -->
+    <div class="popup-card ux" data-popup-slide="12">
+      <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
+      <div class="popup-title">Visible Progress</div>
+      <div class="popup-desc">The Goal Gradient Effect: people work <strong>harder as they approach a goal.</strong> Progress bars + streaks drive completion.</div>
+      <div class="popup-foot">Engagement Psychology</div>
+    </div>
+
+    <!-- Biz 4: Results (slide 14, index 13) -->
+    <div class="popup-card biz" data-popup-slide="13">
       <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
       <div class="popup-title">Compound Returns</div>
-      <div class="popup-desc">34.8% engagement—39% above industry standard—proves that <strong>focused features create genuine value.</strong></div>
+      <div class="popup-desc">34.8% engagement &mdash; 39% above standard. <strong>Focused features create genuine value.</strong></div>
       <div class="popup-foot">Results Validation</div>
     </div>
 
-    <!-- UX Insight 2: Rapid Validation -->
-    <div class="popup-card ux" data-popup-slide="13">
-      <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
-      <div class="popup-title">Rapid Validation</div>
-      <div class="popup-desc">Quick launch enabled real feedback loops. <strong>Two weeks of data beats two months of assumptions.</strong></div>
-      <div class="popup-foot">Learning Strategy</div>
+    <!-- Biz 5: Performance (slide 15, index 14) -->
+    <div class="popup-card biz" data-popup-slide="14">
+      <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
+      <div class="popup-title">Speed as Advantage</div>
+      <div class="popup-desc">2 weeks of real data beats 2 months of assumptions. <strong>Quick launches enable faster learning.</strong></div>
+      <div class="popup-foot">Validation Strategy</div>
     </div>
   </div>
 
@@ -1143,17 +1391,10 @@
 
   <script>
     Reveal.initialize({
-      hash: true,
-      transition: 'fade',
-      transitionSpeed: 'slow',
-      width: 1100,
-      height: 700,
-      margin: 0.08,
-      controlsLayout: 'edges',
-      controls: false,
-      progress: true,
-      slideNumber: true
-    });
+  hash:true, transition:'fade', transitionSpeed:'slow',
+  width:1100, height:700, margin:0.08,
+  controlsLayout:'edges', controls:false, progress:true, slideNumber:true
+});
 
     // Popup controller
     (function(){
@@ -1179,5 +1420,29 @@
       Reveal.on('fragmenthidden', function(e){ hideAll(); });
     })();
   </script>
+
+<script>
+/* Expand button → fullscreen overlay */
+function expandFromBtn(btn){
+  var wrap=btn.closest('.annotated-ui');
+  if(!wrap) return;
+  var img=wrap.querySelector('img');
+  if(!img) return;
+  var ov=document.createElement('div');
+  ov.className='ui-fullscreen';
+  var im=document.createElement('img');
+  im.src=img.src;im.alt=img.alt||'';
+  var hint=document.createElement('div');
+  hint.className='close-hint';hint.textContent='Click anywhere to close';
+  ov.appendChild(im);ov.appendChild(hint);
+  document.body.appendChild(ov);
+  requestAnimationFrame(function(){ov.classList.add('active');});
+  ov.addEventListener('click',function(){
+    ov.classList.remove('active');
+    setTimeout(function(){ov.remove();},350);
+  });
+}
+</script>
+
 </body>
 </html>

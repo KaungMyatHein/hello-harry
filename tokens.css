@@ -1,0 +1,32 @@
+/* ═══════════════════════════════════════
+   DESIGN TOKENS — Harry Hein Portfolio
+   Single source of truth for all pages
+   ═══════════════════════════════════════ */
+
+:root {
+  /* Backgrounds */
+  --dark:   #0a0a0a;
+  --dark-2: #111111;
+  --dark-3: #1a1a1a;
+  --dark-4: #222222;
+
+  /* Cream palette */
+  --cream:       #f0e6d3;
+  --cream-dim:   rgba(240,230,211,0.5);
+  --cream-faint: rgba(240,230,211,0.12);
+  --cream-ghost: rgba(240,230,211,0.06);
+
+  /* Accent (orange) */
+  --accent:      #e8734a;
+  --accent-glow: rgba(232,115,74,0.15);
+
+  /* Green (availability indicator) */
+  --green:      #7eb87e;
+  --green-glow: rgba(126,184,126,0.12);
+
+  /* Typography */
+  --font-serif: 'Instrument Serif', serif;
+  --font-sans:  'Syne', sans-serif;
+  --font-mono:  'Space Mono', monospace;
+  --font-hand:  'Caveat', cursive;
+}
