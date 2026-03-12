@@ -20,6 +20,7 @@
 <style>
 :root{--purple:#9b7ec8;--blue:#6ba3d6;--yellow:#e8c94a;--red:#d66b6b}
 .reveal{font-family:'Syne',sans-serif;font-size:22px;color:var(--cream)}
+.reveal section img,.reveal section video{image-rendering:-webkit-optimize-contrast;-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(0)}
 .reveal h1,.reveal h2,.reveal h3{font-family:'Instrument Serif',serif;font-weight:400;text-transform:none;letter-spacing:-.02em}
 .reveal h1{font-size:2.6em;line-height:1.1}
 .reveal h2{font-size:1.8em;line-height:1.15}
@@ -127,16 +128,26 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .tools-row{display:flex;gap:.5em;flex-wrap:wrap;justify-content:center;margin:.8em 0}
 .tool-tag{font-family:'Space Mono',monospace;font-size:.5em;text-transform:uppercase;letter-spacing:.06em;padding:.4em .9em;border-radius:16px;border:1px solid var(--cream-faint);color:var(--cream-dim)}
 /* Lesson cards */
-.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7em;max-width:540px;margin:0 auto}
-.lesson-card{background:var(--dark-3);border-radius:10px;padding:.8em 1em;border-top:3px solid var(--accent);text-align:left}
-.lesson-card .lc-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.85em;color:var(--cream);margin-bottom:.3em}
-.lesson-card .lc-desc{font-size:.7em;color:var(--cream-dim);line-height:1.5}
-/* Perf table */
-.perf-table{width:100%;max-width:560px;margin:0 auto;border-collapse:collapse;font-size:.7em}
-.perf-table th{background:var(--dark-3);color:var(--accent);font-family:'Space Mono',monospace;font-size:.75em;text-transform:uppercase;letter-spacing:.06em;padding:.5em .7em;text-align:left;border-bottom:2px solid var(--accent)}
-.perf-table td{padding:.45em .7em;border-bottom:1px solid var(--cream-faint);color:var(--cream-dim)}
-.perf-table td:first-child{color:var(--cream);font-weight:600}
-.perf-table .good{color:var(--green);font-weight:700}
+/* Bento lessons */
+.bento-grid{display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:auto auto;gap:.5em;max-width:600px;margin:0 auto}
+.bento-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.7em .85em;text-align:left;display:flex;flex-direction:column;justify-content:center}
+.bento-card .lc-num{font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-faint);letter-spacing:.06em;margin-bottom:.2em}
+.bento-card .lc-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.8em;color:var(--cream);margin-bottom:.25em}
+.bento-card .lc-desc{font-size:.58em;color:var(--cream-dim);line-height:1.55}
+.bento-card.span-tall{grid-row:span 2}
+.bento-card.featured{background:rgba(232,115,74,.06);border-color:rgba(232,115,74,.18)}
+.bento-card.featured .lc-title{color:var(--accent)}
+/* Before/After comparison */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6em;max-width:600px;margin:0 auto}
+.ba-col{display:flex;flex-direction:column;gap:.35em}
+.ba-col-head{font-family:'Space Mono',monospace;font-size:.5em;text-transform:uppercase;letter-spacing:.1em;padding:.45em .7em;text-align:center;font-weight:700}
+.ba-col-head.before{color:var(--cream)}
+.ba-col-head.after{color:var(--green)}
+.ba-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.55em .7em;text-align:left;flex:1;display:flex;flex-direction:column;justify-content:center}
+.ba-card .ba-label{font-family:'Space Mono',monospace;font-size:.38em;text-transform:uppercase;letter-spacing:.06em;color:var(--cream-dim);margin-bottom:.15em}
+.ba-card .ba-val{font-size:.6em;line-height:1.35;color:var(--cream)}
+.ba-col.after .ba-card{background:rgba(126,184,126,.08);border-color:rgba(126,184,126,.15)}
+.ba-col.after .ba-val{color:var(--green);font-weight:600}
 /* Step log */
 .step-log{background:var(--dark-3);border-radius:10px;padding:1em 1.3em;max-width:480px;margin:0 auto;text-align:left;font-family:'Space Mono',monospace;font-size:.6em;line-height:2.2;color:var(--cream-dim)}
 .step-log .step-ok{color:var(--green)}
@@ -153,6 +164,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .popup-tag{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.7em;display:flex;align-items:center;gap:.5em}
 .popup-tag.biz{color:#b8860b}
 .popup-tag.ux{color:#2a6db5}
+.popup-card.dd{background:#edf7ee;color:#2c2c2c;box-shadow:3px 3px 0 rgba(0,0,0,.08),1px 1px 8px rgba(0,0,0,.12);transform-origin:top right}
+.popup-tag.dd{color:#2e7d32}
 .popup-tag svg{width:15px;height:15px}
 .popup-title{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;color:#111;margin-bottom:.5em;line-height:1.3}
 .popup-desc{font-family:'Syne',sans-serif;font-size:15px;color:#333;line-height:1.7}
@@ -169,10 +182,10 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <span class="mono" style="color:var(--accent);display:block;margin-bottom:.4em">Case Study &bull; 2026</span>
   <h1 style="margin-bottom:.4em">47 Applications.<br><span style="color:var(--accent)">2 Interviews.</span></h1>
-  <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1em;color:var(--cream-dim);margin-bottom:1.2em">How Designer OS turned manual resume tailoring into a 15-minute AI pipeline &mdash; and tripled interview callbacks.</p>
+  <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1em;color:var(--cream-dim);margin-bottom:1.2em">How Designer OS turned manual resume tailoring into a 15-minute AI pipeline.</p>
   <div class="metric-row">
-    <div class="metric"><div class="val">90&rarr;15</div><div class="lbl">Min Per Application</div></div>
-    <div class="metric"><div class="val">2.5&ndash;3&times;</div><div class="lbl">Callback Rate Lift</div></div>
+    <div class="metric"><div class="val">40&rarr;15</div><div class="lbl">Min Per Application</div></div>
+    <div class="metric"><div class="val">4&rarr;1</div><div class="lbl">Tools Replaced</div></div>
     <div class="metric"><div class="val">&lt;5min</div><div class="lbl">Cover Letter</div></div>
   </div>
 </section>
@@ -227,7 +240,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <!-- SLIDE 3: The number -->
 <section>
   <div class="bubble solo" style="max-width:520px;margin-bottom:.8em">Two interviews. In six weeks. From <span class="hl">47 applications.</span></div>
-  <div class="narration">A 4.2% callback rate. Industry average for a well-tailored resume: 12&ndash;15%.<br>She wasn&rsquo;t failing. She was <em>invisible</em>.</div>
+  <div class="narration">The same resume, copy-pasted into every role. No tailoring, no keyword alignment.<br>She wasn&rsquo;t failing. She was <em>invisible</em>.</div>
 </section>
 
 <!-- SLIDE 4: The root cause -->
@@ -252,6 +265,50 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="tag">&#x1f4a1; Design Hypothesis</div>
     <div class="title">Treat the resume as a living argument.</div>
     <div class="desc">Every job description is a new brief. If AI can systematically analyze a JD against the designer&rsquo;s actual resume data &mdash; surface the gaps, rank them by impact, and generate rewrite-ready suggestions &mdash; the designer gets intelligence instead of guesswork. Build the engine once. Run it for every application.</div>
+  </div>
+</section>
+
+<!-- SLIDE: Design Process -->
+<section>
+  <span class="section-label">Act 2 &mdash; Design Process</span>
+  <h2 style="margin-bottom:.8em">How It Was <span style="color:var(--accent)">Built</span></h2>
+  <div style="display:flex;align-items:flex-start;max-width:760px;margin:0 auto;position:relative">
+    <!-- Vertical line -->
+    <div style="position:absolute;left:17px;top:18px;bottom:18px;width:2px;background:linear-gradient(to bottom,var(--accent),var(--green))"></div>
+    <div style="display:flex;flex-direction:column;gap:1.2em;width:100%">
+      <!-- Step 1 -->
+      <div style="display:flex;align-items:flex-start;gap:1em">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--dark-3);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.5em;font-weight:700;color:var(--accent);flex-shrink:0;z-index:1">01</div>
+        <div style="padding-top:.3em">
+          <div style="font-family:'Syne',sans-serif;font-size:.72em;color:var(--cream);font-weight:600;margin-bottom:.2em">Vibe Code with Claude</div>
+          <div style="font-size:.58em;color:var(--cream-dim);line-height:1.5">Built a working proof of concept through conversational coding with Claude &mdash; validating the core pipeline logic before any pixel work.</div>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div style="display:flex;align-items:flex-start;gap:1em">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--dark-3);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.5em;font-weight:700;color:var(--accent);flex-shrink:0;z-index:1">02</div>
+        <div style="padding-top:.3em">
+          <div style="font-family:'Syne',sans-serif;font-size:.72em;color:var(--cream);font-weight:600;margin-bottom:.2em">Sync Variables as Tokens to Figma</div>
+          <div style="font-size:.58em;color:var(--cream-dim);line-height:1.5">Extracted design variables from the codebase and synced them into Figma as tokens &mdash; ensuring design and code stay in lockstep from day one.</div>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div style="display:flex;align-items:flex-start;gap:1em">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--dark-3);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.5em;font-weight:700;color:var(--accent);flex-shrink:0;z-index:1">03</div>
+        <div style="padding-top:.3em">
+          <div style="font-family:'Syne',sans-serif;font-size:.72em;color:var(--cream);font-weight:600;margin-bottom:.2em">Create Components</div>
+          <div style="font-size:.58em;color:var(--cream-dim);line-height:1.5">Built a component library in Figma backed by the synced tokens &mdash; buttons, cards, inputs, and layout patterns ready for rapid assembly.</div>
+        </div>
+      </div>
+      <!-- Step 4 -->
+      <div style="display:flex;align-items:flex-start;gap:1em">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--dark-3);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.5em;font-weight:700;color:var(--green);flex-shrink:0;z-index:1">04</div>
+        <div style="padding-top:.3em">
+          <div style="font-family:'Syne',sans-serif;font-size:.72em;color:var(--cream);font-weight:600;margin-bottom:.2em">Final Prototypes &amp; UT Prep</div>
+          <div style="font-size:.58em;color:var(--cream-dim);line-height:1.5">Assembled high-fidelity prototypes in Figma Make and prepared usability test scripts &mdash; ready to validate with real users.</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -309,146 +366,63 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
   <h2 style="margin-bottom:.6em">Step 1 &mdash; <span style="color:var(--accent)">The Engine</span></h2>
-  <div class="cs-2col">
-    <div class="cs-col-text">
-      <div class="narration">Before any job description is analyzed, the designer builds one master document. The JD Analyzer has nothing to measure the gap against without it.</div>
-      <div class="bubble solo" style="margin:0">
+  <div style="position:relative;display:flex;flex-direction:column;gap:.6em;text-align:left">
+    <div class="narration" style="text-align:center">Before any job description is analyzed, the designer builds one master document. The JD Analyzer has nothing to measure the gap against without it.</div>
+    <img src="images/resume-builder-resources/the-engine.png" alt="The Engine — Base Resume builder" style="width:100%;max-width:720px;margin:0 auto;border-radius:12px;display:block">
+    <div style="display:flex;gap:1em;justify-content:center;margin-top:.2em">
+      <div class="bubble solo" style="margin:0;font-size:.72em;max-width:420px">
         The <span class="hl">Base Resume</span> is not optimized for any role. It&rsquo;s the complete, unfiltered source of truth &mdash; every skill, every project, every result, all in one place.
-      </div>
-      <div class="narration" style="font-size:.78em">Four templates (Modern, Harvard, Creative, Minimalist). Same data, different layouts. Switch instantly &mdash; no data loss.</div>
-    </div>
-    <div class="cs-col-media">
-      <div class="media-placeholder">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        Image / Video
       </div>
     </div>
   </div>
+  <span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 8: Step 2 — Paste the JD -->
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
   <h2 style="margin-bottom:.6em">Step 2 &mdash; <span style="color:var(--accent)">Paste the JD</span></h2>
-  <div class="cs-2col">
-    <div class="cs-col-text">
-      <div class="narration">Any job board. Any format. The designer copies the full posting and pastes it in. No reformatting, no cleanup required.</div>
-      <div class="bubble solo" style="margin:0">
+  <div style="position:relative;display:flex;flex-direction:column;gap:.6em;text-align:left">
+    <div class="narration" style="text-align:center">Any job board. Any format. The designer copies the full posting and pastes it in. No reformatting, no cleanup required.</div>
+    <img src="images/resume-builder-resources/ats-screenshot.png" alt="Paste the JD" style="width:100%;max-width:720px;margin:0 auto;border-radius:12px;display:block">
+    <div style="display:flex;gap:1em;justify-content:center;margin-top:.2em">
+      <div class="bubble solo" style="margin:0;font-size:.72em;max-width:420px">
         The system <span class="hl">normalizes messy copy-paste</span> &mdash; stripping formatting noise, deduplicating requirements, and structuring the JD into analyzable sections automatically.
       </div>
-      <div class="narration" style="font-size:.78em">One field. No template to match. Works with LinkedIn, Greenhouse, Lever, or a plain email.</div>
-    </div>
-    <div class="cs-col-media">
-      <div class="media-placeholder">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        Image / Video
-      </div>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 9: Step 3 — AI Analyzes -->
+<!-- SLIDE 9: Step 3 & 4 — Analyze & See the Gap -->
 <section>
   <span class="section-label">Act 3 &mdash; The Magic</span>
-  <h2 style="margin-bottom:.6em">Step 3 &mdash; <span style="color:var(--accent)">AI Analyzes</span></h2>
-  <div class="cs-2col">
-    <div class="cs-col-text">
-      <div class="narration">Claude reads the JD against the Base Resume simultaneously. Rather than a generic spinner, the interface shows a live step checklist &mdash; the AI feels like a thinking collaborator, not a black box.</div>
-      <div class="step-log" style="margin:0;max-width:none">
-        <div><span class="step-ok">&#x2713;</span> &nbsp;Reading job description&hellip;</div>
-        <div><span class="step-ok">&#x2713;</span> &nbsp;Extracting required skills &amp; seniority signals</div>
-        <div><span class="step-ok">&#x2713;</span> &nbsp;Identifying culture language &amp; implicit priorities</div>
-        <div class="step-reason">&nbsp;&nbsp;&nbsp;&nbsp;"Role values cross-functional ownership above years of experience."</div>
-        <div><span class="step-spin">&#x27F3;</span> &nbsp;Comparing with your Base Resume&hellip;</div>
-        <div><span class="step-spin">&#x27F3;</span> &nbsp;Generating gap analysis&hellip;</div>
-      </div>
-      <div class="narration" style="font-size:.78em">Completes in 8&ndash;15 seconds.</div>
-    </div>
-    <div class="cs-col-media">
-      <div class="media-placeholder">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        Image / Video
-      </div>
-    </div>
+  <h2 style="margin-bottom:.6em">Step 3 &mdash; <span style="color:var(--accent)">Analyze the Gap</span></h2>
+  <div style="position:relative;display:flex;flex-direction:column;gap:.5em">
+    <div class="narration" style="text-align:center">Claude reads the JD against the Base Resume. In 8&ndash;15 seconds the gap analysis appears &mdash; skills, role context, and score.</div>
+    <video src="images/resume-builder-resources/ats-analyzer.mov" autoplay muted loop playsinline style="width:100%;max-width:720px;margin:0 auto;border-radius:12px;display:block"></video>
   </div>
-</section>
-
-<!-- SLIDE 10: Step 4 — Gap Analysis -->
-<section>
-  <span class="section-label">Act 3 &mdash; Design</span>
-  <h2 style="margin-bottom:.6em">Step 4 &mdash; <span style="color:var(--accent)">Seeing the Gap</span></h2>
-  <div class="cs-2col">
-    <div class="cs-col-text">
-      <div class="narration">Three panels appear. The designer&rsquo;s eye reads left to right: skills &rarr; role context &rarr; score.</div>
-      <div style="display:flex;flex-direction:column;gap:.5em">
-        <div style="background:var(--dark-3);border:1px solid var(--cream-faint);border-radius:10px;padding:.6em .9em">
-          <div style="font-family:'Space Mono',monospace;font-size:.46em;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.4em">Skills Match</div>
-          <div style="font-size:.64em;line-height:1.9;color:var(--cream-dim)"><span style="color:var(--green)">&#10003;</span> Figma &nbsp;&nbsp; <span style="color:var(--green)">&#10003;</span> User Research &nbsp;&nbsp; <span style="color:var(--yellow)">&#9888;</span> Design Systems &nbsp;&nbsp; <span style="color:var(--red)">&#10005;</span> 0&rarr;1 Experience</div>
-        </div>
-        <div style="background:var(--dark-3);border:1px solid var(--cream-faint);border-radius:10px;padding:.6em .9em;display:flex;align-items:center;gap:1em">
-          <div style="flex:1">
-            <div style="font-family:'Space Mono',monospace;font-size:.46em;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.3em">Role Intelligence</div>
-            <div style="font-size:.63em;color:var(--cream-dim);line-height:1.5">Generalist who can own end-to-end product work. Values writing as much as visual craft.</div>
-          </div>
-          <div style="text-align:center;flex-shrink:0">
-            <div style="font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1">74</div>
-            <div style="font-size:.5em;color:var(--cream-dim);margin-top:.3em">Score</div>
-          </div>
-        </div>
-      </div>
-      <div class="narration" style="font-size:.76em">The score always renders with its top explanation. <strong>The number alone is never shown.</strong></div>
-    </div>
-    <div class="cs-col-media">
-      <div class="media-placeholder">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        Image / Video
-      </div>
-    </div>
-  </div>
+  <span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 11: Step 5 — Suggestions -->
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
-  <h2 style="margin-bottom:.6em">Step 5 &mdash; <span style="color:var(--accent)">AI Suggests.</span> Designer Decides.</h2>
-  <div class="cs-2col">
-    <div class="cs-col-text">
-      <div class="narration">A stack of suggestion cards appears below the analysis &mdash; ordered by impact, not by section order.</div>
-      <div style="background:var(--dark-3);border:1.5px solid var(--cream-faint);border-radius:12px;padding:.8em 1em;text-align:left">
-        <div style="font-family:'Space Mono',monospace;font-size:.44em;text-transform:uppercase;letter-spacing:.1em;padding:.2em .6em;border-radius:10px;background:rgba(214,107,107,.12);color:var(--red);display:inline-block;margin-bottom:.5em">&#9650;&ensp;High Impact &middot; Experience</div>
-        <div style="font-size:.66em;color:var(--cream-dim);line-height:1.5;margin-bottom:.4em"><strong style="color:var(--cream)">Issue:</strong> Airbnb role asks for 10+ product teams. No scale in your bullet.</div>
-        <div style="background:rgba(107,163,214,.08);border:1px solid rgba(107,163,214,.2);border-radius:8px;padding:.45em .8em;font-size:.65em;color:var(--cream);line-height:1.6;font-style:italic;margin-bottom:.4em">"Led design system serving 14 product teams, 400+ components, iOS/Android/Web."</div>
-        <div style="font-size:.6em;color:var(--cream-dim)"><strong style="color:var(--cream)">Why:</strong> Directly addresses the top JD requirement.</div>
-      </div>
-      <div class="narration" style="font-size:.76em">Apply pre-fills the editor with suggested text. Nothing changes without an explicit user action.</div>
-    </div>
-    <div class="cs-col-media">
-      <div class="media-placeholder">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        Image / Video
-      </div>
-    </div>
+  <h2 style="margin-bottom:.4em">Step 4 &mdash; <span style="color:var(--accent)">AI Suggests.</span> Designer Decides.</h2>
+  <div style="position:relative;display:flex;flex-direction:column;gap:.4em">
+    <div class="narration" style="text-align:center;font-size:.75em">Suggestion cards ranked by impact. Apply pre-fills the editor &mdash; nothing changes without an explicit action.</div>
+    <video src="images/resume-builder-resources/resume-suggestion.mov" autoplay muted loop playsinline style="width:100%;max-width:720px;margin:0 auto;border-radius:12px;display:block"></video>
   </div>
+  <span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE: Step 6 — Cover Letter -->
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
-  <h2 style="margin-bottom:.6em">Step 6 &mdash; <span style="color:var(--accent)">Cover Letter</span></h2>
-  <div class="cs-2col">
-    <div class="cs-col-text">
-      <div class="narration">With the JD and tailored resume already in memory, the system generates a three-paragraph cover letter draft in under 5 minutes. No additional input needed.</div>
-      <div class="bubble solo" style="margin:0">
-        The draft <span class="hl">sounds like the designer</span>, not like a template &mdash; because it&rsquo;s built from their actual resume language, not generic prompts.
-      </div>
-      <div class="narration" style="font-size:.78em">Tone selector: Professional / Conversational / Direct. Edit inline before export. AI badge strips on download.</div>
-    </div>
-    <div class="cs-col-media">
-      <div class="media-placeholder">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        Image / Video
-      </div>
-    </div>
+  <h2 style="margin-bottom:.6em">Step 5 &mdash; <span style="color:var(--accent)">Cover Letter</span></h2>
+  <div style="position:relative;display:flex;flex-direction:column;gap:.6em">
+    <div class="narration" style="text-align:center">With the JD and tailored resume already in memory, the system generates a cover letter draft in under 5 minutes. No additional input needed.</div>
+    <img src="images/resume-builder-resources/cover-letter-filled.png" alt="Cover letter — generated" style="width:100%;max-width:330px;margin:0 auto;border-radius:12px;display:block">
+    <div class="narration" style="font-size:.76em;text-align:center">Tone selector: Professional / Conversational / Direct. Edit inline before export.</div>
   </div>
 </section>
 
@@ -457,34 +431,46 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <span class="section-label">Act 3 &mdash; In Action</span>
   <h2 style="margin-bottom:.6em">The Pipeline &mdash; <span style="color:var(--accent)">Demo</span></h2>
   <div style="width:100%;max-width:760px;margin:0 auto">
-    <div class="media-placeholder" style="aspect-ratio:16/9;font-size:.65em">
-      <svg viewBox="0 0 24 24" style="width:48px;height:48px;opacity:.35;stroke:var(--cream-dim);fill:none;stroke-width:1.5"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="var(--cream-dim)" stroke="none"/></svg>
-      Video Placeholder
-      <span style="font-size:.85em;color:var(--cream-faint);letter-spacing:.04em">Drop video or embed URL here</span>
-    </div>
+    <video src="images/resume-builder-resources/resume-builder-conecept-video.mov" autoplay muted loop playsinline style="width:100%;border-radius:12px"></video>
   </div>
 </section>
 
-<!-- SLIDE 11: Design Decisions -->
+<!-- SLIDE: UI Components -->
+<section>
+  <span class="section-label">Act 3 &mdash; UI Components</span>
+  <h2 style="margin-bottom:.2em">A Few of the <span style="color:var(--accent)">Components</span></h2>
+  <div class="narration" style="margin-bottom:.5em">Some of the key building blocks that power the pipeline.</div>
+  <img src="images/resume-builder-resources/Componnet.png" alt="UI Components overview" style="width:100%;max-width:900px;margin:0 auto;display:block;border-radius:12px">
+</section>
+
+<!-- SLIDE 11: Design Decisions — Bento -->
 <section>
   <span class="section-label">Act 3 &mdash; Design Principles</span>
   <h2 style="margin-bottom:.5em">Key Design <span style="color:var(--accent)">Decisions</span></h2>
-  <div class="step-grid">
-    <div class="step-box" style="border-left-color:var(--blue)">
-      <div class="step-num" style="color:var(--blue)">Decision 1</div>
-      <p><strong>Base Resume first</strong> &mdash; The JD Analyzer has nothing to measure the gap against without actual resume data. Step 1 is not optional.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4em;max-width:720px;margin:0 auto">
+    <!-- 01 -->
+    <div style="background:var(--dark-3);border:1px solid var(--cream-faint);border-radius:10px;padding:.6em .7em;display:flex;flex-direction:column;gap:.2em">
+      <span style="font-family:var(--font-serif);font-size:1.6em;line-height:1;color:var(--accent);opacity:.3">01</span>
+      <div style="font-family:var(--font-serif);font-size:.62em;color:var(--cream)">Base Resume First</div>
+      <p style="font-size:.42em;color:var(--cream-dim);line-height:1.5;margin:0">The analyzer needs real data to measure the gap. Everything downstream depends on it.</p>
     </div>
-    <div class="step-box" style="border-left-color:var(--yellow)">
-      <div class="step-num" style="color:var(--yellow)">Decision 2</div>
-      <p><strong>Gaps sorted first</strong> &mdash; Skill list shows problems before praise. Inverted from instinct &mdash; drives action over reassurance.</p>
+    <!-- 02 -->
+    <div style="background:var(--dark-3);border:1px solid var(--cream-faint);border-radius:10px;padding:.6em .7em;display:flex;flex-direction:column;gap:.2em">
+      <span style="font-family:var(--font-serif);font-size:1.6em;line-height:1;color:var(--accent);opacity:.3">02</span>
+      <div style="font-family:var(--font-serif);font-size:.62em;color:var(--cream)">Gaps Before Praise</div>
+      <p style="font-size:.42em;color:var(--cream-dim);line-height:1.5;margin:0">Show problems first. Inverted from instinct &mdash; drives action over reassurance.</p>
     </div>
-    <div class="step-box" style="border-left-color:var(--red)">
-      <div class="step-num" style="color:var(--red)">Decision 3</div>
-      <p><strong>No full AI rewrite</strong> &mdash; Fabricates claims, loses the designer&rsquo;s voice, removes authorship. Suggestions + editorial control instead.</p>
+    <!-- 03 -->
+    <div style="background:var(--dark-3);border:1px solid var(--cream-faint);border-radius:10px;padding:.6em .7em;display:flex;flex-direction:column;gap:.2em">
+      <span style="font-family:var(--font-serif);font-size:1.6em;line-height:1;color:var(--accent);opacity:.3">03</span>
+      <div style="font-family:var(--font-serif);font-size:.62em;color:var(--cream)">No Full AI Rewrite</div>
+      <p style="font-size:.42em;color:var(--cream-dim);line-height:1.5;margin:0">Fabricates claims, loses the designer&rsquo;s voice. Suggestions + editorial control preserve authorship.</p>
     </div>
-    <div class="step-box" style="border-left-color:var(--green)">
-      <div class="step-num" style="color:var(--green)">Decision 4</div>
-      <p><strong>AI badge disappears on export</strong> &mdash; A working-session marker only. The final deliverable is always clean.</p>
+    <!-- 04 -->
+    <div style="background:var(--dark-3);border:1px solid var(--cream-faint);border-radius:10px;padding:.6em .7em;display:flex;flex-direction:column;gap:.2em">
+      <span style="font-family:var(--font-serif);font-size:1.6em;line-height:1;color:var(--accent);opacity:.3">04</span>
+      <div style="font-family:var(--font-serif);font-size:.62em;color:var(--cream)">AI Badge Gone on Export</div>
+      <p style="font-size:.42em;color:var(--cream-dim);line-height:1.5;margin:0">A working-session marker only. The final deliverable is always clean.</p>
     </div>
   </div>
 </section>
@@ -493,14 +479,96 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <span class="section-label">Act 4 &mdash; Results</span>
   <h2 style="margin-bottom:.5em">Before &amp; <span style="color:var(--green)">After</span></h2>
-  <table class="perf-table">
-    <tr><th>Task</th><th>Before</th><th>With Pipeline</th></tr>
-    <tr><td>Resume tailoring</td><td>~90 min per role</td><td class="good">~15 min</td></tr>
-    <tr><td>Keyword gap analysis</td><td>Manual / guesswork</td><td class="good">Structured in seconds</td></tr>
-    <tr><td>Cover letter</td><td>~45 min per role</td><td class="good">&lt;5 min</td></tr>
-    <tr><td>Interview callback rate</td><td>~4% (47 apps, 2 calls)</td><td class="good">2.5&ndash;3&times; lift</td></tr>
-    <tr><td>Tools required</td><td>Google Doc + ChatGPT + manual</td><td class="good">One pipeline</td></tr>
-  </table>
+  <div class="ba-grid">
+    <!-- Before column -->
+    <div class="ba-col before">
+      <div class="ba-col-head before">Before</div>
+      <div class="ba-card">
+        <div class="ba-label">Resume tailoring</div>
+        <div class="ba-val">~40 min per role</div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-label">Keyword gap analysis</div>
+        <div class="ba-val">Manual / guesswork</div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-label">Cover letter</div>
+        <div class="ba-val">~20 min per role</div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-label">Tools required</div>
+        <div class="ba-val">Google Doc + ChatGPT + manual</div>
+      </div>
+    </div>
+    <!-- After column -->
+    <div class="ba-col after">
+      <div class="ba-col-head after">With Pipeline</div>
+      <div class="ba-card">
+        <div class="ba-label">Resume tailoring</div>
+        <div class="ba-val">~15 min</div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-label">Keyword gap analysis</div>
+        <div class="ba-val">Structured in seconds</div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-label">Cover letter</div>
+        <div class="ba-val">&lt;5 min</div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-label">Tools required</div>
+        <div class="ba-val">One pipeline</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE: Planned Integration — Chrome Extension -->
+<section>
+  <span class="section-label">Act 4 &mdash; What&rsquo;s Next</span>
+  <h2 style="margin-bottom:.5em">Planned &mdash; <span style="color:var(--accent)">One-Click Integration</span></h2>
+  <div class="narration" style="text-align:center;margin-bottom:.6em">A Chrome extension that turns any job listing into a fully analyzed, saved, and tailored application &mdash; in one click.</div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:0;max-width:780px;margin:0 auto;flex-wrap:nowrap">
+    <!-- Step 1 -->
+    <div style="text-align:center;flex:1;min-width:0">
+      <div style="font-size:1.6em;margin-bottom:.25em">🔗</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:.2em">Browse</div>
+      <div style="font-size:.52em;color:var(--cream-dim);line-height:1.4;padding:0 .3em">Indeed / LinkedIn job listing</div>
+    </div>
+    <!-- Arrow -->
+    <div style="color:var(--cream-faint);font-size:.9em;flex-shrink:0;margin:0 .1em">&#x2192;</div>
+    <!-- Step 2 -->
+    <div style="text-align:center;flex:1;min-width:0">
+      <div style="font-size:1.6em;margin-bottom:.25em">🧩</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:.2em">Click</div>
+      <div style="font-size:.52em;color:var(--cream-dim);line-height:1.4;padding:0 .3em">Chrome extension button</div>
+    </div>
+    <!-- Arrow -->
+    <div style="color:var(--cream-faint);font-size:.9em;flex-shrink:0;margin:0 .1em">&#x2192;</div>
+    <!-- Step 3 -->
+    <div style="text-align:center;flex:1;min-width:0">
+      <div style="font-size:1.6em;margin-bottom:.25em">⚡</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:.2em">Analyze</div>
+      <div style="font-size:.52em;color:var(--cream-dim);line-height:1.4;padding:0 .3em">JD parsed &amp; gap analysis runs</div>
+    </div>
+    <!-- Arrow -->
+    <div style="color:var(--cream-faint);font-size:.9em;flex-shrink:0;margin:0 .1em">&#x2192;</div>
+    <!-- Step 4 -->
+    <div style="text-align:center;flex:1;min-width:0">
+      <div style="font-size:1.6em;margin-bottom:.25em">💾</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:.2em">Save</div>
+      <div style="font-size:.52em;color:var(--cream-dim);line-height:1.4;padding:0 .3em">Job saved to board in Designer&nbsp;OS</div>
+    </div>
+    <!-- Arrow -->
+    <div style="color:var(--cream-faint);font-size:.9em;flex-shrink:0;margin:0 .1em">&#x2192;</div>
+    <!-- Step 5 -->
+    <div style="text-align:center;flex:1;min-width:0">
+      <div style="font-size:1.6em;margin-bottom:.25em">📄</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.06em;color:var(--green);margin-bottom:.2em">Done</div>
+      <div style="font-size:.52em;color:var(--cream-dim);line-height:1.4;padding:0 .3em">Tailored resume ready to download</div>
+    </div>
+  </div>
+  <div class="narration" style="font-size:.68em;text-align:center;margin-top:.6em;color:var(--cream-dim)">Zero context switching. The entire pipeline fires from the job listing page.</div>
 </section>
 
 <!-- SLIDE 13: Sarah Resolved -->
@@ -521,9 +589,9 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <h2 style="margin-bottom:.6em">The numbers told the story.</h2>
   <div class="metric-row">
-    <div class="metric"><div class="val">75min</div><div class="lbl">Saved Per Application</div></div>
+    <div class="metric"><div class="val">40min</div><div class="lbl">Saved Per Application</div></div>
     <div class="metric"><div class="val">4&rarr;1</div><div class="lbl">Tools Replaced</div></div>
-    <div class="metric"><div class="val">2.5&times;</div><div class="lbl">Interview Rate Lift</div></div>
+    <div class="metric"><div class="val">&lt;5min</div><div class="lbl">Cover Letter</div></div>
   </div>
 </section>
 
@@ -552,22 +620,30 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <span class="section-label">Business &times; Design Lessons</span>
   <h2 style="margin-bottom:.6em">What This <span style="color:var(--accent)">Taught Me</span></h2>
-  <div class="lesson-grid">
-    <div class="lesson-card" style="border-top-color:var(--accent)">
-      <div class="lc-title" style="color:var(--accent)">Intelligence Over Automation</div>
+  <div class="bento-grid">
+    <div class="bento-card featured span-tall">
+      <div class="lc-num">01</div>
+      <div class="lc-title">Intelligence Over Automation</div>
       <div class="lc-desc">Fully rewriting the resume with AI fails. Gap analysis + editorial control delivers 80% of time savings with 100% of authenticity.</div>
     </div>
-    <div class="lesson-card" style="border-top-color:var(--blue)">
-      <div class="lc-title" style="color:var(--blue)">The Engine Model</div>
-      <div class="lc-desc">Build the Base Resume once. Every application is a run of that engine &mdash; not a blank page. Tailoring compounds instead of starting over.</div>
+    <div class="bento-card">
+      <div class="lc-num">02</div>
+      <div class="lc-title">The Engine Model</div>
+      <div class="lc-desc">Build the Base Resume once. Every application is a run of that engine &mdash; not a blank page.</div>
     </div>
-    <div class="lesson-card" style="border-top-color:var(--yellow)">
-      <div class="lc-title" style="color:var(--yellow)">Context Changes Everything</div>
-      <div class="lc-desc">The same resume data produces different tailoring for each role. Intelligence is in the comparison, not the document.</div>
+    <div class="bento-card">
+      <div class="lc-num">03</div>
+      <div class="lc-title">Context Changes Everything</div>
+      <div class="lc-desc">The same resume data produces different tailoring for each role. Intelligence is in the comparison.</div>
     </div>
-    <div class="lesson-card" style="border-top-color:var(--green)">
-      <div class="lc-title" style="color:var(--green)">Trust as UX</div>
-      <div class="lc-desc">A designer who knows AI can&rsquo;t silently change their resume will engage with suggestions more openly. Agency builds trust.</div>
+    <div class="bento-card" style="grid-column:1/-1">
+      <div style="display:flex;align-items:center;gap:.7em">
+        <div style="flex:0 0 auto">
+          <div class="lc-num">04</div>
+          <div class="lc-title" style="color:var(--green)">Trust as UX</div>
+        </div>
+        <div class="lc-desc">A designer who knows AI can&rsquo;t silently change their resume will engage with suggestions more openly. Agency builds trust.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -646,7 +722,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <div class="popup-card biz" data-popup-slide="1">
   <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
   <div class="popup-title">Resume Tailoring as an Ops Problem</div>
-  <div class="popup-desc">47 applications &times; 90 min each = <strong>70+ hours of labor</strong> producing a 4% callback rate. Reframing tailoring as a process problem &mdash; not a skill problem &mdash; changes the entire solution space.</div>
+  <div class="popup-desc">47 applications &times; 40 min each = <strong>31+ hours of labor</strong> on manual tailoring alone. Reframing tailoring as a process problem &mdash; not a skill problem &mdash; changes the entire solution space.</div>
   <div class="popup-foot">Operational Efficiency</div>
 </div>
 
@@ -660,32 +736,39 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <div class="popup-card biz" data-popup-slide="4">
   <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
   <div class="popup-title">Process Failure, Not Skill Failure</div>
-  <div class="popup-desc">When a designer with 6 years of experience gets a 4% callback rate, the problem is rarely the experience. It&rsquo;s the <strong>signal-to-noise ratio between their resume and what the JD actually asks for</strong>.</div>
+  <div class="popup-desc">When a designer with 6 years of experience isn&rsquo;t landing interviews, the problem is rarely the experience. It&rsquo;s the <strong>signal-to-noise ratio between their resume and what the JD actually asks for</strong>.</div>
   <div class="popup-foot">Root Cause Analysis</div>
 </div>
 
-<div class="popup-card ux" data-popup-slide="9">
-  <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
-  <div class="popup-title">Score with Mandatory Context</div>
-  <div class="popup-desc">Match scores are reductive but immediately legible. The solution: show the score with a <strong>required explanation</strong>. The number alone is never displayed &mdash; this prevents misreading a score as a judgment rather than a starting point.</div>
-  <div class="popup-foot">Information Design</div>
+<div class="popup-card dd" data-popup-slide="8">
+  <div class="popup-tag dd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> #Design Decision</div>
+  <div class="popup-title">Authenticity First</div>
+  <div class="popup-desc">The user enters their own data before AI touches anything. This builds <strong>ownership and trust</strong> &mdash; the system feels like a collaborator, not a ghostwriter.</div>
+  <div class="popup-foot">User Trust</div>
 </div>
 
-<div class="popup-card ux" data-popup-slide="10">
-  <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
+<div class="popup-card dd" data-popup-slide="10">
+  <div class="popup-tag dd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> #Design Decision</div>
+  <div class="popup-title">Keep the User in the Loop</div>
+  <div class="popup-desc">Showing gaps upfront lets the user <strong>see what needs improving before anything changes</strong>. Instead of blindly rewriting, the AI process keeps the user informed and in control.</div>
+  <div class="popup-foot">Transparency</div>
+</div>
+
+<div class="popup-card dd" data-popup-slide="11">
+  <div class="popup-tag dd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> #Design Decision</div>
   <div class="popup-title">AI Suggests. Designer Decides.</div>
-  <div class="popup-desc">Nothing is applied without explicit user action. A designer who knows AI can&rsquo;t silently change their resume will <strong>engage with suggestions more openly</strong> &mdash; not less. Agency builds trust.</div>
-  <div class="popup-foot">Interaction Principle</div>
+  <div class="popup-desc">AI provides suggestions, but the <strong>final decision always stays with the user</strong>. Nothing is applied without explicit action &mdash; agency builds trust.</div>
+  <div class="popup-foot">User Agency</div>
 </div>
 
-<div class="popup-card biz" data-popup-slide="12">
+<div class="popup-card biz" data-popup-slide="16">
   <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
   <div class="popup-title">Time Savings Compound at Scale</div>
-  <div class="popup-desc">75 min saved per application &times; 47 applications = <strong>58+ hours recovered</strong> in a single job search. That&rsquo;s more than a full work week returned to the designer.</div>
+  <div class="popup-desc">40 min saved per application &times; 47 applications = <strong>31+ hours recovered</strong> in a single job search. That&rsquo;s nearly a full work week returned to the designer.</div>
   <div class="popup-foot">ROI Calculation</div>
 </div>
 
-<div class="popup-card biz" data-popup-slide="13">
+<div class="popup-card biz" data-popup-slide="18">
   <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
   <div class="popup-title">The Week 3 Signal</div>
   <div class="popup-desc">An interview booked within 48 hours of a tailored application isn&rsquo;t luck &mdash; it&rsquo;s <strong>signal that the gap analysis surfaced the right things</strong>. One well-targeted bullet beat six weeks of generic sends.</div>
