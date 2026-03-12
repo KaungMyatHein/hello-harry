@@ -6,14 +6,14 @@
     <stop offset="100%" stop-color="#0d0b09"/>
   </radialGradient>
   <radialGradient id="glowC" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#e8734a" stop-opacity="0.18"/>
-    <stop offset="100%" stop-color="#e8734a" stop-opacity="0"/>
+    <stop offset="0%" stop-color="#c8a96e" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#c8a96e" stop-opacity="0"/>
   </radialGradient>
   <filter id="blur1">
     <feGaussianBlur stdDeviation="28"/>
   </filter>
   <marker id="arrowO2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-    <path d="M0,0 L0,6 L8,3 z" fill="#e8734a" opacity="0.7"/>
+    <path d="M0,0 L0,6 L8,3 z" fill="#c8a96e" opacity="0.7"/>
   </marker>
 </defs>
 
@@ -21,7 +21,7 @@
 <rect width="1200" height="675" fill="url(#bg2)"/>
 
 <!-- Faint "0.5h" watermark -->
-<text x="600" y="390" font-family="Georgia,'Times New Roman',serif" font-size="260" fill="#e8734a" opacity="0.035" text-anchor="middle" font-weight="bold">0.5h</text>
+<text x="600" y="390" font-family="Georgia,'Times New Roman',serif" font-size="260" fill="#c8a96e" opacity="0.035" text-anchor="middle" font-weight="bold">0.5h</text>
 
 <!-- Ambient glow centre -->
 <ellipse cx="600" cy="338" rx="320" ry="200" fill="url(#glowC)" filter="url(#blur1)"/>
@@ -30,47 +30,47 @@
 
 <!-- Xero -->
 <rect x="80" y="190" width="200" height="80" rx="8" fill="#1a1714" stroke="#2a2724" stroke-width="1.5"/>
-<rect x="80" y="190" width="6" height="80" rx="3" fill="#e8734a" opacity="0.45"/>
-<text x="106" y="218" font-family="Courier New,monospace" font-size="8" fill="#e8734a" opacity="0.6" letter-spacing="1">SOURCE 01</text>
+<rect x="80" y="190" width="6" height="80" rx="3" fill="#c8a96e" opacity="0.45"/>
+<text x="106" y="218" font-family="Courier New,monospace" font-size="8" fill="#c8a96e" opacity="0.6" letter-spacing="1">SOURCE 01</text>
 <text x="106" y="237" font-family="Arial,sans-serif" font-size="13" fill="#f0e6d3" opacity="0.65">Xero</text>
 <text x="106" y="254" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.25">accounting software</text>
 
 <!-- Spreadsheets -->
 <rect x="80" y="298" width="200" height="80" rx="8" fill="#1a1714" stroke="#2a2724" stroke-width="1.5"/>
-<rect x="80" y="298" width="6" height="80" rx="3" fill="#e8734a" opacity="0.45"/>
-<text x="106" y="326" font-family="Courier New,monospace" font-size="8" fill="#e8734a" opacity="0.6" letter-spacing="1">SOURCE 02</text>
+<rect x="80" y="298" width="6" height="80" rx="3" fill="#c8a96e" opacity="0.45"/>
+<text x="106" y="326" font-family="Courier New,monospace" font-size="8" fill="#c8a96e" opacity="0.6" letter-spacing="1">SOURCE 02</text>
 <text x="106" y="345" font-family="Arial,sans-serif" font-size="13" fill="#f0e6d3" opacity="0.65">Spreadsheets</text>
 <text x="106" y="362" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.25">manual · error-prone</text>
 
 <!-- Supplier Portal -->
 <rect x="80" y="406" width="200" height="80" rx="8" fill="#1a1714" stroke="#2a2724" stroke-width="1.5"/>
-<rect x="80" y="406" width="6" height="80" rx="3" fill="#e8734a" opacity="0.45"/>
-<text x="106" y="434" font-family="Courier New,monospace" font-size="8" fill="#e8734a" opacity="0.6" letter-spacing="1">SOURCE 03</text>
+<rect x="80" y="406" width="6" height="80" rx="3" fill="#c8a96e" opacity="0.45"/>
+<text x="106" y="434" font-family="Courier New,monospace" font-size="8" fill="#c8a96e" opacity="0.6" letter-spacing="1">SOURCE 03</text>
 <text x="106" y="453" font-family="Arial,sans-serif" font-size="13" fill="#f0e6d3" opacity="0.65">Supplier Portal</text>
 <text x="106" y="470" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.25">separate login</text>
 
 <!-- ── CONNECTOR LINES (sources → hub) ── -->
 <!-- Xero → hub -->
-<line x1="280" y1="230" x2="446" y2="310" stroke="#e8734a" stroke-width="1.25" opacity="0.45" marker-end="url(#arrowO2)"/>
+<line x1="280" y1="230" x2="446" y2="310" stroke="#c8a96e" stroke-width="1.25" opacity="0.45" marker-end="url(#arrowO2)"/>
 <!-- Spreadsheets → hub -->
-<line x1="280" y1="338" x2="446" y2="338" stroke="#e8734a" stroke-width="1.25" opacity="0.45" marker-end="url(#arrowO2)"/>
+<line x1="280" y1="338" x2="446" y2="338" stroke="#c8a96e" stroke-width="1.25" opacity="0.45" marker-end="url(#arrowO2)"/>
 <!-- Supplier → hub -->
-<line x1="280" y1="446" x2="446" y2="366" stroke="#e8734a" stroke-width="1.25" opacity="0.45" marker-end="url(#arrowO2)"/>
+<line x1="280" y1="446" x2="446" y2="366" stroke="#c8a96e" stroke-width="1.25" opacity="0.45" marker-end="url(#arrowO2)"/>
 
 <!-- ── MERGE HUB ── -->
-<circle cx="488" cy="338" r="34" fill="#1e1a14" stroke="#e8734a" stroke-width="1.5" opacity="0.9"/>
-<text x="488" y="334" font-family="Arial,sans-serif" font-size="18" fill="#e8734a" opacity="0.85" text-anchor="middle">⊕</text>
-<text x="488" y="352" font-family="Courier New,monospace" font-size="6.5" fill="#e8734a" opacity="0.55" text-anchor="middle" letter-spacing="0.5">MERGE</text>
+<circle cx="488" cy="338" r="34" fill="#1e1a14" stroke="#c8a96e" stroke-width="1.5" opacity="0.9"/>
+<text x="488" y="334" font-family="Arial,sans-serif" font-size="18" fill="#c8a96e" opacity="0.85" text-anchor="middle">⊕</text>
+<text x="488" y="352" font-family="Courier New,monospace" font-size="6.5" fill="#c8a96e" opacity="0.55" text-anchor="middle" letter-spacing="0.5">MERGE</text>
 
 <!-- Hub → Dashboard -->
-<line x1="524" y1="338" x2="608" y2="338" stroke="#e8734a" stroke-width="1.5" opacity="0.55" marker-end="url(#arrowO2)"/>
+<line x1="524" y1="338" x2="608" y2="338" stroke="#c8a96e" stroke-width="1.5" opacity="0.55" marker-end="url(#arrowO2)"/>
 
 <!-- ── UNIFIED DASHBOARD (right panel) ── -->
-<rect x="622" y="168" width="500" height="340" rx="10" fill="#1c1814" stroke="#e8734a" stroke-width="1" opacity="0.8"/>
-<rect x="622" y="168" width="500" height="6" rx="5" fill="#e8734a" opacity="0.7"/>
+<rect x="622" y="168" width="500" height="340" rx="10" fill="#1c1814" stroke="#c8a96e" stroke-width="1" opacity="0.8"/>
+<rect x="622" y="168" width="500" height="6" rx="5" fill="#c8a96e" opacity="0.7"/>
 
 <!-- Dashboard header -->
-<text x="646" y="198" font-family="Courier New,monospace" font-size="8" fill="#e8734a" opacity="0.65" letter-spacing="1.5">UNIFIED DASHBOARD</text>
+<text x="646" y="198" font-family="Courier New,monospace" font-size="8" fill="#c8a96e" opacity="0.65" letter-spacing="1.5">UNIFIED DASHBOARD</text>
 <line x1="646" y1="204" x2="1098" y2="204" stroke="#f0e6d3" stroke-width="0.5" opacity="0.1"/>
 
 <!-- KPI blocks row -->
@@ -78,7 +78,7 @@
 <rect x="646" y="216" width="138" height="72" rx="6" fill="#221e18" stroke="#2a2724" stroke-width="1"/>
 <text x="662" y="237" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.35" letter-spacing="0.5">PAYABLES</text>
 <text x="662" y="264" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#f0e6d3" opacity="0.8">$84k</text>
-<rect x="662" y="274" width="40" height="6" rx="3" fill="#e8734a" opacity="0.55"/>
+<rect x="662" y="274" width="40" height="6" rx="3" fill="#c8a96e" opacity="0.55"/>
 <text x="708" y="280" font-family="Courier New,monospace" font-size="6" fill="#7eb87e" opacity="0.7">↓ 12%</text>
 
 <!-- Block 2 -->
@@ -91,21 +91,21 @@
 <!-- Block 3 -->
 <rect x="946" y="216" width="136" height="72" rx="6" fill="#221e18" stroke="#2a2724" stroke-width="1"/>
 <text x="962" y="237" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.35" letter-spacing="0.5">OVERDUE</text>
-<text x="962" y="264" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#e8734a" opacity="0.75">3</text>
-<rect x="962" y="274" width="28" height="6" rx="3" fill="#e8734a" opacity="0.35"/>
+<text x="962" y="264" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#c8a96e" opacity="0.75">3</text>
+<rect x="962" y="274" width="28" height="6" rx="3" fill="#c8a96e" opacity="0.35"/>
 <text x="996" y="280" font-family="Courier New,monospace" font-size="6" fill="#f0e6d3" opacity="0.3">items</text>
 
 <!-- Bar chart area -->
 <rect x="646" y="302" width="290" height="116" rx="6" fill="#1e1a14" stroke="#2a2724" stroke-width="1"/>
 <text x="662" y="320" font-family="Courier New,monospace" font-size="7" fill="#f0e6d3" opacity="0.3" letter-spacing="0.5">MONTHLY SPEND</text>
 <!-- Bars -->
-<rect x="668" y="380" width="22" height="26" rx="2" fill="#e8734a" opacity="0.35"/>
-<rect x="700" y="364" width="22" height="42" rx="2" fill="#e8734a" opacity="0.45"/>
-<rect x="732" y="352" width="22" height="54" rx="2" fill="#e8734a" opacity="0.55"/>
-<rect x="764" y="358" width="22" height="48" rx="2" fill="#e8734a" opacity="0.45"/>
-<rect x="796" y="344" width="22" height="62" rx="2" fill="#e8734a" opacity="0.65"/>
-<rect x="828" y="370" width="22" height="36" rx="2" fill="#e8734a" opacity="0.4"/>
-<rect x="860" y="350" width="22" height="56" rx="2" fill="#e8734a" opacity="0.5"/>
+<rect x="668" y="380" width="22" height="26" rx="2" fill="#c8a96e" opacity="0.35"/>
+<rect x="700" y="364" width="22" height="42" rx="2" fill="#c8a96e" opacity="0.45"/>
+<rect x="732" y="352" width="22" height="54" rx="2" fill="#c8a96e" opacity="0.55"/>
+<rect x="764" y="358" width="22" height="48" rx="2" fill="#c8a96e" opacity="0.45"/>
+<rect x="796" y="344" width="22" height="62" rx="2" fill="#c8a96e" opacity="0.65"/>
+<rect x="828" y="370" width="22" height="36" rx="2" fill="#c8a96e" opacity="0.4"/>
+<rect x="860" y="350" width="22" height="56" rx="2" fill="#c8a96e" opacity="0.5"/>
 <line x1="662" y1="408" x2="896" y2="408" stroke="#f0e6d3" stroke-width="0.5" opacity="0.08"/>
 
 <!-- Table area -->
@@ -114,7 +114,7 @@
 <line x1="962" y1="328" x2="1068" y2="328" stroke="#f0e6d3" stroke-width="0.5" opacity="0.08"/>
 <!-- Table rows -->
 <text x="962" y="345" font-family="Arial,sans-serif" font-size="8.5" fill="#f0e6d3" opacity="0.5">Acme Co.</text>
-<text x="1030" y="345" font-family="Courier New,monospace" font-size="8" fill="#e8734a" opacity="0.55" text-anchor="end">$12.4k</text>
+<text x="1030" y="345" font-family="Courier New,monospace" font-size="8" fill="#c8a96e" opacity="0.55" text-anchor="end">$12.4k</text>
 <line x1="962" y1="352" x2="1068" y2="352" stroke="#f0e6d3" stroke-width="0.3" opacity="0.06"/>
 <text x="962" y="369" font-family="Arial,sans-serif" font-size="8.5" fill="#f0e6d3" opacity="0.5">Bright Ltd.</text>
 <text x="1030" y="369" font-family="Courier New,monospace" font-size="8" fill="#f0e6d3" opacity="0.35" text-anchor="end">$9.1k</text>
@@ -123,8 +123,8 @@
 <text x="1030" y="393" font-family="Courier New,monospace" font-size="8" fill="#f0e6d3" opacity="0.35" text-anchor="end">$6.8k</text>
 
 <!-- Status bar -->
-<rect x="646" y="432" width="436" height="56" rx="6" fill="#221e18" stroke="#e8734a" stroke-width="0.8" opacity="0.6"/>
-<text x="666" y="453" font-family="Courier New,monospace" font-size="7.5" fill="#e8734a" opacity="0.6" letter-spacing="0.5">TIME SAVED</text>
+<rect x="646" y="432" width="436" height="56" rx="6" fill="#221e18" stroke="#c8a96e" stroke-width="0.8" opacity="0.6"/>
+<text x="666" y="453" font-family="Courier New,monospace" font-size="7.5" fill="#c8a96e" opacity="0.6" letter-spacing="0.5">TIME SAVED</text>
 <text x="666" y="475" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#f0e6d3" opacity="0.85">30 min/day</text>
 <text x="820" y="453" font-family="Courier New,monospace" font-size="7.5" fill="#f0e6d3" opacity="0.3" letter-spacing="0.5">ERRORS REDUCED</text>
 <text x="820" y="475" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#7eb87e" opacity="0.75">~100%</text>

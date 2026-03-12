@@ -29,15 +29,15 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   position:absolute;
   width:clamp(400px,60vw,900px);height:clamp(400px,60vw,900px);
   border-radius:50%;
-  background:radial-gradient(circle,rgba(232,115,74,0.1) 0%,rgba(232,115,74,0.03) 40%,transparent 70%);
+  background:radial-gradient(circle,rgba(200,169,110,0.1) 0%,rgba(200,169,110,0.03) 40%,transparent 70%);
   top:50%;left:50%;
   transform:translate(-50%,-55%);
   pointer-events:none;
   animation:glowPulse 8s ease-in-out infinite alternate;
 }
 @keyframes glowPulse{
-  0%{opacity:0.6;transform:translate(-50%,-55%) scale(1)}
-  100%{opacity:1;transform:translate(-50%,-55%) scale(1.08)}
+  0%{opacity:0.5;transform:translate(-50%,-55%) scale(1)}
+  100%{opacity:0.8;transform:translate(-50%,-55%) scale(1.1)}
 }
 
 /* Vertical lines deco */
@@ -236,6 +236,31 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   transition:border-color 0.4s;
 }
 .project:hover{border-color:rgba(240,230,211,0.25)}
+
+/* ── Featured / Recommended ── */
+.project.featured{
+  border-color:rgba(200,169,110,0.45);
+  background:linear-gradient(160deg,rgba(200,169,110,0.1) 0%,rgba(200,169,110,0.02) 50%,transparent 100%);
+  box-shadow:0 0 40px rgba(200,169,110,0.07), inset 0 0 60px rgba(200,169,110,0.03);
+}
+.project.featured:hover{
+  border-color:rgba(200,169,110,0.7);
+  background:linear-gradient(160deg,rgba(200,169,110,0.15) 0%,rgba(200,169,110,0.04) 50%,transparent 100%);
+  box-shadow:0 0 60px rgba(200,169,110,0.12), inset 0 0 80px rgba(200,169,110,0.05);
+}
+.project.featured::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#c8a96e 0%,rgba(200,169,110,0.2) 100%);
+  box-shadow:0 0 10px rgba(200,169,110,0.5);
+}
+.proj-recommend{
+  display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+  font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;
+  color:#0d0b09;background:#c8a96e;
+  padding:5px 12px;
+  margin-bottom:16px;
+}
+.proj-recommend::before{content:'★';font-size:7px;}
 
 /* ── Image Placeholder Thumbnail ── */
 .proj-thumb{
@@ -759,7 +784,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   position:relative;
 }
 .edu-card::before{
-  content:'04';position:absolute;top:24px;right:32px;
+  content:'BSc';position:absolute;top:24px;right:32px;
   font-family:'Space Mono',monospace;
   font-size:11px;letter-spacing:0.1em;
   color:var(--accent);
@@ -856,7 +881,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
   background:var(--cream);color:var(--dark);
   border:none;
 }
-.cta-main:hover{background:var(--accent);transform:translateY(-3px);box-shadow:0 12px 40px rgba(232,115,74,0.2)}
+.cta-main:hover{background:var(--accent);transform:translateY(-3px);box-shadow:0 12px 40px rgba(200,169,110,0.2)}
 .cta-main:hover svg{transform:translate(2px,-2px)}
 
 .cta-alt{
@@ -865,10 +890,75 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 }
 .cta-alt:hover{border-color:var(--cream);background:var(--cream-ghost)}
 
+/* ═══════ EDITORIAL OVERRIDES ═══════ */
+
+/* 1 — Section numbers: left accent bar, no "01 —" prefix */
+.sec-num{
+  display:inline-flex;align-items:center;gap:14px;
+  padding-left:16px;
+  border-left:2px solid var(--accent);
+  font-size:10px;letter-spacing:0.18em;
+}
+
+/* 3 — Experience company names: typographic anchors */
+.exp-company{font-size:40px;letter-spacing:-0.04em;line-height:1.05}
+.exp-role{font-size:13px;margin-bottom:8px}
+
+/* 4 — Project tag pills → plain text */
+.proj-tag{
+  border:none;padding:0;
+  opacity:0.5;
+}
+.proj-tag:not(:last-child)::after{content:' /';margin-right:4px;opacity:0.5}
+.project:hover .proj-tag{border:none;opacity:0.7}
+
+/* 5 — Thumbnail metric overlay */
+.thumb-stat{
+  position:absolute;bottom:20px;left:24px;z-index:2;
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(44px,5vw,68px);font-weight:400;
+  color:var(--cream);letter-spacing:-0.04em;line-height:1;
+  text-shadow:0 2px 30px rgba(0,0,0,0.7);
+}
+.thumb-stat span{
+  display:block;
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(240,230,211,0.55);margin-top:6px;
+}
+
+/* 6 — Project cards: ambient project number */
+.proj-index{
+  display:block;
+  position:absolute;top:-10px;right:12px;
+  font-family:'Instrument Serif',serif;
+  font-size:108px;font-weight:400;
+  line-height:1;letter-spacing:-0.06em;
+  color:var(--cream);opacity:0.05;
+  pointer-events:none;user-select:none;
+  transition:opacity 0.4s;
+}
+.project:hover .proj-index{opacity:0.09}
+
+/* 7 — Experience: left-border hover instead of padding shift */
+.exp-item{
+  border-left:2px solid transparent;
+  padding-left:20px;
+  padding-right:20px;
+  transition:border-color 0.35s,background 0.5s;
+}
+.exp-item:hover{
+  padding-left:20px;
+  border-left-color:var(--accent);
+}
+.exp-item::before{display:none}
+.exp-left{padding-left:0}
+
 /* ═══════ RESPONSIVE ═══════ */
 @media(max-width:960px){
   /* nav, footer, sec-head responsive rules are in atoms.css */
   .hero{padding:0 24px}
+  .exp-company{font-size:26px}
   .hero-bottom{flex-direction:column;gap:20px;align-items:flex-start}
   .hero-scroll{display:none}
   .hero-stats{gap:32px}
@@ -931,7 +1021,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
       <span class="line"><span>Hein</span></span>
     </h1>
     <div class="hero-name-line"></div>
-    <p class="hero-tagline">Turning complex business problems into elegant, measurable design solutions across fintech, retail & AI.</p>
+    <p class="hero-tagline">I find the friction, design it out, then check if it actually worked.</p>
   </div>
 
   <div class="hero-bottom">
@@ -975,29 +1065,160 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 <!-- PROJECTS HEADER -->
 <div class="sec-head" id="work">
-  <div class="sec-num sr">01 — Selected Work</div>
+  <div class="sec-num sr">Selected Work</div>
   <h2 class="sec-title sr sr-d1">Case Studies</h2>
-  <p class="sec-sub sr sr-d2">Impact-driven design work with measurable business outcomes across fintech, retail, and enterprise.</p>
+  <p class="sec-sub sr sr-d2">The projects I keep coming back to when someone asks what I actually do.</p>
 </div>
 
 <!-- PROJECTS -->
 <div class="projects">
 
-  <!-- ── Project 01 ── -->
-  <div class="project sr" data-project>
+  <!-- ── Project 01 — Resume Pipeline ── -->
+  <div class="project featured sr" data-project>
     <div class="proj-thumb">
-      <img src="images/coverphoto/1.svg" alt="From Feedback to 427% ROI">
+      <img src="images/coverphoto/3.svg" alt="AI Job Analyzer & Tailored Resume Pipeline">
+      <div class="thumb-stat">3×<span>callback rate</span></div>
     </div>
     <div class="proj-info">
+      <div class="proj-recommend">Recommended</div>
       <div class="proj-index">01</div>
+      <div class="proj-tags">
+        <span class="proj-tag">AI Tools</span>
+        <span class="proj-tag">Product Design</span>
+        <span class="proj-tag">2025</span>
+      </div>
+      <h3 class="proj-title">AI Job Analyzer & Tailored Resume Pipeline</h3>
+      <p class="proj-desc">Sarah applied to 47 jobs and got 2 interviews. The problem wasn't her resume — it was the 90-minute manual tailoring ritual that still produced generic output. I replaced it with a 15-minute AI pipeline.</p>
+      <div class="proj-metrics">
+        <div><div class="pm-val">90→15</div><div class="pm-label">Min Per Application</div></div>
+        <div><div class="pm-val">2.5–3×</div><div class="pm-label">Callback Rate Lift</div></div>
+      </div>
+      <a href="case-study-resume-pipeline.html" class="case-study-link">
+        View Full Case Study
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="proj-arrow" data-toggle>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="pd-block">
+          <div class="pd-label">What was broken</div>
+          <p class="pd-text">Job seekers spent 90 minutes per application manually tailoring resumes — pasting JDs into Google Docs, highlighting keywords, rewriting bullets — and still produced generic output that recruiters could spot instantly. A 4.2% callback rate when industry average for well-tailored applications is 12–15%.</p>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">How I tackled it</div>
+          <ul class="pd-list">
+            <li>Shadowed job seekers through their application ritual end-to-end</li>
+            <li>Identified three distinct pain points: JD parsing, gap analysis, and cover letter tone</li>
+            <li>Designed a 4-step AI pipeline: JD scan → base resume → gap analysis → tailored output</li>
+            <li>Prototyped and tested with active job seekers across 3 rounds of feedback</li>
+            <li>Shipped within Designer OS as a complete feature workflow</li>
+          </ul>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">What shipped</div>
+          <p class="pd-text">A 4-step AI pipeline that scans the job description, maps it against a user's base resume, surfaces a plain-language gap analysis, and generates a tailored resume + cover letter in under 15 minutes. Reduced application time by 83% and lifted callback rates 2.5–3×.</p>
+        </div>
+        <div class="pd-metrics">
+          <div class="pd-metric"><div class="pd-metric-val">83%</div><div class="pd-metric-label">Time Reduction</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">2.5–3×</div><div class="pd-metric-label">Callback Rate Lift</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">&lt;5 min</div><div class="pd-metric-label">Cover Letter</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">4-step</div><div class="pd-metric-label">AI Pipeline</div></div>
+        </div>
+        <div class="pd-tools">
+          <span class="pd-tools-label">Tools:</span>
+          <span class="pd-tool">Figma</span>
+          <span class="pd-tool">Claude API</span>
+          <span class="pd-tool">Notion</span>
+          <span class="pd-tool">Framer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Project 02 — Golden Paths ── -->
+  <div class="project featured sr" data-project>
+    <div class="proj-thumb">
+      <img src="images/coverphoto/6.svg" alt="AI User Testing & Golden Paths">
+      <div class="thumb-stat">-99%<span>wait time</span></div>
+    </div>
+    <div class="proj-info">
+      <div class="proj-recommend">Recommended</div>
+      <div class="proj-index">02</div>
+      <div class="proj-tags">
+        <span class="proj-tag">AI Product</span>
+        <span class="proj-tag">UX Research</span>
+        <span class="proj-tag">2024</span>
+      </div>
+      <h3 class="proj-title">AI User Testing & Golden Paths</h3>
+      <p class="proj-desc">User testing used to mean weeks of scheduling, facilitation, and synthesis. I designed a feature that replaced that wait with instant AI-simulated path analysis — and it became the top reason users upgraded.</p>
+      <div class="proj-metrics">
+        <div><div class="pm-val">-99%</div><div class="pm-label">Wait Time</div></div>
+        <div><div class="pm-val">-40%</div><div class="pm-label">90-Day Churn</div></div>
+      </div>
+      <a href="case-study-golden-paths.html" class="case-study-link">
+        View Full Case Study
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="proj-arrow" data-toggle>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="pd-block">
+          <div class="pd-label">What was broken</div>
+          <p class="pd-text">Traditional user testing required weeks of recruiting, scheduling, and synthesizing sessions. Product teams were shipping blindly between cycles. The cost and delay meant most flows never got tested at all — especially edge cases and onboarding paths.</p>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">How I tackled it</div>
+          <ul class="pd-list">
+            <li>Mapped the full spectrum of user testing pain points across PMs and designers</li>
+            <li>Defined the "Golden Path" concept: success goal defined in natural language</li>
+            <li>Designed the AI testing flow: prototype upload → path definition → simulated runs → annotated results</li>
+            <li>Built interactive annotated UI mockups tested with 8 internal users</li>
+            <li>Iterated on the results presentation to surface actionable insights, not just data</li>
+          </ul>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">What shipped</div>
+          <p class="pd-text">An AI-powered testing feature that simulates user paths through any prototype in seconds. Teams define a success goal, upload their design, and receive annotated path analysis with friction points and pass/fail breakdowns — no scheduling required. Became the #1 driver of Studio tier upgrades.</p>
+        </div>
+        <div class="pd-metrics">
+          <div class="pd-metric"><div class="pd-metric-val">-99%</div><div class="pd-metric-label">Wait Time Reduction</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">-40%</div><div class="pd-metric-label">90-Day Churn</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">#1</div><div class="pd-metric-label">Upgrade Driver</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">Instant</div><div class="pd-metric-label">Test Results</div></div>
+        </div>
+        <div class="pd-tools">
+          <span class="pd-tools-label">Tools:</span>
+          <span class="pd-tool">Figma</span>
+          <span class="pd-tool">Claude API</span>
+          <span class="pd-tool">Notion</span>
+          <span class="pd-tool">Miro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Project 03 — Retail ── -->
+  <div class="project featured sr" data-project>
+    <div class="proj-thumb">
+      <img src="images/coverphoto/1.svg" alt="From Feedback to 427% ROI">
+      <div class="thumb-stat">427%<span>ROI Achieved</span></div>
+    </div>
+    <div class="proj-info">
+      <div class="proj-recommend">Recommended</div>
+      <div class="proj-index">03</div>
       <div class="proj-tags">
         <span class="proj-tag">Retail</span>
         <span class="proj-tag">Redesign</span>
         <span class="proj-tag">2025</span>
-
       </div>
       <h3 class="proj-title">From Feedback to 427% ROI: Redesigning the Return Process</h3>
-      <p class="proj-desc">Transformed a broken return flow into a streamlined operation, directly impacting business bottom-line through research-driven redesign.</p>
+      <p class="proj-desc">A broken return process had the CS team drowning in tickets. Four months of research, three rounds of testing, and 427% ROI later — here's how it happened.</p>
       <div class="proj-metrics">
         <div><div class="pm-val">427%</div><div class="pm-label">ROI Achieved</div></div>
         <div><div class="pm-val">&gt;50%</div><div class="pm-label">Time Reduction</div></div>
@@ -1013,11 +1234,11 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     <div class="proj-detail">
       <div class="proj-detail-inner">
         <div class="pd-block">
-          <div class="pd-label">The Problem</div>
+          <div class="pd-label">What was broken</div>
           <p class="pd-text">The existing return process was fragmented across 5 different touchpoints, causing customer frustration and a 34% abandonment rate. Support tickets related to returns consumed 40% of the CS team's bandwidth, costing the business significantly.</p>
         </div>
         <div class="pd-block">
-          <div class="pd-label">My Process</div>
+          <div class="pd-label">How I tackled it</div>
           <ul class="pd-list">
             <li>Stakeholder interviews with CS, warehouse, and finance teams</li>
             <li>Customer journey mapping across all return touchpoints</li>
@@ -1027,7 +1248,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
           </ul>
         </div>
         <div class="pd-block">
-          <div class="pd-label">The Solution</div>
+          <div class="pd-label">What shipped</div>
           <p class="pd-text">Designed a unified self-service return portal with intelligent reason categorization, real-time status tracking, and automated refund processing. Reduced the 5-step fragmented flow to a streamlined 2-step experience with clear visual feedback at each stage.</p>
         </div>
         <div class="pd-metrics">
@@ -1048,21 +1269,21 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
   </div>
 
-  <!-- ── Project 02 ── -->
-  <div class="project sr" data-project>
+  <!-- ── Project 04 — Dashboard ── -->
+  <div class="project featured sr" data-project>
     <div class="proj-thumb">
       <img src="images/coverphoto/2.svg" alt="Saved 0.5 Man-Hours Per Day">
+      <div class="thumb-stat">0.5h<span>saved daily</span></div>
     </div>
     <div class="proj-info">
-      <div class="proj-index">02</div>
+      <div class="proj-index">04</div>
       <div class="proj-tags">
         <span class="proj-tag">Dashboard</span>
         <span class="proj-tag">Finance</span>
         <span class="proj-tag">2022</span>
-
       </div>
       <h3 class="proj-title">Saved 0.5 Man-Hours Per Day for Finance Operations</h3>
-      <p class="proj-desc">Streamlined finance dashboard workflows, eliminating operational bottlenecks and saving measurable daily hours across the org.</p>
+      <p class="proj-desc">Every morning, the finance team opened three different apps to see the same numbers. I made that one screen instead.</p>
       <div class="proj-metrics">
         <div><div class="pm-val">0.5h</div><div class="pm-label">Saved Daily</div></div>
       </div>
@@ -1077,11 +1298,11 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     <div class="proj-detail">
       <div class="proj-detail-inner">
         <div class="pd-block">
-          <div class="pd-label">The Problem</div>
+          <div class="pd-label">What was broken</div>
           <p class="pd-text">The finance team at Treedots relied on Xero, spreadsheets, and a supplier portal to manage daily revenue, expenses, and supplier payments. Data was scattered across three disconnected systems, requiring manual reconciliation that consumed half a working hour each morning.</p>
         </div>
         <div class="pd-block">
-          <div class="pd-label">My Process</div>
+          <div class="pd-label">How I tackled it</div>
           <ul class="pd-list">
             <li>Interviewed finance team remotely to map existing workflows across Xero, spreadsheets, and supplier portal</li>
             <li>Identified 12 redundant steps in daily reconciliation process</li>
@@ -1091,7 +1312,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
           </ul>
         </div>
         <div class="pd-block">
-          <div class="pd-label">The Solution</div>
+          <div class="pd-label">What shipped</div>
           <p class="pd-text">Built a consolidated finance dashboard that unified revenue tracking, expense categorization, and supplier payment status into a single real-time view. Added automated data sync, smart filters, and one-click report generation that replaced the manual Xero-to-spreadsheet-to-portal workflow.</p>
         </div>
         <div class="pd-metrics">
@@ -1111,23 +1332,21 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
   </div>
 
-  <!-- ── Project 05 (Draft — hidden) ── -->
-
-  <!-- ── Project 06 ── -->
+  <!-- ── Project 05 — Tokens ── -->
   <div class="project sr" data-project>
     <div class="proj-thumb">
       <img src="images/coverphoto/4.svg" alt="Design Tokens Generator">
+      <div class="thumb-stat">50%<span>time cut</span></div>
     </div>
     <div class="proj-info">
-      <div class="proj-index">06</div>
+      <div class="proj-index">05</div>
       <div class="proj-tags">
         <span class="proj-tag">Figma Plugin</span>
         <span class="proj-tag">Design Tokens</span>
         <span class="proj-tag">2024</span>
-
       </div>
       <h3 class="proj-title">Design Tokens Generator: 50% Time Reduction, ~100% Error Free</h3>
-      <p class="proj-desc">Built a Figma plugin that automates design token export to multiple platforms, eliminating manual translation errors and cutting handover time in half.</p>
+      <p class="proj-desc">Token exports meant four separate files and four chances for things to drift. I wrote a plugin that made the whole process a single click.</p>
       <div class="proj-metrics">
         <div><div class="pm-val">50%</div><div class="pm-label">Time Reduced</div></div>
         <div><div class="pm-val">~100%</div><div class="pm-label">Error Reduction</div></div>
@@ -1143,11 +1362,11 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     <div class="proj-detail">
       <div class="proj-detail-inner">
         <div class="pd-block">
-          <div class="pd-label">The Problem</div>
+          <div class="pd-label">What was broken</div>
           <p class="pd-text">Design tokens had to be manually extracted from Figma and translated into platform-specific formats (CSS, iOS, Android). This process was slow, error-prone, and created inconsistencies between design and code.</p>
         </div>
         <div class="pd-block">
-          <div class="pd-label">My Process</div>
+          <div class="pd-label">How I tackled it</div>
           <ul class="pd-list">
             <li>Researched token management workflows across teams</li>
             <li>Mapped Figma's variable API to platform-specific output formats</li>
@@ -1157,7 +1376,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
           </ul>
         </div>
         <div class="pd-block">
-          <div class="pd-label">The Solution</div>
+          <div class="pd-label">What shipped</div>
           <p class="pd-text">Created a Figma plugin that reads design variables and auto-generates platform-ready token files. Features include format preview, validation checks, semantic naming enforcement, and one-click export to multiple platforms simultaneously.</p>
         </div>
         <div class="pd-metrics">
@@ -1176,21 +1395,21 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
   </div>
 
-  <!-- ── Project 08 ── -->
+  <!-- ── Project 06 — Karaoke ── -->
   <div class="project sr" data-project>
     <div class="proj-thumb">
       <img src="images/coverphoto/5.svg" alt="Karaoke App">
+      <div class="thumb-stat">20<span>user interviews</span></div>
     </div>
     <div class="proj-info">
-      <div class="proj-index">08</div>
+      <div class="proj-index">06</div>
       <div class="proj-tags">
         <span class="proj-tag">Mobile App</span>
         <span class="proj-tag">Entertainment</span>
         <span class="proj-tag">2021</span>
-
       </div>
       <h3 class="proj-title">Karaoke App: Research-Driven Design During COVID Lockdown</h3>
-      <p class="proj-desc">Conducted 20 user interviews to design a karaoke application addressing Myanmar's entertainment needs during lockdown, with 85% KBZ Pay integration preference validated.</p>
+      <p class="proj-desc">Lockdown closed every karaoke venue in Myanmar overnight. I talked to 20 people to understand what they actually missed — then designed for that.</p>
       <div class="proj-metrics">
         <div><div class="pm-val">20</div><div class="pm-label">User Interviews</div></div>
         <div><div class="pm-val">85%</div><div class="pm-label">KBZ Pay Preference</div></div>
@@ -1206,11 +1425,11 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     <div class="proj-detail">
       <div class="proj-detail-inner">
         <div class="pd-block">
-          <div class="pd-label">The Problem</div>
+          <div class="pd-label">What was broken</div>
           <p class="pd-text">During Myanmar's COVID lockdown, people lost access to their primary entertainment outlet — karaoke venues. No local digital alternative existed that understood Myanmar's unique karaoke culture, music preferences, and payment ecosystem.</p>
         </div>
         <div class="pd-block">
-          <div class="pd-label">My Process</div>
+          <div class="pd-label">How I tackled it</div>
           <ul class="pd-list">
             <li>Conducted 20 in-depth user interviews during lockdown</li>
             <li>Created affinity maps revealing 3 key user segments</li>
@@ -1220,7 +1439,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
           </ul>
         </div>
         <div class="pd-block">
-          <div class="pd-label">The Solution</div>
+          <div class="pd-label">What shipped</div>
           <p class="pd-text">Designed a mobile karaoke app with artist-first search, real-time lyrics sync, social room features for group singing, and integrated KBZ Pay for premium content. The research-driven approach ensured every feature mapped to validated user needs.</p>
         </div>
         <div class="pd-metrics">
@@ -1274,9 +1493,9 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 <!-- EXPERIENCE HEADER -->
 <div class="sec-head" id="experience">
-  <div class="sec-num sr">02 — Experience</div>
+  <div class="sec-num sr">Experience</div>
   <h2 class="sec-title sr sr-d1">Where I've Shipped</h2>
-  <p class="sec-sub sr sr-d2">7+ years building products across fintech, legal tech, B2B, and retail in Southeast Asia & beyond.</p>
+  <p class="sec-sub sr sr-d2">Five companies. One career switch from engineering. A lot of Figma files.</p>
 </div>
 
 <!-- EXPERIENCE -->
@@ -1289,12 +1508,12 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
     <div class="exp-right">
       <ul class="exp-list">
-        <li>Achieved 200% UX ROI through data-driven implementation of user-centric design strategies</li>
-        <li>Generated $10K in monthly operational savings by streamlining Point-of-Sale (POS) workflows</li>
-        <li>Established a comprehensive Design System Foundation, ensuring multi-product ecosystem consistency</li>
-        <li>Collaborated with remote, cross-cultural teams using asynchronous workflows (Maldives focus)</li>
-        <li>Applied rigorous WCAG accessibility standards, guaranteeing inclusive user experiences</li>
-        <li>Validated optimization strategies and resolved design debt utilizing A/B testing and user analytics</li>
+        <li>Drove design work that delivered 200% UX ROI across a multi-product ecosystem</li>
+        <li>Redesigned the POS checkout and order workflows — $10K/month saved in operational costs</li>
+        <li>Built a design system from scratch; still the foundation the team runs on today</li>
+        <li>Worked async-first with a fully remote team in Maldives — Figma comments got very specific</li>
+        <li>Enforced WCAG accessibility standards across all products</li>
+        <li>Cleared years of design debt through structured A/B testing</li>
       </ul>
       <div class="exp-tags">
         <span class="exp-tag hl">200% UX ROI</span>
@@ -1315,11 +1534,10 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
     <div class="exp-right">
       <ul class="exp-list">
-        <li>Owned and delivered obligation management features from concept to deployment</li>
-        <li>Developed a public link form that significantly streamlined the contract inquiry process</li>
-        <li>Partnered with UI Designers to maintain rigorous design consistency across features</li>
-        <li>Coordinated closely with Product Managers to align design specifications with core business objectives</li>
-        <li>Optimized the contract inquiry workflow utilizing user-centric design methodologies</li>
+        <li>Owned obligation management feature end-to-end — concept to handoff, no handholding needed</li>
+        <li>Built the public link form that cut significant back-and-forth in the contract inquiry flow</li>
+        <li>Kept design consistent across the product while moving fast in a small team</li>
+        <li>Stayed close to the PM to make sure design decisions served the business, not just the mockup</li>
       </ul>
       <div class="exp-tags">
         <span class="exp-tag hl">Feature Ownership</span>
@@ -1338,11 +1556,11 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
     <div class="exp-right">
       <ul class="exp-list">
-        <li>Designed comprehensive B2B Supplier Portal serving a diverse user base</li>
-        <li>Systematically reduced UX debt through user research, site mapping, and flow documentation</li>
-        <li>Created high-fidelity prototypes utilizing advanced Figma features (Auto-layout, Interactive Components)</li>
-        <li>Built and launched Design System ensuring consistency across all product features</li>
-        <li>Managed design operations, ensuring seamless design-to-development handoffs</li>
+        <li>Spent the first month mapping every broken flow before touching Figma</li>
+        <li>Designed the B2B Supplier Portal from scratch — complex workflows, lots of edge cases</li>
+        <li>Built detailed interactive prototypes that made dev conversations a lot shorter</li>
+        <li>Launched a design system that's still the foundation for every new feature they ship</li>
+        <li>Maintained tight handoffs with spec docs and annotations the dev team could actually use</li>
       </ul>
       <div class="exp-tags">
         <span class="exp-tag hl">Launched DS</span>
@@ -1361,11 +1579,11 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
     <div class="exp-right">
       <ul class="exp-list">
-        <li>Partnered with cross-functional teams to execute diverse industry projects</li>
-        <li>Developed tailored designs meeting varying requirements across multiple client industries</li>
-        <li>Conceptualized design concepts through detailed wireframes</li>
-        <li>Constructed high-fidelity prototypes for usability testing and client presentations</li>
-        <li>Articulated design rationale and quantifiable user benefits to clients and stakeholders</li>
+        <li>Shipped across healthcare, logistics, fintech, and retail — four industries in fourteen months</li>
+        <li>Research was never optional; every project started with a discovery phase</li>
+        <li>Always started with low-fidelity wireframes before committing to high-fidelity work</li>
+        <li>Built testable prototypes that gave stakeholders something real to react to</li>
+        <li>Learned fast how to explain design decisions in terms clients cared about, not designer jargon</li>
       </ul>
       <div class="exp-tags">
         <span class="exp-tag hl">Multi-industry</span>
@@ -1384,11 +1602,11 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
     </div>
     <div class="exp-right">
       <ul class="exp-list">
-        <li>Spearheaded successful role transition from Software Engineer to UI/UX Designer</li>
-        <li>Developed high-fidelity prototypes that effectively merged design specifications with development requirements</li>
-        <li>Presented technical designs to clients, balancing user needs with implementation feasibility</li>
-        <li>Collaborated closely with development teams, leveraging prior engineering expertise</li>
-        <li>Engineered developer-friendly design solutions by applying extensive technical knowledge</li>
+        <li>Made the switch from software engineer to designer here — still the best call I've made</li>
+        <li>Used prototypes as specs so developers knew exactly what to build before a word was said</li>
+        <li>Presented work to clients in plain language — no design jargon, no glazed-over looks</li>
+        <li>Worked alongside the dev team daily; the engineering background made that relationship easy</li>
+        <li>The ability to read code meant handoffs were smoother than most designers could manage</li>
       </ul>
       <div class="exp-tags">
         <span class="exp-tag hl">Eng → Design</span>
@@ -1402,7 +1620,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 <!-- SKILLS HEADER -->
 <div class="sec-head" id="skills" style="display:none">
-  <div class="sec-num sr">03 — Expertise</div>
+  <div class="sec-num sr">Expertise</div>
   <h2 class="sec-title sr sr-d1">What I Bring</h2>
   <p class="sec-sub sr sr-d2">Deep expertise spanning product design, research, AI-driven design, and strategic thinking.</p>
 </div>
@@ -1465,9 +1683,9 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 <!-- TESTIMONIALS HEADER -->
 <div class="sec-head">
-  <div class="sec-num sr">03 — Voices</div>
+  <div class="sec-num sr">Voices</div>
   <h2 class="sec-title sr sr-d1">What They Say</h2>
-  <p class="sec-sub sr sr-d2">Words from leads, managers, and collaborators I've worked with.</p>
+  <p class="sec-sub sr sr-d2">Things colleagues and managers actually said — not paraphrased.</p>
 </div>
 
 <!-- TESTIMONIALS -->
@@ -1510,7 +1728,7 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 <!-- EDUCATION -->
 <div class="sec-head">
-  <div class="sec-num sr">04 — Education</div>
+  <div class="sec-num sr">Education</div>
   <h2 class="sec-title sr sr-d1">Foundation</h2>
 </div>
 
@@ -1532,9 +1750,9 @@ a, button, [data-toggle], .proj-arrow { cursor: none; }
 
 <!-- CTA -->
 <section class="cta" id="contact">
-  <div class="cta-label sr">06 — Contact</div>
+  <div class="cta-label sr">Contact</div>
   <h2 class="cta-heading sr sr-d1">Let's build<br>something <em>great</em></h2>
-  <p class="cta-sub sr sr-d2">Seeking senior product design roles where I can drive business impact through user-centered design.</p>
+  <p class="cta-sub sr sr-d2">Looking for a team that ships things and cares whether they work. Open to senior roles in product and UX.</p>
   <div class="cta-buttons sr sr-d3">
     <a href="mailto:kaungmyat9702@gmail.com" class="cta-btn cta-main">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>

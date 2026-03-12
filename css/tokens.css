@@ -16,9 +16,9 @@
   --cream-faint: rgba(240,230,211,0.12);
   --cream-ghost: rgba(240,230,211,0.06);
 
-  /* Accent (orange) */
-  --accent:      #e8734a;
-  --accent-glow: rgba(232,115,74,0.15);
+  /* Accent (gold) */
+  --accent:      #c8a96e;
+  --accent-glow: rgba(200,169,110,0.15);
 
   /* Green (availability indicator) */
   --green:      #7eb87e;

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Case Study — 427% ROI Retail Return Redesign | Harry Hein</title>
 <style>
-:root{--r-background-color:var(--dark);--r-link-color:var(--accent);--coral:#e8734a;--blue:#6ba3d6;--yellow:#e8c94a;--red:#d66b6b;}/*!
+:root{--r-background-color:var(--dark);--r-link-color:var(--accent);--coral:#c8a96e;--blue:#6ba3d6;--yellow:#e8c94a;--red:#d66b6b;}/*!
 * reveal.js 4.5.0
 * https://revealjs.com
 * MIT licensed
@@ -141,6 +141,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   transition:opacity .35s ease,transform .35s ease;
   display:none;
   position:absolute;top:0;right:0;
+  overflow-y:auto;max-height:calc(100vh - 40px);
+  -webkit-overflow-scrolling:touch;touch-action:pan-y;
 }
 .popup-card.active{
   display:block;opacity:1;transform:translateY(0);
@@ -285,11 +287,11 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <div class="annotated-ui">
     <img src="images/retail-ui-old.webp" alt="Old POS UI — pain points" style="max-height:380px;width:auto">
     <!-- Numbered markers on UI -->
-    <div class="marker red" style="top:28%;left:4%">1</div>
-    <div class="marker red" style="bottom:12%;left:4%">2</div>
-    <div class="marker red" style="bottom:8%;left:18%">3</div>
-    <div class="marker red" style="top:42%;left:4%">4</div>
-    <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    <div class="marker red" style="top:25.1855%;left:5.2826%">1</div>
+    <div class="marker red" style="top:56.1155%;left:5.47037%">2</div>
+    <div class="marker red" style="top:25.1764%;left:59.0029%">3</div>
+    <div class="marker red" style="top:32.3741%;left:5.37637%">4</div>
+    <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand" style="top:0.331615%;left:98.4855%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
   </div>
   <div class="legend">
     <div class="legend-item"><span class="legend-num red">1</span><span class="legend-text">Return Process &mdash; hidden, cashiers can't find it</span></div>
@@ -363,7 +365,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     Mid-fi prototypes tested with cashiers using real transaction scenarios &mdash; because design decisions needed to be validated against actual operational workflows, not assumptions.
   </div>
   <div class="annotated-ui"><img class="ui-img" src="images/retail-ui-midfi.webp" alt="Mid-Fi Prototype — first iteration" style="max-height:380px;width:auto">
-  <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div></div>
+  <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand" style="top:0.523853%;left:97.1978%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div></div>
   <div class="img-caption">Mid-Fi Prototype &mdash; menu restructured, activities exposed</div>
 </section>
 
@@ -387,11 +389,11 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <div class="annotated-ui">
     <img src="images/retail-ui-final.webp" alt="Final Design — what changed" style="max-height:380px;width:auto">
     <!-- Numbered markers on UI -->
-    <div class="marker green" style="bottom:22%;left:5%">1</div>
-    <div class="marker green" style="bottom:12%;left:28%">2</div>
-    <div class="marker green" style="bottom:22%;right:22%">3</div>
-    <div class="marker green" style="top:30%;right:4%">4</div>
-    <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    <div class="marker green" style="top:71.8749%;left:13.4658%">1</div>
+    <div class="marker green" style="top:65.8864%;left:2.31938%">2</div>
+    <div class="marker green" style="top:72.1709%;left:74.653%">3</div>
+    <div class="marker green" style="top:17.1175%;left:57.9537%">4</div>
+    <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand" style="top:0%;left:98.7201%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
   </div>
   <div class="legend">
     <div class="legend-item"><span class="legend-num green">1</span><span class="legend-text">Grouped Activities &mdash; Reprint/Recall/Void/Return together</span></div>
@@ -499,10 +501,12 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   </div>
   <div class="cs-nav-grid">
     <a href="case-study-dashboard.html" class="cs-nav-card">
-      <div class="proj-thumb" style="aspect-ratio:unset;height:110px">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <div class="proj-thumb">
+        <img src="images/coverphoto/2.svg" alt="Saved 0.5 Man-Hours Per Day">
+        <div class="thumb-stat">0.5h<span>saved daily</span></div>
       </div>
       <div class="proj-info">
+        <div class="proj-index">02</div>
         <div class="cs-nav-direction"> Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
         <div class="proj-tags"><span class="proj-tag">Dashboard</span><span class="proj-tag">Finance</span><span class="proj-tag">2022</span></div>
         <h3 class="proj-title">Saved 0.5 Man-Hours Per Day for Finance Operations</h3>
@@ -511,10 +515,12 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       </div>
     </a>
     <a href="case-study-design-system.html" class="cs-nav-card">
-      <div class="proj-thumb" style="aspect-ratio:unset;height:110px">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <div class="proj-thumb">
+        <img src="images/coverphoto/3.svg" alt="Multi-Level Design System">
+        <div class="thumb-stat">90%<span>faster handover</span></div>
       </div>
       <div class="proj-info">
+        <div class="proj-index">03</div>
         <div class="cs-nav-direction"> Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
         <div class="proj-tags"><span class="proj-tag">Design Systems</span><span class="proj-tag">Architecture</span><span class="proj-tag">2024</span></div>
         <h3 class="proj-title">Multi-Level Design System: 90% Faster Design-to-Dev Handover</h3>
@@ -560,8 +566,33 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 Reveal.initialize({
   hash:true, transition:'fade', transitionSpeed:'slow',
   width:1100, height:700, margin:0.08,
-  controlsLayout:'edges', controls:false, progress:true, slideNumber:true
+  controlsLayout:'edges', controls:false, progress:true, slideNumber:true,
+  keyboard:true, touch:true, mouseWheel:true
 });
+
+// Tap / click to advance — pointerup works for both mouse and touch
+(function(){
+  function navBlocked(e){
+    if(document.querySelector('.popup-backdrop.active')) return true;
+    var el=e.target;
+    while(el&&el.nodeType===1){
+      var tag=(el.tagName||'').toLowerCase();
+      if(tag==='a'||tag==='button'||tag==='input'||tag==='select'||tag==='textarea') return true;
+      if(el.hasAttribute&&el.hasAttribute('onclick')) return true;
+      var c=el.className||'';
+      if(typeof c==='string'&&(c.indexOf('nav-hint')>=0||c.indexOf('popup')>=0||c.indexOf('back-link')>=0||c.indexOf('ui-fullscreen')>=0||c.indexOf('expand-btn')>=0||c.indexOf('marker-drag')>=0)) return true;
+      el=el.parentNode;
+    }
+    return false;
+  }
+  var _x=0,_y=0;
+  document.addEventListener('pointerdown',function(e){_x=e.clientX;_y=e.clientY;},true);
+  document.addEventListener('pointerup',function(e){
+    if(navBlocked(e)) return;
+    if(Math.abs(e.clientX-_x)+Math.abs(e.clientY-_y)>20) return;
+    Reveal.next();
+  },true);
+})();
 </script>
 
 <div class="popup-backdrop" id="popupBackdrop"></div>
@@ -624,6 +655,7 @@ Reveal.initialize({
   function hideAll(){
     popups.forEach(function(p){ p.classList.remove('active'); });
     if(bd) bd.classList.remove('active');
+    Reveal.configure({mouseWheel:true});
   }
 
   function showPopup(slideIdx){
@@ -634,6 +666,7 @@ Reveal.initialize({
         void p.offsetWidth;
         p.classList.add('active');
         if(bd) bd.classList.add('active');
+        Reveal.configure({mouseWheel:false});
       }
     });
   }
@@ -676,6 +709,8 @@ function expandFromBtn(btn){
   },true);
 })();
 </script>
+<div class="kb-hint" id="kbHint"><div class="kb-pad"><div class="kb-key kb-key--up">▲</div><div class="kb-key kb-key--left">◄</div><div class="kb-key kb-key--down">▼</div><div class="kb-key kb-key--right">►</div></div></div>
+
 <script src="js/marker-drag.js"></script>
 </body>
 </html>
