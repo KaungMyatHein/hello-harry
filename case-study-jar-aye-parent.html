@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retail POS — 427% ROI — Harry Hein</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Case Study — Jar Aye Parent App | Harry Hein</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/atoms.css">
 <style>/*!
 * reveal.js 4.5.0
@@ -177,7 +177,6 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .cb-metric.hi{background:rgba(232,115,74,.08);border-color:rgba(232,115,74,.22)}
 .cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1}
 .cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.35em}
-
 </style>
 </head>
 <body>
@@ -185,284 +184,291 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <div class="reveal">
 <div class="slides">
 
-<!-- SLIDE 1: COVER -->
+<!-- SLIDE 0: Cover -->
 <section>
-<div class="cover-bento">
-  <div class="cb-main">
-    <div class="sl-clabel">Case Study · 2025</div>
-    <h1 class="sl-ctitle">From Feedback to <span class="acc">427.4% ROI</span></h1>
-    <p class="sl-cbody">How user research turned a struggling POS interface into measurable business value — one painful return at a time.</p>
-  </div>
-  <div class="cb-metric">
-    <div class="sl-cnum acc">427%</div>
-    <div class="sl-clabel">ROI</div>
-  </div>
-  <div class="cb-metric">
-    <div class="sl-cnum">&gt;50%</div>
-    <div class="sl-clabel">Time Saved</div>
-  </div>
-  <div class="cb-metric">
-    <div class="sl-cnum">1000s</div>
-    <div class="sl-clabel">Daily Txns</div>
-  </div>
-</div>
-</section>
-
-<!-- SLIDE 2: SETTING -->
-<section>
-<span class="section-label">Act 1 · The Problem</span>
-<h2>The Red Flag</h2>
-<div class="sl-grid sl-2" style="margin-top:1.4em">
-  <div class="sl-card center" style="gap:.8em">
-    <div class="sl-icon" style="font-size:2em">👨‍💻</div>
-    <div class="sl-cbody" style="font-style:italic">"Cashiers are struggling with the new return process. They can't understand the design… but <span style="color:var(--accent)">we don't know why.</span>"</div>
-    <div class="sl-clabel">Colleague · Malè, Maldives Workshop</div>
-  </div>
-  <div class="sl-card" style="background:rgba(232,115,74,.06);border-color:rgba(232,115,74,.3)">
-    <div class="sl-clabel" style="color:var(--accent)">The Scale Problem</div>
-    <div class="sl-cbody" style="margin-top:.4em">Every hidden button, every missing label was <strong>costing the business time and money at scale.</strong></div>
-    <div class="sl-cbody" style="margin-top:.8em">Each extra second per return multiplied across <span style="color:var(--accent)">thousands of daily transactions</span>.</div>
-  </div>
-</div>
-</section>
-
-<!-- SLIDE 3: OLD UI — 4 PAIN POINTS -->
-<section>
-<h3 style="margin-bottom:.4em">We found <span style="color:var(--red)">4 pain points</span> in the design</h3>
-<div class="annotated-ui">
-  <img src="images/retail-ui-old.webp" alt="Old POS UI — pain points" style="max-height:380px;width:auto">
-  <div class="marker red" style="top:25.1855%;left:5.2826%">1</div>
-  <div class="marker red" style="top:56.1155%;left:5.47037%">2</div>
-  <div class="marker red" style="top:25.1764%;left:59.0029%">3</div>
-  <div class="marker red" style="top:32.3741%;left:5.37637%">4</div>
-  <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand" style="top:0.331615%;left:98.4855%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
-</div>
-<div class="legend">
-  <div class="legend-item"><span class="legend-num red">1</span><span class="legend-text">Return Process — hidden, cashiers can't find it</span></div>
-  <div class="legend-item"><span class="legend-num red">2</span><span class="legend-text">Day End — icon only, no text label</span></div>
-  <div class="legend-item"><span class="legend-num red">3</span><span class="legend-text">Discounts — buried in menu → product click</span></div>
-  <div class="legend-item"><span class="legend-num red">4</span><span class="legend-text">Reprint — hidden despite high frequency</span></div>
-</div>
-</section>
-
-<!-- SLIDE 4: RESEARCH METHOD -->
-<section>
-<span class="section-label">Act 2 · Research</span>
-<h2>Two-Step Research Approach</h2>
-<div class="sl-grid sl-2" style="margin-top:1.4em">
-  <div class="sl-card center" style="gap:.6em">
-    <div class="sl-cnum">01</div>
-    <div class="sl-ctitle">Business Lens</div>
-    <div class="sl-cbody">Internal team voted on activity importance (1–5 scale) to understand business priorities via heat map analysis.</div>
-  </div>
-  <div class="sl-card green-card center" style="gap:.6em">
-    <div class="sl-cnum grn">02</div>
-    <div class="sl-ctitle">User Lens</div>
-    <div class="sl-cbody">Same questions asked directly to real cashiers to understand operational reality — not assumptions.</div>
-  </div>
-</div>
-<p class="sl-narr">🧠 <strong>Critical Insight:</strong> Overlaying both data sets revealed where business priorities and user needs <em>overlapped</em> — that's where to invest heavily.</p>
-</section>
-
-<!-- SLIDE 5: KEY INSIGHT -->
-<section>
-<span class="section-label">Act 2 · Research</span>
-<h2>Where Business Needs Met User Needs</h2>
-<div class="sl-grid sl-2" style="margin-top:1.4em">
-  <div class="sl-card green-card">
-    <div class="sl-clabel" style="color:var(--green)">High Overlap — Invest Heavily</div>
-    <div class="sl-ctitle">Total, Reprint, Void, Hold</div>
-    <div class="sl-cbody">Both business and users agreed these were critical. Clear mandate to fix these first.</div>
-  </div>
-  <div class="sl-card red-card">
-    <div class="sl-clabel" style="color:var(--red)">User-Only Priority — Business Undervalued</div>
-    <div class="sl-ctitle">Return, Receipt</div>
-    <div class="sl-cbody">Business thought returns were rare. Users showed returns drove the most cashier frustration — and each one has a customer waiting.</div>
-  </div>
-</div>
-<p class="sl-narr">Reframing the question: "How do we reduce return processing time while keeping the design <span style="color:var(--accent)">scalable for future features?</span>"</p>
-</section>
-
-<!-- SLIDE 6: MID-FI PROTOTYPE -->
-<section>
-<span class="section-label">Act 3 · Design</span>
-<div class="annotated-ui">
-  <img class="ui-img" src="images/retail-ui-midfi.webp" alt="Mid-Fi Prototype" style="max-height:380px;width:auto">
-  <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand" style="top:0.523853%;left:97.1978%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
-</div>
-<div class="img-caption">Mid-Fi Prototype — menu restructured, activities exposed &mdash; tested with cashiers on real transaction scenarios</div>
-</section>
-
-<!-- SLIDE 7: UT SCORES -->
-<section>
-<span class="section-label">Act 3 · Design</span>
-<h2>Usability Test: Button Clarity Scores</h2>
-<div class="sl-grid sl-2" style="margin-top:1.4em">
-  <div class="sl-grid" style="grid-template-columns:1fr;gap:.5em">
-    <div class="sl-card green-card" style="padding:.6em 1em;flex-direction:row;align-items:center;gap:.8em">
-      <div class="sl-cnum grn" style="font-size:1.2em;white-space:nowrap">0.85</div>
-      <div><div class="sl-ctitle" style="font-size:.85em">Return</div></div>
+  <div class="cover-bento">
+    <div class="cb-main">
+      <span class="mono" style="color:#b89fd4;font-size:.55em;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:.5em">Case Study &bull; 2025</span>
+      <h1 style="margin:.15em 0 .3em;font-size:2.1em">Closing the<br><span style="color:#b89fd4">Visibility Gap.</span></h1>
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:.85em;color:var(--cream-dim)">How the Jar Aye Parent App gives non-expert parents meaningful insight into their child's mathematical development — without overwhelming them with data they can't interpret.</p>
     </div>
-    <div class="sl-card green-card" style="padding:.6em 1em;flex-direction:row;align-items:center;gap:.8em">
-      <div class="sl-cnum grn" style="font-size:1.2em;white-space:nowrap">0.78</div>
-      <div><div class="sl-ctitle" style="font-size:.85em">Reprint</div></div>
+    <div class="cb-metric" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)"><div class="val" style="color:#b89fd4">4</div><div class="lbl">Mastery Tiers</div></div>
+    <div class="cb-metric"><div class="val" style="color:#b89fd4">3</div><div class="lbl">Subscription States</div></div>
+    <div class="cb-metric hi" style="background:rgba(155,126,200,.08);border-color:rgba(155,126,200,.25)"><div class="val" style="color:#b89fd4">∞</div><div class="lbl">Children Per Account</div></div>
+  </div>
+</section>
+
+<!-- SLIDE 1: Act 1 — The Parent's Problem -->
+<section>
+  <span class="section-label">Act 1 &mdash; The Problem</span>
+  <div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
+    <div class="sl-card tall center" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <div class="avatar" style="background:rgba(155,126,200,.15);border-color:#b89fd4;margin:0 auto .4em">&#x1f9d1;&#x200d;&#x1f4bc;</div>
+      <div class="avatar-name" style="color:#b89fd4">Aye &bull; Parent of Two</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">Paying subscriber &bull; Not a math expert</div>
     </div>
-    <div class="sl-card green-card" style="padding:.6em 1em;flex-direction:row;align-items:center;gap:.8em">
-      <div class="sl-cnum grn" style="font-size:1.2em;white-space:nowrap">0.75</div>
-      <div><div class="sl-ctitle" style="font-size:.85em">Sale Flow</div></div>
+    <div class="sl-card" style="background:rgba(155,126,200,.04);border-color:rgba(155,126,200,.18)">
+      <span class="sl-clabel" style="color:#b89fd4">The Reality</span>
+      <p class="sl-cbody">Aye pays for the subscription. She sees her daughter using the app. She has no way to tell if her daughter is actually learning — or just clicking buttons to earn points.</p>
+    </div>
+    <div class="sl-card red-card">
+      <span class="sl-clabel rd">The Core Anxiety</span>
+      <p class="sl-cbody">"I cannot directly observe whether the investment is working. The content is HOTS mathematics — I can't <span style="color:var(--accent);font-weight:700">evaluate her comprehension myself.</span>"</p>
     </div>
   </div>
-  <div class="sl-grid" style="grid-template-columns:1fr;gap:.5em">
-    <div class="sl-card" style="padding:.6em 1em;flex-direction:row;align-items:center;gap:.8em;border-color:rgba(232,201,74,.5)">
-      <div class="sl-cnum" style="font-size:1.2em;white-space:nowrap;color:var(--yellow)">0.60</div>
-      <div><div class="sl-ctitle" style="font-size:.85em">Discount</div></div>
+</section>
+
+<!-- SLIDE 2: The Parent's Constraints -->
+<section>
+  <span class="section-label">Act 1 &mdash; Design Constraints</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Five Constraints That Shaped Every Screen</h2>
+  <div class="sl-grid sl-3">
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-icon">&#x1f4b3;</span>
+      <div class="sl-ctitle">Paying User ≠ Primary User</div>
+      <p class="sl-cbody">Aye's relationship with the product is entirely mediated through her child's data. Every screen must justify the subscription cost without requiring her to use the child app herself.</p>
     </div>
-    <div class="sl-card" style="padding:.6em 1em;flex-direction:row;align-items:center;gap:.8em;border-color:rgba(232,201,74,.5)">
-      <div class="sl-cnum" style="font-size:1.2em;white-space:nowrap;color:var(--yellow)">0.56</div>
-      <div><div class="sl-ctitle" style="font-size:.85em">Hold/Recall</div></div>
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-icon">&#x1f9ee;</span>
+      <div class="sl-ctitle">Domain is Technical</div>
+      <p class="sl-cbody">HOTS mathematics is not something most parents can directly assess. The app must translate raw performance data into meaningful, human-readable signals.</p>
     </div>
-    <div class="sl-card red-card" style="padding:.6em 1em;flex-direction:row;align-items:center;gap:.8em">
-      <div class="sl-cnum" style="font-size:1.2em;white-space:nowrap;color:var(--red)">0.50</div>
-      <div><div class="sl-ctitle" style="font-size:.85em">Day End</div></div>
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-icon">&#x1f46a;</span>
+      <div class="sl-ctitle">Multiple Children</div>
+      <p class="sl-cbody">One parent account, multiple child profiles. The manage-child flow must support family-level oversight — not just individual tracking.</p>
+    </div>
+    <div class="sl-card red-card">
+      <span class="sl-icon">&#x1f4b0;</span>
+      <div class="sl-ctitle">Emotionally Charged Subscription</div>
+      <p class="sl-cbody">Renewal, freezing, and cancellation are high-stakes moments. These flows must feel trustworthy — not manipulative. A wrong word here costs a subscription.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-icon">&#x23f1;&#xfe0f;</span>
+      <div class="sl-ctitle">Time-Poor Parent</div>
+      <p class="sl-cbody">The critical signal must land in seconds. Depth available on demand — but the first screen can never require more than a glance.</p>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-icon">&#x1f50d;</span>
+      <div class="sl-ctitle">Implicit Question on Every Screen</div>
+      <p class="sl-cbody">Every parent-facing screen must answer: <strong style="color:var(--cream)">"Is this worth it?"</strong> That's the job-to-be-done that overrides all others.</p>
     </div>
   </div>
-</div>
 </section>
 
-<!-- SLIDE 8: FINAL DESIGN -->
+<!-- SLIDE 3: Research -->
 <section>
-<h3 style="margin-bottom:.4em">Final Design — <span style="color:var(--green)">What Changed</span></h3>
-<div class="annotated-ui">
-  <img src="images/retail-ui-final.webp" alt="Final Design" style="max-height:380px;width:auto">
-  <div class="marker green" style="top:71.8749%;left:13.4658%">1</div>
-  <div class="marker green" style="top:65.8864%;left:2.31938%">2</div>
-  <div class="marker green" style="top:72.1709%;left:74.653%">3</div>
-  <div class="marker green" style="top:17.1175%;left:57.9537%">4</div>
-  <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand" style="top:0%;left:98.7201%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
-</div>
-<div class="legend">
-  <div class="legend-item"><span class="legend-num green">1</span><span class="legend-text">Grouped Activities — Reprint/Recall/Void/Return together</span></div>
-  <div class="legend-item"><span class="legend-num green">2</span><span class="legend-text">Sorted by Frequency — most-used in prime position</span></div>
-  <div class="legend-item"><span class="legend-num green">3</span><span class="legend-text">Icon + Text — dual representation on every button</span></div>
-  <div class="legend-item"><span class="legend-num green">4</span><span class="legend-text">Product-Level Actions — discount/edit at item level</span></div>
-</div>
+  <span class="section-label">Act 2 &mdash; Research</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">The Client as Domain Expert</h2>
+  <div class="sl-grid sl-2" style="margin-bottom:.4em">
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">Primary Source</span>
+      <div class="sl-ctitle">Client is an active parent user</div>
+      <p class="sl-cbody">The client is a parent themselves — a domain expert on the parent experience. Rather than external parent recruitment, the client served as the primary knowledge source for pain points and mental models. Design decisions were validated directly against their lived experience.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-clabel" style="color:var(--blue)">Supporting Research</span>
+      <div class="sl-ctitle">5 children in Mandalay, Myanmar</div>
+      <p class="sl-cbody">Child-facing research provided indirect signal on what parents observe when watching their child use a learning app. Competitor product sessions surfaced navigation patterns, frustration moments, and help-seeking behaviour parents would encounter.</p>
+    </div>
+  </div>
+  <div class="sl-grid sl-3">
+    <div class="sl-card accent-card center">
+      <div class="sl-clabel">Parent Job #1</div>
+      <p class="sl-cbody" style="text-align:center">Know whether money &amp; time is working</p>
+    </div>
+    <div class="sl-card accent-card center">
+      <div class="sl-clabel">Parent Job #2</div>
+      <p class="sl-cbody" style="text-align:center">Manage subscription without confusion</p>
+    </div>
+    <div class="sl-card accent-card center">
+      <div class="sl-clabel">Parent Job #3</div>
+      <p class="sl-cbody" style="text-align:center">Feel pride in child's achievement</p>
+    </div>
+  </div>
 </section>
 
-<!-- SLIDE 9: PERFORMANCE TABLE -->
+<!-- SLIDE 4: Registration & Auth -->
 <section>
-<span class="section-label">Act 4 · Results</span>
-<h3 style="margin-bottom:.3em">Performance Before & After</h3>
-<p style="color:var(--cream-dim);font-size:.6em;margin-bottom:.5em">Each second saved compounds across thousands of daily transactions per store</p>
-<table class="perf-table">
-  <thead><tr><th>Action</th><th>Before</th><th>After</th><th>Why It Matters</th></tr></thead>
-  <tbody>
-    <tr><td>Return</td><td>~1 min</td><td class="good">&lt;30s</td><td>Most vital; impacts customer wait</td></tr>
-    <tr><td>Day End</td><td>~1 min</td><td class="good">&lt;30s</td><td>Impacts shift closing</td></tr>
-    <tr><td>Transactions</td><td>~10s</td><td class="good">&lt;10s</td><td>Main action, consistency matters</td></tr>
-    <tr><td>Receipt Reprint</td><td>~1 min</td><td class="good">&lt;30s</td><td>Needed the most improvement</td></tr>
-  </tbody>
-</table>
+  <span class="section-label">Act 3 &mdash; Design</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Registration: Parent Account as Controlling Entity</h2>
+  <div class="sl-grid sl-2" style="margin-bottom:.4em">
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">Separation of concerns</span>
+      <div class="sl-ctitle">Parent credentials ≠ Child profile</div>
+      <p class="sl-cbody">The flow collects parent credentials separately from child profile data. Establishes the correct mental model from the start: the parent account is the controlling entity; the child profile is a managed sub-account.</p>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">PIN over password</span>
+      <div class="sl-ctitle">Consistent with child app</div>
+      <p class="sl-cbody">Reduces friction on mobile and aligns with how parents manage access on family devices (screen time PINs, parental controls). Reinforces a unified product identity across both apps.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Forgot PIN flow</span>
+      <div class="sl-ctitle">Recovery without email friction</div>
+      <p class="sl-cbody">Clearly labelled recovery path. Parents shouldn't feel locked out of a product they're paying for. No email verification required on every device — reduces dropout at a high-stakes moment.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-clabel" style="color:var(--blue)">Mirrors child app login</span>
+      <div class="sl-ctitle">Username + segmented PIN</div>
+      <p class="sl-cbody">Same sign-in pattern as the child version. A parent setting up both apps encounters the same mental model — reducing cognitive overhead and reinforcing product trust.</p>
+    </div>
+  </div>
+  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.3em auto 0;max-width:760px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Screenshot: Parent registration flow — parent credentials screen → child profile setup
+  </div>
 </section>
 
-<!-- SLIDE 10: ROI -->
+<!-- SLIDE 5: Report Flow -->
 <section>
-<h2>The Business Result</h2>
-<div class="sl-grid sl-3" style="margin-top:1.4em">
-  <div class="sl-card accent-card center">
-    <div class="sl-cnum acc" style="font-size:2.6em">427%</div>
-    <div class="sl-ctitle">ROI</div>
-    <div class="sl-cbody">Return on design investment</div>
+  <span class="section-label">Act 3 &mdash; Design</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Report Flow: The Most Strategic Screen</h2>
+  <div class="sl-grid sl-2" style="margin-bottom:.4em">
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22);grid-row:span 2">
+      <span class="sl-clabel" style="color:#b89fd4">The Primary Value Proposition</span>
+      <div class="sl-ctitle">The report is how the product justifies its subscription cost</div>
+      <p class="sl-cbody">A parent who opens the report screen and immediately understands their child's status is a parent who renews. A parent who opens it and feels confused is a parent who cancels.</p>
+      <div style="margin-top:.6em;font-family:'Space Mono',monospace;font-size:.42em;color:#b89fd4;opacity:.7">"24 out of 120 skills mastery"<br>→ A number a parent can track over time.</div>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">"Incomplete" ≠ Zero</span>
+      <p class="sl-cbody">Separates "hasn't attempted yet" from "attempted and failed." Prevents a gap in coverage from reading as a failing grade.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-clabel" style="color:var(--blue)">Attempt history + timestamps</span>
+      <p class="sl-cbody">Each attempt is colour-coded and dated. Parents see the process of improvement, not just a final score. Diagnostic data, not a report card.</p>
+    </div>
   </div>
-  <div class="sl-card center">
-    <div class="sl-cnum">&gt;50%</div>
-    <div class="sl-ctitle">Time Reduction</div>
-    <div class="sl-cbody">Returns: 60s → &lt;30s across every cashier, every store</div>
+  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.3em auto 0;max-width:760px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Screenshot: Report dashboard — mastery summary + topic breakdown + attempt history timeline
   </div>
-  <div class="sl-card green-card center">
-    <div class="sl-cnum grn">Faster</div>
-    <div class="sl-ctitle">Onboarding</div>
-    <div class="sl-cbody">Icon + text labeling meant less training time for new cashiers</div>
-  </div>
-</div>
 </section>
 
-<!-- SLIDE 11: LESSONS -->
+<!-- SLIDE 6: Hall of Fame & Subscription Management -->
 <section>
-<h3 style="margin-bottom:.8em">Business × Design Lessons</h3>
-<div class="sl-grid sl-2" style="margin-top:.6em">
-  <div class="sl-card accent-card">
-    <div class="sl-clabel" style="color:var(--accent)">Lesson 01</div>
-    <div class="sl-ctitle">Stakeholder reports ≠ Root cause</div>
-    <div class="sl-cbody">Colleagues reported symptoms, not causes. Direct user research avoided redesigning the wrong thing.</div>
+  <span class="section-label">Act 3 &mdash; Design</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Social Pride &amp; Subscription Trust</h2>
+  <div class="sl-grid sl-2" style="margin-bottom:.4em">
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">Hall of Fame</span>
+      <div class="sl-ctitle">Social proof for parents, not competition for children</div>
+      <p class="sl-cbody">Achievement sharing to Instagram/Telegram is parent-targeted. A parent sharing their child's badge is organic acquisition — low-cost referral. Builds pride without creating peer-to-peer comparison pressure on the child.</p>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">Freeze vs Cancel</span>
+      <div class="sl-ctitle">Semantic precision saves subscriptions</div>
+      <p class="sl-cbody">"Frozen" = temporary, reversible. "Cancelled" = permanent. Separate flows with distinct labels prevent a parent from accidentally losing their child's progress history when they only intended to pause billing.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Manage Subscription</span>
+      <div class="sl-ctitle">Show what you have, not what you're missing</div>
+      <p class="sl-cbody">Active plan details, renewal dates, and upgrade paths visible upfront. Reduces the anxious "what am I paying for?" question that precedes cancellation decisions.</p>
+    </div>
+    <div class="sl-card red-card">
+      <span class="sl-clabel rd">Locked content = visible aspiration</span>
+      <div class="sl-ctitle">E-commerce pattern, not a wall</div>
+      <p class="sl-cbody">Expired tags on lesson cards show what the child is missing — creates aspiration and drives renewal more effectively than a blocking modal that offers nothing.</p>
+    </div>
   </div>
-  <div class="sl-card" style="border-color:rgba(107,163,214,.4);background:rgba(107,163,214,.05)">
-    <div class="sl-clabel" style="color:var(--blue)">Lesson 02</div>
-    <div class="sl-ctitle">Low frequency ≠ Low business impact</div>
-    <div class="sl-cbody">Returns were "rare" but each slow return had a customer waiting. Impact per incident was high.</div>
+  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.3em auto 0;max-width:760px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Screenshot: Subscription management — Freeze flow (left) vs Cancel flow (right), showing semantic distinction
   </div>
-  <div class="sl-card" style="border-color:rgba(232,201,74,.4);background:rgba(232,201,74,.05)">
-    <div class="sl-clabel" style="color:var(--yellow)">Lesson 03</div>
-    <div class="sl-ctitle">Design debt compounds like financial debt</div>
-    <div class="sl-cbody">Assumptions like "returns are rare" created hidden costs that grew with every new store deployment.</div>
-  </div>
-  <div class="sl-card green-card">
-    <div class="sl-clabel" style="color:var(--green)">Lesson 04</div>
-    <div class="sl-ctitle">Data wins stakeholder buy-in</div>
-    <div class="sl-cbody">Heat map scores made prioritisation objective. Stakeholders agreed because it was evidence, not opinion.</div>
-  </div>
-</div>
 </section>
 
-<!-- SLIDE 12: TOOLS -->
+<!-- SLIDE 7: Child Profile & Notifications -->
 <section>
-<h2 style="margin-bottom:.8em">Highlighted Skillsets</h2>
-<div class="sl-grid sl-3" style="margin-top:.8em">
-  <div class="sl-card center"><div class="sl-ctitle">User Research</div></div>
-  <div class="sl-card center"><div class="sl-ctitle">Design Enhancement</div></div>
-  <div class="sl-card center"><div class="sl-ctitle">Stakeholder Collab</div></div>
-  <div class="sl-card center"><div class="sl-ctitle">Data-Driven Prioritisation</div></div>
-  <div class="sl-card accent-card center"><div class="sl-ctitle">Figma + FigJam</div></div>
-  <div class="sl-card accent-card center"><div class="sl-ctitle">Maze</div></div>
-</div>
+  <span class="section-label">Act 3 &mdash; Design</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Family Administration &amp; Proactive Visibility</h2>
+  <div class="sl-grid sl-2" style="margin-bottom:.4em">
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">Child Profile Management</span>
+      <div class="sl-ctitle">Parent as account administrator</div>
+      <p class="sl-cbody">Add/update child details, switch between children, control accessible content per child. Grade-level is editable — it gates the leaderboard and calibrates challenge difficulty. Must handle grade promotion between subscription periods without requiring a new account.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-clabel" style="color:var(--blue)">Notification Flow</span>
+      <div class="sl-ctitle">Closing the visibility gap</div>
+      <p class="sl-cbody">Push notifications cover lesson milestones, consistent underperformance in a topic, and subscription reminders. Parents configure which events trigger alerts — control without defaulting to silence.</p>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">Blog section</span>
+      <div class="sl-ctitle">Trust beyond monitoring</div>
+      <p class="sl-cbody">Articles on Singapore Math and HOTS strategies give parents vocabulary to engage with their child's progress. Creates a reason to open the app outside of active monitoring — building a habit not dependent solely on the child's usage.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Language settings</span>
+      <div class="sl-ctitle">English + Burmese localisation</div>
+      <p class="sl-cbody">The Change Language flow signals a product designed for a multilingual user base — appropriate for a product targeting Singapore and Myanmar markets with different primary languages.</p>
+    </div>
+  </div>
+  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.3em auto 0;max-width:760px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+    Screenshot: Child profile management — multi-child switcher + grade-level edit screen
+  </div>
 </section>
 
-<!-- SLIDE 13: END -->
-<section data-background-color="#0a0a0a" style="text-align:left">
-  <div class="cs-nav-header" style="margin-bottom:1.5em">
-    <div class="sec-num">More Stories</div>
-    <h2 class="sec-title" style="font-size:clamp(24px,2.5vw,38px)">Explore More Work</h2>
+<!-- SLIDE 8: Reflection -->
+<section>
+  <span class="section-label">Act 4 &mdash; Reflection</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">What I Would Revisit</h2>
+  <div class="sl-grid sl-2">
+    <div class="sl-card red-card">
+      <span class="sl-clabel rd">Proactive reporting alerts</span>
+      <div class="sl-ctitle">Weekly digest email</div>
+      <p class="sl-cbody">The notification flow helps but a weekly digest email — summarising the child's week — would close the gap for parents who don't check the app regularly. Passive visibility, no action required.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">Subscription transparency</span>
+      <div class="sl-ctitle">Next billing on home screen</div>
+      <p class="sl-cbody">Next billing date and amount should be visible on the home screen, not buried in settings. Parents who can't recall when they'll be charged are more likely to cancel pre-emptively.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Report onboarding</span>
+      <div class="sl-ctitle">First-time tooltip for mastery tiers</div>
+      <p class="sl-cbody">First-time parents opening a report with no context for what "Mastery" means will feel lost. A single contextual tooltip on first view reduces the comprehension gap without cluttering the screen.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-clabel" style="color:var(--blue)">Cross-child dashboard</span>
+      <div class="sl-ctitle">Family-level view</div>
+      <p class="sl-cbody">For parents managing multiple children, there's no view showing all children's progress side by side. A family summary — each child's current mastery count at a glance — would reduce the navigation overhead of switching between profiles.</p>
+    </div>
   </div>
-  <div class="cs-nav-grid">
-    <a href="case-study-dashboard.html" class="cs-nav-card">
-      <div class="proj-thumb">
-        <img src="images/coverphoto/2.svg" alt="Dashboard 104% ROI">
-        <div class="thumb-stat">0.5h<span>saved daily</span></div>
-      </div>
-      <div class="proj-info">
-        <div class="proj-index">02</div>
-        <div class="cs-nav-direction">Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="proj-tags"><span class="proj-tag">Dashboard</span><span class="proj-tag">Finance</span><span class="proj-tag">2022</span></div>
-        <h3 class="proj-title">Saved 0.5 Man-Hours Per Day for Finance Operations</h3>
-        <div class="proj-metrics"><div><div class="pm-val">0.5h</div><div class="pm-label">Saved Daily</div></div><div><div class="pm-val">104%</div><div class="pm-label">ROI</div></div></div>
-        <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
-      </div>
-    </a>
-    <a href="case-study-design-system.html" class="cs-nav-card">
-      <div class="proj-thumb">
-        <img src="images/coverphoto/3.svg" alt="Multi-Level Design System">
-        <div class="thumb-stat">90%<span>faster handover</span></div>
-      </div>
-      <div class="proj-info">
-        <div class="proj-index">05</div>
-        <div class="cs-nav-direction">Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="proj-tags"><span class="proj-tag">Design Systems</span><span class="proj-tag">Architecture</span><span class="proj-tag">2024</span></div>
-        <h3 class="proj-title">Multi-Level Design System: 90% Faster Design-to-Dev Handover</h3>
-        <div class="proj-metrics"><div><div class="pm-val">90%</div><div class="pm-label">Faster Handover</div></div><div><div class="pm-val">100%</div><div class="pm-label">Consistency</div></div></div>
-        <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
-      </div>
-    </a>
+</section>
+
+<!-- SLIDE 9: Aye Resolved -->
+<section>
+  <span class="section-label">Resolution</span>
+  <div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
+    <div class="sl-card tall center" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <div class="avatar" style="background:rgba(155,126,200,.15);border-color:#b89fd4;margin:0 auto .4em">&#x1f9d1;&#x200d;&#x1f4bc;</div>
+      <div class="avatar-name" style="color:#b89fd4">Aye &bull; Parent of Two</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">After &mdash; Month 2</div>
+    </div>
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">The Change</span>
+      <p class="sl-cbody">"I opened the report and saw she'd moved 4 topics from Beginning to Competent this week. I actually understood what that meant. For the first time I felt like I could see whether this was working."</p>
+    </div>
+    <div class="sl-card">
+      <span class="sl-clabel">The Shift</span>
+      <p class="sl-cbody">The parent app didn't turn Aye into a mathematics expert. It gave her a <strong style="color:var(--cream)">language for her daughter's progress</strong> — and the confidence to know the subscription was worth renewing.</p>
+    </div>
   </div>
-  <p style="margin-top:1.5em;font-family:'Space Mono',monospace;font-size:10px;color:rgba(240,230,211,0.4);letter-spacing:.12em;text-align:center">HARRY HEIN &bull; SENIOR PRODUCT DESIGNER</p>
+</section>
+
+<!-- END SLIDE -->
+<section>
+  <div style="text-align:center;max-width:480px;margin:0 auto">
+    <span class="mono" style="color:#b89fd4;font-size:.5em;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:1em">That's a Wrap</span>
+    <h2 style="font-size:1.8em;margin:0 0 .4em;color:var(--cream)">Jar Aye<br><span style="color:#b89fd4">Parent App</span></h2>
+    <p style="font-family:'Instrument Serif',serif;font-style:italic;color:var(--cream-dim);font-size:.9em;margin:0 0 1.4em">Companion app for parents &mdash; HOTS visibility, subscription control, family oversight</p>
+    <div style="display:flex;gap:.8em;justify-content:center;flex-wrap:wrap">
+      <a href="portfolio.html#projects" style="display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;background:rgba(155,126,200,.08);border:1px solid rgba(155,126,200,.25);border-radius:16px;color:#b89fd4;font-family:'Space Mono',monospace;font-size:.52em;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .2s" onmouseover="this.style.background='rgba(155,126,200,.16)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(155,126,200,.08)';this.style.transform='translateY(0)'">&#x2190; Back to Portfolio</a>
+      <a href="case-study-jar-aye-child.html" style="display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;background:rgba(255,255,255,.04);border:1px solid rgba(240,230,211,.12);border-radius:16px;color:var(--cream-dim);font-family:'Space Mono',monospace;font-size:.52em;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .2s" onmouseover="this.style.background='rgba(255,255,255,.08)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,.04)';this.style.transform='translateY(0)'">Child App Case Study &#x2192;</a>
+    </div>
+  </div>
 </section>
 
 </div>
@@ -497,6 +503,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 				</div>
 			`,f.overlay.querySelector(".close").addEventListener("click",e=>{M(),e.preventDefault()},!1)}}function M(){return!!f.overlay&&(f.overlay.parentNode.removeChild(f.overlay),!(f.overlay=null))}function I(){if(f.wrapper&&!C.isPrintingPDF()){if(!p.disableLayout){it&&!p.embedded&&document.documentElement.style.setProperty("--vh",.01*window.innerHeight+"px");var i=ne(),e=t,a=(se(p.width,p.height),f.slides.style.width=i.width+"px",f.slides.style.height=i.height+"px",t=Math.min(i.presentationWidth/i.width,i.presentationHeight/i.height),t=Math.max(t,p.minScale),1===(t=Math.min(t,p.maxScale))?(f.slides.style.zoom="",f.slides.style.left="",f.slides.style.top="",f.slides.style.bottom="",Q({layout:f.slides.style.right=""})):(f.slides.style.zoom="",f.slides.style.left="50%",f.slides.style.top="50%",f.slides.style.bottom="auto",f.slides.style.right="auto",Q({layout:"translate(-50%, -50%) scale("+t+")"})),Array.from(f.wrapper.querySelectorAll(ot)));for(let e=0,t=a.length;e<t;e++){const s=a[e];"none"!==s.style.display&&(p.center||s.classList.contains("center")?s.classList.contains("stack")?s.style.top=0:s.style.top=Math.max((i.height-s.scrollHeight)/2,0)+"px":s.style.top="")}e!==t&&N({type:"resize",data:{oldScale:e,scale:t,size:i}})}f.viewport.style.setProperty("--slide-scale",t),k.update(),w.updateParallax(),R.isActive()&&R.update()}}function se(o,l){Je(f.slides,"section > .stretch, section > .r-stretch").forEach(e=>{[t,i=0]=[e,l];var t,i,a,s=t?(s=t.style.height,t.style.height="0px",t.parentNode.style.height="auto",a=i-t.parentNode.offsetHeight,t.style.height=s+"px",t.parentNode.style.removeProperty("height"),a):i;if(/(img|video)/gi.test(e.nodeName)){const l=e.naturalWidth||e.videoWidth,n=e.naturalHeight||e.videoHeight,r=Math.min(o/l,s/n);e.style.width=l*r+"px",e.style.height=n*r+"px"}else e.style.width=o+"px",e.style.height=s+"px"})}function ne(e,t){let i=p.width,a=p.height;p.disableLayout&&(i=f.slides.offsetWidth,a=f.slides.offsetHeight);const s={width:i,height:a,presentationWidth:e||f.wrapper.offsetWidth,presentationHeight:t||f.wrapper.offsetHeight};return s.presentationWidth-=s.presentationWidth*p.margin,s.presentationHeight-=s.presentationHeight*p.margin,"string"==typeof s.width&&/%$/.test(s.width)&&(s.width=parseInt(s.width,10)/100*s.presentationWidth),"string"==typeof s.height&&/%$/.test(s.height)&&(s.height=parseInt(s.height,10)/100*s.presentationHeight),s}function re(e,t){"object"==typeof e&&"function"==typeof e.setAttribute&&e.setAttribute("data-previous-indexv",t||0)}function oe(e){var t;return"object"==typeof e&&"function"==typeof e.setAttribute&&e.classList.contains("stack")?(t=e.hasAttribute("data-start-indexv")?"data-start-indexv":"data-previous-indexv",parseInt(e.getAttribute(t)||0,10)):0}function le(e=g){return e&&e.parentNode&&!!e.parentNode.nodeName.match(/section/i)}function de(){return!(!g||!le(g)||g.nextElementSibling)}function ce(){return 0===h&&0===u}function he(){return!(!g||g.nextElementSibling||le(g)&&g.parentNode.nextElementSibling)}function ue(){var e;p.pause&&(e=f.wrapper.classList.contains("paused"),Me(),f.wrapper.classList.add("paused"),!1===e&&N({type:"paused"}))}function ve(){var e=f.wrapper.classList.contains("paused");f.wrapper.classList.remove("paused"),z(),e&&N({type:"resumed"})}function ge(e){("boolean"==typeof e?e?ue:ve:pe()?ve:ue)()}function pe(){return f.wrapper.classList.contains("paused")}function T(a,s,n,r){if(!N({type:"beforeslidechange",data:{indexh:void 0===a?h:a,indexv:void 0===s?u:s,origin:r}}).defaultPrevented){v=g;var o=f.wrapper.querySelectorAll(lt);if(0!==o.length){void 0!==s||R.isActive()||(s=oe(o[a])),v&&v.parentNode&&v.parentNode.classList.contains("stack")&&re(v.parentNode,u);const c=m.concat();m.length=0;var l=h||0,d=u||0,a=(h=be(lt,void 0===a?h:a),u=be(dt,void 0===s?u:s),h!==l||u!==d);a||(v=null);let e=o[h],t=e.querySelectorAll("section"),i=(g=t[u]||e,!1);a&&v&&g&&!R.isActive()&&(v.hasAttribute("data-auto-animate")&&g.hasAttribute("data-auto-animate")&&v.getAttribute("data-auto-animate-id")===g.getAttribute("data-auto-animate-id")&&!(h>l||u>d?g:v).hasAttribute("data-auto-animate-restart")&&(i=!0,f.slides.classList.add("disable-slide-transitions")),B="running"),Ee(),I(),R.isActive()&&R.update(),void 0!==n&&E.goto(n),v&&v!==g&&(v.classList.remove("present"),v.setAttribute("aria-hidden","true"),ce()&&setTimeout(()=>{Je(f.wrapper,lt+".stack").forEach(e=>{re(e,0)})},0));e:for(let t=0,e=m.length;t<e;t++){for(let e=0;e<c.length;e++)if(c[e]===m[t]){c.splice(e,1);continue e}f.viewport.classList.add(m[t]),N({type:m[t]})}for(;c.length;)f.viewport.classList.remove(c.pop());a&&N({type:"slidechanged",data:{indexh:h,indexv:u,previousSlide:v,currentSlide:g,origin:r}}),!a&&v||(b.stopEmbeddedContent(v),b.startEmbeddedContent(g)),requestAnimationFrame(()=>{V($(g))}),k.update(),A.update(),P.update(),w.update(),w.updateParallax(),y.update(),E.update(),S.writeURL(),z(),i&&(setTimeout(()=>{f.slides.classList.remove("disable-slide-transitions")},0),p.autoAnimate&&U.run(v,g))}}}function me(){_(),Y(),I(),o=p.autoSlide,z(),w.create(),S.writeURL(),!0===p.sortFragmentsOnSync&&E.sortAll(),A.update(),k.update(),Ee(),P.update(),P.updateVisibility(),w.update(!0),y.update(),b.formatEmbeddedContent(),!1===p.autoPlayMedia?b.stopEmbeddedContent(g,{unloadIframes:!1}):b.startEmbeddedContent(g),R.isActive()&&R.layout()}function fe(a=F()){a.forEach((e,t)=>{var i=a[Math.floor(Math.random()*a.length)],i=(i.parentNode===e.parentNode&&e.parentNode.insertBefore(e,i),e.querySelectorAll("section"));i.length&&fe(i)})}function be(e,a){let s=Je(f.wrapper,e),n=s.length,r=C.isPrintingPDF(),o=!1,l=!1;if(n){p.loop&&(n<=a&&(o=!0),(a%=n)<0&&(a=n+a,l=!0)),a=Math.max(Math.min(a,n-1),0);for(let i=0;i<n;i++){let e=s[i],t=p.rtl&&!le(e);e.classList.remove("past"),e.classList.remove("present"),e.classList.remove("future"),e.setAttribute("hidden",""),e.setAttribute("aria-hidden","true"),e.querySelector("section")&&e.classList.add("stack"),r?e.classList.add("present"):i<a?(e.classList.add(t?"future":"past"),p.fragments&&ye(e)):i>a?(e.classList.add(t?"past":"future"),p.fragments&&we(e)):i===a&&p.fragments&&(o?we(e):l&&ye(e))}let e=s[a],t=e.classList.contains("present"),i=(e.classList.add("present"),e.removeAttribute("hidden"),e.removeAttribute("aria-hidden"),t||N({target:e,type:"visible",bubbles:!1}),e.getAttribute("data-state"));i&&(m=m.concat(i.split(" ")))}else a=0;return a}function ye(e){Je(e,".fragment").forEach(e=>{e.classList.add("visible"),e.classList.remove("current-fragment")})}function we(e){Je(e,".fragment.visible").forEach(e=>{e.classList.remove("visible","current-fragment")})}function Ee(){let a,s,e=F(),n=e.length;if(n&&void 0!==h){let i=R.isActive()?10:p.viewDistance;it&&(i=R.isActive()?6:p.mobileViewDistance),C.isPrintingPDF()&&(i=Number.MAX_VALUE);for(let t=0;t<n;t++){var r=e[t],o=Je(r,"section"),l=o.length;if(a=Math.abs((h||0)-t)||0,(a=p.loop?Math.abs(((h||0)-t)%(n-i))||0:a)<i?b.load(r):b.unload(r),l){var d=oe(r);for(let e=0;e<l;e++){var c=o[e];s=t===(h||0)?Math.abs((u||0)-e):Math.abs(e-d),a+s<i?b.load(c):b.unload(c)}}}Ce()?f.wrapper.classList.add("has-vertical-slides"):f.wrapper.classList.remove("has-vertical-slides"),Le()?f.wrapper.classList.add("has-horizontal-slides"):f.wrapper.classList.remove("has-horizontal-slides")}}function D({includeFragments:e=!1}={}){let t=f.wrapper.querySelectorAll(lt),i=f.wrapper.querySelectorAll(dt),a={left:0<h,right:h<t.length-1,up:0<u,down:u<i.length-1};return p.loop&&(1<t.length&&(a.left=!0,a.right=!0),1<i.length&&(a.up=!0,a.down=!0)),1<t.length&&"linear"===p.navigationMode&&(a.right=a.right||a.down,a.left=a.left||a.up),!0===e&&(e=E.availableRoutes(),a.left=a.left||e.prev,a.up=a.up||e.prev,a.down=a.down||e.next,a.right=a.right||e.next),p.rtl&&(e=a.left,a.left=a.right,a.right=e),a}function Re(a=g){let s=F(),n=0;e:for(let i=0;i<s.length;i++){let e=s[i],t=e.querySelectorAll("section");for(let e=0;e<t.length;e++){if(t[e]===a)break e;"uncounted"!==t[e].dataset.visibility&&n++}if(e===a)break;!1===e.classList.contains("stack")&&"uncounted"!==e.dataset.visibility&&n++}return n}function Se(a){let t,s=h,n=u;if(a){let e=le(a),t=e?a.parentNode:a,i=F();s=Math.max(i.indexOf(t),0),n=void 0,e&&(n=Math.max(Je(a.parentNode,"section").indexOf(a),0))}if(!a&&g&&0<g.querySelectorAll(".fragment").length){let e=g.querySelector(".current-fragment");t=e&&e.hasAttribute("data-fragment-index")?parseInt(e.getAttribute("data-fragment-index"),10):g.querySelectorAll(".fragment.visible").length-1}return{h:s,v:n,f:t}}function Ae(){return Je(f.wrapper,ot+':not(.stack):not([data-visibility="uncounted"])')}function F(){return Je(f.wrapper,lt)}function ke(){return Je(f.wrapper,".slides>section>section")}function Le(){return 1<F().length}function Ce(){return 1<ke().length}function xe(){return Ae().length}function Pe(e,t){let i=F()[e],a=i&&i.querySelectorAll("section");return a&&a.length&&"number"==typeof t?a?a[t]:void 0:i}function Ne(){var e=Se();return{indexh:e.h,indexv:e.v,indexf:e.f,paused:pe(),overview:R.isActive()}}function z(){if(Me(),g&&!1!==p.autoSlide){let e=g.querySelector(".current-fragment[data-autoslide]"),t=e?e.getAttribute("data-autoslide"):null,i=g.parentNode?g.parentNode.getAttribute("data-autoslide"):null,a=g.getAttribute("data-autoslide");t?o=parseInt(t,10):a?o=parseInt(a,10):i?o=parseInt(i,10):(o=p.autoSlide,0===g.querySelectorAll(".fragment").length&&Je(g,"video, audio").forEach(e=>{e.hasAttribute("data-autoplay")&&o&&1e3*e.duration/e.playbackRate>o&&(o=1e3*e.duration/e.playbackRate+1e3)})),!o||l||pe()||R.isActive()||he()&&!E.availableRoutes().next&&!0!==p.loop||(O=setTimeout(()=>{"function"==typeof p.autoSlideMethod?p.autoSlideMethod():Oe(),z()},o),q=Date.now()),n&&n.setPlaying(-1!==O)}}function Me(){clearTimeout(O),O=-1}function Ie(){o&&!l&&(l=!0,N({type:"autoslidepaused"}),clearTimeout(O),n&&n.setPlaying(!1))}function Te(){o&&l&&(l=!1,N({type:"autoslideresumed"}),z())}function De({skipFragments:e=!1}={}){i.hasNavigatedHorizontally=!0,p.rtl?(R.isActive()||e||!1===E.next())&&D().left&&T(h+1,"grid"===p.navigationMode?u:void 0):(R.isActive()||e||!1===E.prev())&&D().left&&T(h-1,"grid"===p.navigationMode?u:void 0)}function Fe({skipFragments:e=!1}={}){i.hasNavigatedHorizontally=!0,p.rtl?(R.isActive()||e||!1===E.prev())&&D().right&&T(h-1,"grid"===p.navigationMode?u:void 0):(R.isActive()||e||!1===E.next())&&D().right&&T(h+1,"grid"===p.navigationMode?u:void 0)}function ze({skipFragments:e=!1}={}){(R.isActive()||e||!1===E.prev())&&D().up&&T(h,u-1)}function He({skipFragments:e=!1}={}){i.hasNavigatedVertically=!0,(R.isActive()||e||!1===E.next())&&D().down&&T(h,u+1)}function Be({skipFragments:t=!1}={}){if(t||!1===E.prev())if(D().up)ze({skipFragments:t});else{let e;var i;(e=(p.rtl?Je(f.wrapper,lt+".future"):Je(f.wrapper,lt+".past")).pop())&&e.classList.contains("stack")?(i=e.querySelectorAll("section").length-1||void 0,T(h-1,i)):De({skipFragments:t})}}function Oe({skipFragments:t=!1}={}){if(i.hasNavigatedHorizontally=!0,i.hasNavigatedVertically=!0,t||!1===E.next()){let e=D();e.down&&e.right&&p.loop&&de()&&(e.down=!1),(e.down?He:p.rtl?De:Fe)({skipFragments:t})}}function qe(e){let t=e.data;if("string"==typeof t&&"{"===t.charAt(0)&&"}"===t.charAt(t.length-1)&&((t=JSON.parse(t)).method&&"function"==typeof s[t.method]))if(!1===ct.test(t.method)){const e=s[t.method].apply(s,t.args);Z("callback",{method:t.method,result:e})}else console.warn('reveal.js: "'+t.method+'" is is blacklisted from the postMessage API')}function Ue(e){"running"===B&&/section/gi.test(e.target.nodeName)&&(B="idle",N({type:"slidetransitionend",data:{indexh:h,indexv:u,previousSlide:v,currentSlide:g}}))}function je(e){const t=et(e.target,'a[href^="#"]');var i;t&&(i=t.getAttribute("href"),(i=S.getIndicesFromHash(i))&&(s.slide(i.h,i.v,i.f),e.preventDefault()))}function We(e){I()}function Ke(e){!1===document.hidden&&document.activeElement!==document.body&&("function"==typeof document.activeElement.blur&&document.activeElement.blur(),document.body.focus())}function Ve(e){(document.fullscreenElement||document.webkitFullscreenElement)===f.wrapper&&(e.stopImmediatePropagation(),setTimeout(()=>{s.layout(),s.focus.focus()},1))}function $e(e){var t;e.currentTarget&&e.currentTarget.hasAttribute("href")&&((t=e.currentTarget.getAttribute("href"))&&(ie(t),e.preventDefault()))}function Xe(e){he()&&!1===p.loop?(T(0,0),Te()):(l?Te:Ie)()}var Ye={VERSION:vt,initialize:function(e){if(!a)throw'Unable to find presentation root (<div class="reveal">).';if(f.wrapper=a,f.slides=a.querySelector(".slides"),f.slides)return!0===(p={...Lt,...p,...H,...e,...tt()}).embedded?f.viewport=et(a,".reveal-viewport")||a:(f.viewport=document.body,document.documentElement.classList.add("reveal-full-page")),f.viewport.classList.add("reveal-viewport"),window.addEventListener("load",I,!1),L.load(p.plugins,p.dependencies).then(K),new Promise(e=>s.on("ready",e));throw'Unable to find slides container (<div class="slides">).'},configure:X,destroy:function(){_(),Me(),te(),P.destroy(),x.destroy(),L.destroy(),j.destroy(),A.destroy(),k.destroy(),w.destroy(),y.destroy(),d.destroy(),document.removeEventListener("fullscreenchange",Ve),document.removeEventListener("webkitfullscreenchange",Ve),document.removeEventListener("visibilitychange",Ke,!1),window.removeEventListener("message",qe,!1),window.removeEventListener("load",I,!1),f.pauseOverlay&&f.pauseOverlay.remove(),f.statusElement&&f.statusElement.remove(),document.documentElement.classList.remove("reveal-full-page"),f.wrapper.classList.remove("ready","center","has-horizontal-slides","has-vertical-slides"),f.wrapper.removeAttribute("data-transition-speed"),f.wrapper.removeAttribute("data-background-transition"),f.viewport.classList.remove("reveal-viewport"),f.viewport.style.removeProperty("--slide-width"),f.viewport.style.removeProperty("--slide-height"),f.slides.style.removeProperty("width"),f.slides.style.removeProperty("height"),f.slides.style.removeProperty("zoom"),f.slides.style.removeProperty("left"),f.slides.style.removeProperty("top"),f.slides.style.removeProperty("bottom"),f.slides.style.removeProperty("right"),f.slides.style.removeProperty("transform"),Array.from(f.wrapper.querySelectorAll(ot)).forEach(e=>{e.style.removeProperty("display"),e.style.removeProperty("top"),e.removeAttribute("hidden"),e.removeAttribute("aria-hidden")})},sync:me,syncSlide:function(e=g){w.sync(e),E.sync(e),b.load(e),w.update(),P.update()},syncFragments:E.sync.bind(E),slide:T,left:De,right:Fe,up:ze,down:He,prev:Be,next:Oe,navigateLeft:De,navigateRight:Fe,navigateUp:ze,navigateDown:He,navigatePrev:Be,navigateNext:Oe,navigateFragment:E.goto.bind(E),prevFragment:E.prev.bind(E),nextFragment:E.next.bind(E),on:J,off:G,addEventListener:J,removeEventListener:G,layout:I,shuffle:fe,availableRoutes:D,availableFragments:E.availableRoutes.bind(E),toggleHelp:function(e){("boolean"==typeof e?e?ae:M:f.overlay?M:ae)()},toggleOverview:R.toggle.bind(R),togglePause:ge,toggleAutoSlide:function(e){("boolean"==typeof e?e?Te:Ie:l?Te:Ie)()},toggleJumpToSlide:function(e){"boolean"==typeof e?e?d.show():d.hide():d.isVisible()?d.hide():d.show()},isFirstSlide:ce,isLastSlide:he,isLastVerticalSlide:de,isVerticalSlide:le,isPaused:pe,isAutoSliding:function(){return!(!o||l)},isSpeakerNotes:P.isSpeakerNotesWindow.bind(P),isOverview:R.isActive.bind(R),isFocused:x.isFocused.bind(x),isPrintingPDF:C.isPrintingPDF.bind(C),isReady:()=>e,loadSlide:b.load.bind(b),unloadSlide:b.unload.bind(b),startEmbeddedContent:()=>b.startEmbeddedContent(g),stopEmbeddedContent:()=>b.stopEmbeddedContent(g,{unloadIframes:!1}),showPreview:ie,hidePreview:M,addEventListeners:Y,removeEventListeners:_,dispatchEvent:N,getState:Ne,setState:function(e){var t;"object"==typeof e&&(T(Qe(e.indexh),Qe(e.indexv),Qe(e.indexf)),t=Qe(e.paused),e=Qe(e.overview),"boolean"==typeof t&&t!==pe()&&ge(t),"boolean"==typeof e&&e!==R.isActive()&&R.toggle(e))},getProgress:function(){let e=xe(),t=Re();var i;return g&&0<(i=g.querySelectorAll(".fragment")).length&&(t+=g.querySelectorAll(".fragment.visible").length/i.length*.9),Math.min(t/(e-1),1)},getIndices:Se,getSlidesAttributes:function(){return Ae().map(t=>{let i={};for(let e=0;e<t.attributes.length;e++){var a=t.attributes[e];i[a.name]=a.value}return i})},getSlidePastCount:Re,getTotalSlides:xe,getSlide:Pe,getPreviousSlide:()=>v,getCurrentSlide:()=>g,getSlideBackground:function(e,t){if(t="number"==typeof e?Pe(e,t):e)return t.slideBackgroundElement},getSlideNotes:P.getSlideNotes.bind(P),getSlides:Ae,getHorizontalSlides:F,getVerticalSlides:ke,hasHorizontalSlides:Le,hasVerticalSlides:Ce,hasNavigatedHorizontally:()=>i.hasNavigatedHorizontally,hasNavigatedVertically:()=>i.hasNavigatedVertically,addKeyBinding:c.addKeyBinding.bind(c),removeKeyBinding:c.removeKeyBinding.bind(c),triggerKey:c.triggerKey.bind(c),registerKeyboardShortcut:c.registerKeyboardShortcut.bind(c),getComputedSlideSize:ne,getScale:()=>t,getConfig:()=>p,getQueryHash:tt,getSlidePath:S.getHash.bind(S),getRevealElement:()=>a,getSlidesElement:()=>f.slides,getViewportElement:()=>f.viewport,getBackgroundsElement:()=>w.element,registerPlugin:L.registerPlugin.bind(L),hasPlugin:L.hasPlugin.bind(L),getPlugin:L.getPlugin.bind(L),getPlugins:L.getRegisteredPlugins.bind(L)};return _e(s,{...Ye,announceStatus:V,getStatusText:$,print:C,focus:x,progress:k,controls:A,location:S,overview:R,fragments:E,slideContent:b,slideNumber:y,onUserInput:function(e){p.autoSlideStoppable&&Ie()},closeOverlay:M,updateSlidesVisibility:Ee,layoutSlideContents:se,transformSlides:Q,cueAutoSlide:z,cancelAutoSlide:Me}),Ye}let v=u,g=[];return v.initialize=e=>(Object.assign(v,new u(document.querySelector(".reveal"),e)),g.map(e=>e(v)),v.initialize()),["configure","on","off","addEventListener","removeEventListener","registerPlugin"].forEach(i=>{v[i]=(...t)=>{g.push(e=>e[i].call(null,...t))}}),v.isReady=()=>!1,v.VERSION=vt,v});</script>
 
+<!-- Reveal.js init -->
 <script>
 Reveal.initialize({
   hash:true, transition:'fade', transitionSpeed:'slow',
@@ -505,6 +512,7 @@ Reveal.initialize({
 });
 </script>
 
+<!-- Expand Button & Fullscreen Overlay -->
 <script>
 function expandFromBtn(btn){
   var ov=document.getElementById('uiFullscreen');
@@ -529,6 +537,7 @@ function expandFromBtn(btn){
 })();
 </script>
 
+<!-- Popup Controller -->
 <script>
 (function(){
   var popups = document.querySelectorAll('.popup-card[data-popup-slide]');
@@ -564,6 +573,8 @@ function expandFromBtn(btn){
   }
 })();
 </script>
+
+
 
 <!-- Navigation arrows -->
 <div class="nav-hint left" onclick="Reveal.prev()" title="Previous">

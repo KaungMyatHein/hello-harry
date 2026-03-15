@@ -3,1355 +3,606 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Case Study — Multi-Level Design Systems | Harry Hein</title>
+<title>Case Study — Multi-Level Design System | Harry Hein</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/reveal.min.css">
 <!-- Shared atom-level tokens & components -->
 <link rel="stylesheet" href="css/atoms.css">
-<style>
-:root {
-  --blue: #6ba3d6;
-  --yellow: #e8c94a;
-  --red: #d66b6b;
-  --r-main-font-size:22px;--r-main-font:'Syne',sans-serif;--r-heading-font:'Instrument Serif',serif;--r-heading-text-transform:none;--r-heading-font-weight:400;--r-background-color:var(--dark);--r-main-color:var(--cream);--r-heading-color:var(--cream);--r-link-color:var(--accent);
+<style>/*!
+* reveal.js 4.5.0
+* https://revealjs.com
+* MIT licensed
+*
+* Copyright (C) 2011-2023 Hakim El Hattab, https://hakim.se
+*/.reveal .r-stretch,.reveal .stretch{max-width:none;max-height:none}.reveal pre.r-stretch code,.reveal pre.stretch code{height:100%;max-height:100%;box-sizing:border-box}.reveal .r-fit-text{display:inline-block;white-space:nowrap}.reveal .r-stack{display:grid}.reveal .r-stack>*{grid-area:1/1;margin:auto}.reveal .r-hstack,.reveal .r-vstack{display:flex}.reveal .r-hstack img,.reveal .r-hstack video,.reveal .r-vstack img,.reveal .r-vstack video{min-width:0;min-height:0;object-fit:contain}.reveal .r-vstack{flex-direction:column;align-items:center;justify-content:center}.reveal .r-hstack{flex-direction:row;align-items:center;justify-content:center}.reveal .items-stretch{align-items:stretch}.reveal .items-start{align-items:flex-start}.reveal .items-center{align-items:center}.reveal .items-end{align-items:flex-end}.reveal .justify-between{justify-content:space-between}.reveal .justify-around{justify-content:space-around}.reveal .justify-start{justify-content:flex-start}.reveal .justify-center{justify-content:center}.reveal .justify-end{justify-content:flex-end}html.reveal-full-page{width:100%;height:100%;height:100vh;height:calc(var(--vh,1vh) * 100);overflow:hidden}.reveal-viewport{height:100%;overflow:hidden;position:relative;line-height:1;margin:0;background-color:#fff;color:#000}.reveal-viewport:fullscreen{top:0!important;left:0!important;width:100%!important;height:100%!important;transform:none!important}.reveal .fragment{transition:all .2s ease}.reveal .fragment:not(.custom){opacity:0;visibility:hidden;will-change:opacity}.reveal .fragment.visible{opacity:1;visibility:inherit}.reveal .fragment.disabled{transition:none}.reveal .fragment.grow{opacity:1;visibility:inherit}.reveal .fragment.grow.visible{transform:scale(1.3)}.reveal .fragment.shrink{opacity:1;visibility:inherit}.reveal .fragment.shrink.visible{transform:scale(.7)}.reveal .fragment.zoom-in{transform:scale(.1)}.reveal .fragment.zoom-in.visible{transform:none}.reveal .fragment.fade-out{opacity:1;visibility:inherit}.reveal .fragment.fade-out.visible{opacity:0;visibility:hidden}.reveal .fragment.semi-fade-out{opacity:1;visibility:inherit}.reveal .fragment.semi-fade-out.visible{opacity:.5;visibility:inherit}.reveal .fragment.strike{opacity:1;visibility:inherit}.reveal .fragment.strike.visible{text-decoration:line-through}.reveal .fragment.fade-up{transform:translate(0,40px)}.reveal .fragment.fade-up.visible{transform:translate(0,0)}.reveal .fragment.fade-down{transform:translate(0,-40px)}.reveal .fragment.fade-down.visible{transform:translate(0,0)}.reveal .fragment.fade-right{transform:translate(-40px,0)}.reveal .fragment.fade-right.visible{transform:translate(0,0)}.reveal .fragment.fade-left{transform:translate(40px,0)}.reveal .fragment.fade-left.visible{transform:translate(0,0)}.reveal .fragment.current-visible,.reveal .fragment.fade-in-then-out{opacity:0;visibility:hidden}.reveal .fragment.current-visible.current-fragment,.reveal .fragment.fade-in-then-out.current-fragment{opacity:1;visibility:inherit}.reveal .fragment.fade-in-then-semi-out{opacity:0;visibility:hidden}.reveal .fragment.fade-in-then-semi-out.visible{opacity:.5;visibility:inherit}.reveal .fragment.fade-in-then-semi-out.current-fragment{opacity:1;visibility:inherit}.reveal .fragment.highlight-blue,.reveal .fragment.highlight-current-blue,.reveal .fragment.highlight-current-green,.reveal .fragment.highlight-current-red,.reveal .fragment.highlight-green,.reveal .fragment.highlight-red{opacity:1;visibility:inherit}.reveal .fragment.highlight-red.visible{color:#ff2c2d}.reveal .fragment.highlight-green.visible{color:#17ff2e}.reveal .fragment.highlight-blue.visible{color:#1b91ff}.reveal .fragment.highlight-current-red.current-fragment{color:#ff2c2d}.reveal .fragment.highlight-current-green.current-fragment{color:#17ff2e}.reveal .fragment.highlight-current-blue.current-fragment{color:#1b91ff}.reveal:after{content:"";font-style:italic}.reveal iframe{z-index:1}.reveal a{position:relative}@keyframes bounce-right{0%,10%,25%,40%,50%{transform:translateX(0)}20%{transform:translateX(10px)}30%{transform:translateX(-5px)}}@keyframes bounce-left{0%,10%,25%,40%,50%{transform:translateX(0)}20%{transform:translateX(-10px)}30%{transform:translateX(5px)}}@keyframes bounce-down{0%,10%,25%,40%,50%{transform:translateY(0)}20%{transform:translateY(10px)}30%{transform:translateY(-5px)}}.reveal .controls{display:none;position:absolute;top:auto;bottom:12px;right:12px;left:auto;z-index:11;color:#000;pointer-events:none;font-size:10px}.reveal .controls button{position:absolute;padding:0;background-color:transparent;border:0;outline:0;cursor:pointer;color:currentColor;transform:scale(.9999);transition:color .2s ease,opacity .2s ease,transform .2s ease;z-index:2;pointer-events:auto;font-size:inherit;visibility:hidden;opacity:0;-webkit-appearance:none;-webkit-tap-highlight-color:transparent}.reveal .controls .controls-arrow:after,.reveal .controls .controls-arrow:before{content:"";position:absolute;top:0;left:0;width:2.6em;height:.5em;border-radius:.25em;background-color:currentColor;transition:all .15s ease,background-color .8s ease;transform-origin:.2em 50%;will-change:transform}.reveal .controls .controls-arrow{position:relative;width:3.6em;height:3.6em}.reveal .controls .controls-arrow:before{transform:translateX(.5em) translateY(1.55em) rotate(45deg)}.reveal .controls .controls-arrow:after{transform:translateX(.5em) translateY(1.55em) rotate(-45deg)}.reveal .controls .controls-arrow:hover:before{transform:translateX(.5em) translateY(1.55em) rotate(40deg)}.reveal .controls .controls-arrow:hover:after{transform:translateX(.5em) translateY(1.55em) rotate(-40deg)}.reveal .controls .controls-arrow:active:before{transform:translateX(.5em) translateY(1.55em) rotate(36deg)}.reveal .controls .controls-arrow:active:after{transform:translateX(.5em) translateY(1.55em) rotate(-36deg)}.reveal .controls .navigate-left{right:6.4em;bottom:3.2em;transform:translateX(-10px)}.reveal .controls .navigate-left.highlight{animation:bounce-left 2s 50 both ease-out}.reveal .controls .navigate-right{right:0;bottom:3.2em;transform:translateX(10px)}.reveal .controls .navigate-right .controls-arrow{transform:rotate(180deg)}.reveal .controls .navigate-right.highlight{animation:bounce-right 2s 50 both ease-out}.reveal .controls .navigate-up{right:3.2em;bottom:6.4em;transform:translateY(-10px)}.reveal .controls .navigate-up .controls-arrow{transform:rotate(90deg)}.reveal .controls .navigate-down{right:3.2em;bottom:-1.4em;padding-bottom:1.4em;transform:translateY(10px)}.reveal .controls .navigate-down .controls-arrow{transform:rotate(-90deg)}.reveal .controls .navigate-down.highlight{animation:bounce-down 2s 50 both ease-out}.reveal .controls[data-controls-back-arrows=faded] .navigate-up.enabled{opacity:.3}.reveal .controls[data-controls-back-arrows=faded] .navigate-up.enabled:hover{opacity:1}.reveal .controls[data-controls-back-arrows=hidden] .navigate-up.enabled{opacity:0;visibility:hidden}.reveal .controls .enabled{visibility:visible;opacity:.9;cursor:pointer;transform:none}.reveal .controls .enabled.fragmented{opacity:.5}.reveal .controls .enabled.fragmented:hover,.reveal .controls .enabled:hover{opacity:1}.reveal:not(.rtl) .controls[data-controls-back-arrows=faded] .navigate-left.enabled{opacity:.3}.reveal:not(.rtl) .controls[data-controls-back-arrows=faded] .navigate-left.enabled:hover{opacity:1}.reveal:not(.rtl) .controls[data-controls-back-arrows=hidden] .navigate-left.enabled{opacity:0;visibility:hidden}.reveal.rtl .controls[data-controls-back-arrows=faded] .navigate-right.enabled{opacity:.3}.reveal.rtl .controls[data-controls-back-arrows=faded] .navigate-right.enabled:hover{opacity:1}.reveal.rtl .controls[data-controls-back-arrows=hidden] .navigate-right.enabled{opacity:0;visibility:hidden}.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-down,.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-up{display:none}.reveal:not(.has-vertical-slides) .controls .navigate-left,.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-left{bottom:1.4em;right:5.5em}.reveal:not(.has-vertical-slides) .controls .navigate-right,.reveal[data-navigation-mode=linear].has-horizontal-slides .navigate-right{bottom:1.4em;right:.5em}.reveal:not(.has-horizontal-slides) .controls .navigate-up{right:1.4em;bottom:5em}.reveal:not(.has-horizontal-slides) .controls .navigate-down{right:1.4em;bottom:.5em}.reveal.has-dark-background .controls{color:#fff}.reveal.has-light-background .controls{color:#000}.reveal.no-hover .controls .controls-arrow:active:before,.reveal.no-hover .controls .controls-arrow:hover:before{transform:translateX(.5em) translateY(1.55em) rotate(45deg)}.reveal.no-hover .controls .controls-arrow:active:after,.reveal.no-hover .controls .controls-arrow:hover:after{transform:translateX(.5em) translateY(1.55em) rotate(-45deg)}@media screen and (min-width:500px){.reveal .controls[data-controls-layout=edges]{top:0;right:0;bottom:0;left:0}.reveal .controls[data-controls-layout=edges] .navigate-down,.reveal .controls[data-controls-layout=edges] .navigate-left,.reveal .controls[data-controls-layout=edges] .navigate-right,.reveal .controls[data-controls-layout=edges] .navigate-up{bottom:auto;right:auto}.reveal .controls[data-controls-layout=edges] .navigate-left{top:50%;left:.8em;margin-top:-1.8em}.reveal .controls[data-controls-layout=edges] .navigate-right{top:50%;right:.8em;margin-top:-1.8em}.reveal .controls[data-controls-layout=edges] .navigate-up{top:.8em;left:50%;margin-left:-1.8em}.reveal .controls[data-controls-layout=edges] .navigate-down{bottom:-.3em;left:50%;margin-left:-1.8em}}.reveal .progress{position:absolute;display:none;height:3px;width:100%;bottom:0;left:0;z-index:10;background-color:rgba(0,0,0,.2);color:#fff}.reveal .progress:after{content:"";display:block;position:absolute;height:10px;width:100%;top:-10px}.reveal .progress span{display:block;height:100%;width:100%;background-color:currentColor;transition:transform .8s cubic-bezier(.26,.86,.44,.985);transform-origin:0 0;transform:scaleX(0)}.reveal .slide-number{position:absolute;display:block;right:8px;bottom:8px;z-index:31;font-family:Helvetica,sans-serif;font-size:12px;line-height:1;color:#fff;background-color:rgba(0,0,0,.4);padding:5px}.reveal .slide-number a{color:currentColor}.reveal .slide-number-delimiter{margin:0 3px}.reveal{position:relative;width:100%;height:100%;overflow:hidden;touch-action:pinch-zoom}.reveal.embedded{touch-action:pan-y}.reveal .slides{position:absolute;width:100%;height:100%;top:0;right:0;bottom:0;left:0;margin:auto;pointer-events:none;overflow:visible;z-index:1;text-align:center;perspective:600px;perspective-origin:50% 40%}.reveal .slides>section{perspective:600px}.reveal .slides>section,.reveal .slides>section>section{display:none;position:absolute;width:100%;pointer-events:auto;z-index:10;transform-style:flat;transition:transform-origin .8s cubic-bezier(.26,.86,.44,.985),transform .8s cubic-bezier(.26,.86,.44,.985),visibility .8s cubic-bezier(.26,.86,.44,.985),opacity .8s cubic-bezier(.26,.86,.44,.985)}.reveal[data-transition-speed=fast] .slides section{transition-duration:.4s}.reveal[data-transition-speed=slow] .slides section{transition-duration:1.2s}.reveal .slides section[data-transition-speed=fast]{transition-duration:.4s}.reveal .slides section[data-transition-speed=slow]{transition-duration:1.2s}.reveal .slides>section.stack{padding-top:0;padding-bottom:0;pointer-events:none;height:100%}.reveal .slides>section.present,.reveal .slides>section>section.present{display:block;z-index:11;opacity:1}.reveal .slides>section:empty,.reveal .slides>section>section:empty,.reveal .slides>section>section[data-background-interactive],.reveal .slides>section[data-background-interactive]{pointer-events:none}.reveal.center,.reveal.center .slides,.reveal.center .slides section{min-height:0!important}.reveal .slides>section:not(.present),.reveal .slides>section>section:not(.present){pointer-events:none}.reveal.overview .slides>section,.reveal.overview .slides>section>section{pointer-events:auto}.reveal .slides>section.future,.reveal .slides>section.future>section,.reveal .slides>section.past,.reveal .slides>section.past>section,.reveal .slides>section>section.future,.reveal .slides>section>section.past{opacity:0}.reveal .slides>section[data-transition=slide].past,.reveal .slides>section[data-transition~=slide-out].past,.reveal.slide .slides>section:not([data-transition]).past{transform:translate(-150%,0)}.reveal .slides>section[data-transition=slide].future,.reveal .slides>section[data-transition~=slide-in].future,.reveal.slide .slides>section:not([data-transition]).future{transform:translate(150%,0)}.reveal .slides>section>section[data-transition=slide].past,.reveal .slides>section>section[data-transition~=slide-out].past,.reveal.slide .slides>section>section:not([data-transition]).past{transform:translate(0,-150%)}.reveal .slides>section>section[data-transition=slide].future,.reveal .slides>section>section[data-transition~=slide-in].future,.reveal.slide .slides>section>section:not([data-transition]).future{transform:translate(0,150%)}.reveal .slides>section[data-transition=linear].past,.reveal .slides>section[data-transition~=linear-out].past,.reveal.linear .slides>section:not([data-transition]).past{transform:translate(-150%,0)}.reveal .slides>section[data-transition=linear].future,.reveal .slides>section[data-transition~=linear-in].future,.reveal.linear .slides>section:not([data-transition]).future{transform:translate(150%,0)}.reveal .slides>section>section[data-transition=linear].past,.reveal .slides>section>section[data-transition~=linear-out].past,.reveal.linear .slides>section>section:not([data-transition]).past{transform:translate(0,-150%)}.reveal .slides>section>section[data-transition=linear].future,.reveal .slides>section>section[data-transition~=linear-in].future,.reveal.linear .slides>section>section:not([data-transition]).future{transform:translate(0,150%)}.reveal .slides section[data-transition=default].stack,.reveal.default .slides section.stack{transform-style:preserve-3d}.reveal .slides>section[data-transition=default].past,.reveal .slides>section[data-transition~=default-out].past,.reveal.default .slides>section:not([data-transition]).past{transform:translate3d(-100%,0,0) rotateY(-90deg) translate3d(-100%,0,0)}.reveal .slides>section[data-transition=default].future,.reveal .slides>section[data-transition~=default-in].future,.reveal.default .slides>section:not([data-transition]).future{transform:translate3d(100%,0,0) rotateY(90deg) translate3d(100%,0,0)}.reveal .slides>section>section[data-transition=default].past,.reveal .slides>section>section[data-transition~=default-out].past,.reveal.default .slides>section>section:not([data-transition]).past{transform:translate3d(0,-300px,0) rotateX(70deg) translate3d(0,-300px,0)}.reveal .slides>section>section[data-transition=default].future,.reveal .slides>section>section[data-transition~=default-in].future,.reveal.default .slides>section>section:not([data-transition]).future{transform:translate3d(0,300px,0) rotateX(-70deg) translate3d(0,300px,0)}.reveal .slides section[data-transition=convex].stack,.reveal.convex .slides section.stack{transform-style:preserve-3d}.reveal .slides>section[data-transition=convex].past,.reveal .slides>section[data-transition~=convex-out].past,.reveal.convex .slides>section:not([data-transition]).past{transform:translate3d(-100%,0,0) rotateY(-90deg) translate3d(-100%,0,0)}.reveal .slides>section[data-transition=convex].future,.reveal .slides>section[data-transition~=convex-in].future,.reveal.convex .slides>section:not([data-transition]).future{transform:translate3d(100%,0,0) rotateY(90deg) translate3d(100%,0,0)}.reveal .slides>section>section[data-transition=convex].past,.reveal .slides>section>section[data-transition~=convex-out].past,.reveal.convex .slides>section>section:not([data-transition]).past{transform:translate3d(0,-300px,0) rotateX(70deg) translate3d(0,-300px,0)}.reveal .slides>section>section[data-transition=convex].future,.reveal .slides>section>section[data-transition~=convex-in].future,.reveal.convex .slides>section>section:not([data-transition]).future{transform:translate3d(0,300px,0) rotateX(-70deg) translate3d(0,300px,0)}.reveal .slides section[data-transition=concave].stack,.reveal.concave .slides section.stack{transform-style:preserve-3d}.reveal .slides>section[data-transition=concave].past,.reveal .slides>section[data-transition~=concave-out].past,.reveal.concave .slides>section:not([data-transition]).past{transform:translate3d(-100%,0,0) rotateY(90deg) translate3d(-100%,0,0)}.reveal .slides>section[data-transition=concave].future,.reveal .slides>section[data-transition~=concave-in].future,.reveal.concave .slides>section:not([data-transition]).future{transform:translate3d(100%,0,0) rotateY(-90deg) translate3d(100%,0,0)}.reveal .slides>section>section[data-transition=concave].past,.reveal .slides>section>section[data-transition~=concave-out].past,.reveal.concave .slides>section>section:not([data-transition]).past{transform:translate3d(0,-80%,0) rotateX(-70deg) translate3d(0,-80%,0)}.reveal .slides>section>section[data-transition=concave].future,.reveal .slides>section>section[data-transition~=concave-in].future,.reveal.concave .slides>section>section:not([data-transition]).future{transform:translate3d(0,80%,0) rotateX(70deg) translate3d(0,80%,0)}.reveal .slides section[data-transition=zoom],.reveal.zoom .slides section:not([data-transition]){transition-timing-function:ease}.reveal .slides>section[data-transition=zoom].past,.reveal .slides>section[data-transition~=zoom-out].past,.reveal.zoom .slides>section:not([data-transition]).past{visibility:hidden;transform:scale(16)}.reveal .slides>section[data-transition=zoom].future,.reveal .slides>section[data-transition~=zoom-in].future,.reveal.zoom .slides>section:not([data-transition]).future{visibility:hidden;transform:scale(.2)}.reveal .slides>section>section[data-transition=zoom].past,.reveal .slides>section>section[data-transition~=zoom-out].past,.reveal.zoom .slides>section>section:not([data-transition]).past{transform:scale(16)}.reveal .slides>section>section[data-transition=zoom].future,.reveal .slides>section>section[data-transition~=zoom-in].future,.reveal.zoom .slides>section>section:not([data-transition]).future{transform:scale(.2)}.reveal.cube .slides{perspective:1300px}.reveal.cube .slides section{padding:30px;min-height:700px;backface-visibility:hidden;box-sizing:border-box;transform-style:preserve-3d}.reveal.center.cube .slides section{min-height:0}.reveal.cube .slides section:not(.stack):before{content:"";position:absolute;display:block;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.1);border-radius:4px;transform:translateZ(-20px)}.reveal.cube .slides section:not(.stack):after{content:"";position:absolute;display:block;width:90%;height:30px;left:5%;bottom:0;background:0 0;z-index:1;border-radius:4px;box-shadow:0 95px 25px rgba(0,0,0,.2);transform:translateZ(-90px) rotateX(65deg)}.reveal.cube .slides>section.stack{padding:0;background:0 0}.reveal.cube .slides>section.past{transform-origin:100% 0;transform:translate3d(-100%,0,0) rotateY(-90deg)}.reveal.cube .slides>section.future{transform-origin:0 0;transform:translate3d(100%,0,0) rotateY(90deg)}.reveal.cube .slides>section>section.past{transform-origin:0 100%;transform:translate3d(0,-100%,0) rotateX(90deg)}.reveal.cube .slides>section>section.future{transform-origin:0 0;transform:translate3d(0,100%,0) rotateX(-90deg)}.reveal.page .slides{perspective-origin:0 50%;perspective:3000px}.reveal.page .slides section{padding:30px;min-height:700px;box-sizing:border-box;transform-style:preserve-3d}.reveal.page .slides section.past{z-index:12}.reveal.page .slides section:not(.stack):before{content:"";position:absolute;display:block;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.1);transform:translateZ(-20px)}.reveal.page .slides section:not(.stack):after{content:"";position:absolute;display:block;width:90%;height:30px;left:5%;bottom:0;background:0 0;z-index:1;border-radius:4px;box-shadow:0 95px 25px rgba(0,0,0,.2);-webkit-transform:translateZ(-90px) rotateX(65deg)}.reveal.page .slides>section.stack{padding:0;background:0 0}.reveal.page .slides>section.past{transform-origin:0 0;transform:translate3d(-40%,0,0) rotateY(-80deg)}.reveal.page .slides>section.future{transform-origin:100% 0;transform:translate3d(0,0,0)}.reveal.page .slides>section>section.past{transform-origin:0 0;transform:translate3d(0,-40%,0) rotateX(80deg)}.reveal.page .slides>section>section.future{transform-origin:0 100%;transform:translate3d(0,0,0)}.reveal .slides section[data-transition=fade],.reveal.fade .slides section:not([data-transition]),.reveal.fade .slides>section>section:not([data-transition]){transform:none;transition:opacity .5s}.reveal.fade.overview .slides section,.reveal.fade.overview .slides>section>section{transition:none}.reveal .slides section[data-transition=none],.reveal.none .slides section:not([data-transition]){transform:none;transition:none}.reveal .pause-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#000;visibility:hidden;opacity:0;z-index:100;transition:all 1s ease}.reveal .pause-overlay .resume-button{position:absolute;bottom:20px;right:20px;color:#ccc;border-radius:2px;padding:6px 14px;border:2px solid #ccc;font-size:16px;background:0 0;cursor:pointer}.reveal .pause-overlay .resume-button:hover{color:#fff;border-color:#fff}.reveal.paused .pause-overlay{visibility:visible;opacity:1}.reveal .no-transition,.reveal .no-transition *,.reveal .slides.disable-slide-transitions section{transition:none!important}.reveal .slides.disable-slide-transitions section{transform:none!important}.reveal .backgrounds{position:absolute;width:100%;height:100%;top:0;left:0;perspective:600px}.reveal .slide-background{display:none;position:absolute;width:100%;height:100%;opacity:0;visibility:hidden;overflow:hidden;background-color:rgba(0,0,0,0);transition:all .8s cubic-bezier(.26,.86,.44,.985)}.reveal .slide-background-content{position:absolute;width:100%;height:100%;background-position:50% 50%;background-repeat:no-repeat;background-size:cover}.reveal .slide-background.stack{display:block}.reveal .slide-background.present{opacity:1;visibility:visible;z-index:2}.print-pdf .reveal .slide-background{opacity:1!important;visibility:visible!important}.reveal .slide-background video{position:absolute;width:100%;height:100%;max-width:none;max-height:none;top:0;left:0;object-fit:cover}.reveal .slide-background[data-background-size=contain] video{object-fit:contain}.reveal>.backgrounds .slide-background[data-background-transition=none],.reveal[data-background-transition=none]>.backgrounds .slide-background:not([data-background-transition]){transition:none}.reveal>.backgrounds .slide-background[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background:not([data-background-transition]){opacity:1}.reveal>.backgrounds .slide-background.past[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background.past:not([data-background-transition]){transform:translate(-100%,0)}.reveal>.backgrounds .slide-background.future[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background.future:not([data-background-transition]){transform:translate(100%,0)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background>.slide-background.past:not([data-background-transition]){transform:translate(0,-100%)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=slide],.reveal[data-background-transition=slide]>.backgrounds .slide-background>.slide-background.future:not([data-background-transition]){transform:translate(0,100%)}.reveal>.backgrounds .slide-background.past[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background.past:not([data-background-transition]){opacity:0;transform:translate3d(-100%,0,0) rotateY(-90deg) translate3d(-100%,0,0)}.reveal>.backgrounds .slide-background.future[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background.future:not([data-background-transition]){opacity:0;transform:translate3d(100%,0,0) rotateY(90deg) translate3d(100%,0,0)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background>.slide-background.past:not([data-background-transition]){opacity:0;transform:translate3d(0,-100%,0) rotateX(90deg) translate3d(0,-100%,0)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=convex],.reveal[data-background-transition=convex]>.backgrounds .slide-background>.slide-background.future:not([data-background-transition]){opacity:0;transform:translate3d(0,100%,0) rotateX(-90deg) translate3d(0,100%,0)}.reveal>.backgrounds .slide-background.past[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background.past:not([data-background-transition]){opacity:0;transform:translate3d(-100%,0,0) rotateY(90deg) translate3d(-100%,0,0)}.reveal>.backgrounds .slide-background.future[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background.future:not([data-background-transition]){opacity:0;transform:translate3d(100%,0,0) rotateY(-90deg) translate3d(100%,0,0)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background>.slide-background.past:not([data-background-transition]){opacity:0;transform:translate3d(0,-100%,0) rotateX(-90deg) translate3d(0,-100%,0)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=concave],.reveal[data-background-transition=concave]>.backgrounds .slide-background>.slide-background.future:not([data-background-transition]){opacity:0;transform:translate3d(0,100%,0) rotateX(90deg) translate3d(0,100%,0)}.reveal>.backgrounds .slide-background[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background:not([data-background-transition]){transition-timing-function:ease}.reveal>.backgrounds .slide-background.past[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background.past:not([data-background-transition]){opacity:0;visibility:hidden;transform:scale(16)}.reveal>.backgrounds .slide-background.future[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background.future:not([data-background-transition]){opacity:0;visibility:hidden;transform:scale(.2)}.reveal>.backgrounds .slide-background>.slide-background.past[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background>.slide-background.past:not([data-background-transition]){opacity:0;visibility:hidden;transform:scale(16)}.reveal>.backgrounds .slide-background>.slide-background.future[data-background-transition=zoom],.reveal[data-background-transition=zoom]>.backgrounds .slide-background>.slide-background.future:not([data-background-transition]){opacity:0;visibility:hidden;transform:scale(.2)}.reveal[data-transition-speed=fast]>.backgrounds .slide-background{transition-duration:.4s}.reveal[data-transition-speed=slow]>.backgrounds .slide-background{transition-duration:1.2s}.reveal [data-auto-animate-target^=unmatched]{will-change:opacity}.reveal section[data-auto-animate]:not(.stack):not([data-auto-animate=running]) [data-auto-animate-target^=unmatched]{opacity:0}.reveal.overview{perspective-origin:50% 50%;perspective:700px}.reveal.overview .slides{-moz-transform-style:preserve-3d}.reveal.overview .slides section{height:100%;top:0!important;opacity:1!important;overflow:hidden;visibility:visible!important;cursor:pointer;box-sizing:border-box}.reveal.overview .slides section.present,.reveal.overview .slides section:hover{outline:10px solid rgba(150,150,150,.4);outline-offset:10px}.reveal.overview .slides section .fragment{opacity:1;transition:none}.reveal.overview .slides section:after,.reveal.overview .slides section:before{display:none!important}.reveal.overview .slides>section.stack{padding:0;top:0!important;background:0 0;outline:0;overflow:visible}.reveal.overview .backgrounds{perspective:inherit;-moz-transform-style:preserve-3d}.reveal.overview .backgrounds .slide-background{opacity:1;visibility:visible;outline:10px solid rgba(150,150,150,.1);outline-offset:10px}.reveal.overview .backgrounds .slide-background.stack{overflow:visible}.reveal.overview .slides section,.reveal.overview-deactivating .slides section{transition:none}.reveal.overview .backgrounds .slide-background,.reveal.overview-deactivating .backgrounds .slide-background{transition:none}.reveal.rtl .slides,.reveal.rtl .slides h1,.reveal.rtl .slides h2,.reveal.rtl .slides h3,.reveal.rtl .slides h4,.reveal.rtl .slides h5,.reveal.rtl .slides h6{direction:rtl;font-family:sans-serif}.reveal.rtl code,.reveal.rtl pre{direction:ltr}.reveal.rtl ol,.reveal.rtl ul{text-align:right}.reveal.rtl .progress span{transform-origin:100% 0}.reveal.has-parallax-background .backgrounds{transition:all .8s ease}.reveal.has-parallax-background[data-transition-speed=fast] .backgrounds{transition-duration:.4s}.reveal.has-parallax-background[data-transition-speed=slow] .backgrounds{transition-duration:1.2s}.reveal>.overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1000;background:rgba(0,0,0,.9);transition:all .3s ease}.reveal>.overlay .spinner{position:absolute;display:block;top:50%;left:50%;width:32px;height:32px;margin:-16px 0 0 -16px;z-index:10;background-image:url(data:image/gif;base64,R0lGODlhIAAgAPMAAJmZmf%2F%2F%2F6%2Bvr8nJybW1tcDAwOjo6Nvb26ioqKOjo7Ozs%2FLy8vz8%2FAAAAAAAAAAAACH%2FC05FVFNDQVBFMi4wAwEAAAAh%2FhpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh%2BQQJCgAAACwAAAAAIAAgAAAE5xDISWlhperN52JLhSSdRgwVo1ICQZRUsiwHpTJT4iowNS8vyW2icCF6k8HMMBkCEDskxTBDAZwuAkkqIfxIQyhBQBFvAQSDITM5VDW6XNE4KagNh6Bgwe60smQUB3d4Rz1ZBApnFASDd0hihh12BkE9kjAJVlycXIg7CQIFA6SlnJ87paqbSKiKoqusnbMdmDC2tXQlkUhziYtyWTxIfy6BE8WJt5YJvpJivxNaGmLHT0VnOgSYf0dZXS7APdpB309RnHOG5gDqXGLDaC457D1zZ%2FV%2FnmOM82XiHRLYKhKP1oZmADdEAAAh%2BQQJCgAAACwAAAAAIAAgAAAE6hDISWlZpOrNp1lGNRSdRpDUolIGw5RUYhhHukqFu8DsrEyqnWThGvAmhVlteBvojpTDDBUEIFwMFBRAmBkSgOrBFZogCASwBDEY%2FCZSg7GSE0gSCjQBMVG023xWBhklAnoEdhQEfyNqMIcKjhRsjEdnezB%2BA4k8gTwJhFuiW4dokXiloUepBAp5qaKpp6%2BHo7aWW54wl7obvEe0kRuoplCGepwSx2jJvqHEmGt6whJpGpfJCHmOoNHKaHx61WiSR92E4lbFoq%2BB6QDtuetcaBPnW6%2BO7wDHpIiK9SaVK5GgV543tzjgGcghAgAh%2BQQJCgAAACwAAAAAIAAgAAAE7hDISSkxpOrN5zFHNWRdhSiVoVLHspRUMoyUakyEe8PTPCATW9A14E0UvuAKMNAZKYUZCiBMuBakSQKG8G2FzUWox2AUtAQFcBKlVQoLgQReZhQlCIJesQXI5B0CBnUMOxMCenoCfTCEWBsJColTMANldx15BGs8B5wlCZ9Po6OJkwmRpnqkqnuSrayqfKmqpLajoiW5HJq7FL1Gr2mMMcKUMIiJgIemy7xZtJsTmsM4xHiKv5KMCXqfyUCJEonXPN2rAOIAmsfB3uPoAK%2B%2BG%2Bw48edZPK%2BM6hLJpQg484enXIdQFSS1u6UhksENEQAAIfkECQoAAAAsAAAAACAAIAAABOcQyEmpGKLqzWcZRVUQnZYg1aBSh2GUVEIQ2aQOE%2BG%2BcD4ntpWkZQj1JIiZIogDFFyHI0UxQwFugMSOFIPJftfVAEoZLBbcLEFhlQiqGp1Vd140AUklUN3eCA51C1EWMzMCezCBBmkxVIVHBWd3HHl9JQOIJSdSnJ0TDKChCwUJjoWMPaGqDKannasMo6WnM562R5YluZRwur0wpgqZE7NKUm%2BFNRPIhjBJxKZteWuIBMN4zRMIVIhffcgojwCF117i4nlLnY5ztRLsnOk%2BaV%2BoJY7V7m76PdkS4trKcdg0Zc0tTcKkRAAAIfkECQoAAAAsAAAAACAAIAAABO4QyEkpKqjqzScpRaVkXZWQEximw1BSCUEIlDohrft6cpKCk5xid5MNJTaAIkekKGQkWyKHkvhKsR7ARmitkAYDYRIbUQRQjWBwJRzChi9CRlBcY1UN4g0%2FVNB0AlcvcAYHRyZPdEQFYV8ccwR5HWxEJ02YmRMLnJ1xCYp0Y5idpQuhopmmC2KgojKasUQDk5BNAwwMOh2RtRq5uQuPZKGIJQIGwAwGf6I0JXMpC8C7kXWDBINFMxS4DKMAWVWAGYsAdNqW5uaRxkSKJOZKaU3tPOBZ4DuK2LATgJhkPJMgTwKCdFjyPHEnKxFCDhEAACH5BAkKAAAALAAAAAAgACAAAATzEMhJaVKp6s2nIkolIJ2WkBShpkVRWqqQrhLSEu9MZJKK9y1ZrqYK9WiClmvoUaF8gIQSNeF1Er4MNFn4SRSDARWroAIETg1iVwuHjYB1kYc1mwruwXKC9gmsJXliGxc%2BXiUCby9ydh1sOSdMkpMTBpaXBzsfhoc5l58Gm5yToAaZhaOUqjkDgCWNHAULCwOLaTmzswadEqggQwgHuQsHIoZCHQMMQgQGubVEcxOPFAcMDAYUA85eWARmfSRQCdcMe0zeP1AAygwLlJtPNAAL19DARdPzBOWSm1brJBi45soRAWQAAkrQIykShQ9wVhHCwCQCACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiRMDjI0Fd30%2FiI2UA5GSS5UDj2l6NoqgOgN4gksEBgYFf0FDqKgHnyZ9OX8HrgYHdHpcHQULXAS2qKpENRg7eAMLC7kTBaixUYFkKAzWAAnLC7FLVxLWDBLKCwaKTULgEwbLA4hJtOkSBNqITT3xEgfLpBtzE%2FjiuL04RGEBgwWhShRgQExHBAAh%2BQQJCgAAACwAAAAAIAAgAAAE7xDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfZiCqGk5dTESJeaOAlClzsJsqwiJwiqnFrb2nS9kmIcgEsjQydLiIlHehhpejaIjzh9eomSjZR%2BipslWIRLAgMDOR2DOqKogTB9pCUJBagDBXR6XB0EBkIIsaRsGGMMAxoDBgYHTKJiUYEGDAzHC9EACcUGkIgFzgwZ0QsSBcXHiQvOwgDdEwfFs0sDzt4S6BK4xYjkDOzn0unFeBzOBijIm1Dgmg5YFQwsCMjp1oJ8LyIAACH5BAkKAAAALAAAAAAgACAAAATwEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GGl6NoiPOH16iZKNlH6KmyWFOggHhEEvAwwMA0N9GBsEC6amhnVcEwavDAazGwIDaH1ipaYLBUTCGgQDA8NdHz0FpqgTBwsLqAbWAAnIA4FWKdMLGdYGEgraigbT0OITBcg5QwPT4xLrROZL6AuQAPUS7bxLpoWidY0JtxLHKhwwMJBTHgPKdEQAACH5BAkKAAAALAAAAAAgACAAAATrEMhJaVKp6s2nIkqFZF2VIBWhUsJaTokqUCoBq%2BE71SRQeyqUToLA7VxF0JDyIQh%2FMVVPMt1ECZlfcjZJ9mIKoaTl1MRIl5o4CUKXOwmyrCInCKqcWtvadL2SYhyASyNDJ0uIiUd6GAULDJCRiXo1CpGXDJOUjY%2BYip9DhToJA4RBLwMLCwVDfRgbBAaqqoZ1XBMHswsHtxtFaH1iqaoGNgAIxRpbFAgfPQSqpbgGBqUD1wBXeCYp1AYZ19JJOYgH1KwA4UBvQwXUBxPqVD9L3sbp2BNk2xvvFPJd%2BMFCN6HAAIKgNggY0KtEBAAh%2BQQJCgAAACwAAAAAIAAgAAAE6BDISWlSqerNpyJKhWRdlSAVoVLCWk6JKlAqAavhO9UkUHsqlE6CwO1cRdCQ8iEIfzFVTzLdRAmZX3I2SfYIDMaAFdTESJeaEDAIMxYFqrOUaNW4E4ObYcCXaiBVEgULe0NJaxxtYksjh2NLkZISgDgJhHthkpU4mW6blRiYmZOlh4JWkDqILwUGBnE6TYEbCgevr0N1gH4At7gHiRpFaLNrrq8HNgAJA70AWxQIH1%2BvsYMDAzZQPC9VCNkDWUhGkuE5PxJNwiUK4UfLzOlD4WvzAHaoG9nxPi5d%2BjYUqfAhhykOFwJWiAAAIfkECQoAAAAsAAAAACAAIAAABPAQyElpUqnqzaciSoVkXVUMFaFSwlpOCcMYlErAavhOMnNLNo8KsZsMZItJEIDIFSkLGQoQTNhIsFehRww2CQLKF0tYGKYSg%2BygsZIuNqJksKgbfgIGepNo2cIUB3V1B3IvNiBYNQaDSTtfhhx0CwVPI0UJe0%2Bbm4g5VgcGoqOcnjmjqDSdnhgEoamcsZuXO1aWQy8KAwOAuTYYGwi7w5h%2BKr0SJ8MFihpNbx%2B4Erq7BYBuzsdiH1jCAzoSfl0rVirNbRXlBBlLX%2BBP0XJLAPGzTkAuAOqb0WT5AH7OcdCm5B8TgRwSRKIHQtaLCwg1RAAAOwAAAAAAAAAAAA%3D%3D);visibility:visible;opacity:.6;transition:all .3s ease}.reveal>.overlay header{position:absolute;left:0;top:0;width:100%;padding:5px;z-index:2;box-sizing:border-box}.reveal>.overlay header a{display:inline-block;width:40px;height:40px;line-height:36px;padding:0 10px;float:right;opacity:.6;box-sizing:border-box}.reveal>.overlay header a:hover{opacity:1}.reveal>.overlay header a .icon{display:inline-block;width:20px;height:20px;background-position:50% 50%;background-size:100%;background-repeat:no-repeat}.reveal>.overlay header a.close .icon{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABkklEQVRYR8WX4VHDMAxG6wnoJrABZQPYBCaBTWAD2g1gE5gg6OOsXuxIlr40d81dfrSJ9V4c2VLK7spHuTJ/5wpM07QXuXc5X0opX2tEJcadjHuV80li/FgxTIEK/5QBCICBD6xEhSMGHgQPgBgLiYVAB1dpSqKDawxTohFw4JSEA3clzgIBPCURwE2JucBR7rhPJJv5OpJwDX+SfDjgx1wACQeJG1aChP9K/IMmdZ8DtESV1WyP3Bt4MwM6sj4NMxMYiqUWHQu4KYA/SYkIjOsm3BXYWMKFDwU2khjCQ4ELJUJ4SmClRArOCmSXGuKma0fYD5CbzHxFpCSGAhfAVSSUGDUk2BWZaff2g6GE15BsBQ9nwmpIGDiyHQddwNTMKkbZaf9fajXQca1EX44puJZUsnY0ObGmITE3GVLCbEhQUjGVt146j6oasWN+49Vph2w1pZ5EansNZqKBm1txbU57iRRcZ86RWMDdWtBJUHBHwoQPi1GV+JCbntmvok7iTX4/Up9mgyTc/FJYDTcndgH/AA5A/CHsyEkVAAAAAElFTkSuQmCC)}.reveal>.overlay header a.external .icon{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAcElEQVRYR+2WSQoAIQwEzf8f7XiOMkUQxUPlGkM3hVmiQfQR9GYnH1SsAQlI4DiBqkCMoNb9y2e90IAEJPAcgdznU9+engMaeJ7Azh5Y1U67gAho4DqBqmB1buAf0MB1AlVBek83ZPkmJMGc1wAR+AAqod/B97TRpQAAAABJRU5ErkJggg==)}.reveal>.overlay .viewport{position:absolute;display:flex;top:50px;right:0;bottom:0;left:0}.reveal>.overlay.overlay-preview .viewport iframe{width:100%;height:100%;max-width:100%;max-height:100%;border:0;opacity:0;visibility:hidden;transition:all .3s ease}.reveal>.overlay.overlay-preview.loaded .viewport iframe{opacity:1;visibility:visible}.reveal>.overlay.overlay-preview.loaded .viewport-inner{position:absolute;z-index:-1;left:0;top:45%;width:100%;text-align:center;letter-spacing:normal}.reveal>.overlay.overlay-preview .x-frame-error{opacity:0;transition:opacity .3s ease .3s}.reveal>.overlay.overlay-preview.loaded .x-frame-error{opacity:1}.reveal>.overlay.overlay-preview.loaded .spinner{opacity:0;visibility:hidden;transform:scale(.2)}.reveal>.overlay.overlay-help .viewport{overflow:auto;color:#fff}.reveal>.overlay.overlay-help .viewport .viewport-inner{width:600px;margin:auto;padding:20px 20px 80px 20px;text-align:center;letter-spacing:normal}.reveal>.overlay.overlay-help .viewport .viewport-inner .title{font-size:20px}.reveal>.overlay.overlay-help .viewport .viewport-inner table{border:1px solid #fff;border-collapse:collapse;font-size:16px}.reveal>.overlay.overlay-help .viewport .viewport-inner table td,.reveal>.overlay.overlay-help .viewport .viewport-inner table th{width:200px;padding:14px;border:1px solid #fff;vertical-align:middle}.reveal>.overlay.overlay-help .viewport .viewport-inner table th{padding-top:20px;padding-bottom:20px}.reveal .playback{position:absolute;left:15px;bottom:20px;z-index:30;cursor:pointer;transition:all .4s ease;-webkit-tap-highlight-color:transparent}.reveal.overview .playback{opacity:0;visibility:hidden}.reveal .hljs{min-height:100%}.reveal .hljs table{margin:initial}.reveal .hljs-ln-code,.reveal .hljs-ln-numbers{padding:0;border:0}.reveal .hljs-ln-numbers{opacity:.6;padding-right:.75em;text-align:right;vertical-align:top}.reveal .hljs.has-highlights tr:not(.highlight-line){opacity:.4}.reveal .hljs.has-highlights.fragment{transition:all .2s ease}.reveal .hljs:not(:first-child).fragment{position:absolute;top:0;left:0;width:100%;box-sizing:border-box}.reveal pre[data-auto-animate-target]{overflow:hidden}.reveal pre[data-auto-animate-target] code{height:100%}.reveal .roll{display:inline-block;line-height:1.2;overflow:hidden;vertical-align:top;perspective:400px;perspective-origin:50% 50%}.reveal .roll:hover{background:0 0;text-shadow:none}.reveal .roll span{display:block;position:relative;padding:0 2px;pointer-events:none;transition:all .4s ease;transform-origin:50% 0;transform-style:preserve-3d;backface-visibility:hidden}.reveal .roll:hover span{background:rgba(0,0,0,.5);transform:translate3d(0,0,-45px) rotateX(90deg)}.reveal .roll span:after{content:attr(data-title);display:block;position:absolute;left:0;top:0;padding:0 2px;backface-visibility:hidden;transform-origin:50% 0;transform:translate3d(0,110%,0) rotateX(-90deg)}.reveal aside.notes{display:none}.reveal .speaker-notes{display:none;position:absolute;width:33.3333333333%;height:100%;top:0;left:100%;padding:14px 18px 14px 18px;z-index:1;font-size:18px;line-height:1.4;border:1px solid rgba(0,0,0,.05);color:#222;background-color:#f5f5f5;overflow:auto;box-sizing:border-box;text-align:left;font-family:Helvetica,sans-serif;-webkit-overflow-scrolling:touch}.reveal .speaker-notes .notes-placeholder{color:#ccc;font-style:italic}.reveal .speaker-notes:focus{outline:0}.reveal .speaker-notes:before{content:"Speaker notes";display:block;margin-bottom:10px;opacity:.5}.reveal.show-notes{max-width:75%;overflow:visible}.reveal.show-notes .speaker-notes{display:block}@media screen and (min-width:1600px){.reveal .speaker-notes{font-size:20px}}@media screen and (max-width:1024px){.reveal.show-notes{border-left:0;max-width:none;max-height:70%;max-height:70vh;overflow:visible}.reveal.show-notes .speaker-notes{top:100%;left:0;width:100%;height:30vh;border:0}}@media screen and (max-width:600px){.reveal.show-notes{max-height:60%;max-height:60vh}.reveal.show-notes .speaker-notes{top:100%;height:40vh}.reveal .speaker-notes{font-size:14px}}.reveal .jump-to-slide{position:absolute;top:15px;left:15px;z-index:30;font-size:32px;-webkit-tap-highlight-color:transparent}.reveal .jump-to-slide-input{background:0 0;padding:8px;font-size:inherit;color:currentColor;border:0}.reveal .jump-to-slide-input::placeholder{color:currentColor;opacity:.5}.reveal.has-dark-background .jump-to-slide-input{color:#fff}.reveal.has-light-background .jump-to-slide-input{color:#222}.reveal .jump-to-slide-input:focus{outline:0}.zoomed .reveal *,.zoomed .reveal :after,.zoomed .reveal :before{backface-visibility:visible!important}.zoomed .reveal .controls,.zoomed .reveal .progress{opacity:0}.zoomed .reveal .roll span{background:0 0}.zoomed .reveal .roll span:after{visibility:hidden}html.print-pdf *{-webkit-print-color-adjust:exact}html.print-pdf{width:100%;height:100%;overflow:visible}html.print-pdf body{margin:0 auto!important;border:0;padding:0;float:none!important;overflow:visible}html.print-pdf .nestedarrow,html.print-pdf .reveal .controls,html.print-pdf .reveal .playback,html.print-pdf .reveal .progress,html.print-pdf .reveal.overview,html.print-pdf .state-background{display:none!important}html.print-pdf .reveal pre code{overflow:hidden!important}html.print-pdf .reveal{width:auto!important;height:auto!important;overflow:hidden!important}html.print-pdf .reveal .slides{position:static;width:100%!important;height:auto!important;zoom:1!important;pointer-events:initial;left:auto;top:auto;margin:0!important;padding:0!important;overflow:visible;display:block;perspective:none;perspective-origin:50% 50%}html.print-pdf .reveal .slides .pdf-page{position:relative;overflow:hidden;z-index:1;page-break-after:always}html.print-pdf .reveal .slides section{visibility:visible!important;display:block!important;position:absolute!important;margin:0!important;padding:0!important;box-sizing:border-box!important;min-height:1px;opacity:1!important;transform-style:flat!important;transform:none!important}html.print-pdf .reveal section.stack{position:relative!important;margin:0!important;padding:0!important;page-break-after:avoid!important;height:auto!important;min-height:auto!important}html.print-pdf .reveal img{box-shadow:none}html.print-pdf .reveal .backgrounds{display:none}html.print-pdf .reveal .slide-background{display:block!important;position:absolute;top:0;left:0;width:100%;height:100%;z-index:auto!important}html.print-pdf .reveal.show-notes{max-width:none;max-height:none}html.print-pdf .reveal .speaker-notes-pdf{display:block;width:100%;height:auto;max-height:none;top:auto;right:auto;bottom:auto;left:auto;z-index:100}html.print-pdf .reveal .speaker-notes-pdf[data-layout=separate-page]{position:relative;color:inherit;background-color:transparent;padding:20px;page-break-after:always;border:0}html.print-pdf .reveal .slide-number-pdf{display:block;position:absolute;font-size:14px}html.print-pdf .aria-status{display:none}@media print{html:not(.print-pdf){overflow:visible;width:auto;height:auto}html:not(.print-pdf) body{margin:0;padding:0;overflow:visible}html:not(.print-pdf) .reveal{background:#fff;font-size:20pt}html:not(.print-pdf) .reveal .backgrounds,html:not(.print-pdf) .reveal .controls,html:not(.print-pdf) .reveal .progress,html:not(.print-pdf) .reveal .slide-number,html:not(.print-pdf) .reveal .state-background{display:none!important}html:not(.print-pdf) .reveal li,html:not(.print-pdf) .reveal p,html:not(.print-pdf) .reveal td{font-size:20pt!important;color:#000}html:not(.print-pdf) .reveal h1,html:not(.print-pdf) .reveal h2,html:not(.print-pdf) .reveal h3,html:not(.print-pdf) .reveal h4,html:not(.print-pdf) .reveal h5,html:not(.print-pdf) .reveal h6{color:#000!important;height:auto;line-height:normal;text-align:left;letter-spacing:normal}html:not(.print-pdf) .reveal h1{font-size:28pt!important}html:not(.print-pdf) .reveal h2{font-size:24pt!important}html:not(.print-pdf) .reveal h3{font-size:22pt!important}html:not(.print-pdf) .reveal h4{font-size:22pt!important;font-variant:small-caps}html:not(.print-pdf) .reveal h5{font-size:21pt!important}html:not(.print-pdf) .reveal h6{font-size:20pt!important;font-style:italic}html:not(.print-pdf) .reveal a:link,html:not(.print-pdf) .reveal a:visited{color:#000!important;font-weight:700;text-decoration:underline}html:not(.print-pdf) .reveal div,html:not(.print-pdf) .reveal ol,html:not(.print-pdf) .reveal p,html:not(.print-pdf) .reveal ul{visibility:visible;position:static;width:auto;height:auto;display:block;overflow:visible;margin:0;text-align:left!important}html:not(.print-pdf) .reveal pre,html:not(.print-pdf) .reveal table{margin-left:0;margin-right:0}html:not(.print-pdf) .reveal pre code{padding:20px}html:not(.print-pdf) .reveal blockquote{margin:20px 0}html:not(.print-pdf) .reveal .slides{position:static!important;width:auto!important;height:auto!important;left:0!important;top:0!important;margin-left:0!important;margin-top:0!important;padding:0!important;zoom:1!important;transform:none!important;overflow:visible!important;display:block!important;text-align:left!important;perspective:none;perspective-origin:50% 50%}html:not(.print-pdf) .reveal .slides section{visibility:visible!important;position:static!important;width:auto!important;height:auto!important;display:block!important;overflow:visible!important;left:0!important;top:0!important;margin-left:0!important;margin-top:0!important;padding:60px 20px!important;z-index:auto!important;opacity:1!important;page-break-after:always!important;transform-style:flat!important;transform:none!important;transition:none!important}html:not(.print-pdf) .reveal .slides section.stack{padding:0!important}html:not(.print-pdf) .reveal .slides section:last-of-type{page-break-after:avoid!important}html:not(.print-pdf) .reveal .slides section .fragment{opacity:1!important;visibility:visible!important;transform:none!important}html:not(.print-pdf) .reveal .r-fit-text{white-space:normal!important}html:not(.print-pdf) .reveal section img{display:block;margin:15px 0;background:#fff;border:1px solid #666;box-shadow:none}html:not(.print-pdf) .reveal section small{font-size:.8em}html:not(.print-pdf) .reveal .hljs{max-height:100%;white-space:pre-wrap;word-wrap:break-word;word-break:break-word;font-size:15pt}html:not(.print-pdf) .reveal .hljs .hljs-ln-numbers{white-space:nowrap}html:not(.print-pdf) .reveal .hljs td{font-size:inherit!important;color:inherit!important}}
+@font-face{font-family:'Source Sans Pro';src:url(fonts/source-sans-pro/source-sans-pro-regular.eot);src:url(fonts/source-sans-pro/source-sans-pro-regular.eot?#iefix) format('embedded-opentype'),url(fonts/source-sans-pro/source-sans-pro-regular.woff) format('woff'),url(fonts/source-sans-pro/source-sans-pro-regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:'Source Sans Pro';src:url(fonts/source-sans-pro/source-sans-pro-italic.eot);src:url(fonts/source-sans-pro/source-sans-pro-italic.eot?#iefix) format('embedded-opentype'),url(fonts/source-sans-pro/source-sans-pro-italic.woff) format('woff'),url(fonts/source-sans-pro/source-sans-pro-italic.ttf) format('truetype');font-weight:400;font-style:italic}@font-face{font-family:'Source Sans Pro';src:url(fonts/source-sans-pro/source-sans-pro-semibold.eot);src:url(fonts/source-sans-pro/source-sans-pro-semibold.eot?#iefix) format('embedded-opentype'),url(fonts/source-sans-pro/source-sans-pro-semibold.woff) format('woff'),url(fonts/source-sans-pro/source-sans-pro-semibold.ttf) format('truetype');font-weight:600;font-style:normal}@font-face{font-family:'Source Sans Pro';src:url(fonts/source-sans-pro/source-sans-pro-semibolditalic.eot);src:url(fonts/source-sans-pro/source-sans-pro-semibolditalic.eot?#iefix) format('embedded-opentype'),url(fonts/source-sans-pro/source-sans-pro-semibolditalic.woff) format('woff'),url(fonts/source-sans-pro/source-sans-pro-semibolditalic.ttf) format('truetype');font-weight:600;font-style:italic}section.has-light-background,section.has-light-background h1,section.has-light-background h2,section.has-light-background h3,section.has-light-background h4,section.has-light-background h5,section.has-light-background h6{color:#222}:root{--r-background-color:#191919;--r-main-font:Source Sans Pro,Helvetica,sans-serif;--r-main-font-size:42px;--r-main-color:#fff;--r-block-margin:20px;--r-heading-margin:0 0 20px 0;--r-heading-font:Source Sans Pro,Helvetica,sans-serif;--r-heading-color:#fff;--r-heading-line-height:1.2;--r-heading-letter-spacing:normal;--r-heading-text-transform:uppercase;--r-heading-text-shadow:none;--r-heading-font-weight:600;--r-heading1-text-shadow:none;--r-heading1-size:2.5em;--r-heading2-size:1.6em;--r-heading3-size:1.3em;--r-heading4-size:1em;--r-code-font:monospace;--r-link-color:#42affa;--r-link-color-dark:#068de9;--r-link-color-hover:#8dcffc;--r-selection-background-color:rgba(66, 175, 250, 0.75);--r-selection-color:#fff}.reveal-viewport{background:#191919;background-color:var(--r-background-color)}.reveal{font-family:var(--r-main-font);font-size:var(--r-main-font-size);font-weight:400;color:var(--r-main-color)}.reveal ::selection{color:var(--r-selection-color);background:var(--r-selection-background-color);text-shadow:none}.reveal ::-moz-selection{color:var(--r-selection-color);background:var(--r-selection-background-color);text-shadow:none}.reveal .slides section,.reveal .slides section>section{line-height:1.3;font-weight:inherit}.reveal h1,.reveal h2,.reveal h3,.reveal h4,.reveal h5,.reveal h6{margin:var(--r-heading-margin);color:var(--r-heading-color);font-family:var(--r-heading-font);font-weight:var(--r-heading-font-weight);line-height:var(--r-heading-line-height);letter-spacing:var(--r-heading-letter-spacing);text-transform:var(--r-heading-text-transform);text-shadow:var(--r-heading-text-shadow);word-wrap:break-word}.reveal h1{font-size:var(--r-heading1-size)}.reveal h2{font-size:var(--r-heading2-size)}.reveal h3{font-size:var(--r-heading3-size)}.reveal h4{font-size:var(--r-heading4-size)}.reveal h1{text-shadow:var(--r-heading1-text-shadow)}.reveal p{margin:var(--r-block-margin) 0;line-height:1.3}.reveal h1:last-child,.reveal h2:last-child,.reveal h3:last-child,.reveal h4:last-child,.reveal h5:last-child,.reveal h6:last-child{margin-bottom:0}.reveal iframe,.reveal img,.reveal video{max-width:95%;max-height:95%}.reveal b,.reveal strong{font-weight:700}.reveal em{font-style:italic}.reveal dl,.reveal ol,.reveal ul{display:inline-block;text-align:left;margin:0 0 0 1em}.reveal ol{list-style-type:decimal}.reveal ul{list-style-type:disc}.reveal ul ul{list-style-type:square}.reveal ul ul ul{list-style-type:circle}.reveal ol ol,.reveal ol ul,.reveal ul ol,.reveal ul ul{display:block;margin-left:40px}.reveal dt{font-weight:700}.reveal dd{margin-left:40px}.reveal blockquote{display:block;position:relative;width:70%;margin:var(--r-block-margin) auto;padding:5px;font-style:italic;background:rgba(255,255,255,.05);box-shadow:0 0 2px rgba(0,0,0,.2)}.reveal blockquote p:first-child,.reveal blockquote p:last-child{display:inline-block}.reveal q{font-style:italic}.reveal pre{display:block;position:relative;width:90%;margin:var(--r-block-margin) auto;text-align:left;font-size:.55em;font-family:var(--r-code-font);line-height:1.2em;word-wrap:break-word;box-shadow:0 5px 15px rgba(0,0,0,.15)}.reveal code{font-family:var(--r-code-font);text-transform:none;tab-size:2}.reveal pre code{display:block;padding:5px;overflow:auto;max-height:400px;word-wrap:normal}.reveal .code-wrapper{white-space:normal}.reveal .code-wrapper code{white-space:pre}.reveal table{margin:auto;border-collapse:collapse;border-spacing:0}.reveal table th{font-weight:700}.reveal table td,.reveal table th{text-align:left;padding:.2em .5em .2em .5em;border-bottom:1px solid}.reveal table td[align=center],.reveal table th[align=center]{text-align:center}.reveal table td[align=right],.reveal table th[align=right]{text-align:right}.reveal table tbody tr:last-child td,.reveal table tbody tr:last-child th{border-bottom:none}.reveal sup{vertical-align:super;font-size:smaller}.reveal sub{vertical-align:sub;font-size:smaller}.reveal small{display:inline-block;font-size:.6em;line-height:1.2em;vertical-align:top}.reveal small *{vertical-align:top}.reveal img{margin:var(--r-block-margin) 0}.reveal a{color:var(--r-link-color);text-decoration:none;transition:color .15s ease}.reveal a:hover{color:var(--r-link-color-hover);text-shadow:none;border:none}.reveal .roll span:after{color:#fff;background:var(--r-link-color-dark)}.reveal .r-frame{border:4px solid var(--r-main-color);box-shadow:0 0 10px rgba(0,0,0,.15)}.reveal a .r-frame{transition:all .15s linear}.reveal a:hover .r-frame{border-color:var(--r-link-color);box-shadow:0 0 20px rgba(0,0,0,.55)}.reveal .controls{color:var(--r-link-color)}.reveal .progress{background:rgba(0,0,0,.2);color:var(--r-link-color)}@media print{.backgrounds{background-color:var(--r-background-color)}}
+
+:root{
+  --blue:#6ba3d6;--yellow:#e8c94a;--red:#d66b6b;
 }
 .reveal{font-family:'Syne',sans-serif;font-size:22px;color:var(--cream)}
 .reveal h1,.reveal h2,.reveal h3{font-family:'Instrument Serif',serif;font-weight:400;text-transform:none;letter-spacing:-.02em}
 .reveal h1{font-size:2.6em;line-height:1.1}
 .reveal h2{font-size:1.8em;line-height:1.15}
 .reveal h3{font-size:1.3em}
-
-
-/* ========== Base & Typography ========== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
-  background: var(--dark);
-  color: var(--cream);
-  font-family: 'Syne', sans-serif;
-  overflow: hidden;
-}
-
-body { position: relative; }
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Instrument Serif', serif;
-  font-weight: normal;
-  line-height: 1.2;
-}
-
-h1 { font-size: 3.2rem; }
-h2 { font-size: 2.4rem; }
-h3 { font-size: 1.8rem; }
-h4 { font-size: 1.4rem; }
-p { font-size: 1.1rem; line-height: 1.6; }
-strong { font-weight: 600; color: var(--accent); }
-
-/* ========== Reveal Base Overrides ========== */
-.reveal {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Syne', sans-serif;
-  background: var(--dark);
-}
-
-.reveal .slides {
-  width: 100%;
-  height: 100%;
-}
-
-.reveal .slide {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--dark-2) 0%, var(--dark-3) 50%, var(--dark-2) 100%);
-  padding: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  position: relative;
-  overflow: hidden;
-}
-
-.reveal .slide::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.015) 0px,
-      rgba(255, 255, 255, 0.015) 1px,
-      transparent 1px,
-      transparent 2px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.008) 0px,
-      rgba(255, 255, 255, 0.008) 1px,
-      transparent 1px,
-      transparent 2px
-    );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.reveal .slide > * {
-  position: relative;
-  z-index: 2;
-}
-
-.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
-  color: var(--cream);
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.reveal p, .reveal li {
-  color: var(--cream-dim);
-}
-
-.reveal a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.reveal a:hover {
-  color: var(--cream);
-}
-
-/* ========== Section Labels ========== */
-.section-label {
-  display: inline-block;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.5rem;
-  padding: 0.4rem 0.8rem;
-  border: 1px solid var(--cream-ghost);
-  border-radius: 2px;
-}
-
-/* ========== Cover Slide ========== */
-.slide-cover {
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 4rem;
-}
-
-.cover-header {
-  width: 100%;
-}
-
-.cover-header h1 {
-  font-size: 3.8rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-
-.cover-meta {
-  display: flex;
-  gap: 2rem;
-  margin-top: 1.5rem;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.9rem;
-  color: var(--cream-dim);
-}
-
-.cover-meta span {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.cover-meta .label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--accent);
-}
-
-.cover-metrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 3rem;
-  width: 100%;
-}
-
-.metric-card {
-  border-left: 3px solid var(--accent);
-  padding-left: 1rem;
-}
-
-.metric-value {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--accent);
-  font-family: 'Space Mono', monospace;
-}
-
-.metric-label {
-  font-size: 0.95rem;
-  color: var(--cream-dim);
-  margin-top: 0.3rem;
-}
-
-/* ========== Chat Bubble ========== */
-.chat-bubble {
-  background: var(--dark-4);
-  border: 1px solid var(--cream-faint);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  position: relative;
-  max-width: 80%;
-}
-
-.chat-bubble.developer {
-  margin-left: auto;
-  margin-right: 0;
-  background: var(--dark-3);
-  border-color: var(--blue);
-  border-left: 3px solid var(--blue);
-}
-
-.chat-bubble.designer {
-  margin-left: 0;
-  margin-right: auto;
-  background: var(--dark-3);
-  border-color: var(--accent);
-  border-left: 3px solid var(--accent);
-}
-
-.chat-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--blue);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.chat-bubble.designer .chat-label {
-  color: var(--accent);
-}
-
-.chat-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--cream);
-  font-style: italic;
-}
-
-/* ========== Pain Points ========== */
-.pain-points {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.pain-point {
-  border: 1px solid var(--cream-faint);
-  padding: 1.5rem;
-  background: var(--dark-4);
-  border-radius: 4px;
-  position: relative;
-  padding-left: 2.5rem;
-}
-
-.pain-point::before {
-  content: '⚠';
-  position: absolute;
-  left: 1rem;
-  top: 1.2rem;
-  font-size: 1.5rem;
-  color: var(--red);
-}
-
-.pain-point h4 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--cream);
-}
-
-.pain-point p {
-  font-size: 0.95rem;
-  color: var(--cream-dim);
-}
-
-/* ========== Insight Card / Popup ========== */
-.insight-badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: var(--dark-4);
-  border: 1px solid var(--cream-faint);
-  border-radius: 20px;
-  font-size: 0.85rem;
-  color: var(--cream);
-  cursor: pointer;
-  transition: all 0.3s;
-  font-family: 'Space Mono', monospace;
-  margin: 0.5rem 0.5rem 0.5rem 0;
-}
-
-.insight-badge:hover {
-  background: var(--dark-3);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.insight-badge.business {
-  border-color: var(--yellow);
-}
-
-.insight-badge.business:hover {
-  color: var(--yellow);
-}
-
-.insight-badge.ux {
-  border-color: var(--blue);
-}
-
-.insight-badge.ux:hover {
-  color: var(--blue);
-}
-
-/* ========== Popup System (sticky note style) ========== */
-.popup-backdrop{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s ease}
-.popup-backdrop.active{opacity:1;pointer-events:auto}
-
-.popup-overlay{position:fixed;top:16px;right:16px;z-index:9999;width:260px;pointer-events:none}
-
-.popup-card{width:100%;pointer-events:auto;padding:1.4em 1.4em 1.2em;text-align:left;line-height:1.55;opacity:0;transform:translateY(-10px);transition:opacity .35s ease,transform .35s ease;display:none;position:relative;overflow-y:auto;max-height:calc(100vh - 40px);-webkit-overflow-scrolling:touch;touch-action:pan-y}
-.popup-card.active{display:block;opacity:1;transform:translateY(0)}
-
-.popup-card.biz{background:#fef9e7;color:#2c2c2c;box-shadow:3px 3px 0 rgba(0,0,0,.08),1px 1px 8px rgba(0,0,0,.12);transform-origin:top right}
-.popup-card.ux{background:#eaf4fd;color:#2c2c2c;box-shadow:3px 3px 0 rgba(0,0,0,.08),1px 1px 8px rgba(0,0,0,.12);transform-origin:top right}
-
-.popup-card::before{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%) rotate(-1deg);width:54px;height:16px;background:rgba(255,255,255,.5);border:1px solid rgba(0,0,0,.06);border-radius:2px}
-
-.popup-tag{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.7em;display:flex;align-items:center;gap:.5em}
-.popup-tag.biz{color:#b8860b}
-.popup-tag.ux{color:#2a6db5}
-.popup-tag svg{width:15px;height:15px}
-
-.popup-title{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;color:#111;margin-bottom:.5em;line-height:1.3}
-.popup-desc{font-family:'Syne',sans-serif;font-size:15px;color:#333;line-height:1.7}
-.popup-desc strong{color:#000}
-.popup-foot{margin-top:.8em;font-family:'Space Mono',monospace;font-size:9px;color:#888;font-style:italic;border-top:1px dashed rgba(0,0,0,.12);padding-top:.6em}
-
-/* ========== Metrics Table ========== */
-.metrics-table {
-  width: 100%;
-  margin-top: 1.5rem;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-.metrics-table th {
-  background: var(--dark-4);
-  padding: 0.8rem;
-  text-align: left;
-  border-bottom: 2px solid var(--cream-faint);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--accent);
-}
-
-.metrics-table td {
-  padding: 1rem 0.8rem;
-  border-bottom: 1px solid var(--cream-ghost);
-}
-
-.metrics-table tr:last-child td {
-  border-bottom: none;
-}
-
-.metrics-table .metric-before {
-  color: var(--red);
-}
-
-.metrics-table .metric-after {
-  color: var(--green);
-}
-
-/* ========== Step Grid ========== */
-.step-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.step-item {
-  background: var(--dark-4);
-  border: 1px solid var(--cream-faint);
-  padding: 1.5rem;
-  border-radius: 4px;
-  position: relative;
-}
-
-.step-number {
-  font-family: 'Space Mono', monospace;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-}
-
-.step-title {
-  font-size: 1.1rem;
-  margin-bottom: 0.8rem;
-  color: var(--cream);
-}
-
-.step-description {
-  font-size: 0.95rem;
-  color: var(--cream-dim);
-  line-height: 1.5;
-}
-
-/* ========== Tool Tags ========== */
-.tool-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 1.5rem;
-}
-
-.tool-tag {
-  background: var(--dark-4);
-  border: 1px solid var(--cream-ghost);
-  padding: 0.4rem 0.8rem;
-  border-radius: 3px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-  color: var(--cream-dim);
-  transition: all 0.3s;
-}
-
-.tool-tag:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* ========== Narration Block ========== */
-.narration {
-  background: var(--dark-4);
-  border-left: 3px solid var(--accent);
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--cream-dim);
-  font-style: italic;
-}
-
-.narration strong {
-  color: var(--cream);
-}
-
-/* ========== Impact Story Block ========== */
-.impact-story {
-  background: linear-gradient(135deg, var(--dark-3) 0%, var(--dark-4) 100%);
-  border: 1px solid var(--cream-faint);
-  padding: 2rem;
-  border-radius: 4px;
-  margin: 1.5rem 0;
-}
-
-.impact-story h3 {
-  margin-bottom: 1rem;
-  color: var(--accent);
-}
-
-.impact-story p {
-  line-height: 1.7;
-  margin-bottom: 1rem;
-}
-
-.impact-story p:last-child {
-  margin-bottom: 0;
-}
-
-/* ========== Results Block ========== */
-.results-section {
-  margin-top: 2rem;
-}
-
-.result-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: var(--dark-4);
-  border-radius: 4px;
-  border-left: 3px solid var(--green);
-}
-
-.result-icon {
-  font-size: 1.8rem;
-  margin-top: 0.2rem;
-}
-
-.result-content h4 {
-  margin-bottom: 0.3rem;
-}
-
-.result-content p {
-  font-size: 0.95rem;
-  color: var(--cream-dim);
-}
-
-/* ========== Lessons Learned ========== */
-.lessons-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.lesson-card {
-  background: var(--dark-4);
-  border: 1px solid var(--cream-faint);
-  padding: 1.5rem;
-  border-radius: 4px;
-}
-
-.lesson-card h4 {
-  color: var(--accent);
-  margin-bottom: 0.8rem;
-}
-
-.lesson-card p {
-  font-size: 0.95rem;
-  color: var(--cream-dim);
-  line-height: 1.6;
-}
-
-/* ========== Links Grid (End Slide) ========== */
-.links-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.link-card {
-  background: var(--dark-4);
-  border: 1px solid var(--cream-faint);
-  padding: 1.5rem;
-  border-radius: 4px;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.link-card:hover {
-  background: var(--dark-3);
-  border-color: var(--accent);
-}
-
-.link-card a {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  text-decoration: none;
-}
-
-.link-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: 1.1rem;
-  color: var(--cream);
-}
-
-.link-subtitle {
-  font-size: 0.85rem;
-  color: var(--cream-dim);
-  font-family: 'Space Mono', monospace;
-}
-
-/* ========== Back Link ========== */
-.back-link {
-  position: fixed;
-  top: 2rem;
-  left: 2rem;
-  z-index: 50;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.9rem;
-  color: var(--cream-dim);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.back-link:hover {
-  color: var(--accent);
-}
-
-/* ========== Navigation Hints ========== */
-.nav-hint {
-  position: fixed;
-  bottom: 2rem;
-  width: 40px;
-  height: 40px;
-  background: var(--dark-3);
-  border: 1px solid var(--cream-faint);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s;
-  z-index: 30;
-}
-
-.nav-hint:hover {
-  background: var(--dark-2);
-  border-color: var(--accent);
-}
-
-.nav-hint svg {
-  width: 20px;
-  height: 20px;
-  stroke: var(--cream-dim);
-  stroke-width: 2;
-  fill: none;
-  transition: stroke 0.3s;
-}
-
-.nav-hint:hover svg {
-  stroke: var(--accent);
-}
-
-.nav-hint.left {
-  left: 2rem;
-}
-
-.nav-hint.right {
-  right: 2rem;
-}
-
-/* ========== Utilities ========== */
-.text-center { text-align: center; }
-.text-accent { color: var(--accent); }
-.text-blue { color: var(--blue); }
-.text-yellow { color: var(--yellow); }
-.text-red { color: var(--red); }
-.text-green { color: var(--green); }
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
-.mt-3 { margin-top: 3rem; }
-.mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; }
-.mb-3 { margin-bottom: 3rem; }
-.gap-1 { gap: 1rem; }
-.gap-2 { gap: 2rem; }
-.w-full { width: 100%; }
-.h-full { height: 100%; }
-
-/* ========== Reveal Overrides ========== */
-.reveal .progress bar {
-  background: var(--accent);
-}
-
-.reveal .controls {
-  bottom: auto;
-  right: auto;
-  left: auto;
-  top: auto;
-}
-
-.reveal .slide-number {
-  background: transparent;
-  color: var(--cream-dim);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-}
-
-/* ========== Fragment Transitions ========== */
-.fragment {
-  opacity: 0.3;
-  transition: opacity 0.5s;
-}
-
-.fragment.visible {
-  opacity: 1;
-}
-
-/* ========== Architecture Diagram (Text) ========== */
-.architecture-block {
-  background: var(--dark-4);
-  border: 1px solid var(--cream-faint);
-  padding: 1rem;
-  border-radius: 4px;
-  margin: 0.7rem 0;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.9rem;
-  color: var(--cream-dim);
-}
-
-.architecture-block strong {
-  color: var(--accent);
-  display: block;
-  margin-bottom: 0.4rem;
-}
-
-.architecture-hierarchy {
-  margin-left: 1.5rem;
-  font-size: 0.85rem;
-  color: var(--cream-dim);
-  border-left: 2px solid var(--cream-faint);
-  padding-left: 1rem;
-  margin-top: 0.5rem;
-}
-
-.arrow-down {
-  color: var(--accent);
-  font-weight: bold;
-  text-align: center;
-  margin: 0.5rem 0;
-}
+.reveal .mono{font-family:'Space Mono',monospace;font-size:.7em;letter-spacing:.06em;text-transform:uppercase}
 body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px 128px}
-
+.chat-row{display:flex;align-items:flex-start;gap:1.2em;max-width:600px;margin:0 auto}
+.chat-row.centered{justify-content:center}
+.avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5em;flex-shrink:0;border:2px solid var(--cream-faint);background:var(--dark-3)}
+.avatar-name{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.3em;text-align:center}
+.bubble{background:white;color:#1a1a1a;border-radius:20px 20px 20px 4px;padding:.9em 1.3em;max-width:460px;font-size:1em;line-height:1.55;text-align:left;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.bubble.solo{border-radius:20px;margin:0 auto;text-align:center}
+.bubble .hl{color:var(--accent);font-weight:700}
+.bubble .hlg{color:var(--green);font-weight:700}
+.narration{background:rgba(255,248,220,.08);border:1.5px solid rgba(232,217,140,.2);color:var(--cream);border-radius:8px;padding:.7em 1.2em;max-width:500px;font-size:.9em;line-height:1.5;margin:0 auto;text-align:center}
+.insight{background:var(--dark-3);border:1.5px solid var(--accent);border-radius:14px;padding:1.1em 1.5em;max-width:500px;margin:0 auto;text-align:left}
+.insight .tag{font-family:'Space Mono',monospace;font-size:.5em;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.4em;display:flex;align-items:center;gap:.4em}
+.insight .title{font-family:'Instrument Serif',serif;font-size:1.15em;color:var(--accent);margin-bottom:.3em;font-style:italic}
+.insight .desc{font-size:.8em;line-height:1.6;color:var(--cream-dim)}
+.metric-row{display:flex;gap:1em;justify-content:center;flex-wrap:wrap;margin:1em 0}
+.metric{background:var(--dark-3);border:1.5px solid var(--cream-faint);border-radius:12px;padding:1em 1.5em;text-align:center}
+.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:var(--accent);line-height:1}
+.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.4em}
+.annotated-ui{position:relative;display:inline-block;margin:0 auto}
+.annotated-ui img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.4);display:block}
+.marker{position:absolute;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:white;pointer-events:none;z-index:2;transform:translate(-50%,-50%)}
+.marker.red{background:var(--red);box-shadow:0 0 0 3px rgba(214,107,107,.35);animation:pulse-r 2s infinite}
+.marker.green{background:var(--green);box-shadow:0 0 0 3px rgba(126,184,126,.35);animation:pulse-g 2s infinite}
+@keyframes pulse-r{0%,100%{box-shadow:0 0 0 3px rgba(214,107,107,.35)}50%{box-shadow:0 0 0 8px rgba(214,107,107,0)}}
+@keyframes pulse-g{0%,100%{box-shadow:0 0 0 3px rgba(126,184,126,.35)}50%{box-shadow:0 0 0 8px rgba(126,184,126,0)}}
+.legend{display:flex;flex-wrap:wrap;gap:.5em .8em;justify-content:center;margin-top:.7em;max-width:580px;margin-left:auto;margin-right:auto}
+.legend-item{display:flex;align-items:center;gap:.4em;font-family:'Space Mono',monospace;font-size:.55em;color:var(--cream-dim)}
+.legend-num{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white;flex-shrink:0}
+.legend-num.red{background:var(--red)}
+.legend-num.green{background:var(--green)}
+.legend-text{line-height:1.3}
+.placeholder-ui{width:100%;height:260px;border:2px dashed var(--cream-faint);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.08em}
+.expand-btn{position:absolute;top:8px;right:8px;z-index:3;width:32px;height:32px;border-radius:8px;background:rgba(10,10,10,.7);backdrop-filter:blur(4px);border:1px solid var(--cream-faint);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--cream-dim);transition:all .2s ease}
+.expand-btn:hover{background:var(--accent);color:white;border-color:var(--accent)}
+.expand-btn svg{width:16px;height:16px}
+.ui-fullscreen{position:fixed;inset:0;z-index:10000;background:rgba(10,10,10,.95);backdrop-filter:blur(12px);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.ui-fullscreen.active{opacity:1;pointer-events:auto}
+.ui-fullscreen img{max-width:92vw;max-height:82vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.ui-fullscreen .close-hint{margin-top:1em;font-family:'Space Mono',monospace;font-size:.6em;color:var(--cream-dim);letter-spacing:.1em;text-transform:uppercase}
+.media-placeholder{width:100%;aspect-ratio:16/9;background:rgba(255,255,255,.04);border:1px solid rgba(240,230,211,.12);border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5em;color:var(--cream-dim);font-family:'Space Mono',monospace;font-size:.55em;text-transform:uppercase;letter-spacing:.08em}
+.media-placeholder svg{width:32px;height:32px;opacity:.3;stroke:var(--cream-dim);fill:none;stroke-width:1.5}
+.pain{background:var(--dark-3);border-left:3px solid var(--red);border-radius:0 10px 10px 0;padding:.7em 1em;margin-bottom:.6em;text-align:left;max-width:500px}
+.pain .pain-title{font-weight:700;color:var(--cream);font-size:.85em;margin-bottom:.2em}
+.pain .pain-desc{font-size:.72em;color:var(--cream-dim);line-height:1.5}
+/* Before/After comparison */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6em;max-width:600px;margin:0 auto}
+.ba-col{display:flex;flex-direction:column;gap:.35em}
+.ba-col-head{font-family:'Space Mono',monospace;font-size:.5em;text-transform:uppercase;letter-spacing:.1em;padding:.45em .7em;text-align:center;font-weight:700}
+.ba-col-head.before{color:var(--cream)}
+.ba-col-head.after{color:var(--green)}
+.ba-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.55em .7em;text-align:left;flex:1;display:flex;flex-direction:column;justify-content:center}
+.ba-card .ba-label{font-family:'Space Mono',monospace;font-size:.38em;text-transform:uppercase;letter-spacing:.06em;color:var(--cream-dim);margin-bottom:.15em}
+.ba-card .ba-val{font-size:.6em;line-height:1.35;color:var(--cream)}
+.ba-col.after .ba-card{background:rgba(126,184,126,.08);border-color:rgba(126,184,126,.15)}
+.ba-col.after .ba-val{color:var(--green);font-weight:600}
+.step-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8em;max-width:520px;margin:0 auto}
+.step-box{background:var(--dark-3);border-radius:10px;padding:.8em 1em;border-left:3px solid var(--accent);text-align:left}
+.step-box .step-num{font-family:'Space Mono',monospace;font-size:.5em;color:var(--accent);text-transform:uppercase;letter-spacing:.1em}
+.step-box p{font-size:.78em;color:var(--cream-dim);line-height:1.5;margin:.3em 0 0}
+.step-box strong{color:var(--cream)}
+.tools-row{display:flex;gap:.5em;flex-wrap:wrap;justify-content:center;margin:.8em 0}
+.tool-tag{font-family:'Space Mono',monospace;font-size:.5em;text-transform:uppercase;letter-spacing:.06em;padding:.4em .9em;border-radius:16px;border:1px solid var(--cream-faint);color:var(--cream-dim)}
+.section-label{font-family:'Space Mono',monospace;font-size:.55em;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin-bottom:.5em;display:block}
+.back-link{position:fixed;top:20px;left:20px;z-index:100;font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--cream-dim);text-decoration:none;padding:16px 32px;border:1px solid var(--cream-faint);border-radius:8px;background:rgba(10,10,10,.9);backdrop-filter:blur(10px);transition:all .3s ease;display:inline-flex;align-items:center}@media(max-width:768px){.back-link{top:10px!important;left:10px!important;font-size:14px!important;padding:16px 32px!important;border-radius:10px!important;min-height:48px!important;letter-spacing:.08em!important}}
+.back-link:hover{color:var(--accent);border-color:var(--accent)}
+.reveal .slide-number{font-family:'Space Mono',monospace;font-size:10px;color:var(--cream-dim);background:none}
+.reveal .progress{height:3px;background:var(--dark-3)}
+.reveal .progress span{background:var(--accent);transition:width .6s ease}
 .reveal section .bubble.solo{margin-bottom:0}
 .reveal section h2{margin-top:.6em}
 .reveal section h3{margin-top:.4em}
 .reveal section .narration{margin-bottom:1.2em}
 .reveal section .insight{margin-top:.5em}
 .reveal section .step-grid{margin-top:.5em}
-
-/* ========== Standard Case Study Components (matching retail/dashboard) ========== */
-
-/* Chat Bubbles (standard) */
-.chat-row { display:flex; align-items:flex-start; gap:1em; }
-.chat-row.centered { justify-content:center; }
-.avatar { width:48px; height:48px; border-radius:50%; background:var(--dark-3); border:2px solid var(--cream-faint); display:flex; align-items:center; justify-content:center; font-size:1.4em; margin:0 auto; }
-.avatar-name { font-family:'Space Mono',monospace; font-size:0.45em; text-transform:uppercase; letter-spacing:0.1em; color:var(--cream-dim); margin-top:0.3em; text-align:center; }
-.bubble { background:white; color:#1a1a1a; border-radius:20px 20px 20px 4px; padding:0.9em 1.3em; max-width:460px; font-size:1em; line-height:1.55; text-align:left; box-shadow:0 2px 12px rgba(0,0,0,0.2); }
-.bubble.solo { border-radius:20px; margin:0 auto; text-align:center; }
-.bubble .hl { color:var(--accent); font-weight:700; }
-.bubble .hlg { color:var(--green); font-weight:700; }
-
-/* Standard Insight Card */
-.insight { background:var(--dark-3); border:1.5px solid var(--accent); border-radius:14px; padding:1.1em 1.5em; max-width:500px; margin:0 auto; text-align:left; }
-.insight .tag { font-family:'Space Mono',monospace; font-size:0.5em; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); margin-bottom:0.4em; display:flex; align-items:center; gap:0.4em; }
-.insight .title { font-family:'Instrument Serif',serif; font-size:1.15em; color:var(--accent); margin-bottom:0.3em; font-style:italic; }
-.insight .desc { font-size:0.8em; line-height:1.6; color:var(--cream-dim); }
-.insight .desc strong { color:var(--cream); }
-
-/* Standard Metric Row */
-.metric-row { display:flex; gap:1em; justify-content:center; flex-wrap:wrap; margin:1em 0; }
-.metric { background:var(--dark-3); border:1.5px solid var(--cream-faint); border-radius:12px; padding:1em 1.5em; text-align:center; }
-.metric .val { font-family:'Instrument Serif',serif; font-size:2.2em; color:var(--accent); line-height:1; }
-.metric .lbl { font-family:'Space Mono',monospace; font-size:0.45em; text-transform:uppercase; letter-spacing:0.1em; color:var(--cream-dim); margin-top:0.4em; }
-
-/* Standard Pain Points */
-.pain { background:var(--dark-3); border-left:3px solid var(--red); border-radius:0 10px 10px 0; padding:0.7em 1em; margin-bottom:0.6em; text-align:left; max-width:500px; }
-.pain .pain-title { font-weight:700; color:var(--cream); font-size:0.85em; margin-bottom:0.2em; }
-.pain .pain-desc { font-size:0.72em; color:var(--cream-dim); line-height:1.5; }
-
-/* Performance Table (standard) */
-.perf-table { width:100%; max-width:560px; margin:0 auto; border-collapse:collapse; font-size:0.7em; }
-.perf-table th { background:var(--dark-3); color:var(--accent); font-family:'Space Mono',monospace; font-size:0.75em; text-transform:uppercase; letter-spacing:0.06em; padding:0.5em 0.7em; text-align:left; border-bottom:2px solid var(--accent); }
-.perf-table td { padding:0.45em 0.7em; border-bottom:1px solid var(--cream-faint); color:var(--cream-dim); }
-.perf-table td:first-child { color:var(--cream); font-weight:600; }
-.perf-table .good { color:var(--green); font-weight:700; }
-
-/* Standard Step Grid */
-.std-step-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.8em; max-width:520px; margin:0 auto; }
-.std-step-box { background:var(--dark-3); border-radius:10px; padding:0.8em 1em; border-left:3px solid var(--accent); text-align:left; }
-.std-step-box .step-num { font-family:'Space Mono',monospace; font-size:0.5em; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; }
-.std-step-box p { font-size:0.78em; color:var(--cream-dim); line-height:1.5; margin:0.3em 0 0; }
-.std-step-box strong { color:var(--cream); }
-
-/* Tool Tags (standard) */
-.tools-row { display:flex; gap:0.5em; flex-wrap:wrap; justify-content:center; margin:0.8em 0; }
-.std-tool-tag { font-family:'Space Mono',monospace; font-size:0.5em; text-transform:uppercase; letter-spacing:0.06em; padding:0.4em 0.9em; border-radius:16px; border:1px solid var(--cream-faint); color:var(--cream-dim); }
-
-/* Standard Section Label */
-.std-section-label { font-family:'Space Mono',monospace; font-size:0.55em; text-transform:uppercase; letter-spacing:0.15em; color:var(--accent); margin-bottom:1em; display:block; }
-
-/* Standard Narration */
-.std-narration { background:rgba(255,248,220,0.08); border:1.5px solid rgba(232,217,140,0.2); color:var(--cream); border-radius:8px; padding:0.7em 1.2em; max-width:500px; font-size:0.9em; line-height:1.5; margin:0 auto; text-align:center; }
-
-/* ========== Annotated UI ========== */
-.annotated-ui { position:relative; display:inline-block; margin:0 auto; }
-.annotated-ui img { max-width:100%; height:auto; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.4); display:block; }
-.annotated-ui .placeholder-ui { width:580px; max-width:100%; height:360px; background:var(--dark-3); border:2px dashed var(--cream-faint); border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; color:var(--cream-dim); }
-.annotated-ui .placeholder-ui svg { width:48px; height:48px; stroke:var(--cream-faint); }
-.annotated-ui .placeholder-ui span { font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; }
-
-.marker { position:absolute; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Space Mono',monospace; font-size:10px; font-weight:700; color:white; pointer-events:none; z-index:2; transform:translate(-50%,-50%); }
-.marker.red { background:var(--red); box-shadow:0 0 0 3px rgba(214,107,107,0.35); animation:pulse-r 2s infinite; }
-.marker.green { background:var(--green); box-shadow:0 0 0 3px rgba(126,184,126,0.35); animation:pulse-g 2s infinite; }
-@keyframes pulse-r { 0%,100%{box-shadow:0 0 0 3px rgba(214,107,107,0.35)} 50%{box-shadow:0 0 0 7px rgba(214,107,107,0.15)} }
-@keyframes pulse-g { 0%,100%{box-shadow:0 0 0 3px rgba(126,184,126,0.35)} 50%{box-shadow:0 0 0 7px rgba(126,184,126,0.15)} }
-
-.legend { display:flex; flex-wrap:wrap; gap:0.5em 0.8em; justify-content:center; margin-top:0.7em; max-width:580px; margin-left:auto; margin-right:auto; }
-.legend-item { display:flex; align-items:center; gap:0.4em; font-family:'Space Mono',monospace; font-size:0.55em; color:var(--cream-dim); }
-.legend-num { width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:white; flex-shrink:0; }
-.legend-num.red { background:var(--red); }
-.legend-num.green { background:var(--green); }
-.legend-text { line-height:1.3; }
-
-/* ========== Expand Button ========== */
-.expand-btn { position:absolute; top:8px; right:8px; width:32px; height:32px; border-radius:8px; background:rgba(10,10,10,0.7); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(240,230,211,0.2); color:var(--cream); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:3; transition:all 0.25s ease; opacity:0.6; }
-.expand-btn:hover { opacity:1; background:rgba(10,10,10,0.9); border-color:var(--accent); color:var(--accent); transform:scale(1.1); }
-.expand-btn svg { width:16px; height:16px; pointer-events:none; }
-
-/* ========== Fullscreen Overlay ========== */
-.ui-fullscreen { position:fixed; inset:0; z-index:10000; background:rgba(5,5,5,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s ease; cursor:zoom-out; }
-.ui-fullscreen.active { opacity:1; pointer-events:auto; }
-.ui-fullscreen img { max-width:92vw; max-height:90vh; border-radius:10px; box-shadow:0 8px 40px rgba(0,0,0,0.6); object-fit:contain; transform:scale(0.95); transition:transform 0.3s ease; }
-.ui-fullscreen.active img { transform:scale(1); }
-.ui-fullscreen .close-hint { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:11px; color:rgba(240,230,211,0.4); letter-spacing:0.1em; text-transform:uppercase; }
-
+.nav-hint{position:fixed;top:50%;z-index:100;transform:translateY(-50%);cursor:pointer;padding:12px 6px;opacity:.3;transition:opacity .3s ease}
+.nav-hint:hover{opacity:.9}
+.nav-hint.left{left:8px}
+.nav-hint.right{right:8px}
+.nav-hint svg{width:28px;height:28px;stroke:var(--cream);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.popup-backdrop{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s ease}
+.popup-backdrop.active{opacity:1;pointer-events:auto}
+.popup-overlay{position:fixed;top:16px;right:16px;z-index:9999;width:260px;pointer-events:none}
+.popup-card{width:100%;pointer-events:auto;padding:1.4em 1.4em 1.2em;text-align:left;line-height:1.55;opacity:0;transform:translateY(-10px);transition:opacity .35s ease,transform .35s ease;display:none;position:absolute;top:0;right:0}
+.popup-card.active{display:block;opacity:1;transform:translateY(0)}
+.popup-card.biz{background:#fef9e7;color:#2c2c2c;box-shadow:3px 3px 0 rgba(0,0,0,.08),1px 1px 8px rgba(0,0,0,.12);transform-origin:top right}
+.popup-card.ux{background:#eaf4fd;color:#2c2c2c;box-shadow:3px 3px 0 rgba(0,0,0,.08),1px 1px 8px rgba(0,0,0,.12);transform-origin:top right}
+.popup-card::before{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%) rotate(-1deg);width:54px;height:16px;background:rgba(255,255,255,.5);border:1px solid rgba(0,0,0,.06);border-radius:1px}
+.popup-tag{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.7em;display:flex;align-items:center;gap:.5em}
+.popup-tag.biz{color:#b8860b}
+.popup-tag.ux{color:#2a6db5}
+.popup-tag svg{width:15px;height:15px}
+.popup-title{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;color:#111;margin-bottom:.5em;line-height:1.3}
+.popup-desc{font-family:'Syne',sans-serif;font-size:15px;color:#333;line-height:1.7}
+.popup-desc strong{color:#000}
+.popup-foot{margin-top:.8em;font-family:'Space Mono',monospace;font-size:9px;color:#888;font-style:italic;border-top:1px dashed rgba(0,0,0,.12);padding-top:.6em}
+/* Step log styling */
+.step-log{background:var(--dark-3);border-radius:10px;padding:1em 1.3em;max-width:480px;margin:0 auto;text-align:left;font-family:'Space Mono',monospace;font-size:.6em;line-height:2.2;color:var(--cream-dim)}
+.step-log .step-ok{color:var(--green)}
+.step-log .step-spin{color:var(--yellow)}
+.step-log .step-reason{color:var(--cream-dim);font-style:italic;font-size:.9em}
+/* Flow diagram */
+.flow-diagram{display:flex;flex-direction:column;gap:.5em;max-width:400px;margin:0 auto;align-items:center}
+.flow-step{background:var(--dark-3);border:1px solid var(--cream-faint);border-radius:10px;padding:.5em 1.2em;font-size:.7em;color:var(--cream);width:100%;text-align:center}
+.flow-step.active{border-color:var(--accent);color:var(--accent)}
+.flow-arrow{color:var(--cream-faint);font-size:.8em}
+/* Bento lessons */
+.bento-grid{display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:auto auto;gap:.5em;max-width:600px;margin:0 auto}
+.bento-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.7em .85em;text-align:left;display:flex;flex-direction:column;justify-content:center}
+.bento-card .lc-num{font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-faint);letter-spacing:.06em;margin-bottom:.2em}
+.bento-card .lc-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.8em;color:var(--cream);margin-bottom:.25em}
+.bento-card .lc-desc{font-size:.58em;color:var(--cream-dim);line-height:1.55}
+.bento-card.span-tall{grid-row:span 2}
+.bento-card.featured{background:rgba(232,115,74,.08);border-color:rgba(232,115,74,.25)}
+.bento-card.featured .lc-title{color:var(--accent)}
+/* ── upgrade bento-grid ── */
+.bento-grid{gap:.7em;max-width:620px;align-items:stretch}
+.bento-card{border-radius:20px;padding:.9em 1.1em;justify-content:flex-start;box-sizing:border-box;border:1px solid rgba(255,255,255,.1);transition:transform .2s ease,border-color .2s ease}
+.bento-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.18)}
+/* upgrade step-log */
+.step-log{background:rgba(255,255,255,.04)!important;border:1px solid rgba(240,230,211,.1);border-radius:16px!important}
+/* upgrade flow-step */
+.flow-step{background:rgba(255,255,255,.04)!important;border-radius:16px!important}
+.flow-step.active{background:rgba(232,115,74,.08)!important;border-color:rgba(232,115,74,.35)!important}
+/* ── Universal Slide Bento Card System ── */
+.sl-grid{display:grid;gap:.8em;max-width:100%;margin:.4em 0 0;width:100%;align-items:stretch;align-content:stretch;flex:1;grid-auto-rows:minmax(min-content,1fr)}
+.sl-2{grid-template-columns:1fr 1fr}
+.sl-3{grid-template-columns:1fr 1fr 1fr}
+.sl-card{background:rgba(255,255,255,.05);border:1px solid rgba(240,230,211,.12);border-radius:20px;padding:1.2em 1.4em;text-align:left;display:flex;flex-direction:column;gap:.5em;box-sizing:border-box;justify-content:flex-start}
+.sl-card.red-card{background:rgba(214,107,107,.05);border-color:rgba(214,107,107,.2)}
+.sl-card.green-card{background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.25)}
+.sl-card.accent-card{background:rgba(232,115,74,.06);border-color:rgba(232,115,74,.22)}
+.sl-card.tall{grid-row:span 2;justify-content:center;align-self:stretch}
+.sl-card.full{grid-column:1/-1}
+.sl-card.center{align-items:center;justify-content:center;text-align:center}.reveal .slides section:has(.sl-grid){display:flex!important;flex-direction:column!important;justify-content:flex-start!important;align-items:stretch!important;padding:2.2em 3em!important;box-sizing:border-box!important}
+.sl-clabel{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+.sl-clabel.gr{color:var(--green)}
+.sl-clabel.rd{color:var(--red)}
+.sl-ctitle{font-family:'Syne',sans-serif;font-size:.72em;font-weight:700;color:var(--cream)}
+.sl-cbody{font-size:.6em;color:var(--cream-dim);line-height:1.55;margin:0}.sl-narr{font-family:'Space Mono',monospace;font-size:.5em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin:auto auto .2em;line-height:1.7;width:100%;font-style:normal;order:99;box-sizing:border-box}
+.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:var(--accent);opacity:.3}
+.sl-icon{font-size:1.4em;line-height:1;margin-bottom:.1em}
+/* ── Cover Bento ── */
+.cover-bento{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:10px;max-width:720px;margin:0 auto}
+.cb-main{grid-column:1/-1;background:rgba(255,255,255,.04);border:1px solid rgba(240,230,211,.12);border-radius:24px;padding:1.8em 2em;text-align:left}
+.cb-main h1{margin:.3em 0 .3em}
+.cb-main p{margin:0;color:var(--cream-dim)}
+.cb-metric{background:rgba(255,255,255,.05);border:1px solid rgba(240,230,211,.12);border-radius:20px;padding:1.1em 1em;text-align:center;transition:transform .2s ease,border-color .2s ease}
+.cb-metric:hover{transform:translateY(-4px);border-color:rgba(232,115,74,.3)}
+.cb-metric.hi{background:rgba(232,115,74,.08);border-color:rgba(232,115,74,.22)}
+.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1}
+.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.35em}
 </style>
 </head>
 <body>
-
 <a href="portfolio.html#projects" class="back-link">&larr; Back to Portfolio</a>
-
 <div class="reveal">
-  <div class="slides">
+<div class="slides">
 
-    
-    <!-- ===== ACT 1: THE HOOK ===== -->
-
-    <!-- Slide 1: Cover -->
-    <section>
-      <p style="font-family:'Space Mono',monospace;font-size:0.5em;text-transform:uppercase;letter-spacing:0.15em;color:var(--accent);margin-bottom:1.5em;">Case Study &bull; Design Systems &bull; 2025</p>
-      <h1 style="font-size:2.4em;line-height:1.1">Multi-Level Design Systems</h1>
-      <p style="font-size:0.85em;color:var(--cream-dim);margin-top:0.8em;max-width:520px;margin-left:auto;margin-right:auto;">How a two-level component architecture brought <strong style="color:var(--accent)">100% design consistency</strong> and <strong style="color:var(--accent)">70–90% faster handover</strong> across an entire product ecosystem</p>
-
-      <div class="metric-row" style="margin-top:2em;">
-        <div class="metric">
-          <div class="val">70–90%</div>
-          <div class="lbl">Faster Handover</div>
-        </div>
-        <div class="metric">
-          <div class="val">100%</div>
-          <div class="lbl">Consistency</div>
-        </div>
-        <div class="metric">
-          <div class="val">80%</div>
-          <div class="lbl">Fewer Tickets</div>
-        </div>
-        <div class="metric">
-          <div class="val">&gt;50%</div>
-          <div class="lbl">Fewer Visual Bugs</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 2: The Developer Question -->
-    <section>
-      <span class="std-section-label">Act 1 &mdash; The Problem</span>
-      <h2>Three Button Styles, One Product</h2>
-
-      <div style="margin-top:1.2em;">
-        <div class="chat-row centered" style="margin-bottom:1em;">
-          <div style="flex:1;">
-            <div class="avatar">&#x1f4bb;</div>
-            <div class="avatar-name">Frontend Developer</div>
-          </div>
-        </div>
-        <div class="bubble solo" style="max-width:480px;">
-          Which button style is correct? There are <span class="hl">three different versions</span> in the codebase, and I don&rsquo;t know which one to use&hellip;
-        </div>
-      </div>
-
-      <div class="std-narration" style="margin-top:1.5em;">
-        The same button looked different across POS, web, and admin. Developers couldn&rsquo;t trust components. Designers built in isolation. <strong>Inconsistency multiplied faster than we could fix it.</strong>
-      </div>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- Slide 3: The Cost of Fragmentation -->
-    <section>
-      <h3>The Cost of Fragmentation</h3>
-
-      <div style="margin-top:1.5em;">
-        <div class="pain">
-          <div class="pain-title">UI Inconsistencies</div>
-          <div class="pain-desc">Same components looked different across POS, web, and admin products &mdash; confusing users and multiplying maintenance.</div>
-        </div>
-        <div class="pain">
-          <div class="pain-title">Slow Manual Rollouts</div>
-          <div class="pain-desc">A campaign color change required updating 40+ screens manually. Days instead of minutes.</div>
-        </div>
-        <div class="pain">
-          <div class="pain-title">High Maintenance Burden</div>
-          <div class="pain-desc">Visual bugs consumed engineering cycles. Bug fixes became more common than feature development.</div>
-        </div>
-        <div class="pain">
-          <div class="pain-title">Compounding Design Debt</div>
-          <div class="pain-desc">Each workaround made the next fix harder. Inconsistencies grew exponentially with every new feature.</div>
-        </div>
-      </div>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- Slide 4: The Stakes -->
-    <section>
-      <div class="bubble solo" style="max-width:500px;margin-bottom:0.8em;">
-        Every UI inconsistency = brand erosion. Every manual update = engineering hours lost. Every visual bug = delayed launches.
-      </div>
-      <h2>Without a System, <span style="color:var(--red)">Scaling Breaks Everything</span></h2>
-
-      <div class="insight" style="margin-top:1.5em;">
-        <div class="tag">&#x1f9e0; Psychology Principle</div>
-        <div class="title">Jakob&rsquo;s Law of UX</div>
-        <div class="desc">Users build mental models from consistent patterns. When the same button behaves differently across products, those models break &mdash; <strong>increasing cognitive load and reducing trust.</strong></div>
-      </div>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- ===== ACT 2: RESEARCH ===== -->
-
-    <!-- Slide 5: Audit -->
-    <section>
-      <span class="std-section-label">Act 2 &mdash; Research &amp; Strategy</span>
-      <h2>Component Audit</h2>
-
-      <div class="std-step-grid" style="margin-top:1.2em;">
-        <div class="std-step-box">
-          <div class="step-num">Step 1</div>
-          <p><strong>Map Components</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Catalog all patterns across POS, Web, Admin</span></p>
-        </div>
-        <div class="std-step-box">
-          <div class="step-num">Step 2</div>
-          <p><strong>Find Overlaps</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">70% were functionally identical but visually different</span></p>
-        </div>
-        <div class="std-step-box">
-          <div class="step-num">Step 3</div>
-          <p><strong>Define Foundation</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Isolate core tokens, atoms, molecules</span></p>
-        </div>
-        <div class="std-step-box">
-          <div class="step-num">Step 4</div>
-          <p><strong>Architecture Decision</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Two-level hierarchy: shared + product-specific</span></p>
-        </div>
-      </div>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- Slide 6: Two-Level Architecture -->
-    <section>
-      <h3>The Two-Level Architecture</h3>
-
-      <div style="margin-top:1em;max-width:520px;margin-left:auto;margin-right:auto;">
-        <div style="background:var(--dark-3);border-radius:10px;padding:1em;border:1.5px solid var(--accent);text-align:center;margin-bottom:0.5em;">
-          <p style="font-family:'Space Mono',monospace;font-size:0.5em;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.3em;">Global Library</p>
-          <p style="font-size:0.7em;color:var(--cream-dim)">Design Tokens &rarr; Atomic Components &rarr; Universal Patterns</p>
-        </div>
-        <div style="text-align:center;color:var(--accent);font-size:0.8em;margin:0.3em 0;">&#x2193; inherits &amp; extends &#x2193;</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5em;">
-          <div style="background:var(--dark-3);border-radius:8px;padding:0.8em;border:1px solid var(--cream-faint);text-align:center;">
-            <p style="font-family:'Space Mono',monospace;font-size:0.45em;color:var(--blue);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2em;">POS Library</p>
-            <p style="font-size:0.6em;color:var(--cream-dim)">Control Panel, Payment, Receipt</p>
-          </div>
-          <div style="background:var(--dark-3);border-radius:8px;padding:0.8em;border:1px solid var(--cream-faint);text-align:center;">
-            <p style="font-family:'Space Mono',monospace;font-size:0.45em;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2em;">Web Library</p>
-            <p style="font-size:0.6em;color:var(--cream-dim)">Checkout, Product, Cart</p>
-          </div>
-          <div style="background:var(--dark-3);border-radius:8px;padding:0.8em;border:1px solid var(--cream-faint);text-align:center;">
-            <p style="font-family:'Space Mono',monospace;font-size:0.45em;color:var(--yellow);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2em;">Admin Library</p>
-            <p style="font-size:0.6em;color:var(--cream-dim)">Dashboard, Reports, Settings</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="std-narration" style="margin-top:1em;">
-        Shared foundation. Product-specific extensions. <strong>Flexibility without fragmentation.</strong>
-      </div>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- ===== ACT 3: DESIGN ===== -->
-
-    <!-- Slide 7: Token System -->
-    <section>
-      <span class="std-section-label">Act 3 &mdash; Design</span>
-      <h2>Token-Based Theming</h2>
-
-      <div style="margin-top:1em;display:grid;grid-template-columns:1fr 1fr;gap:1em;max-width:520px;margin-left:auto;margin-right:auto;">
-        <div style="background:var(--dark-3);border-radius:10px;padding:1em;border-left:3px solid var(--red);">
-          <p style="font-size:0.7em;color:var(--red);font-weight:700;margin-bottom:0.4em;">Before: Manual Updates</p>
-          <p style="font-size:0.65em;color:var(--cream-dim);line-height:1.5;">Update 40+ screens &rarr; Review each &rarr; QA test every variant</p>
-          <p style="font-size:0.75em;color:var(--red);font-weight:700;margin-top:0.5em;">3&ndash;5 days</p>
-        </div>
-        <div style="background:var(--dark-3);border-radius:10px;padding:1em;border-left:3px solid var(--green);">
-          <p style="font-size:0.7em;color:var(--green);font-weight:700;margin-bottom:0.4em;">After: Token Change</p>
-          <p style="font-size:0.65em;color:var(--cream-dim);line-height:1.5;">Change 1 token &rarr; All products update &rarr; Single QA pass</p>
-          <p style="font-size:0.75em;color:var(--green);font-weight:700;margin-top:0.5em;">2 hours</p>
-        </div>
-      </div>
-
-      <p style="margin-top:1em;font-size:0.72em;color:var(--cream-dim);">One token change replaced <strong style="color:var(--cream)">days of manual work.</strong></p>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- Slide 8: Annotated UI — Global Library -->
-    <section>
-      <h3 style="margin-bottom:0.4em">Global Library &mdash; <span style="color:var(--green)">4 Foundation Layers</span></h3>
-      <div class="annotated-ui">
-        <div class="placeholder-ui">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Global Library Overview &mdash; Add Screenshot</span>
-        </div>
-        <div class="marker green" style="top:12%;left:50%">1</div>
-        <div class="marker green" style="top:35%;left:25%">2</div>
-        <div class="marker green" style="top:35%;left:75%">3</div>
-        <div class="marker green" style="top:70%;left:50%">4</div>
-        <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
-      </div>
-      <div class="legend">
-        <div class="legend-item"><span class="legend-num green">1</span><span class="legend-text">Design Tokens &mdash; colors, spacing, typography, shadows</span></div>
-        <div class="legend-item"><span class="legend-num green">2</span><span class="legend-text">Atomic Components &mdash; Button, Input, Checkbox, Radio</span></div>
-        <div class="legend-item"><span class="legend-num green">3</span><span class="legend-text">Molecules &mdash; Forms, Cards, Modals, Dropdowns</span></div>
-        <div class="legend-item"><span class="legend-num green">4</span><span class="legend-text">Universal Patterns &mdash; Layout Grid, Navigation, Footer</span></div>
-      </div>
-    </section>
-
-    <!-- Slide 9: Annotated UI — POS-Level -->
-    <section>
-      <h3 style="margin-bottom:0.4em">POS-Level Library &mdash; <span style="color:var(--blue)">Product-Specific Extensions</span></h3>
-      <div class="annotated-ui">
-        <div class="placeholder-ui">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>POS Library Components &mdash; Add Screenshot</span>
-        </div>
-        <div class="marker green" style="top:15%;left:30%">1</div>
-        <div class="marker green" style="top:15%;left:70%">2</div>
-        <div class="marker green" style="top:55%;left:25%">3</div>
-        <div class="marker green" style="top:55%;left:72%">4</div>
-        <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
-      </div>
-      <div class="legend">
-        <div class="legend-item"><span class="legend-num green">1</span><span class="legend-text">Control Panel &mdash; inherits Global button tokens</span></div>
-        <div class="legend-item"><span class="legend-num green">2</span><span class="legend-text">Payment Summary &mdash; extends Card component</span></div>
-        <div class="legend-item"><span class="legend-num green">3</span><span class="legend-text">Pricing Display &mdash; uses Typography tokens</span></div>
-        <div class="legend-item"><span class="legend-num green">4</span><span class="legend-text">Order Management &mdash; builds on Table molecule</span></div>
-      </div>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- Slide 10: Annotated UI — Token Inheritance -->
-    <section>
-      <h3 style="margin-bottom:0.4em">Token Inheritance in Action</h3>
-      <div class="annotated-ui">
-        <div class="placeholder-ui">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Token System Diagram &mdash; Add Screenshot</span>
-        </div>
-        <div class="marker green" style="top:10%;left:50%">1</div>
-        <div class="marker green" style="top:40%;left:30%">2</div>
-        <div class="marker green" style="top:40%;left:70%">3</div>
-        <div class="marker green" style="top:80%;left:50%">4</div>
-        <div class="expand-btn" onclick="expandFromBtn(this)" title="Expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
-      </div>
-      <div class="legend">
-        <div class="legend-item"><span class="legend-num green">1</span><span class="legend-text">Global Tokens &mdash; single source of truth for all values</span></div>
-        <div class="legend-item"><span class="legend-num green">2</span><span class="legend-text">Semantic Tokens &mdash; context-aware color assignments</span></div>
-        <div class="legend-item"><span class="legend-num green">3</span><span class="legend-text">Component Tokens &mdash; inherited per-component overrides</span></div>
-        <div class="legend-item"><span class="legend-num green">4</span><span class="legend-text">Product Screens &mdash; fully themed via token cascade</span></div>
-      </div>
-    </section>
-
-    <!-- Slide 11: Design Principle -->
-    <section>
-      <div class="insight">
-        <div class="tag">&#x1f9e0; Design Principle</div>
-        <div class="title">Single Source of Truth</div>
-        <div class="desc">Every component inherits from tokens. Change a token, every component across every product updates automatically. This eliminates drift, reduces human error, and makes <strong>the system self-maintaining.</strong></div>
-      </div>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- Slide 12: Campaign Story -->
-    <section>
-      <h3>Real Story: Campaign Color Change</h3>
-
-      <div style="margin-top:1em;display:grid;grid-template-columns:1fr 1fr;gap:1em;max-width:520px;margin-left:auto;margin-right:auto;">
-        <div style="background:var(--dark-3);border-radius:10px;padding:1em;text-align:left;">
-          <p style="font-size:0.65em;color:var(--red);font-weight:700;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5em;">Before the system</p>
-          <p style="font-size:0.62em;color:var(--cream-dim);line-height:1.6;">Update colors in 40+ screens<br>Test each variant individually<br>Hunt inconsistencies across 3 products<br>Wait 3&ndash;5 days for full handover<br><strong style="color:var(--red)">8&ndash;12 visual bugs in QA</strong></p>
-        </div>
-        <div style="background:var(--dark-3);border-radius:10px;padding:1em;text-align:left;">
-          <p style="font-size:0.65em;color:var(--green);font-weight:700;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5em;">After the system</p>
-          <p style="font-size:0.62em;color:var(--cream-dim);line-height:1.6;">Change 1 token value<br>Every button, every product updates<br>Single smoke test<br>Handover complete in &lt;1 day<br><strong style="color:var(--green)">Zero visual bugs</strong></p>
-        </div>
-      </div>
-
-      <div class="std-narration" style="margin-top:1em;">
-        From <strong>3&ndash;5 days</strong> to <strong>2 hours.</strong> From <strong>12 bugs</strong> to <strong>zero.</strong>
-      </div>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- Slide 13: Documentation -->
-    <section>
-      <h3>Documentation as Product</h3>
-      <p style="font-size:0.72em;color:var(--cream-dim);margin-top:0.5em;margin-bottom:1em;">A design system without docs is just a component library.</p>
-
-      <div class="std-step-grid">
-        <div class="std-step-box">
-          <div class="step-num">Guides</div>
-          <p><strong>Component Docs</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Usage rules, do&rsquo;s/don&rsquo;ts, a11y</span></p>
-        </div>
-        <div class="std-step-box">
-          <div class="step-num">Tokens</div>
-          <p><strong>Token Reference</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Purpose, context, visual ref</span></p>
-        </div>
-        <div class="std-step-box">
-          <div class="step-num">Workflow</div>
-          <p><strong>Extension Guides</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">How to extend &amp; onboard</span></p>
-        </div>
-        <div class="std-step-box">
-          <div class="step-num">Search</div>
-          <p><strong>Living Docs</strong><br><span style="font-size:0.85em;color:var(--cream-dim)">Searchable token values</span></p>
-        </div>
-      </div>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- ===== ACT 4: RESULTS ===== -->
-
-    <!-- Slide 14: Before & After -->
-    <section>
-      <span class="std-section-label">Act 4 &mdash; Results</span>
-      <h2>Before &amp; After</h2>
-
-      <table class="perf-table" style="margin-top:1em;">
-        <tr><th>Metric</th><th>Before</th><th>After</th></tr>
-        <tr><td>Handover Velocity</td><td>3&ndash;5 days</td><td class="good">&lt;1 day (70–90% faster)</td></tr>
-        <tr><td>Design Consistency</td><td>~70%</td><td class="good">100%</td></tr>
-        <tr><td>Maintenance Tickets</td><td>High volume</td><td class="good">50&ndash;80% fewer</td></tr>
-        <tr><td>Visual Bugs / QA Cycle</td><td>8&ndash;12</td><td class="good">&lt;2 (&gt;50% reduction)</td></tr>
-        <tr><td>Time to New Theme</td><td>2&ndash;3 weeks</td><td class="good">2&ndash;3 days (90% faster)</td></tr>
-      </table>
-      <span class="fragment" style="display:none"></span>
-    </section>
-
-    <!-- Slide 15: ROI Calculation -->
-    <section>
-      <h3 style="margin-bottom:0.3em">Measuring the Return</h3>
-      <div class="metric-row" style="margin-top:0.8em;">
-        <div class="metric">
-          <div class="val" style="font-size:2.4em">70–90%</div>
-          <div class="lbl">Faster Design-to-Dev Handover</div>
-        </div>
-      </div>
-      <div style="max-width:520px;margin:0 auto;text-align:left;font-size:0.75em;color:var(--cream-dim);line-height:1.7">
-        <strong style="color:var(--cream)">Handover before:</strong> 3&ndash;5 days per feature cycle<br>
-        <strong style="color:var(--cream)">Handover after:</strong> &lt;1 day with token system<br>
-        <strong style="color:var(--cream)">Maintenance saved:</strong> 50&ndash;80% fewer tickets per sprint<br>
-        <strong style="color:var(--cream)">QA bugs eliminated:</strong> 8&ndash;12 &rarr; &lt;2 per cycle<br>
-        <strong style="color:var(--accent)">The system pays for itself every sprint.</strong>
-      </div>
-    </section>
-
-    <!-- Slide 16: Business × Design Lessons -->
-    <section>
-      <h3 style="margin-bottom:0.6em">Business &times; Design Lessons</h3>
-      <div style="max-width:520px;margin:0 auto;">
-        <div class="pain" style="border-left-color:var(--accent)">
-          <div class="pain-title" style="color:var(--accent)">Tokens are a business accelerator</div>
-          <div class="pain-desc">One token change replacing days of manual work isn&rsquo;t a design improvement &mdash; it&rsquo;s a cost reduction that compounds every sprint.</div>
-        </div>
-        <div class="pain" style="border-left-color:var(--blue)">
-          <div class="pain-title" style="color:var(--blue)">Documentation multiplies adoption</div>
-          <div class="pain-desc">The system only works if everyone understands it. Clear docs transformed a design tool into a shared language for the entire team.</div>
-        </div>
-        <div class="pain" style="border-left-color:var(--yellow)">
-          <div class="pain-title" style="color:var(--yellow)">Design-engineering alignment = ROI</div>
-          <div class="pain-desc">The biggest gains came when design and engineering worked as a single team. Misalignment kills scalability.</div>
-        </div>
-        <div class="pain" style="border-left-color:var(--green)">
-          <div class="pain-title" style="color:var(--green)">Two levels &gt; one monolith</div>
-          <div class="pain-desc">Shared foundation with product-specific extensions allows flexibility without fragmentation. One system powers multiple products.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 17: Key Takeaway -->
-    <section>
-      <div class="insight">
-        <div class="tag">&#x1f4a1; Key Takeaway</div>
-        <div class="title">A design system is a business asset, not a design tool.</div>
-        <div class="desc">70–90% faster handover didn&rsquo;t come from prettier components. It came from <strong>architecture</strong> &mdash; tokens that cascade, components that inherit, and documentation that scales. Every hour saved in handover is an hour reinvested in features.</div>
-      </div>
-    </section>
-
-    <!-- Slide 18: Skills & Tools -->
-    <section>
-      <h2 style="margin-bottom:0.8em">Skills &amp; Tools</h2>
-      <div class="tools-row">
-        <span class="std-tool-tag">Design Systems</span>
-        <span class="std-tool-tag">Component Architecture</span>
-        <span class="std-tool-tag">Design Tokens</span>
-        <span class="std-tool-tag">Documentation</span>
-      </div>
-      <div class="tools-row" style="margin-top:0.5em;">
-        <span class="std-tool-tag" style="border-color:var(--accent);color:var(--accent)">Figma</span>
-        <span class="std-tool-tag" style="border-color:var(--accent);color:var(--accent)">Variables</span>
-        <span class="std-tool-tag" style="border-color:var(--accent);color:var(--accent)">Notion</span>
-        <span class="std-tool-tag" style="border-color:var(--accent);color:var(--accent)">Storybook</span>
-      </div>
-    </section>
-
-    <section data-background-color="#0a0a0a" style="text-align:left">
-  <div class="cs-nav-header" style="margin-bottom:1.5em">
-    <div class="sec-num">More Stories</div>
-    <h2 class="sec-title" style="font-size:clamp(24px,2.5vw,38px)">Explore More Work</h2>
+<!-- SLIDE 0: Cover -->
+<section>
+  <div class="cover-bento">
+    <div class="cb-main">
+      <span class="mono" style="color:var(--green);font-size:.55em;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:.5em">Case Study &bull; 2025</span>
+      <h1 style="margin:.15em 0 .3em;font-size:2.1em">Three Platforms.<br><span style="color:var(--green)">One Source of Truth.</span></h1>
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:.85em;color:var(--cream-dim)">How a two-level design system architecture unified Raytail's POS, web, and mobile products — and made brand updates instant.</p>
+    </div>
+    <div class="cb-metric" style="background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.22)"><div class="val" style="color:var(--green)">70–90%</div><div class="lbl">Faster Handover</div></div>
+    <div class="cb-metric"><div class="val" style="color:var(--green)">3</div><div class="lbl">Platforms Unified</div></div>
+    <div class="cb-metric hi" style="background:rgba(126,184,126,.08);border-color:rgba(126,184,126,.25)"><div class="val" style="color:var(--green)">100%</div><div class="lbl">Design Consistency</div></div>
   </div>
-  <div class="cs-nav-grid">
-    <a href="case-study-dashboard.html" class="cs-nav-card">
-      <div class="proj-thumb">
-        <img src="images/coverphoto/2.svg" alt="Saved 0.5 Man-Hours Per Day">
-        <div class="thumb-stat">0.5h<span>saved daily</span></div>
-      </div>
-      <div class="proj-info">
-        <div class="proj-index">02</div>
-        <div class="cs-nav-direction"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Previous</div>
-        <div class="proj-tags"><span class="proj-tag">Dashboard</span><span class="proj-tag">Finance</span><span class="proj-tag">2022</span></div>
-        <h3 class="proj-title">Saved 0.5 Man-Hours Per Day for Finance Operations</h3>
-        <div class="proj-metrics"><div><div class="pm-val">0.5h</div><div class="pm-label">Saved Daily</div></div><div><div class="pm-val">12</div><div class="pm-label">Steps Cut</div></div></div>
-        <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
-      </div>
-    </a>
-    <a href="case-study-tokens.html" class="cs-nav-card">
-      <div class="proj-thumb">
-        <img src="images/coverphoto/4.svg" alt="Design Tokens Generator">
-        <div class="thumb-stat">50%<span>time cut</span></div>
-      </div>
-      <div class="proj-info">
-        <div class="proj-index">06</div>
-        <div class="cs-nav-direction"> Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="proj-tags"><span class="proj-tag">Figma Plugin</span><span class="proj-tag">Design Tokens</span><span class="proj-tag">2024</span></div>
-        <h3 class="proj-title">Design Tokens Generator: 50% Time Reduction, ~100% Error Free</h3>
-        <div class="proj-metrics"><div><div class="pm-val">50%</div><div class="pm-label">Time Reduced</div></div><div><div class="pm-val">~100%</div><div class="pm-label">Error Reduction</div></div></div>
-        <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
-      </div>
-    </a>
-  </div>
-  <p style="margin-top:1.5em;font-family:'Space Mono',monospace;font-size:10px;color:rgba(240,230,211,0.4);letter-spacing:.12em;text-align:center">HARRY HEIN &bull; SENIOR PRODUCT DESIGNER</p>
 </section>
 
+<!-- SLIDE 1: Act 1 — Meet Kai -->
+<section>
+  <span class="section-label">Act 1 &mdash; The Problem</span>
+  <div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
+    <div class="sl-card tall center" style="background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.22)">
+      <div class="avatar" style="background:rgba(126,184,126,.15);border-color:var(--green);margin:0 auto .4em">&#x1f9d1;&#x200d;&#x1f4bb;</div>
+      <div class="avatar-name" style="color:var(--green)">Kai &bull; Lead Product Designer</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">Raytail &mdash; Retail Tech</div>
+    </div>
+    <div class="sl-card">
+      <span class="sl-clabel gr">The Reality</span>
+      <p class="sl-cbody">POS for cashiers. Web dashboard for managers. Mobile for staff. Three screens, three interaction models — one team trying to keep them consistent.</p>
+    </div>
+    <div class="sl-card red-card">
+      <span class="sl-clabel rd">The Breaking Point</span>
+      <p class="sl-cbody">"The brand green changed. We spent <span style="color:var(--accent);font-weight:700">two days</span> manually updating components across every platform file. QA found <span style="color:var(--accent);font-weight:700">14 mismatched screens</span> we missed."</p>
+    </div>
   </div>
+</section>
+
+<!-- SLIDE 2: Why One File Doesn't Scale -->
+<section>
+  <span class="section-label">Act 1 &mdash; Why One File Doesn't Scale</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Three Compounding Problems</h2>
+  <div class="sl-grid sl-3">
+    <div class="sl-card red-card">
+      <span class="sl-clabel rd">Problem 1</span>
+      <div class="sl-ctitle">Density Mismatch</div>
+      <p class="sl-cbody">POS needs 48px touch targets. Web wants 36px. Mobile sits between. One shared component always compromises one platform.</p>
+    </div>
+    <div class="sl-card red-card">
+      <span class="sl-clabel rd">Problem 2</span>
+      <div class="sl-ctitle">Token Inheritance Failure</div>
+      <p class="sl-cbody">Same token name, wrong value. POS "surface" is dark. Web "surface" is white. A flat token system can't hold both.</p>
+    </div>
+    <div class="sl-card red-card">
+      <span class="sl-clabel rd">Problem 3</span>
+      <div class="sl-ctitle">Manual Change Propagation</div>
+      <p class="sl-cbody">Brand green updates. Every button, badge, tag across three files needs a manual sync. One source of truth doesn't exist yet.</p>
+    </div>
+  </div>
+  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.5em auto 0;max-width:760px;font-size:.55em">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Screenshot: Old single-file Figma library — overlapping components, duplicate layer names, no token structure
+  </div>
+</section>
+
+<!-- SLIDE 3: Discovery -->
+<section>
+  <span class="section-label">Act 2 &mdash; Discovery</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">What We Found in the Audit</h2>
+  <div class="sl-grid sl-3">
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">Token Audit</span>
+      <div class="sl-ctitle">47 duplicate colour values</div>
+      <p class="sl-cbody">Raw hex values scattered across three files with no shared reference — each had drifted 2–6 shades from brand spec.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-clabel" style="color:#7eb3d8">Component Audit</span>
+      <div class="sl-ctitle">31 near-duplicate components</div>
+      <p class="sl-cbody">Button, Input, Badge — separate definitions per platform. Fixing one never fixed the others. Drift was invisible until QA.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Designer Interviews</span>
+      <div class="sl-ctitle">"I don't know which file is right"</div>
+      <p class="sl-cbody">New team members spent ~3 days onboarding to the component system. Nobody was sure which platform's Button was canonical.</p>
+    </div>
+  </div>
+  <div class="sl-grid sl-2" style="margin-top:.5em">
+    <div class="media-placeholder" style="aspect-ratio:16/6;font-size:.52em">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Screenshot: Token audit spreadsheet — 47 duplicate hex values highlighted
+    </div>
+    <div class="media-placeholder" style="aspect-ratio:16/6;font-size:.52em">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Screenshot: Component audit — 31 near-duplicate Button/Input definitions across 3 files
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: Root Cause -->
+<section>
+  <span class="section-label">Act 2 &mdash; The Root Cause</span>
+  <div class="sl-grid sl-2">
+    <div class="sl-card full" style="background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.22);text-align:center;padding:1.4em 2em">
+      <span class="sl-clabel gr" style="display:block;text-align:center">The Core Insight</span>
+      <div style="font-family:'Instrument Serif',serif;font-size:1.5em;color:var(--cream);line-height:1.3;margin:.3em 0">"A single shared library works for a single platform. For three radically different surfaces, it becomes<span style="color:var(--green)"> the bottleneck</span>."</div>
+    </div>
+    <div class="sl-card">
+      <span class="sl-clabel">Old Mental Model</span>
+      <div class="sl-ctitle">One library → all platforms</div>
+      <p class="sl-cbody">Everything in one Figma file. Fast to start. Catastrophic to maintain. Changes ripple unpredictably.</p>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">New Mental Model</span>
+      <div class="sl-ctitle">Foundation → Platform layers</div>
+      <p class="sl-cbody">A federated system. Shared core. Each platform extends and adapts without ever redefining the foundation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: Two-Level Architecture -->
+<section>
+  <span class="section-label">Act 3 &mdash; The Architecture</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Two-Level System Design</h2>
+  <div class="sl-grid sl-2">
+    <div class="sl-card green-card tall" style="justify-content:flex-start">
+      <span class="sl-clabel gr">Level 1 &mdash; Global Foundation</span>
+      <div class="sl-ctitle" style="color:var(--green)">Raytail Style Guidelines</div>
+      <p class="sl-cbody" style="margin-top:.4em">Owns everything platform-agnostic:</p>
+      <ul style="font-size:.58em;color:var(--cream-dim);line-height:1.8;margin:.2em 0 0;padding-left:1.2em">
+        <li>All reference tokens (raw primitives)</li>
+        <li>Brand identity &amp; logo system</li>
+        <li>Global typography scale</li>
+        <li>Base component logic &amp; state rules</li>
+      </ul>
+      <div style="margin-top:.6em;font-family:'Space Mono',monospace;font-size:.42em;color:var(--green);opacity:.7">One file. Zero platform specifics.</div>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.04);border-color:rgba(107,163,214,.18)">
+      <span class="sl-clabel" style="color:#7eb3d8">Level 2 &mdash; POS Library</span>
+      <div class="sl-ctitle">Platform-Specific</div>
+      <p class="sl-cbody">48px touch targets. Dark surface default. Numpad, Transaction Panel, Product Grid.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(155,126,200,.04);border-color:rgba(155,126,200,.18)">
+      <span class="sl-clabel" style="color:#b89fd4">Level 2 &mdash; Web Library</span>
+      <div class="sl-ctitle">Platform-Specific</div>
+      <p class="sl-cbody">Light surface. Dense data tables. Filter chips, Analytics dashboard, Sidebar nav.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(232,115,74,.04);border-color:rgba(232,115,74,.18)">
+      <span class="sl-clabel">Level 2 &mdash; Mobile Library</span>
+      <div class="sl-ctitle">Platform-Specific</div>
+      <p class="sl-cbody">Gesture-aware list items. Bottom sheets. Platform-native conventions respected throughout.</p>
+    </div>
+  </div>
+  <div class="media-placeholder" style="aspect-ratio:16/5;margin:.5em auto 0;max-width:760px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="11"/><circle cx="6" cy="15" r="3"/><circle cx="18" cy="15" r="3"/><circle cx="12" cy="15" r="3"/><line x1="12" y1="11" x2="6" y2="12"/><line x1="12" y1="11" x2="18" y2="12"/></svg>
+    Diagram: Two-level architecture — Global Foundation file publishing to POS / Web / Mobile libraries
+  </div>
+</section>
+
+<!-- SLIDE 6: Token Architecture -->
+<section>
+  <span class="section-label">Act 3 &mdash; Token Architecture</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Reference → Semantic → Component</h2>
+  <div class="sl-grid sl-3">
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">Tier 1 &mdash; Reference</span>
+      <div class="sl-ctitle">Raw Primitives</div>
+      <p class="sl-cbody">Never used in components directly. Named by literal value.</p>
+      <div style="margin-top:.5em;font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);line-height:1.9">
+        color/green/500 → #1B7A4A<br>
+        color/neutral/0 → #FFFFFF<br>
+        spacing/4 → 16px<br>
+        radius/md → 8px
+      </div>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">Tier 2 &mdash; Semantic</span>
+      <div class="sl-ctitle">Named by Intent</div>
+      <p class="sl-cbody">Same name, different resolved values per platform. The key architectural decision.</p>
+      <div style="margin-top:.5em;font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);line-height:1.9">
+        surface/base:<br>
+        &nbsp;Web → neutral/0 ⬜<br>
+        &nbsp;POS → neutral/900 ⬛
+      </div>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Tier 3 &mdash; Component</span>
+      <div class="sl-ctitle">Local Overrides</div>
+      <p class="sl-cbody">Component-scoped tokens resolving to semantic values. Reskin a component without touching global rules.</p>
+      <div style="margin-top:.5em;font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);line-height:1.9">
+        button/bg/primary<br>
+        &nbsp;→ action/primary<br>
+        input/border/focus<br>
+        &nbsp;→ action/primary
+      </div>
+    </div>
+  </div>
+  <div class="media-placeholder" style="aspect-ratio:16/4.5;margin:.5em auto 0;max-width:760px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    Screenshot: Figma Variables panel — reference tokens (left) mapping to semantic tokens (right), POS vs Web columns
+  </div>
+</section>
+
+<!-- SLIDE 7: POS Design Decisions -->
+<section>
+  <span class="section-label">Act 3 &mdash; Platform-Specific Design</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">POS: Designing for the Transaction Environment</h2>
+  <div class="sl-grid sl-3">
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-icon">✋</span>
+      <div class="sl-ctitle">Touch-First Density</div>
+      <p class="sl-cbody">All interactive targets minimum 48px. Enforced at component set level — not by documentation alone.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(40,40,50,.4);border-color:rgba(255,255,255,.15)">
+      <span class="sl-icon">🌑</span>
+      <div class="sl-ctitle">Dark Surface Default</div>
+      <p class="sl-cbody">Not a preference — a constraint. High-ambient retail environments need dark for glare reduction.</p>
+    </div>
+    <div class="sl-card red-card">
+      <span class="sl-icon">⚠️</span>
+      <div class="sl-ctitle">Prominent Error States</div>
+      <p class="sl-cbody">Payment failure uses high-contrast red + large text. A missed error in a transaction has real consequences.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-icon">⚡</span>
+      <div class="sl-ctitle">Minimal Navigation Chrome</div>
+      <p class="sl-cbody">Sidebar collapses to icon-only. Screen real estate belongs to the transaction — not persistent navigation.</p>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-icon">🖼️</span>
+      <div class="sl-ctitle">Image-Forward Product Grid</div>
+      <p class="sl-cbody">Visual recognition beats scanning a text list in a busy environment. Image leads, SKU follows.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-icon">🧩</span>
+      <div class="sl-ctitle">POS-Only Components</div>
+      <p class="sl-cbody">Numpad, Transaction Row, Receipt Preview — no web or mobile equivalent. Owned entirely by the POS library.</p>
+    </div>
+  </div>
+  <div class="media-placeholder" style="aspect-ratio:16/5;margin:.5em auto 0;max-width:760px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Screenshot: Raytail POS interface — dark surface, transaction panel, large-target numpad, image-forward product grid
+  </div>
+</section>
+
+<!-- SLIDE 8: Component Architecture -->
+<section>
+  <span class="section-label">Act 3 &mdash; Component Strategy</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Atoms → Molecules → Organisms</h2>
+  <div class="sl-grid sl-3">
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">Atoms (Global File)</span>
+      <div class="sl-ctitle">Defined Once, Inherited Everywhere</div>
+      <p class="sl-cbody">Colour chips, typography specimens, icon library, spacing scale. Platform files never redefine these.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-clabel" style="color:#7eb3d8">Molecules (Platform Files)</span>
+      <div class="sl-ctitle">Assembled Per Platform</div>
+      <p class="sl-cbody">POS: Numpad, Transaction Row.<br>Web: Data Table, Filter Chip.<br>Mobile: List Item, Bottom Sheet.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">Organisms (Platform Files)</span>
+      <div class="sl-ctitle">Full Interface Patterns</div>
+      <p class="sl-cbody">POS: Transaction Panel, Product Grid.<br>Web: Analytics Header, Inventory Table.<br>Mobile: Full-screen nav flows.</p>
+    </div>
+  </div>
+  <div class="sl-grid sl-2" style="margin-top:.6em">
+    <div class="sl-card accent-card" style="flex-direction:row;gap:.6em;align-items:center">
+      <div style="font-size:1.6em;flex-shrink:0">🔒</div>
+      <div>
+        <div class="sl-ctitle" style="font-size:.65em">POS Button omits Small size</div>
+        <p class="sl-cbody" style="font-size:.54em">32px is inaccessible on a cashier touchscreen. The constraint lives in the component set, not in docs.</p>
+      </div>
+    </div>
+    <div class="sl-card green-card" style="flex-direction:row;gap:.6em;align-items:center">
+      <div style="font-size:1.6em;flex-shrink:0">🔄</div>
+      <div>
+        <div class="sl-ctitle" style="font-size:.65em">Component set = all states in one</div>
+        <p class="sl-cbody" style="font-size:.54em">Default / Hover / Focus / Disabled / Error — one place, zero state drift across platforms.</p>
+      </div>
+    </div>
+  </div>
+  <div class="media-placeholder" style="aspect-ratio:16/5;margin:.5em auto 0;max-width:760px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    Screenshot: Figma component set — Button variants (Primary / Secondary / Ghost / Destructive) × States × Sizes
+  </div>
+</section>
+
+<!-- SLIDE 9: Governance -->
+<section>
+  <span class="section-label">Act 3 &mdash; Governance</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">How the System Stays Coherent at Scale</h2>
+  <div class="sl-grid sl-3" style="margin-bottom:.5em">
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">Foundation Team</span>
+      <div class="sl-ctitle">Owns Level 1</div>
+      <p class="sl-cbody">All reference token changes go through review. Breaking changes require cross-team coordination before publishing.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-clabel" style="color:#7eb3d8">Platform Teams</span>
+      <div class="sl-ctitle">Owns Level 2</div>
+      <p class="sl-cbody">Can add platform components freely. Cannot redefine global tokens. Gaps get raised as proposals, not workarounds.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Naming Convention</span>
+      <div class="sl-ctitle">category/property/variant</div>
+      <p class="sl-cbody">Enforced globally. Inconsistent token naming is the most common cause of drift in multi-file systems.</p>
+    </div>
+  </div>
+  <div class="sl-grid sl-2">
+    <div class="sl-card" style="flex-direction:row;gap:.5em;align-items:center">
+      <span style="font-size:1.4em">📋</span>
+      <p class="sl-cbody">Component docs live <strong style="color:var(--cream)">in the Figma file</strong>, not a separate tool. Docs that drift from the component are worse than no docs.</p>
+    </div>
+    <div class="sl-card red-card" style="flex-direction:row;gap:.5em;align-items:center">
+      <span style="font-size:1.4em">🔁</span>
+      <p class="sl-cbody">Global token update → <strong style="color:var(--cream)">all platforms sync on next publish.</strong> Manual propagation is architecturally impossible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 10: Impact -->
+<section>
+  <span class="section-label">Act 4 &mdash; Impact</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Measurable Outcomes</h2>
+  <div class="sl-grid sl-3" style="margin-bottom:.5em">
+    <div class="sl-card green-card center">
+      <div class="sl-cnum" style="color:var(--green);opacity:1;font-size:2em">70–90%</div>
+      <div class="sl-ctitle">Faster Handover</div>
+      <p class="sl-cbody">3–5 days → &lt;1 day. Token-driven updates propagate instantly across every platform file.</p>
+    </div>
+    <div class="sl-card green-card center">
+      <div class="sl-cnum" style="color:var(--green);opacity:1;font-size:2em">100%</div>
+      <div class="sl-ctitle">Design Consistency</div>
+      <p class="sl-cbody">Zero manual style overrides after adoption. Every component resolves to the same canonical values.</p>
+    </div>
+    <div class="sl-card green-card center">
+      <div class="sl-cnum" style="color:var(--green);opacity:1;font-size:2em">50–80%</div>
+      <div class="sl-ctitle">Fewer Maintenance Tickets</div>
+      <p class="sl-cbody">Design-related QA requests dropped significantly. Visual bugs at QA became rare instead of routine.</p>
+    </div>
+  </div>
+  <div class="sl-grid sl-2">
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Example Impact Story</span>
+      <p class="sl-cbody">Brand primary green changed. Previously: 2 days, 14 missed screens. After system: one token change — every interface updated automatically. QA flagged zero inconsistencies.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(126,184,126,.04);border-color:rgba(126,184,126,.18)">
+      <span class="sl-clabel gr">Stakeholder Outcome</span>
+      <p class="sl-cbody">The design system shifted from being seen as "designer overhead" to a <strong style="color:var(--green)">strategic, measurable asset</strong> with clear ROI.</p>
+    </div>
+  </div>
+  <div class="media-placeholder" style="aspect-ratio:16/4.5;margin:.5em auto 0;max-width:760px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+    Before / After: Single-file component list (messy, red) → Two-level library structure (clean, green) + handover time graph
+  </div>
+</section>
+
+<!-- SLIDE 11: Reflection -->
+<section>
+  <span class="section-label">Act 4 &mdash; Reflection</span>
+  <h2 style="font-size:1.1em;margin:.1em 0 .4em">What I Would Revisit</h2>
+  <div class="sl-grid sl-2">
+    <div class="sl-card">
+      <span class="sl-clabel" style="color:#b89fd4">Motion Tokens</span>
+      <div class="sl-ctitle">Duration &amp; Easing</div>
+      <p class="sl-cbody">Left out of v1. Without them, platform teams implemented animations independently — jarring inconsistency appeared at QA. Next system: motion tokens from day one.</p>
+    </div>
+    <div class="sl-card">
+      <span class="sl-clabel" style="color:#7eb3d8">Accessibility Tokens</span>
+      <div class="sl-ctitle">Contrast as a Constraint</div>
+      <p class="sl-cbody">Minimum contrast ratios should be token constraints, not designer knowledge. Safe colour decisions shouldn't require manual calculation.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Component Status</span>
+      <div class="sl-ctitle">stable / experimental / deprecated</div>
+      <p class="sl-cbody">Without explicit status taxonomy, platform teams consumed experimental components and got breaking changes without warning.</p>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">Theming Architecture</span>
+      <div class="sl-ctitle">Future Brand Extensions</div>
+      <p class="sl-cbody">Two-level model supports white-labelling — but only if semantic tokens never directly reference raw hex. Any shortcut here becomes a future liability.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 12: Kai Resolved -->
+<section>
+  <span class="section-label">Resolution</span>
+  <div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
+    <div class="sl-card tall center" style="background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.22)">
+      <div class="avatar" style="background:rgba(126,184,126,.15);border-color:var(--green);margin:0 auto .4em">&#x1f9d1;&#x200d;&#x1f4bb;</div>
+      <div class="avatar-name" style="color:var(--green)">Kai &bull; Lead Product Designer</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">After &mdash; System Launched</div>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">The Change</span>
+      <p class="sl-cbody">"Brand green changed. One token update. Every screen across POS, web, and mobile reflected it by end of day. QA flagged nothing."</p>
+    </div>
+    <div class="sl-card">
+      <span class="sl-clabel">The Shift</span>
+      <p class="sl-cbody">The design system is no longer maintenance overhead. It's the reason the team can <strong style="color:var(--cream)">ship three platforms in parallel</strong> without a dedicated sync meeting every week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- END SLIDE -->
+<section>
+  <div style="text-align:center;max-width:480px;margin:0 auto">
+    <span class="mono" style="color:var(--green);font-size:.5em;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:1em">That's a Wrap</span>
+    <h2 style="font-size:1.8em;margin:0 0 .4em;color:var(--cream)">Multi-Level<br><span style="color:var(--green)">Design System</span></h2>
+    <p style="font-family:'Instrument Serif',serif;font-style:italic;color:var(--cream-dim);font-size:.9em;margin:0 0 1.4em">Raytail &mdash; POS, Web &amp; Mobile unified under one architecture.</p>
+    <div style="display:flex;gap:.8em;justify-content:center;flex-wrap:wrap">
+      <a href="portfolio.html#projects" style="display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;background:rgba(126,184,126,.08);border:1px solid rgba(126,184,126,.25);border-radius:16px;color:var(--green);font-family:'Space Mono',monospace;font-size:.52em;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .2s" onmouseover="this.style.background='rgba(126,184,126,.16)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(126,184,126,.08)';this.style.transform='translateY(0)'">&#x2190; Back to Portfolio</a>
+      <a href="case-study-resume-pipeline.html" style="display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;background:rgba(255,255,255,.04);border:1px solid rgba(240,230,211,.12);border-radius:16px;color:var(--cream-dim);font-family:'Space Mono',monospace;font-size:.52em;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .2s" onmouseover="this.style.background='rgba(255,255,255,.08)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,.04)';this.style.transform='translateY(0)'">Next Case Study &#x2192;</a>
+    </div>
+  </div>
+</section>
+
+</div>
 </div>
 
-
-<!-- Navigation Hints -->
-<div class="nav-hint left" onclick="Reveal.prev()">
-  <svg viewBox="0 0 24 24">
-    <polyline points="15 18 9 12 15 6"></polyline>
-  </svg>
-</div>
-<div class="nav-hint right first-hint" onclick="Reveal.next()">
-  <svg viewBox="0 0 24 24">
-    <polyline points="9 6 15 12 9 18"></polyline>
-  </svg>
-</div>
-
-<!-- Reveal.js -->
-
-<div class="popup-backdrop" id="popupBackdrop"></div>
-<div class="popup-overlay">
-  <!-- Biz 1: Cost of Inconsistency (slide 2) -->
-  <div class="popup-card biz" data-popup-slide="1">
-    <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
-    <div class="popup-title">Cost of Inconsistency</div>
-    <div class="popup-desc">Three button styles = three developer implementations = <strong>3x the maintenance cost.</strong></div>
-    <div class="popup-foot">Design Debt</div>
-  </div>
-
-  <!-- UX 1: Cognitive Fragmentation (slide 3) -->
-  <div class="popup-card ux" data-popup-slide="2">
-    <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
-    <div class="popup-title">Cognitive Fragmentation</div>
-    <div class="popup-desc">Users build mental models of UI patterns. <strong>Inconsistent components break those models</strong> and slow task completion.</div>
-    <div class="popup-foot">Jakob&rsquo;s Law</div>
-  </div>
-
-  <!-- UX 2: Jakob's Law (slide 4) -->
-  <div class="popup-card ux" data-popup-slide="3">
-    <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
-    <div class="popup-title">Pattern Consistency</div>
-    <div class="popup-desc">When the same button behaves differently across products, <strong>cognitive load increases and trust decreases.</strong></div>
-    <div class="popup-foot">Psychology Principle</div>
-  </div>
-
-  <!-- Biz 2: Audit Findings (slide 5) -->
-  <div class="popup-card biz" data-popup-slide="4">
-    <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
-    <div class="popup-title">70% Wasted Effort</div>
-    <div class="popup-desc">70% of components were functionally identical but visually different. <strong>The same work done 3 times.</strong></div>
-    <div class="popup-foot">Audit Finding</div>
-  </div>
-
-  <!-- Biz 3: Architecture (slide 6) -->
-  <div class="popup-card biz" data-popup-slide="5">
-    <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
-    <div class="popup-title">Architecture as Investment</div>
-    <div class="popup-desc">Two-level architecture means <strong>shared infrastructure costs are paid once, not per-product.</strong></div>
-    <div class="popup-foot">Scalability</div>
-  </div>
-
-  <!-- Biz 4: Token Economics (slide 7) -->
-  <div class="popup-card biz" data-popup-slide="6">
-    <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
-    <div class="popup-title">Token Economics</div>
-    <div class="popup-desc">One token change = hours of manual work eliminated. <strong>The ROI compounds with every design update.</strong></div>
-    <div class="popup-foot">Efficiency Gain</div>
-  </div>
-
-  <!-- UX 3: Single Source (slide 10) -->
-  <div class="popup-card ux" data-popup-slide="10">
-    <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
-    <div class="popup-title">Self-Maintaining System</div>
-    <div class="popup-desc">Token cascade eliminates drift by design. <strong>Consistency becomes automatic, not manual.</strong></div>
-    <div class="popup-foot">Architecture Benefit</div>
-  </div>
-
-  <!-- Biz 5: Campaign Story (slide 12) -->
-  <div class="popup-card biz" data-popup-slide="11">
-    <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
-    <div class="popup-title">Compound Efficiency</div>
-    <div class="popup-desc">3&ndash;5 days &rarr; 2 hours. 12 bugs &rarr; 0. <strong>Every sprint, the system pays dividends.</strong></div>
-    <div class="popup-foot">Real Impact</div>
-  </div>
-
-  <!-- UX 4: Documentation (slide 13) -->
-  <div class="popup-card ux" data-popup-slide="12">
-    <div class="popup-tag ux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> #UX Insight</div>
-    <div class="popup-title">Docs as Product</div>
-    <div class="popup-desc">Documentation transformed the system from a design tool into <strong>a shared language for the entire team.</strong></div>
-    <div class="popup-foot">Adoption Strategy</div>
-  </div>
-
-  <!-- Biz 6: Results (slide 14) -->
-  <div class="popup-card biz" data-popup-slide="13">
-    <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
-    <div class="popup-title">Measurable Impact</div>
-    <div class="popup-desc">70–90% faster handover, 100% consistency, 50–80% fewer tickets. <strong>Design systems are business assets.</strong></div>
-    <div class="popup-foot">Results Validation</div>
-  </div>
-</div>
-
+<!-- Inlined reveal.min.js -->
 <script>!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).Reveal=t()}(this,function(){"use strict";const _e=(e,t)=>{for(var i in t)e[i]=t[i];return e},Je=(e,t)=>Array.from(e.querySelectorAll(t)),Ge=(e,t,i)=>{i?e.classList.add(t):e.classList.remove(t)},Qe=e=>{if("string"==typeof e){if("null"===e)return null;if("true"===e)return!0;if("false"===e)return!1;if(e.match(/^-?[\d\.]+$/))return parseFloat(e)}return e},Ze=(e,t)=>{e.style.transform=t},s=(e,t)=>{let i=e.matches||e.matchesSelector||e.msMatchesSelector;return!(!i||!i.call(e,t))},et=(e,t)=>{if("function"==typeof e.closest)return e.closest(t);for(;e;){if(s(e,t))return e;e=e.parentNode}return null},m=e=>{let t=document.createElement("style");return t.type="text/css",e&&0<e.length&&(t.styleSheet?t.styleSheet.cssText=e:t.appendChild(document.createTextNode(e))),document.head.appendChild(t),t},tt=()=>{let t={};for(var e in location.search.replace(/[A-Z0-9]+?=([\w\.%-]*)/gi,e=>{t[e.split("=").shift()]=e.split("=").pop()}),t){var i=t[e];t[e]=Qe(unescape(i))}return void 0!==t.dependencies&&delete t.dependencies,t},d={mp4:"video/mp4",m4a:"video/mp4",ogv:"video/ogg",mpeg:"video/mpeg",webm:"video/webm"},e=navigator.userAgent,it=/(iphone|ipod|ipad|android)/gi.test(e)||"MacIntel"===navigator.platform&&1<navigator.maxTouchPoints,n=(/chrome/i.test(e)&&/edge/i.test(e),/android/gi.test(e));var t={},L=(Object.defineProperty(t,"__esModule",{value:!0}),Object.assign||function(e){for(var t=1;t<arguments.length;t++){var i,a=arguments[t];for(i in a)Object.prototype.hasOwnProperty.call(a,i)&&(e[i]=a[i])}return e}),i=t.default=function(i){var t,s,n,e,r,a,o,l,d,c,h,u,v,g,p,m,f,b,y,w,E,R,S;if(i)return t=1,s=3,n=[],e=null,r="requestAnimationFrame"in i?function(){i.cancelAnimationFrame(e),e=i.requestAnimationFrame(function(){return o(n.filter(function(e){return e.dirty&&e.active}))})}:function(){},a=function(t){return function(){n.forEach(function(e){return e.dirty=t}),r()}},o=function(e){e.filter(function(e){return!e.styleComputed}).forEach(function(e){e.styleComputed=h(e)}),e.filter(u).forEach(v);e=e.filter(c);e.forEach(d),e.forEach(function(e){v(e),l(e)}),e.forEach(g)},l=function(e){return e.dirty=0},d=function(e){e.availableWidth=e.element.parentNode.clientWidth,e.currentWidth=e.element.scrollWidth,e.previousFontSize=e.currentFontSize,e.currentFontSize=Math.min(Math.max(e.minSize,e.availableWidth/e.currentWidth*e.previousFontSize),e.maxSize),e.whiteSpace=e.multiLine&&e.currentFontSize===e.minSize?"normal":"nowrap"},c=function(e){return 2!==e.dirty||2===e.dirty&&e.element.parentNode.clientWidth!==e.availableWidth},h=function(e){var t=i.getComputedStyle(e.element,null);e.currentFontSize=parseFloat(t.getPropertyValue("font-size")),e.display=t.getPropertyValue("display"),e.whiteSpace=t.getPropertyValue("white-space")},u=function(e){var t=!1;return!e.preStyleTestCompleted&&(/inline-/.test(e.display)||(t=!0,e.display="inline-block"),"nowrap"!==e.whiteSpace&&(t=!0,e.whiteSpace="nowrap"),e.preStyleTestCompleted=!0,t)},v=function(e){e.element.style.whiteSpace=e.whiteSpace,e.element.style.display=e.display,e.element.style.fontSize=e.currentFontSize+"px"},g=function(e){e.element.dispatchEvent(new CustomEvent("fit",{detail:{oldValue:e.previousFontSize,newValue:e.currentFontSize,scaleFactor:e.currentFontSize/e.previousFontSize}}))},p=function(e,t){return function(){e.dirty=t,e.active&&r()}},m=function(t){return function(){n=n.filter(function(e){return e.element!==t.element}),t.observeMutations&&t.observer.disconnect(),t.element.style.whiteSpace=t.originalStyle.whiteSpace,t.element.style.display=t.originalStyle.display,t.element.style.fontSize=t.originalStyle.fontSize}},f=function(e){return function(){e.active||(e.active=!0,r())}},b=function(e){return function(){return e.active=!1}},y=function(e){e.observeMutations&&(e.observer=new MutationObserver(p(e,t)),e.observer.observe(e.element,e.observeMutations))},w={minSize:16,maxSize:512,multiLine:!0,observeMutations:"MutationObserver"in i&&{subtree:!0,childList:!0,characterData:!0}},E=null,R=function(){i.clearTimeout(E),E=i.setTimeout(a(2),k.observeWindowDelay)},S=["resize","orientationchange"],Object.defineProperty(k,"observeWindow",{set:function(e){var t=(e?"add":"remove")+"EventListener";S.forEach(function(e){i[t](e,R)})}}),k.observeWindow=!0,k.observeWindowDelay=100,k.fitAll=a(s),k;function A(e,t){var a=L({},w,t),t=e.map(function(e){var t,i=L({},a,{element:e,active:!0});return(t=i).originalStyle={whiteSpace:t.element.style.whiteSpace,display:t.element.style.display,fontSize:t.element.style.fontSize},y(t),t.newbie=!0,t.dirty=!0,n.push(t),{element:e,fit:p(i,s),unfreeze:f(i),freeze:b(i),unsubscribe:m(i)}});return r(),t}function k(e){var t,i=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{};return"string"==typeof e?A((t=document.querySelectorAll(e),[].slice.call(t)),i):A([e],i)[0]}}("undefined"==typeof window?null:window);class at{constructor(e){this.Reveal=e,this.startEmbeddedIframe=this.startEmbeddedIframe.bind(this)}shouldPreload(e){let t=this.Reveal.getConfig().preloadIframes;return t="boolean"!=typeof t?e.hasAttribute("data-preload"):t}load(r,o={}){r.style.display=this.Reveal.getConfig().display,Je(r,"img[data-src], video[data-src], audio[data-src], iframe[data-src]").forEach(e=>{"IFRAME"===e.tagName&&!this.shouldPreload(e)||(e.setAttribute("src",e.getAttribute("data-src")),e.setAttribute("data-lazy-loaded",""),e.removeAttribute("data-src"))}),Je(r,"video, audio").forEach(e=>{let t=0;Je(e,"source[data-src]").forEach(e=>{e.setAttribute("src",e.getAttribute("data-src")),e.removeAttribute("data-src"),e.setAttribute("data-lazy-loaded",""),t+=1}),it&&"VIDEO"===e.tagName&&e.setAttribute("playsinline",""),0<t&&e.load()});let l=r.slideBackgroundElement;if(l){l.style.display="block";let n=r.slideBackgroundContentElement,i=r.getAttribute("data-background-iframe");if(!1===l.hasAttribute("data-loaded")){l.setAttribute("data-loaded","true");let e=r.getAttribute("data-background-image"),t=r.getAttribute("data-background-video"),a=r.hasAttribute("data-background-video-loop"),s=r.hasAttribute("data-background-video-muted");if(e)/^data:/.test(e.trim())?n.style.backgroundImage=`url(${e.trim()})`:n.style.backgroundImage=e.split(",").map(e=>`url(${((e="")=>encodeURI(e).replace(/%5B/g,"[").replace(/%5D/g,"]").replace(/[!'()*]/g,e=>"%"+e.charCodeAt(0).toString(16).toUpperCase()))(decodeURI(e.trim()))})`).join(",");else if(t&&!this.Reveal.isSpeakerNotes()){let i=document.createElement("video");a&&i.setAttribute("loop",""),s&&(i.muted=!0),it&&(i.muted=!0,i.setAttribute("playsinline","")),t.split(",").forEach(e=>{[t=""]=[e];var t=d[t.split(".").pop()];i.innerHTML+=t?`<source src="${e}" type="${t}">`:`<source src="${e}">`}),n.appendChild(i)}else if(i&&!0!==o.excludeIframes){let e=document.createElement("iframe");e.setAttribute("allowfullscreen",""),e.setAttribute("mozallowfullscreen",""),e.setAttribute("webkitallowfullscreen",""),e.setAttribute("allow","autoplay"),e.setAttribute("data-src",i),e.style.width="100%",e.style.height="100%",e.style.maxHeight="100%",e.style.maxWidth="100%",n.appendChild(e)}}let e=n.querySelector("iframe[data-src]");e&&this.shouldPreload(l)&&!/autoplay=(1|true|yes)/gi.test(i)&&e.getAttribute("src")!==i&&e.setAttribute("src",i)}this.layout(r)}layout(e){Array.from(e.querySelectorAll(".r-fit-text")).forEach(e=>{i(e,{minSize:24,maxSize:.8*this.Reveal.getConfig().height,observeMutations:!1,observeWindow:!1})})}unload(e){e.style.display="none";let t=this.Reveal.getSlideBackground(e);t&&(t.style.display="none",Je(t,"iframe[src]").forEach(e=>{e.removeAttribute("src")})),Je(e,"video[data-lazy-loaded][src], audio[data-lazy-loaded][src], iframe[data-lazy-loaded][src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")}),Je(e,"video[data-lazy-loaded] source[src], audio source[src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")})}formatEmbeddedContent(){var e=(i,e,a)=>{Je(this.Reveal.getSlidesElement(),"iframe["+i+'*="'+e+'"]').forEach(e=>{let t=e.getAttribute(i);t&&-1===t.indexOf(a)&&e.setAttribute(i,t+(/\?/.test(t)?"&":"?")+a)})};e("src","youtube.com/embed/","enablejsapi=1"),e("data-src","youtube.com/embed/","enablejsapi=1"),e("src","player.vimeo.com/","api=1"),e("data-src","player.vimeo.com/","api=1")}startEmbeddedContent(e){e&&!this.Reveal.isSpeakerNotes()&&(Je(e,'img[src$=".gif"]').forEach(e=>{e.setAttribute("src",e.getAttribute("src"))}),Je(e,"video, audio").forEach(t=>{if(!et(t,".fragment")||et(t,".fragment.visible")){let e=this.Reveal.getConfig().autoPlayMedia;if((e="boolean"!=typeof e?t.hasAttribute("data-autoplay")||!!et(t,".slide-background"):e)&&"function"==typeof t.play)if(1<t.readyState)this.startEmbeddedMedia({target:t});else if(it){let e=t.play();e&&"function"==typeof e.catch&&!1===t.controls&&e.catch(()=>{t.controls=!0,t.addEventListener("play",()=>{t.controls=!1})})}else t.removeEventListener("loadeddata",this.startEmbeddedMedia),t.addEventListener("loadeddata",this.startEmbeddedMedia)}}),Je(e,"iframe[src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||this.startEmbeddedIframe({target:e})}),Je(e,"iframe[data-src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||e.getAttribute("src")!==e.getAttribute("data-src")&&(e.removeEventListener("load",this.startEmbeddedIframe),e.addEventListener("load",this.startEmbeddedIframe),e.setAttribute("src",e.getAttribute("data-src")))}))}startEmbeddedMedia(e){var t=!!et(e.target,"html"),i=!!et(e.target,".present");t&&i&&(e.target.currentTime=0,e.target.play()),e.target.removeEventListener("loadeddata",this.startEmbeddedMedia)}startEmbeddedIframe(e){let t=e.target;if(t&&t.contentWindow){var i=!!et(e.target,"html"),e=!!et(e.target,".present");if(i&&e){let e=this.Reveal.getConfig().autoPlayMedia;"boolean"!=typeof e&&(e=t.hasAttribute("data-autoplay")||!!et(t,".slide-background")),/youtube\.com\/embed\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}',"*"):/player\.vimeo\.com\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"method":"play"}',"*"):t.contentWindow.postMessage("slide:start","*")}}}stopEmbeddedContent(e,t={}){t=_e({unloadIframes:!0},t),e&&e.parentNode&&(Je(e,"video, audio").forEach(e=>{e.hasAttribute("data-ignore")||"function"!=typeof e.pause||(e.setAttribute("data-paused-by-reveal",""),e.pause())}),Je(e,"iframe").forEach(e=>{e.contentWindow&&e.contentWindow.postMessage("slide:stop","*"),e.removeEventListener("load",this.startEmbeddedIframe)}),Je(e,'iframe[src*="youtube.com/embed/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}',"*")}),Je(e,'iframe[src*="player.vimeo.com/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"method":"pause"}',"*")}),!0===t.unloadIframes&&Je(e,"iframe[data-src]").forEach(e=>{e.setAttribute("src","about:blank"),e.removeAttribute("src")}))}}class st{constructor(e){this.Reveal=e}render(){this.element=document.createElement("div"),this.element.className="slide-number",this.Reveal.getRevealElement().appendChild(this.element)}configure(e,t){let i="none";e.slideNumber&&!this.Reveal.isPrintingPDF()&&("all"===e.showSlideNumber||"speaker"===e.showSlideNumber&&this.Reveal.isSpeakerNotes())&&(i="block"),this.element.style.display=i}update(){this.Reveal.getConfig().slideNumber&&this.element&&(this.element.innerHTML=this.getSlideNumber())}getSlideNumber(e=this.Reveal.getCurrentSlide()){let t,i=this.Reveal.getConfig(),a="h.v";if("function"==typeof i.slideNumber)t=i.slideNumber(e);else{"string"==typeof i.slideNumber&&(a=i.slideNumber),/c/.test(a)||1!==this.Reveal.getHorizontalSlides().length||(a="c");var s=e&&"uncounted"===e.dataset.visibility?0:1;switch(t=[],a){case"c":t.push(this.Reveal.getSlidePastCount(e)+s);break;case"c/t":t.push(this.Reveal.getSlidePastCount(e)+s,"/",this.Reveal.getTotalSlides());break;default:var n=this.Reveal.getIndices(e),r=(t.push(n.h+s),"h/v"===a?"/":".");this.Reveal.isVerticalSlide(e)&&t.push(r,n.v+1)}}var o="#"+this.Reveal.location.getHash(e);return this.formatNumber(t[0],t[1],t[2],o)}formatNumber(e,t,i,a="#"+this.Reveal.location.getHash()){return"number"!=typeof i||isNaN(i)?`<a href="${a}">
 					<span class="slide-number-a">${e}</span>
 					</a>`:`<a href="${a}">
@@ -1380,38 +631,13 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 				</div>
 			`,f.overlay.querySelector(".close").addEventListener("click",e=>{M(),e.preventDefault()},!1)}}function M(){return!!f.overlay&&(f.overlay.parentNode.removeChild(f.overlay),!(f.overlay=null))}function I(){if(f.wrapper&&!C.isPrintingPDF()){if(!p.disableLayout){it&&!p.embedded&&document.documentElement.style.setProperty("--vh",.01*window.innerHeight+"px");var i=ne(),e=t,a=(se(p.width,p.height),f.slides.style.width=i.width+"px",f.slides.style.height=i.height+"px",t=Math.min(i.presentationWidth/i.width,i.presentationHeight/i.height),t=Math.max(t,p.minScale),1===(t=Math.min(t,p.maxScale))?(f.slides.style.zoom="",f.slides.style.left="",f.slides.style.top="",f.slides.style.bottom="",Q({layout:f.slides.style.right=""})):(f.slides.style.zoom="",f.slides.style.left="50%",f.slides.style.top="50%",f.slides.style.bottom="auto",f.slides.style.right="auto",Q({layout:"translate(-50%, -50%) scale("+t+")"})),Array.from(f.wrapper.querySelectorAll(ot)));for(let e=0,t=a.length;e<t;e++){const s=a[e];"none"!==s.style.display&&(p.center||s.classList.contains("center")?s.classList.contains("stack")?s.style.top=0:s.style.top=Math.max((i.height-s.scrollHeight)/2,0)+"px":s.style.top="")}e!==t&&N({type:"resize",data:{oldScale:e,scale:t,size:i}})}f.viewport.style.setProperty("--slide-scale",t),k.update(),w.updateParallax(),R.isActive()&&R.update()}}function se(o,l){Je(f.slides,"section > .stretch, section > .r-stretch").forEach(e=>{[t,i=0]=[e,l];var t,i,a,s=t?(s=t.style.height,t.style.height="0px",t.parentNode.style.height="auto",a=i-t.parentNode.offsetHeight,t.style.height=s+"px",t.parentNode.style.removeProperty("height"),a):i;if(/(img|video)/gi.test(e.nodeName)){const l=e.naturalWidth||e.videoWidth,n=e.naturalHeight||e.videoHeight,r=Math.min(o/l,s/n);e.style.width=l*r+"px",e.style.height=n*r+"px"}else e.style.width=o+"px",e.style.height=s+"px"})}function ne(e,t){let i=p.width,a=p.height;p.disableLayout&&(i=f.slides.offsetWidth,a=f.slides.offsetHeight);const s={width:i,height:a,presentationWidth:e||f.wrapper.offsetWidth,presentationHeight:t||f.wrapper.offsetHeight};return s.presentationWidth-=s.presentationWidth*p.margin,s.presentationHeight-=s.presentationHeight*p.margin,"string"==typeof s.width&&/%$/.test(s.width)&&(s.width=parseInt(s.width,10)/100*s.presentationWidth),"string"==typeof s.height&&/%$/.test(s.height)&&(s.height=parseInt(s.height,10)/100*s.presentationHeight),s}function re(e,t){"object"==typeof e&&"function"==typeof e.setAttribute&&e.setAttribute("data-previous-indexv",t||0)}function oe(e){var t;return"object"==typeof e&&"function"==typeof e.setAttribute&&e.classList.contains("stack")?(t=e.hasAttribute("data-start-indexv")?"data-start-indexv":"data-previous-indexv",parseInt(e.getAttribute(t)||0,10)):0}function le(e=g){return e&&e.parentNode&&!!e.parentNode.nodeName.match(/section/i)}function de(){return!(!g||!le(g)||g.nextElementSibling)}function ce(){return 0===h&&0===u}function he(){return!(!g||g.nextElementSibling||le(g)&&g.parentNode.nextElementSibling)}function ue(){var e;p.pause&&(e=f.wrapper.classList.contains("paused"),Me(),f.wrapper.classList.add("paused"),!1===e&&N({type:"paused"}))}function ve(){var e=f.wrapper.classList.contains("paused");f.wrapper.classList.remove("paused"),z(),e&&N({type:"resumed"})}function ge(e){("boolean"==typeof e?e?ue:ve:pe()?ve:ue)()}function pe(){return f.wrapper.classList.contains("paused")}function T(a,s,n,r){if(!N({type:"beforeslidechange",data:{indexh:void 0===a?h:a,indexv:void 0===s?u:s,origin:r}}).defaultPrevented){v=g;var o=f.wrapper.querySelectorAll(lt);if(0!==o.length){void 0!==s||R.isActive()||(s=oe(o[a])),v&&v.parentNode&&v.parentNode.classList.contains("stack")&&re(v.parentNode,u);const c=m.concat();m.length=0;var l=h||0,d=u||0,a=(h=be(lt,void 0===a?h:a),u=be(dt,void 0===s?u:s),h!==l||u!==d);a||(v=null);let e=o[h],t=e.querySelectorAll("section"),i=(g=t[u]||e,!1);a&&v&&g&&!R.isActive()&&(v.hasAttribute("data-auto-animate")&&g.hasAttribute("data-auto-animate")&&v.getAttribute("data-auto-animate-id")===g.getAttribute("data-auto-animate-id")&&!(h>l||u>d?g:v).hasAttribute("data-auto-animate-restart")&&(i=!0,f.slides.classList.add("disable-slide-transitions")),B="running"),Ee(),I(),R.isActive()&&R.update(),void 0!==n&&E.goto(n),v&&v!==g&&(v.classList.remove("present"),v.setAttribute("aria-hidden","true"),ce()&&setTimeout(()=>{Je(f.wrapper,lt+".stack").forEach(e=>{re(e,0)})},0));e:for(let t=0,e=m.length;t<e;t++){for(let e=0;e<c.length;e++)if(c[e]===m[t]){c.splice(e,1);continue e}f.viewport.classList.add(m[t]),N({type:m[t]})}for(;c.length;)f.viewport.classList.remove(c.pop());a&&N({type:"slidechanged",data:{indexh:h,indexv:u,previousSlide:v,currentSlide:g,origin:r}}),!a&&v||(b.stopEmbeddedContent(v),b.startEmbeddedContent(g)),requestAnimationFrame(()=>{V($(g))}),k.update(),A.update(),P.update(),w.update(),w.updateParallax(),y.update(),E.update(),S.writeURL(),z(),i&&(setTimeout(()=>{f.slides.classList.remove("disable-slide-transitions")},0),p.autoAnimate&&U.run(v,g))}}}function me(){_(),Y(),I(),o=p.autoSlide,z(),w.create(),S.writeURL(),!0===p.sortFragmentsOnSync&&E.sortAll(),A.update(),k.update(),Ee(),P.update(),P.updateVisibility(),w.update(!0),y.update(),b.formatEmbeddedContent(),!1===p.autoPlayMedia?b.stopEmbeddedContent(g,{unloadIframes:!1}):b.startEmbeddedContent(g),R.isActive()&&R.layout()}function fe(a=F()){a.forEach((e,t)=>{var i=a[Math.floor(Math.random()*a.length)],i=(i.parentNode===e.parentNode&&e.parentNode.insertBefore(e,i),e.querySelectorAll("section"));i.length&&fe(i)})}function be(e,a){let s=Je(f.wrapper,e),n=s.length,r=C.isPrintingPDF(),o=!1,l=!1;if(n){p.loop&&(n<=a&&(o=!0),(a%=n)<0&&(a=n+a,l=!0)),a=Math.max(Math.min(a,n-1),0);for(let i=0;i<n;i++){let e=s[i],t=p.rtl&&!le(e);e.classList.remove("past"),e.classList.remove("present"),e.classList.remove("future"),e.setAttribute("hidden",""),e.setAttribute("aria-hidden","true"),e.querySelector("section")&&e.classList.add("stack"),r?e.classList.add("present"):i<a?(e.classList.add(t?"future":"past"),p.fragments&&ye(e)):i>a?(e.classList.add(t?"past":"future"),p.fragments&&we(e)):i===a&&p.fragments&&(o?we(e):l&&ye(e))}let e=s[a],t=e.classList.contains("present"),i=(e.classList.add("present"),e.removeAttribute("hidden"),e.removeAttribute("aria-hidden"),t||N({target:e,type:"visible",bubbles:!1}),e.getAttribute("data-state"));i&&(m=m.concat(i.split(" ")))}else a=0;return a}function ye(e){Je(e,".fragment").forEach(e=>{e.classList.add("visible"),e.classList.remove("current-fragment")})}function we(e){Je(e,".fragment.visible").forEach(e=>{e.classList.remove("visible","current-fragment")})}function Ee(){let a,s,e=F(),n=e.length;if(n&&void 0!==h){let i=R.isActive()?10:p.viewDistance;it&&(i=R.isActive()?6:p.mobileViewDistance),C.isPrintingPDF()&&(i=Number.MAX_VALUE);for(let t=0;t<n;t++){var r=e[t],o=Je(r,"section"),l=o.length;if(a=Math.abs((h||0)-t)||0,(a=p.loop?Math.abs(((h||0)-t)%(n-i))||0:a)<i?b.load(r):b.unload(r),l){var d=oe(r);for(let e=0;e<l;e++){var c=o[e];s=t===(h||0)?Math.abs((u||0)-e):Math.abs(e-d),a+s<i?b.load(c):b.unload(c)}}}Ce()?f.wrapper.classList.add("has-vertical-slides"):f.wrapper.classList.remove("has-vertical-slides"),Le()?f.wrapper.classList.add("has-horizontal-slides"):f.wrapper.classList.remove("has-horizontal-slides")}}function D({includeFragments:e=!1}={}){let t=f.wrapper.querySelectorAll(lt),i=f.wrapper.querySelectorAll(dt),a={left:0<h,right:h<t.length-1,up:0<u,down:u<i.length-1};return p.loop&&(1<t.length&&(a.left=!0,a.right=!0),1<i.length&&(a.up=!0,a.down=!0)),1<t.length&&"linear"===p.navigationMode&&(a.right=a.right||a.down,a.left=a.left||a.up),!0===e&&(e=E.availableRoutes(),a.left=a.left||e.prev,a.up=a.up||e.prev,a.down=a.down||e.next,a.right=a.right||e.next),p.rtl&&(e=a.left,a.left=a.right,a.right=e),a}function Re(a=g){let s=F(),n=0;e:for(let i=0;i<s.length;i++){let e=s[i],t=e.querySelectorAll("section");for(let e=0;e<t.length;e++){if(t[e]===a)break e;"uncounted"!==t[e].dataset.visibility&&n++}if(e===a)break;!1===e.classList.contains("stack")&&"uncounted"!==e.dataset.visibility&&n++}return n}function Se(a){let t,s=h,n=u;if(a){let e=le(a),t=e?a.parentNode:a,i=F();s=Math.max(i.indexOf(t),0),n=void 0,e&&(n=Math.max(Je(a.parentNode,"section").indexOf(a),0))}if(!a&&g&&0<g.querySelectorAll(".fragment").length){let e=g.querySelector(".current-fragment");t=e&&e.hasAttribute("data-fragment-index")?parseInt(e.getAttribute("data-fragment-index"),10):g.querySelectorAll(".fragment.visible").length-1}return{h:s,v:n,f:t}}function Ae(){return Je(f.wrapper,ot+':not(.stack):not([data-visibility="uncounted"])')}function F(){return Je(f.wrapper,lt)}function ke(){return Je(f.wrapper,".slides>section>section")}function Le(){return 1<F().length}function Ce(){return 1<ke().length}function xe(){return Ae().length}function Pe(e,t){let i=F()[e],a=i&&i.querySelectorAll("section");return a&&a.length&&"number"==typeof t?a?a[t]:void 0:i}function Ne(){var e=Se();return{indexh:e.h,indexv:e.v,indexf:e.f,paused:pe(),overview:R.isActive()}}function z(){if(Me(),g&&!1!==p.autoSlide){let e=g.querySelector(".current-fragment[data-autoslide]"),t=e?e.getAttribute("data-autoslide"):null,i=g.parentNode?g.parentNode.getAttribute("data-autoslide"):null,a=g.getAttribute("data-autoslide");t?o=parseInt(t,10):a?o=parseInt(a,10):i?o=parseInt(i,10):(o=p.autoSlide,0===g.querySelectorAll(".fragment").length&&Je(g,"video, audio").forEach(e=>{e.hasAttribute("data-autoplay")&&o&&1e3*e.duration/e.playbackRate>o&&(o=1e3*e.duration/e.playbackRate+1e3)})),!o||l||pe()||R.isActive()||he()&&!E.availableRoutes().next&&!0!==p.loop||(O=setTimeout(()=>{"function"==typeof p.autoSlideMethod?p.autoSlideMethod():Oe(),z()},o),q=Date.now()),n&&n.setPlaying(-1!==O)}}function Me(){clearTimeout(O),O=-1}function Ie(){o&&!l&&(l=!0,N({type:"autoslidepaused"}),clearTimeout(O),n&&n.setPlaying(!1))}function Te(){o&&l&&(l=!1,N({type:"autoslideresumed"}),z())}function De({skipFragments:e=!1}={}){i.hasNavigatedHorizontally=!0,p.rtl?(R.isActive()||e||!1===E.next())&&D().left&&T(h+1,"grid"===p.navigationMode?u:void 0):(R.isActive()||e||!1===E.prev())&&D().left&&T(h-1,"grid"===p.navigationMode?u:void 0)}function Fe({skipFragments:e=!1}={}){i.hasNavigatedHorizontally=!0,p.rtl?(R.isActive()||e||!1===E.prev())&&D().right&&T(h-1,"grid"===p.navigationMode?u:void 0):(R.isActive()||e||!1===E.next())&&D().right&&T(h+1,"grid"===p.navigationMode?u:void 0)}function ze({skipFragments:e=!1}={}){(R.isActive()||e||!1===E.prev())&&D().up&&T(h,u-1)}function He({skipFragments:e=!1}={}){i.hasNavigatedVertically=!0,(R.isActive()||e||!1===E.next())&&D().down&&T(h,u+1)}function Be({skipFragments:t=!1}={}){if(t||!1===E.prev())if(D().up)ze({skipFragments:t});else{let e;var i;(e=(p.rtl?Je(f.wrapper,lt+".future"):Je(f.wrapper,lt+".past")).pop())&&e.classList.contains("stack")?(i=e.querySelectorAll("section").length-1||void 0,T(h-1,i)):De({skipFragments:t})}}function Oe({skipFragments:t=!1}={}){if(i.hasNavigatedHorizontally=!0,i.hasNavigatedVertically=!0,t||!1===E.next()){let e=D();e.down&&e.right&&p.loop&&de()&&(e.down=!1),(e.down?He:p.rtl?De:Fe)({skipFragments:t})}}function qe(e){let t=e.data;if("string"==typeof t&&"{"===t.charAt(0)&&"}"===t.charAt(t.length-1)&&((t=JSON.parse(t)).method&&"function"==typeof s[t.method]))if(!1===ct.test(t.method)){const e=s[t.method].apply(s,t.args);Z("callback",{method:t.method,result:e})}else console.warn('reveal.js: "'+t.method+'" is is blacklisted from the postMessage API')}function Ue(e){"running"===B&&/section/gi.test(e.target.nodeName)&&(B="idle",N({type:"slidetransitionend",data:{indexh:h,indexv:u,previousSlide:v,currentSlide:g}}))}function je(e){const t=et(e.target,'a[href^="#"]');var i;t&&(i=t.getAttribute("href"),(i=S.getIndicesFromHash(i))&&(s.slide(i.h,i.v,i.f),e.preventDefault()))}function We(e){I()}function Ke(e){!1===document.hidden&&document.activeElement!==document.body&&("function"==typeof document.activeElement.blur&&document.activeElement.blur(),document.body.focus())}function Ve(e){(document.fullscreenElement||document.webkitFullscreenElement)===f.wrapper&&(e.stopImmediatePropagation(),setTimeout(()=>{s.layout(),s.focus.focus()},1))}function $e(e){var t;e.currentTarget&&e.currentTarget.hasAttribute("href")&&((t=e.currentTarget.getAttribute("href"))&&(ie(t),e.preventDefault()))}function Xe(e){he()&&!1===p.loop?(T(0,0),Te()):(l?Te:Ie)()}var Ye={VERSION:vt,initialize:function(e){if(!a)throw'Unable to find presentation root (<div class="reveal">).';if(f.wrapper=a,f.slides=a.querySelector(".slides"),f.slides)return!0===(p={...Lt,...p,...H,...e,...tt()}).embedded?f.viewport=et(a,".reveal-viewport")||a:(f.viewport=document.body,document.documentElement.classList.add("reveal-full-page")),f.viewport.classList.add("reveal-viewport"),window.addEventListener("load",I,!1),L.load(p.plugins,p.dependencies).then(K),new Promise(e=>s.on("ready",e));throw'Unable to find slides container (<div class="slides">).'},configure:X,destroy:function(){_(),Me(),te(),P.destroy(),x.destroy(),L.destroy(),j.destroy(),A.destroy(),k.destroy(),w.destroy(),y.destroy(),d.destroy(),document.removeEventListener("fullscreenchange",Ve),document.removeEventListener("webkitfullscreenchange",Ve),document.removeEventListener("visibilitychange",Ke,!1),window.removeEventListener("message",qe,!1),window.removeEventListener("load",I,!1),f.pauseOverlay&&f.pauseOverlay.remove(),f.statusElement&&f.statusElement.remove(),document.documentElement.classList.remove("reveal-full-page"),f.wrapper.classList.remove("ready","center","has-horizontal-slides","has-vertical-slides"),f.wrapper.removeAttribute("data-transition-speed"),f.wrapper.removeAttribute("data-background-transition"),f.viewport.classList.remove("reveal-viewport"),f.viewport.style.removeProperty("--slide-width"),f.viewport.style.removeProperty("--slide-height"),f.slides.style.removeProperty("width"),f.slides.style.removeProperty("height"),f.slides.style.removeProperty("zoom"),f.slides.style.removeProperty("left"),f.slides.style.removeProperty("top"),f.slides.style.removeProperty("bottom"),f.slides.style.removeProperty("right"),f.slides.style.removeProperty("transform"),Array.from(f.wrapper.querySelectorAll(ot)).forEach(e=>{e.style.removeProperty("display"),e.style.removeProperty("top"),e.removeAttribute("hidden"),e.removeAttribute("aria-hidden")})},sync:me,syncSlide:function(e=g){w.sync(e),E.sync(e),b.load(e),w.update(),P.update()},syncFragments:E.sync.bind(E),slide:T,left:De,right:Fe,up:ze,down:He,prev:Be,next:Oe,navigateLeft:De,navigateRight:Fe,navigateUp:ze,navigateDown:He,navigatePrev:Be,navigateNext:Oe,navigateFragment:E.goto.bind(E),prevFragment:E.prev.bind(E),nextFragment:E.next.bind(E),on:J,off:G,addEventListener:J,removeEventListener:G,layout:I,shuffle:fe,availableRoutes:D,availableFragments:E.availableRoutes.bind(E),toggleHelp:function(e){("boolean"==typeof e?e?ae:M:f.overlay?M:ae)()},toggleOverview:R.toggle.bind(R),togglePause:ge,toggleAutoSlide:function(e){("boolean"==typeof e?e?Te:Ie:l?Te:Ie)()},toggleJumpToSlide:function(e){"boolean"==typeof e?e?d.show():d.hide():d.isVisible()?d.hide():d.show()},isFirstSlide:ce,isLastSlide:he,isLastVerticalSlide:de,isVerticalSlide:le,isPaused:pe,isAutoSliding:function(){return!(!o||l)},isSpeakerNotes:P.isSpeakerNotesWindow.bind(P),isOverview:R.isActive.bind(R),isFocused:x.isFocused.bind(x),isPrintingPDF:C.isPrintingPDF.bind(C),isReady:()=>e,loadSlide:b.load.bind(b),unloadSlide:b.unload.bind(b),startEmbeddedContent:()=>b.startEmbeddedContent(g),stopEmbeddedContent:()=>b.stopEmbeddedContent(g,{unloadIframes:!1}),showPreview:ie,hidePreview:M,addEventListeners:Y,removeEventListeners:_,dispatchEvent:N,getState:Ne,setState:function(e){var t;"object"==typeof e&&(T(Qe(e.indexh),Qe(e.indexv),Qe(e.indexf)),t=Qe(e.paused),e=Qe(e.overview),"boolean"==typeof t&&t!==pe()&&ge(t),"boolean"==typeof e&&e!==R.isActive()&&R.toggle(e))},getProgress:function(){let e=xe(),t=Re();var i;return g&&0<(i=g.querySelectorAll(".fragment")).length&&(t+=g.querySelectorAll(".fragment.visible").length/i.length*.9),Math.min(t/(e-1),1)},getIndices:Se,getSlidesAttributes:function(){return Ae().map(t=>{let i={};for(let e=0;e<t.attributes.length;e++){var a=t.attributes[e];i[a.name]=a.value}return i})},getSlidePastCount:Re,getTotalSlides:xe,getSlide:Pe,getPreviousSlide:()=>v,getCurrentSlide:()=>g,getSlideBackground:function(e,t){if(t="number"==typeof e?Pe(e,t):e)return t.slideBackgroundElement},getSlideNotes:P.getSlideNotes.bind(P),getSlides:Ae,getHorizontalSlides:F,getVerticalSlides:ke,hasHorizontalSlides:Le,hasVerticalSlides:Ce,hasNavigatedHorizontally:()=>i.hasNavigatedHorizontally,hasNavigatedVertically:()=>i.hasNavigatedVertically,addKeyBinding:c.addKeyBinding.bind(c),removeKeyBinding:c.removeKeyBinding.bind(c),triggerKey:c.triggerKey.bind(c),registerKeyboardShortcut:c.registerKeyboardShortcut.bind(c),getComputedSlideSize:ne,getScale:()=>t,getConfig:()=>p,getQueryHash:tt,getSlidePath:S.getHash.bind(S),getRevealElement:()=>a,getSlidesElement:()=>f.slides,getViewportElement:()=>f.viewport,getBackgroundsElement:()=>w.element,registerPlugin:L.registerPlugin.bind(L),hasPlugin:L.hasPlugin.bind(L),getPlugin:L.getPlugin.bind(L),getPlugins:L.getRegisteredPlugins.bind(L)};return _e(s,{...Ye,announceStatus:V,getStatusText:$,print:C,focus:x,progress:k,controls:A,location:S,overview:R,fragments:E,slideContent:b,slideNumber:y,onUserInput:function(e){p.autoSlideStoppable&&Ie()},closeOverlay:M,updateSlidesVisibility:Ee,layoutSlideContents:se,transformSlides:Q,cueAutoSlide:z,cancelAutoSlide:Me}),Ye}let v=u,g=[];return v.initialize=e=>(Object.assign(v,new u(document.querySelector(".reveal"),e)),g.map(e=>e(v)),v.initialize()),["configure","on","off","addEventListener","removeEventListener","registerPlugin"].forEach(i=>{v[i]=(...t)=>{g.push(e=>e[i].call(null,...t))}}),v.isReady=()=>!1,v.VERSION=vt,v});</script>
 
-
+<!-- Reveal.js init -->
 <script>
 Reveal.initialize({
   hash:true, transition:'fade', transitionSpeed:'slow',
   width:1100, height:700, margin:0.08,
-  controlsLayout:'edges', controls:false, progress:true, slideNumber:true,
-  keyboard:true, touch:true, mouseWheel:true
+  controlsLayout:'edges', controls:false, progress:true, slideNumber:true
 });
-
-// Tap / click to advance — pointerup works for both mouse and touch
-(function(){
-  function navBlocked(e){
-    if(document.querySelector('.popup-backdrop.active')) return true;
-    var el=e.target;
-    while(el&&el.nodeType===1){
-      var tag=(el.tagName||'').toLowerCase();
-      if(tag==='a'||tag==='button'||tag==='input'||tag==='select'||tag==='textarea') return true;
-      if(el.hasAttribute&&el.hasAttribute('onclick')) return true;
-      var c=el.className||'';
-      if(typeof c==='string'&&(c.indexOf('nav-hint')>=0||c.indexOf('popup')>=0||c.indexOf('back-link')>=0||c.indexOf('ui-fullscreen')>=0||c.indexOf('expand-btn')>=0||c.indexOf('marker-drag')>=0)) return true;
-      el=el.parentNode;
-    }
-    return false;
-  }
-  var _x=0,_y=0;
-  document.addEventListener('pointerdown',function(e){_x=e.clientX;_y=e.clientY;},true);
-  document.addEventListener('pointerup',function(e){
-    if(navBlocked(e)) return;
-    if(Math.abs(e.clientX-_x)+Math.abs(e.clientY-_y)>20) return;
-    Reveal.next();
-  },true);
-})();
 </script>
 
 <!-- Expand Button & Fullscreen Overlay -->
@@ -1439,41 +665,52 @@ function expandFromBtn(btn){
 })();
 </script>
 
-<!-- Popup Controller Script -->
+<!-- Popup Controller -->
 <script>
-(function() {
+(function(){
   var popups = document.querySelectorAll('.popup-card[data-popup-slide]');
   var bd = document.getElementById('popupBackdrop');
 
-  function hideAll() {
-    popups.forEach(function(p) {
-      p.classList.remove('active');
-      p.style.display = '';
-    });
-    if (bd) bd.classList.remove('active');
-    Reveal.configure({mouseWheel:true});
+  function hideAll(){
+    popups.forEach(function(p){ p.classList.remove('active'); });
+    if(bd) bd.classList.remove('active');
   }
 
-  function showPopup(slideIdx) {
+  function showPopup(slideIdx){
     hideAll();
-    popups.forEach(function(p) {
-      if (parseInt(p.getAttribute('data-popup-slide')) === slideIdx) {
+    popups.forEach(function(p){
+      if(parseInt(p.getAttribute('data-popup-slide')) === slideIdx){
         p.style.display = 'block';
         void p.offsetWidth;
         p.classList.add('active');
-        if (bd) bd.classList.add('active');
-        Reveal.configure({mouseWheel:false});
+        if(bd) bd.classList.add('active');
       }
     });
   }
 
-  Reveal.on('slidechanged', function(e) { hideAll(); });
-  Reveal.on('fragmentshown', function(e) { showPopup(Reveal.getIndices().h); });
-  Reveal.on('fragmenthidden', function(e) { hideAll(); });
-  if (bd) bd.addEventListener('click', function() { hideAll(); });
+  Reveal.on('slidechanged', function(e){ hideAll(); });
+  Reveal.on('fragmentshown', function(e){
+    showPopup(Reveal.getIndices().h);
+  });
+  Reveal.on('fragmenthidden', function(e){ hideAll(); });
+
+  if(bd){
+    bd.addEventListener('click', function(e){
+      if(e.target === bd) hideAll();
+    });
+  }
 })();
 </script>
-<div class="kb-hint" id="kbHint"><div class="kb-pad"><div class="kb-key kb-key--up">▲</div><div class="kb-key kb-key--left">◄</div><div class="kb-key kb-key--down">▼</div><div class="kb-key kb-key--right">►</div></div></div>
+
+
+
+<!-- Navigation arrows -->
+<div class="nav-hint left" onclick="Reveal.prev()" title="Previous">
+  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+</div>
+<div class="nav-hint right first-hint" onclick="Reveal.next()" title="Next">
+  <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+</div>
 
 <script src="js/marker-drag.js"></script>
 </body>

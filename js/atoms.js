@@ -104,13 +104,18 @@
      HERO INTERACTIVITY (landing page)
      · Glow tracks mouse position
      · Name block subtle 3D tilt
-     · Scroll parallax + fade on glow
+     · Scroll parallax on multiple hero layers
      ───────────────────────────────────── */
   var heroGlow      = document.querySelector('.hero-glow');
   var heroSection   = document.querySelector('.hero');
   var heroNameBlock = document.querySelector('.hero-name-block');
+  var heroTopEl     = document.querySelector('.hero-top');
+  var heroBottomEl  = document.querySelector('.hero-bottom');
+  var heroLinesEl   = document.querySelector('.hero-lines');
 
   var glowBaseX = -50, glowBaseY = -55, scrollOff = 0;
+  var nameScrollY = 0;
+  var nameTiltX = 0, nameTiltY = 0, nameTilting = false;
 
   function applyGlowTransform() {
     if (heroGlow) {
@@ -119,14 +124,34 @@
     }
   }
 
-  /* Scroll: vertical parallax + fade */
+  function applyNameTransform() {
+    if (!heroNameBlock) return;
+    if (nameTilting) {
+      heroNameBlock.style.transform =
+        'translateY(' + nameScrollY + 'px) perspective(900px) rotateX(' + nameTiltX + 'deg) rotateY(' + nameTiltY + 'deg)';
+    } else {
+      heroNameBlock.style.transform = 'translateY(' + nameScrollY + 'px)';
+    }
+  }
+
+  /* Scroll: multi-layer parallax */
   window.addEventListener('scroll', function () {
-    scrollOff = window.scrollY * 0.2;
+    var sy = window.scrollY;
+    scrollOff = sy * 0.2;
+
     if (heroGlow) {
       applyGlowTransform();
-      heroGlow.style.opacity = Math.max(0, 1 - window.scrollY / 600);
+      heroGlow.style.opacity = Math.max(0, 1 - sy / 600);
     }
-  });
+
+    /* Hero layers move at different speeds — depth illusion */
+    nameScrollY = -sy * 0.07;
+    applyNameTransform();
+
+    if (heroTopEl)    heroTopEl.style.transform    = 'translateY(' + (-sy * 0.04) + 'px)';
+    if (heroBottomEl) heroBottomEl.style.transform = 'translateY(' + (sy * 0.03) + 'px)';
+    if (heroLinesEl)  heroLinesEl.style.transform  = 'translateY(' + (sy * 0.12) + 'px)';
+  }, { passive: true });
 
   /* Mouse: glow follows cursor, name tilts in 3D */
   if (heroSection) {
@@ -139,16 +164,18 @@
       glowBaseY = -55 + y * 16;
       applyGlowTransform();
 
-      if (heroNameBlock) {
-        heroNameBlock.style.transform =
-          'perspective(900px) rotateX(' + (-y * 4) + 'deg) rotateY(' + (x * 6) + 'deg)';
-      }
+      nameTilting = true;
+      nameTiltX = -y * 4;
+      nameTiltY = x * 6;
+      applyNameTransform();
     });
 
     heroSection.addEventListener('mouseleave', function () {
       glowBaseX = -50; glowBaseY = -55;
       applyGlowTransform();
-      if (heroNameBlock) heroNameBlock.style.transform = '';
+      nameTilting = false;
+      nameTiltX = 0; nameTiltY = 0;
+      applyNameTransform();
     });
   }
 
@@ -184,6 +211,123 @@
       }, { threshold: 0.8 });
 
       obs.observe(el);
+    });
+  }
+
+  /* ─────────────────────────────────────
+     PROJECT THUMBNAIL INNER PARALLAX
+     Inner media moves at 0.4× scroll speed
+     relative to viewport centre — classic
+     "image slower than container" effect.
+     Requires .proj-thumb to have overflow:hidden
+     and media height:120% / top:-10% (set in CSS).
+     ───────────────────────────────────── */
+  var projThumbs = document.querySelectorAll('.proj-thumb');
+
+  function updateThumbParallax() {
+    var vH = window.innerHeight;
+    projThumbs.forEach(function (thumb) {
+      var media = thumb.querySelector('img, video');
+      if (!media) return;
+      var rect     = thumb.getBoundingClientRect();
+      var centerY  = rect.top + rect.height * 0.5;
+      var progress = (vH * 0.5 - centerY) / (vH * 0.5 + rect.height * 0.5);
+      /* clamp to ±1 so off-screen elements don't fly */
+      progress = Math.max(-1, Math.min(1, progress));
+      var offset = progress * 28; /* ±28 px — fits inside the 10% top/bottom buffer */
+      media.style.transform = 'translateY(' + offset + 'px)';
+    });
+  }
+
+  window.addEventListener('scroll', updateThumbParallax, { passive: true });
+  updateThumbParallax();
+
+  /* ─────────────────────────────────────
+     SEE OTHER CASE STUDIES TOGGLE
+     Shows/hides the secondary projects grid.
+     ───────────────────────────────────── */
+  var seeMoreBtn    = document.getElementById('seeMoreBtn');
+  var projectsExtra = document.getElementById('projectsExtra');
+
+  if (seeMoreBtn && projectsExtra) {
+    var btnLabel = seeMoreBtn.querySelector('span');
+
+    seeMoreBtn.addEventListener('click', function () {
+      var isOpen = seeMoreBtn.classList.toggle('open');
+
+      if (isOpen) {
+        projectsExtra.style.display = 'grid';
+        btnLabel.textContent = 'Hide Other Case Studies';
+
+        /* Reveal sr elements that are already in viewport */
+        setTimeout(function () {
+          var vH = window.innerHeight;
+          projectsExtra.querySelectorAll('.sr:not(.vis)').forEach(function (el) {
+            var rect = el.getBoundingClientRect();
+            if (rect.top < vH) el.classList.add('vis');
+          });
+          /* Scroll to the newly revealed section */
+          projectsExtra.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          /* Parallax: update thumb parallax for newly visible thumbs */
+          updateThumbParallax();
+        }, 50);
+
+      } else {
+        projectsExtra.style.display = 'none';
+        btnLabel.textContent = 'See Other Case Studies';
+        /* Scroll back up to the button */
+        seeMoreBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+
+  /* ─────────────────────────────────────
+     ORIENTATION OVERLAY — case studies only
+     Shows on mobile portrait, hides on landscape.
+     "Continue anyway" persists via sessionStorage.
+     ───────────────────────────────────── */
+  if (document.querySelector('.reveal')) {
+    var oEl = document.createElement('div');
+    oEl.className = 'orient-overlay';
+    oEl.id = 'orientOverlay';
+    oEl.innerHTML = [
+      '<div class="orient-icon-wrap">',
+        /* phone SVG */
+        '<svg class="orient-phone" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">',
+          '<rect x="5" y="2" width="14" height="20" rx="2"/>',
+          '<circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/>',
+        '</svg>',
+        /* arc arrow SVG */
+        '<svg class="orient-arc" width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2">',
+          '<path d="M20 58 A26 26 0 0 1 58 20" stroke-linecap="round" stroke-dasharray="5 4"/>',
+          '<polyline points="52,14 58,20 52,26" stroke-linecap="round" stroke-linejoin="round"/>',
+        '</svg>',
+      '</div>',
+      '<p class="orient-title">Rotate your device</p>',
+      '<p class="orient-sub">Best viewed in landscape</p>',
+      '<button class="orient-skip" id="orientSkip">Continue anyway &rarr;</button>'
+    ].join('');
+
+    document.body.appendChild(oEl);
+
+    function checkOrient() {
+      if (sessionStorage.getItem('orientOk')) return;
+      if (window.innerWidth < 768 && window.innerHeight > window.innerWidth) {
+        oEl.classList.add('active');
+      } else {
+        oEl.classList.remove('active');
+      }
+    }
+
+    document.getElementById('orientSkip').addEventListener('click', function () {
+      oEl.classList.remove('active');
+      sessionStorage.setItem('orientOk', '1');
+    });
+
+    checkOrient();
+    window.addEventListener('resize', checkOrient, { passive: true });
+    window.addEventListener('orientationchange', function () {
+      setTimeout(checkOrient, 120); /* short delay for browser to update dimensions */
     });
   }
 

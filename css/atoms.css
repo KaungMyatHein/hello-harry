@@ -770,3 +770,81 @@ footer {
   50%      { box-shadow: 0 0 22px rgba(126,184,126,.8),  0 2px 8px rgba(0,0,0,.4); }
 }
 
+/* ── Orientation Overlay (case studies, mobile portrait) ─────── */
+.orient-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8,8,8,.97);
+  z-index: 99999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+  text-align: center;
+  padding: 2em;
+}
+.orient-overlay.active { display: flex; }
+
+.orient-icon-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orient-phone {
+  color: var(--accent);
+  animation: orient-spin 2.6s ease-in-out infinite;
+  transform-origin: center;
+}
+.orient-arc {
+  position: absolute;
+  inset: 0;
+  color: rgba(232,115,74,.35);
+  animation: orient-arc-pulse 2.6s ease-in-out infinite;
+}
+@keyframes orient-spin {
+  0%,10%  { transform: rotate(0deg);   }
+  45%,60% { transform: rotate(90deg);  }
+  90%,100%{ transform: rotate(0deg);   }
+}
+@keyframes orient-arc-pulse {
+  0%,10%  { opacity: .25; }
+  40%     { opacity: .9;  }
+  65%,100%{ opacity: .25; }
+}
+.orient-title {
+  font-family: var(--font-sans);
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--cream);
+  margin: 0;
+}
+.orient-sub {
+  font-family: var(--font-mono);
+  font-size: .55em;
+  color: var(--cream-dim);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.orient-skip {
+  background: transparent;
+  border: 1px solid rgba(240,230,211,.2);
+  border-radius: 100px;
+  color: rgba(240,230,211,.4);
+  font-family: var(--font-mono);
+  font-size: .5em;
+  letter-spacing: .08em;
+  padding: .6em 1.6em;
+  cursor: pointer;
+  margin-top: .4em;
+  transition: border-color .2s, color .2s;
+}
+.orient-skip:hover {
+  border-color: rgba(240,230,211,.5);
+  color: rgba(240,230,211,.75);
+}
+
