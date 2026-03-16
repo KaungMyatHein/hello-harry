@@ -159,7 +159,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .sl-card.accent-card{background:rgba(232,115,74,.06);border-color:rgba(232,115,74,.22)}
 .sl-card.tall{grid-row:span 2;justify-content:center;align-self:stretch}
 .sl-card.full{grid-column:1/-1}
-.sl-card.center{align-items:center;justify-content:center;text-align:center}.reveal .slides section:has(.sl-grid){display:flex!important;flex-direction:column!important;justify-content:flex-start!important;align-items:stretch!important;padding:2.2em 3em!important;box-sizing:border-box!important}
+.sl-card.center{align-items:center;justify-content:center;text-align:center}
 .sl-clabel{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
 .sl-clabel.gr{color:var(--green)}
 .sl-clabel.rd{color:var(--red)}
@@ -178,6 +178,10 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1}
 .cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.35em}
 
+
+/* Fix: prevent slide overlap - non-present sections stay invisible */
+.reveal .slides > section:not(.present) { opacity: 0 !important; pointer-events: none !important; }
+.reveal .slides > section.present { opacity: 1 !important; }
 </style>
 </head>
 <body>
