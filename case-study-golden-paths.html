@@ -351,7 +351,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <span class="section-label">Act 2 &mdash; The System</span>
   <h2 style="margin-bottom:.4em">The <span style="color:var(--accent)">Golden Path</span> Flow</h2>
-  <div class="sl-grid sl-3">
+  <div class="sl-grid" style="grid-template-columns:repeat(5,1fr)">
     <div class="sl-card">
       <div class="sl-cnum">01</div>
       <span class="sl-ctitle">Create Prototype</span>
@@ -359,26 +359,21 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     </div>
     <div class="sl-card">
       <div class="sl-cnum">02</div>
-      <span class="sl-ctitle">Define Golden Path</span>
-      <p class="sl-cbody">Title + success goal in natural language</p>
+      <span class="sl-ctitle">Set Up Test</span>
+      <p class="sl-cbody">Set personas, user goals, and metrics to track</p>
     </div>
     <div class="sl-card">
       <div class="sl-cnum">03</div>
-      <span class="sl-ctitle">Navigate to Goal</span>
-      <p class="sl-cbody">Click through prototype, capture the success screen</p>
-    </div>
-    <div class="sl-card">
-      <div class="sl-cnum">04</div>
-      <span class="sl-ctitle">Select Persona</span>
-      <p class="sl-cbody">Choose which user type the AI simulates</p>
+      <span class="sl-ctitle">Define Golden Path</span>
+      <p class="sl-cbody">Navigate to goal screen — AI captures it as target</p>
     </div>
     <div class="sl-card accent-card">
-      <div class="sl-cnum">05</div>
+      <div class="sl-cnum">04</div>
       <span class="sl-ctitle">AI Runs Test</span>
       <p class="sl-cbody">Live streaming steps via SSE in real time</p>
     </div>
     <div class="sl-card green-card">
-      <div class="sl-cnum" style="color:var(--green)">06</div>
+      <div class="sl-cnum" style="color:var(--green)">05</div>
       <span class="sl-ctitle">Review Results</span>
       <p class="sl-cbody">Pass/fail, steps, backtracks, AI observations</p>
     </div>
