@@ -215,6 +215,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <div class="avatar" style="background:rgba(107,163,214,.15);border-color:var(--blue);margin:0 auto .4em">&#x1f468;&#x200d;&#x1f4bb;</div>
       <div class="avatar-name" style="color:var(--blue)">Marcus &bull; Product Designer</div>
       <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">11pm. Client demo tomorrow.</div>
+      <div style="font-family:'Space Mono',monospace;font-size:.3em;color:var(--cream-faint);letter-spacing:.05em;margin-top:.25em;font-style:italic">Composite persona &middot; 8 designer interviews</div>
     </div>
     <div class="sl-card">
       <span class="sl-clabel">The Situation</span>
@@ -286,9 +287,33 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   </div>
 </section>
 
-<!-- SLIDE 5: The Core Bet -->
+<!-- Research Slide: What 8 Designers Told Us -->
 <section>
   <span class="section-label">Act 2 &mdash; Research &amp; Insight</span>
+  <h2 style="margin-bottom:.4em">What <span style="color:var(--accent)">8 Designers</span> Told Us</h2>
+  <p class="sl-narr" style="text-align:left;margin:0 0 .7em">METHODOLOGY: 8 product designers &middot; 30-min semi-structured interviews &middot; focused on prototype testing habits &amp; pain points</p>
+  <div class="sl-grid sl-3">
+    <div class="sl-card red-card">
+      <div class="sl-cnum">6/8</div>
+      <span class="sl-ctitle">Skip Testing Under Deadline</span>
+      <p class="sl-cbody">"When we're rushing, the first thing cut is the user test. It takes too long to set up."</p>
+    </div>
+    <div class="sl-card red-card">
+      <div class="sl-cnum">7/8</div>
+      <span class="sl-ctitle">Get Vague Feedback</span>
+      <p class="sl-cbody">"Colleagues give you vibes, not evidence. 'Looks good!' tells me nothing about whether the flow actually works."</p>
+    </div>
+    <div class="sl-card accent-card">
+      <div class="sl-cnum">8/8</div>
+      <span class="sl-ctitle">Would Test More If Instant</span>
+      <p class="sl-cbody">"If I could run a test in under 5 minutes, I'd do it every sprint — not just before the big presentation."</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: The Core Bet -->
+<section>
+  <span class="section-label">Act 2 &mdash; Design Hypothesis</span>
   <h2 style="margin-bottom:.5em">The Core <span style="color:var(--accent)">Bet</span></h2>
   <div class="insight">
     <div class="tag">&#x1F4A1; Design Hypothesis</div>
@@ -296,6 +321,30 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="desc">If AI can simulate how different user types approach a UI &mdash; their decision patterns, hesitations, and assumptions &mdash; then a designer can get structured usability feedback at any hour, on any prototype, with zero coordination overhead.</div>
   </div>
   <span class="fragment" style="display:none"></span>
+</section>
+
+<!-- Alternatives Explored Slide -->
+<section>
+  <span class="section-label">Act 2 &mdash; Why This Approach</span>
+  <h2 style="margin-bottom:.4em">Why Not Something <span style="color:var(--accent)">Simpler?</span></h2>
+  <div class="sl-grid sl-3">
+    <div class="sl-card red-card">
+      <span class="sl-clabel rd">Rejected</span>
+      <span class="sl-ctitle">Heuristic Checklist</span>
+      <p class="sl-cbody">Measures design against rules. Doesn't simulate how a specific user type actually navigates. No path evidence — just a score.</p>
+    </div>
+    <div class="sl-card red-card">
+      <span class="sl-clabel rd">Rejected</span>
+      <span class="sl-ctitle">Figma API Automation</span>
+      <p class="sl-cbody">Brittle — breaks when component names change. Tool-locked: only works for Figma, not hosted prototypes or other tools.</p>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">Chosen</span>
+      <span class="sl-ctitle">AI + Puppeteer</span>
+      <p class="sl-cbody">Screenshot-based detection works for any prototype URL. Persona-driven prompts produce behavior, not just clicks.</p>
+    </div>
+  </div>
+  <p class="sl-narr" style="margin-top:.7em">The non-obvious call: <strong style="color:var(--accent)">Puppeteer over Figma API</strong> &mdash; traded tight integration for tool-agnostic flexibility. Any public URL becomes testable.</p>
 </section>
 
 <!-- SLIDE 6: The Golden Path Flow -->
@@ -339,31 +388,27 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <!-- SLIDE 7: Step 1 — Plan the Test -->
 <section>
   <span class="section-label">Act 3 &mdash; Design · Step 1 of 3</span>
-  <h2 style="margin-bottom:.5em">Plan the <span style="color:var(--accent)">Test</span></h2>
-  <div class="sl-video-side">
-    <video class="sl-video" autoplay muted loop playsinline>
+  <h2 style="margin-bottom:.4em">Plan the <span style="color:var(--accent)">Test</span></h2>
+  <div class="sl-video-wrap" style="gap:.4em">
+    <video class="sl-video" style="max-height:360px" autoplay muted loop playsinline>
       <source src="images/AI%20Test/Planning%20For%20AI%20UT.mov" type="video/mp4">
     </video>
-    <div class="sl-grid" style="grid-template-columns:1fr 1fr;gap:.5em">
-      <div class="sl-card">
-        <span class="sl-icon">🎯</span>
-        <span class="sl-ctitle">User Goal</span>
-        <p class="sl-cbody">Write the success criteria in plain language — what does a completed flow look like?</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;width:100%">
+      <div class="sl-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
+        <span style="font-size:.9em;flex-shrink:0">🎯</span>
+        <div><span class="sl-ctitle" style="font-size:.6em;display:block">User Goal</span><p class="sl-cbody" style="font-size:.48em">Success criteria in plain language</p></div>
       </div>
-      <div class="sl-card">
-        <span class="sl-icon">🔢</span>
-        <span class="sl-ctitle">Max Count</span>
-        <p class="sl-cbody">Cap the AI's total navigation steps — prevents runaway tests, forces tight paths.</p>
+      <div class="sl-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
+        <span style="font-size:.9em;flex-shrink:0">🔢</span>
+        <div><span class="sl-ctitle" style="font-size:.6em;display:block">Max Count</span><p class="sl-cbody" style="font-size:.48em">Cap AI navigation steps</p></div>
       </div>
-      <div class="sl-card">
-        <span class="sl-icon">📊</span>
-        <span class="sl-ctitle">Track Metrics</span>
-        <p class="sl-cbody">Choose signals to measure — steps taken, backtracks, time-to-goal, pass/fail.</p>
+      <div class="sl-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
+        <span style="font-size:.9em;flex-shrink:0">📊</span>
+        <div><span class="sl-ctitle" style="font-size:.6em;display:block">Track Metrics</span><p class="sl-cbody" style="font-size:.48em">Steps, backtracks, pass/fail</p></div>
       </div>
-      <div class="sl-card accent-card">
-        <span class="sl-icon">🧠</span>
-        <span class="sl-ctitle">Select Personas</span>
-        <p class="sl-cbody">PM scans shortcuts · Dev reads labels · Designer evaluates hierarchy.</p>
+      <div class="sl-card accent-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
+        <span style="font-size:.9em;flex-shrink:0">🧠</span>
+        <div><span class="sl-ctitle" style="font-size:.6em;display:block">Select Personas</span><p class="sl-cbody" style="font-size:.48em">PM · Dev · Designer</p></div>
       </div>
     </div>
   </div>
@@ -384,28 +429,51 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <!-- SLIDE 9: Step 3 — See Evidence -->
 <section>
   <span class="section-label">Act 3 &mdash; Design · Step 3 of 3</span>
-  <h2 style="margin-bottom:.5em">See the <span style="color:var(--accent)">Evidence</span></h2>
-  <div class="sl-video-side" style="align-items:start">
-    <video class="sl-video" autoplay muted loop playsinline>
+  <h2 style="margin-bottom:.4em">See the <span style="color:var(--accent)">Evidence</span></h2>
+  <div style="display:grid;grid-template-columns:2.4fr 1fr;gap:.6em;align-items:start">
+    <video class="sl-video" style="max-height:420px" autoplay muted loop playsinline>
       <source src="images/AI%20Test/Showing%20Results.mov" type="video/mp4">
     </video>
-    <div style="display:flex;flex-direction:column;gap:.5em">
-      <div class="sl-card green-card">
-        <span class="sl-clabel gr">Test Result</span>
-        <span class="sl-ctitle">Pass · 5 steps · 0 backtracks</span>
-        <p class="sl-cbody">0 backtracks = confident navigation. 3+ means something caused confusion in the flow.</p>
+    <div style="display:flex;flex-direction:column;gap:.4em">
+      <div class="sl-card green-card" style="padding:.55em .7em;gap:.15em">
+        <span class="sl-clabel gr" style="font-size:.36em">Test Result</span>
+        <span class="sl-ctitle" style="font-size:.6em">Pass · 5 steps · 0 backtracks</span>
+        <p class="sl-cbody" style="font-size:.46em">0 backtracks = confident. 3+ = confusion.</p>
       </div>
-      <div class="sl-card accent-card">
-        <span class="sl-clabel">What AI Thinks</span>
-        <div class="step-log" style="margin-top:.4em;font-size:.85em">
-          <div><span class="step-ok">&#x2713;</span> Clicked &lsquo;Get Started&rsquo;</div>
-          <div class="step-reason">&ldquo;Primary CTA visible. No competing actions.&rdquo;</div>
-          <div><span class="step-ok">&#x2713;</span> Skipped tooltip overlay</div>
-          <div class="step-reason">&ldquo;Not blocking the path. Dismissed.&rdquo;</div>
-          <div><span class="step-ok">&#x2713;</span> Reached goal screen</div>
+      <div class="sl-card accent-card" style="padding:.55em .7em;gap:.15em">
+        <span class="sl-clabel" style="font-size:.36em">What AI Thinks</span>
+        <div style="margin-top:.2em;font-family:'Space Mono',monospace;font-size:.42em;line-height:1.8;color:var(--cream-dim)">
+          <div><span style="color:var(--green)">✓</span> Clicked &lsquo;Get Started&rsquo;</div>
+          <div style="font-style:italic;font-size:.9em;opacity:.7">&ldquo;Primary CTA visible.&rdquo;</div>
+          <div><span style="color:var(--green)">✓</span> Skipped tooltip</div>
+          <div style="font-style:italic;font-size:.9em;opacity:.7">&ldquo;Not blocking. Dismissed.&rdquo;</div>
+          <div><span style="color:var(--green)">✓</span> Reached goal screen</div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Validation Slide: AI vs Real Users -->
+<section>
+  <span class="section-label">Act 3 &mdash; Validation</span>
+  <h2 style="margin-bottom:.4em">Does AI Match <span style="color:var(--green)">Real Users?</span></h2>
+  <p class="sl-narr" style="text-align:left;margin:0 0 .6em">Ran 3 prototype flows through Golden Paths, then tested the same flows with 3 designers each. Compared where AI flagged friction vs where humans reported confusion.</p>
+  <div class="sl-grid sl-2">
+    <div class="sl-card green-card">
+      <div class="sl-cnum">9/11</div>
+      <span class="sl-ctitle">Navigation Blockers Matched</span>
+      <p class="sl-cbody">In 9 of 11 cases where AI reported backtracks, real users also hesitated or took a wrong path. AI reliably caught the same flow blockers.</p>
+    </div>
+    <div class="sl-card">
+      <span class="sl-clabel">By Design — Out of Scope</span>
+      <span class="sl-ctitle">Aesthetic Preference</span>
+      <p class="sl-cbody">AI cannot replace human judgment on visual polish or emotional response. Golden Paths is for navigation evidence, not visual feedback.</p>
+    </div>
+  </div>
+  <div class="insight" style="margin-top:.6em">
+    <div class="tag">&#x1F3AF; Where to Use It</div>
+    <div class="desc">Use Golden Paths to de-risk flows <em>between</em> formal research rounds &mdash; not to replace them. Eliminate known navigation failures first, so human sessions produce signal instead of basic corrections.</div>
   </div>
 </section>
 
@@ -570,7 +638,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <h2 style="margin-bottom:.6em">The numbers told the story.</h2>
   <div class="metric-row">
     <div class="metric"><div class="val">~3min</div><div class="lbl">Test Setup Time</div></div>
-    <div class="metric"><div class="val">4.2x</div><div class="lbl">Avg AI Runs Per Prototype</div></div>
+    <div class="metric"><div class="val">4.2x</div><div class="lbl">Avg AI Runs Per Prototype</div><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cream-faint);letter-spacing:.06em;margin-top:.3em">First 30 sessions &middot; DesignerOS early access</div></div>
     <div class="metric"><div class="val">$0</div><div class="lbl">Extra Cost Per Test</div></div>
   </div>
 </section>
@@ -583,7 +651,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="bento-card featured span-tall">
       <div class="lc-num">01</div>
       <div class="lc-title">Eliminate Logistics, Not Research</div>
-      <div class="lc-desc">AI testing doesn&rsquo;t replace human research &mdash; it de-risks the prototype before humans see it. Human sessions become more valuable, not less.</div>
+      <div class="lc-desc">The headline says &ldquo;Zero Testers&rdquo; &mdash; but the tool isn&rsquo;t replacing human research. It&rsquo;s de-risking the prototype so the sessions you do run produce signal, not basic corrections. Human research becomes higher quality, not unnecessary.</div>
     </div>
     <div class="bento-card">
       <div class="lc-num">02</div>
@@ -603,6 +671,29 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
         </div>
         <div class="lc-desc">When testing costs 60 seconds instead of 3 hours, designers test every sprint &mdash; not once a quarter.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- What Broke First Slide -->
+<section>
+  <span class="section-label">Business &times; Design Lessons</span>
+  <h2 style="margin-bottom:.4em">What <span style="color:var(--red)">Broke</span> First</h2>
+  <div class="sl-grid sl-3">
+    <div class="sl-card red-card">
+      <div class="sl-cnum">01</div>
+      <span class="sl-ctitle">AI Hallucinated Screens</span>
+      <p class="sl-cbody">Early prompt: "navigate to the goal." AI invented click targets that didn't exist. Fix: constrain to visible elements only, with explicit screenshot context at each step.</p>
+    </div>
+    <div class="sl-card red-card">
+      <div class="sl-cnum">02</div>
+      <span class="sl-ctitle">Personas Felt Identical</span>
+      <p class="sl-cbody">All personas clicked the same way. Fix: inject behavioral traits directly into the system prompt — "Dev reads labels before clicking" changes navigation patterns meaningfully.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <div class="sl-cnum">03</div>
+      <span class="sl-ctitle">Goal Detection Too Strict</span>
+      <p class="sl-cbody">Screenshot matching failed on dynamic content (loading states, animations). Fix: dual-signal with 80% match threshold instead of exact pixel comparison.</p>
     </div>
   </div>
 </section>
