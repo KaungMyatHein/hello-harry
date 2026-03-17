@@ -266,11 +266,48 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 </section>
 
 
+<!-- SLIDE 3b: Research Insights -->
+<section>
+  <span class="section-label">Act 2 &mdash; Research</span>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">5 Children. Competitor Products. Unmediated Behaviour.</h2>
+  <div class="sl-grid sl-3">
+    <div class="sl-card full" style="background:rgba(240,230,211,.03);border-color:rgba(240,230,211,.1);flex-direction:row;gap:2em;align-items:flex-start">
+      <div style="flex:1">
+        <span class="sl-clabel">What</span>
+        <div class="sl-ctitle">Observed directly. Not self-reported.</div>
+        <p class="sl-cbody">Navigation patterns, confusion responses, difficulty-handling — watched in real sessions, not inferred from what children say they would do.</p>
+      </div>
+      <div style="width:1px;background:rgba(240,230,211,.1);align-self:stretch"></div>
+      <div style="flex:1">
+        <span class="sl-clabel">Why</span>
+        <div class="sl-ctitle">Design decisions needed behavioral evidence</div>
+        <p class="sl-cbody">Assumptions about how children learn are easy to get wrong. We needed to watch real children use real products before designing anything.</p>
+      </div>
+    </div>
+    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
+      <span class="sl-clabel" style="color:#b89fd4">Methodology</span>
+      <div class="sl-ctitle">Remote sessions, Mandalay</div>
+      <p class="sl-cbody">Participants used competing Singaporean edtech products — not Jar Aye. This removed product-specific bias and surfaced genuine navigation and difficulty-handling behaviours.</p>
+    </div>
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
+      <span class="sl-clabel" style="color:var(--blue)">Finding 1</span>
+      <div class="sl-ctitle">100% navigated core flows</div>
+      <p class="sl-cbody">All participants successfully navigated core app functions — validating that a similar navigation structure would minimise the learning curve for the new product.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">Finding 2</span>
+      <div class="sl-ctitle">1 child went silent on confusion</div>
+      <p class="sl-cbody">One participant hit a question they didn't understand and simply stopped — didn't ask for help, didn't retry. Informed the need for a built-in question explanation feature.</p>
+    </div>
+  </div>
+  <span class="fragment" style="display:none"></span>
+</section>
+
 <!-- SLIDE 4: Authentication Design -->
 <section>
   <span class="section-label">Act 3 &mdash; Design Decisions</span>
   <h2 style="font-size:1.1em;margin:.08em 0 .3em">Sign-In: Every Choice Has a Rationale</h2>
-  <video src="videos/jar-aye-child/signin.mp4" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
+  <video src="images/Jar%20Aye%20Child/login.mov" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
 </section>
 
 <!-- SLIDE 4b: Authentication Insights -->
@@ -293,10 +330,6 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-card accent-card">
       <span class="sl-clabel">Disabled until both fields filled</span>
       <p class="sl-cbody">Nielsen's 5th heuristic — error prevention. The child never sees a "wrong" state from an empty submission.</p>
-    </div>
-    <div class="sl-card red-card">
-      <span class="sl-clabel rd">Critical Fix Identified</span>
-      <p class="sl-cbody">Both field labels read "Enter User Name" — a copy error. The second should read "Enter PIN." Small errors like this erode parent trust on first use.</p>
     </div>
   </div>
 </section>
@@ -336,7 +369,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
   <h2 style="font-size:1.1em;margin:.08em 0 .3em">Question States: 5 States, Each Designed Deliberately</h2>
-  <video src="videos/jar-aye-child/question-states.mp4" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
+  <video src="images/Jar%20Aye%20Child/Learning%20Loop.mov" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
 </section>
 
 <!-- SLIDE 6b: Question State Insights -->
@@ -558,11 +591,6 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <div class="sl-ctitle">Reactive, not proactive</div>
       <p class="sl-cbody">The report system gives excellent data after a problem has developed. A lightweight push notification when a child is consistently failing a topic — or hasn't opened the app in a week — would close this loop.</p>
     </div>
-    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
-      <span class="sl-clabel" style="color:var(--blue)">Sign-in copy error</span>
-      <div class="sl-ctitle">Both labels read "Enter User Name"</div>
-      <p class="sl-cbody">The second label should read "Enter PIN." Address before any usability testing — it's a high-confidence confound that would generate noise in any session data.</p>
-    </div>
   </div>
 </section>
 
@@ -587,16 +615,40 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 </section>
 
 <!-- END SLIDE -->
-<section>
-  <div style="text-align:center;max-width:480px;margin:0 auto">
-    <span class="mono" style="color:var(--blue);font-size:.5em;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:1em">That's a Wrap</span>
-    <h2 style="font-size:1.8em;margin:0 0 .4em;color:var(--cream)">Jar Aye<br><span style="color:var(--blue)">Child App</span></h2>
-    <p style="font-family:'Instrument Serif',serif;font-style:italic;color:var(--cream-dim);font-size:.9em;margin:0 0 1.4em">HOTS Mathematics &mdash; Singapore Curriculum &mdash; Ages 6–12</p>
-    <div style="display:flex;gap:.8em;justify-content:center;flex-wrap:wrap">
-      <a href="portfolio.html#projects" style="display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;background:rgba(107,163,214,.08);border:1px solid rgba(107,163,214,.25);border-radius:16px;color:var(--blue);font-family:'Space Mono',monospace;font-size:.52em;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .2s" onmouseover="this.style.background='rgba(107,163,214,.16)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(107,163,214,.08)';this.style.transform='translateY(0)'">&#x2190; Back to Portfolio</a>
-      <a href="case-study-jar-aye-parent.html" style="display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;background:rgba(255,255,255,.04);border:1px solid rgba(240,230,211,.12);border-radius:16px;color:var(--cream-dim);font-family:'Space Mono',monospace;font-size:.52em;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .2s" onmouseover="this.style.background='rgba(255,255,255,.08)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,.04)';this.style.transform='translateY(0)'">Parent App Case Study &#x2192;</a>
-    </div>
-  </div>
+<section data-background-color="#0a0a0a" style="text-align:left">
+<div class="cs-nav-header" style="margin-bottom:1.5em">
+<div class="sec-num">More Stories</div>
+<h2 class="sec-title" style="font-size:clamp(24px,2.5vw,38px)">Explore More Work</h2>
+</div>
+<div class="cs-nav-grid">
+<a class="cs-nav-card" href="case-study-jar-aye-parent.html">
+<div class="proj-thumb">
+<video autoplay loop muted playsinline src="images/Jar%20Aye%20Parent/Report.mov" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+<div class="thumb-stat">4<span>mastery tiers</span></div>
+</div>
+<div class="proj-info">
+<div class="cs-nav-direction">Companion App</div>
+<div class="proj-tags"><span class="proj-tag">EdTech</span><span class="proj-tag">Mobile App</span><span class="proj-tag">Parent UX</span><span class="proj-tag">2025</span></div>
+<h3 class="proj-title">Jar Aye Parent App &mdash; Closing the Visibility Gap</h3>
+<div class="proj-metrics"><div><div class="pm-val">4</div><div class="pm-label">Mastery Tiers</div></div><div><div class="pm-val">3</div><div class="pm-label">Subscription States</div></div></div>
+<div class="proj-arrow"><svg fill="none" stroke-width="1.5" viewbox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg></div>
+</div>
+</a>
+<a class="cs-nav-card" href="case-study-golden-paths.html">
+<div class="proj-thumb">
+<video autoplay loop muted playsinline src="images/AI%20Test/Showing%20Results.mov" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+<div class="thumb-stat">-99%<span>wait time</span></div>
+</div>
+<div class="proj-info">
+<div class="cs-nav-direction">AI-First Design</div>
+<div class="proj-tags"><span class="proj-tag">AI Product</span><span class="proj-tag">UX Research</span><span class="proj-tag">2024</span></div>
+<h3 class="proj-title">AI User Testing &amp; Golden Paths</h3>
+<div class="proj-metrics"><div><div class="pm-val">-99%</div><div class="pm-label">Wait Time</div></div><div><div class="pm-val">-40%</div><div class="pm-label">90-Day Churn</div></div></div>
+<div class="proj-arrow"><svg fill="none" stroke-width="1.5" viewbox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg></div>
+</div>
+</a>
+</div>
+<p style="margin-top:1.5em;font-family:'Space Mono',monospace;font-size:10px;color:rgba(240,230,211,0.4);letter-spacing:.12em;text-align:center">HARRY HEIN &bull; SENIOR PRODUCT DESIGNER</p>
 </section>
 
 </div>
@@ -613,7 +665,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <div class="popup-desc">Designing for children, parents, and teachers simultaneously requires <strong>explicit prioritisation</strong>. Without it, every ambiguous design decision gets resolved by the loudest stakeholder rather than the primary user.</div>
   <div class="popup-foot">Harry Hein · Jar-Aye Child</div>
 </div>
-<div class="popup-card ux" data-popup-slide="4">
+<div class="popup-card ux" data-popup-slide="3">
   <div class="popup-tag ux">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
     #UX Insight
@@ -622,7 +674,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <div class="popup-desc">Observational research with children produces different — and more honest — data than interviews. What they <strong>struggle with appears in behaviour</strong>, not in words.</div>
   <div class="popup-foot">Harry Hein · Jar-Aye Child</div>
 </div>
-<div class="popup-card biz" data-popup-slide="9">
+<div class="popup-card biz" data-popup-slide="8">
   <div class="popup-tag biz">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
     #Business Insight
@@ -631,7 +683,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <div class="popup-desc">A 5-state question component communicates to parents that the product was <strong>designed with precision</strong>. In edtech, subscription retention is built on perceived rigour — parents renew when they trust the product cares about detail.</div>
   <div class="popup-foot">Harry Hein · Jar-Aye Child</div>
 </div>
-<div class="popup-card ux" data-popup-slide="13">
+<div class="popup-card ux" data-popup-slide="12">
   <div class="popup-tag ux">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
     #UX Insight
@@ -640,7 +692,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <div class="popup-desc">Children need to see progress to stay motivated. Parents need to see progress to justify the subscription. A <strong>4-tier mastery system</strong> serves both audiences with the same data — one sees achievement, the other sees ROI.</div>
   <div class="popup-foot">Harry Hein · Jar-Aye Child</div>
 </div>
-<div class="popup-card biz" data-popup-slide="17">
+<div class="popup-card biz" data-popup-slide="16">
   <div class="popup-tag biz">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
     #Business Insight
