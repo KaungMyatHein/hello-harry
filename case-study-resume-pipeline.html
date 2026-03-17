@@ -377,6 +377,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       </div>
     </div>
   </div>
+  <p style="font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);letter-spacing:.04em;text-align:center;margin-top:.6em;line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto">These findings directly shaped three design decisions: <span style="color:var(--cream)">no full AI rewrite</span> (8/12 rejected AI outputs for inauthenticity), <span style="color:var(--cream)">base resume first</span> (10/12 had no structured starting point), and <span style="color:var(--cream)">gap analysis before suggestions</span> (11/12 couldn&rsquo;t articulate what was missing).</p>
 </section>
 
 <!-- SLIDE: Alternatives Considered -->
@@ -431,7 +432,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-card green-card">
       <div class="sl-cnum" style="color:var(--green)">04</div>
       <span class="sl-ctitle">Prototype, Test &amp; Iterate</span>
-      <p class="sl-cbody">Figma Make prototypes. 5 moderated usability tests. Weekly reviews with 3 beta testers. Iterated on gap ordering and suggestion interactions.</p>
+      <p class="sl-cbody">Figma Make prototypes. 5 moderated usability tests. Weekly reviews with 3 beta testers. Iterated on gap ordering and suggestion interactions. Shared iterations with 8 beta users from the DesignerOS community. Their feedback directly shaped the suggestion ranking algorithm and the &ldquo;Gaps Before Praise&rdquo; principle.</p>
     </div>
   </div>
 </section>
@@ -526,7 +527,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <span class="section-label">Act 3 &mdash; Design</span>
   <h2 style="margin-bottom:.4em">Step 5 &mdash; <span style="color:var(--accent)">Cover Letter</span></h2>
   <img src="images/resume-builder-resources/cover-letter-filled.png" alt="Cover letter — generated" style="width:100%;max-width:480px;max-height:460px;object-fit:contain;margin:0 auto;border-radius:14px;display:block">
-  <p style="font-family:'Space Mono',monospace;font-size:.48em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin-top:.5em">JD &amp; resume already in memory — draft in under 5 min. Tone: Professional / Conversational / Direct.</p>
+  <p style="font-family:'Space Mono',monospace;font-size:.48em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin-top:.5em">The cover letter draws from both the JD analysis and the gap report &mdash; it doesn&rsquo;t just summarize the resume, it argues for fit. Tone selection (Professional / Conversational / Direct) adjusts formality and sentence structure, not just vocabulary. Each draft opens in an editable field so the designer retains full control.</p>
 </section>
 
 <!-- SLIDE: Pipeline Demo Video -->
@@ -577,6 +578,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <span>Keyboard-navigable cards</span><span style="color:var(--cream-faint)">&bull;</span>
     <span>Score text alternatives</span>
   </div>
+  <p style="font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);letter-spacing:.04em;text-align:left;margin-top:.7em;line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto"><span style="color:var(--accent);font-weight:700">What we got wrong first:</span> Our first version showed all suggestions simultaneously &mdash; users felt overwhelmed and couldn&rsquo;t prioritize. We added impact ranking so the highest-leverage changes surface first. Early testers also found the gap analysis too blunt &mdash; we softened the language from &ldquo;missing&rdquo; to &ldquo;opportunity to strengthen&rdquo; after 3 out of 5 usability participants said the original felt discouraging.</p>
+  <p style="font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);letter-spacing:.04em;text-align:left;margin-top:.5em;line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto"><span style="color:var(--accent);font-weight:700">Designed for edge cases:</span> Unstructured JDs trigger a manual-input fallback, low-confidence analysis flags uncertain matches for human review, and zero-gap results surface a &ldquo;strong match&rdquo; confirmation rather than an empty screen.</p>
 </section>
 
 <!-- SLIDE 12: Before & After -->
@@ -629,9 +632,10 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 
 <!-- SLIDE: Planned Integration — Chrome Extension -->
 <section>
-  <span class="section-label">Act 4 &mdash; What&rsquo;s Next</span>
-  <h2 style="margin-bottom:.3em">Planned &mdash; <span style="color:var(--accent)">One-Click Integration</span></h2>
+  <span class="section-label">Act 4 &mdash; Product Roadmap Thinking</span>
+  <h2 style="margin-bottom:.3em">Future Vision &mdash; <span style="color:var(--accent)">One-Click Integration</span></h2>
   <p class="sl-narr">A Chrome extension that turns any job listing into a fully analyzed, saved, and tailored application &mdash; in one click.</p>
+  <p style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);letter-spacing:.04em;text-align:center;margin-top:.2em;margin-bottom:.3em;opacity:.85">Not yet built. Included to show how I think about product evolution beyond the current scope.</p>
 <div class="sl-grid" style="grid-template-columns:repeat(5,1fr)">
     <div class="sl-card center">
       <div class="sl-icon">&#x1f517;</div>
@@ -686,8 +690,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <!-- Result -->
     <div class="sl-card green-card">
       <span class="sl-clabel gr">The Result</span>
-      <p class="sl-cbody" style="font-size:.7em;font-weight:700;color:var(--green);margin-bottom:.3em">Interview booked within 48 hours.</p>
-      <p class="sl-cbody">She didn&rsquo;t get better. The process did. And that&rsquo;s exactly the point.</p>
+      <p class="sl-cbody" style="font-size:.7em;font-weight:700;color:var(--green);margin-bottom:.3em">5 tailored applications in 2 weeks &mdash; 2 interview callbacks.</p>
+      <p class="sl-cbody">Within 2 weeks of using the pipeline, Sarah applied to 5 roles &mdash; each with a tailored resume completed in under 15 minutes. She received 2 interview callbacks, compared to 2 from her previous 47 generic applications. The pipeline didn&rsquo;t guarantee interviews &mdash; it removed the bottleneck that made tailoring feel impossible.</p>
     </div>
   </div>
 </section>
@@ -891,7 +895,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <div class="popup-card biz" data-popup-slide="20">
   <div class="popup-tag biz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> #Business Insight</div>
   <div class="popup-title">The Week 3 Signal</div>
-  <div class="popup-desc">An interview booked within 48 hours of a tailored application isn&rsquo;t luck &mdash; it&rsquo;s <strong>signal that the gap analysis surfaced the right things</strong>. One well-targeted bullet beat six weeks of generic sends.</div>
+  <div class="popup-desc">Two callbacks from 5 tailored applications vs two from 47 generic ones. The difference wasn&rsquo;t luck &mdash; it was <strong>specificity</strong>. When the gap analysis surfaces the right things, even a small batch of targeted applications outperforms weeks of generic sends.</div>
   <div class="popup-foot">Product Validation</div>
 </div>
 

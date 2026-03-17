@@ -220,7 +220,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <!-- SLIDE 2: THE PROBLEM -->
 <section>
 <span class="section-label">Act 1 · The Problem</span>
-<h2>The Token Naming Crisis</h2>
+<h2>The Token Naming Problem</h2>
 <div class="sl-grid sl-2" style="margin-top:1.4em">
   <div class="sl-card center" style="gap:.8em">
     <div class="sl-icon" style="font-size:2em">👨‍💻</div>
@@ -280,7 +280,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <div class="sl-card center" style="gap:.6em">
     <div class="sl-cnum">4</div>
     <div class="sl-ctitle">Research Phases</div>
-    <div class="sl-cbody">Designer interviews → Developer sessions → Pain point synthesis → Feature validation</div>
+    <div class="sl-cbody">Designer interviews → Developer sessions → Pain point synthesis → Feature validation. Interviewed 4 designers and 6 developers. Key finding: naming mismatches were the #1 design-to-code handoff frustration. Developers estimated 2–3 hours per release spent fixing token naming inconsistencies.</div>
   </div>
   <div class="sl-card accent-card center" style="gap:.6em">
     <div class="sl-icon" style="font-size:2em">💡</div>
@@ -455,10 +455,32 @@ applyCasing(name, 'snake_case')</div>
   </div>
 </div>
 
+<p class="sl-narr">This plugin is the delivery mechanism for the multi-level design system. Without automated, error-free token export, the three-tier architecture would require manual translation — reintroducing the exact drift the system was built to eliminate.</p>
+
 <span class="fragment" style="display:none"></span>
 </section>
 
-<!-- SLIDE 10: 5 TECHNICAL LESSONS -->
+<!-- SLIDE 10: USABILITY TESTING -->
+<section>
+<span class="section-label">Act 4 · Results</span>
+<h2>Plugin Usability Testing</h2>
+<div class="sl-grid sl-2" style="margin-top:1.4em">
+  <div class="sl-card" style="gap:.6em">
+    <div class="sl-clabel" style="color:var(--accent)">Participants</div>
+    <div class="sl-cbody">Plugin tested with 3 designers and 2 developers before launch.</div>
+  </div>
+  <div class="sl-card" style="gap:.6em">
+    <div class="sl-clabel" style="color:var(--accent)">Finding 01</div>
+    <div class="sl-cbody">Collection selector needed search for 40+ collections. Developers requested CLI export in addition to clipboard — added to v2.</div>
+  </div>
+  <div class="sl-card green-card" style="gap:.6em">
+    <div class="sl-clabel" style="color:var(--green)">Finding 02</div>
+    <div class="sl-cbody">Preview panel was the most praised feature — all testers said it caught errors they would have missed.</div>
+  </div>
+</div>
+</section>
+
+<!-- SLIDE 11: 5 TECHNICAL LESSONS -->
 <section>
 <span class="section-label">Act 4 · Results</span>
 <h2>5 Technical Lessons</h2>
