@@ -209,6 +209,6 @@
       });
     });
 
-    addEditUI();
+    // addEditUI(); // hidden — enable to reposition markers
   });
 })();

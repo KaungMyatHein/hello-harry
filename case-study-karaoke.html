@@ -42,8 +42,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .insight .desc{font-size:.8em;line-height:1.6;color:var(--cream-dim)}
 .metric-row{display:flex;gap:1em;justify-content:center;flex-wrap:wrap;margin:1em 0}
 .metric{background:var(--dark-3);border:1.5px solid var(--cream-faint);border-radius:12px;padding:1em 1.5em;text-align:center}
-.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:var(--accent);line-height:1}
-.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.4em}
+.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:#f0e6d3;line-height:1}
+.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.4em}
 .annotated-ui{position:relative;display:inline-block;margin:0 auto}
 .annotated-ui img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.4);display:block}
 .marker{position:absolute;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:white;pointer-events:none;z-index:2;transform:translate(-50%,-50%)}
@@ -165,7 +165,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .sl-clabel.rd{color:var(--red)}
 .sl-ctitle{font-family:'Syne',sans-serif;font-size:.72em;font-weight:700;color:var(--cream)}
 .sl-cbody{font-size:.6em;color:var(--cream-dim);line-height:1.55;margin:0}.sl-narr{font-family:'Space Mono',monospace;font-size:.5em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin:auto auto .2em;line-height:1.7;width:100%;font-style:normal;order:99;box-sizing:border-box}
-.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:var(--accent);opacity:.3}
+.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:#f0e6d3;opacity:1}.sl-cnum.acc{color:#c8a96e}.sl-cnum.grn{color:#7eb87e}
 .sl-icon{font-size:1.4em;line-height:1;margin-bottom:.1em}
 /* ── Cover Bento ── */
 .cover-bento{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:10px;max-width:720px;margin:0 auto}
@@ -175,8 +175,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .cb-metric{background:rgba(255,255,255,.05);border:1px solid rgba(240,230,211,.12);border-radius:20px;padding:1.1em 1em;text-align:center;transition:transform .2s ease,border-color .2s ease}
 .cb-metric:hover{transform:translateY(-4px);border-color:rgba(232,115,74,.3)}
 .cb-metric.hi{background:rgba(232,115,74,.08);border-color:rgba(232,115,74,.22)}
-.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1}
-.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.35em}
+.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:#f0e6d3;line-height:1}
+.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.35em}
 
 
 /* Fix: prevent slide overlap - non-present sections stay invisible */
@@ -237,6 +237,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     </div>
   </div>
 </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 3: RESEARCH METHOD -->
@@ -279,6 +281,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-cbody">Myanmar's dominant payment method. Prioritising it in MVP removes the #1 conversion barrier in the local market.</div>
   </div>
 </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 5: QUALITATIVE INSIGHTS -->
@@ -302,6 +306,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-cbody">80% already use Netflix. The subscription model is familiar — no need to educate, only to demonstrate value.</div>
   </div>
 </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 6: COMPETITOR ANALYSIS -->
@@ -351,6 +357,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-cbody">Playlists, favorites, personalised recommendations</div>
   </div>
 </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 8: USER FLOW -->
@@ -416,6 +424,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-cbody">Tight tech and timeline limits forced MVP rigor. The features we cut taught us as much as the ones we built.</div>
   </div>
 </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 13: END -->
@@ -459,6 +469,56 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 
 </div>
 </div>
+<!-- POPUP SYSTEM -->
+<div class="popup-backdrop" id="popupBackdrop"></div>
+<div class="popup-overlay">
+<div class="popup-card ux" data-popup-slide="1">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">Absence Is a Research Finding</div>
+  <div class="popup-desc">The insight that no Myanmar-specific karaoke app existed wasn't just a market gap — it was the <strong>primary UX finding</strong>. Understanding what's absent tells you as much as understanding what's broken.</div>
+  <div class="popup-foot">Harry Hein · Karaoke App</div>
+</div>
+<div class="popup-card biz" data-popup-slide="3">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">Validate Payment Before Building</div>
+  <div class="popup-desc">Discovering that <strong>85% of users preferred KBZ Pay</strong> before engineering began saved weeks of development and avoided a potential launch-blocking pivot. Payment preference is a market research question, not a technical one.</div>
+  <div class="popup-foot">Harry Hein · Karaoke App</div>
+</div>
+<div class="popup-card ux" data-popup-slide="4">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">Quotes Change Decisions, Not Decorate Them</div>
+  <div class="popup-desc">User quotes in a case study should be evidence that <strong>changed a design decision</strong>, not decoration. The artist-first search behaviour (65%) emerged from what users said and directly shaped the navigation architecture.</div>
+  <div class="popup-foot">Harry Hein · Karaoke App</div>
+</div>
+<div class="popup-card biz" data-popup-slide="6">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">Scope Discipline Is a Launch Strategy</div>
+  <div class="popup-desc">Every feature cut from MVP scope is a decision to ship sooner. The discipline of defining <strong>what stays and what goes</strong> is what separates products that launch from products that get refined forever.</div>
+  <div class="popup-foot">Harry Hein · Karaoke App</div>
+</div>
+<div class="popup-card biz" data-popup-slide="11">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">Research Creates the Product, Events Create the Window</div>
+  <div class="popup-desc">COVID created the urgency, but the <strong>20 user interviews</strong> created the product. External events open windows; validated research determines whether you build the right thing before the window closes.</div>
+  <div class="popup-foot">Harry Hein · Karaoke App</div>
+</div>
+</div>
+
 
 <!-- Inlined reveal.min.js -->
 <script>!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).Reveal=t()}(this,function(){"use strict";const _e=(e,t)=>{for(var i in t)e[i]=t[i];return e},Je=(e,t)=>Array.from(e.querySelectorAll(t)),Ge=(e,t,i)=>{i?e.classList.add(t):e.classList.remove(t)},Qe=e=>{if("string"==typeof e){if("null"===e)return null;if("true"===e)return!0;if("false"===e)return!1;if(e.match(/^-?[\d\.]+$/))return parseFloat(e)}return e},Ze=(e,t)=>{e.style.transform=t},s=(e,t)=>{let i=e.matches||e.matchesSelector||e.msMatchesSelector;return!(!i||!i.call(e,t))},et=(e,t)=>{if("function"==typeof e.closest)return e.closest(t);for(;e;){if(s(e,t))return e;e=e.parentNode}return null},m=e=>{let t=document.createElement("style");return t.type="text/css",e&&0<e.length&&(t.styleSheet?t.styleSheet.cssText=e:t.appendChild(document.createTextNode(e))),document.head.appendChild(t),t},tt=()=>{let t={};for(var e in location.search.replace(/[A-Z0-9]+?=([\w\.%-]*)/gi,e=>{t[e.split("=").shift()]=e.split("=").pop()}),t){var i=t[e];t[e]=Qe(unescape(i))}return void 0!==t.dependencies&&delete t.dependencies,t},d={mp4:"video/mp4",m4a:"video/mp4",ogv:"video/ogg",mpeg:"video/mpeg",webm:"video/webm"},e=navigator.userAgent,it=/(iphone|ipod|ipad|android)/gi.test(e)||"MacIntel"===navigator.platform&&1<navigator.maxTouchPoints,n=(/chrome/i.test(e)&&/edge/i.test(e),/android/gi.test(e));var t={},L=(Object.defineProperty(t,"__esModule",{value:!0}),Object.assign||function(e){for(var t=1;t<arguments.length;t++){var i,a=arguments[t];for(i in a)Object.prototype.hasOwnProperty.call(a,i)&&(e[i]=a[i])}return e}),i=t.default=function(i){var t,s,n,e,r,a,o,l,d,c,h,u,v,g,p,m,f,b,y,w,E,R,S;if(i)return t=1,s=3,n=[],e=null,r="requestAnimationFrame"in i?function(){i.cancelAnimationFrame(e),e=i.requestAnimationFrame(function(){return o(n.filter(function(e){return e.dirty&&e.active}))})}:function(){},a=function(t){return function(){n.forEach(function(e){return e.dirty=t}),r()}},o=function(e){e.filter(function(e){return!e.styleComputed}).forEach(function(e){e.styleComputed=h(e)}),e.filter(u).forEach(v);e=e.filter(c);e.forEach(d),e.forEach(function(e){v(e),l(e)}),e.forEach(g)},l=function(e){return e.dirty=0},d=function(e){e.availableWidth=e.element.parentNode.clientWidth,e.currentWidth=e.element.scrollWidth,e.previousFontSize=e.currentFontSize,e.currentFontSize=Math.min(Math.max(e.minSize,e.availableWidth/e.currentWidth*e.previousFontSize),e.maxSize),e.whiteSpace=e.multiLine&&e.currentFontSize===e.minSize?"normal":"nowrap"},c=function(e){return 2!==e.dirty||2===e.dirty&&e.element.parentNode.clientWidth!==e.availableWidth},h=function(e){var t=i.getComputedStyle(e.element,null);e.currentFontSize=parseFloat(t.getPropertyValue("font-size")),e.display=t.getPropertyValue("display"),e.whiteSpace=t.getPropertyValue("white-space")},u=function(e){var t=!1;return!e.preStyleTestCompleted&&(/inline-/.test(e.display)||(t=!0,e.display="inline-block"),"nowrap"!==e.whiteSpace&&(t=!0,e.whiteSpace="nowrap"),e.preStyleTestCompleted=!0,t)},v=function(e){e.element.style.whiteSpace=e.whiteSpace,e.element.style.display=e.display,e.element.style.fontSize=e.currentFontSize+"px"},g=function(e){e.element.dispatchEvent(new CustomEvent("fit",{detail:{oldValue:e.previousFontSize,newValue:e.currentFontSize,scaleFactor:e.currentFontSize/e.previousFontSize}}))},p=function(e,t){return function(){e.dirty=t,e.active&&r()}},m=function(t){return function(){n=n.filter(function(e){return e.element!==t.element}),t.observeMutations&&t.observer.disconnect(),t.element.style.whiteSpace=t.originalStyle.whiteSpace,t.element.style.display=t.originalStyle.display,t.element.style.fontSize=t.originalStyle.fontSize}},f=function(e){return function(){e.active||(e.active=!0,r())}},b=function(e){return function(){return e.active=!1}},y=function(e){e.observeMutations&&(e.observer=new MutationObserver(p(e,t)),e.observer.observe(e.element,e.observeMutations))},w={minSize:16,maxSize:512,multiLine:!0,observeMutations:"MutationObserver"in i&&{subtree:!0,childList:!0,characterData:!0}},E=null,R=function(){i.clearTimeout(E),E=i.setTimeout(a(2),k.observeWindowDelay)},S=["resize","orientationchange"],Object.defineProperty(k,"observeWindow",{set:function(e){var t=(e?"add":"remove")+"EventListener";S.forEach(function(e){i[t](e,R)})}}),k.observeWindow=!0,k.observeWindowDelay=100,k.fitAll=a(s),k;function A(e,t){var a=L({},w,t),t=e.map(function(e){var t,i=L({},a,{element:e,active:!0});return(t=i).originalStyle={whiteSpace:t.element.style.whiteSpace,display:t.element.style.display,fontSize:t.element.style.fontSize},y(t),t.newbie=!0,t.dirty=!0,n.push(t),{element:e,fit:p(i,s),unfreeze:f(i),freeze:b(i),unsubscribe:m(i)}});return r(),t}function k(e){var t,i=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{};return"string"==typeof e?A((t=document.querySelectorAll(e),[].slice.call(t)),i):A([e],i)[0]}}("undefined"==typeof window?null:window);class at{constructor(e){this.Reveal=e,this.startEmbeddedIframe=this.startEmbeddedIframe.bind(this)}shouldPreload(e){let t=this.Reveal.getConfig().preloadIframes;return t="boolean"!=typeof t?e.hasAttribute("data-preload"):t}load(r,o={}){r.style.display=this.Reveal.getConfig().display,Je(r,"img[data-src], video[data-src], audio[data-src], iframe[data-src]").forEach(e=>{"IFRAME"===e.tagName&&!this.shouldPreload(e)||(e.setAttribute("src",e.getAttribute("data-src")),e.setAttribute("data-lazy-loaded",""),e.removeAttribute("data-src"))}),Je(r,"video, audio").forEach(e=>{let t=0;Je(e,"source[data-src]").forEach(e=>{e.setAttribute("src",e.getAttribute("data-src")),e.removeAttribute("data-src"),e.setAttribute("data-lazy-loaded",""),t+=1}),it&&"VIDEO"===e.tagName&&e.setAttribute("playsinline",""),0<t&&e.load()});let l=r.slideBackgroundElement;if(l){l.style.display="block";let n=r.slideBackgroundContentElement,i=r.getAttribute("data-background-iframe");if(!1===l.hasAttribute("data-loaded")){l.setAttribute("data-loaded","true");let e=r.getAttribute("data-background-image"),t=r.getAttribute("data-background-video"),a=r.hasAttribute("data-background-video-loop"),s=r.hasAttribute("data-background-video-muted");if(e)/^data:/.test(e.trim())?n.style.backgroundImage=`url(${e.trim()})`:n.style.backgroundImage=e.split(",").map(e=>`url(${((e="")=>encodeURI(e).replace(/%5B/g,"[").replace(/%5D/g,"]").replace(/[!'()*]/g,e=>"%"+e.charCodeAt(0).toString(16).toUpperCase()))(decodeURI(e.trim()))})`).join(",");else if(t&&!this.Reveal.isSpeakerNotes()){let i=document.createElement("video");a&&i.setAttribute("loop",""),s&&(i.muted=!0),it&&(i.muted=!0,i.setAttribute("playsinline","")),t.split(",").forEach(e=>{[t=""]=[e];var t=d[t.split(".").pop()];i.innerHTML+=t?`<source src="${e}" type="${t}">`:`<source src="${e}">`}),n.appendChild(i)}else if(i&&!0!==o.excludeIframes){let e=document.createElement("iframe");e.setAttribute("allowfullscreen",""),e.setAttribute("mozallowfullscreen",""),e.setAttribute("webkitallowfullscreen",""),e.setAttribute("allow","autoplay"),e.setAttribute("data-src",i),e.style.width="100%",e.style.height="100%",e.style.maxHeight="100%",e.style.maxWidth="100%",n.appendChild(e)}}let e=n.querySelector("iframe[data-src]");e&&this.shouldPreload(l)&&!/autoplay=(1|true|yes)/gi.test(i)&&e.getAttribute("src")!==i&&e.setAttribute("src",i)}this.layout(r)}layout(e){Array.from(e.querySelectorAll(".r-fit-text")).forEach(e=>{i(e,{minSize:24,maxSize:.8*this.Reveal.getConfig().height,observeMutations:!1,observeWindow:!1})})}unload(e){e.style.display="none";let t=this.Reveal.getSlideBackground(e);t&&(t.style.display="none",Je(t,"iframe[src]").forEach(e=>{e.removeAttribute("src")})),Je(e,"video[data-lazy-loaded][src], audio[data-lazy-loaded][src], iframe[data-lazy-loaded][src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")}),Je(e,"video[data-lazy-loaded] source[src], audio source[src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")})}formatEmbeddedContent(){var e=(i,e,a)=>{Je(this.Reveal.getSlidesElement(),"iframe["+i+'*="'+e+'"]').forEach(e=>{let t=e.getAttribute(i);t&&-1===t.indexOf(a)&&e.setAttribute(i,t+(/\?/.test(t)?"&":"?")+a)})};e("src","youtube.com/embed/","enablejsapi=1"),e("data-src","youtube.com/embed/","enablejsapi=1"),e("src","player.vimeo.com/","api=1"),e("data-src","player.vimeo.com/","api=1")}startEmbeddedContent(e){e&&!this.Reveal.isSpeakerNotes()&&(Je(e,'img[src$=".gif"]').forEach(e=>{e.setAttribute("src",e.getAttribute("src"))}),Je(e,"video, audio").forEach(t=>{if(!et(t,".fragment")||et(t,".fragment.visible")){let e=this.Reveal.getConfig().autoPlayMedia;if((e="boolean"!=typeof e?t.hasAttribute("data-autoplay")||!!et(t,".slide-background"):e)&&"function"==typeof t.play)if(1<t.readyState)this.startEmbeddedMedia({target:t});else if(it){let e=t.play();e&&"function"==typeof e.catch&&!1===t.controls&&e.catch(()=>{t.controls=!0,t.addEventListener("play",()=>{t.controls=!1})})}else t.removeEventListener("loadeddata",this.startEmbeddedMedia),t.addEventListener("loadeddata",this.startEmbeddedMedia)}}),Je(e,"iframe[src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||this.startEmbeddedIframe({target:e})}),Je(e,"iframe[data-src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||e.getAttribute("src")!==e.getAttribute("data-src")&&(e.removeEventListener("load",this.startEmbeddedIframe),e.addEventListener("load",this.startEmbeddedIframe),e.setAttribute("src",e.getAttribute("data-src")))}))}startEmbeddedMedia(e){var t=!!et(e.target,"html"),i=!!et(e.target,".present");t&&i&&(e.target.currentTime=0,e.target.play()),e.target.removeEventListener("loadeddata",this.startEmbeddedMedia)}startEmbeddedIframe(e){let t=e.target;if(t&&t.contentWindow){var i=!!et(e.target,"html"),e=!!et(e.target,".present");if(i&&e){let e=this.Reveal.getConfig().autoPlayMedia;"boolean"!=typeof e&&(e=t.hasAttribute("data-autoplay")||!!et(t,".slide-background")),/youtube\.com\/embed\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}',"*"):/player\.vimeo\.com\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"method":"play"}',"*"):t.contentWindow.postMessage("slide:start","*")}}}stopEmbeddedContent(e,t={}){t=_e({unloadIframes:!0},t),e&&e.parentNode&&(Je(e,"video, audio").forEach(e=>{e.hasAttribute("data-ignore")||"function"!=typeof e.pause||(e.setAttribute("data-paused-by-reveal",""),e.pause())}),Je(e,"iframe").forEach(e=>{e.contentWindow&&e.contentWindow.postMessage("slide:stop","*"),e.removeEventListener("load",this.startEmbeddedIframe)}),Je(e,'iframe[src*="youtube.com/embed/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}',"*")}),Je(e,'iframe[src*="player.vimeo.com/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"method":"pause"}',"*")}),!0===t.unloadIframes&&Je(e,"iframe[data-src]").forEach(e=>{e.setAttribute("src","about:blank"),e.removeAttribute("src")}))}}class st{constructor(e){this.Reveal=e}render(){this.element=document.createElement("div"),this.element.className="slide-number",this.Reveal.getRevealElement().appendChild(this.element)}configure(e,t){let i="none";e.slideNumber&&!this.Reveal.isPrintingPDF()&&("all"===e.showSlideNumber||"speaker"===e.showSlideNumber&&this.Reveal.isSpeakerNotes())&&(i="block"),this.element.style.display=i}update(){this.Reveal.getConfig().slideNumber&&this.element&&(this.element.innerHTML=this.getSlideNumber())}getSlideNumber(e=this.Reveal.getCurrentSlide()){let t,i=this.Reveal.getConfig(),a="h.v";if("function"==typeof i.slideNumber)t=i.slideNumber(e);else{"string"==typeof i.slideNumber&&(a=i.slideNumber),/c/.test(a)||1!==this.Reveal.getHorizontalSlides().length||(a="c");var s=e&&"uncounted"===e.dataset.visibility?0:1;switch(t=[],a){case"c":t.push(this.Reveal.getSlidePastCount(e)+s);break;case"c/t":t.push(this.Reveal.getSlidePastCount(e)+s,"/",this.Reveal.getTotalSlides());break;default:var n=this.Reveal.getIndices(e),r=(t.push(n.h+s),"h/v"===a?"/":".");this.Reveal.isVerticalSlide(e)&&t.push(r,n.v+1)}}var o="#"+this.Reveal.location.getHash(e);return this.formatNumber(t[0],t[1],t[2],o)}formatNumber(e,t,i,a="#"+this.Reveal.location.getHash()){return"number"!=typeof i||isNaN(i)?`<a href="${a}">
@@ -493,8 +553,32 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 Reveal.initialize({
   hash:true, transition:'fade', transitionSpeed:'slow',
   width:1100, height:700, margin:0.08,
-  controlsLayout:'edges', controls:false, progress:true, slideNumber:true
+  controlsLayout:'edges', controls:false, progress:true, slideNumber:true,
+  keyboard:true, touch:true, mouseWheel:true
 });
+
+// Tap / click to advance — pointerup works for both mouse and touch
+(function(){
+  function navBlocked(e){
+    var el=e.target;
+    while(el&&el.nodeType===1){
+      var tag=(el.tagName||'').toLowerCase();
+      if(tag==='a'||tag==='button'||tag==='input'||tag==='select'||tag==='textarea') return true;
+      if(el.hasAttribute&&el.hasAttribute('onclick')) return true;
+      var c=el.className||'';
+      if(typeof c==='string'&&(c.indexOf('nav-hint')>=0||c.indexOf('back-link')>=0||c.indexOf('ui-fullscreen')>=0||c.indexOf('expand-btn')>=0)) return true;
+      el=el.parentNode;
+    }
+    return false;
+  }
+  var _x=0,_y=0;
+  document.addEventListener('pointerdown',function(e){_x=e.clientX;_y=e.clientY;},true);
+  document.addEventListener('pointerup',function(e){
+    if(navBlocked(e)) return;
+    if(Math.abs(e.clientX-_x)+Math.abs(e.clientY-_y)>20) return;
+    Reveal.next();
+  },true);
+})();
 </script>
 
 <script>

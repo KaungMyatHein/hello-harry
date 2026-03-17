@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Case Study — AI User Testing & Golden Paths | Harry Hein</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Case Study — AI User Testing &amp; Golden Paths | Harry Hein</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Syne:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=Caveat:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <!-- Shared atom-level tokens & components -->
-<link rel="stylesheet" href="css/atoms.css">
+<link href="css/atoms.css" rel="stylesheet"/>
 <style>/*!
 * reveal.js 4.5.0
 * https://revealjs.com
@@ -47,8 +48,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .insight .desc{font-size:.8em;line-height:1.6;color:var(--cream-dim)}
 .metric-row{display:flex;gap:1em;justify-content:center;flex-wrap:wrap;margin:1em 0}
 .metric{background:var(--dark-3);border:1.5px solid var(--cream-faint);border-radius:12px;padding:1em 1.5em;text-align:center}
-.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:var(--accent);line-height:1}
-.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.4em}
+.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:#f0e6d3;line-height:1}
+.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.4em}
 .annotated-ui{position:relative;display:inline-block;margin:0 auto}
 .annotated-ui img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.4);display:block}
 .marker{position:absolute;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:white;pointer-events:none;z-index:2;transform:translate(-50%,-50%)}
@@ -170,7 +171,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .sl-clabel.rd{color:var(--red)}
 .sl-ctitle{font-family:'Syne',sans-serif;font-size:.72em;font-weight:700;color:var(--cream)}
 .sl-cbody{font-size:.6em;color:var(--cream-dim);line-height:1.55;margin:0}.sl-narr{font-family:'Space Mono',monospace;font-size:.5em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin:auto auto .2em;line-height:1.7;width:100%;font-style:normal;order:99;box-sizing:border-box}
-.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:var(--accent);opacity:.3}
+.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:#f0e6d3;opacity:1}.sl-cnum.acc{color:#c8a96e}.sl-cnum.grn{color:#7eb87e}
 .sl-icon{font-size:1.4em;line-height:1;margin-bottom:.1em}
 /* ── Slide Video ── */
 .sl-video{width:100%;border-radius:12px;background:#000;max-height:360px;object-fit:contain;display:block;box-shadow:0 4px 24px rgba(0,0,0,.4)}
@@ -184,694 +185,657 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .cb-metric{background:rgba(255,255,255,.05);border:1px solid rgba(240,230,211,.12);border-radius:20px;padding:1.1em 1em;text-align:center;transition:transform .2s ease,border-color .2s ease}
 .cb-metric:hover{transform:translateY(-4px);border-color:rgba(232,115,74,.3)}
 .cb-metric.hi{background:rgba(232,115,74,.08);border-color:rgba(232,115,74,.22)}
-.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1}
-.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.35em}
+.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:#f0e6d3;line-height:1}
+.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.35em}
 </style>
 </head>
 <body>
-<a href="portfolio.html#projects" class="back-link">&larr; Back to Portfolio</a>
+<a class="back-link" href="portfolio.html#projects">← Back to Portfolio</a>
 <div class="reveal">
 <div class="slides">
-
 <!-- SLIDE 0: Cover -->
 <section>
-  <div class="cover-bento">
-    <div class="cb-main">
-      <span class="mono" style="color:var(--accent);font-size:.55em;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:.5em">Case Study &bull; 2026</span>
-      <h1 style="margin:.15em 0 .3em;font-size:2.2em">11pm. One Demo.<br><span style="color:var(--accent)">Zero Testers.</span></h1>
-      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:.85em;color:var(--cream-dim)">How Designer OS Golden Paths turned AI into the usability tester that never sleeps.</p>
-    </div>
-    <div class="cb-metric"><div class="val">60s</div><div class="lbl">Time to First Feedback</div></div>
-    <div class="cb-metric"><div class="val">3min</div><div class="lbl">Test Setup</div></div>
-    <div class="cb-metric hi"><div class="val">24/7</div><div class="lbl">Availability</div></div>
-  </div>
+<div class="cover-bento">
+<div class="cb-main">
+<span class="mono" style="color:var(--accent);font-size:.55em;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:.5em">Case Study • 2026</span>
+<h1 style="margin:.15em 0 .3em;font-size:2.2em">11pm. One Demo.<br/><span style="color:var(--accent)">Zero Testers.</span></h1>
+<p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:.85em;color:var(--cream-dim)">How Designer OS Golden Paths turned AI into the usability tester that never sleeps.</p>
+</div>
+<div class="cb-metric"><div class="val">60s</div><div class="lbl">Time to First Feedback</div></div>
+<div class="cb-metric"><div class="val">3min</div><div class="lbl">Test Setup</div></div>
+<div class="cb-metric hi"><div class="val">24/7</div><div class="lbl">Availability</div></div>
+</div>
 </section>
-
 <!-- SLIDE 1: Marcus -->
 <section>
-  <span class="section-label">Act 1 &mdash; The Problem</span>
-  <div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
-    <div class="sl-card tall center" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
-      <div class="avatar" style="background:rgba(107,163,214,.15);border-color:var(--blue);margin:0 auto .4em">&#x1f468;&#x200d;&#x1f4bb;</div>
-      <div class="avatar-name" style="color:var(--blue)">Marcus &bull; Product Designer</div>
-      <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">11pm. Client demo tomorrow.</div>
-      <div style="font-family:'Space Mono',monospace;font-size:.3em;color:var(--cream-faint);letter-spacing:.05em;margin-top:.25em;font-style:italic">Composite persona &middot; 8 designer interviews</div>
-    </div>
-    <div class="sl-card">
-      <span class="sl-clabel">The Situation</span>
-      <p class="sl-cbody">One day before the client demo. The prototype looks right. But does it <em>work</em>?</p>
-    </div>
-    <div class="sl-card">
-      <span class="sl-clabel">The Doubt</span>
-      <p class="sl-cbody">"I've been staring at this onboarding flow for three weeks. I can't tell if it's <span style="color:var(--accent);font-weight:700">genuinely intuitive</span> or if I've just <span style="color:var(--accent);font-weight:700">memorized every path</span> through it."</p>
-    </div>
-  </div>
-</section>
-
+<span class="section-label">Act 1 — The Problem</span>
+<div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
+<div class="sl-card tall center" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
+<div class="avatar" style="background:rgba(107,163,214,.15);border-color:var(--blue);margin:0 auto .4em">👨‍💻</div>
+<div class="avatar-name" style="color:var(--blue)">Marcus • Product Designer</div>
+<div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">11pm. Client demo tomorrow.</div>
+<div style="font-family:'Space Mono',monospace;font-size:.3em;color:var(--cream-faint);letter-spacing:.05em;margin-top:.25em;font-style:italic">Composite persona · 8 designer interviews</div>
+</div>
+<div class="sl-card">
+<span class="sl-clabel">The Situation</span>
+<p class="sl-cbody">One day before the client demo. The prototype looks right. But does it <em>work</em>?</p>
+</div>
+<div class="sl-card">
+<span class="sl-clabel">The Doubt</span>
+<p class="sl-cbody">"I've been staring at this onboarding flow for three weeks. I can't tell if it's <span style="color:var(--accent);font-weight:700">genuinely intuitive</span> or if I've just <span style="color:var(--accent);font-weight:700">memorized every path</span> through it."</p>
+</div>
+</div>
+<span class="fragment" style="display:none"></span></section>
 <!-- SLIDE 2: The Old Playbook -->
 <section>
-  <span class="section-label">Act 1 &mdash; The Problem</span>
-  <div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
-    <div class="sl-card tall center" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
-      <div class="avatar" style="background:rgba(107,163,214,.15);border-color:var(--blue);margin:0 auto .4em">&#x1f468;&#x200d;&#x1f4bb;</div>
-      <div class="avatar-name" style="color:var(--blue)">Marcus</div>
-      <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">The Old Playbook</div>
-    </div>
-    <div class="sl-card">
-      <span class="sl-clabel rd">What he tried</span>
-      <p class="sl-cbody">Sent the Figma link to 4 colleagues. Got <strong style="color:var(--cream)">3 replies over 3 hours</strong>.</p>
-    </div>
-    <div class="sl-card red-card">
-      <span class="sl-clabel rd">What he got</span>
-      <p class="sl-cbody">"Looks clean!", "felt busy", and a thumbs-up emoji. <strong style="color:var(--cream)">None of them told me which screen caused confusion.</strong></p>
-    </div>
-  </div>
+<span class="section-label">Act 1 — The Problem</span>
+<div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
+<div class="sl-card tall center" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
+<div class="avatar" style="background:rgba(107,163,214,.15);border-color:var(--blue);margin:0 auto .4em">👨‍💻</div>
+<div class="avatar-name" style="color:var(--blue)">Marcus</div>
+<div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">The Old Playbook</div>
+</div>
+<div class="sl-card">
+<span class="sl-clabel rd">What he tried</span>
+<p class="sl-cbody">Sent the Figma link to 4 colleagues. Got <strong style="color:var(--cream)">3 replies over 3 hours</strong>.</p>
+</div>
+<div class="sl-card red-card">
+<span class="sl-clabel rd">What he got</span>
+<p class="sl-cbody">"Looks clean!", "felt busy", and a thumbs-up emoji. <strong style="color:var(--cream)">None of them told me which screen caused confusion.</strong></p>
+</div>
+</div>
 </section>
-
 <!-- SLIDE 3: Why Testing Gets Skipped -->
 <section>
-  <span class="section-label">Act 1 &mdash; The Problem</span>
-  <h2 style="margin-bottom:.4em">Why Prototype Testing <span style="color:var(--red)">Gets Skipped</span></h2>
-  <div class="sl-grid sl-3">
-    <div class="sl-card red-card">
-      <div class="sl-icon">&#x23F0;</div>
-      <span class="sl-ctitle">Coordination Tax</span>
-      <p class="sl-cbody">3 people &times; scheduling &times; reminders &times; 30-min sessions = half a day of logistics for 90 minutes of data.</p>
-    </div>
-    <div class="sl-card red-card">
-      <div class="sl-icon">&#x1F4AC;</div>
-      <span class="sl-ctitle">Feedback Is Noise</span>
-      <p class="sl-cbody">"Looks clean!" tells you nothing about whether the flow actually works. Unstructured feedback is noise.</p>
-    </div>
-    <div class="sl-card red-card">
-      <div class="sl-icon">&#x1F319;</div>
-      <span class="sl-ctitle">Can't Test at 11pm</span>
-      <p class="sl-cbody">Your most urgent need to validate rarely aligns with anyone else's schedule.</p>
-    </div>
-  </div>
-</section>
-
+<span class="section-label">Act 1 — The Problem</span>
+<h2 style="margin-bottom:.4em">Why Prototype Testing <span style="color:var(--red)">Gets Skipped</span></h2>
+<div class="sl-grid sl-3">
+<div class="sl-card red-card">
+<div class="sl-icon">⏰</div>
+<span class="sl-ctitle">Coordination Tax</span>
+<p class="sl-cbody">3 people × scheduling × reminders × 30-min sessions = half a day of logistics for 90 minutes of data.</p>
+</div>
+<div class="sl-card red-card">
+<div class="sl-icon">💬</div>
+<span class="sl-ctitle">Feedback Is Noise</span>
+<p class="sl-cbody">"Looks clean!" tells you nothing about whether the flow actually works. Unstructured feedback is noise.</p>
+</div>
+<div class="sl-card red-card">
+<div class="sl-icon">🌙</div>
+<span class="sl-ctitle">Can't Test at 11pm</span>
+<p class="sl-cbody">Your most urgent need to validate rarely aligns with anyone else's schedule.</p>
+</div>
+</div>
+<span class="fragment" style="display:none"></span></section>
 <!-- SLIDE 4: The Stakes -->
 <section>
-  <span class="section-label">Act 1 &mdash; The Stakes</span>
-  <p class="sl-narr">Every designer knows they <strong style="color:var(--accent)">should test</strong> before they ship. Almost none test <strong style="color:var(--accent)">as much as they should</strong>. The reason isn't intent &mdash; it's <strong style="color:var(--accent)">logistics</strong>.</p>
+<span class="section-label">Act 1 — The Stakes</span>
+<p class="sl-narr">Every designer knows they <strong style="color:var(--accent)">should test</strong> before they ship. Almost none test <strong style="color:var(--accent)">as much as they should</strong>. The reason isn't intent — it's <strong style="color:var(--accent)">logistics</strong>.</p>
 <div class="sl-grid sl-2">
-    <div class="sl-card red-card">
-      <span class="sl-clabel rd">Old Answer</span>
-      <p class="sl-cbody"><em>Ship it and hope.</em></p>
-    </div>
-    <div class="sl-card green-card">
-      <span class="sl-clabel gr">New Answer</span>
-      <p class="sl-cbody"><em>Run AI, see what breaks, fix it tonight.</em></p>
-    </div>
-  </div>
-</section>
-
+<div class="sl-card red-card">
+<span class="sl-clabel rd">Old Answer</span>
+<p class="sl-cbody"><em>Ship it and hope.</em></p>
+</div>
+<div class="sl-card green-card">
+<span class="sl-clabel gr">New Answer</span>
+<p class="sl-cbody"><em>Run AI, see what breaks, fix it tonight.</em></p>
+</div>
+</div>
+<span class="fragment" style="display:none"></span></section>
 <!-- Research Slide: What 8 Designers Told Us -->
 <section>
-  <span class="section-label">Act 2 &mdash; Research &amp; Insight</span>
-  <h2 style="margin-bottom:.4em">What <span style="color:var(--accent)">8 Designers</span> Told Us</h2>
-  <p class="sl-narr" style="text-align:left;margin:0 0 .7em">METHODOLOGY: 8 product designers &middot; 30-min semi-structured interviews &middot; focused on prototype testing habits &amp; pain points</p>
-  <div class="sl-grid sl-3">
-    <div class="sl-card red-card">
-      <div class="sl-cnum">6/8</div>
-      <span class="sl-ctitle">Skip Testing Under Deadline</span>
-      <p class="sl-cbody">"When we're rushing, the first thing cut is the user test. It takes too long to set up."</p>
-    </div>
-    <div class="sl-card red-card">
-      <div class="sl-cnum">7/8</div>
-      <span class="sl-ctitle">Get Vague Feedback</span>
-      <p class="sl-cbody">"Colleagues give you vibes, not evidence. 'Looks good!' tells me nothing about whether the flow actually works."</p>
-    </div>
-    <div class="sl-card accent-card">
-      <div class="sl-cnum">8/8</div>
-      <span class="sl-ctitle">Would Test More If Instant</span>
-      <p class="sl-cbody">"If I could run a test in under 5 minutes, I'd do it every sprint — not just before the big presentation."</p>
-    </div>
-  </div>
+<span class="section-label">Act 2 — Research &amp; Insight</span>
+<h2 style="margin-bottom:.4em">What <span style="color:var(--accent)">8 Designers</span> Told Us</h2>
+<p class="sl-narr" style="text-align:left;margin:0 0 .7em">METHODOLOGY: 8 product designers · 30-min semi-structured interviews · focused on prototype testing habits &amp; pain points</p>
+<div class="sl-grid sl-3">
+<div class="sl-card red-card">
+<div class="sl-cnum">6/8</div>
+<span class="sl-ctitle">Skip Testing Under Deadline</span>
+<p class="sl-cbody">"When we're rushing, the first thing cut is the user test. It takes too long to set up."</p>
+</div>
+<div class="sl-card red-card">
+<div class="sl-cnum">7/8</div>
+<span class="sl-ctitle">Get Vague Feedback</span>
+<p class="sl-cbody">"Colleagues give you vibes, not evidence. 'Looks good!' tells me nothing about whether the flow actually works."</p>
+</div>
+<div class="sl-card accent-card">
+<div class="sl-cnum">8/8</div>
+<span class="sl-ctitle">Would Test More If Instant</span>
+<p class="sl-cbody">"If I could run a test in under 5 minutes, I'd do it every sprint — not just before the big presentation."</p>
+</div>
+</div>
 </section>
-
 <!-- SLIDE 5: The Core Bet -->
 <section>
-  <span class="section-label">Act 2 &mdash; Design Hypothesis</span>
-  <h2 style="margin-bottom:.5em">The Core <span style="color:var(--accent)">Bet</span></h2>
-  <div class="insight">
-    <div class="tag">&#x1F4A1; Design Hypothesis</div>
-    <div class="title">Simulate, Don&rsquo;t Recruit</div>
-    <div class="desc">If AI can simulate how different user types approach a UI &mdash; their decision patterns, hesitations, and assumptions &mdash; then a designer can get structured usability feedback at any hour, on any prototype, with zero coordination overhead.</div>
-  </div>
-  <span class="fragment" style="display:none"></span>
+<span class="section-label">Act 2 — Design Hypothesis</span>
+<h2 style="margin-bottom:.5em">The Core <span style="color:var(--accent)">Bet</span></h2>
+<div class="insight">
+<div class="tag">💡 Design Hypothesis</div>
+<div class="title">Simulate, Don’t Recruit</div>
+<div class="desc">If AI can simulate how different user types approach a UI — their decision patterns, hesitations, and assumptions — then a designer can get structured usability feedback at any hour, on any prototype, with zero coordination overhead.</div>
+</div>
+<span class="fragment" style="display:none"></span>
 </section>
-
 <!-- Alternatives Explored Slide -->
 <section>
-  <span class="section-label">Act 2 &mdash; Why This Approach</span>
-  <h2 style="margin-bottom:.4em">Why Not Something <span style="color:var(--accent)">Simpler?</span></h2>
-  <div class="sl-grid sl-3">
-    <div class="sl-card red-card">
-      <span class="sl-clabel rd">Rejected</span>
-      <span class="sl-ctitle">Heuristic Checklist</span>
-      <p class="sl-cbody">Measures design against rules. Doesn't simulate how a specific user type actually navigates. No path evidence — just a score.</p>
-    </div>
-    <div class="sl-card red-card">
-      <span class="sl-clabel rd">Rejected</span>
-      <span class="sl-ctitle">Figma API Automation</span>
-      <p class="sl-cbody">Brittle — breaks when component names change. Tool-locked: only works for Figma, not hosted prototypes or other tools.</p>
-    </div>
-    <div class="sl-card green-card">
-      <span class="sl-clabel gr">Chosen</span>
-      <span class="sl-ctitle">AI + Puppeteer</span>
-      <p class="sl-cbody">Screenshot-based detection works for any prototype URL. Persona-driven prompts produce behavior, not just clicks.</p>
-    </div>
-  </div>
-  <p class="sl-narr" style="margin-top:.7em">The non-obvious call: <strong style="color:var(--accent)">Puppeteer over Figma API</strong> &mdash; traded tight integration for tool-agnostic flexibility. Any public URL becomes testable.</p>
+<span class="section-label">Act 2 — Why This Approach</span>
+<h2 style="margin-bottom:.4em">Why Not Something <span style="color:var(--accent)">Simpler?</span></h2>
+<div class="sl-grid sl-3">
+<div class="sl-card red-card">
+<span class="sl-clabel rd">Rejected</span>
+<span class="sl-ctitle">Heuristic Checklist</span>
+<p class="sl-cbody">Measures design against rules. Doesn't simulate how a specific user type actually navigates. No path evidence — just a score.</p>
+</div>
+<div class="sl-card red-card">
+<span class="sl-clabel rd">Rejected</span>
+<span class="sl-ctitle">Figma API Automation</span>
+<p class="sl-cbody">Brittle — breaks when component names change. Tool-locked: only works for Figma, not hosted prototypes or other tools.</p>
+</div>
+<div class="sl-card green-card">
+<span class="sl-clabel gr">Chosen</span>
+<span class="sl-ctitle">AI + Puppeteer</span>
+<p class="sl-cbody">Screenshot-based detection works for any prototype URL. Persona-driven prompts produce behavior, not just clicks.</p>
+</div>
+</div>
+<p class="sl-narr" style="margin-top:.7em">The non-obvious call: <strong style="color:var(--accent)">Puppeteer over Figma API</strong> — traded tight integration for tool-agnostic flexibility. Any public URL becomes testable.</p>
 </section>
-
 <!-- SLIDE 6: The Golden Path Flow -->
 <section>
-  <span class="section-label">Act 2 &mdash; The System</span>
-  <h2 style="margin-bottom:.4em">The <span style="color:var(--accent)">Golden Path</span> Flow</h2>
-  <div class="sl-grid" style="grid-template-columns:repeat(5,1fr)">
-    <div class="sl-card">
-      <div class="sl-cnum">01</div>
-      <span class="sl-ctitle">Create Prototype</span>
-      <p class="sl-cbody">Add name + Figma URL + project link</p>
-    </div>
-    <div class="sl-card">
-      <div class="sl-cnum">02</div>
-      <span class="sl-ctitle">Set Up Test</span>
-      <p class="sl-cbody">Set personas, user goals, and metrics to track</p>
-    </div>
-    <div class="sl-card">
-      <div class="sl-cnum">03</div>
-      <span class="sl-ctitle">Define Golden Path</span>
-      <p class="sl-cbody">Navigate to goal screen — AI captures it as target</p>
-    </div>
-    <div class="sl-card accent-card">
-      <div class="sl-cnum">04</div>
-      <span class="sl-ctitle">AI Runs Test</span>
-      <p class="sl-cbody">Live streaming steps via SSE in real time</p>
-    </div>
-    <div class="sl-card green-card">
-      <div class="sl-cnum" style="color:var(--green)">05</div>
-      <span class="sl-ctitle">Review Results</span>
-      <p class="sl-cbody">Pass/fail, steps, backtracks, AI observations</p>
-    </div>
-  </div>
+<span class="section-label">Act 2 — The System</span>
+<h2 style="margin-bottom:.4em">The <span style="color:var(--accent)">Golden Path</span> Flow</h2>
+<div class="sl-grid" style="grid-template-columns:repeat(5,1fr)">
+<div class="sl-card">
+<div class="sl-cnum">01</div>
+<span class="sl-ctitle">Create Prototype</span>
+<p class="sl-cbody">Add name + Figma URL + project link</p>
+</div>
+<div class="sl-card">
+<div class="sl-cnum">02</div>
+<span class="sl-ctitle">Set Up Test</span>
+<p class="sl-cbody">Set personas, user goals, and metrics to track</p>
+</div>
+<div class="sl-card">
+<div class="sl-cnum">03</div>
+<span class="sl-ctitle">Define Golden Path</span>
+<p class="sl-cbody">Navigate to goal screen — AI captures it as target</p>
+</div>
+<div class="sl-card accent-card">
+<div class="sl-cnum">04</div>
+<span class="sl-ctitle">AI Runs Test</span>
+<p class="sl-cbody">Live streaming steps via SSE in real time</p>
+</div>
+<div class="sl-card green-card">
+<div class="sl-cnum" style="color:var(--green)">05</div>
+<span class="sl-ctitle">Review Results</span>
+<p class="sl-cbody">Pass/fail, steps, backtracks, AI observations</p>
+</div>
+</div>
 </section>
-
 <!-- SLIDE 7: Step 1 — Plan the Test -->
 <section>
-  <span class="section-label">Act 3 &mdash; Design · Step 1 of 3</span>
-  <h2 style="margin-bottom:.4em">Plan the <span style="color:var(--accent)">Test</span></h2>
-  <div class="sl-video-wrap" style="gap:.4em">
-    <video class="sl-video" style="max-height:360px" autoplay muted loop playsinline>
-      <source src="images/AI%20Test/Planning%20For%20AI%20UT.mov" type="video/mp4">
-    </video>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;width:100%">
-      <div class="sl-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
-        <span style="font-size:.9em;flex-shrink:0">🎯</span>
-        <div><span class="sl-ctitle" style="font-size:.6em;display:block">User Goal</span><p class="sl-cbody" style="font-size:.48em">Success criteria in plain language</p></div>
-      </div>
-      <div class="sl-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
-        <span style="font-size:.9em;flex-shrink:0">🔢</span>
-        <div><span class="sl-ctitle" style="font-size:.6em;display:block">Max Count</span><p class="sl-cbody" style="font-size:.48em">Cap AI navigation steps</p></div>
-      </div>
-      <div class="sl-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
-        <span style="font-size:.9em;flex-shrink:0">📊</span>
-        <div><span class="sl-ctitle" style="font-size:.6em;display:block">Track Metrics</span><p class="sl-cbody" style="font-size:.48em">Steps, backtracks, pass/fail</p></div>
-      </div>
-      <div class="sl-card accent-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
-        <span style="font-size:.9em;flex-shrink:0">🧠</span>
-        <div><span class="sl-ctitle" style="font-size:.6em;display:block">Select Personas</span><p class="sl-cbody" style="font-size:.48em">PM · Dev · Designer</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<span class="section-label">Act 3 — Design · Step 1 of 3</span>
+<h2 style="margin-bottom:.4em">Plan the <span style="color:var(--accent)">Test</span></h2>
+<div class="sl-video-wrap" style="gap:.4em">
+<video autoplay="" class="sl-video" loop="" muted="" playsinline="" style="max-height:360px">
+<source src="images/AI%20Test/Planning%20For%20AI%20UT.mov" type="video/mp4"/>
+</video>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;width:100%">
+<div class="sl-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
+<span style="font-size:.9em;flex-shrink:0">🎯</span>
+<div><span class="sl-ctitle" style="font-size:.6em;display:block">User Goal</span><p class="sl-cbody" style="font-size:.48em">Success criteria in plain language</p></div>
+</div>
+<div class="sl-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
+<span style="font-size:.9em;flex-shrink:0">🔢</span>
+<div><span class="sl-ctitle" style="font-size:.6em;display:block">Max Count</span><p class="sl-cbody" style="font-size:.48em">Cap AI navigation steps</p></div>
+</div>
+<div class="sl-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
+<span style="font-size:.9em;flex-shrink:0">📊</span>
+<div><span class="sl-ctitle" style="font-size:.6em;display:block">Track Metrics</span><p class="sl-cbody" style="font-size:.48em">Steps, backtracks, pass/fail</p></div>
+</div>
+<div class="sl-card accent-card" style="padding:.5em .7em;gap:.2em;flex-direction:row;align-items:center">
+<span style="font-size:.9em;flex-shrink:0">🧠</span>
+<div><span class="sl-ctitle" style="font-size:.6em;display:block">Select Personas</span><p class="sl-cbody" style="font-size:.48em">PM · Dev · Designer</p></div>
+</div>
+</div>
+</div>
+<span class="fragment" style="display:none"></span></section>
 <!-- SLIDE 8: Step 2 — Set Golden Path -->
 <section>
-  <span class="section-label">Act 3 &mdash; Design · Step 2 of 3</span>
-  <h2 style="margin-bottom:.5em">Set the <span style="color:var(--accent)">Golden Path</span></h2>
-  <div class="sl-video-wrap">
-    <video class="sl-video" style="max-height:400px" autoplay muted loop playsinline>
-      <source src="images/AI%20Test/Setting%20Golden%20Paths.mov" type="video/mp4">
-    </video>
-    <p class="sl-narr">Navigate through a live Puppeteer session of your prototype. When you reach the goal state, click <strong style="color:var(--green)">Set as Goal Screen</strong> — AI receives both the text goal and a screenshot as dual-signal target.</p>
-  </div>
-</section>
-
+<span class="section-label">Act 3 — Design · Step 2 of 3</span>
+<h2 style="margin-bottom:.5em">Set the <span style="color:var(--accent)">Golden Path</span></h2>
+<div class="sl-video-wrap">
+<video autoplay="" class="sl-video" loop="" muted="" playsinline="" style="max-height:400px">
+<source src="images/AI%20Test/Setting%20Golden%20Paths.mov" type="video/mp4"/>
+</video>
+<p class="sl-narr">Navigate through a live Puppeteer session of your prototype. When you reach the goal state, click <strong style="color:var(--green)">Set as Goal Screen</strong> — AI receives both the text goal and a screenshot as dual-signal target.</p>
+</div>
+<span class="fragment" style="display:none"></span></section>
 <!-- SLIDE 9: Step 3 — See Evidence -->
 <section>
-  <span class="section-label">Act 3 &mdash; Design · Step 3 of 3</span>
-  <h2 style="margin-bottom:.4em">See the <span style="color:var(--accent)">Evidence</span></h2>
-  <div style="display:grid;grid-template-columns:2.4fr 1fr;gap:.6em;align-items:start">
-    <video class="sl-video" style="max-height:420px" autoplay muted loop playsinline>
-      <source src="images/AI%20Test/Showing%20Results.mov" type="video/mp4">
-    </video>
-    <div style="display:flex;flex-direction:column;gap:.4em">
-      <div class="sl-card green-card" style="padding:.55em .7em;gap:.15em">
-        <span class="sl-clabel gr" style="font-size:.36em">Test Result</span>
-        <span class="sl-ctitle" style="font-size:.6em">Pass · 5 steps · 0 backtracks</span>
-        <p class="sl-cbody" style="font-size:.46em">0 backtracks = confident. 3+ = confusion.</p>
-      </div>
-      <div class="sl-card accent-card" style="padding:.55em .7em;gap:.15em">
-        <span class="sl-clabel" style="font-size:.36em">What AI Thinks</span>
-        <div style="margin-top:.2em;font-family:'Space Mono',monospace;font-size:.42em;line-height:1.8;color:var(--cream-dim)">
-          <div><span style="color:var(--green)">✓</span> Clicked &lsquo;Get Started&rsquo;</div>
-          <div style="font-style:italic;font-size:.9em;opacity:.7">&ldquo;Primary CTA visible.&rdquo;</div>
-          <div><span style="color:var(--green)">✓</span> Skipped tooltip</div>
-          <div style="font-style:italic;font-size:.9em;opacity:.7">&ldquo;Not blocking. Dismissed.&rdquo;</div>
-          <div><span style="color:var(--green)">✓</span> Reached goal screen</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<span class="section-label">Act 3 — Design · Step 3 of 3</span>
+<h2 style="margin-bottom:.4em">See the <span style="color:var(--accent)">Evidence</span></h2>
+<div style="display:grid;grid-template-columns:2.4fr 1fr;gap:.6em;align-items:start">
+<video autoplay="" class="sl-video" loop="" muted="" playsinline="" style="max-height:420px">
+<source src="images/AI%20Test/Showing%20Results.mov" type="video/mp4"/>
+</video>
+<div style="display:flex;flex-direction:column;gap:.4em">
+<div class="sl-card green-card" style="padding:.55em .7em;gap:.15em">
+<span class="sl-clabel gr" style="font-size:.36em">Test Result</span>
+<span class="sl-ctitle" style="font-size:.6em">Pass · 5 steps · 0 backtracks</span>
+<p class="sl-cbody" style="font-size:.46em">0 backtracks = confident. 3+ = confusion.</p>
+</div>
+<div class="sl-card accent-card" style="padding:.55em .7em;gap:.15em">
+<span class="sl-clabel" style="font-size:.36em">What AI Thinks</span>
+<div style="margin-top:.2em;font-family:'Space Mono',monospace;font-size:.42em;line-height:1.8;color:var(--cream-dim)">
+<div><span style="color:var(--green)">✓</span> Clicked ‘Get Started’</div>
+<div style="font-style:italic;font-size:.9em;opacity:.7">“Primary CTA visible.”</div>
+<div><span style="color:var(--green)">✓</span> Skipped tooltip</div>
+<div style="font-style:italic;font-size:.9em;opacity:.7">“Not blocking. Dismissed.”</div>
+<div><span style="color:var(--green)">✓</span> Reached goal screen</div>
+</div>
+</div>
+</div>
+</div>
+<span class="fragment" style="display:none"></span></section>
 <!-- Validation Slide: AI vs Real Users -->
 <section>
-  <span class="section-label">Act 3 &mdash; Validation</span>
-  <h2 style="margin-bottom:.4em">Does AI Match <span style="color:var(--green)">Real Users?</span></h2>
-  <p class="sl-narr" style="text-align:left;margin:0 0 .6em">Ran 3 prototype flows through Golden Paths, then tested the same flows with 3 designers each. Compared where AI flagged friction vs where humans reported confusion.</p>
-  <div class="sl-grid sl-2">
-    <div class="sl-card green-card">
-      <div class="sl-cnum">9/11</div>
-      <span class="sl-ctitle">Navigation Blockers Matched</span>
-      <p class="sl-cbody">In 9 of 11 cases where AI reported backtracks, real users also hesitated or took a wrong path. AI reliably caught the same flow blockers.</p>
-    </div>
-    <div class="sl-card">
-      <span class="sl-clabel">By Design — Out of Scope</span>
-      <span class="sl-ctitle">Aesthetic Preference</span>
-      <p class="sl-cbody">AI cannot replace human judgment on visual polish or emotional response. Golden Paths is for navigation evidence, not visual feedback.</p>
-    </div>
-  </div>
-  <div class="insight" style="margin-top:.6em">
-    <div class="tag">&#x1F3AF; Where to Use It</div>
-    <div class="desc">Use Golden Paths to de-risk flows <em>between</em> formal research rounds &mdash; not to replace them. Eliminate known navigation failures first, so human sessions produce signal instead of basic corrections.</div>
-  </div>
+<span class="section-label">Act 3 — Validation</span>
+<h2 style="margin-bottom:.4em">Does AI Match <span style="color:var(--green)">Real Users?</span></h2>
+<p class="sl-narr" style="text-align:left;margin:0 0 .6em">Ran 3 prototype flows through Golden Paths, then tested the same flows with 3 designers each. Compared where AI flagged friction vs where humans reported confusion.</p>
+<div class="sl-grid sl-2">
+<div class="sl-card green-card">
+<div class="sl-cnum">9/11</div>
+<span class="sl-ctitle">Navigation Blockers Matched</span>
+<p class="sl-cbody">In 9 of 11 cases where AI reported backtracks, real users also hesitated or took a wrong path. AI reliably caught the same flow blockers.</p>
+</div>
+<div class="sl-card">
+<span class="sl-clabel">By Design — Out of Scope</span>
+<span class="sl-ctitle">Aesthetic Preference</span>
+<p class="sl-cbody">AI cannot replace human judgment on visual polish or emotional response. Golden Paths is for navigation evidence, not visual feedback.</p>
+</div>
+</div>
+<div class="insight" style="margin-top:.6em">
+<div class="tag">🎯 Where to Use It</div>
+<div class="desc">Use Golden Paths to de-risk flows <em>between</em> formal research rounds — not to replace them. Eliminate known navigation failures first, so human sessions produce signal instead of basic corrections.</div>
+</div>
 </section>
-
 <!-- SLIDE 11: Demo Video -->
 <section>
-  <span class="section-label">Act 3 &mdash; In Action</span>
-  <h2 style="margin-bottom:.5em">Golden Paths &mdash; <span style="color:var(--accent)">End-to-End Demo</span></h2>
-  <div class="sl-video-wrap">
-    <video class="sl-video" style="max-height:440px" autoplay muted loop playsinline>
-      <source src="images/AI%20Test/Demo.mov" type="video/mp4">
-    </video>
-    <p class="sl-narr">From defining a goal to reading AI results — the full Golden Paths workflow in under 60 seconds.</p>
-  </div>
+<span class="section-label">Act 3 — In Action</span>
+<h2 style="margin-bottom:.5em">Golden Paths — <span style="color:var(--accent)">End-to-End Demo</span></h2>
+<div class="sl-video-wrap">
+<video autoplay="" class="sl-video" loop="" muted="" playsinline="" style="max-height:440px">
+<source src="images/AI%20Test/Demo.mov" type="video/mp4"/>
+</video>
+<p class="sl-narr">From defining a goal to reading AI results — the full Golden Paths workflow in under 60 seconds.</p>
+</div>
 </section>
-
 <!-- SLIDE 12: UI Components -->
 <section>
-  <span class="section-label">Act 3 &mdash; UI Components</span>
-  <h2 style="margin-bottom:.4em">Key <span style="color:var(--accent)">UI Components</span></h2>
-  <div class="sl-grid sl-3">
-    <div class="sl-card">
-      <div class="sl-cnum">01</div>
-      <span class="sl-ctitle">Path Builder</span>
-      <p class="sl-cbody">Split panel — goal text on left, live Puppeteer preview on right. Click to goal screen.</p>
-    </div>
-    <div class="sl-card accent-card">
-      <div class="sl-cnum">02</div>
-      <span class="sl-ctitle">Persona Selector</span>
-      <p class="sl-cbody">Card-based selection. Each persona surfaces key behavioural traits before you run.</p>
-    </div>
-    <div class="sl-card green-card">
-      <div class="sl-cnum">03</div>
-      <span class="sl-ctitle">Live Step Stream</span>
-      <p class="sl-cbody">SSE feed renders each AI action in real time — step number, action taken, AI reasoning.</p>
-    </div>
-    <div class="sl-card">
-      <div class="sl-cnum">04</div>
-      <span class="sl-ctitle">Results Panel</span>
-      <p class="sl-cbody">Pass/fail badge, step count, backtrack count, and AI observation text per run.</p>
-    </div>
-    <div class="sl-card">
-      <div class="sl-cnum">05</div>
-      <span class="sl-ctitle">Run History</span>
-      <p class="sl-cbody">All past runs per prototype — compare across personas and iterations over time.</p>
-    </div>
-    <div class="sl-card">
-      <div class="sl-cnum">06</div>
-      <span class="sl-ctitle">Prototype Manager</span>
-      <p class="sl-cbody">Name, Figma URL, project link — one card per prototype with all runs accessible.</p>
-    </div>
-  </div>
+<span class="section-label">Act 3 — UI Components</span>
+<h2 style="margin-bottom:.4em">Key <span style="color:var(--accent)">UI Components</span></h2>
+<div class="sl-grid sl-3">
+<div class="sl-card">
+<div class="sl-cnum">01</div>
+<span class="sl-ctitle">Path Builder</span>
+<p class="sl-cbody">Split panel — goal text on left, live Puppeteer preview on right. Click to goal screen.</p>
+</div>
+<div class="sl-card accent-card">
+<div class="sl-cnum">02</div>
+<span class="sl-ctitle">Persona Selector</span>
+<p class="sl-cbody">Card-based selection. Each persona surfaces key behavioural traits before you run.</p>
+</div>
+<div class="sl-card green-card">
+<div class="sl-cnum">03</div>
+<span class="sl-ctitle">Live Step Stream</span>
+<p class="sl-cbody">SSE feed renders each AI action in real time — step number, action taken, AI reasoning.</p>
+</div>
+<div class="sl-card">
+<div class="sl-cnum">04</div>
+<span class="sl-ctitle">Results Panel</span>
+<p class="sl-cbody">Pass/fail badge, step count, backtrack count, and AI observation text per run.</p>
+</div>
+<div class="sl-card">
+<div class="sl-cnum">05</div>
+<span class="sl-ctitle">Run History</span>
+<p class="sl-cbody">All past runs per prototype — compare across personas and iterations over time.</p>
+</div>
+<div class="sl-card">
+<div class="sl-cnum">06</div>
+<span class="sl-ctitle">Prototype Manager</span>
+<p class="sl-cbody">Name, Figma URL, project link — one card per prototype with all runs accessible.</p>
+</div>
+</div>
 </section>
-
 <!-- SLIDE 13: Design Decisions -->
 <section>
-  <span class="section-label">Act 3 &mdash; Design Decisions</span>
-  <h2 style="margin-bottom:.4em">Key Design <span style="color:var(--accent)">Decisions</span></h2>
-  <div class="sl-grid sl-2">
-    <div class="sl-card">
-      <div class="sl-cnum">01</div>
-      <span class="sl-ctitle">Free-Form Goal Text</span>
-      <p class="sl-cbody">Natural language reduces friction. "Reach the dashboard without backtracking" is more honest than any dropdown.</p>
-    </div>
-    <div class="sl-card">
-      <div class="sl-cnum">02</div>
-      <span class="sl-ctitle">Screenshot-Based Detection</span>
-      <p class="sl-cbody">Works regardless of prototype tool. Figma, InVision, hosted &mdash; all handled the same way.</p>
-    </div>
-    <div class="sl-card">
-      <div class="sl-cnum">03</div>
-      <span class="sl-ctitle">Linear Stage Machine</span>
-      <p class="sl-cbody">7 stages, no back navigation mid-session. Focus over flexibility eliminates choice paralysis.</p>
-    </div>
-    <div class="sl-card accent-card">
-      <div class="sl-cnum">04</div>
-      <span class="sl-ctitle">Steps, Not Time</span>
-      <p class="sl-cbody">Progress in steps is more diagnostic than seconds &mdash; shows how deep into the flow the AI navigated.</p>
-    </div>
-  </div>
-</section>
-
+<span class="section-label">Act 3 — Design Decisions</span>
+<h2 style="margin-bottom:.4em">Key Design <span style="color:var(--accent)">Decisions</span></h2>
+<div class="sl-grid sl-2">
+<div class="sl-card">
+<div class="sl-cnum">01</div>
+<span class="sl-ctitle">Free-Form Goal Text</span>
+<p class="sl-cbody">Natural language reduces friction. "Reach the dashboard without backtracking" is more honest than any dropdown.</p>
+</div>
+<div class="sl-card">
+<div class="sl-cnum">02</div>
+<span class="sl-ctitle">Screenshot-Based Detection</span>
+<p class="sl-cbody">Works regardless of prototype tool. Figma, InVision, hosted — all handled the same way.</p>
+</div>
+<div class="sl-card">
+<div class="sl-cnum">03</div>
+<span class="sl-ctitle">Linear Stage Machine</span>
+<p class="sl-cbody">7 stages, no back navigation mid-session. Focus over flexibility eliminates choice paralysis.</p>
+</div>
+<div class="sl-card accent-card">
+<div class="sl-cnum">04</div>
+<span class="sl-ctitle">Steps, Not Time</span>
+<p class="sl-cbody">Progress in steps is more diagnostic than seconds — shows how deep into the flow the AI navigated.</p>
+</div>
+</div>
+<span class="fragment" style="display:none"></span></section>
 <!-- SLIDE 14: Before & After -->
 <section>
-  <span class="section-label">Act 4 &mdash; Results</span>
-  <h2 style="margin-bottom:.5em">Before &amp; <span style="color:var(--green)">After</span></h2>
-  <div class="ba-grid">
-    <!-- Before column -->
-    <div class="ba-col before">
-      <div class="ba-col-head before">Old Approach</div>
-      <div class="ba-card">
-        <div class="ba-label">Time to first feedback</div>
-        <div class="ba-val">Hours (waiting for colleagues)</div>
-      </div>
-      <div class="ba-card">
-        <div class="ba-label">Test setup</div>
-        <div class="ba-val">Write brief + recruit participants</div>
-      </div>
-      <div class="ba-card">
-        <div class="ba-label">Comparable persona runs</div>
-        <div class="ba-val">3 separate Zoom sessions</div>
-      </div>
-      <div class="ba-card">
-        <div class="ba-label">Availability</div>
-        <div class="ba-val">Business hours only</div>
-      </div>
-      <div class="ba-card">
-        <div class="ba-label">Feedback quality</div>
-        <div class="ba-val">&ldquo;Looks clean!&rdquo;</div>
-      </div>
-    </div>
-    <!-- After column -->
-    <div class="ba-col after">
-      <div class="ba-col-head after">Golden Paths</div>
-      <div class="ba-card">
-        <div class="ba-label">Time to first feedback</div>
-        <div class="ba-val">~60 seconds</div>
-      </div>
-      <div class="ba-card">
-        <div class="ba-label">Test setup</div>
-        <div class="ba-val">3 min in builder</div>
-      </div>
-      <div class="ba-card">
-        <div class="ba-label">Comparable persona runs</div>
-        <div class="ba-val">3 AI runs in 5 min</div>
-      </div>
-      <div class="ba-card">
-        <div class="ba-label">Availability</div>
-        <div class="ba-val">24/7 instant</div>
-      </div>
-      <div class="ba-card">
-        <div class="ba-label">Feedback quality</div>
-        <div class="ba-val">Step-by-step evidence</div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<span class="section-label">Act 4 — Results</span>
+<h2 style="margin-bottom:.5em">Before &amp; <span style="color:var(--green)">After</span></h2>
+<div class="ba-grid">
+<!-- Before column -->
+<div class="ba-col before">
+<div class="ba-col-head before">Old Approach</div>
+<div class="ba-card">
+<div class="ba-label">Time to first feedback</div>
+<div class="ba-val">Hours (waiting for colleagues)</div>
+</div>
+<div class="ba-card">
+<div class="ba-label">Test setup</div>
+<div class="ba-val">Write brief + recruit participants</div>
+</div>
+<div class="ba-card">
+<div class="ba-label">Comparable persona runs</div>
+<div class="ba-val">3 separate Zoom sessions</div>
+</div>
+<div class="ba-card">
+<div class="ba-label">Availability</div>
+<div class="ba-val">Business hours only</div>
+</div>
+<div class="ba-card">
+<div class="ba-label">Feedback quality</div>
+<div class="ba-val">“Looks clean!”</div>
+</div>
+</div>
+<!-- After column -->
+<div class="ba-col after">
+<div class="ba-col-head after">Golden Paths</div>
+<div class="ba-card">
+<div class="ba-label">Time to first feedback</div>
+<div class="ba-val">~60 seconds</div>
+</div>
+<div class="ba-card">
+<div class="ba-label">Test setup</div>
+<div class="ba-val">3 min in builder</div>
+</div>
+<div class="ba-card">
+<div class="ba-label">Comparable persona runs</div>
+<div class="ba-val">3 AI runs in 5 min</div>
+</div>
+<div class="ba-card">
+<div class="ba-label">Availability</div>
+<div class="ba-val">24/7 instant</div>
+</div>
+<div class="ba-card">
+<div class="ba-label">Feedback quality</div>
+<div class="ba-val">Step-by-step evidence</div>
+</div>
+</div>
+</div>
+<span class="fragment" style="display:none"></span></section>
 <!-- SLIDE 15: Marcus Resolved -->
 <section>
-  <span class="section-label">Act 4 &mdash; Resolution</span>
-  <h2 style="margin-bottom:.4em">Marcus&rsquo;s Story, <span style="color:var(--green)">Resolved</span></h2>
-  <div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
-    <div class="sl-card tall center" style="background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.25)">
-      <div class="avatar" style="background:rgba(126,184,126,.15);border-color:var(--green);margin:0 auto .4em">&#x1f468;&#x200d;&#x1f4bb;</div>
-      <div class="avatar-name" style="color:var(--green)">Marcus</div>
-      <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">11pm. Demo at 9am.</div>
-    </div>
-    <div class="sl-card">
-      <span class="sl-clabel gr">What he did</span>
-      <p class="sl-cbody">Opened Golden Paths. Defined success state in <strong style="color:var(--green)">3 minutes</strong>. Ran AI test with PM persona &mdash; <strong style="color:var(--green)">47 seconds</strong>. One below-fold button flagged. Fixed in <strong style="color:var(--green)">4 minutes</strong>. Re-ran. Clean navigation.</p>
-    </div>
-    <div class="sl-card green-card">
-      <span class="sl-clabel gr">The Result</span>
-      <p class="sl-cbody" style="font-size:.7em;font-weight:700;color:var(--green);margin-bottom:.3em">He went to sleep knowing the demo would land.</p>
-      <p class="sl-cbody">That's the difference between <strong style="color:var(--cream)">hoping</strong> and <strong style="color:var(--cream)">knowing</strong>.</p>
-    </div>
-  </div>
+<span class="section-label">Act 4 — Resolution</span>
+<h2 style="margin-bottom:.4em">Marcus’s Story, <span style="color:var(--green)">Resolved</span></h2>
+<div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
+<div class="sl-card tall center" style="background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.25)">
+<div class="avatar" style="background:rgba(126,184,126,.15);border-color:var(--green);margin:0 auto .4em">👨‍💻</div>
+<div class="avatar-name" style="color:var(--green)">Marcus</div>
+<div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">11pm. Demo at 9am.</div>
+</div>
+<div class="sl-card">
+<span class="sl-clabel gr">What he did</span>
+<p class="sl-cbody">Opened Golden Paths. Defined success state in <strong style="color:var(--green)">3 minutes</strong>. Ran AI test with PM persona — <strong style="color:var(--green)">47 seconds</strong>. One below-fold button flagged. Fixed in <strong style="color:var(--green)">4 minutes</strong>. Re-ran. Clean navigation.</p>
+</div>
+<div class="sl-card green-card">
+<span class="sl-clabel gr">The Result</span>
+<p class="sl-cbody" style="font-size:.7em;font-weight:700;color:var(--green);margin-bottom:.3em">He went to sleep knowing the demo would land.</p>
+<p class="sl-cbody">That's the difference between <strong style="color:var(--cream)">hoping</strong> and <strong style="color:var(--cream)">knowing</strong>.</p>
+</div>
+</div>
 </section>
-
 <!-- SLIDE 16: The Numbers -->
 <section>
-  <h2 style="margin-bottom:.6em">The numbers told the story.</h2>
-  <div class="metric-row">
-    <div class="metric"><div class="val">~3min</div><div class="lbl">Test Setup Time</div></div>
-    <div class="metric"><div class="val">4.2x</div><div class="lbl">Avg AI Runs Per Prototype</div><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cream-faint);letter-spacing:.06em;margin-top:.3em">First 30 sessions &middot; DesignerOS early access</div></div>
-    <div class="metric"><div class="val">$0</div><div class="lbl">Extra Cost Per Test</div></div>
-  </div>
-</section>
-
+<h2 style="margin-bottom:.6em">The numbers told the story.</h2>
+<div class="metric-row">
+<div class="metric"><div class="val">~3min</div><div class="lbl">Test Setup Time</div></div>
+<div class="metric"><div class="val">4.2x</div><div class="lbl">Avg AI Runs Per Prototype</div><div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cream-faint);letter-spacing:.06em;margin-top:.3em">First 30 sessions · DesignerOS early access</div></div>
+<div class="metric"><div class="val">$0</div><div class="lbl">Extra Cost Per Test</div></div>
+</div>
+<span class="fragment" style="display:none"></span></section>
 <!-- SLIDE 17: What This Taught Me -->
 <section>
-  <span class="section-label">Business &times; Design Lessons</span>
-  <h2 style="margin-bottom:.6em">What This <span style="color:var(--accent)">Taught Me</span></h2>
-  <div class="bento-grid">
-    <div class="bento-card featured span-tall">
-      <div class="lc-num">01</div>
-      <div class="lc-title">Eliminate Logistics, Not Research</div>
-      <div class="lc-desc">The headline says &ldquo;Zero Testers&rdquo; &mdash; but the tool isn&rsquo;t replacing human research. It&rsquo;s de-risking the prototype so the sessions you do run produce signal, not basic corrections. Human research becomes higher quality, not unnecessary.</div>
-    </div>
-    <div class="bento-card">
-      <div class="lc-num">02</div>
-      <div class="lc-title">Show, Don&rsquo;t Describe</div>
-      <div class="lc-desc">Screenshot-based goal detection is more reliable than words alone &mdash; dual-signal beats single-signal.</div>
-    </div>
-    <div class="bento-card">
-      <div class="lc-num">03</div>
-      <div class="lc-title">Emergent &gt; Encoded</div>
-      <div class="lc-desc">Prompt-based persona context produces more realistic behavior than hard-coded rules.</div>
-    </div>
-    <div class="bento-card" style="grid-column:1/-1">
-      <div style="display:flex;align-items:center;gap:.7em">
-        <div style="flex:0 0 auto">
-          <div class="lc-num">04</div>
-          <div class="lc-title" style="color:var(--green)">Craft Multiplier</div>
-        </div>
-        <div class="lc-desc">When testing costs 60 seconds instead of 3 hours, designers test every sprint &mdash; not once a quarter.</div>
-      </div>
-    </div>
-  </div>
+<span class="section-label">Business × Design Lessons</span>
+<h2 style="margin-bottom:.6em">What This <span style="color:var(--accent)">Taught Me</span></h2>
+<div class="bento-grid">
+<div class="bento-card featured span-tall">
+<div class="lc-num">01</div>
+<div class="lc-title">Eliminate Logistics, Not Research</div>
+<div class="lc-desc">The headline says “Zero Testers” — but the tool isn’t replacing human research. It’s de-risking the prototype so the sessions you do run produce signal, not basic corrections. Human research becomes higher quality, not unnecessary.</div>
+</div>
+<div class="bento-card">
+<div class="lc-num">02</div>
+<div class="lc-title">Show, Don’t Describe</div>
+<div class="lc-desc">Screenshot-based goal detection is more reliable than words alone — dual-signal beats single-signal.</div>
+</div>
+<div class="bento-card">
+<div class="lc-num">03</div>
+<div class="lc-title">Emergent &gt; Encoded</div>
+<div class="lc-desc">Prompt-based persona context produces more realistic behavior than hard-coded rules.</div>
+</div>
+<div class="bento-card" style="grid-column:1/-1">
+<div style="display:flex;align-items:center;gap:.7em">
+<div style="flex:0 0 auto">
+<div class="lc-num">04</div>
+<div class="lc-title" style="color:var(--green)">Craft Multiplier</div>
+</div>
+<div class="lc-desc">When testing costs 60 seconds instead of 3 hours, designers test every sprint — not once a quarter.</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- What Broke First Slide -->
 <section>
-  <span class="section-label">Business &times; Design Lessons</span>
-  <h2 style="margin-bottom:.4em">What <span style="color:var(--red)">Broke</span> First</h2>
-  <div class="sl-grid sl-3">
-    <div class="sl-card red-card">
-      <div class="sl-cnum">01</div>
-      <span class="sl-ctitle">AI Hallucinated Screens</span>
-      <p class="sl-cbody">Early prompt: "navigate to the goal." AI invented click targets that didn't exist. Fix: constrain to visible elements only, with explicit screenshot context at each step.</p>
-    </div>
-    <div class="sl-card red-card">
-      <div class="sl-cnum">02</div>
-      <span class="sl-ctitle">Personas Felt Identical</span>
-      <p class="sl-cbody">All personas clicked the same way. Fix: inject behavioral traits directly into the system prompt — "Dev reads labels before clicking" changes navigation patterns meaningfully.</p>
-    </div>
-    <div class="sl-card accent-card">
-      <div class="sl-cnum">03</div>
-      <span class="sl-ctitle">Goal Detection Too Strict</span>
-      <p class="sl-cbody">Screenshot matching failed on dynamic content (loading states, animations). Fix: dual-signal with 80% match threshold instead of exact pixel comparison.</p>
-    </div>
-  </div>
+<span class="section-label">Business × Design Lessons</span>
+<h2 style="margin-bottom:.4em">What <span style="color:var(--red)">Broke</span> First</h2>
+<div class="sl-grid sl-3">
+<div class="sl-card red-card">
+<div class="sl-cnum">01</div>
+<span class="sl-ctitle">AI Hallucinated Screens</span>
+<p class="sl-cbody">Early prompt: "navigate to the goal." AI invented click targets that didn't exist. Fix: constrain to visible elements only, with explicit screenshot context at each step.</p>
+</div>
+<div class="sl-card red-card">
+<div class="sl-cnum">02</div>
+<span class="sl-ctitle">Personas Felt Identical</span>
+<p class="sl-cbody">All personas clicked the same way. Fix: inject behavioral traits directly into the system prompt — "Dev reads labels before clicking" changes navigation patterns meaningfully.</p>
+</div>
+<div class="sl-card accent-card">
+<div class="sl-cnum">03</div>
+<span class="sl-ctitle">Goal Detection Too Strict</span>
+<p class="sl-cbody">Screenshot matching failed on dynamic content (loading states, animations). Fix: dual-signal with 80% match threshold instead of exact pixel comparison.</p>
+</div>
+</div>
 </section>
-
 <!-- SLIDE 18: Key Takeaway -->
 <section>
-  <span class="section-label">Skills &amp; Tools</span>
-  <div class="sl-grid sl-2">
-    <div class="sl-card full accent-card" style="text-align:center;padding:1.4em 1.8em">
-      <span class="sl-clabel">&#x1F4A1; Key Takeaway</span>
-      <div class="sl-ctitle" style="margin:.3em 0">Infrastructure for Rigor</div>
-      <p class="sl-cbody">Golden Paths don&rsquo;t make designers better. They give designers the infrastructure to <em>be</em> the designer they already are &mdash; rigorous, evidence-driven, and client-ready &mdash; at any hour, without needing anyone else.</p>
-    </div>
-    <div class="sl-card full center" style="flex-direction:row;flex-wrap:wrap;gap:.5em;padding:.9em 1.4em">
-      <span class="tool-tag">Figma</span>
-      <span class="tool-tag">Puppeteer</span>
-      <span class="tool-tag">Next.js</span>
-      <span class="tool-tag">Supabase</span>
-      <span class="tool-tag">SSE Streaming</span>
-      <span class="tool-tag">AI Personas</span>
-      <span class="tool-tag">Screenshot Detection</span>
-    </div>
-  </div>
+<span class="section-label">Skills &amp; Tools</span>
+<div class="sl-grid sl-2">
+<div class="sl-card full accent-card" style="text-align:center;padding:1.4em 1.8em">
+<span class="sl-clabel">💡 Key Takeaway</span>
+<div class="sl-ctitle" style="margin:.3em 0">Infrastructure for Rigor</div>
+<p class="sl-cbody">Golden Paths don’t make designers better. They give designers the infrastructure to <em>be</em> the designer they already are — rigorous, evidence-driven, and client-ready — at any hour, without needing anyone else.</p>
+</div>
+<div class="sl-card full center" style="flex-direction:row;flex-wrap:wrap;gap:.5em;padding:.9em 1.4em">
+<span class="tool-tag">Figma</span>
+<span class="tool-tag">Puppeteer</span>
+<span class="tool-tag">Next.js</span>
+<span class="tool-tag">Supabase</span>
+<span class="tool-tag">SSE Streaming</span>
+<span class="tool-tag">AI Personas</span>
+<span class="tool-tag">Screenshot Detection</span>
+</div>
+</div>
 </section>
-
 <!-- SLIDE 19: End Slide -->
 <section data-background-color="#0a0a0a" style="text-align:left">
-  <div class="cs-nav-header" style="margin-bottom:1.5em">
-    <div class="sec-num">More Stories</div>
-    <h2 class="sec-title" style="font-size:clamp(24px,2.5vw,38px)">Explore More Work</h2>
-  </div>
-  <div class="cs-nav-grid">
-    <a href="case-study-resume-pipeline.html" class="cs-nav-card">
-      <div class="proj-thumb">
-        <video src="images/resume-builder-resources/resume-suggestion.mov" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
-        <div class="thumb-stat">40→15<span>min per application</span></div>
-      </div>
-      <div class="proj-info">
-        <div class="proj-index">01</div>
-        <div class="cs-nav-direction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Previous</div>
-        <div class="proj-tags"><span class="proj-tag">AI Tools</span><span class="proj-tag">Product Design</span><span class="proj-tag">2025</span></div>
-        <h3 class="proj-title">AI Job Analyzer & Tailored Resume Pipeline</h3>
-        <div class="proj-metrics"><div><div class="pm-val">40→15</div><div class="pm-label">Min Per Application</div></div><div><div class="pm-val">4→1</div><div class="pm-label">Tools Replaced</div></div></div>
-        <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
-      </div>
-    </a>
-    <a href="case-study-retail.html" class="cs-nav-card">
-      <div class="proj-thumb">
-        <img src="images/coverphoto/1.svg" alt="From Feedback to 427% ROI">
-        <div class="thumb-stat">427%<span>ROI achieved</span></div>
-      </div>
-      <div class="proj-info">
-        <div class="proj-index">03</div>
-        <div class="cs-nav-direction">Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="proj-tags"><span class="proj-tag">Retail POS</span><span class="proj-tag">Redesign</span><span class="proj-tag">2025</span></div>
-        <h3 class="proj-title">From Feedback to 427% ROI: Redesigning the Return Process</h3>
-        <div class="proj-metrics"><div><div class="pm-val">427%</div><div class="pm-label">ROI Achieved</div></div><div><div class="pm-val">&gt;50%</div><div class="pm-label">Time Reduction</div></div></div>
-        <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
-      </div>
-    </a>
-  </div>
-  <p style="margin-top:1.5em;font-family:'Space Mono',monospace;font-size:10px;color:rgba(240,230,211,0.4);letter-spacing:.12em;text-align:center">HARRY HEIN &bull; SENIOR PRODUCT DESIGNER</p>
+<div class="cs-nav-header" style="margin-bottom:1.5em">
+<div class="sec-num">More Stories</div>
+<h2 class="sec-title" style="font-size:clamp(24px,2.5vw,38px)">Explore More Work</h2>
+</div>
+<div class="cs-nav-grid">
+<a class="cs-nav-card" href="case-study-resume-pipeline.html">
+<div class="proj-thumb">
+<video autoplay="" loop="" muted="" playsinline="" src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mov" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+<div class="thumb-stat">40→15<span>min per application</span></div>
+</div>
+<div class="proj-info">
+<div class="proj-index">01</div>
+<div class="cs-nav-direction"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"></path></svg> Previous</div>
+<div class="proj-tags"><span class="proj-tag">AI Tools</span><span class="proj-tag">Product Design</span><span class="proj-tag">2025</span></div>
+<h3 class="proj-title">AI Job Analyzer &amp; Tailored Resume Pipeline</h3>
+<div class="proj-metrics"><div><div class="pm-val">40→15</div><div class="pm-label">Min Per Application</div></div><div><div class="pm-val">4→1</div><div class="pm-label">Tools Replaced</div></div></div>
+<div class="proj-arrow"><svg fill="none" stroke-width="1.5" viewbox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg></div>
+</div>
+</a>
+<a class="cs-nav-card" href="case-study-retail.html">
+<div class="proj-thumb">
+<img alt="From Feedback to 427% ROI" src="images/coverphoto/1.svg"/>
+<div class="thumb-stat">427%<span>ROI achieved</span></div>
+</div>
+<div class="proj-info">
+<div class="proj-index">03</div>
+<div class="cs-nav-direction">Next <svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+<div class="proj-tags"><span class="proj-tag">Retail POS</span><span class="proj-tag">Redesign</span><span class="proj-tag">2025</span></div>
+<h3 class="proj-title">From Feedback to 427% ROI: Redesigning the Return Process</h3>
+<div class="proj-metrics"><div><div class="pm-val">427%</div><div class="pm-label">ROI Achieved</div></div><div><div class="pm-val">&gt;50%</div><div class="pm-label">Time Reduction</div></div></div>
+<div class="proj-arrow"><svg fill="none" stroke-width="1.5" viewbox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg></div>
+</div>
+</a>
+</div>
+<p style="margin-top:1.5em;font-family:'Space Mono',monospace;font-size:10px;color:rgba(240,230,211,0.4);letter-spacing:.12em;text-align:center">HARRY HEIN • SENIOR PRODUCT DESIGNER</p>
 </section>
-
 </div>
 </div>
-
 <!-- POPUP SYSTEM -->
 <div class="popup-backdrop" id="popupBackdrop"></div>
 <div class="popup-overlay">
-
 <!-- Popup 0: Slide 1 - Business: Cost of Testing -->
 <div class="popup-card biz" data-popup-slide="1">
-  <div class="popup-tag biz">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<div class="popup-tag biz">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
     #Business Insight
   </div>
-  <div class="popup-title">The Hidden Cost of Not Testing</div>
-  <div class="popup-desc">Every untested prototype that ships is a <strong>bet against the user</strong>. The cost isn't the test &mdash; it's the rework when assumptions fail in production.</div>
-  <div class="popup-foot">Risk Management</div>
+<div class="popup-title">The Hidden Cost of Not Testing</div>
+<div class="popup-desc">Every untested prototype that ships is a <strong>bet against the user</strong>. The cost isn't the test — it's the rework when assumptions fail in production.</div>
+<div class="popup-foot">Risk Management</div>
 </div>
-
 <!-- Popup 1: Slide 3 - Business: Logistics Tax -->
 <div class="popup-card biz" data-popup-slide="3">
-  <div class="popup-tag biz">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<div class="popup-tag biz">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
     #Business Insight
   </div>
-  <div class="popup-title">The Logistics Tax</div>
-  <div class="popup-desc">Half a day of scheduling for 90 minutes of data. That's a <strong>logistics tax</strong> that kills testing frequency, especially for freelancers and small teams.</div>
-  <div class="popup-foot">Operational Efficiency</div>
+<div class="popup-title">The Logistics Tax</div>
+<div class="popup-desc">Half a day of scheduling for 90 minutes of data. That's a <strong>logistics tax</strong> that kills testing frequency, especially for freelancers and small teams.</div>
+<div class="popup-foot">Operational Efficiency</div>
 </div>
-
 <!-- Popup 2: Slide 4 - UX: Behavior Gap -->
 <div class="popup-card ux" data-popup-slide="4">
-  <div class="popup-tag ux">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+<div class="popup-tag ux">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
     #UX Insight
   </div>
-  <div class="popup-title">Intent vs. Behavior Gap</div>
-  <div class="popup-desc">Designers <strong>intend</strong> to test. They <strong>believe</strong> in testing. But the gap between intent and action is logistics. Remove logistics, close the gap.</div>
-  <div class="popup-foot">Behavioral Design</div>
+<div class="popup-title">Intent vs. Behavior Gap</div>
+<div class="popup-desc">Designers <strong>intend</strong> to test. They <strong>believe</strong> in testing. But the gap between intent and action is logistics. Remove logistics, close the gap.</div>
+<div class="popup-foot">Behavioral Design</div>
 </div>
-
 <!-- Popup 3: Slide 5 - UX: AI as Pre-Validator -->
-<div class="popup-card ux" data-popup-slide="5">
-  <div class="popup-tag ux">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+<div class="popup-card ux" data-popup-slide="6">
+<div class="popup-tag ux">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
     #UX Insight
   </div>
-  <div class="popup-title">De-Risk, Don't Replace</div>
-  <div class="popup-desc">AI testing <strong>pre-validates</strong> the flow. Human sessions focus on <strong>subtle issues</strong>, not navigation failures. Each method amplifies the other.</div>
-  <div class="popup-foot">Research Strategy</div>
+<div class="popup-title">De-Risk, Don't Replace</div>
+<div class="popup-desc">AI testing <strong>pre-validates</strong> the flow. Human sessions focus on <strong>subtle issues</strong>, not navigation failures. Each method amplifies the other.</div>
+<div class="popup-foot">Research Strategy</div>
 </div>
-
-<!-- Popup 4: Slide 7 - UX: Dual Signal Detection -->
-<div class="popup-card ux" data-popup-slide="7">
-  <div class="popup-tag ux">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+<!-- Popup 4: Slide 9 - UX: Dual Signal Detection -->
+<div class="popup-card ux" data-popup-slide="9">
+<div class="popup-tag ux">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
     #UX Insight
   </div>
-  <div class="popup-title">Show, Don't Tell</div>
-  <div class="popup-desc">Dual-signal goal detection &mdash; <strong>text + screenshot</strong> &mdash; mirrors how humans define success: both conceptually and visually. Neither alone is sufficient.</div>
-  <div class="popup-foot">Cognitive Design</div>
+<div class="popup-title">Show, Don't Tell</div>
+<div class="popup-desc">Dual-signal goal detection — <strong>text + screenshot</strong> — mirrors how humans define success: both conceptually and visually. Neither alone is sufficient.</div>
+<div class="popup-foot">Cognitive Design</div>
 </div>
-
 <!-- Popup 5: Slide 8 - Business: Persona ROI -->
-<div class="popup-card biz" data-popup-slide="8">
-  <div class="popup-tag biz">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<div class="popup-card biz" data-popup-slide="10">
+<div class="popup-tag biz">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
     #Business Insight
   </div>
-  <div class="popup-title">Comparative Runs = Compound Value</div>
-  <div class="popup-desc">Each prototype averages <strong>4.2 AI test runs</strong>. Multiple persona perspectives in minutes vs. weeks of separate sessions. That's compounding API value per user.</div>
-  <div class="popup-foot">Revenue Multiplier</div>
+<div class="popup-title">Comparative Runs = Compound Value</div>
+<div class="popup-desc">Each prototype averages <strong>4.2 AI test runs</strong>. Multiple persona perspectives in minutes vs. weeks of separate sessions. That's compounding API value per user.</div>
+<div class="popup-foot">Revenue Multiplier</div>
 </div>
-
 <!-- Popup 6: Slide 9 - Business: Real-time Transparency -->
-<div class="popup-card biz" data-popup-slide="9">
-  <div class="popup-tag biz">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<div class="popup-card biz" data-popup-slide="11">
+<div class="popup-tag biz">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
     #Business Insight
   </div>
-  <div class="popup-title">Transparency Builds Trust</div>
-  <div class="popup-desc">Streaming AI reasoning in real time isn't just UX polish &mdash; it's <strong>trust infrastructure</strong>. When users see the AI think, they trust the results.</div>
-  <div class="popup-foot">Product Trust</div>
+<div class="popup-title">Transparency Builds Trust</div>
+<div class="popup-desc">Streaming AI reasoning in real time isn't just UX polish — it's <strong>trust infrastructure</strong>. When users see the AI think, they trust the results.</div>
+<div class="popup-foot">Product Trust</div>
 </div>
-
 <!-- Popup 7: Slide 13 - UX: Progressive Disclosure -->
-<div class="popup-card ux" data-popup-slide="13">
-  <div class="popup-tag ux">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+<div class="popup-card ux" data-popup-slide="15">
+<div class="popup-tag ux">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
     #UX Insight
   </div>
-  <div class="popup-title">Progressive Disclosure in Action</div>
-  <div class="popup-desc">7 stages, each showing only what's needed. <strong>Linear progression</strong> eliminates choice paralysis. The designer always knows the next action.</div>
-  <div class="popup-foot">Information Architecture</div>
+<div class="popup-title">Progressive Disclosure in Action</div>
+<div class="popup-desc">7 stages, each showing only what's needed. <strong>Linear progression</strong> eliminates choice paralysis. The designer always knows the next action.</div>
+<div class="popup-foot">Information Architecture</div>
 </div>
-
-<!-- Popup 8: Slide 14 - Business: Before/After -->
-<div class="popup-card biz" data-popup-slide="14">
-  <div class="popup-tag biz">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-    #Business Insight
-  </div>
-  <div class="popup-title">From Reactions to Evidence</div>
-  <div class="popup-desc">"Looks clean" is a reaction. Step-by-step reasoning with backtrack counts is <strong>evidence</strong>. Evidence makes design decisions defensible to stakeholders.</div>
-  <div class="popup-foot">Decision Quality</div>
-</div>
-
-<!-- Popup 9: Slide 16 - Business: Numbers -->
+<!-- Popup 8: Slide 16 - Business: Before/After -->
 <div class="popup-card biz" data-popup-slide="16">
-  <div class="popup-tag biz">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<div class="popup-tag biz">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
     #Business Insight
   </div>
-  <div class="popup-title">Frequency Changes Culture</div>
-  <div class="popup-desc">When testing costs 8 minutes instead of 6+ hours, designers test <strong>every sprint</strong>, not once a quarter. That's not a feature benefit &mdash; it's a <strong>craft multiplier</strong>.</div>
-  <div class="popup-foot">Cultural Impact</div>
+<div class="popup-title">From Reactions to Evidence</div>
+<div class="popup-desc">"Looks clean" is a reaction. Step-by-step reasoning with backtrack counts is <strong>evidence</strong>. Evidence makes design decisions defensible to stakeholders.</div>
+<div class="popup-foot">Decision Quality</div>
 </div>
-
+<!-- Popup 9: Slide 16 - Business: Numbers -->
+<div class="popup-card biz" data-popup-slide="18">
+<div class="popup-tag biz">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+    #Business Insight
+  </div>
+<div class="popup-title">Frequency Changes Culture</div>
+<div class="popup-desc">When testing costs 8 minutes instead of 6+ hours, designers test <strong>every sprint</strong>, not once a quarter. That's not a feature benefit — it's a <strong>craft multiplier</strong>.</div>
+<div class="popup-foot">Cultural Impact</div>
 </div>
-
+</div>
 <!-- Inlined reveal.min.js -->
 <script>!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).Reveal=t()}(this,function(){"use strict";const _e=(e,t)=>{for(var i in t)e[i]=t[i];return e},Je=(e,t)=>Array.from(e.querySelectorAll(t)),Ge=(e,t,i)=>{i?e.classList.add(t):e.classList.remove(t)},Qe=e=>{if("string"==typeof e){if("null"===e)return null;if("true"===e)return!0;if("false"===e)return!1;if(e.match(/^-?[\d\.]+$/))return parseFloat(e)}return e},Ze=(e,t)=>{e.style.transform=t},s=(e,t)=>{let i=e.matches||e.matchesSelector||e.msMatchesSelector;return!(!i||!i.call(e,t))},et=(e,t)=>{if("function"==typeof e.closest)return e.closest(t);for(;e;){if(s(e,t))return e;e=e.parentNode}return null},m=e=>{let t=document.createElement("style");return t.type="text/css",e&&0<e.length&&(t.styleSheet?t.styleSheet.cssText=e:t.appendChild(document.createTextNode(e))),document.head.appendChild(t),t},tt=()=>{let t={};for(var e in location.search.replace(/[A-Z0-9]+?=([\w\.%-]*)/gi,e=>{t[e.split("=").shift()]=e.split("=").pop()}),t){var i=t[e];t[e]=Qe(unescape(i))}return void 0!==t.dependencies&&delete t.dependencies,t},d={mp4:"video/mp4",m4a:"video/mp4",ogv:"video/ogg",mpeg:"video/mpeg",webm:"video/webm"},e=navigator.userAgent,it=/(iphone|ipod|ipad|android)/gi.test(e)||"MacIntel"===navigator.platform&&1<navigator.maxTouchPoints,n=(/chrome/i.test(e)&&/edge/i.test(e),/android/gi.test(e));var t={},L=(Object.defineProperty(t,"__esModule",{value:!0}),Object.assign||function(e){for(var t=1;t<arguments.length;t++){var i,a=arguments[t];for(i in a)Object.prototype.hasOwnProperty.call(a,i)&&(e[i]=a[i])}return e}),i=t.default=function(i){var t,s,n,e,r,a,o,l,d,c,h,u,v,g,p,m,f,b,y,w,E,R,S;if(i)return t=1,s=3,n=[],e=null,r="requestAnimationFrame"in i?function(){i.cancelAnimationFrame(e),e=i.requestAnimationFrame(function(){return o(n.filter(function(e){return e.dirty&&e.active}))})}:function(){},a=function(t){return function(){n.forEach(function(e){return e.dirty=t}),r()}},o=function(e){e.filter(function(e){return!e.styleComputed}).forEach(function(e){e.styleComputed=h(e)}),e.filter(u).forEach(v);e=e.filter(c);e.forEach(d),e.forEach(function(e){v(e),l(e)}),e.forEach(g)},l=function(e){return e.dirty=0},d=function(e){e.availableWidth=e.element.parentNode.clientWidth,e.currentWidth=e.element.scrollWidth,e.previousFontSize=e.currentFontSize,e.currentFontSize=Math.min(Math.max(e.minSize,e.availableWidth/e.currentWidth*e.previousFontSize),e.maxSize),e.whiteSpace=e.multiLine&&e.currentFontSize===e.minSize?"normal":"nowrap"},c=function(e){return 2!==e.dirty||2===e.dirty&&e.element.parentNode.clientWidth!==e.availableWidth},h=function(e){var t=i.getComputedStyle(e.element,null);e.currentFontSize=parseFloat(t.getPropertyValue("font-size")),e.display=t.getPropertyValue("display"),e.whiteSpace=t.getPropertyValue("white-space")},u=function(e){var t=!1;return!e.preStyleTestCompleted&&(/inline-/.test(e.display)||(t=!0,e.display="inline-block"),"nowrap"!==e.whiteSpace&&(t=!0,e.whiteSpace="nowrap"),e.preStyleTestCompleted=!0,t)},v=function(e){e.element.style.whiteSpace=e.whiteSpace,e.element.style.display=e.display,e.element.style.fontSize=e.currentFontSize+"px"},g=function(e){e.element.dispatchEvent(new CustomEvent("fit",{detail:{oldValue:e.previousFontSize,newValue:e.currentFontSize,scaleFactor:e.currentFontSize/e.previousFontSize}}))},p=function(e,t){return function(){e.dirty=t,e.active&&r()}},m=function(t){return function(){n=n.filter(function(e){return e.element!==t.element}),t.observeMutations&&t.observer.disconnect(),t.element.style.whiteSpace=t.originalStyle.whiteSpace,t.element.style.display=t.originalStyle.display,t.element.style.fontSize=t.originalStyle.fontSize}},f=function(e){return function(){e.active||(e.active=!0,r())}},b=function(e){return function(){return e.active=!1}},y=function(e){e.observeMutations&&(e.observer=new MutationObserver(p(e,t)),e.observer.observe(e.element,e.observeMutations))},w={minSize:16,maxSize:512,multiLine:!0,observeMutations:"MutationObserver"in i&&{subtree:!0,childList:!0,characterData:!0}},E=null,R=function(){i.clearTimeout(E),E=i.setTimeout(a(2),k.observeWindowDelay)},S=["resize","orientationchange"],Object.defineProperty(k,"observeWindow",{set:function(e){var t=(e?"add":"remove")+"EventListener";S.forEach(function(e){i[t](e,R)})}}),k.observeWindow=!0,k.observeWindowDelay=100,k.fitAll=a(s),k;function A(e,t){var a=L({},w,t),t=e.map(function(e){var t,i=L({},a,{element:e,active:!0});return(t=i).originalStyle={whiteSpace:t.element.style.whiteSpace,display:t.element.style.display,fontSize:t.element.style.fontSize},y(t),t.newbie=!0,t.dirty=!0,n.push(t),{element:e,fit:p(i,s),unfreeze:f(i),freeze:b(i),unsubscribe:m(i)}});return r(),t}function k(e){var t,i=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{};return"string"==typeof e?A((t=document.querySelectorAll(e),[].slice.call(t)),i):A([e],i)[0]}}("undefined"==typeof window?null:window);class at{constructor(e){this.Reveal=e,this.startEmbeddedIframe=this.startEmbeddedIframe.bind(this)}shouldPreload(e){let t=this.Reveal.getConfig().preloadIframes;return t="boolean"!=typeof t?e.hasAttribute("data-preload"):t}load(r,o={}){r.style.display=this.Reveal.getConfig().display,Je(r,"img[data-src], video[data-src], audio[data-src], iframe[data-src]").forEach(e=>{"IFRAME"===e.tagName&&!this.shouldPreload(e)||(e.setAttribute("src",e.getAttribute("data-src")),e.setAttribute("data-lazy-loaded",""),e.removeAttribute("data-src"))}),Je(r,"video, audio").forEach(e=>{let t=0;Je(e,"source[data-src]").forEach(e=>{e.setAttribute("src",e.getAttribute("data-src")),e.removeAttribute("data-src"),e.setAttribute("data-lazy-loaded",""),t+=1}),it&&"VIDEO"===e.tagName&&e.setAttribute("playsinline",""),0<t&&e.load()});let l=r.slideBackgroundElement;if(l){l.style.display="block";let n=r.slideBackgroundContentElement,i=r.getAttribute("data-background-iframe");if(!1===l.hasAttribute("data-loaded")){l.setAttribute("data-loaded","true");let e=r.getAttribute("data-background-image"),t=r.getAttribute("data-background-video"),a=r.hasAttribute("data-background-video-loop"),s=r.hasAttribute("data-background-video-muted");if(e)/^data:/.test(e.trim())?n.style.backgroundImage=`url(${e.trim()})`:n.style.backgroundImage=e.split(",").map(e=>`url(${((e="")=>encodeURI(e).replace(/%5B/g,"[").replace(/%5D/g,"]").replace(/[!'()*]/g,e=>"%"+e.charCodeAt(0).toString(16).toUpperCase()))(decodeURI(e.trim()))})`).join(",");else if(t&&!this.Reveal.isSpeakerNotes()){let i=document.createElement("video");a&&i.setAttribute("loop",""),s&&(i.muted=!0),it&&(i.muted=!0,i.setAttribute("playsinline","")),t.split(",").forEach(e=>{[t=""]=[e];var t=d[t.split(".").pop()];i.innerHTML+=t?`<source src="${e}" type="${t}">`:`<source src="${e}">`}),n.appendChild(i)}else if(i&&!0!==o.excludeIframes){let e=document.createElement("iframe");e.setAttribute("allowfullscreen",""),e.setAttribute("mozallowfullscreen",""),e.setAttribute("webkitallowfullscreen",""),e.setAttribute("allow","autoplay"),e.setAttribute("data-src",i),e.style.width="100%",e.style.height="100%",e.style.maxHeight="100%",e.style.maxWidth="100%",n.appendChild(e)}}let e=n.querySelector("iframe[data-src]");e&&this.shouldPreload(l)&&!/autoplay=(1|true|yes)/gi.test(i)&&e.getAttribute("src")!==i&&e.setAttribute("src",i)}this.layout(r)}layout(e){Array.from(e.querySelectorAll(".r-fit-text")).forEach(e=>{i(e,{minSize:24,maxSize:.8*this.Reveal.getConfig().height,observeMutations:!1,observeWindow:!1})})}unload(e){e.style.display="none";let t=this.Reveal.getSlideBackground(e);t&&(t.style.display="none",Je(t,"iframe[src]").forEach(e=>{e.removeAttribute("src")})),Je(e,"video[data-lazy-loaded][src], audio[data-lazy-loaded][src], iframe[data-lazy-loaded][src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")}),Je(e,"video[data-lazy-loaded] source[src], audio source[src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")})}formatEmbeddedContent(){var e=(i,e,a)=>{Je(this.Reveal.getSlidesElement(),"iframe["+i+'*="'+e+'"]').forEach(e=>{let t=e.getAttribute(i);t&&-1===t.indexOf(a)&&e.setAttribute(i,t+(/\?/.test(t)?"&":"?")+a)})};e("src","youtube.com/embed/","enablejsapi=1"),e("data-src","youtube.com/embed/","enablejsapi=1"),e("src","player.vimeo.com/","api=1"),e("data-src","player.vimeo.com/","api=1")}startEmbeddedContent(e){e&&!this.Reveal.isSpeakerNotes()&&(Je(e,'img[src$=".gif"]').forEach(e=>{e.setAttribute("src",e.getAttribute("src"))}),Je(e,"video, audio").forEach(t=>{if(!et(t,".fragment")||et(t,".fragment.visible")){let e=this.Reveal.getConfig().autoPlayMedia;if((e="boolean"!=typeof e?t.hasAttribute("data-autoplay")||!!et(t,".slide-background"):e)&&"function"==typeof t.play)if(1<t.readyState)this.startEmbeddedMedia({target:t});else if(it){let e=t.play();e&&"function"==typeof e.catch&&!1===t.controls&&e.catch(()=>{t.controls=!0,t.addEventListener("play",()=>{t.controls=!1})})}else t.removeEventListener("loadeddata",this.startEmbeddedMedia),t.addEventListener("loadeddata",this.startEmbeddedMedia)}}),Je(e,"iframe[src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||this.startEmbeddedIframe({target:e})}),Je(e,"iframe[data-src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||e.getAttribute("src")!==e.getAttribute("data-src")&&(e.removeEventListener("load",this.startEmbeddedIframe),e.addEventListener("load",this.startEmbeddedIframe),e.setAttribute("src",e.getAttribute("data-src")))}))}startEmbeddedMedia(e){var t=!!et(e.target,"html"),i=!!et(e.target,".present");t&&i&&(e.target.currentTime=0,e.target.play()),e.target.removeEventListener("loadeddata",this.startEmbeddedMedia)}startEmbeddedIframe(e){let t=e.target;if(t&&t.contentWindow){var i=!!et(e.target,"html"),e=!!et(e.target,".present");if(i&&e){let e=this.Reveal.getConfig().autoPlayMedia;"boolean"!=typeof e&&(e=t.hasAttribute("data-autoplay")||!!et(t,".slide-background")),/youtube\.com\/embed\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}',"*"):/player\.vimeo\.com\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"method":"play"}',"*"):t.contentWindow.postMessage("slide:start","*")}}}stopEmbeddedContent(e,t={}){t=_e({unloadIframes:!0},t),e&&e.parentNode&&(Je(e,"video, audio").forEach(e=>{e.hasAttribute("data-ignore")||"function"!=typeof e.pause||(e.setAttribute("data-paused-by-reveal",""),e.pause())}),Je(e,"iframe").forEach(e=>{e.contentWindow&&e.contentWindow.postMessage("slide:stop","*"),e.removeEventListener("load",this.startEmbeddedIframe)}),Je(e,'iframe[src*="youtube.com/embed/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}',"*")}),Je(e,'iframe[src*="player.vimeo.com/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"method":"pause"}',"*")}),!0===t.unloadIframes&&Je(e,"iframe[data-src]").forEach(e=>{e.setAttribute("src","about:blank"),e.removeAttribute("src")}))}}class st{constructor(e){this.Reveal=e}render(){this.element=document.createElement("div"),this.element.className="slide-number",this.Reveal.getRevealElement().appendChild(this.element)}configure(e,t){let i="none";e.slideNumber&&!this.Reveal.isPrintingPDF()&&("all"===e.showSlideNumber||"speaker"===e.showSlideNumber&&this.Reveal.isSpeakerNotes())&&(i="block"),this.element.style.display=i}update(){this.Reveal.getConfig().slideNumber&&this.element&&(this.element.innerHTML=this.getSlideNumber())}getSlideNumber(e=this.Reveal.getCurrentSlide()){let t,i=this.Reveal.getConfig(),a="h.v";if("function"==typeof i.slideNumber)t=i.slideNumber(e);else{"string"==typeof i.slideNumber&&(a=i.slideNumber),/c/.test(a)||1!==this.Reveal.getHorizontalSlides().length||(a="c");var s=e&&"uncounted"===e.dataset.visibility?0:1;switch(t=[],a){case"c":t.push(this.Reveal.getSlidePastCount(e)+s);break;case"c/t":t.push(this.Reveal.getSlidePastCount(e)+s,"/",this.Reveal.getTotalSlides());break;default:var n=this.Reveal.getIndices(e),r=(t.push(n.h+s),"h/v"===a?"/":".");this.Reveal.isVerticalSlide(e)&&t.push(r,n.v+1)}}var o="#"+this.Reveal.location.getHash(e);return this.formatNumber(t[0],t[1],t[2],o)}formatNumber(e,t,i,a="#"+this.Reveal.location.getHash()){return"number"!=typeof i||isNaN(i)?`<a href="${a}">
 					<span class="slide-number-a">${e}</span>
@@ -900,16 +864,38 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 					<div class="viewport-inner">${e}</div>
 				</div>
 			`,f.overlay.querySelector(".close").addEventListener("click",e=>{M(),e.preventDefault()},!1)}}function M(){return!!f.overlay&&(f.overlay.parentNode.removeChild(f.overlay),!(f.overlay=null))}function I(){if(f.wrapper&&!C.isPrintingPDF()){if(!p.disableLayout){it&&!p.embedded&&document.documentElement.style.setProperty("--vh",.01*window.innerHeight+"px");var i=ne(),e=t,a=(se(p.width,p.height),f.slides.style.width=i.width+"px",f.slides.style.height=i.height+"px",t=Math.min(i.presentationWidth/i.width,i.presentationHeight/i.height),t=Math.max(t,p.minScale),1===(t=Math.min(t,p.maxScale))?(f.slides.style.zoom="",f.slides.style.left="",f.slides.style.top="",f.slides.style.bottom="",Q({layout:f.slides.style.right=""})):(f.slides.style.zoom="",f.slides.style.left="50%",f.slides.style.top="50%",f.slides.style.bottom="auto",f.slides.style.right="auto",Q({layout:"translate(-50%, -50%) scale("+t+")"})),Array.from(f.wrapper.querySelectorAll(ot)));for(let e=0,t=a.length;e<t;e++){const s=a[e];"none"!==s.style.display&&(p.center||s.classList.contains("center")?s.classList.contains("stack")?s.style.top=0:s.style.top=Math.max((i.height-s.scrollHeight)/2,0)+"px":s.style.top="")}e!==t&&N({type:"resize",data:{oldScale:e,scale:t,size:i}})}f.viewport.style.setProperty("--slide-scale",t),k.update(),w.updateParallax(),R.isActive()&&R.update()}}function se(o,l){Je(f.slides,"section > .stretch, section > .r-stretch").forEach(e=>{[t,i=0]=[e,l];var t,i,a,s=t?(s=t.style.height,t.style.height="0px",t.parentNode.style.height="auto",a=i-t.parentNode.offsetHeight,t.style.height=s+"px",t.parentNode.style.removeProperty("height"),a):i;if(/(img|video)/gi.test(e.nodeName)){const l=e.naturalWidth||e.videoWidth,n=e.naturalHeight||e.videoHeight,r=Math.min(o/l,s/n);e.style.width=l*r+"px",e.style.height=n*r+"px"}else e.style.width=o+"px",e.style.height=s+"px"})}function ne(e,t){let i=p.width,a=p.height;p.disableLayout&&(i=f.slides.offsetWidth,a=f.slides.offsetHeight);const s={width:i,height:a,presentationWidth:e||f.wrapper.offsetWidth,presentationHeight:t||f.wrapper.offsetHeight};return s.presentationWidth-=s.presentationWidth*p.margin,s.presentationHeight-=s.presentationHeight*p.margin,"string"==typeof s.width&&/%$/.test(s.width)&&(s.width=parseInt(s.width,10)/100*s.presentationWidth),"string"==typeof s.height&&/%$/.test(s.height)&&(s.height=parseInt(s.height,10)/100*s.presentationHeight),s}function re(e,t){"object"==typeof e&&"function"==typeof e.setAttribute&&e.setAttribute("data-previous-indexv",t||0)}function oe(e){var t;return"object"==typeof e&&"function"==typeof e.setAttribute&&e.classList.contains("stack")?(t=e.hasAttribute("data-start-indexv")?"data-start-indexv":"data-previous-indexv",parseInt(e.getAttribute(t)||0,10)):0}function le(e=g){return e&&e.parentNode&&!!e.parentNode.nodeName.match(/section/i)}function de(){return!(!g||!le(g)||g.nextElementSibling)}function ce(){return 0===h&&0===u}function he(){return!(!g||g.nextElementSibling||le(g)&&g.parentNode.nextElementSibling)}function ue(){var e;p.pause&&(e=f.wrapper.classList.contains("paused"),Me(),f.wrapper.classList.add("paused"),!1===e&&N({type:"paused"}))}function ve(){var e=f.wrapper.classList.contains("paused");f.wrapper.classList.remove("paused"),z(),e&&N({type:"resumed"})}function ge(e){("boolean"==typeof e?e?ue:ve:pe()?ve:ue)()}function pe(){return f.wrapper.classList.contains("paused")}function T(a,s,n,r){if(!N({type:"beforeslidechange",data:{indexh:void 0===a?h:a,indexv:void 0===s?u:s,origin:r}}).defaultPrevented){v=g;var o=f.wrapper.querySelectorAll(lt);if(0!==o.length){void 0!==s||R.isActive()||(s=oe(o[a])),v&&v.parentNode&&v.parentNode.classList.contains("stack")&&re(v.parentNode,u);const c=m.concat();m.length=0;var l=h||0,d=u||0,a=(h=be(lt,void 0===a?h:a),u=be(dt,void 0===s?u:s),h!==l||u!==d);a||(v=null);let e=o[h],t=e.querySelectorAll("section"),i=(g=t[u]||e,!1);a&&v&&g&&!R.isActive()&&(v.hasAttribute("data-auto-animate")&&g.hasAttribute("data-auto-animate")&&v.getAttribute("data-auto-animate-id")===g.getAttribute("data-auto-animate-id")&&!(h>l||u>d?g:v).hasAttribute("data-auto-animate-restart")&&(i=!0,f.slides.classList.add("disable-slide-transitions")),B="running"),Ee(),I(),R.isActive()&&R.update(),void 0!==n&&E.goto(n),v&&v!==g&&(v.classList.remove("present"),v.setAttribute("aria-hidden","true"),ce()&&setTimeout(()=>{Je(f.wrapper,lt+".stack").forEach(e=>{re(e,0)})},0));e:for(let t=0,e=m.length;t<e;t++){for(let e=0;e<c.length;e++)if(c[e]===m[t]){c.splice(e,1);continue e}f.viewport.classList.add(m[t]),N({type:m[t]})}for(;c.length;)f.viewport.classList.remove(c.pop());a&&N({type:"slidechanged",data:{indexh:h,indexv:u,previousSlide:v,currentSlide:g,origin:r}}),!a&&v||(b.stopEmbeddedContent(v),b.startEmbeddedContent(g)),requestAnimationFrame(()=>{V($(g))}),k.update(),A.update(),P.update(),w.update(),w.updateParallax(),y.update(),E.update(),S.writeURL(),z(),i&&(setTimeout(()=>{f.slides.classList.remove("disable-slide-transitions")},0),p.autoAnimate&&U.run(v,g))}}}function me(){_(),Y(),I(),o=p.autoSlide,z(),w.create(),S.writeURL(),!0===p.sortFragmentsOnSync&&E.sortAll(),A.update(),k.update(),Ee(),P.update(),P.updateVisibility(),w.update(!0),y.update(),b.formatEmbeddedContent(),!1===p.autoPlayMedia?b.stopEmbeddedContent(g,{unloadIframes:!1}):b.startEmbeddedContent(g),R.isActive()&&R.layout()}function fe(a=F()){a.forEach((e,t)=>{var i=a[Math.floor(Math.random()*a.length)],i=(i.parentNode===e.parentNode&&e.parentNode.insertBefore(e,i),e.querySelectorAll("section"));i.length&&fe(i)})}function be(e,a){let s=Je(f.wrapper,e),n=s.length,r=C.isPrintingPDF(),o=!1,l=!1;if(n){p.loop&&(n<=a&&(o=!0),(a%=n)<0&&(a=n+a,l=!0)),a=Math.max(Math.min(a,n-1),0);for(let i=0;i<n;i++){let e=s[i],t=p.rtl&&!le(e);e.classList.remove("past"),e.classList.remove("present"),e.classList.remove("future"),e.setAttribute("hidden",""),e.setAttribute("aria-hidden","true"),e.querySelector("section")&&e.classList.add("stack"),r?e.classList.add("present"):i<a?(e.classList.add(t?"future":"past"),p.fragments&&ye(e)):i>a?(e.classList.add(t?"past":"future"),p.fragments&&we(e)):i===a&&p.fragments&&(o?we(e):l&&ye(e))}let e=s[a],t=e.classList.contains("present"),i=(e.classList.add("present"),e.removeAttribute("hidden"),e.removeAttribute("aria-hidden"),t||N({target:e,type:"visible",bubbles:!1}),e.getAttribute("data-state"));i&&(m=m.concat(i.split(" ")))}else a=0;return a}function ye(e){Je(e,".fragment").forEach(e=>{e.classList.add("visible"),e.classList.remove("current-fragment")})}function we(e){Je(e,".fragment.visible").forEach(e=>{e.classList.remove("visible","current-fragment")})}function Ee(){let a,s,e=F(),n=e.length;if(n&&void 0!==h){let i=R.isActive()?10:p.viewDistance;it&&(i=R.isActive()?6:p.mobileViewDistance),C.isPrintingPDF()&&(i=Number.MAX_VALUE);for(let t=0;t<n;t++){var r=e[t],o=Je(r,"section"),l=o.length;if(a=Math.abs((h||0)-t)||0,(a=p.loop?Math.abs(((h||0)-t)%(n-i))||0:a)<i?b.load(r):b.unload(r),l){var d=oe(r);for(let e=0;e<l;e++){var c=o[e];s=t===(h||0)?Math.abs((u||0)-e):Math.abs(e-d),a+s<i?b.load(c):b.unload(c)}}}Ce()?f.wrapper.classList.add("has-vertical-slides"):f.wrapper.classList.remove("has-vertical-slides"),Le()?f.wrapper.classList.add("has-horizontal-slides"):f.wrapper.classList.remove("has-horizontal-slides")}}function D({includeFragments:e=!1}={}){let t=f.wrapper.querySelectorAll(lt),i=f.wrapper.querySelectorAll(dt),a={left:0<h,right:h<t.length-1,up:0<u,down:u<i.length-1};return p.loop&&(1<t.length&&(a.left=!0,a.right=!0),1<i.length&&(a.up=!0,a.down=!0)),1<t.length&&"linear"===p.navigationMode&&(a.right=a.right||a.down,a.left=a.left||a.up),!0===e&&(e=E.availableRoutes(),a.left=a.left||e.prev,a.up=a.up||e.prev,a.down=a.down||e.next,a.right=a.right||e.next),p.rtl&&(e=a.left,a.left=a.right,a.right=e),a}function Re(a=g){let s=F(),n=0;e:for(let i=0;i<s.length;i++){let e=s[i],t=e.querySelectorAll("section");for(let e=0;e<t.length;e++){if(t[e]===a)break e;"uncounted"!==t[e].dataset.visibility&&n++}if(e===a)break;!1===e.classList.contains("stack")&&"uncounted"!==e.dataset.visibility&&n++}return n}function Se(a){let t,s=h,n=u;if(a){let e=le(a),t=e?a.parentNode:a,i=F();s=Math.max(i.indexOf(t),0),n=void 0,e&&(n=Math.max(Je(a.parentNode,"section").indexOf(a),0))}if(!a&&g&&0<g.querySelectorAll(".fragment").length){let e=g.querySelector(".current-fragment");t=e&&e.hasAttribute("data-fragment-index")?parseInt(e.getAttribute("data-fragment-index"),10):g.querySelectorAll(".fragment.visible").length-1}return{h:s,v:n,f:t}}function Ae(){return Je(f.wrapper,ot+':not(.stack):not([data-visibility="uncounted"])')}function F(){return Je(f.wrapper,lt)}function ke(){return Je(f.wrapper,".slides>section>section")}function Le(){return 1<F().length}function Ce(){return 1<ke().length}function xe(){return Ae().length}function Pe(e,t){let i=F()[e],a=i&&i.querySelectorAll("section");return a&&a.length&&"number"==typeof t?a?a[t]:void 0:i}function Ne(){var e=Se();return{indexh:e.h,indexv:e.v,indexf:e.f,paused:pe(),overview:R.isActive()}}function z(){if(Me(),g&&!1!==p.autoSlide){let e=g.querySelector(".current-fragment[data-autoslide]"),t=e?e.getAttribute("data-autoslide"):null,i=g.parentNode?g.parentNode.getAttribute("data-autoslide"):null,a=g.getAttribute("data-autoslide");t?o=parseInt(t,10):a?o=parseInt(a,10):i?o=parseInt(i,10):(o=p.autoSlide,0===g.querySelectorAll(".fragment").length&&Je(g,"video, audio").forEach(e=>{e.hasAttribute("data-autoplay")&&o&&1e3*e.duration/e.playbackRate>o&&(o=1e3*e.duration/e.playbackRate+1e3)})),!o||l||pe()||R.isActive()||he()&&!E.availableRoutes().next&&!0!==p.loop||(O=setTimeout(()=>{"function"==typeof p.autoSlideMethod?p.autoSlideMethod():Oe(),z()},o),q=Date.now()),n&&n.setPlaying(-1!==O)}}function Me(){clearTimeout(O),O=-1}function Ie(){o&&!l&&(l=!0,N({type:"autoslidepaused"}),clearTimeout(O),n&&n.setPlaying(!1))}function Te(){o&&l&&(l=!1,N({type:"autoslideresumed"}),z())}function De({skipFragments:e=!1}={}){i.hasNavigatedHorizontally=!0,p.rtl?(R.isActive()||e||!1===E.next())&&D().left&&T(h+1,"grid"===p.navigationMode?u:void 0):(R.isActive()||e||!1===E.prev())&&D().left&&T(h-1,"grid"===p.navigationMode?u:void 0)}function Fe({skipFragments:e=!1}={}){i.hasNavigatedHorizontally=!0,p.rtl?(R.isActive()||e||!1===E.prev())&&D().right&&T(h-1,"grid"===p.navigationMode?u:void 0):(R.isActive()||e||!1===E.next())&&D().right&&T(h+1,"grid"===p.navigationMode?u:void 0)}function ze({skipFragments:e=!1}={}){(R.isActive()||e||!1===E.prev())&&D().up&&T(h,u-1)}function He({skipFragments:e=!1}={}){i.hasNavigatedVertically=!0,(R.isActive()||e||!1===E.next())&&D().down&&T(h,u+1)}function Be({skipFragments:t=!1}={}){if(t||!1===E.prev())if(D().up)ze({skipFragments:t});else{let e;var i;(e=(p.rtl?Je(f.wrapper,lt+".future"):Je(f.wrapper,lt+".past")).pop())&&e.classList.contains("stack")?(i=e.querySelectorAll("section").length-1||void 0,T(h-1,i)):De({skipFragments:t})}}function Oe({skipFragments:t=!1}={}){if(i.hasNavigatedHorizontally=!0,i.hasNavigatedVertically=!0,t||!1===E.next()){let e=D();e.down&&e.right&&p.loop&&de()&&(e.down=!1),(e.down?He:p.rtl?De:Fe)({skipFragments:t})}}function qe(e){let t=e.data;if("string"==typeof t&&"{"===t.charAt(0)&&"}"===t.charAt(t.length-1)&&((t=JSON.parse(t)).method&&"function"==typeof s[t.method]))if(!1===ct.test(t.method)){const e=s[t.method].apply(s,t.args);Z("callback",{method:t.method,result:e})}else console.warn('reveal.js: "'+t.method+'" is is blacklisted from the postMessage API')}function Ue(e){"running"===B&&/section/gi.test(e.target.nodeName)&&(B="idle",N({type:"slidetransitionend",data:{indexh:h,indexv:u,previousSlide:v,currentSlide:g}}))}function je(e){const t=et(e.target,'a[href^="#"]');var i;t&&(i=t.getAttribute("href"),(i=S.getIndicesFromHash(i))&&(s.slide(i.h,i.v,i.f),e.preventDefault()))}function We(e){I()}function Ke(e){!1===document.hidden&&document.activeElement!==document.body&&("function"==typeof document.activeElement.blur&&document.activeElement.blur(),document.body.focus())}function Ve(e){(document.fullscreenElement||document.webkitFullscreenElement)===f.wrapper&&(e.stopImmediatePropagation(),setTimeout(()=>{s.layout(),s.focus.focus()},1))}function $e(e){var t;e.currentTarget&&e.currentTarget.hasAttribute("href")&&((t=e.currentTarget.getAttribute("href"))&&(ie(t),e.preventDefault()))}function Xe(e){he()&&!1===p.loop?(T(0,0),Te()):(l?Te:Ie)()}var Ye={VERSION:vt,initialize:function(e){if(!a)throw'Unable to find presentation root (<div class="reveal">).';if(f.wrapper=a,f.slides=a.querySelector(".slides"),f.slides)return!0===(p={...Lt,...p,...H,...e,...tt()}).embedded?f.viewport=et(a,".reveal-viewport")||a:(f.viewport=document.body,document.documentElement.classList.add("reveal-full-page")),f.viewport.classList.add("reveal-viewport"),window.addEventListener("load",I,!1),L.load(p.plugins,p.dependencies).then(K),new Promise(e=>s.on("ready",e));throw'Unable to find slides container (<div class="slides">).'},configure:X,destroy:function(){_(),Me(),te(),P.destroy(),x.destroy(),L.destroy(),j.destroy(),A.destroy(),k.destroy(),w.destroy(),y.destroy(),d.destroy(),document.removeEventListener("fullscreenchange",Ve),document.removeEventListener("webkitfullscreenchange",Ve),document.removeEventListener("visibilitychange",Ke,!1),window.removeEventListener("message",qe,!1),window.removeEventListener("load",I,!1),f.pauseOverlay&&f.pauseOverlay.remove(),f.statusElement&&f.statusElement.remove(),document.documentElement.classList.remove("reveal-full-page"),f.wrapper.classList.remove("ready","center","has-horizontal-slides","has-vertical-slides"),f.wrapper.removeAttribute("data-transition-speed"),f.wrapper.removeAttribute("data-background-transition"),f.viewport.classList.remove("reveal-viewport"),f.viewport.style.removeProperty("--slide-width"),f.viewport.style.removeProperty("--slide-height"),f.slides.style.removeProperty("width"),f.slides.style.removeProperty("height"),f.slides.style.removeProperty("zoom"),f.slides.style.removeProperty("left"),f.slides.style.removeProperty("top"),f.slides.style.removeProperty("bottom"),f.slides.style.removeProperty("right"),f.slides.style.removeProperty("transform"),Array.from(f.wrapper.querySelectorAll(ot)).forEach(e=>{e.style.removeProperty("display"),e.style.removeProperty("top"),e.removeAttribute("hidden"),e.removeAttribute("aria-hidden")})},sync:me,syncSlide:function(e=g){w.sync(e),E.sync(e),b.load(e),w.update(),P.update()},syncFragments:E.sync.bind(E),slide:T,left:De,right:Fe,up:ze,down:He,prev:Be,next:Oe,navigateLeft:De,navigateRight:Fe,navigateUp:ze,navigateDown:He,navigatePrev:Be,navigateNext:Oe,navigateFragment:E.goto.bind(E),prevFragment:E.prev.bind(E),nextFragment:E.next.bind(E),on:J,off:G,addEventListener:J,removeEventListener:G,layout:I,shuffle:fe,availableRoutes:D,availableFragments:E.availableRoutes.bind(E),toggleHelp:function(e){("boolean"==typeof e?e?ae:M:f.overlay?M:ae)()},toggleOverview:R.toggle.bind(R),togglePause:ge,toggleAutoSlide:function(e){("boolean"==typeof e?e?Te:Ie:l?Te:Ie)()},toggleJumpToSlide:function(e){"boolean"==typeof e?e?d.show():d.hide():d.isVisible()?d.hide():d.show()},isFirstSlide:ce,isLastSlide:he,isLastVerticalSlide:de,isVerticalSlide:le,isPaused:pe,isAutoSliding:function(){return!(!o||l)},isSpeakerNotes:P.isSpeakerNotesWindow.bind(P),isOverview:R.isActive.bind(R),isFocused:x.isFocused.bind(x),isPrintingPDF:C.isPrintingPDF.bind(C),isReady:()=>e,loadSlide:b.load.bind(b),unloadSlide:b.unload.bind(b),startEmbeddedContent:()=>b.startEmbeddedContent(g),stopEmbeddedContent:()=>b.stopEmbeddedContent(g,{unloadIframes:!1}),showPreview:ie,hidePreview:M,addEventListeners:Y,removeEventListeners:_,dispatchEvent:N,getState:Ne,setState:function(e){var t;"object"==typeof e&&(T(Qe(e.indexh),Qe(e.indexv),Qe(e.indexf)),t=Qe(e.paused),e=Qe(e.overview),"boolean"==typeof t&&t!==pe()&&ge(t),"boolean"==typeof e&&e!==R.isActive()&&R.toggle(e))},getProgress:function(){let e=xe(),t=Re();var i;return g&&0<(i=g.querySelectorAll(".fragment")).length&&(t+=g.querySelectorAll(".fragment.visible").length/i.length*.9),Math.min(t/(e-1),1)},getIndices:Se,getSlidesAttributes:function(){return Ae().map(t=>{let i={};for(let e=0;e<t.attributes.length;e++){var a=t.attributes[e];i[a.name]=a.value}return i})},getSlidePastCount:Re,getTotalSlides:xe,getSlide:Pe,getPreviousSlide:()=>v,getCurrentSlide:()=>g,getSlideBackground:function(e,t){if(t="number"==typeof e?Pe(e,t):e)return t.slideBackgroundElement},getSlideNotes:P.getSlideNotes.bind(P),getSlides:Ae,getHorizontalSlides:F,getVerticalSlides:ke,hasHorizontalSlides:Le,hasVerticalSlides:Ce,hasNavigatedHorizontally:()=>i.hasNavigatedHorizontally,hasNavigatedVertically:()=>i.hasNavigatedVertically,addKeyBinding:c.addKeyBinding.bind(c),removeKeyBinding:c.removeKeyBinding.bind(c),triggerKey:c.triggerKey.bind(c),registerKeyboardShortcut:c.registerKeyboardShortcut.bind(c),getComputedSlideSize:ne,getScale:()=>t,getConfig:()=>p,getQueryHash:tt,getSlidePath:S.getHash.bind(S),getRevealElement:()=>a,getSlidesElement:()=>f.slides,getViewportElement:()=>f.viewport,getBackgroundsElement:()=>w.element,registerPlugin:L.registerPlugin.bind(L),hasPlugin:L.hasPlugin.bind(L),getPlugin:L.getPlugin.bind(L),getPlugins:L.getRegisteredPlugins.bind(L)};return _e(s,{...Ye,announceStatus:V,getStatusText:$,print:C,focus:x,progress:k,controls:A,location:S,overview:R,fragments:E,slideContent:b,slideNumber:y,onUserInput:function(e){p.autoSlideStoppable&&Ie()},closeOverlay:M,updateSlidesVisibility:Ee,layoutSlideContents:se,transformSlides:Q,cueAutoSlide:z,cancelAutoSlide:Me}),Ye}let v=u,g=[];return v.initialize=e=>(Object.assign(v,new u(document.querySelector(".reveal"),e)),g.map(e=>e(v)),v.initialize()),["configure","on","off","addEventListener","removeEventListener","registerPlugin"].forEach(i=>{v[i]=(...t)=>{g.push(e=>e[i].call(null,...t))}}),v.isReady=()=>!1,v.VERSION=vt,v});</script>
-
 <!-- Reveal.js init -->
 <script>
 Reveal.initialize({
   hash:true, transition:'fade', transitionSpeed:'slow',
   width:1100, height:700, margin:0.08,
-  controlsLayout:'edges', controls:false, progress:true, slideNumber:true
+  controlsLayout:'edges', controls:false, progress:true, slideNumber:true,
+  keyboard:true, touch:true, mouseWheel:true
 });
-</script>
 
+// Tap / click to advance — pointerup works for both mouse and touch
+(function(){
+  function navBlocked(e){
+    var el=e.target;
+    while(el&&el.nodeType===1){
+      var tag=(el.tagName||'').toLowerCase();
+      if(tag==='a'||tag==='button'||tag==='input'||tag==='select'||tag==='textarea') return true;
+      if(el.hasAttribute&&el.hasAttribute('onclick')) return true;
+      var c=el.className||'';
+      if(typeof c==='string'&&(c.indexOf('nav-hint')>=0||c.indexOf('back-link')>=0||c.indexOf('ui-fullscreen')>=0||c.indexOf('expand-btn')>=0)) return true;
+      el=el.parentNode;
+    }
+    return false;
+  }
+  var _x=0,_y=0;
+  document.addEventListener('pointerdown',function(e){_x=e.clientX;_y=e.clientY;},true);
+  document.addEventListener('pointerup',function(e){
+    if(navBlocked(e)) return;
+    if(Math.abs(e.clientX-_x)+Math.abs(e.clientY-_y)>20) return;
+    Reveal.next();
+  },true);
+})();
+</script>
 <!-- Expand Button & Fullscreen Overlay -->
 <script>
 function expandFromBtn(btn){
@@ -934,7 +920,6 @@ function expandFromBtn(btn){
   },true);
 })();
 </script>
-
 <!-- Popup Controller -->
 <script>
 (function(){
@@ -971,15 +956,13 @@ function expandFromBtn(btn){
   }
 })();
 </script>
-
 <!-- Navigation arrows -->
 <div class="nav-hint left" onclick="Reveal.prev()" title="Previous">
-  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+<svg viewbox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </div>
 <div class="nav-hint right first-hint" onclick="Reveal.next()" title="Next">
-  <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+<svg viewbox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
 </div>
-
 <script src="js/marker-drag.js"></script>
 </body>
 </html>

@@ -240,6 +240,20 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   gap:12px;
 }
 
+/* ── Filter Bar ── */
+.filter-bar{
+  display:flex;gap:8px;flex-wrap:wrap;
+  padding:0 48px;max-width:1400px;margin:0 auto 32px;
+}
+.filter-btn{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 18px;border:1px solid rgba(240,230,211,.12);border-radius:100px;
+  background:transparent;color:var(--cream-dim);cursor:none;transition:all .25s ease;
+}
+.filter-btn:hover{border-color:rgba(240,230,211,.3);color:var(--cream);}
+.filter-btn.active{background:var(--accent);border-color:var(--accent);color:var(--dark);}
+@media(max-width:768px){.filter-bar{padding:0 24px;margin-bottom:24px;}}
+
 .project{
   display:flex;flex-direction:column;
   position:relative;
@@ -393,7 +407,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 }
 .project.open .proj-detail-inner{opacity:1;transform:translateY(0);}
 
-.pd-block{}
+.pd-block{display:block}
 .pd-label{
   font-family:'Space Mono',monospace;
   font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
@@ -864,13 +878,22 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   <p class="sec-sub sr sr-d2">The projects I keep coming back to when someone asks what I actually do.</p>
 </div>
 
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="recommended">Recommended</button>
+  <button class="filter-btn" data-filter="saas">SaaS Design</button>
+  <button class="filter-btn" data-filter="mobile">Mobile Design</button>
+  <button class="filter-btn" data-filter="ai">AI Powered</button>
+  <button class="filter-btn" data-filter="design-system">Design System</button>
+</div>
+
 <!-- PROJECTS -->
 <div class="projects">
 
   <!-- ── Project 01 — Resume Pipeline ── -->
-  <div class="project featured sr" data-project>
+  <div class="project featured sr" data-project data-filters="recommended ai saas">
     <div class="proj-thumb">
-      <video src="images/resume-builder-resources/resume-suggestion.mov" autoplay loop muted playsinline alt="AI Job Analyzer & Tailored Resume Pipeline"></video>
+      <video src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mov" autoplay loop muted playsinline alt="AI Job Analyzer & Tailored Resume Pipeline"></video>
     </div>
     <div class="proj-info">
       <div class="proj-recommend">Recommended</div>
@@ -932,7 +955,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   </div>
 
   <!-- ── Project 02 — Golden Paths ── -->
-  <div class="project featured sr" data-project>
+  <div class="project featured sr" data-project data-filters="recommended ai saas">
     <div class="proj-thumb">
       <video src="images/AI%20Test/Showing%20Results.mov" autoplay loop muted playsinline alt="AI User Testing & Golden Paths"></video>
     </div>
@@ -996,7 +1019,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   </div>
 
   <!-- ── Project 03 — Retail ── -->
-  <div class="project featured sr" data-project>
+  <div class="project featured sr" data-project data-filters="recommended saas">
     <div class="proj-thumb">
       <img src="images/coverphoto/1.svg" alt="From Feedback to 427% ROI">
       <div class="thumb-stat">427%<span>ROI Achieved</span></div>
@@ -1062,7 +1085,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   </div>
 
   <!-- ── Project 04 — Dashboard ── -->
-  <div class="project featured sr" data-project>
+  <div class="project featured sr" data-project data-filters="saas">
     <div class="proj-thumb">
       <img src="images/coverphoto/2.svg" alt="Saved 0.5 Man-Hours Per Day">
       <div class="thumb-stat">0.5h<span>saved daily</span></div>
@@ -1138,7 +1161,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 <div class="projects projects-extra" id="projectsExtra">
 
   <!-- ── Project 05 — Multi-Level Design System ── -->
-  <div class="project sr" data-project>
+  <div class="project sr" data-project data-filters="recommended design-system">
     <div class="proj-thumb">
       <img src="images/coverphoto/1.svg" alt="Multi-Level Design System">
       <div class="thumb-stat">100%<span>Consistency</span></div>
@@ -1203,7 +1226,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   </div>
 
   <!-- ── Project 06 — Tokens ── -->
-  <div class="project sr" data-project>
+  <div class="project sr" data-project data-filters="design-system">
     <div class="proj-thumb">
       <img src="images/coverphoto/4.svg" alt="Design Tokens Generator">
       <div class="thumb-stat">50%<span>time cut</span></div>
@@ -1266,7 +1289,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   </div>
 
   <!-- ── Project 07 — Jar Aye Child App ── -->
-  <div class="project sr" data-project>
+  <div class="project sr" data-project data-filters="mobile">
     <div class="proj-thumb">
       <img src="images/coverphoto/2.svg" alt="Jar Aye Child App">
       <div class="thumb-stat">5<span>HOTS strategies</span></div>
@@ -1331,7 +1354,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   </div>
 
   <!-- ── Project 08 — Jar Aye Parent App ── -->
-  <div class="project sr" data-project>
+  <div class="project sr" data-project data-filters="mobile">
     <div class="proj-thumb">
       <img src="images/coverphoto/3.svg" alt="Jar Aye Parent App">
       <div class="thumb-stat">4<span>mastery tiers</span></div>
@@ -1396,7 +1419,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   </div>
 
   <!-- ── Project 09 — Karaoke ── -->
-  <div class="project sr" data-project>
+  <div class="project sr" data-project data-filters="mobile">
     <div class="proj-thumb">
       <img src="images/coverphoto/5.svg" alt="Karaoke App">
       <div class="thumb-stat">20<span>user interviews</span></div>
@@ -1836,6 +1859,35 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   window.addEventListener('resize', resize);
   resize();
   draw();
+})();
+
+// ── Filter System ──────────────────────────────────
+(function(){
+  const btns = document.querySelectorAll('.filter-btn');
+  const projects = Array.from(document.querySelectorAll('.project[data-project]'));
+  const seeMoreWrap = document.querySelector('.see-more-wrap');
+  const projectsExtra = document.getElementById('projectsExtra');
+  const mainGrid = document.querySelector('.projects:not(.projects-extra)');
+
+  function applyFilter(filter) {
+    btns.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+    seeMoreWrap.style.display = 'none';
+    projectsExtra.style.display = 'none';
+
+    // Move all projects into the main grid for a unified layout
+    projects.forEach(p => {
+      mainGrid.appendChild(p);
+      const tags = (p.dataset.filters || '').split(' ');
+      p.style.display = tags.includes(filter) ? '' : 'none';
+    });
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+  });
+
+  // Apply default on load
+  applyFilter('recommended');
 })();
 </script>
 </body>

@@ -42,8 +42,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .insight .desc{font-size:.8em;line-height:1.6;color:var(--cream-dim)}
 .metric-row{display:flex;gap:1em;justify-content:center;flex-wrap:wrap;margin:1em 0}
 .metric{background:var(--dark-3);border:1.5px solid var(--cream-faint);border-radius:12px;padding:1em 1.5em;text-align:center}
-.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:var(--accent);line-height:1}
-.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.4em}
+.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:#f0e6d3;line-height:1}
+.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.4em}
 .annotated-ui{position:relative;display:inline-block;margin:0 auto}
 .annotated-ui img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.4);display:block}
 .marker{position:absolute;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:white;pointer-events:none;z-index:2;transform:translate(-50%,-50%)}
@@ -165,7 +165,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .sl-clabel.rd{color:var(--red)}
 .sl-ctitle{font-family:'Syne',sans-serif;font-size:.72em;font-weight:700;color:var(--cream)}
 .sl-cbody{font-size:.6em;color:var(--cream-dim);line-height:1.55;margin:0}.sl-narr{font-family:'Space Mono',monospace;font-size:.5em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin:auto auto .2em;line-height:1.7;width:100%;font-style:normal;order:99;box-sizing:border-box}
-.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:var(--accent);opacity:.3}
+.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:#f0e6d3;opacity:1}.sl-cnum.acc{color:#c8a96e}.sl-cnum.grn{color:#7eb87e}
 .sl-icon{font-size:1.4em;line-height:1;margin-bottom:.1em}
 /* ── Cover Bento ── */
 .cover-bento{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:10px;max-width:720px;margin:0 auto}
@@ -175,8 +175,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .cb-metric{background:rgba(255,255,255,.05);border:1px solid rgba(240,230,211,.12);border-radius:20px;padding:1.1em 1em;text-align:center;transition:transform .2s ease,border-color .2s ease}
 .cb-metric:hover{transform:translateY(-4px);border-color:rgba(232,115,74,.3)}
 .cb-metric.hi{background:rgba(232,115,74,.08);border-color:rgba(232,115,74,.22)}
-.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1}
-.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.35em}
+.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:#f0e6d3;line-height:1}
+.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.35em}
 
 
 /* Fix: prevent slide overlap - non-present sections stay invisible */
@@ -237,6 +237,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     </div>
   </div>
 </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 3: PAIN POINTS -->
@@ -276,6 +278,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   </div>
 </div>
 <p class="sl-narr">🧠 <strong>Information Scent Theory:</strong> When data is scattered, users waste cognitive energy hunting instead of deciding.</p>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 5: OLD UI — PAIN POINTS -->
@@ -356,19 +360,64 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-cbody">Supplier payments requiring action</div>
   </div>
 </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 9: BEFORE/AFTER -->
 <section>
-<h2 style="margin-bottom:.6em">Before & After</h2>
-<table class="perf-table">
-  <tr><th>Metric</th><th>Before</th><th>After</th></tr>
-  <tr><td>Data Sources</td><td>Xero + Sheets + Portal</td><td class="good">1 dashboard</td></tr>
-  <tr><td>Daily Prep Time</td><td>30 minutes</td><td class="good">0 minutes</td></tr>
-  <tr><td>Data Freshness</td><td>Day-old</td><td class="good">Real-time</td></tr>
-  <tr><td>Manual Steps</td><td>12 copy-paste</td><td class="good">0 (automated)</td></tr>
-  <tr><td>Error Risk</td><td>High (manual)</td><td class="good">Near-zero</td></tr>
-</table>
+<span class="section-label">Act 4 · Results</span>
+<h2 style="margin-bottom:.5em">Before &amp; <span style="color:var(--green)">After</span></h2>
+<div class="ba-grid">
+  <div class="ba-col before">
+    <div class="ba-col-head before">Before</div>
+    <div class="ba-card">
+      <div class="ba-label">Data Sources</div>
+      <div class="ba-val">Xero + Sheets + Portal</div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-label">Daily Prep Time</div>
+      <div class="ba-val">30 minutes</div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-label">Data Freshness</div>
+      <div class="ba-val">Day-old</div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-label">Manual Steps</div>
+      <div class="ba-val">12 copy-pastes</div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-label">Error Risk</div>
+      <div class="ba-val">High (manual)</div>
+    </div>
+  </div>
+  <div class="ba-col after">
+    <div class="ba-col-head after">After Design</div>
+    <div class="ba-card">
+      <div class="ba-label">Data Sources</div>
+      <div class="ba-val">1 dashboard</div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-label">Daily Prep Time</div>
+      <div class="ba-val">0 minutes</div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-label">Data Freshness</div>
+      <div class="ba-val">Real-time</div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-label">Manual Steps</div>
+      <div class="ba-val">0 (automated)</div>
+    </div>
+    <div class="ba-card">
+      <div class="ba-label">Error Risk</div>
+      <div class="ba-val">Near-zero</div>
+    </div>
+  </div>
+</div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 10: RESULTS -->
@@ -393,6 +442,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   </div>
 </div>
 <p class="sl-narr"><strong>30 min/day × 250 days</strong> = 125 hrs recovered · <strong>125h × $11/h</strong> = ~$1,375 · <strong>Design cost</strong> = ~$1,360 · Break-even at month 6</p>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 11: MEI'S REACTION -->
@@ -432,16 +483,32 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 </div>
 </section>
 
-<!-- SLIDE 13: TOOLS -->
+<!-- SLIDE 13: SKILLS & TOOLS -->
 <section>
-<h2 style="margin-bottom:.8em">Skills & Tools</h2>
-<div class="sl-grid sl-3" style="margin-top:.8em">
-  <div class="sl-card center"><div class="sl-ctitle">Dashboard Design</div></div>
-  <div class="sl-card center"><div class="sl-ctitle">Data Visualization</div></div>
-  <div class="sl-card center"><div class="sl-ctitle">User Research</div></div>
-  <div class="sl-card center"><div class="sl-ctitle">User Interviews</div></div>
-  <div class="sl-card accent-card center"><div class="sl-ctitle">Figma</div></div>
-  <div class="sl-card accent-card center"><div class="sl-ctitle">FigJam + Notion</div></div>
+<span class="section-label">Skills &amp; Tools</span>
+<div class="sl-grid sl-2">
+  <div class="sl-card">
+    <div class="sl-ctitle">Dashboard Design</div>
+    <p class="sl-cbody">Unified three disparate tools into a single real-time view, eliminating 30 min of daily manual prep</p>
+  </div>
+  <div class="sl-card">
+    <div class="sl-ctitle">Data Visualization</div>
+    <p class="sl-cbody">Translated raw Xero, spreadsheet, and supplier portal data into decision-ready charts and KPI blocks</p>
+  </div>
+  <div class="sl-card">
+    <div class="sl-ctitle">User Research (Shadowing)</div>
+    <p class="sl-cbody">Observed daily rituals first-hand — surfaced 12 redundant steps invisible to surveys</p>
+  </div>
+  <div class="sl-card">
+    <div class="sl-ctitle">User Interviews</div>
+    <p class="sl-cbody">5 stakeholder interviews mapped mental models and priority mismatches before any design began</p>
+  </div>
+  <div class="sl-card full center" style="flex-direction:row;flex-wrap:wrap;gap:.5em;padding:.8em 1.2em">
+    <span class="tool-tag">Figma</span>
+    <span class="tool-tag">FigJam</span>
+    <span class="tool-tag">Notion</span>
+    <span class="tool-tag">Xero</span>
+  </div>
 </div>
 </section>
 
@@ -486,6 +553,56 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 
 </div>
 </div>
+<!-- POPUP SYSTEM -->
+<div class="popup-backdrop" id="popupBackdrop"></div>
+<div class="popup-overlay">
+<div class="popup-card biz" data-popup-slide="1">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">The Hidden Cost of Tool-Switching</div>
+  <div class="popup-desc">A 30-minute daily ritual sounds minor. Across a 5-person team over 250 working days, that's <strong>625 person-hours per year</strong> — roughly 15 full work weeks lost to context-switching between tools.</div>
+  <div class="popup-foot">Harry Hein · Dashboard</div>
+</div>
+<div class="popup-card ux" data-popup-slide="3">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">Shadow, Don't Survey</div>
+  <div class="popup-desc">Asking people what they do and watching what they do produces different data. The <strong>12 redundant reconciliation steps</strong> were only visible through observation — no one would have listed them on a survey.</div>
+  <div class="popup-foot">Harry Hein · Dashboard</div>
+</div>
+<div class="popup-card ux" data-popup-slide="7">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">Information Architecture Is Business Architecture</div>
+  <div class="popup-desc">Every grouping decision on a dashboard reflects a mental model of how the business works. Getting the IA wrong doesn't just confuse users — it <strong>encodes the wrong understanding</strong> of the business into the tool.</div>
+  <div class="popup-foot">Harry Hein · Dashboard</div>
+</div>
+<div class="popup-card biz" data-popup-slide="8">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">Consolidation ROI Is Multidimensional</div>
+  <div class="popup-desc">Eliminating tool-switching produces returns on multiple axes: time saved, errors reduced, and cognitive load freed for <strong>higher-value decisions</strong>. The visible metric (0.5h/day) understates the total impact.</div>
+  <div class="popup-foot">Harry Hein · Dashboard</div>
+</div>
+<div class="popup-card biz" data-popup-slide="9">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">Adoption Rate Is the Real Success Metric</div>
+  <div class="popup-desc">A 100% adoption rate means no training materials, no support tickets, and no shadow workflows. When a tool matches the mental model, <strong>adoption is frictionless</strong>.</div>
+  <div class="popup-foot">Harry Hein · Dashboard</div>
+</div>
+</div>
+
 
 
 
@@ -523,8 +640,32 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 Reveal.initialize({
   hash:true, transition:'fade', transitionSpeed:'slow',
   width:1100, height:700, margin:0.08,
-  controlsLayout:'edges', controls:false, progress:true, slideNumber:true
+  controlsLayout:'edges', controls:false, progress:true, slideNumber:true,
+  keyboard:true, touch:true, mouseWheel:true
 });
+
+// Tap / click to advance — pointerup works for both mouse and touch
+(function(){
+  function navBlocked(e){
+    var el=e.target;
+    while(el&&el.nodeType===1){
+      var tag=(el.tagName||'').toLowerCase();
+      if(tag==='a'||tag==='button'||tag==='input'||tag==='select'||tag==='textarea') return true;
+      if(el.hasAttribute&&el.hasAttribute('onclick')) return true;
+      var c=el.className||'';
+      if(typeof c==='string'&&(c.indexOf('nav-hint')>=0||c.indexOf('back-link')>=0||c.indexOf('ui-fullscreen')>=0||c.indexOf('expand-btn')>=0)) return true;
+      el=el.parentNode;
+    }
+    return false;
+  }
+  var _x=0,_y=0;
+  document.addEventListener('pointerdown',function(e){_x=e.clientX;_y=e.clientY;},true);
+  document.addEventListener('pointerup',function(e){
+    if(navBlocked(e)) return;
+    if(Math.abs(e.clientX-_x)+Math.abs(e.clientY-_y)>20) return;
+    Reveal.next();
+  },true);
+})();
 </script>
 
 <!-- Expand Button & Fullscreen Overlay -->

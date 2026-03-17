@@ -47,8 +47,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .insight .desc{font-size:.8em;line-height:1.6;color:var(--cream-dim)}
 .metric-row{display:flex;gap:1em;justify-content:center;flex-wrap:wrap;margin:1em 0}
 .metric{background:rgba(255,255,255,.04);border:1px solid rgba(240,230,211,.12);border-radius:20px;padding:1.2em 1.8em;text-align:center;transition:transform .2s ease,border-color .2s ease}.metric:hover{transform:translateY(-4px);border-color:rgba(232,115,74,.3)}
-.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:var(--accent);line-height:1}
-.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.4em}
+.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:#f0e6d3;line-height:1}
+.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.4em}
 .pain{background:rgba(214,107,107,.06);border:1px solid rgba(214,107,107,.2);border-radius:16px;padding:.8em 1.1em;margin-bottom:.6em;text-align:left;max-width:500px;margin-left:auto;margin-right:auto}
 .pain .pain-title{font-weight:700;color:var(--cream);font-size:.85em;margin-bottom:.2em}
 .pain .pain-desc{font-size:.72em;color:var(--cream-dim);line-height:1.5}
@@ -191,7 +191,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .sl-clabel.rd{color:var(--red)}
 .sl-ctitle{font-family:'Syne',sans-serif;font-size:.72em;font-weight:700;color:var(--cream)}
 .sl-cbody{font-size:.6em;color:var(--cream-dim);line-height:1.55;margin:0}.sl-narr{font-family:'Space Mono',monospace;font-size:.5em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin:auto auto .2em;line-height:1.7;width:100%;font-style:normal;order:99;box-sizing:border-box}
-.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:var(--accent);opacity:.3}
+.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:#f0e6d3;opacity:1}.sl-cnum.acc{color:#c8a96e}.sl-cnum.grn{color:#7eb87e}
 .sl-icon{font-size:1.5em;line-height:1;margin-bottom:.1em}
 /* fix alignment for bento-grid span-tall rows */
 .bento-grid{align-items:stretch}
@@ -204,8 +204,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .cb-metric{background:rgba(255,255,255,.05);border:1px solid rgba(240,230,211,.12);border-radius:20px;padding:1.1em 1em;text-align:center;transition:transform .2s ease,border-color .2s ease}
 .cb-metric:hover{transform:translateY(-4px);border-color:rgba(232,115,74,.3)}
 .cb-metric.hi{background:rgba(232,115,74,.08);border-color:rgba(232,115,74,.22)}
-.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1}
-.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.35em}
+.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:#f0e6d3;line-height:1}
+.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.35em}
 /* ── Inline stat chips on research slide ── */
 .stat-chips{display:flex;gap:.5em;justify-content:center;flex-wrap:wrap;margin-top:.6em}
 .stat-chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.45em .8em;text-align:center}
@@ -494,7 +494,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
   <h2 style="margin-bottom:.4em">Step 2 &mdash; <span style="color:var(--accent)">Paste the JD</span></h2>
-  <img src="images/resume-builder-resources/ats-screenshot.png" alt="Paste the JD" style="width:100%;max-width:840px;max-height:460px;object-fit:contain;margin:0 auto;border-radius:14px;display:block">
+  <video src="images/resume-builder-resources/addin%20jd%20in%20analyzer.mov" autoplay muted loop playsinline style="width:100%;max-width:840px;max-height:460px;object-fit:contain;margin:0 auto;border-radius:14px;display:block"></video>
   <p style="font-family:'Space Mono',monospace;font-size:.48em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin-top:.5em">Any job board. Any format. The system normalises messy copy-paste and structures the JD automatically.</p>
 </section>
 
@@ -502,7 +502,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <span class="section-label">Act 3 &mdash; The Magic</span>
   <h2 style="margin-bottom:.4em">Step 3 &mdash; <span style="color:var(--accent)">Analyze the Gap</span></h2>
-  <video src="images/resume-builder-resources/ats-analyzer.mov" autoplay muted loop playsinline style="width:100%;max-width:840px;max-height:460px;object-fit:contain;margin:0 auto;border-radius:14px;display:block"></video>
+  <video src="images/resume-builder-resources/analyze%20the%20gap.mov" autoplay muted loop playsinline style="width:100%;max-width:840px;max-height:460px;object-fit:contain;margin:0 auto;border-radius:14px;display:block"></video>
   <p style="font-family:'Space Mono',monospace;font-size:.48em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin-top:.5em">Claude reads the JD against the Base Resume — gap analysis, skills, role context &amp; score in 8–15 seconds.</p>
   <span class="fragment" style="display:none"></span>
 </section>
@@ -511,7 +511,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
   <h2 style="margin-bottom:.4em">Step 4 &mdash; <span style="color:var(--accent)">AI Suggests.</span> Designer Decides.</h2>
-  <video src="images/resume-builder-resources/resume-suggestion.mov" autoplay muted loop playsinline style="width:100%;max-width:840px;max-height:460px;object-fit:contain;margin:0 auto;border-radius:14px;display:block"></video>
+  <video src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mov" autoplay muted loop playsinline style="width:100%;max-width:840px;max-height:460px;object-fit:contain;margin:0 auto;border-radius:14px;display:block"></video>
   <p style="font-family:'Space Mono',monospace;font-size:.48em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin-top:.5em">Suggestions ranked by impact. Apply pre-fills the editor — nothing changes without an explicit action.</p>
   <span class="fragment" style="display:none"></span>
 </section>
@@ -529,7 +529,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   <span class="section-label">Act 3 &mdash; In Action</span>
   <h2 style="margin-bottom:.6em">The Pipeline &mdash; <span style="color:var(--accent)">Demo</span></h2>
   <div style="width:100%;max-width:760px;margin:0 auto">
-    <video src="images/resume-builder-resources/resume-builder-conecept-video.mov" autoplay muted loop playsinline style="width:100%;border-radius:12px"></video>
+    <video src="images/resume-builder-resources/resume-builder-concept-video.mov" autoplay muted loop playsinline style="width:100%;border-radius:12px"></video>
   </div>
 </section>
 

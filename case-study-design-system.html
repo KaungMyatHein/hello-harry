@@ -43,8 +43,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .insight .desc{font-size:.8em;line-height:1.6;color:var(--cream-dim)}
 .metric-row{display:flex;gap:1em;justify-content:center;flex-wrap:wrap;margin:1em 0}
 .metric{background:var(--dark-3);border:1.5px solid var(--cream-faint);border-radius:12px;padding:1em 1.5em;text-align:center}
-.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:var(--accent);line-height:1}
-.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.4em}
+.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:#f0e6d3;line-height:1}
+.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.4em}
 .annotated-ui{position:relative;display:inline-block;margin:0 auto}
 .annotated-ui img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.4);display:block}
 .marker{position:absolute;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:white;pointer-events:none;z-index:2;transform:translate(-50%,-50%)}
@@ -166,7 +166,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .sl-clabel.rd{color:var(--red)}
 .sl-ctitle{font-family:'Syne',sans-serif;font-size:.72em;font-weight:700;color:var(--cream)}
 .sl-cbody{font-size:.6em;color:var(--cream-dim);line-height:1.55;margin:0}.sl-narr{font-family:'Space Mono',monospace;font-size:.5em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin:auto auto .2em;line-height:1.7;width:100%;font-style:normal;order:99;box-sizing:border-box}
-.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:var(--accent);opacity:.3}
+.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:#f0e6d3;opacity:1}.sl-cnum.acc{color:#c8a96e}.sl-cnum.grn{color:#7eb87e}
 .sl-icon{font-size:1.4em;line-height:1;margin-bottom:.1em}
 /* ── Cover Bento ── */
 .cover-bento{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:10px;max-width:720px;margin:0 auto}
@@ -176,8 +176,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .cb-metric{background:rgba(255,255,255,.05);border:1px solid rgba(240,230,211,.12);border-radius:20px;padding:1.1em 1em;text-align:center;transition:transform .2s ease,border-color .2s ease}
 .cb-metric:hover{transform:translateY(-4px);border-color:rgba(232,115,74,.3)}
 .cb-metric.hi{background:rgba(232,115,74,.08);border-color:rgba(232,115,74,.22)}
-.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1}
-.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.35em}
+.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:#f0e6d3;line-height:1}
+.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.35em}
 
 /* Fix: prevent slide overlap - non-present sections stay invisible */
 .reveal .slides > section:not(.present) { opacity: 0 !important; pointer-events: none !important; }
@@ -203,13 +203,13 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   </div>
 </section>
 
-<!-- SLIDE 1: Act 1 — Meet Kai -->
+<!-- SLIDE 1: Act 1 — Meet Harry -->
 <section>
   <span class="section-label">Act 1 &mdash; The Problem</span>
   <div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
     <div class="sl-card tall center" style="background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.22)">
       <div class="avatar" style="background:rgba(126,184,126,.15);border-color:var(--green);margin:0 auto .4em">&#x1f9d1;&#x200d;&#x1f4bb;</div>
-      <div class="avatar-name" style="color:var(--green)">Kai &bull; Lead Product Designer</div>
+      <div class="avatar-name" style="color:var(--green)">Harry &bull; Lead UX Designer</div>
       <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">Raytail &mdash; Retail Tech</div>
     </div>
     <div class="sl-card">
@@ -226,61 +226,165 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <!-- SLIDE 2: Why One File Doesn't Scale -->
 <section>
   <span class="section-label">Act 1 &mdash; Why One File Doesn't Scale</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Three Compounding Problems</h2>
-  <div class="sl-grid sl-3">
-    <div class="sl-card red-card">
-      <span class="sl-clabel rd">Problem 1</span>
-      <div class="sl-ctitle">Density Mismatch</div>
-      <p class="sl-cbody">POS needs 48px touch targets. Web wants 36px. Mobile sits between. One shared component always compromises one platform.</p>
+  <h2 style="font-size:1em;margin:.08em 0 .3em">Three Compounding Problems</h2>
+  <!-- DIAGRAM: Old single-file chaos — PRIMARY -->
+  <div style="font-size:1.4em;background:rgba(12,9,7,.7);border:1px solid rgba(232,115,74,.2);border-radius:8px;overflow:hidden;display:flex;align-items:stretch;font-family:'Space Mono',monospace;margin-bottom:.4em">
+    <!-- Left: messy single file -->
+    <div style="flex:1;padding:.6em .7em;border-right:1px solid rgba(232,115,74,.1)">
+      <div style="font-size:.38em;color:rgba(232,115,74,.7);margin-bottom:.5em;letter-spacing:.08em;text-transform:uppercase">📄 Raytail-Components.fig (OLD)</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.28em">
+        <div style="background:rgba(107,163,214,.14);border:1px solid rgba(107,163,214,.3);border-radius:3px;padding:.22em .28em;font-size:.32em;color:#7eb3d8">Button</div>
+        <div style="background:rgba(107,163,214,.09);border:1px solid rgba(107,163,214,.2);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(107,163,214,.7)">Button POS</div>
+        <div style="background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.12);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(107,163,214,.5)">Button Web</div>
+        <div style="background:rgba(107,163,214,.04);border:1px solid rgba(107,163,214,.08);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(107,163,214,.35)">Btn_mobile</div>
+        <div style="background:rgba(107,163,214,.02);border:1px dashed rgba(107,163,214,.15);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(107,163,214,.22)">btn v2</div>
+        <div style="background:rgba(155,126,200,.14);border:1px solid rgba(155,126,200,.3);border-radius:3px;padding:.22em .28em;font-size:.32em;color:#b89fd4">Input</div>
+        <div style="background:rgba(155,126,200,.09);border:1px solid rgba(155,126,200,.2);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(155,126,200,.7)">Input_POS</div>
+        <div style="background:rgba(155,126,200,.06);border:1px solid rgba(155,126,200,.12);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(155,126,200,.5)">Input Web</div>
+        <div style="background:rgba(155,126,200,.04);border:1px dashed rgba(155,126,200,.15);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(155,126,200,.32)">input-v2</div>
+        <div style="background:rgba(155,126,200,.02);border:1px dashed rgba(155,126,200,.1);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(155,126,200,.2)">Input OLD</div>
+        <div style="background:rgba(126,184,126,.12);border:1px solid rgba(126,184,126,.25);border-radius:3px;padding:.22em .28em;font-size:.32em;color:#7eb87e">Badge</div>
+        <div style="background:rgba(126,184,126,.08);border:1px solid rgba(126,184,126,.18);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(126,184,126,.65)">Badge POS</div>
+        <div style="background:rgba(126,184,126,.05);border:1px dashed rgba(126,184,126,.12);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(126,184,126,.38)">badge-web</div>
+        <div style="background:rgba(232,115,74,.06);border:1px solid rgba(232,115,74,.2);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(232,115,74,.65)">#1B7A4A</div>
+        <div style="background:rgba(232,115,74,.04);border:1px dashed rgba(232,115,74,.12);border-radius:3px;padding:.22em .28em;font-size:.32em;color:rgba(232,115,74,.38)">#1C7B4B</div>
+      </div>
+      <div style="margin-top:.4em;font-size:.29em;color:rgba(232,115,74,.55);letter-spacing:.04em">⚠ 47 duplicate values · no token structure · 3 platform definitions in one file</div>
     </div>
-    <div class="sl-card red-card">
-      <span class="sl-clabel rd">Problem 2</span>
-      <div class="sl-ctitle">Token Inheritance Failure</div>
-      <p class="sl-cbody">Same token name, wrong value. POS "surface" is dark. Web "surface" is white. A flat token system can't hold both.</p>
+    <!-- Middle: arrow -->
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35em;padding:0 .9em;min-width:5.5em">
+      <div style="font-size:.34em;color:rgba(232,115,74,.6);text-align:center;line-height:1.5">One file<br>→ all 3<br>platforms</div>
+      <div style="color:rgba(232,115,74,.45);font-size:.55em;letter-spacing:.12em">→→</div>
+      <div style="font-size:.29em;color:rgba(240,230,211,.3);text-align:center;line-height:1.5">any change<br>breaks all</div>
     </div>
-    <div class="sl-card red-card">
-      <span class="sl-clabel rd">Problem 3</span>
-      <div class="sl-ctitle">Manual Change Propagation</div>
-      <p class="sl-cbody">Brand green updates. Every button, badge, tag across three files needs a manual sync. One source of truth doesn't exist yet.</p>
+    <!-- Right: 3 consumers -->
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:.45em;padding:.6em .7em;border-left:1px solid rgba(232,115,74,.1)">
+      <div style="background:rgba(107,163,214,.08);border:1px solid rgba(107,163,214,.22);border-radius:5px;padding:.32em .6em;font-size:.36em;color:#7eb3d8;white-space:nowrap">🖥 POS System</div>
+      <div style="background:rgba(155,126,200,.08);border:1px solid rgba(155,126,200,.22);border-radius:5px;padding:.32em .6em;font-size:.36em;color:#b89fd4;white-space:nowrap">💻 Web Dashboard</div>
+      <div style="background:rgba(232,115,74,.08);border:1px solid rgba(232,115,74,.22);border-radius:5px;padding:.32em .6em;font-size:.36em;color:rgba(232,115,74,.8);white-space:nowrap">📱 Mobile App</div>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.5em auto 0;max-width:760px;font-size:.55em">
-    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-    Screenshot: Old single-file Figma library — overlapping components, duplicate layer names, no token structure
+  <!-- Compact problem labels -->
+  <div style="display:flex;gap:.5em;font-family:'Space Mono',monospace">
+    <div style="flex:1;background:rgba(232,115,74,.06);border:1px solid rgba(232,115,74,.18);border-radius:5px;padding:.3em .55em">
+      <span style="font-size:.42em;color:rgba(232,115,74,.7);text-transform:uppercase;letter-spacing:.07em">Problem 1</span>
+      <div style="font-size:.48em;color:rgba(240,230,211,.8);margin-top:.1em">Density Mismatch — 48px vs 36px targets</div>
+    </div>
+    <div style="flex:1;background:rgba(232,115,74,.06);border:1px solid rgba(232,115,74,.18);border-radius:5px;padding:.3em .55em">
+      <span style="font-size:.42em;color:rgba(232,115,74,.7);text-transform:uppercase;letter-spacing:.07em">Problem 2</span>
+      <div style="font-size:.48em;color:rgba(240,230,211,.8);margin-top:.1em">Token Conflict — same name, different value</div>
+    </div>
+    <div style="flex:1;background:rgba(232,115,74,.06);border:1px solid rgba(232,115,74,.18);border-radius:5px;padding:.3em .55em">
+      <span style="font-size:.42em;color:rgba(232,115,74,.7);text-transform:uppercase;letter-spacing:.07em">Problem 3</span>
+      <div style="font-size:.48em;color:rgba(240,230,211,.8);margin-top:.1em">Manual Sync — every change, every file</div>
+    </div>
   </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 3: Discovery -->
 <section>
   <span class="section-label">Act 2 &mdash; Discovery</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">What We Found in the Audit</h2>
-  <div class="sl-grid sl-3">
-    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
-      <span class="sl-clabel" style="color:#b89fd4">Token Audit</span>
-      <div class="sl-ctitle">47 duplicate colour values</div>
-      <p class="sl-cbody">Raw hex values scattered across three files with no shared reference — each had drifted 2–6 shades from brand spec.</p>
+  <h2 style="font-size:1em;margin:.08em 0 .3em">What We Found in the Audit</h2>
+  <div class="sl-grid sl-2" style="margin-bottom:.35em;font-size:1.3em">
+    <!-- DIAGRAM: Token audit — duplicate hex values -->
+    <div style="aspect-ratio:16/6;background:rgba(12,9,7,.7);border:1px solid rgba(155,126,200,.2);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;font-family:'Space Mono',monospace">
+      <div style="background:rgba(155,126,200,.1);border-bottom:1px solid rgba(155,126,200,.2);padding:.3em .6em;display:flex;align-items:center;gap:.5em">
+        <span style="font-size:.34em;color:#b89fd4;letter-spacing:.08em;text-transform:uppercase">Token Audit — Duplicate Values</span>
+        <span style="margin-left:auto;background:rgba(232,115,74,.15);border:1px solid rgba(232,115,74,.3);border-radius:3px;padding:.1em .35em;font-size:.3em;color:rgba(232,115,74,.9)">47 duplicates</span>
+      </div>
+      <div style="flex:1;padding:.35em .6em;overflow:hidden">
+        <!-- Table header -->
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr .8fr;gap:.3em;margin-bottom:.2em">
+          <div style="font-size:.28em;color:rgba(240,230,211,.35);text-transform:uppercase;letter-spacing:.06em">Token Name</div>
+          <div style="font-size:.28em;color:rgba(107,163,214,.6);text-transform:uppercase;letter-spacing:.06em">POS File</div>
+          <div style="font-size:.28em;color:rgba(155,126,200,.6);text-transform:uppercase;letter-spacing:.06em">Web File</div>
+          <div style="font-size:.28em;color:rgba(232,115,74,.6);text-transform:uppercase;letter-spacing:.06em">Mobile File</div>
+          <div style="font-size:.28em;color:rgba(240,230,211,.35);text-transform:uppercase;letter-spacing:.06em">Status</div>
+        </div>
+        <!-- Rows -->
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr .8fr;gap:.3em;margin-bottom:.18em;padding:.18em .2em;background:rgba(232,115,74,.06);border-radius:3px">
+          <div style="font-size:.3em;color:rgba(240,230,211,.7)">color/brand/primary</div>
+          <div style="font-size:.3em;color:#7eb3d8">#1B7A4A</div>
+          <div style="font-size:.3em;color:#b89fd4">#1C7B4B</div>
+          <div style="font-size:.3em;color:rgba(232,115,74,.8)">#1A794A</div>
+          <div style="font-size:.28em;color:rgba(232,115,74,.8)">⚠ drift</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr .8fr;gap:.3em;margin-bottom:.18em;padding:.18em .2em;background:rgba(232,115,74,.06);border-radius:3px">
+          <div style="font-size:.3em;color:rgba(240,230,211,.7)">color/surface/base</div>
+          <div style="font-size:.3em;color:#7eb3d8">#0D0E0F</div>
+          <div style="font-size:.3em;color:#b89fd4">#FFFFFF</div>
+          <div style="font-size:.3em;color:rgba(232,115,74,.8)">#F5F5F5</div>
+          <div style="font-size:.28em;color:rgba(232,115,74,.9)">⚠ conflict</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr .8fr;gap:.3em;margin-bottom:.18em;padding:.18em .2em;background:rgba(232,115,74,.04);border-radius:3px">
+          <div style="font-size:.3em;color:rgba(240,230,211,.7)">spacing/button/x</div>
+          <div style="font-size:.3em;color:#7eb3d8">16px</div>
+          <div style="font-size:.3em;color:#b89fd4">14px</div>
+          <div style="font-size:.3em;color:rgba(232,115,74,.8)">12px</div>
+          <div style="font-size:.28em;color:rgba(232,115,74,.75)">⚠ drift</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr .8fr;gap:.3em;padding:.18em .2em;background:rgba(126,184,126,.04);border-radius:3px">
+          <div style="font-size:.3em;color:rgba(240,230,211,.7)">radius/card</div>
+          <div style="font-size:.3em;color:#7eb3d8">8px</div>
+          <div style="font-size:.3em;color:#b89fd4">8px</div>
+          <div style="font-size:.3em;color:rgba(232,115,74,.8)">8px</div>
+          <div style="font-size:.28em;color:rgba(126,184,126,.8)">✓ sync</div>
+        </div>
+      </div>
     </div>
-    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
-      <span class="sl-clabel" style="color:#7eb3d8">Component Audit</span>
-      <div class="sl-ctitle">31 near-duplicate components</div>
-      <p class="sl-cbody">Button, Input, Badge — separate definitions per platform. Fixing one never fixed the others. Drift was invisible until QA.</p>
-    </div>
-    <div class="sl-card accent-card">
-      <span class="sl-clabel">Designer Interviews</span>
-      <div class="sl-ctitle">"I don't know which file is right"</div>
-      <p class="sl-cbody">New team members spent ~3 days onboarding to the component system. Nobody was sure which platform's Button was canonical.</p>
+    <!-- DIAGRAM: Component audit — 31 near-duplicates -->
+    <div style="aspect-ratio:16/6;background:rgba(12,9,7,.7);border:1px solid rgba(107,163,214,.2);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;font-family:'Space Mono',monospace">
+      <div style="background:rgba(107,163,214,.08);border-bottom:1px solid rgba(107,163,214,.18);padding:.3em .6em;display:flex;align-items:center;gap:.5em">
+        <span style="font-size:.34em;color:#7eb3d8;letter-spacing:.08em;text-transform:uppercase">Component Audit — Cross-Platform Drift</span>
+        <span style="margin-left:auto;background:rgba(232,115,74,.15);border:1px solid rgba(232,115,74,.3);border-radius:3px;padding:.1em .35em;font-size:.3em;color:rgba(232,115,74,.9)">31 near-duplicates</span>
+      </div>
+      <div style="flex:1;padding:.35em .6em">
+        <div style="display:grid;grid-template-columns:.8fr 1fr 1fr 1fr;gap:.3em;margin-bottom:.2em">
+          <div style="font-size:.28em;color:rgba(240,230,211,.35);text-transform:uppercase;letter-spacing:.06em">Component</div>
+          <div style="font-size:.28em;color:rgba(107,163,214,.7);text-transform:uppercase;letter-spacing:.06em">🖥 POS</div>
+          <div style="font-size:.28em;color:rgba(155,126,200,.7);text-transform:uppercase;letter-spacing:.06em">💻 Web</div>
+          <div style="font-size:.28em;color:rgba(232,115,74,.7);text-transform:uppercase;letter-spacing:.06em">📱 Mobile</div>
+        </div>
+        <div style="display:grid;grid-template-columns:.8fr 1fr 1fr 1fr;gap:.3em;margin-bottom:.18em;padding:.18em .2em;background:rgba(232,115,74,.06);border-radius:3px">
+          <div style="font-size:.3em;color:rgba(240,230,211,.75)">Button</div>
+          <div style="font-size:.28em;color:#7eb3d8;line-height:1.5">48px height<br>dark surface</div>
+          <div style="font-size:.28em;color:#b89fd4;line-height:1.5">36px height<br>light surface</div>
+          <div style="font-size:.28em;color:rgba(232,115,74,.75);line-height:1.5">44px height<br>mixed</div>
+        </div>
+        <div style="display:grid;grid-template-columns:.8fr 1fr 1fr 1fr;gap:.3em;margin-bottom:.18em;padding:.18em .2em;background:rgba(232,115,74,.04);border-radius:3px">
+          <div style="font-size:.3em;color:rgba(240,230,211,.75)">Input</div>
+          <div style="font-size:.28em;color:#7eb3d8;line-height:1.5">56px, no label<br>dark border</div>
+          <div style="font-size:.28em;color:#b89fd4;line-height:1.5">40px, floating<br>label, light</div>
+          <div style="font-size:.28em;color:rgba(232,115,74,.75);line-height:1.5">48px, bottom<br>border only</div>
+        </div>
+        <div style="display:grid;grid-template-columns:.8fr 1fr 1fr 1fr;gap:.3em;padding:.18em .2em;background:rgba(232,115,74,.04);border-radius:3px">
+          <div style="font-size:.3em;color:rgba(240,230,211,.75)">Badge</div>
+          <div style="font-size:.28em;color:#7eb3d8;line-height:1.5">24px, filled<br>radius/full</div>
+          <div style="font-size:.28em;color:#b89fd4;line-height:1.5">20px, outlined<br>radius/sm</div>
+          <div style="font-size:.28em;color:rgba(232,115,74,.75);line-height:1.5">22px, filled<br>radius/md</div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="sl-grid sl-2" style="margin-top:.5em">
-    <div class="media-placeholder" style="aspect-ratio:16/6;font-size:.52em">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      Screenshot: Token audit spreadsheet — 47 duplicate hex values highlighted
+  <!-- Compact finding labels -->
+  <div style="display:flex;gap:.5em;font-family:'Space Mono',monospace">
+    <div style="flex:1;background:rgba(155,126,200,.06);border:1px solid rgba(155,126,200,.2);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#b89fd4;text-transform:uppercase;letter-spacing:.07em">Token Audit</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">47 duplicate colour values — drifted 2–6 shades from spec</div>
     </div>
-    <div class="media-placeholder" style="aspect-ratio:16/6;font-size:.52em">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-      Screenshot: Component audit — 31 near-duplicate Button/Input definitions across 3 files
+    <div style="flex:1;background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.18);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#7eb3d8;text-transform:uppercase;letter-spacing:.07em">Component Audit</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">31 near-duplicate components — fixing one never fixed others</div>
+    </div>
+    <div style="flex:1;background:rgba(232,115,74,.06);border:1px solid rgba(232,115,74,.18);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:rgba(232,115,74,.8);text-transform:uppercase;letter-spacing:.07em">Interviews</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">"I don't know which file is right" — 3 days onboarding</div>
     </div>
   </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 4: Root Cause -->
@@ -307,168 +411,330 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <!-- SLIDE 5: Two-Level Architecture -->
 <section>
   <span class="section-label">Act 3 &mdash; The Architecture</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Two-Level System Design</h2>
-  <div class="sl-grid sl-2">
-    <div class="sl-card green-card tall" style="justify-content:flex-start">
-      <span class="sl-clabel gr">Level 1 &mdash; Global Foundation</span>
-      <div class="sl-ctitle" style="color:var(--green)">Raytail Style Guidelines</div>
-      <p class="sl-cbody" style="margin-top:.4em">Owns everything platform-agnostic:</p>
-      <ul style="font-size:.58em;color:var(--cream-dim);line-height:1.8;margin:.2em 0 0;padding-left:1.2em">
-        <li>All reference tokens (raw primitives)</li>
-        <li>Brand identity &amp; logo system</li>
-        <li>Global typography scale</li>
-        <li>Base component logic &amp; state rules</li>
-      </ul>
-      <div style="margin-top:.6em;font-family:'Space Mono',monospace;font-size:.42em;color:var(--green);opacity:.7">One file. Zero platform specifics.</div>
+  <h2 style="font-size:1em;margin:.08em 0 .3em">Two-Level System Design</h2>
+  <!-- DIAGRAM: Two-level architecture — PRIMARY -->
+  <div style="font-size:1.5em;background:rgba(12,9,7,.7);border:1px solid rgba(126,184,126,.15);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.55em;padding:.7em 1.2em;font-family:'Space Mono',monospace;margin-bottom:.4em">
+    <!-- Level 1 -->
+    <div style="background:rgba(126,184,126,.08);border:1.5px solid rgba(126,184,126,.35);border-radius:7px;padding:.35em 2em;text-align:center;width:55%;max-width:280px">
+      <div style="font-size:.28em;color:rgba(126,184,126,.6);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.2em">Level 1 — Global Foundation</div>
+      <div style="font-size:.38em;color:#7eb87e;font-weight:700;letter-spacing:.04em">Raytail Style Guidelines</div>
+      <div style="font-size:.26em;color:rgba(240,230,211,.4);margin-top:.2em;line-height:1.4">Primitives · Typography · Brand · Base Logic</div>
     </div>
-    <div class="sl-card" style="background:rgba(107,163,214,.04);border-color:rgba(107,163,214,.18)">
-      <span class="sl-clabel" style="color:#7eb3d8">Level 2 &mdash; POS Library</span>
-      <div class="sl-ctitle">Platform-Specific</div>
-      <p class="sl-cbody">48px touch targets. Dark surface default. Numpad, Transaction Panel, Product Grid.</p>
+    <!-- Connector arrows -->
+    <div style="display:flex;align-items:flex-start;justify-content:center;width:70%;max-width:400px;position:relative">
+      <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0;width:70%">
+        <!-- Horizontal bar + vertical lines -->
+        <div style="width:100%;height:1px;background:rgba(126,184,126,.25);margin:0;position:relative">
+          <div style="position:absolute;left:16.5%;top:0;width:1px;height:.9em;background:rgba(107,163,214,.3)"></div>
+          <div style="position:absolute;left:50%;top:0;width:1px;height:.9em;background:rgba(126,184,126,.3);transform:translateX(-50%)"></div>
+          <div style="position:absolute;right:16.5%;top:0;width:1px;height:.9em;background:rgba(155,126,200,.3)"></div>
+        </div>
+      </div>
+      <div style="padding-top:.55em;width:100%;display:flex;gap:.5em;justify-content:center">
+        <div style="font-size:.3em;color:rgba(126,184,126,.5);text-align:center;line-height:1.4">↓ publishes</div>
+      </div>
     </div>
-    <div class="sl-card" style="background:rgba(155,126,200,.04);border-color:rgba(155,126,200,.18)">
-      <span class="sl-clabel" style="color:#b89fd4">Level 2 &mdash; Web Library</span>
-      <div class="sl-ctitle">Platform-Specific</div>
-      <p class="sl-cbody">Light surface. Dense data tables. Filter chips, Analytics dashboard, Sidebar nav.</p>
-    </div>
-    <div class="sl-card" style="background:rgba(232,115,74,.04);border-color:rgba(232,115,74,.18)">
-      <span class="sl-clabel">Level 2 &mdash; Mobile Library</span>
-      <div class="sl-ctitle">Platform-Specific</div>
-      <p class="sl-cbody">Gesture-aware list items. Bottom sheets. Platform-native conventions respected throughout.</p>
+    <!-- Level 2 platforms -->
+    <div style="display:flex;gap:.6em;width:100%;justify-content:center">
+      <div style="background:rgba(107,163,214,.07);border:1px solid rgba(107,163,214,.25);border-radius:6px;padding:.3em .6em;text-align:center;flex:1;max-width:160px">
+        <div style="font-size:.26em;color:rgba(107,163,214,.55);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.15em">Level 2 — Platform</div>
+        <div style="font-size:.34em;color:#7eb3d8">POS Style Guide</div>
+        <div style="font-size:.24em;color:rgba(240,230,211,.35);margin-top:.15em;line-height:1.4">48px targets<br>Dark surface</div>
+      </div>
+      <div style="background:rgba(126,184,126,.05);border:1px solid rgba(126,184,126,.2);border-radius:6px;padding:.3em .6em;text-align:center;flex:1;max-width:160px">
+        <div style="font-size:.26em;color:rgba(126,184,126,.5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.15em">Level 2 — Platform</div>
+        <div style="font-size:.34em;color:#7eb87e">Web Library</div>
+        <div style="font-size:.24em;color:rgba(240,230,211,.35);margin-top:.15em;line-height:1.4">Light surface<br>Dense tables</div>
+      </div>
+      <div style="background:rgba(155,126,200,.07);border:1px solid rgba(155,126,200,.22);border-radius:6px;padding:.3em .6em;text-align:center;flex:1;max-width:160px">
+        <div style="font-size:.26em;color:rgba(155,126,200,.55);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.15em">Level 2 — Platform</div>
+        <div style="font-size:.34em;color:#b89fd4">Mobile Library</div>
+        <div style="font-size:.24em;color:rgba(240,230,211,.35);margin-top:.15em;line-height:1.4">Gesture-aware<br>Bottom sheets</div>
+      </div>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/5;margin:.5em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="11"/><circle cx="6" cy="15" r="3"/><circle cx="18" cy="15" r="3"/><circle cx="12" cy="15" r="3"/><line x1="12" y1="11" x2="6" y2="12"/><line x1="12" y1="11" x2="18" y2="12"/></svg>
-    Diagram: Two-level architecture — Global Foundation file publishing to POS / Web / Mobile libraries
+  <!-- Compact level labels -->
+  <div style="display:flex;gap:.5em;font-family:'Space Mono',monospace">
+    <div style="flex:1.4;background:rgba(126,184,126,.06);border:1px solid rgba(126,184,126,.2);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#7eb87e;text-transform:uppercase;letter-spacing:.07em">Level 1 — Foundation</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">Raytail Style Guidelines · primitives, brand, typography, base logic</div>
+    </div>
+    <div style="flex:1;background:rgba(107,163,214,.05);border:1px solid rgba(107,163,214,.16);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#7eb3d8;text-transform:uppercase;letter-spacing:.07em">Level 2 — POS</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">48px targets · dark surface</div>
+    </div>
+    <div style="flex:1;background:rgba(126,184,126,.04);border:1px solid rgba(126,184,126,.14);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#7eb87e;text-transform:uppercase;letter-spacing:.07em">Level 2 — Web</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">Light surface · dense tables</div>
+    </div>
+    <div style="flex:1;background:rgba(155,126,200,.05);border:1px solid rgba(155,126,200,.16);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#b89fd4;text-transform:uppercase;letter-spacing:.07em">Level 2 — Mobile</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">Gesture-aware · bottom sheets</div>
+    </div>
   </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 6: Token Architecture -->
 <section>
   <span class="section-label">Act 3 &mdash; Token Architecture</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Reference → Semantic → Component</h2>
-  <div class="sl-grid sl-3">
-    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
-      <span class="sl-clabel" style="color:#b89fd4">Tier 1 &mdash; Reference</span>
-      <div class="sl-ctitle">Raw Primitives</div>
-      <p class="sl-cbody">Never used in components directly. Named by literal value.</p>
-      <div style="margin-top:.5em;font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);line-height:1.9">
-        color/green/500 → #1B7A4A<br>
-        color/neutral/0 → #FFFFFF<br>
-        spacing/4 → 16px<br>
-        radius/md → 8px
+  <h2 style="font-size:1em;margin:.08em 0 .3em">Reference → Semantic → Component</h2>
+  <!-- DIAGRAM: Token flow Primitive → Semantic → Component — PRIMARY -->
+  <div style="font-size:1.45em;margin-bottom:.4em;background:rgba(12,9,7,.7);border:1px solid rgba(240,230,211,.08);border-radius:8px;overflow:hidden;display:flex;align-items:stretch;font-family:'Space Mono',monospace">
+    <!-- Tier 1: Reference -->
+    <div style="flex:1;border-right:1px solid rgba(155,126,200,.15);padding:.5em .65em;display:flex;flex-direction:column">
+      <div style="font-size:.28em;color:#b89fd4;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35em;border-bottom:1px solid rgba(155,126,200,.15);padding-bottom:.25em">Tier 1 · Reference</div>
+      <div style="display:flex;flex-direction:column;gap:.22em">
+        <div style="display:flex;align-items:center;gap:.3em">
+          <div style="width:.55em;height:.55em;border-radius:50%;background:#1B7A4A;flex-shrink:0"></div>
+          <span style="font-size:.28em;color:rgba(240,230,211,.6)">color/green/500</span>
+          <span style="font-size:.26em;color:rgba(240,230,211,.3);margin-left:auto">#1B7A4A</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.3em">
+          <div style="width:.55em;height:.55em;border-radius:50%;background:#FFFFFF;border:1px solid rgba(240,230,211,.2);flex-shrink:0"></div>
+          <span style="font-size:.28em;color:rgba(240,230,211,.6)">color/neutral/0</span>
+          <span style="font-size:.26em;color:rgba(240,230,211,.3);margin-left:auto">#FFFFFF</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.3em">
+          <div style="width:.55em;height:.55em;border-radius:50%;background:#0D0E0F;border:1px solid rgba(240,230,211,.15);flex-shrink:0"></div>
+          <span style="font-size:.28em;color:rgba(240,230,211,.6)">color/neutral/900</span>
+          <span style="font-size:.26em;color:rgba(240,230,211,.3);margin-left:auto">#0D0E0F</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.3em">
+          <div style="width:.55em;height:.55em;border-radius:2px;background:rgba(240,230,211,.15);flex-shrink:0;display:flex;align-items:center;justify-content:center"><span style="font-size:5px;color:rgba(240,230,211,.6)">16</span></div>
+          <span style="font-size:.28em;color:rgba(240,230,211,.6)">spacing/4</span>
+          <span style="font-size:.26em;color:rgba(240,230,211,.3);margin-left:auto">16px</span>
+        </div>
       </div>
     </div>
-    <div class="sl-card green-card">
-      <span class="sl-clabel gr">Tier 2 &mdash; Semantic</span>
-      <div class="sl-ctitle">Named by Intent</div>
-      <p class="sl-cbody">Same name, different resolved values per platform. The key architectural decision.</p>
-      <div style="margin-top:.5em;font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);line-height:1.9">
-        surface/base:<br>
-        &nbsp;Web → neutral/0 ⬜<br>
-        &nbsp;POS → neutral/900 ⬛
+    <!-- Arrow -->
+    <div style="display:flex;align-items:center;justify-content:center;padding:0 .35em;font-size:.7em;color:rgba(240,230,211,.2)">→</div>
+    <!-- Tier 2: Semantic -->
+    <div style="flex:1.2;border-right:1px solid rgba(126,184,126,.15);padding:.5em .65em;display:flex;flex-direction:column">
+      <div style="font-size:.28em;color:#7eb87e;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35em;border-bottom:1px solid rgba(126,184,126,.15);padding-bottom:.25em">Tier 2 · Semantic</div>
+      <div style="display:flex;flex-direction:column;gap:.22em">
+        <div style="background:rgba(126,184,126,.06);border-radius:3px;padding:.2em .3em">
+          <div style="font-size:.28em;color:#7eb87e;margin-bottom:.15em">action/primary</div>
+          <div style="display:flex;gap:.4em">
+            <div style="font-size:.24em;color:rgba(107,163,214,.7)">POS → green/500</div>
+            <div style="font-size:.24em;color:rgba(155,126,200,.7)">Web → green/500</div>
+          </div>
+        </div>
+        <div style="background:rgba(126,184,126,.04);border-radius:3px;padding:.2em .3em">
+          <div style="font-size:.28em;color:#7eb87e;margin-bottom:.15em">surface/base</div>
+          <div style="display:flex;gap:.4em">
+            <div style="font-size:.24em;color:rgba(107,163,214,.7)">POS → neutral/900 ⬛</div>
+            <div style="font-size:.24em;color:rgba(155,126,200,.7)">Web → neutral/0 ⬜</div>
+          </div>
+        </div>
+        <div style="background:rgba(126,184,126,.04);border-radius:3px;padding:.2em .3em">
+          <div style="font-size:.28em;color:#7eb87e;margin-bottom:.15em">spacing/interactive</div>
+          <div style="display:flex;gap:.4em">
+            <div style="font-size:.24em;color:rgba(107,163,214,.7)">POS → spacing/5 (20px)</div>
+            <div style="font-size:.24em;color:rgba(155,126,200,.7)">Web → spacing/4 (16px)</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="sl-card accent-card">
-      <span class="sl-clabel">Tier 3 &mdash; Component</span>
-      <div class="sl-ctitle">Local Overrides</div>
-      <p class="sl-cbody">Component-scoped tokens resolving to semantic values. Reskin a component without touching global rules.</p>
-      <div style="margin-top:.5em;font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);line-height:1.9">
-        button/bg/primary<br>
-        &nbsp;→ action/primary<br>
-        input/border/focus<br>
-        &nbsp;→ action/primary
+    <!-- Arrow -->
+    <div style="display:flex;align-items:center;justify-content:center;padding:0 .35em;font-size:.7em;color:rgba(240,230,211,.2)">→</div>
+    <!-- Tier 3: Component -->
+    <div style="flex:1;padding:.5em .65em;display:flex;flex-direction:column">
+      <div style="font-size:.28em;color:rgba(232,115,74,.8);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35em;border-bottom:1px solid rgba(232,115,74,.15);padding-bottom:.25em">Tier 3 · Component</div>
+      <div style="display:flex;flex-direction:column;gap:.22em">
+        <div style="background:rgba(232,115,74,.05);border-radius:3px;padding:.2em .3em">
+          <div style="font-size:.27em;color:rgba(232,115,74,.75)">button/bg/primary</div>
+          <div style="font-size:.24em;color:rgba(240,230,211,.35);margin-top:.1em">→ action/primary</div>
+        </div>
+        <div style="background:rgba(232,115,74,.04);border-radius:3px;padding:.2em .3em">
+          <div style="font-size:.27em;color:rgba(232,115,74,.75)">input/border/focus</div>
+          <div style="font-size:.24em;color:rgba(240,230,211,.35);margin-top:.1em">→ action/primary</div>
+        </div>
+        <div style="background:rgba(232,115,74,.04);border-radius:3px;padding:.2em .3em">
+          <div style="font-size:.27em;color:rgba(232,115,74,.75)">card/bg/default</div>
+          <div style="font-size:.24em;color:rgba(240,230,211,.35);margin-top:.1em">→ surface/base</div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/4.5;margin:.5em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-    Screenshot: Figma Variables panel — reference tokens (left) mapping to semantic tokens (right), POS vs Web columns
+  <!-- Compact tier labels -->
+  <div style="display:flex;gap:.5em;font-family:'Space Mono',monospace">
+    <div style="flex:1;background:rgba(155,126,200,.06);border:1px solid rgba(155,126,200,.18);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#b89fd4;text-transform:uppercase;letter-spacing:.07em">Tier 1 — Reference</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">Raw primitives · never used in components directly</div>
+    </div>
+    <div style="flex:1;background:rgba(126,184,126,.05);border:1px solid rgba(126,184,126,.16);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#7eb87e;text-transform:uppercase;letter-spacing:.07em">Tier 2 — Semantic</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">Named by intent · resolves differently per platform</div>
+    </div>
+    <div style="flex:1;background:rgba(232,115,74,.05);border:1px solid rgba(232,115,74,.16);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:rgba(232,115,74,.8);text-transform:uppercase;letter-spacing:.07em">Tier 3 — Component</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">Scoped overrides · reskin without touching globals</div>
+    </div>
   </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 7: POS Design Decisions -->
 <section>
   <span class="section-label">Act 3 &mdash; Platform-Specific Design</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">POS: Designing for the Transaction Environment</h2>
-  <div class="sl-grid sl-3">
-    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
-      <span class="sl-icon">✋</span>
-      <div class="sl-ctitle">Touch-First Density</div>
-      <p class="sl-cbody">All interactive targets minimum 48px. Enforced at component set level — not by documentation alone.</p>
+  <h2 style="font-size:1em;margin:.08em 0 .3em">POS: Designing for the Transaction Environment</h2>
+  <!-- DIAGRAM: Constraint → Decision matrix — PRIMARY -->
+  <div style="font-size:1.25em;margin-bottom:.4em;background:rgba(12,9,7,.7);border:1px solid rgba(107,163,214,.15);border-radius:8px;overflow:hidden;font-family:'Space Mono',monospace">
+    <!-- Header -->
+    <div style="display:grid;grid-template-columns:1fr .4fr 1fr .4fr 1fr;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.07);padding:.3em .7em;gap:.3em;align-items:center">
+      <div style="font-size:.28em;color:rgba(232,115,74,.7);text-transform:uppercase;letter-spacing:.1em">Environment / Constraint</div>
+      <div></div>
+      <div style="font-size:.28em;color:rgba(107,163,214,.7);text-transform:uppercase;letter-spacing:.1em">Design Decision</div>
+      <div></div>
+      <div style="font-size:.28em;color:rgba(126,184,126,.7);text-transform:uppercase;letter-spacing:.1em">Outcome</div>
     </div>
-    <div class="sl-card" style="background:rgba(40,40,50,.4);border-color:rgba(255,255,255,.15)">
-      <span class="sl-icon">🌑</span>
-      <div class="sl-ctitle">Dark Surface Default</div>
-      <p class="sl-cbody">Not a preference — a constraint. High-ambient retail environments need dark for glare reduction.</p>
-    </div>
-    <div class="sl-card red-card">
-      <span class="sl-icon">⚠️</span>
-      <div class="sl-ctitle">Prominent Error States</div>
-      <p class="sl-cbody">Payment failure uses high-contrast red + large text. A missed error in a transaction has real consequences.</p>
-    </div>
-    <div class="sl-card accent-card">
-      <span class="sl-icon">⚡</span>
-      <div class="sl-ctitle">Minimal Navigation Chrome</div>
-      <p class="sl-cbody">Sidebar collapses to icon-only. Screen real estate belongs to the transaction — not persistent navigation.</p>
-    </div>
-    <div class="sl-card green-card">
-      <span class="sl-icon">🖼️</span>
-      <div class="sl-ctitle">Image-Forward Product Grid</div>
-      <p class="sl-cbody">Visual recognition beats scanning a text list in a busy environment. Image leads, SKU follows.</p>
-    </div>
-    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
-      <span class="sl-icon">🧩</span>
-      <div class="sl-ctitle">POS-Only Components</div>
-      <p class="sl-cbody">Numpad, Transaction Row, Receipt Preview — no web or mobile equivalent. Owned entirely by the POS library.</p>
+    <!-- Rows -->
+    <div style="display:flex;flex-direction:column;gap:0">
+      <!-- Row 1 -->
+      <div style="display:grid;grid-template-columns:1fr .4fr 1fr .4fr 1fr;padding:.32em .7em;gap:.3em;align-items:center;border-bottom:1px solid rgba(255,255,255,.04)">
+        <div style="font-size:.3em;color:rgba(240,230,211,.65)">High-ambient retail lighting — glare on screen is constant</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:#7eb3d8;background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.14);border-radius:4px;padding:.2em .35em">Dark surface as default — not a preference, a constraint</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:rgba(126,184,126,.75)">Legible under direct and ambient light conditions</div>
+      </div>
+      <!-- Row 2 -->
+      <div style="display:grid;grid-template-columns:1fr .4fr 1fr .4fr 1fr;padding:.32em .7em;gap:.3em;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(255,255,255,.015)">
+        <div style="font-size:.3em;color:rgba(240,230,211,.65)">Cashier operates touch hardware — no mouse precision</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:#7eb3d8;background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.14);border-radius:4px;padding:.2em .35em">48px minimum touch target — enforced in component set, not docs</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:rgba(126,184,126,.75)">Tap errors reduced — no small variant in POS button set</div>
+      </div>
+      <!-- Row 3 -->
+      <div style="display:grid;grid-template-columns:1fr .4fr 1fr .4fr 1fr;padding:.32em .7em;gap:.3em;align-items:center;border-bottom:1px solid rgba(255,255,255,.04)">
+        <div style="font-size:.3em;color:rgba(240,230,211,.65)">Transaction queue moves fast — screen space is precious</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:#7eb3d8;background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.14);border-radius:4px;padding:.2em .35em">Sidebar collapses to icon-only — transaction owns the screen</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:rgba(126,184,126,.75)">Maximum screen area for product grid and transaction panel</div>
+      </div>
+      <!-- Row 4 -->
+      <div style="display:grid;grid-template-columns:1fr .4fr 1fr .4fr 1fr;padding:.32em .7em;gap:.3em;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(255,255,255,.015)">
+        <div style="font-size:.3em;color:rgba(240,230,211,.65)">Payment failure has real financial consequence</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:#7eb3d8;background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.14);border-radius:4px;padding:.2em .35em">High-contrast error state — large text, red surface, impossible to miss</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:rgba(126,184,126,.75)">Errors caught at POS, not discovered later in reconciliation</div>
+      </div>
+      <!-- Row 5 -->
+      <div style="display:grid;grid-template-columns:1fr .4fr 1fr .4fr 1fr;padding:.32em .7em;gap:.3em;align-items:center">
+        <div style="font-size:.3em;color:rgba(240,230,211,.65)">Busy environment — scanning text lists is slow and error-prone</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:#7eb3d8;background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.14);border-radius:4px;padding:.2em .35em">Image-forward product grid — visual recognition first, SKU secondary</div>
+        <div style="text-align:center;font-size:.5em;color:rgba(240,230,211,.2)">→</div>
+        <div style="font-size:.3em;color:rgba(126,184,126,.75)">Faster item selection — product image recognised before text is read</div>
+      </div>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/5;margin:.5em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-    Screenshot: Raytail POS interface — dark surface, transaction panel, large-target numpad, image-forward product grid
+  <!-- Compact design decision chips -->
+  <div style="display:flex;flex-wrap:wrap;gap:.4em;font-family:'Space Mono',monospace">
+    <div style="background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.18);border-radius:5px;padding:.25em .5em;font-size:.5em;color:#7eb3d8">✋ 48px touch targets (enforced in component set)</div>
+    <div style="background:rgba(40,40,50,.4);border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:.25em .5em;font-size:.5em;color:rgba(240,230,211,.7)">🌑 Dark surface — glare constraint, not preference</div>
+    <div style="background:rgba(200,80,80,.08);border:1px solid rgba(200,80,80,.2);border-radius:5px;padding:.25em .5em;font-size:.5em;color:rgba(220,100,100,.85)">⚠️ Prominent error states — payment failure is costly</div>
+    <div style="background:rgba(232,115,74,.07);border:1px solid rgba(232,115,74,.18);border-radius:5px;padding:.25em .5em;font-size:.5em;color:rgba(232,115,74,.8)">⚡ Sidebar icon-only — transaction owns the screen</div>
+    <div style="background:rgba(126,184,126,.06);border:1px solid rgba(126,184,126,.18);border-radius:5px;padding:.25em .5em;font-size:.5em;color:#7eb87e">🖼️ Image-first product grid — visual beats text list</div>
+    <div style="background:rgba(155,126,200,.06);border:1px solid rgba(155,126,200,.18);border-radius:5px;padding:.25em .5em;font-size:.5em;color:#b89fd4">🧩 POS-only components — Numpad, Txn Row, Receipt Preview</div>
   </div>
 </section>
 
 <!-- SLIDE 8: Component Architecture -->
 <section>
   <span class="section-label">Act 3 &mdash; Component Strategy</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Atoms → Molecules → Organisms</h2>
-  <div class="sl-grid sl-3">
-    <div class="sl-card green-card">
-      <span class="sl-clabel gr">Atoms (Global File)</span>
-      <div class="sl-ctitle">Defined Once, Inherited Everywhere</div>
-      <p class="sl-cbody">Colour chips, typography specimens, icon library, spacing scale. Platform files never redefine these.</p>
+  <h2 style="font-size:1em;margin:.08em 0 .3em">Atoms → Molecules → Organisms</h2>
+  <!-- DIAGRAM: Component hierarchy Atoms → Molecules → Organisms — PRIMARY -->
+  <div style="font-size:1.45em;margin-bottom:.4em;background:rgba(12,9,7,.7);border:1px solid rgba(240,230,211,.08);border-radius:8px;overflow:hidden;display:flex;align-items:stretch;font-family:'Space Mono',monospace">
+    <!-- Atoms -->
+    <div style="flex:1;border-right:1px solid rgba(126,184,126,.12);padding:.45em .6em;display:flex;flex-direction:column">
+      <div style="font-size:.28em;color:#7eb87e;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3em;border-bottom:1px solid rgba(126,184,126,.12);padding-bottom:.2em">Atoms — Global File</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.18em;align-content:flex-start">
+        <div style="background:rgba(126,184,126,.08);border:1px solid rgba(126,184,126,.22);border-radius:3px;padding:.15em .28em;font-size:.27em;color:#7eb87e">Colour Chip</div>
+        <div style="background:rgba(126,184,126,.06);border:1px solid rgba(126,184,126,.18);border-radius:3px;padding:.15em .28em;font-size:.27em;color:rgba(126,184,126,.75)">Type Scale</div>
+        <div style="background:rgba(126,184,126,.06);border:1px solid rgba(126,184,126,.18);border-radius:3px;padding:.15em .28em;font-size:.27em;color:rgba(126,184,126,.75)">Icon Set</div>
+        <div style="background:rgba(126,184,126,.05);border:1px solid rgba(126,184,126,.15);border-radius:3px;padding:.15em .28em;font-size:.27em;color:rgba(126,184,126,.65)">Spacing</div>
+        <div style="background:rgba(126,184,126,.05);border:1px solid rgba(126,184,126,.15);border-radius:3px;padding:.15em .28em;font-size:.27em;color:rgba(126,184,126,.65)">Radius</div>
+        <div style="background:rgba(126,184,126,.04);border:1px solid rgba(126,184,126,.12);border-radius:3px;padding:.15em .28em;font-size:.27em;color:rgba(126,184,126,.55)">Shadow</div>
+      </div>
+      <div style="margin-top:auto;font-size:.24em;color:rgba(240,230,211,.3);line-height:1.4;padding-top:.3em">Defined once.<br>Inherited everywhere.</div>
     </div>
-    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.2)">
-      <span class="sl-clabel" style="color:#7eb3d8">Molecules (Platform Files)</span>
-      <div class="sl-ctitle">Assembled Per Platform</div>
-      <p class="sl-cbody">POS: Numpad, Transaction Row.<br>Web: Data Table, Filter Chip.<br>Mobile: List Item, Bottom Sheet.</p>
-    </div>
-    <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
-      <span class="sl-clabel" style="color:#b89fd4">Organisms (Platform Files)</span>
-      <div class="sl-ctitle">Full Interface Patterns</div>
-      <p class="sl-cbody">POS: Transaction Panel, Product Grid.<br>Web: Analytics Header, Inventory Table.<br>Mobile: Full-screen nav flows.</p>
-    </div>
-  </div>
-  <div class="sl-grid sl-2" style="margin-top:.6em">
-    <div class="sl-card accent-card" style="flex-direction:row;gap:.6em;align-items:center">
-      <div style="font-size:1.6em;flex-shrink:0">🔒</div>
-      <div>
-        <div class="sl-ctitle" style="font-size:.65em">POS Button omits Small size</div>
-        <p class="sl-cbody" style="font-size:.54em">32px is inaccessible on a cashier touchscreen. The constraint lives in the component set, not in docs.</p>
+    <!-- Arrow -->
+    <div style="display:flex;align-items:center;padding:0 .25em;font-size:.7em;color:rgba(240,230,211,.15)">→</div>
+    <!-- Molecules -->
+    <div style="flex:1.2;border-right:1px solid rgba(107,163,214,.12);padding:.45em .6em;display:flex;flex-direction:column">
+      <div style="font-size:.28em;color:#7eb3d8;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3em;border-bottom:1px solid rgba(107,163,214,.12);padding-bottom:.2em">Molecules — Platform Files</div>
+      <div style="display:flex;gap:.4em;flex:1">
+        <div style="flex:1">
+          <div style="font-size:.24em;color:rgba(107,163,214,.55);margin-bottom:.2em">POS</div>
+          <div style="display:flex;flex-direction:column;gap:.12em">
+            <div style="background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.15);border-radius:3px;padding:.12em .22em;font-size:.25em;color:#7eb3d8">Numpad</div>
+            <div style="background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.15);border-radius:3px;padding:.12em .22em;font-size:.25em;color:#7eb3d8">Txn Row</div>
+          </div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:.24em;color:rgba(155,126,200,.55);margin-bottom:.2em">Web</div>
+          <div style="display:flex;flex-direction:column;gap:.12em">
+            <div style="background:rgba(155,126,200,.06);border:1px solid rgba(155,126,200,.15);border-radius:3px;padding:.12em .22em;font-size:.25em;color:#b89fd4">Data Table</div>
+            <div style="background:rgba(155,126,200,.06);border:1px solid rgba(155,126,200,.15);border-radius:3px;padding:.12em .22em;font-size:.25em;color:#b89fd4">Filter Chip</div>
+          </div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:.24em;color:rgba(232,115,74,.55);margin-bottom:.2em">Mobile</div>
+          <div style="display:flex;flex-direction:column;gap:.12em">
+            <div style="background:rgba(232,115,74,.06);border:1px solid rgba(232,115,74,.15);border-radius:3px;padding:.12em .22em;font-size:.25em;color:rgba(232,115,74,.8)">List Item</div>
+            <div style="background:rgba(232,115,74,.06);border:1px solid rgba(232,115,74,.15);border-radius:3px;padding:.12em .22em;font-size:.25em;color:rgba(232,115,74,.8)">Btm Sheet</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="sl-card green-card" style="flex-direction:row;gap:.6em;align-items:center">
-      <div style="font-size:1.6em;flex-shrink:0">🔄</div>
-      <div>
-        <div class="sl-ctitle" style="font-size:.65em">Component set = all states in one</div>
-        <p class="sl-cbody" style="font-size:.54em">Default / Hover / Focus / Disabled / Error — one place, zero state drift across platforms.</p>
+    <!-- Arrow -->
+    <div style="display:flex;align-items:center;padding:0 .25em;font-size:.7em;color:rgba(240,230,211,.15)">→</div>
+    <!-- Organisms -->
+    <div style="flex:1.2;padding:.45em .6em;display:flex;flex-direction:column">
+      <div style="font-size:.28em;color:#b89fd4;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3em;border-bottom:1px solid rgba(155,126,200,.12);padding-bottom:.2em">Organisms — Platform Files</div>
+      <div style="display:flex;gap:.4em;flex:1">
+        <div style="flex:1">
+          <div style="font-size:.24em;color:rgba(107,163,214,.55);margin-bottom:.2em">POS</div>
+          <div style="display:flex;flex-direction:column;gap:.12em">
+            <div style="background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.12);border-radius:3px;padding:.12em .22em;font-size:.24em;color:rgba(107,163,214,.75)">Txn Panel</div>
+            <div style="background:rgba(107,163,214,.06);border:1px solid rgba(107,163,214,.12);border-radius:3px;padding:.12em .22em;font-size:.24em;color:rgba(107,163,214,.75)">Product Grid</div>
+          </div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:.24em;color:rgba(155,126,200,.55);margin-bottom:.2em">Web</div>
+          <div style="display:flex;flex-direction:column;gap:.12em">
+            <div style="background:rgba(155,126,200,.06);border:1px solid rgba(155,126,200,.12);border-radius:3px;padding:.12em .22em;font-size:.24em;color:rgba(155,126,200,.75)">Analytics Hdr</div>
+            <div style="background:rgba(155,126,200,.06);border:1px solid rgba(155,126,200,.12);border-radius:3px;padding:.12em .22em;font-size:.24em;color:rgba(155,126,200,.75)">Inventory Tbl</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/5;margin:.5em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-    Screenshot: Figma component set — Button variants (Primary / Secondary / Ghost / Destructive) × States × Sizes
+  <!-- Compact hierarchy labels -->
+  <div style="display:flex;gap:.5em;font-family:'Space Mono',monospace">
+    <div style="flex:1;background:rgba(126,184,126,.06);border:1px solid rgba(126,184,126,.18);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#7eb87e;text-transform:uppercase;letter-spacing:.07em">Atoms — Global File</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">Colour, type, icons, spacing · defined once, inherited everywhere</div>
+    </div>
+    <div style="flex:1;background:rgba(107,163,214,.05);border:1px solid rgba(107,163,214,.16);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#7eb3d8;text-transform:uppercase;letter-spacing:.07em">Molecules — Platform</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">POS: Numpad, Txn Row · Web: Data Table · Mobile: List Item</div>
+    </div>
+    <div style="flex:1;background:rgba(155,126,200,.05);border:1px solid rgba(155,126,200,.16);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:#b89fd4;text-transform:uppercase;letter-spacing:.07em">Organisms — Platform</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">POS: Txn Panel · Web: Analytics Header · Mobile: Nav flows</div>
+    </div>
+    <div style="flex:.8;background:rgba(232,115,74,.05);border:1px solid rgba(232,115,74,.16);border-radius:5px;padding:.28em .5em">
+      <span style="font-size:.4em;color:rgba(232,115,74,.8);text-transform:uppercase;letter-spacing:.07em">🔒 Constraint</span>
+      <div style="font-size:.46em;color:rgba(240,230,211,.75);margin-top:.08em">POS Button: no Small — 32px inaccessible on touchscreen</div>
+    </div>
   </div>
 </section>
 
@@ -503,25 +769,27 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <p class="sl-cbody">Global token update → <strong style="color:var(--cream)">all platforms sync on next publish.</strong> Manual propagation is architecturally impossible.</p>
     </div>
   </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
-<!-- SLIDE 10: Impact -->
+<!-- SLIDE 10: Impact — Metrics -->
 <section>
   <span class="section-label">Act 4 &mdash; Impact</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Measurable Outcomes</h2>
-  <div class="sl-grid sl-3" style="margin-bottom:.5em">
+  <h2 style="margin-bottom:.3em">Measurable <span style="color:var(--green)">Outcomes</span></h2>
+  <div class="sl-grid sl-3" style="margin-bottom:.6em">
     <div class="sl-card green-card center">
-      <div class="sl-cnum" style="color:var(--green);opacity:1;font-size:2em">70–90%</div>
+      <div class="sl-cnum grn" style="opacity:1;font-size:2.2em">70–90%</div>
       <div class="sl-ctitle">Faster Handover</div>
       <p class="sl-cbody">3–5 days → &lt;1 day. Token-driven updates propagate instantly across every platform file.</p>
     </div>
     <div class="sl-card green-card center">
-      <div class="sl-cnum" style="color:var(--green);opacity:1;font-size:2em">100%</div>
+      <div class="sl-cnum grn" style="opacity:1;font-size:2.2em">100%</div>
       <div class="sl-ctitle">Design Consistency</div>
       <p class="sl-cbody">Zero manual style overrides after adoption. Every component resolves to the same canonical values.</p>
     </div>
     <div class="sl-card green-card center">
-      <div class="sl-cnum" style="color:var(--green);opacity:1;font-size:2em">50–80%</div>
+      <div class="sl-cnum grn" style="opacity:1;font-size:2.2em">50–80%</div>
       <div class="sl-ctitle">Fewer Maintenance Tickets</div>
       <p class="sl-cbody">Design-related QA requests dropped significantly. Visual bugs at QA became rare instead of routine.</p>
     </div>
@@ -536,10 +804,33 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <p class="sl-cbody">The design system shifted from being seen as "designer overhead" to a <strong style="color:var(--green)">strategic, measurable asset</strong> with clear ROI.</p>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/4.5;margin:.5em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-    Before / After: Single-file component list (messy, red) → Two-level library structure (clean, green) + handover time graph
+
+<span class="fragment" style="display:none"></span>
+</section>
+
+<!-- SLIDE 10b: Before & After -->
+<section>
+  <span class="section-label">Act 4 &mdash; Results</span>
+  <h2 style="margin-bottom:.3em">Before &amp; <span style="color:var(--green)">After</span></h2>
+  <div class="ba-grid" style="max-width:680px">
+    <div class="ba-col before">
+      <div class="ba-col-head before">Before</div>
+      <div class="ba-card"><div class="ba-label">Handover Time</div><div class="ba-val">3–5 days</div></div>
+      <div class="ba-card"><div class="ba-label">Manual Style Overrides</div><div class="ba-val">Many — every platform drift</div></div>
+      <div class="ba-card"><div class="ba-label">QA Visual Bugs</div><div class="ba-val">Routine — expected at every release</div></div>
+      <div class="ba-card"><div class="ba-label">Duplicate Token Values</div><div class="ba-val">47 across three files</div></div>
+      <div class="ba-card"><div class="ba-label">Designer Onboarding</div><div class="ba-val">~3 days to navigate the system</div></div>
+    </div>
+    <div class="ba-col after">
+      <div class="ba-col-head after">After Token System</div>
+      <div class="ba-card"><div class="ba-label">Handover Time</div><div class="ba-val">&lt;1 day</div></div>
+      <div class="ba-card"><div class="ba-label">Manual Style Overrides</div><div class="ba-val">Zero after adoption</div></div>
+      <div class="ba-card"><div class="ba-label">QA Visual Bugs</div><div class="ba-val">Rare — design-level QA nearly eliminated</div></div>
+      <div class="ba-card"><div class="ba-label">Duplicate Token Values</div><div class="ba-val">0 — single source of truth</div></div>
+      <div class="ba-card"><div class="ba-label">Designer Onboarding</div><div class="ba-val">&lt;1 day — clear ownership model</div></div>
+    </div>
   </div>
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 11: Reflection -->
@@ -570,13 +861,13 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
   </div>
 </section>
 
-<!-- SLIDE 12: Kai Resolved -->
+<!-- SLIDE 12: Harry Resolved -->
 <section>
   <span class="section-label">Resolution</span>
   <div class="sl-grid sl-2" style="grid-template-rows:1fr 1fr">
     <div class="sl-card tall center" style="background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.22)">
       <div class="avatar" style="background:rgba(126,184,126,.15);border-color:var(--green);margin:0 auto .4em">&#x1f9d1;&#x200d;&#x1f4bb;</div>
-      <div class="avatar-name" style="color:var(--green)">Kai &bull; Lead Product Designer</div>
+      <div class="avatar-name" style="color:var(--green)">Harry &bull; Lead UX Designer</div>
       <div style="font-family:'Space Mono',monospace;font-size:.38em;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:.4em">After &mdash; System Launched</div>
     </div>
     <div class="sl-card green-card">
@@ -605,6 +896,65 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 
 </div>
 </div>
+<!-- POPUP SYSTEM -->
+<div class="popup-backdrop" id="popupBackdrop"></div>
+<div class="popup-overlay">
+<div class="popup-card biz" data-popup-slide="2">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">Inconsistency Has a Cost Centre</div>
+  <div class="popup-desc">Design inconsistency isn't aesthetic noise. QA rework, developer clarification tickets, and cross-platform divergence represent real budget spend. A design system is a <strong>risk reduction investment</strong>, not a designer productivity tool.</div>
+  <div class="popup-foot">Harry Hein · Design System</div>
+</div>
+<div class="popup-card ux" data-popup-slide="3">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">Audit Before Architecture</div>
+  <div class="popup-desc">Discovering 47 duplicate colour values and 31 near-identical components before designing the new system prevented the same problems from being rebuilt at scale. <strong>Measure the debt before you restructure it</strong>.</div>
+  <div class="popup-foot">Harry Hein · Design System</div>
+</div>
+<div class="popup-card ux" data-popup-slide="5">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">Two Levels Beat One</div>
+  <div class="popup-desc">A single monolithic design system creates the wrong tradeoff: either too constrained for platform-specific needs, or too permissive to enforce consistency. <strong>Global foundation + platform libraries</strong> is the architecture that scales.</div>
+  <div class="popup-foot">Harry Hein · Design System</div>
+</div>
+<div class="popup-card biz" data-popup-slide="6">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">Tokens Are a Design-Dev Contract</div>
+  <div class="popup-desc">When token names are semantic (<strong>--color-surface-primary</strong>) rather than literal (--grey-200), they become a contract between design and engineering. One token change updates every component that references it.</div>
+  <div class="popup-foot">Harry Hein · Design System</div>
+</div>
+<div class="popup-card ux" data-popup-slide="9">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">Systems Without Governance Decay</div>
+  <div class="popup-desc">A design system launch is not the deliverable. The governance model — who owns what, how changes propagate — determines whether the system stays coherent <strong>18 months after launch</strong>.</div>
+  <div class="popup-foot">Harry Hein · Design System</div>
+</div>
+<div class="popup-card biz" data-popup-slide="10">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">Handover Speed Is a Business Metric</div>
+  <div class="popup-desc">Reducing design-to-dev handover from 3–5 days to under one day doesn't just save time — it <strong>compresses the feedback loop</strong>, reduces sprint risk, and increases the velocity of the entire product team.</div>
+  <div class="popup-foot">Harry Hein · Design System</div>
+</div>
+</div>
+
 
 <!-- Inlined reveal.min.js -->
 <script>!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).Reveal=t()}(this,function(){"use strict";const _e=(e,t)=>{for(var i in t)e[i]=t[i];return e},Je=(e,t)=>Array.from(e.querySelectorAll(t)),Ge=(e,t,i)=>{i?e.classList.add(t):e.classList.remove(t)},Qe=e=>{if("string"==typeof e){if("null"===e)return null;if("true"===e)return!0;if("false"===e)return!1;if(e.match(/^-?[\d\.]+$/))return parseFloat(e)}return e},Ze=(e,t)=>{e.style.transform=t},s=(e,t)=>{let i=e.matches||e.matchesSelector||e.msMatchesSelector;return!(!i||!i.call(e,t))},et=(e,t)=>{if("function"==typeof e.closest)return e.closest(t);for(;e;){if(s(e,t))return e;e=e.parentNode}return null},m=e=>{let t=document.createElement("style");return t.type="text/css",e&&0<e.length&&(t.styleSheet?t.styleSheet.cssText=e:t.appendChild(document.createTextNode(e))),document.head.appendChild(t),t},tt=()=>{let t={};for(var e in location.search.replace(/[A-Z0-9]+?=([\w\.%-]*)/gi,e=>{t[e.split("=").shift()]=e.split("=").pop()}),t){var i=t[e];t[e]=Qe(unescape(i))}return void 0!==t.dependencies&&delete t.dependencies,t},d={mp4:"video/mp4",m4a:"video/mp4",ogv:"video/ogg",mpeg:"video/mpeg",webm:"video/webm"},e=navigator.userAgent,it=/(iphone|ipod|ipad|android)/gi.test(e)||"MacIntel"===navigator.platform&&1<navigator.maxTouchPoints,n=(/chrome/i.test(e)&&/edge/i.test(e),/android/gi.test(e));var t={},L=(Object.defineProperty(t,"__esModule",{value:!0}),Object.assign||function(e){for(var t=1;t<arguments.length;t++){var i,a=arguments[t];for(i in a)Object.prototype.hasOwnProperty.call(a,i)&&(e[i]=a[i])}return e}),i=t.default=function(i){var t,s,n,e,r,a,o,l,d,c,h,u,v,g,p,m,f,b,y,w,E,R,S;if(i)return t=1,s=3,n=[],e=null,r="requestAnimationFrame"in i?function(){i.cancelAnimationFrame(e),e=i.requestAnimationFrame(function(){return o(n.filter(function(e){return e.dirty&&e.active}))})}:function(){},a=function(t){return function(){n.forEach(function(e){return e.dirty=t}),r()}},o=function(e){e.filter(function(e){return!e.styleComputed}).forEach(function(e){e.styleComputed=h(e)}),e.filter(u).forEach(v);e=e.filter(c);e.forEach(d),e.forEach(function(e){v(e),l(e)}),e.forEach(g)},l=function(e){return e.dirty=0},d=function(e){e.availableWidth=e.element.parentNode.clientWidth,e.currentWidth=e.element.scrollWidth,e.previousFontSize=e.currentFontSize,e.currentFontSize=Math.min(Math.max(e.minSize,e.availableWidth/e.currentWidth*e.previousFontSize),e.maxSize),e.whiteSpace=e.multiLine&&e.currentFontSize===e.minSize?"normal":"nowrap"},c=function(e){return 2!==e.dirty||2===e.dirty&&e.element.parentNode.clientWidth!==e.availableWidth},h=function(e){var t=i.getComputedStyle(e.element,null);e.currentFontSize=parseFloat(t.getPropertyValue("font-size")),e.display=t.getPropertyValue("display"),e.whiteSpace=t.getPropertyValue("white-space")},u=function(e){var t=!1;return!e.preStyleTestCompleted&&(/inline-/.test(e.display)||(t=!0,e.display="inline-block"),"nowrap"!==e.whiteSpace&&(t=!0,e.whiteSpace="nowrap"),e.preStyleTestCompleted=!0,t)},v=function(e){e.element.style.whiteSpace=e.whiteSpace,e.element.style.display=e.display,e.element.style.fontSize=e.currentFontSize+"px"},g=function(e){e.element.dispatchEvent(new CustomEvent("fit",{detail:{oldValue:e.previousFontSize,newValue:e.currentFontSize,scaleFactor:e.currentFontSize/e.previousFontSize}}))},p=function(e,t){return function(){e.dirty=t,e.active&&r()}},m=function(t){return function(){n=n.filter(function(e){return e.element!==t.element}),t.observeMutations&&t.observer.disconnect(),t.element.style.whiteSpace=t.originalStyle.whiteSpace,t.element.style.display=t.originalStyle.display,t.element.style.fontSize=t.originalStyle.fontSize}},f=function(e){return function(){e.active||(e.active=!0,r())}},b=function(e){return function(){return e.active=!1}},y=function(e){e.observeMutations&&(e.observer=new MutationObserver(p(e,t)),e.observer.observe(e.element,e.observeMutations))},w={minSize:16,maxSize:512,multiLine:!0,observeMutations:"MutationObserver"in i&&{subtree:!0,childList:!0,characterData:!0}},E=null,R=function(){i.clearTimeout(E),E=i.setTimeout(a(2),k.observeWindowDelay)},S=["resize","orientationchange"],Object.defineProperty(k,"observeWindow",{set:function(e){var t=(e?"add":"remove")+"EventListener";S.forEach(function(e){i[t](e,R)})}}),k.observeWindow=!0,k.observeWindowDelay=100,k.fitAll=a(s),k;function A(e,t){var a=L({},w,t),t=e.map(function(e){var t,i=L({},a,{element:e,active:!0});return(t=i).originalStyle={whiteSpace:t.element.style.whiteSpace,display:t.element.style.display,fontSize:t.element.style.fontSize},y(t),t.newbie=!0,t.dirty=!0,n.push(t),{element:e,fit:p(i,s),unfreeze:f(i),freeze:b(i),unsubscribe:m(i)}});return r(),t}function k(e){var t,i=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{};return"string"==typeof e?A((t=document.querySelectorAll(e),[].slice.call(t)),i):A([e],i)[0]}}("undefined"==typeof window?null:window);class at{constructor(e){this.Reveal=e,this.startEmbeddedIframe=this.startEmbeddedIframe.bind(this)}shouldPreload(e){let t=this.Reveal.getConfig().preloadIframes;return t="boolean"!=typeof t?e.hasAttribute("data-preload"):t}load(r,o={}){r.style.display=this.Reveal.getConfig().display,Je(r,"img[data-src], video[data-src], audio[data-src], iframe[data-src]").forEach(e=>{"IFRAME"===e.tagName&&!this.shouldPreload(e)||(e.setAttribute("src",e.getAttribute("data-src")),e.setAttribute("data-lazy-loaded",""),e.removeAttribute("data-src"))}),Je(r,"video, audio").forEach(e=>{let t=0;Je(e,"source[data-src]").forEach(e=>{e.setAttribute("src",e.getAttribute("data-src")),e.removeAttribute("data-src"),e.setAttribute("data-lazy-loaded",""),t+=1}),it&&"VIDEO"===e.tagName&&e.setAttribute("playsinline",""),0<t&&e.load()});let l=r.slideBackgroundElement;if(l){l.style.display="block";let n=r.slideBackgroundContentElement,i=r.getAttribute("data-background-iframe");if(!1===l.hasAttribute("data-loaded")){l.setAttribute("data-loaded","true");let e=r.getAttribute("data-background-image"),t=r.getAttribute("data-background-video"),a=r.hasAttribute("data-background-video-loop"),s=r.hasAttribute("data-background-video-muted");if(e)/^data:/.test(e.trim())?n.style.backgroundImage=`url(${e.trim()})`:n.style.backgroundImage=e.split(",").map(e=>`url(${((e="")=>encodeURI(e).replace(/%5B/g,"[").replace(/%5D/g,"]").replace(/[!'()*]/g,e=>"%"+e.charCodeAt(0).toString(16).toUpperCase()))(decodeURI(e.trim()))})`).join(",");else if(t&&!this.Reveal.isSpeakerNotes()){let i=document.createElement("video");a&&i.setAttribute("loop",""),s&&(i.muted=!0),it&&(i.muted=!0,i.setAttribute("playsinline","")),t.split(",").forEach(e=>{[t=""]=[e];var t=d[t.split(".").pop()];i.innerHTML+=t?`<source src="${e}" type="${t}">`:`<source src="${e}">`}),n.appendChild(i)}else if(i&&!0!==o.excludeIframes){let e=document.createElement("iframe");e.setAttribute("allowfullscreen",""),e.setAttribute("mozallowfullscreen",""),e.setAttribute("webkitallowfullscreen",""),e.setAttribute("allow","autoplay"),e.setAttribute("data-src",i),e.style.width="100%",e.style.height="100%",e.style.maxHeight="100%",e.style.maxWidth="100%",n.appendChild(e)}}let e=n.querySelector("iframe[data-src]");e&&this.shouldPreload(l)&&!/autoplay=(1|true|yes)/gi.test(i)&&e.getAttribute("src")!==i&&e.setAttribute("src",i)}this.layout(r)}layout(e){Array.from(e.querySelectorAll(".r-fit-text")).forEach(e=>{i(e,{minSize:24,maxSize:.8*this.Reveal.getConfig().height,observeMutations:!1,observeWindow:!1})})}unload(e){e.style.display="none";let t=this.Reveal.getSlideBackground(e);t&&(t.style.display="none",Je(t,"iframe[src]").forEach(e=>{e.removeAttribute("src")})),Je(e,"video[data-lazy-loaded][src], audio[data-lazy-loaded][src], iframe[data-lazy-loaded][src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")}),Je(e,"video[data-lazy-loaded] source[src], audio source[src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")})}formatEmbeddedContent(){var e=(i,e,a)=>{Je(this.Reveal.getSlidesElement(),"iframe["+i+'*="'+e+'"]').forEach(e=>{let t=e.getAttribute(i);t&&-1===t.indexOf(a)&&e.setAttribute(i,t+(/\?/.test(t)?"&":"?")+a)})};e("src","youtube.com/embed/","enablejsapi=1"),e("data-src","youtube.com/embed/","enablejsapi=1"),e("src","player.vimeo.com/","api=1"),e("data-src","player.vimeo.com/","api=1")}startEmbeddedContent(e){e&&!this.Reveal.isSpeakerNotes()&&(Je(e,'img[src$=".gif"]').forEach(e=>{e.setAttribute("src",e.getAttribute("src"))}),Je(e,"video, audio").forEach(t=>{if(!et(t,".fragment")||et(t,".fragment.visible")){let e=this.Reveal.getConfig().autoPlayMedia;if((e="boolean"!=typeof e?t.hasAttribute("data-autoplay")||!!et(t,".slide-background"):e)&&"function"==typeof t.play)if(1<t.readyState)this.startEmbeddedMedia({target:t});else if(it){let e=t.play();e&&"function"==typeof e.catch&&!1===t.controls&&e.catch(()=>{t.controls=!0,t.addEventListener("play",()=>{t.controls=!1})})}else t.removeEventListener("loadeddata",this.startEmbeddedMedia),t.addEventListener("loadeddata",this.startEmbeddedMedia)}}),Je(e,"iframe[src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||this.startEmbeddedIframe({target:e})}),Je(e,"iframe[data-src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||e.getAttribute("src")!==e.getAttribute("data-src")&&(e.removeEventListener("load",this.startEmbeddedIframe),e.addEventListener("load",this.startEmbeddedIframe),e.setAttribute("src",e.getAttribute("data-src")))}))}startEmbeddedMedia(e){var t=!!et(e.target,"html"),i=!!et(e.target,".present");t&&i&&(e.target.currentTime=0,e.target.play()),e.target.removeEventListener("loadeddata",this.startEmbeddedMedia)}startEmbeddedIframe(e){let t=e.target;if(t&&t.contentWindow){var i=!!et(e.target,"html"),e=!!et(e.target,".present");if(i&&e){let e=this.Reveal.getConfig().autoPlayMedia;"boolean"!=typeof e&&(e=t.hasAttribute("data-autoplay")||!!et(t,".slide-background")),/youtube\.com\/embed\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}',"*"):/player\.vimeo\.com\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"method":"play"}',"*"):t.contentWindow.postMessage("slide:start","*")}}}stopEmbeddedContent(e,t={}){t=_e({unloadIframes:!0},t),e&&e.parentNode&&(Je(e,"video, audio").forEach(e=>{e.hasAttribute("data-ignore")||"function"!=typeof e.pause||(e.setAttribute("data-paused-by-reveal",""),e.pause())}),Je(e,"iframe").forEach(e=>{e.contentWindow&&e.contentWindow.postMessage("slide:stop","*"),e.removeEventListener("load",this.startEmbeddedIframe)}),Je(e,'iframe[src*="youtube.com/embed/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}',"*")}),Je(e,'iframe[src*="player.vimeo.com/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"method":"pause"}',"*")}),!0===t.unloadIframes&&Je(e,"iframe[data-src]").forEach(e=>{e.setAttribute("src","about:blank"),e.removeAttribute("src")}))}}class st{constructor(e){this.Reveal=e}render(){this.element=document.createElement("div"),this.element.className="slide-number",this.Reveal.getRevealElement().appendChild(this.element)}configure(e,t){let i="none";e.slideNumber&&!this.Reveal.isPrintingPDF()&&("all"===e.showSlideNumber||"speaker"===e.showSlideNumber&&this.Reveal.isSpeakerNotes())&&(i="block"),this.element.style.display=i}update(){this.Reveal.getConfig().slideNumber&&this.element&&(this.element.innerHTML=this.getSlideNumber())}getSlideNumber(e=this.Reveal.getCurrentSlide()){let t,i=this.Reveal.getConfig(),a="h.v";if("function"==typeof i.slideNumber)t=i.slideNumber(e);else{"string"==typeof i.slideNumber&&(a=i.slideNumber),/c/.test(a)||1!==this.Reveal.getHorizontalSlides().length||(a="c");var s=e&&"uncounted"===e.dataset.visibility?0:1;switch(t=[],a){case"c":t.push(this.Reveal.getSlidePastCount(e)+s);break;case"c/t":t.push(this.Reveal.getSlidePastCount(e)+s,"/",this.Reveal.getTotalSlides());break;default:var n=this.Reveal.getIndices(e),r=(t.push(n.h+s),"h/v"===a?"/":".");this.Reveal.isVerticalSlide(e)&&t.push(r,n.v+1)}}var o="#"+this.Reveal.location.getHash(e);return this.formatNumber(t[0],t[1],t[2],o)}formatNumber(e,t,i,a="#"+this.Reveal.location.getHash()){return"number"!=typeof i||isNaN(i)?`<a href="${a}">
@@ -640,8 +990,32 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 Reveal.initialize({
   hash:true, transition:'fade', transitionSpeed:'slow',
   width:1100, height:700, margin:0.08,
-  controlsLayout:'edges', controls:false, progress:true, slideNumber:true
+  controlsLayout:'edges', controls:false, progress:true, slideNumber:true,
+  keyboard:true, touch:true, mouseWheel:true
 });
+
+// Tap / click to advance — pointerup works for both mouse and touch
+(function(){
+  function navBlocked(e){
+    var el=e.target;
+    while(el&&el.nodeType===1){
+      var tag=(el.tagName||'').toLowerCase();
+      if(tag==='a'||tag==='button'||tag==='input'||tag==='select'||tag==='textarea') return true;
+      if(el.hasAttribute&&el.hasAttribute('onclick')) return true;
+      var c=el.className||'';
+      if(typeof c==='string'&&(c.indexOf('nav-hint')>=0||c.indexOf('back-link')>=0||c.indexOf('ui-fullscreen')>=0||c.indexOf('expand-btn')>=0)) return true;
+      el=el.parentNode;
+    }
+    return false;
+  }
+  var _x=0,_y=0;
+  document.addEventListener('pointerdown',function(e){_x=e.clientX;_y=e.clientY;},true);
+  document.addEventListener('pointerup',function(e){
+    if(navBlocked(e)) return;
+    if(Math.abs(e.clientX-_x)+Math.abs(e.clientY-_y)>20) return;
+    Reveal.next();
+  },true);
+})();
 </script>
 
 <!-- Expand Button & Fullscreen Overlay -->

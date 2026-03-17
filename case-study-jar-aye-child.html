@@ -42,8 +42,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .insight .desc{font-size:.8em;line-height:1.6;color:var(--cream-dim)}
 .metric-row{display:flex;gap:1em;justify-content:center;flex-wrap:wrap;margin:1em 0}
 .metric{background:var(--dark-3);border:1.5px solid var(--cream-faint);border-radius:12px;padding:1em 1.5em;text-align:center}
-.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:var(--accent);line-height:1}
-.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.4em}
+.metric .val{font-family:'Instrument Serif',serif;font-size:2.2em;color:#f0e6d3;line-height:1}
+.metric .lbl{font-family:'Space Mono',monospace;font-size:.45em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.4em}
 .annotated-ui{position:relative;display:inline-block;margin:0 auto}
 .annotated-ui img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.4);display:block}
 .marker{position:absolute;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:white;pointer-events:none;z-index:2;transform:translate(-50%,-50%)}
@@ -165,7 +165,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .sl-clabel.rd{color:var(--red)}
 .sl-ctitle{font-family:'Syne',sans-serif;font-size:.72em;font-weight:700;color:var(--cream)}
 .sl-cbody{font-size:.6em;color:var(--cream-dim);line-height:1.55;margin:0}.sl-narr{font-family:'Space Mono',monospace;font-size:.5em;color:var(--cream-dim);letter-spacing:.06em;text-align:center;margin:auto auto .2em;line-height:1.7;width:100%;font-style:normal;order:99;box-sizing:border-box}
-.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:var(--accent);opacity:.3}
+.sl-cnum{font-family:'Instrument Serif',serif;font-size:1.6em;line-height:1;color:#f0e6d3;opacity:1}.sl-cnum.acc{color:#c8a96e}.sl-cnum.grn{color:#7eb87e}
 .sl-icon{font-size:1.4em;line-height:1;margin-bottom:.1em}
 /* ── Cover Bento ── */
 .cover-bento{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:10px;max-width:720px;margin:0 auto}
@@ -175,8 +175,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .cb-metric{background:rgba(255,255,255,.05);border:1px solid rgba(240,230,211,.12);border-radius:20px;padding:1.1em 1em;text-align:center;transition:transform .2s ease,border-color .2s ease}
 .cb-metric:hover{transform:translateY(-4px);border-color:rgba(232,115,74,.3)}
 .cb-metric.hi{background:rgba(232,115,74,.08);border-color:rgba(232,115,74,.22)}
-.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent);line-height:1}
-.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:var(--cream-dim);margin-top:.35em}
+.cb-metric .val{font-family:'Instrument Serif',serif;font-size:2em;color:#f0e6d3;line-height:1}
+.cb-metric .lbl{font-family:'Space Mono',monospace;font-size:.42em;text-transform:uppercase;letter-spacing:.1em;color:rgba(240,230,211,.75);margin-top:.35em}
 
 /* Fix: prevent slide overlap - non-present sections stay invisible */
 .reveal .slides > section:not(.present) { opacity: 0 !important; pointer-events: none !important; }
@@ -195,6 +195,11 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <span class="mono" style="color:var(--blue);font-size:.55em;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:.5em">Case Study &bull; 2025</span>
       <h1 style="margin:.15em 0 .3em;font-size:2.1em">Making Hard Math<br><span style="color:var(--blue)">Feel Tractable.</span></h1>
       <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:.85em;color:var(--cream-dim)">How Jar Aye helps 6–12 year olds stay in productive struggle long enough to develop genuine mathematical understanding — without tipping into frustration.</p>
+      <div style="display:flex;gap:2em;margin-top:.85em;padding-top:.7em;border-top:1px solid rgba(240,230,211,.1)">
+        <div><div style="font-family:'Space Mono',monospace;font-size:.42em;letter-spacing:.12em;text-transform:uppercase;color:rgba(107,163,214,.7);margin-bottom:.25em">Role</div><div style="font-family:'Space Mono',monospace;font-size:.52em;color:var(--cream-dim)">UX Lead</div></div>
+        <div><div style="font-family:'Space Mono',monospace;font-size:.42em;letter-spacing:.12em;text-transform:uppercase;color:rgba(107,163,214,.7);margin-bottom:.25em">Team</div><div style="font-family:'Space Mono',monospace;font-size:.52em;color:var(--cream-dim)">1 UI Designer · 2 UX/UI Designers</div></div>
+        <div><div style="font-family:'Space Mono',monospace;font-size:.42em;letter-spacing:.12em;text-transform:uppercase;color:rgba(107,163,214,.7);margin-bottom:.25em">Scope</div><div style="font-family:'Space Mono',monospace;font-size:.52em;color:var(--cream-dim)">End-to-end UX · Managed team of 3</div></div>
+      </div>
     </div>
     <div class="cb-metric" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)"><div class="val" style="color:var(--blue)">5</div><div class="lbl">User Studies</div></div>
     <div class="cb-metric"><div class="val" style="color:var(--blue)">5</div><div class="lbl">HOTS Strategies</div></div>
@@ -256,12 +261,24 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <p class="sl-cbody">It's a <strong style="color:var(--cream)">subscription product</strong> — over-optimising for engagement risks teaching children to chase points rather than understand mathematics.</p>
     </div>
   </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 3: Research -->
 <section>
   <span class="section-label">Act 2 &mdash; Research</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">5 Children. Competitor Products. Unmediated Behaviour.</h2>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">5 Children. Competitor Products. Unmediated Behaviour.</h2>
+  <div class="media-placeholder" style="aspect-ratio:16/8;margin:.2em auto 0;max-width:860px;font-size:.52em">
+    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    Research session findings — 5 children · competitor products · Mandalay
+  </div>
+</section>
+
+<!-- SLIDE 3b: Research Insights -->
+<section>
+  <span class="section-label">Act 2 &mdash; Research</span>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">5 Children. Competitor Products. Unmediated Behaviour.</h2>
   <div class="sl-grid sl-3">
     <div class="sl-card" style="background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)">
       <span class="sl-clabel" style="color:#b89fd4">Methodology</span>
@@ -279,20 +296,25 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <p class="sl-cbody">One participant hit a question they didn't understand and simply stopped — didn't ask for help, didn't retry. Informed the need for a built-in question explanation feature.</p>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/4.5;margin:.5em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-    Screenshot: Research session notes / competitor usability findings from 5 child participants
-  </div>
+
+<span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 4: Authentication Design -->
 <section>
   <span class="section-label">Act 3 &mdash; Design Decisions</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Sign-In: Every Choice Has a Rationale</h2>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Sign-In: Every Choice Has a Rationale</h2>
+  <video src="videos/jar-aye-child/signin.mp4" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
+</section>
+
+<!-- SLIDE 4b: Authentication Insights -->
+<section>
+  <span class="section-label">Act 3 &mdash; Design Decisions</span>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Sign-In: Every Choice Has a Rationale</h2>
   <div class="sl-grid sl-2">
-    <div class="sl-card full" style="background:rgba(107,163,214,.04);border-color:rgba(107,163,214,.18);padding:1em 1.4em">
+    <div class="sl-card full" style="background:rgba(107,163,214,.04);border-color:rgba(107,163,214,.18);padding:.8em 1.2em">
       <span class="sl-clabel" style="color:var(--blue)">Design Principle</span>
-      <div style="font-family:'Instrument Serif',serif;font-size:1.3em;color:var(--cream);line-height:1.35;margin:.2em 0">"Error prevention over error recovery.<br><span style="color:var(--blue)">Remove the failure mode entirely."</span></div>
+      <div style="font-family:'Instrument Serif',serif;font-size:1.2em;color:var(--cream);line-height:1.35;margin:.2em 0">"Error prevention over error recovery.<br><span style="color:var(--blue)">Remove the failure mode entirely."</span></div>
     </div>
     <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
       <span class="sl-clabel" style="color:var(--blue)">Username, not email</span>
@@ -300,10 +322,10 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     </div>
     <div class="sl-card green-card">
       <span class="sl-clabel gr">Segmented 4-box PIN</span>
-      <p class="sl-cbody">Chunking the code into 4 visible cells reduces working memory load. The child always knows how many characters remain — a standard password field provides none of this orientation.</p>
+      <p class="sl-cbody">Chunking the code into 4 visible cells reduces working memory load. The child always knows how many characters remain.</p>
     </div>
     <div class="sl-card accent-card">
-      <span class="sl-clabel">Disabled button until both fields filled</span>
+      <span class="sl-clabel">Disabled until both fields filled</span>
       <p class="sl-cbody">Nielsen's 5th heuristic — error prevention. The child never sees a "wrong" state from an empty submission.</p>
     </div>
     <div class="sl-card red-card">
@@ -311,32 +333,26 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <p class="sl-cbody">Both field labels read "Enter User Name" — a copy error. The second should read "Enter PIN." Small errors like this erode parent trust on first use.</p>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:9/5;margin:.5em auto 0;max-width:320px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-    Screenshot: Sign-in screen — username field + segmented PIN input
-  </div>
 </section>
 
 <!-- SLIDE 5: Learning Loop -->
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
   <h2 style="font-size:1.1em;margin:.1em 0 .4em">The Learning Loop: Video Before Question</h2>
-  <div style="display:flex;flex-direction:column;gap:.4em;align-items:center;max-width:680px;margin:.2em auto">
-    <div style="display:flex;gap:.4em;width:100%;justify-content:center;flex-wrap:wrap">
-      <div class="sl-card" style="flex:1;min-width:80px;max-width:110px;text-align:center;padding:.6em .5em;background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)"><div style="font-size:.55em;color:var(--blue);font-family:'Space Mono',monospace;text-transform:uppercase">Class</div></div>
-      <div style="display:flex;align-items:center;color:var(--cream-faint);font-size:.8em">→</div>
-      <div class="sl-card" style="flex:1;min-width:80px;max-width:110px;text-align:center;padding:.6em .5em;background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)"><div style="font-size:.55em;color:var(--blue);font-family:'Space Mono',monospace;text-transform:uppercase">Topic</div></div>
-      <div style="display:flex;align-items:center;color:var(--cream-faint);font-size:.8em">→</div>
-      <div class="sl-card" style="flex:1;min-width:80px;max-width:110px;text-align:center;padding:.6em .5em;background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.25)"><div style="font-size:.55em;color:var(--green);font-family:'Space Mono',monospace;text-transform:uppercase">Video</div></div>
-      <div style="display:flex;align-items:center;color:var(--cream-faint);font-size:.8em">→</div>
-      <div class="sl-card" style="flex:1;min-width:80px;max-width:110px;text-align:center;padding:.6em .5em;background:rgba(232,115,74,.06);border-color:rgba(232,115,74,.22)"><div style="font-size:.55em;color:var(--accent);font-family:'Space Mono',monospace;text-transform:uppercase">Question</div></div>
-      <div style="display:flex;align-items:center;color:var(--cream-faint);font-size:.8em">→</div>
-      <div class="sl-card" style="flex:1;min-width:80px;max-width:110px;text-align:center;padding:.6em .5em"><div style="font-size:.55em;color:var(--cream);font-family:'Space Mono',monospace;text-transform:uppercase">Feedback</div></div>
-      <div style="display:flex;align-items:center;color:var(--cream-faint);font-size:.8em">→</div>
-      <div class="sl-card" style="flex:1;min-width:80px;max-width:110px;text-align:center;padding:.6em .5em;background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)"><div style="font-size:.55em;color:#b89fd4;font-family:'Space Mono',monospace;text-transform:uppercase">Self&nbsp;Check</div></div>
-      <div style="display:flex;align-items:center;color:var(--cream-faint);font-size:.8em">→</div>
-      <div class="sl-card" style="flex:1;min-width:80px;max-width:110px;text-align:center;padding:.6em .5em;background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.25)"><div style="font-size:.55em;color:var(--green);font-family:'Space Mono',monospace;text-transform:uppercase">Report</div></div>
-    </div>
+  <div style="display:flex;gap:.3em;width:100%;justify-content:center;align-items:center;flex-wrap:nowrap;margin:.2em 0">
+    <div class="sl-card" style="flex:1;text-align:center;padding:.55em .3em;background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)"><div style="font-size:.5em;color:var(--blue);font-family:'Space Mono',monospace;text-transform:uppercase">Class</div></div>
+    <div style="color:var(--cream-faint);font-size:.75em;flex-shrink:0">→</div>
+    <div class="sl-card" style="flex:1;text-align:center;padding:.55em .3em;background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)"><div style="font-size:.5em;color:var(--blue);font-family:'Space Mono',monospace;text-transform:uppercase">Topic</div></div>
+    <div style="color:var(--cream-faint);font-size:.75em;flex-shrink:0">→</div>
+    <div class="sl-card" style="flex:1;text-align:center;padding:.55em .3em;background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.25)"><div style="font-size:.5em;color:var(--green);font-family:'Space Mono',monospace;text-transform:uppercase">Video</div></div>
+    <div style="color:var(--cream-faint);font-size:.75em;flex-shrink:0">→</div>
+    <div class="sl-card" style="flex:1;text-align:center;padding:.55em .3em;background:rgba(232,115,74,.06);border-color:rgba(232,115,74,.22)"><div style="font-size:.5em;color:var(--accent);font-family:'Space Mono',monospace;text-transform:uppercase">Question</div></div>
+    <div style="color:var(--cream-faint);font-size:.75em;flex-shrink:0">→</div>
+    <div class="sl-card" style="flex:1;text-align:center;padding:.55em .3em"><div style="font-size:.5em;color:var(--cream);font-family:'Space Mono',monospace;text-transform:uppercase">Feedback</div></div>
+    <div style="color:var(--cream-faint);font-size:.75em;flex-shrink:0">→</div>
+    <div class="sl-card" style="flex:1;text-align:center;padding:.55em .3em;background:rgba(155,126,200,.06);border-color:rgba(155,126,200,.22)"><div style="font-size:.5em;color:#b89fd4;font-family:'Space Mono',monospace;text-transform:uppercase">Self&nbsp;Check</div></div>
+    <div style="color:var(--cream-faint);font-size:.75em;flex-shrink:0">→</div>
+    <div class="sl-card" style="flex:1;text-align:center;padding:.55em .3em;background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.25)"><div style="font-size:.5em;color:var(--green);font-family:'Space Mono',monospace;text-transform:uppercase">Report</div></div>
   </div>
   <div class="sl-grid sl-2" style="margin-top:.5em">
     <div class="sl-card" style="background:rgba(126,184,126,.06);border-color:rgba(126,184,126,.25)">
@@ -353,8 +369,15 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 <!-- SLIDE 6: Question States -->
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Question States: 5 States, Each Designed Deliberately</h2>
-  <div class="sl-grid sl-3" style="margin-bottom:.4em">
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Question States: 5 States, Each Designed Deliberately</h2>
+  <video src="videos/jar-aye-child/question-states.mp4" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
+</section>
+
+<!-- SLIDE 6b: Question State Insights -->
+<section>
+  <span class="section-label">Act 3 &mdash; Design</span>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Question States: 5 States, Each Designed Deliberately</h2>
+  <div class="sl-grid sl-3" style="margin-bottom:.3em">
     <div class="sl-card" style="background:rgba(107,163,214,.04);border-color:rgba(107,163,214,.18)">
       <span class="sl-clabel" style="color:var(--blue)">Default / Filled</span>
       <div class="sl-ctitle">Input in progress</div>
@@ -368,30 +391,34 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-card red-card">
       <span class="sl-clabel rd">Wrong ✗</span>
       <div class="sl-ctitle">Immediate corrective feedback</div>
-      <p class="sl-cbody">Solution pop-up shows the <em>reasoning</em>, not just the answer. "There are 9 ways Diana can stop" with the worked method — child compares to their thinking.</p>
+      <p class="sl-cbody">Solution pop-up shows the <em>reasoning</em>, not just the answer — child compares to their thinking.</p>
     </div>
   </div>
   <div class="sl-grid sl-2">
     <div class="sl-card accent-card">
       <span class="sl-clabel">Two CTAs after correct</span>
-      <p class="sl-cbody">"Show Solution" (secondary) + "Next Question" (primary). Serves two learner types: the intuitive guesser who can't explain, and the child who understood the process.</p>
+      <p class="sl-cbody">"Show Solution" (secondary) + "Next Question" (primary). Serves two learner types: the intuitive guesser and the child who understood the process.</p>
     </div>
     <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
       <span class="sl-clabel" style="color:var(--blue)">Fixed state</span>
-      <p class="sl-cbody">After viewing the solution, the corrected answer state. The child can see what "fixed" looks like — building the mental model for next time.</p>
+      <p class="sl-cbody">After viewing the solution, the corrected answer state. Builds the mental model for next time.</p>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.4em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-    Screenshot: Question screen — correct state (left) and wrong state with solution pop-up (right)
-  </div>
+  <span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 7: HOTS Framework -->
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">HOTS Framework as Interface Architecture</h2>
-  <div class="sl-grid sl-3" style="margin-bottom:.4em">
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">HOTS Framework as Interface Architecture</h2>
+  <video src="videos/jar-aye-child/hots.mp4" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
+</section>
+
+<!-- SLIDE 7b: HOTS Insights -->
+<section>
+  <span class="section-label">Act 3 &mdash; Design</span>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">HOTS Framework as Interface Architecture</h2>
+  <div class="sl-grid sl-3">
     <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
       <div class="sl-cnum" style="opacity:.25">1</div>
       <div class="sl-ctitle">Making a Guess</div>
@@ -400,7 +427,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
       <div class="sl-cnum" style="opacity:.25">2</div>
       <div class="sl-ctitle">Using a Representation</div>
-      <p class="sl-cbody">Draw it. Table it. Diagram it. Visual representations externalise working memory, reducing cognitive load on the problem itself.</p>
+      <p class="sl-cbody">Draw it. Table it. Diagram it. Visual representations externalise working memory, reducing cognitive load.</p>
     </div>
     <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
       <div class="sl-cnum" style="opacity:.25">3</div>
@@ -410,12 +437,12 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
       <div class="sl-cnum" style="opacity:.25">4</div>
       <div class="sl-ctitle">Changing the Problem</div>
-      <p class="sl-cbody">What if the numbers were different? Builds transfer — the ability to apply reasoning to novel problems, not just recall a memorised method.</p>
+      <p class="sl-cbody">What if the numbers were different? Builds transfer — applying reasoning to novel problems, not just a memorised method.</p>
     </div>
     <div class="sl-card accent-card">
       <div class="sl-cnum" style="opacity:.25">5</div>
       <div class="sl-ctitle">Adventure Quest Challenge</div>
-      <p class="sl-cbody">Extension — gated behind lesson completion. High-confidence learners can't skip to it. Serves as genuine leaderboard differentiator.</p>
+      <p class="sl-cbody">Extension — gated behind lesson completion. High-confidence learners can't skip to it. Genuine leaderboard differentiator.</p>
     </div>
     <div class="sl-card green-card">
       <span class="sl-clabel gr">Key Design Decision</span>
@@ -423,65 +450,74 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <p class="sl-cbody">Most edtech buries pedagogy in a teacher guide PDF. Jar Aye surfaces it as navigable screen states — the child learns <em>how to think</em>, not just answers.</p>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.3em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-    Screenshot: HOTS strategy selection screen / Adventure Quest challenge gated behind lesson completion
-  </div>
 </section>
 
 <!-- SLIDE 8: Proficiency System -->
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Making Progress Legible: 4-Tier Mastery</h2>
-  <div class="sl-grid sl-2" style="margin-bottom:.4em">
-    <div class="sl-grid" style="grid-template-columns:1fr;gap:.4em;margin:0">
-      <div class="sl-card green-card" style="flex-direction:row;gap:.7em;align-items:center">
-        <div style="font-family:'Instrument Serif',serif;font-size:1.6em;color:var(--green);min-width:48px;text-align:center">80%</div>
-        <div><div class="sl-ctitle" style="color:var(--green)">Mastery</div><p class="sl-cbody">80–100%</p></div>
-      </div>
-      <div class="sl-card" style="flex-direction:row;gap:.7em;align-items:center;background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
-        <div style="font-family:'Instrument Serif',serif;font-size:1.6em;color:var(--blue);min-width:48px;text-align:center">60%</div>
-        <div><div class="sl-ctitle" style="color:var(--blue)">Competent</div><p class="sl-cbody">60–79%</p></div>
-      </div>
-      <div class="sl-card accent-card" style="flex-direction:row;gap:.7em;align-items:center">
-        <div style="font-family:'Instrument Serif',serif;font-size:1.6em;color:var(--accent);min-width:48px;text-align:center">&lt;60%</div>
-        <div><div class="sl-ctitle">Beginning</div><p class="sl-cbody">0–59%</p></div>
-      </div>
-      <div class="sl-card red-card" style="flex-direction:row;gap:.7em;align-items:center">
-        <div style="font-family:'Instrument Serif',serif;font-size:1.6em;color:var(--red);min-width:48px;text-align:center">—</div>
-        <div><div class="sl-ctitle" style="color:var(--red)">Incomplete</div><p class="sl-cbody">&lt;10 questions attempted</p></div>
-      </div>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Making Progress Legible: 4-Tier Mastery</h2>
+  <video src="videos/jar-aye-child/proficiency.mp4" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
+</section>
+
+<!-- SLIDE 8b: Proficiency Insights -->
+<section>
+  <span class="section-label">Act 3 &mdash; Design</span>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Making Progress Legible: 4-Tier Mastery</h2>
+  <div class="sl-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:0">
+    <div class="sl-card green-card" style="align-items:center;text-align:center">
+      <div style="font-family:'Instrument Serif',serif;font-size:2em;color:var(--green)">80%</div>
+      <div class="sl-ctitle" style="color:var(--green)">Mastery</div>
+      <p class="sl-cbody">80–100%</p>
     </div>
-    <div style="display:flex;flex-direction:column;gap:.4em">
-      <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
-        <span class="sl-clabel" style="color:var(--blue)">"Incomplete" is not zero</span>
-        <p class="sl-cbody">Separates "hasn't done it yet" from "attempted and failed." Prevents a blank from appearing as a failing grade — which would be demotivating and misleading to parents.</p>
-      </div>
-      <div class="sl-card accent-card">
-        <span class="sl-clabel">24 out of 120 skills</span>
-        <p class="sl-cbody">A concrete, countable north-star metric. More meaningful than a vague percentage dial — a child can track it, a parent can evaluate it.</p>
-      </div>
-      <div class="sl-card green-card">
-        <span class="sl-clabel gr">Attempt history with timestamps</span>
-        <p class="sl-cbody">Each wrong/correct answer is colour-coded and dated. For parents: diagnostic data. For children: a record of improvement, not just a final grade.</p>
-      </div>
+    <div class="sl-card" style="align-items:center;text-align:center;background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
+      <div style="font-family:'Instrument Serif',serif;font-size:2em;color:var(--blue)">60%</div>
+      <div class="sl-ctitle" style="color:var(--blue)">Competent</div>
+      <p class="sl-cbody">60–79%</p>
+    </div>
+    <div class="sl-card accent-card" style="align-items:center;text-align:center">
+      <div style="font-family:'Instrument Serif',serif;font-size:2em;color:var(--accent)">&lt;60%</div>
+      <div class="sl-ctitle">Beginning</div>
+      <p class="sl-cbody">0–59%</p>
+    </div>
+    <div class="sl-card red-card" style="align-items:center;text-align:center">
+      <div style="font-family:'Instrument Serif',serif;font-size:2em;color:var(--red)">—</div>
+      <div class="sl-ctitle" style="color:var(--red)">Incomplete</div>
+      <p class="sl-cbody">&lt;10 questions attempted</p>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.3em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-    Screenshot: Report card — mastery tiers + attempt history timeline per topic
+  <div class="sl-grid sl-3">
+    <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
+      <span class="sl-clabel" style="color:var(--blue)">"Incomplete" is not zero</span>
+      <p class="sl-cbody">Separates "hasn't done it yet" from "attempted and failed." Prevents a blank from appearing as a failing grade — demotivating and misleading to parents.</p>
+    </div>
+    <div class="sl-card accent-card">
+      <span class="sl-clabel">24 out of 120 skills</span>
+      <p class="sl-cbody">A concrete, countable north-star metric. More meaningful than a vague percentage dial.</p>
+    </div>
+    <div class="sl-card green-card">
+      <span class="sl-clabel gr">Attempt history with timestamps</span>
+      <p class="sl-cbody">Each wrong/correct answer is colour-coded and dated. For parents: diagnostic data. For children: a record of improvement, not just a final grade.</p>
+    </div>
   </div>
+  <span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 9: Achievement Calendar & Leaderboard -->
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Engagement Without Anxiety</h2>
-  <div class="sl-grid sl-2" style="margin-bottom:.4em">
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Engagement Without Anxiety</h2>
+  <video src="videos/jar-aye-child/engagement.mp4" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
+</section>
+
+<!-- SLIDE 9b: Engagement Insights -->
+<section>
+  <span class="section-label">Act 3 &mdash; Design</span>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Engagement Without Anxiety</h2>
+  <div class="sl-grid sl-2">
     <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
       <span class="sl-clabel" style="color:var(--blue)">Calendar, not streak counter</span>
       <div class="sl-ctitle">A forgiving record of engagement</div>
-      <p class="sl-cbody">A Duolingo-style streak punishes missed days. A calendar grid accumulates without punishment — appropriate for children whose screen time is controlled by parents and interrupted by school schedules.</p>
+      <p class="sl-cbody">A Duolingo-style streak punishes missed days. A calendar grid accumulates without punishment — appropriate for children whose screen time is controlled by parents.</p>
     </div>
     <div class="sl-card green-card">
       <span class="sl-clabel gr">Achievement sharing</span>
@@ -499,17 +535,20 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       <p class="sl-cbody">Points earned for lesson completion — not correct answers alone. A struggling child who completes the lesson still earns social standing. Rewards persistence.</p>
     </div>
   </div>
-  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.3em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-    Screenshot: Achievement calendar (month grid) + grade-filtered leaderboard
-  </div>
 </section>
 
 <!-- SLIDE 10: Subscription States -->
 <section>
   <span class="section-label">Act 3 &mdash; Design</span>
-  <h2 style="font-size:1.1em;margin:.1em 0 .4em">Subscription States: Precision in Language</h2>
-  <div class="sl-grid sl-3" style="margin-bottom:.4em">
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Subscription States: Precision in Language</h2>
+  <video src="videos/jar-aye-child/subscription.mp4" autoplay loop muted playsinline style="height:48vh;max-width:100%;display:block;margin:.2em auto 0;border-radius:20px;object-fit:contain"></video>
+</section>
+
+<!-- SLIDE 10b: Subscription State Insights -->
+<section>
+  <span class="section-label">Act 3 &mdash; Design</span>
+  <h2 style="font-size:1.1em;margin:.08em 0 .3em">Subscription States: Precision in Language</h2>
+  <div class="sl-grid sl-3">
     <div class="sl-card accent-card">
       <span class="sl-icon">&#x23f3;</span>
       <div class="sl-ctitle">Trial Expired</div>
@@ -518,22 +557,19 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <div class="sl-card red-card">
       <span class="sl-icon">&#x1f512;</span>
       <div class="sl-ctitle">Subscription Expired</div>
-      <p class="sl-cbody">Term ended. Similar visible gating — expired tags on lesson cards, renewal path visible. Borrowed from e-commerce: show what you're missing, not just a dead end.</p>
+      <p class="sl-cbody">Term ended. Expired tags on lesson cards, renewal path visible. Borrowed from e-commerce: show what you're missing, not just a dead end.</p>
     </div>
     <div class="sl-card" style="background:rgba(107,163,214,.06);border-color:rgba(107,163,214,.22)">
       <span class="sl-icon">&#x2744;&#xfe0f;</span>
       <div class="sl-ctitle">Subscription Frozen</div>
-      <p class="sl-cbody">State preserved. No progress lost. "Frozen" implies temporary — a payment method failed, or a pause was requested. Semantic precision prevents parents from accidentally assuming they've lost their child's history.</p>
+      <p class="sl-cbody">State preserved. No progress lost. "Frozen" implies temporary — semantic precision prevents parents from assuming they've lost their child's history.</p>
+    </div>
+    <div class="sl-card full" style="background:rgba(107,163,214,.04);border-color:rgba(107,163,214,.18)">
+      <span class="sl-clabel" style="color:var(--blue)">Key UX Principle</span>
+      <p class="sl-cbody">"Expired" vs "Frozen" aren't just states — they're semantic contracts with the user. This kind of <strong style="color:var(--cream)">semantic precision in error states</strong> separates a polished product from one that feels cheap.</p>
     </div>
   </div>
-  <div class="sl-card full" style="max-width:760px;margin:0 auto;background:rgba(107,163,214,.04);border-color:rgba(107,163,214,.18)">
-    <span class="sl-clabel" style="color:var(--blue)">Key UX Principle</span>
-    <p class="sl-cbody">"Expired" vs "Frozen" aren't just states — they're semantic contracts with the user. Using different labels prevents a parent from assuming their child lost progress when they haven't. This kind of <strong style="color:var(--cream)">semantic precision in error states</strong> separates a polished product from one that feels cheap.</p>
-  </div>
-  <div class="media-placeholder" style="aspect-ratio:16/4;margin:.4em auto 0;max-width:760px;font-size:.52em">
-    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-    Screenshot: Locked lesson cards with expired tags + subscription renewal screen
-  </div>
+  <span class="fragment" style="display:none"></span>
 </section>
 
 <!-- SLIDE 11: Reflection -->
@@ -599,6 +635,56 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 
 </div>
 </div>
+<!-- POPUP SYSTEM -->
+<div class="popup-backdrop" id="popupBackdrop"></div>
+<div class="popup-overlay">
+<div class="popup-card ux" data-popup-slide="2">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">One Product. Three Mental Models.</div>
+  <div class="popup-desc">Designing for children, parents, and teachers simultaneously requires <strong>explicit prioritisation</strong>. Without it, every ambiguous design decision gets resolved by the loudest stakeholder rather than the primary user.</div>
+  <div class="popup-foot">Harry Hein · Jar-Aye Child</div>
+</div>
+<div class="popup-card ux" data-popup-slide="4">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">Children Don't Self-Report</div>
+  <div class="popup-desc">Observational research with children produces different — and more honest — data than interviews. What they <strong>struggle with appears in behaviour</strong>, not in words.</div>
+  <div class="popup-foot">Harry Hein · Jar-Aye Child</div>
+</div>
+<div class="popup-card biz" data-popup-slide="9">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">States Are a Subscription Signal</div>
+  <div class="popup-desc">A 5-state question component communicates to parents that the product was <strong>designed with precision</strong>. In edtech, subscription retention is built on perceived rigour — parents renew when they trust the product cares about detail.</div>
+  <div class="popup-foot">Harry Hein · Jar-Aye Child</div>
+</div>
+<div class="popup-card ux" data-popup-slide="13">
+  <div class="popup-tag ux">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    #UX Insight
+  </div>
+  <div class="popup-title">Progress Legibility Drives Retention</div>
+  <div class="popup-desc">Children need to see progress to stay motivated. Parents need to see progress to justify the subscription. A <strong>4-tier mastery system</strong> serves both audiences with the same data — one sees achievement, the other sees ROI.</div>
+  <div class="popup-foot">Harry Hein · Jar-Aye Child</div>
+</div>
+<div class="popup-card biz" data-popup-slide="17">
+  <div class="popup-tag biz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    #Business Insight
+  </div>
+  <div class="popup-title">Subscription Language Is Product Design</div>
+  <div class="popup-desc">The words 'Trial', 'Active', 'Frozen', and 'Expired' are product design decisions. <strong>Each state must feel distinct</strong> — ambiguous subscription language creates support tickets, not trust.</div>
+  <div class="popup-foot">Harry Hein · Jar-Aye Child</div>
+</div>
+</div>
+
 
 <!-- Inlined reveal.min.js -->
 <script>!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).Reveal=t()}(this,function(){"use strict";const _e=(e,t)=>{for(var i in t)e[i]=t[i];return e},Je=(e,t)=>Array.from(e.querySelectorAll(t)),Ge=(e,t,i)=>{i?e.classList.add(t):e.classList.remove(t)},Qe=e=>{if("string"==typeof e){if("null"===e)return null;if("true"===e)return!0;if("false"===e)return!1;if(e.match(/^-?[\d\.]+$/))return parseFloat(e)}return e},Ze=(e,t)=>{e.style.transform=t},s=(e,t)=>{let i=e.matches||e.matchesSelector||e.msMatchesSelector;return!(!i||!i.call(e,t))},et=(e,t)=>{if("function"==typeof e.closest)return e.closest(t);for(;e;){if(s(e,t))return e;e=e.parentNode}return null},m=e=>{let t=document.createElement("style");return t.type="text/css",e&&0<e.length&&(t.styleSheet?t.styleSheet.cssText=e:t.appendChild(document.createTextNode(e))),document.head.appendChild(t),t},tt=()=>{let t={};for(var e in location.search.replace(/[A-Z0-9]+?=([\w\.%-]*)/gi,e=>{t[e.split("=").shift()]=e.split("=").pop()}),t){var i=t[e];t[e]=Qe(unescape(i))}return void 0!==t.dependencies&&delete t.dependencies,t},d={mp4:"video/mp4",m4a:"video/mp4",ogv:"video/ogg",mpeg:"video/mpeg",webm:"video/webm"},e=navigator.userAgent,it=/(iphone|ipod|ipad|android)/gi.test(e)||"MacIntel"===navigator.platform&&1<navigator.maxTouchPoints,n=(/chrome/i.test(e)&&/edge/i.test(e),/android/gi.test(e));var t={},L=(Object.defineProperty(t,"__esModule",{value:!0}),Object.assign||function(e){for(var t=1;t<arguments.length;t++){var i,a=arguments[t];for(i in a)Object.prototype.hasOwnProperty.call(a,i)&&(e[i]=a[i])}return e}),i=t.default=function(i){var t,s,n,e,r,a,o,l,d,c,h,u,v,g,p,m,f,b,y,w,E,R,S;if(i)return t=1,s=3,n=[],e=null,r="requestAnimationFrame"in i?function(){i.cancelAnimationFrame(e),e=i.requestAnimationFrame(function(){return o(n.filter(function(e){return e.dirty&&e.active}))})}:function(){},a=function(t){return function(){n.forEach(function(e){return e.dirty=t}),r()}},o=function(e){e.filter(function(e){return!e.styleComputed}).forEach(function(e){e.styleComputed=h(e)}),e.filter(u).forEach(v);e=e.filter(c);e.forEach(d),e.forEach(function(e){v(e),l(e)}),e.forEach(g)},l=function(e){return e.dirty=0},d=function(e){e.availableWidth=e.element.parentNode.clientWidth,e.currentWidth=e.element.scrollWidth,e.previousFontSize=e.currentFontSize,e.currentFontSize=Math.min(Math.max(e.minSize,e.availableWidth/e.currentWidth*e.previousFontSize),e.maxSize),e.whiteSpace=e.multiLine&&e.currentFontSize===e.minSize?"normal":"nowrap"},c=function(e){return 2!==e.dirty||2===e.dirty&&e.element.parentNode.clientWidth!==e.availableWidth},h=function(e){var t=i.getComputedStyle(e.element,null);e.currentFontSize=parseFloat(t.getPropertyValue("font-size")),e.display=t.getPropertyValue("display"),e.whiteSpace=t.getPropertyValue("white-space")},u=function(e){var t=!1;return!e.preStyleTestCompleted&&(/inline-/.test(e.display)||(t=!0,e.display="inline-block"),"nowrap"!==e.whiteSpace&&(t=!0,e.whiteSpace="nowrap"),e.preStyleTestCompleted=!0,t)},v=function(e){e.element.style.whiteSpace=e.whiteSpace,e.element.style.display=e.display,e.element.style.fontSize=e.currentFontSize+"px"},g=function(e){e.element.dispatchEvent(new CustomEvent("fit",{detail:{oldValue:e.previousFontSize,newValue:e.currentFontSize,scaleFactor:e.currentFontSize/e.previousFontSize}}))},p=function(e,t){return function(){e.dirty=t,e.active&&r()}},m=function(t){return function(){n=n.filter(function(e){return e.element!==t.element}),t.observeMutations&&t.observer.disconnect(),t.element.style.whiteSpace=t.originalStyle.whiteSpace,t.element.style.display=t.originalStyle.display,t.element.style.fontSize=t.originalStyle.fontSize}},f=function(e){return function(){e.active||(e.active=!0,r())}},b=function(e){return function(){return e.active=!1}},y=function(e){e.observeMutations&&(e.observer=new MutationObserver(p(e,t)),e.observer.observe(e.element,e.observeMutations))},w={minSize:16,maxSize:512,multiLine:!0,observeMutations:"MutationObserver"in i&&{subtree:!0,childList:!0,characterData:!0}},E=null,R=function(){i.clearTimeout(E),E=i.setTimeout(a(2),k.observeWindowDelay)},S=["resize","orientationchange"],Object.defineProperty(k,"observeWindow",{set:function(e){var t=(e?"add":"remove")+"EventListener";S.forEach(function(e){i[t](e,R)})}}),k.observeWindow=!0,k.observeWindowDelay=100,k.fitAll=a(s),k;function A(e,t){var a=L({},w,t),t=e.map(function(e){var t,i=L({},a,{element:e,active:!0});return(t=i).originalStyle={whiteSpace:t.element.style.whiteSpace,display:t.element.style.display,fontSize:t.element.style.fontSize},y(t),t.newbie=!0,t.dirty=!0,n.push(t),{element:e,fit:p(i,s),unfreeze:f(i),freeze:b(i),unsubscribe:m(i)}});return r(),t}function k(e){var t,i=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{};return"string"==typeof e?A((t=document.querySelectorAll(e),[].slice.call(t)),i):A([e],i)[0]}}("undefined"==typeof window?null:window);class at{constructor(e){this.Reveal=e,this.startEmbeddedIframe=this.startEmbeddedIframe.bind(this)}shouldPreload(e){let t=this.Reveal.getConfig().preloadIframes;return t="boolean"!=typeof t?e.hasAttribute("data-preload"):t}load(r,o={}){r.style.display=this.Reveal.getConfig().display,Je(r,"img[data-src], video[data-src], audio[data-src], iframe[data-src]").forEach(e=>{"IFRAME"===e.tagName&&!this.shouldPreload(e)||(e.setAttribute("src",e.getAttribute("data-src")),e.setAttribute("data-lazy-loaded",""),e.removeAttribute("data-src"))}),Je(r,"video, audio").forEach(e=>{let t=0;Je(e,"source[data-src]").forEach(e=>{e.setAttribute("src",e.getAttribute("data-src")),e.removeAttribute("data-src"),e.setAttribute("data-lazy-loaded",""),t+=1}),it&&"VIDEO"===e.tagName&&e.setAttribute("playsinline",""),0<t&&e.load()});let l=r.slideBackgroundElement;if(l){l.style.display="block";let n=r.slideBackgroundContentElement,i=r.getAttribute("data-background-iframe");if(!1===l.hasAttribute("data-loaded")){l.setAttribute("data-loaded","true");let e=r.getAttribute("data-background-image"),t=r.getAttribute("data-background-video"),a=r.hasAttribute("data-background-video-loop"),s=r.hasAttribute("data-background-video-muted");if(e)/^data:/.test(e.trim())?n.style.backgroundImage=`url(${e.trim()})`:n.style.backgroundImage=e.split(",").map(e=>`url(${((e="")=>encodeURI(e).replace(/%5B/g,"[").replace(/%5D/g,"]").replace(/[!'()*]/g,e=>"%"+e.charCodeAt(0).toString(16).toUpperCase()))(decodeURI(e.trim()))})`).join(",");else if(t&&!this.Reveal.isSpeakerNotes()){let i=document.createElement("video");a&&i.setAttribute("loop",""),s&&(i.muted=!0),it&&(i.muted=!0,i.setAttribute("playsinline","")),t.split(",").forEach(e=>{[t=""]=[e];var t=d[t.split(".").pop()];i.innerHTML+=t?`<source src="${e}" type="${t}">`:`<source src="${e}">`}),n.appendChild(i)}else if(i&&!0!==o.excludeIframes){let e=document.createElement("iframe");e.setAttribute("allowfullscreen",""),e.setAttribute("mozallowfullscreen",""),e.setAttribute("webkitallowfullscreen",""),e.setAttribute("allow","autoplay"),e.setAttribute("data-src",i),e.style.width="100%",e.style.height="100%",e.style.maxHeight="100%",e.style.maxWidth="100%",n.appendChild(e)}}let e=n.querySelector("iframe[data-src]");e&&this.shouldPreload(l)&&!/autoplay=(1|true|yes)/gi.test(i)&&e.getAttribute("src")!==i&&e.setAttribute("src",i)}this.layout(r)}layout(e){Array.from(e.querySelectorAll(".r-fit-text")).forEach(e=>{i(e,{minSize:24,maxSize:.8*this.Reveal.getConfig().height,observeMutations:!1,observeWindow:!1})})}unload(e){e.style.display="none";let t=this.Reveal.getSlideBackground(e);t&&(t.style.display="none",Je(t,"iframe[src]").forEach(e=>{e.removeAttribute("src")})),Je(e,"video[data-lazy-loaded][src], audio[data-lazy-loaded][src], iframe[data-lazy-loaded][src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")}),Je(e,"video[data-lazy-loaded] source[src], audio source[src]").forEach(e=>{e.setAttribute("data-src",e.getAttribute("src")),e.removeAttribute("src")})}formatEmbeddedContent(){var e=(i,e,a)=>{Je(this.Reveal.getSlidesElement(),"iframe["+i+'*="'+e+'"]').forEach(e=>{let t=e.getAttribute(i);t&&-1===t.indexOf(a)&&e.setAttribute(i,t+(/\?/.test(t)?"&":"?")+a)})};e("src","youtube.com/embed/","enablejsapi=1"),e("data-src","youtube.com/embed/","enablejsapi=1"),e("src","player.vimeo.com/","api=1"),e("data-src","player.vimeo.com/","api=1")}startEmbeddedContent(e){e&&!this.Reveal.isSpeakerNotes()&&(Je(e,'img[src$=".gif"]').forEach(e=>{e.setAttribute("src",e.getAttribute("src"))}),Je(e,"video, audio").forEach(t=>{if(!et(t,".fragment")||et(t,".fragment.visible")){let e=this.Reveal.getConfig().autoPlayMedia;if((e="boolean"!=typeof e?t.hasAttribute("data-autoplay")||!!et(t,".slide-background"):e)&&"function"==typeof t.play)if(1<t.readyState)this.startEmbeddedMedia({target:t});else if(it){let e=t.play();e&&"function"==typeof e.catch&&!1===t.controls&&e.catch(()=>{t.controls=!0,t.addEventListener("play",()=>{t.controls=!1})})}else t.removeEventListener("loadeddata",this.startEmbeddedMedia),t.addEventListener("loadeddata",this.startEmbeddedMedia)}}),Je(e,"iframe[src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||this.startEmbeddedIframe({target:e})}),Je(e,"iframe[data-src]").forEach(e=>{et(e,".fragment")&&!et(e,".fragment.visible")||e.getAttribute("src")!==e.getAttribute("data-src")&&(e.removeEventListener("load",this.startEmbeddedIframe),e.addEventListener("load",this.startEmbeddedIframe),e.setAttribute("src",e.getAttribute("data-src")))}))}startEmbeddedMedia(e){var t=!!et(e.target,"html"),i=!!et(e.target,".present");t&&i&&(e.target.currentTime=0,e.target.play()),e.target.removeEventListener("loadeddata",this.startEmbeddedMedia)}startEmbeddedIframe(e){let t=e.target;if(t&&t.contentWindow){var i=!!et(e.target,"html"),e=!!et(e.target,".present");if(i&&e){let e=this.Reveal.getConfig().autoPlayMedia;"boolean"!=typeof e&&(e=t.hasAttribute("data-autoplay")||!!et(t,".slide-background")),/youtube\.com\/embed\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}',"*"):/player\.vimeo\.com\//.test(t.getAttribute("src"))&&e?t.contentWindow.postMessage('{"method":"play"}',"*"):t.contentWindow.postMessage("slide:start","*")}}}stopEmbeddedContent(e,t={}){t=_e({unloadIframes:!0},t),e&&e.parentNode&&(Je(e,"video, audio").forEach(e=>{e.hasAttribute("data-ignore")||"function"!=typeof e.pause||(e.setAttribute("data-paused-by-reveal",""),e.pause())}),Je(e,"iframe").forEach(e=>{e.contentWindow&&e.contentWindow.postMessage("slide:stop","*"),e.removeEventListener("load",this.startEmbeddedIframe)}),Je(e,'iframe[src*="youtube.com/embed/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}',"*")}),Je(e,'iframe[src*="player.vimeo.com/"]').forEach(e=>{!e.hasAttribute("data-ignore")&&e.contentWindow&&"function"==typeof e.contentWindow.postMessage&&e.contentWindow.postMessage('{"method":"pause"}',"*")}),!0===t.unloadIframes&&Je(e,"iframe[data-src]").forEach(e=>{e.setAttribute("src","about:blank"),e.removeAttribute("src")}))}}class st{constructor(e){this.Reveal=e}render(){this.element=document.createElement("div"),this.element.className="slide-number",this.Reveal.getRevealElement().appendChild(this.element)}configure(e,t){let i="none";e.slideNumber&&!this.Reveal.isPrintingPDF()&&("all"===e.showSlideNumber||"speaker"===e.showSlideNumber&&this.Reveal.isSpeakerNotes())&&(i="block"),this.element.style.display=i}update(){this.Reveal.getConfig().slideNumber&&this.element&&(this.element.innerHTML=this.getSlideNumber())}getSlideNumber(e=this.Reveal.getCurrentSlide()){let t,i=this.Reveal.getConfig(),a="h.v";if("function"==typeof i.slideNumber)t=i.slideNumber(e);else{"string"==typeof i.slideNumber&&(a=i.slideNumber),/c/.test(a)||1!==this.Reveal.getHorizontalSlides().length||(a="c");var s=e&&"uncounted"===e.dataset.visibility?0:1;switch(t=[],a){case"c":t.push(this.Reveal.getSlidePastCount(e)+s);break;case"c/t":t.push(this.Reveal.getSlidePastCount(e)+s,"/",this.Reveal.getTotalSlides());break;default:var n=this.Reveal.getIndices(e),r=(t.push(n.h+s),"h/v"===a?"/":".");this.Reveal.isVerticalSlide(e)&&t.push(r,n.v+1)}}var o="#"+this.Reveal.location.getHash(e);return this.formatNumber(t[0],t[1],t[2],o)}formatNumber(e,t,i,a="#"+this.Reveal.location.getHash()){return"number"!=typeof i||isNaN(i)?`<a href="${a}">
@@ -634,8 +720,32 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 Reveal.initialize({
   hash:true, transition:'fade', transitionSpeed:'slow',
   width:1100, height:700, margin:0.08,
-  controlsLayout:'edges', controls:false, progress:true, slideNumber:true
+  controlsLayout:'edges', controls:false, progress:true, slideNumber:true,
+  keyboard:true, touch:true, mouseWheel:true
 });
+
+// Tap / click to advance — pointerup works for both mouse and touch
+(function(){
+  function navBlocked(e){
+    var el=e.target;
+    while(el&&el.nodeType===1){
+      var tag=(el.tagName||'').toLowerCase();
+      if(tag==='a'||tag==='button'||tag==='input'||tag==='select'||tag==='textarea') return true;
+      if(el.hasAttribute&&el.hasAttribute('onclick')) return true;
+      var c=el.className||'';
+      if(typeof c==='string'&&(c.indexOf('nav-hint')>=0||c.indexOf('back-link')>=0||c.indexOf('ui-fullscreen')>=0||c.indexOf('expand-btn')>=0)) return true;
+      el=el.parentNode;
+    }
+    return false;
+  }
+  var _x=0,_y=0;
+  document.addEventListener('pointerdown',function(e){_x=e.clientX;_y=e.clientY;},true);
+  document.addEventListener('pointerup',function(e){
+    if(navBlocked(e)) return;
+    if(Math.abs(e.clientX-_x)+Math.abs(e.clientY-_y)>20) return;
+    Reveal.next();
+  },true);
+})();
 </script>
 
 <!-- Expand Button & Fullscreen Overlay -->
