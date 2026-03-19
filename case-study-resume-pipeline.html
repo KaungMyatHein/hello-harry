@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RKYXJ7H349"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RKYXJ7H349');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Case Study — AI Job Analyzer &amp; Resume Pipeline | Harry Hein</title>
@@ -377,7 +385,24 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
       </div>
     </div>
   </div>
-  <p style="font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);letter-spacing:.04em;text-align:center;margin-top:.6em;line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto">These findings directly shaped three design decisions: <span style="color:var(--cream)">no full AI rewrite</span> (8/12 rejected AI outputs for inauthenticity), <span style="color:var(--cream)">base resume first</span> (10/12 had no structured starting point), and <span style="color:var(--cream)">gap analysis before suggestions</span> (11/12 couldn&rsquo;t articulate what was missing).</p>
+  <p class="sl-narr" style="margin-top:.6em">These findings directly shaped three design decisions:</p>
+  <div class="sl-grid sl-3" style="margin-top:.4em">
+    <div class="sl-card center" style="padding:.5em .7em">
+      <div class="sl-cnum acc">8/12</div>
+      <span class="sl-ctitle">No Full AI Rewrite</span>
+      <p class="sl-cbody">Rejected AI outputs for inauthenticity</p>
+    </div>
+    <div class="sl-card center" style="padding:.5em .7em">
+      <div class="sl-cnum acc">10/12</div>
+      <span class="sl-ctitle">Base Resume First</span>
+      <p class="sl-cbody">Had no structured starting point</p>
+    </div>
+    <div class="sl-card center" style="padding:.5em .7em">
+      <div class="sl-cnum acc">11/12</div>
+      <span class="sl-ctitle">Gap Analysis First</span>
+      <p class="sl-cbody">Couldn&rsquo;t articulate what was missing</p>
+    </div>
+  </div>
 </section>
 
 <!-- SLIDE: Alternatives Considered -->
@@ -578,7 +603,17 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
     <span>Keyboard-navigable cards</span><span style="color:var(--cream-faint)">&bull;</span>
     <span>Score text alternatives</span>
   </div>
-  <p style="font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);letter-spacing:.04em;text-align:left;margin-top:.7em;line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto"><span style="color:var(--accent);font-weight:700">What we got wrong first:</span> Our first version showed all suggestions simultaneously &mdash; users felt overwhelmed and couldn&rsquo;t prioritize. We added impact ranking so the highest-leverage changes surface first. Early testers also found the gap analysis too blunt &mdash; we softened the language from &ldquo;missing&rdquo; to &ldquo;opportunity to strengthen&rdquo; after 3 out of 5 usability participants said the original felt discouraging.</p>
+  <div class="sl-grid sl-2" style="margin-top:.7em">
+    <div class="sl-card accent-card" style="padding:.6em .8em">
+      <span class="sl-clabel">⚡ What We Got Wrong First</span>
+      <p class="sl-cbody">First version showed all suggestions simultaneously &mdash; users felt overwhelmed. We added impact ranking so the highest-leverage changes surface first.</p>
+    </div>
+    <div class="sl-card center" style="padding:.6em .8em">
+      <div class="sl-cnum acc">3/5</div>
+      <span class="sl-ctitle">Language Too Blunt</span>
+      <p class="sl-cbody">Usability participants said the gap analysis felt discouraging. Softened from &ldquo;missing&rdquo; to &ldquo;opportunity to strengthen.&rdquo;</p>
+    </div>
+  </div>
   <p style="font-family:'Space Mono',monospace;font-size:.42em;color:var(--cream-dim);letter-spacing:.04em;text-align:left;margin-top:.5em;line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto"><span style="color:var(--accent);font-weight:700">Designed for edge cases:</span> Unstructured JDs trigger a manual-input fallback, low-confidence analysis flags uncertain matches for human review, and zero-gap results surface a &ldquo;strong match&rdquo; confirmation rather than an empty screen.</p>
 </section>
 
