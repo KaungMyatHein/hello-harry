@@ -568,6 +568,15 @@ Reveal.initialize({
   keyboard:true, touch:true, mouseWheel:true
 });
 
+// GA: track slide views
+Reveal.on('slidechanged', function(e) {
+  gtag('event', 'slide_view', {
+    case_study: document.title,
+    slide_number: e.indexh + 1,
+    slide_heading: (e.currentSlide.querySelector('h2') || {}).textContent || 'Slide ' + (e.indexh + 1)
+  });
+});
+
 // Tap / click to advance — pointerup works for both mouse and touch
 (function(){
   function navBlocked(e){
