@@ -282,6 +282,8 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   border-color:rgba(240,230,211,0.22);
   transform:translateY(-5px);
 }
+.project[data-href]{cursor:none}
+.project[data-href] .proj-thumb,.project[data-href] .proj-info{cursor:none}
 
 .project.featured{
   border-color:rgba(200,169,110,0.3);
@@ -1858,6 +1860,25 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 
   // Apply default on load
   applyFilter('recommended');
+})();
+
+// ── Clickable project cards ──
+(function(){
+  document.querySelectorAll('.project[data-project]').forEach(function(card){
+    var link = card.querySelector('.case-study-link');
+    if(!link) return;
+    card.setAttribute('data-href', link.href);
+    card.addEventListener('click', function(e){
+      // Don't hijack clicks on interactive elements inside the card
+      var el = e.target;
+      while(el && el !== card){
+        var tag = (el.tagName||'').toLowerCase();
+        if(tag==='a'||tag==='button'||el.hasAttribute('data-toggle')) return;
+        el = el.parentNode;
+      }
+      window.location.href = link.href;
+    });
+  });
 })();
 </script>
 
