@@ -927,5 +927,60 @@ function expandFromBtn(btn){
   <div class="orient-title">Rotate for Best Experience</div>
   <div class="orient-sub">This case study is optimized for landscape viewing. Please rotate your device.</div>
 </div>
+
+<!-- GA Key Events -->
+<script>
+(function(){
+  var title = document.title;
+  var totalSlides = document.querySelectorAll('.reveal section:not(.stack)').length || 1;
+  var maxReached = 0;
+  var completionFired = false;
+
+  // 1. Track furthest slide reached + completion
+  Reveal.on('slidechanged', function(e){
+    var n = e.indexh + 1;
+    if(n > maxReached) maxReached = n;
+    if(!completionFired && maxReached >= totalSlides - 1){
+      completionFired = true;
+      gtag('event', 'case_study_complete', {
+        case_study: title
+      });
+    }
+  });
+
+  // 2. Back to portfolio click
+  var backLink = document.querySelector('.back-link');
+  if(backLink) backLink.addEventListener('click', function(){
+    gtag('event', 'back_to_portfolio', {
+      case_study: title,
+      slides_viewed: maxReached
+    });
+  });
+
+  // 3. Next case study navigation
+  document.querySelectorAll('.cs-nav-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      gtag('event', 'next_case_study', {
+        from: title,
+        to: card.href
+      });
+    });
+  });
+
+  // 4. Time spent — fire at 30s, 60s, 120s
+  var timeFired = {};
+  [30, 60, 120].forEach(function(sec){
+    setTimeout(function(){
+      if(!timeFired[sec]){
+        timeFired[sec] = true;
+        gtag('event', 'time_on_page', {
+          case_study: title,
+          seconds: sec
+        });
+      }
+    }, sec * 1000);
+  });
+})();
+</script>
 </body>
 </html>
