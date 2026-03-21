@@ -832,7 +832,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
       </h1>
       <p class="hero-tagline">I find the friction, design it out, then check if it actually worked.</p>
       <div class="hb-profile-wrap">
-        <img src="images/profile.png" alt="Harry Hein" class="hb-profile-img">
+        <img src="images/profile.png" alt="Harry Hein" class="hb-profile-img" loading="eager">
       </div>
     </div>
 
@@ -908,7 +908,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   <!-- ── Project 01 — Golden Paths ── -->
   <div class="project featured sr" data-project data-filters="recommended ai saas">
     <div class="proj-thumb">
-      <video src="images/AI%20Test/Showing%20Results.mov" autoplay loop muted playsinline alt="AI User Testing & Golden Paths"></video>
+      <video data-src="images/AI%20Test/Showing%20Results.mp4" autoplay loop muted playsinline preload="none" alt="AI User Testing & Golden Paths"></video>
     </div>
     <div class="proj-info">
       <div class="proj-recommend">Recommended</div>
@@ -972,7 +972,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   <!-- ── Project 02 — Resume Pipeline ── -->
   <div class="project featured sr" data-project data-filters="recommended ai saas">
     <div class="proj-thumb">
-      <video src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mov" autoplay loop muted playsinline alt="AI Job Analyzer & Tailored Resume Pipeline"></video>
+      <video data-src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mp4" autoplay loop muted playsinline preload="none" alt="AI Job Analyzer & Tailored Resume Pipeline"></video>
     </div>
     <div class="proj-info">
       <div class="proj-recommend">Recommended</div>
@@ -1036,7 +1036,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   <!-- ── Project 03 — Retail ── -->
   <div class="project featured sr" data-project data-filters="recommended saas">
     <div class="proj-thumb">
-      <img src="images/coverphoto/1.svg" alt="From Feedback to 427% ROI">
+      <img src="images/coverphoto/1.svg" alt="From Feedback to 427% ROI" loading="lazy">
       <div class="thumb-stat">427%<span>ROI Achieved</span></div>
     </div>
     <div class="proj-info">
@@ -1100,7 +1100,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   <!-- ── Project 04 — Dashboard ── -->
   <div class="project featured sr" data-project data-filters="saas">
     <div class="proj-thumb">
-      <img src="images/coverphoto/2.svg" alt="Saved 0.5 Man-Hours Per Day">
+      <img src="images/coverphoto/2.svg" alt="Saved 0.5 Man-Hours Per Day" loading="lazy">
       <div class="thumb-stat">0.5h<span>saved daily</span></div>
     </div>
     <div class="proj-info">
@@ -1241,7 +1241,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   <!-- ── Project 06 — Tokens ── -->
   <div class="project sr" data-project data-filters="design-system">
     <div class="proj-thumb">
-      <img src="images/coverphoto/4.svg" alt="Design Tokens Generator">
+      <img src="images/coverphoto/4.svg" alt="Design Tokens Generator" loading="lazy">
       <div class="thumb-stat">50%<span>time cut</span></div>
     </div>
     <div class="proj-info">
@@ -1304,7 +1304,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   <!-- ── Project 07 — Jar Aye Child App ── -->
   <div class="project sr" data-project data-filters="mobile">
     <div class="proj-thumb">
-      <video src="images/Jar%20Aye%20Child/HOTS.mov" autoplay loop muted playsinline alt="Jar Aye Child App"></video>
+      <video data-src="images/Jar%20Aye%20Child/HOTS.mp4" autoplay loop muted playsinline preload="none" alt="Jar Aye Child App"></video>
       <div class="thumb-stat">5<span>HOTS strategies</span></div>
     </div>
     <div class="proj-info">
@@ -1369,7 +1369,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   <!-- ── Project 08 — Jar Aye Parent App ── -->
   <div class="project sr" data-project data-filters="mobile">
     <div class="proj-thumb">
-      <video src="images/Jar%20Aye%20Parent/Report.mov" autoplay loop muted playsinline alt="Jar Aye Parent App"></video>
+      <video data-src="images/Jar%20Aye%20Parent/Report.mp4" autoplay loop muted playsinline preload="none" alt="Jar Aye Parent App"></video>
       <div class="thumb-stat">4<span>mastery tiers</span></div>
     </div>
     <div class="proj-info">
@@ -1748,6 +1748,26 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   <span>&copy; 2026 Harry Hein</span>
   <span>Designed & built with intention</span>
 </footer>
+
+<!-- Lazy video loader — only fetch when near viewport -->
+<script>
+(function(){
+  var vids = document.querySelectorAll('video[data-src]');
+  if(!vids.length) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var v = e.target;
+        v.src = v.dataset.src;
+        v.removeAttribute('data-src');
+        v.load();
+        obs.unobserve(v);
+      }
+    });
+  }, {rootMargin:'200px'});
+  vids.forEach(function(v){ obs.observe(v); });
+})();
+</script>
 
 <!-- Shared atom behaviors: cursor, scroll-reveal, smooth-scroll, project toggle, parallax -->
 <script src="js/atoms.js"></script>
