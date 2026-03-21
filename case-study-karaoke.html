@@ -197,6 +197,14 @@ body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;o
 /* Fix: prevent slide overlap - non-present sections stay invisible */
 .reveal .slides > section:not(.present) { opacity: 0 !important; pointer-events: none !important; }
 .reveal .slides > section.present { opacity: 1 !important; }
+
+/* ── Orientation prompt ── */
+.orient-prompt{display:none;position:fixed;inset:0;z-index:9999;background:var(--dark,#0a0a0a);flex-direction:column;align-items:center;justify-content:center;gap:1em;color:var(--cream,#f0e6d3);font-family:'Syne',sans-serif;text-align:center;padding:2em}
+.orient-prompt .orient-icon{font-size:3em;animation:orientNudge 1.5s ease-in-out infinite}
+.orient-prompt .orient-title{font-size:1.2em;font-weight:700}
+.orient-prompt .orient-sub{font-size:.85em;color:rgba(240,230,211,.55);max-width:260px;line-height:1.5}
+@keyframes orientNudge{0%,100%{transform:rotate(0deg)}25%{transform:rotate(90deg)}50%{transform:rotate(90deg)}75%{transform:rotate(0deg)}}
+@media(max-width:768px) and (orientation:portrait){.orient-prompt{display:flex}}
 </style>
 </head>
 <body>
@@ -584,23 +592,52 @@ Reveal.on('slidechanged', function(e) {
   });
 });
 
-// Tap / click to advance — pointerup works for both mouse and touch
+// Orientation change: re-layout + track
+window.addEventListener('orientationchange', function() {
+  setTimeout(function(){ Reveal.layout(); }, 350);
+});
+window.addEventListener('resize', function() {
+  clearTimeout(window._rlTimer);
+  window._rlTimer = setTimeout(function(){ Reveal.layout(); }, 200);
+});
+
+
+// Tap / click to advance — touch + pointer for cross-device support
 (function(){
   function navBlocked(e){
     var el=e.target;
     while(el&&el.nodeType===1){
       var tag=(el.tagName||'').toLowerCase();
-      if(tag==='a'||tag==='button'||tag==='input'||tag==='select'||tag==='textarea') return true;
-      if(el.hasAttribute&&el.hasAttribute('onclick')) return true;
+      if(tag==='a'||tag==='button'||tag==='input'||tag==='select'||tag==='textarea'||tag==='video') return true;
+      if(el.hasAttribute&&(el.hasAttribute('onclick')||el.hasAttribute('data-no-tap'))) return true;
       var c=el.className||'';
-      if(typeof c==='string'&&(c.indexOf('nav-hint')>=0||c.indexOf('back-link')>=0||c.indexOf('ui-fullscreen')>=0||c.indexOf('expand-btn')>=0)) return true;
+      if(typeof c==='string'&&(c.indexOf('nav-hint')>=0||c.indexOf('back-link')>=0||c.indexOf('ui-fullscreen')>=0||c.indexOf('expand-btn')>=0||c.indexOf('orient-prompt')>=0)) return true;
       el=el.parentNode;
     }
     return false;
   }
-  var _x=0,_y=0;
-  document.addEventListener('pointerdown',function(e){_x=e.clientX;_y=e.clientY;},true);
+  var _x=0,_y=0,_handled=false;
+
+  // Touch events (mobile)
+  document.addEventListener('touchstart',function(e){
+    if(e.touches.length===1){_x=e.touches[0].clientX;_y=e.touches[0].clientY;_handled=false;}
+  },{passive:true,capture:true});
+  document.addEventListener('touchend',function(e){
+    if(_handled) return; _handled=true;
+    var t=e.changedTouches[0];
+    if(!t) return;
+    if(navBlocked(e)) return;
+    if(Math.abs(t.clientX-_x)+Math.abs(t.clientY-_y)>20) return;
+    Reveal.next();
+  },{passive:true,capture:true});
+
+  // Pointer events (desktop fallback)
+  document.addEventListener('pointerdown',function(e){
+    if(e.pointerType==='touch') return;
+    _x=e.clientX;_y=e.clientY;
+  },true);
   document.addEventListener('pointerup',function(e){
+    if(e.pointerType==='touch') return;
     if(navBlocked(e)) return;
     if(Math.abs(e.clientX-_x)+Math.abs(e.clientY-_y)>20) return;
     Reveal.next();
@@ -677,5 +714,11 @@ function expandFromBtn(btn){
 </div>
 
 <script src="js/marker-drag.js"></script>
+
+<div class="orient-prompt" id="orientPrompt">
+  <div class="orient-icon">📱</div>
+  <div class="orient-title">Rotate for Best Experience</div>
+  <div class="orient-sub">This case study is optimized for landscape viewing. Please rotate your device.</div>
+</div>
 </body>
 </html>
