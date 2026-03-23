@@ -36,6 +36,60 @@
 .reveal .slides > section:not(.present) { opacity: 0 !important; pointer-events: none !important; }
 .reveal .slides > section.present { opacity: 1 !important; }
 
+
+/* ── Mobile Landscape Responsive ── */
+@media(max-width:1024px) and (orientation:landscape){
+  .reveal section h2{font-size:1.3em}
+  .reveal section h3{font-size:1em}
+  .sl-ctitle{font-size:1em}
+  .sl-cbody{font-size:.82em;line-height:1.5}
+  .sl-clabel{font-size:.6em}
+  .sl-cnum{font-size:2em}
+  .sl-narr{font-size:.7em}
+  .section-label{font-size:.72em}
+  .sl-grid.sl-3,.sl-grid.sl-4{grid-template-columns:1fr 1fr}
+  .sl-card{padding:.8em 1em;border-radius:14px}
+  .cover-bento{grid-template-columns:1fr 1fr;gap:8px}
+  .cb-main{padding:1.2em 1.4em}
+  .cb-main h1{font-size:1.2em}
+  .cb-main p{font-size:.8em}
+  .cb-metric{padding:.7em .6em}
+  .cb-metric .val{font-size:1.6em}
+  .cb-metric .lbl{font-size:.55em}
+  .bento-grid{grid-template-columns:1fr;gap:.5em}
+  .bento-card{padding:.7em .9em;border-radius:14px}
+  .bento-card .lc-title{font-size:1em}
+  .bento-card .lc-desc{font-size:.78em}
+  .bento-card .lc-num{font-size:.52em}
+  .bento-card.span-tall{grid-row:span 1}
+  .step-grid{grid-template-columns:1fr}
+  .step-box p{font-size:.9em}
+  .step-box .step-num{font-size:.65em}
+  .flow-step{font-size:.85em}
+  .step-log{font-size:.78em}
+  .tool-tag{font-size:.65em;padding:.35em .7em}
+  .ba-grid{gap:.4em}
+  .ba-card .ba-label{font-size:.52em}
+  .ba-card .ba-val{font-size:.78em}
+  .insight{font-size:.82em}
+  .insight .tag{font-size:.85em}
+  .insight .desc{font-size:.82em}
+  .back-link{font-size:12px!important;padding:10px 18px!important}
+}
+@media(max-width:736px) and (orientation:landscape){
+  .reveal section h2{font-size:1.5em}
+  .sl-ctitle{font-size:1.15em}
+  .sl-cbody{font-size:.95em}
+  .sl-clabel{font-size:.7em}
+  .sl-cnum{font-size:2.2em}
+  .sl-narr{font-size:.8em}
+  .section-label{font-size:.82em}
+  .sl-grid.sl-2,.sl-grid.sl-3,.sl-grid.sl-4{grid-template-columns:1fr}
+  .cover-bento{grid-template-columns:1fr}
+  .bento-card .lc-title{font-size:1.15em}
+  .bento-card .lc-desc{font-size:.9em}
+}
+
 /* ── Orientation prompt ── */
 .orient-prompt{display:none;position:fixed;inset:0;z-index:9999;background:var(--dark,#0a0a0a);flex-direction:column;align-items:center;justify-content:center;gap:1em;color:var(--cream,#f0e6d3);font-family:'Syne',sans-serif;text-align:center;padding:2em}
 .orient-prompt .orient-icon{font-size:3em;animation:orientNudge 1.5s ease-in-out infinite}
