@@ -377,9 +377,20 @@ a,button{cursor:none;}
   opacity:0;transition:opacity 0.2s;pointer-events:none;
 }
 .cs-img:hover::after,.cs-split-media:hover::after,.cs-video:hover::after{opacity:1;}
+/* ── Page Loading ── */
+.cs-loader{position:fixed;inset:0;z-index:9998;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity 0.5s,visibility 0.5s;}
+.cs-loader.done{opacity:0;visibility:hidden;pointer-events:none;}
+.cs-loader-bar{width:120px;height:2px;background:var(--dark-3);border-radius:2px;overflow:hidden;}
+.cs-loader-bar::after{content:"";display:block;width:40%;height:100%;background:var(--accent);border-radius:2px;animation:loaderSlide 1s ease-in-out infinite;}
+.cs-loader-text{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream-dim);}
+@keyframes loaderSlide{0%{transform:translateX(-100%)}50%{transform:translateX(200%)}100%{transform:translateX(-100%)}}
 </style>
 </head>
 <body>
+<div class="cs-loader" id="pageLoader">
+  <div class="cs-loader-bar"></div>
+  <div class="cs-loader-text">Loading</div>
+</div>
 
 <!-- Back -->
 <a href="portfolio.html#work" class="cs-back">
@@ -646,6 +657,7 @@ a,button{cursor:none;}
 <div class="cursor" id="cursor"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <script src="js/atoms.js"></script>
+<script>window.addEventListener("load",function(){var l=document.getElementById("pageLoader");if(l)setTimeout(function(){l.classList.add("done")},300);});</script>
 <script src="js/lightbox.js"></script>
 <!-- CHAT -->
 <button class="chat-trigger" id="chatTrigger" data-context="design-system">
