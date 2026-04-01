@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Roboto:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/atoms.css">
+<link rel="stylesheet" href="css/chat.css">
 <style>
 /* ── Page Layout ── */
 html{scroll-snap-type:y mandatory;}
@@ -51,10 +52,10 @@ a,button{cursor:none;}
   width:100%;
 }
 .cs-bento{
-  background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,rgba(255,255,255,0.02) 100%);
-  backdrop-filter:blur(8px) saturate(1.5);-webkit-backdrop-filter:blur(8px) saturate(1.5);
-  border:1px solid rgba(255,255,255,0.08);
-  border-top-color:rgba(255,255,255,0.15);
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-top-color:var(--glass-border-top);
   border-left-color:rgba(255,255,255,0.1);
   border-radius:20px;
   padding:28px;
@@ -77,14 +78,14 @@ a,button{cursor:none;}
 }
 .cs-back{
   position:fixed;top:32px;left:32px;z-index:100;
-  font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
   color:var(--cream);
   display:flex;align-items:center;gap:8px;
   padding:10px 18px;border-radius:14px;
-  background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,rgba(255,255,255,0.02) 100%);
-  backdrop-filter:blur(8px) saturate(1.5);-webkit-backdrop-filter:blur(8px) saturate(1.5);
-  border:1px solid rgba(255,255,255,0.08);
-  border-top-color:rgba(255,255,255,0.15);border-left-color:rgba(255,255,255,0.1);
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-top-color:var(--glass-border-top);border-left-color:rgba(255,255,255,0.1);
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.1),inset 1px 0 0 rgba(255,255,255,0.05),0 4px 24px rgba(0,0,0,0.2);
   transition:all 0.3s;
 }
@@ -92,7 +93,7 @@ a,button{cursor:none;}
 .cs-back svg{width:14px;height:14px;stroke:currentColor;}
 
 .cs-label{
-  font-family:var(--font-mono);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:14px;letter-spacing:0.15em;text-transform:uppercase;
   color:var(--accent);margin-bottom:24px;
   display:flex;align-items:center;gap:10px;
 }
@@ -106,7 +107,7 @@ a,button{cursor:none;}
 }
 
 .cs-subtitle{
-  font-size:17px;color:rgba(240,230,211,0.6);line-height:1.7;
+  font-size:19px;color:rgba(240,230,211,0.6);line-height:1.7;
   max-width:600px;
 }
 
@@ -118,10 +119,10 @@ a,button{cursor:none;}
 }
 .cs-meta-item{}
 .cs-meta-label{
-  font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
   color:var(--accent);margin-bottom:6px;
 }
-.cs-meta-val{font-size:15px;color:var(--cream);line-height:1.4;}
+.cs-meta-val{font-size:17px;color:var(--cream);line-height:1.4;}
 
 /* ── Metrics (inside glass) ── */
 .cs-metrics{
@@ -131,11 +132,11 @@ a,button{cursor:none;}
 }
 .cs-metric{}
 .cs-metric-num{
-  font-family:var(--font-serif);font-size:42px;font-weight:400;
+  font-family:var(--font-serif);font-size:44px;font-weight:400;
   color:var(--accent);letter-spacing:-0.03em;line-height:1;
 }
 .cs-metric-label{
-  font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
   color:var(--cream-dim);margin-top:8px;
 }
 
@@ -148,7 +149,7 @@ a,button{cursor:none;}
   scroll-snap-align:start;
 }
 .cs-section-num{
-  font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:13px;letter-spacing:0.15em;text-transform:uppercase;
   color:var(--accent);margin-bottom:12px;
   display:flex;align-items:center;gap:8px;
 }
@@ -162,34 +163,29 @@ a,button{cursor:none;}
 }
 
 .cs-p{
-  font-size:16px;color:var(--cream-dim);line-height:1.8;
+  font-size:18px;color:var(--cream-dim);line-height:1.8;
   margin-bottom:16px;max-width:680px;
 }
 .cs-p:last-child{margin-bottom:0;}
 
-.cs-hook{
-  font-family:var(--font-serif);
-  font-size:20px;font-weight:400;font-style:italic;
-  color:var(--cream);line-height:1.5;
-  margin-top:32px;padding-left:20px;
-  border-left:2px solid var(--accent);
-}
+.cs-hook{margin:32px 0;padding:16px 20px;border-radius:12px;background:var(--dark-2);border-left:3px solid var(--accent);font-size:18px;color:var(--cream);line-height:1.7;font-style:italic;}
+.cs-hook::before{content:"\1F9E0  ";font-style:normal;}
 
-/* ── Quote ── */
-.cs-quote{
-  margin:40px 0;padding:32px 0 32px 24px;
-  border-left:3px solid var(--accent);
-}
-.cs-quote p{
-  font-family:var(--font-serif);
-  font-size:22px;font-weight:400;font-style:italic;
-  color:var(--cream);line-height:1.6;
-  margin-bottom:12px;
-}
-.cs-quote cite{
-  font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;
-  color:var(--cream-dim);font-style:normal;
-}
+
+
+/* ── Chat Quotes ── */
+.cs-quote{margin:32px 0;max-width:85%;}
+
+
+.cs-quote p{background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);border-radius:20px 20px 20px 4px;padding:16px 20px;font-size:18px;color:var(--cream);line-height:1.7;margin:0 0 6px;}
+.cs-quote cite{font-family:var(--font-mono);font-size:13px;letter-spacing:0.06em;color:var(--cream-dim);font-style:normal;display:block;padding-left:40px;}
+.cs-quote-avatar{width:28px;height:28px;border-radius:50%;background:var(--dark-3);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;flex-shrink:0;position:absolute;left:0;top:0;}
+.cs-quote{position:relative;padding-left:40px;}
+.cs-quote p{margin-left:0;}
+.cs-convo{display:flex;flex-direction:column;gap:16px;margin:32px 0;}
+.cs-convo .cs-quote{margin:0;}
+.cs-quote-reply{align-self:flex-end;}
+.cs-quote-reply p{border-radius:20px 20px 4px 20px !important;background:linear-gradient(135deg,rgba(232,115,74,0.08) 0%,rgba(200,169,110,0.04) 100%) !important;border-color:rgba(232,115,74,0.12) !important;}
 
 /* ── Images ── */
 .cs-img{
@@ -198,7 +194,7 @@ a,button{cursor:none;}
 }
 .cs-img img{width:100%;display:block;}
 .cs-img-caption{
-  font-family:var(--font-mono);font-size:11px;
+  font-family:var(--font-mono);font-size:13px;
   color:var(--cream-dim);padding:12px 16px;
   background:var(--dark-2);letter-spacing:0.04em;
 }
@@ -211,7 +207,7 @@ a,button{cursor:none;}
   list-style:none;margin:24px 0;
 }
 .cs-list li{
-  font-size:15px;color:var(--cream-dim);line-height:1.7;
+  font-size:17px;color:var(--cream-dim);line-height:1.7;
   padding:12px 0 12px 24px;position:relative;
   border-bottom:1px solid var(--cream-ghost);
 }
@@ -228,12 +224,12 @@ a,button{cursor:none;}
   width:100%;border-collapse:collapse;margin:24px 0;
 }
 .cs-table th{
-  font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
   color:var(--accent);text-align:left;padding:12px 16px;
   border-bottom:2px solid var(--cream-ghost);
 }
 .cs-table td{
-  font-size:15px;color:var(--cream-dim);padding:14px 16px;
+  font-size:17px;color:var(--cream-dim);padding:14px 16px;
   border-bottom:1px solid var(--cream-ghost);
 }
 .cs-table td:first-child{color:var(--cream);font-weight:500;}
@@ -244,7 +240,7 @@ a,button{cursor:none;}
   border-radius:16px;padding:32px;margin:32px 0;
 }
 .cs-card-label{
-  font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
   color:var(--accent);margin-bottom:12px;
 }
 
@@ -258,11 +254,11 @@ a,button{cursor:none;}
   border-radius:12px;padding:24px;text-align:center;
 }
 .cs-result-num{
-  font-family:var(--font-serif);font-size:32px;font-weight:400;
+  font-family:var(--font-serif);font-size:34px;font-weight:400;
   color:var(--accent);letter-spacing:-0.02em;
 }
 .cs-result-label{
-  font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
   color:var(--cream-dim);margin-top:8px;
 }
 
@@ -271,32 +267,32 @@ a,button{cursor:none;}
 .cs-data-bento.cols-4{grid-template-columns:repeat(4,1fr);}
 .cs-data-bento.cols-2{grid-template-columns:repeat(2,1fr);}
 .cs-data-card{
-  background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,rgba(255,255,255,0.02) 100%);
-  backdrop-filter:blur(8px) saturate(1.5);-webkit-backdrop-filter:blur(8px) saturate(1.5);
-  border:1px solid rgba(255,255,255,0.08);
-  border-top-color:rgba(255,255,255,0.15);border-left-color:rgba(255,255,255,0.1);
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-top-color:var(--glass-border-top);border-left-color:rgba(255,255,255,0.1);
   border-radius:16px;padding:24px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.1),inset 1px 0 0 rgba(255,255,255,0.05),0 4px 24px rgba(0,0,0,0.2);
 }
 .cs-data-card.span-2{grid-column:span 2;}
 .cs-data-card.span-3{grid-column:span 3;}
 .cs-data-card.highlight{border-top-color:var(--accent);border-top-width:2px;}
-.cs-data-num{font-family:var(--font-serif);font-size:36px;font-weight:400;color:var(--accent);letter-spacing:-0.03em;line-height:1;margin-bottom:6px;}
-.cs-data-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,230,211,0.4);margin-bottom:4px;}
-.cs-data-desc{font-size:14px;color:rgba(240,230,211,0.55);line-height:1.6;margin-top:8px;}
+.cs-data-num{font-family:var(--font-serif);font-size:38px;font-weight:400;color:var(--accent);letter-spacing:-0.03em;line-height:1;margin-bottom:6px;}
+.cs-data-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,230,211,0.4);margin-bottom:4px;}
+.cs-data-desc{font-size:16px;color:rgba(240,230,211,0.55);line-height:1.6;margin-top:8px;}
 .cs-data-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(240,230,211,0.06);}
 .cs-data-row:last-child{border-bottom:none;}
-.cs-data-row-label{font-size:14px;color:var(--cream);}
-.cs-data-row-before{font-family:var(--font-mono);font-size:12px;color:rgba(240,230,211,0.3);text-decoration:line-through;}
-.cs-data-row-after{font-family:var(--font-mono);font-size:14px;color:var(--accent);font-weight:500;}
+.cs-data-row-label{font-size:16px;color:var(--cream);}
+.cs-data-row-before{font-family:var(--font-mono);font-size:14px;color:rgba(240,230,211,0.3);text-decoration:line-through;}
+.cs-data-row-after{font-family:var(--font-mono);font-size:16px;color:var(--accent);font-weight:500;}
 
 /* ── Lessons ── */
 .cs-lesson{
   padding:24px 0;border-bottom:1px solid var(--cream-ghost);
 }
 .cs-lesson:last-child{border-bottom:none;}
-.cs-lesson strong{color:var(--cream);display:block;margin-bottom:6px;font-size:16px;}
-.cs-lesson p{font-size:15px;color:var(--cream-dim);line-height:1.7;}
+.cs-lesson strong{color:var(--cream);display:block;margin-bottom:6px;font-size:18px;}
+.cs-lesson p{font-size:17px;color:var(--cream-dim);line-height:1.7;}
 
 /* ── Next Project ── */
 .cs-next{
@@ -308,7 +304,7 @@ a,button{cursor:none;}
   scroll-snap-align:start;
 }
 .cs-next-label{
-  font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:13px;letter-spacing:0.15em;text-transform:uppercase;
   color:var(--cream-dim);margin-bottom:16px;
 }
 .cs-next a{
@@ -319,7 +315,7 @@ a,button{cursor:none;}
 .cs-next a:hover{color:var(--accent);}
 .cs-next-arrow{
   display:block;margin-top:16px;
-  font-family:var(--font-mono);font-size:12px;color:var(--accent);letter-spacing:0.1em;
+  font-family:var(--font-mono);font-size:14px;color:var(--accent);letter-spacing:0.1em;
 }
 
 /* ── Split Layout ── */
@@ -333,6 +329,9 @@ a,button{cursor:none;}
 
 /* ── Video ── */
 .cs-video{margin:40px 0;border-radius:12px;overflow:hidden;border:1px solid var(--cream-ghost);}
+.cs-video-theater{margin:60px calc(-50vw + 50%);width:100vw;border-radius:0;border:none;border-top:1px solid var(--cream-ghost);border-bottom:1px solid var(--cream-ghost);background:var(--dark);padding:40px 0;}
+.cs-video-theater video{width:100%;max-height:80vh;object-fit:contain;display:block;margin:0 auto;}
+.cs-video-theater-label{font-family:var(--font-mono);font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:20px;}
 .cs-video video{width:100%;display:block;}
 
 /* ── Responsive ── */
@@ -349,7 +348,7 @@ a,button{cursor:none;}
   .cs-metrics{flex-direction:column;gap:24px;}
   .cs-results{grid-template-columns:1fr;}
   .cs-img-full{margin:40px -120px;width:calc(100% + 240px);max-width:calc(100% + 240px);}
-  .cs-back{top:16px;left:16px;padding:8px 14px;font-size:10px;border-radius:12px;}
+  .cs-back{top:16px;left:16px;padding:8px 14px;font-size:12px;border-radius:12px;}
   .cs-data-bento{grid-template-columns:1fr 1fr;}
   .cs-data-bento.cols-4{grid-template-columns:1fr 1fr;}
   .cs-data-card.span-2{grid-column:span 1;}
@@ -361,7 +360,7 @@ a,button{cursor:none;}
 .cs-lightbox{
   position:fixed;inset:0;z-index:9999;
   background:rgba(0,0,0,0.92);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
   display:flex;align-items:center;justify-content:center;
   opacity:0;pointer-events:none;
   transition:opacity 0.3s;
@@ -392,9 +391,9 @@ a,button{cursor:none;}
   position:absolute;top:12px;right:12px;
   width:32px;height:32px;border-radius:8px;
   display:flex;align-items:center;justify-content:center;
-  font-size:16px;color:var(--cream);
+  font-size:18px;color:var(--cream);
   background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02));
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
   border:1px solid rgba(255,255,255,0.1);
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.1),0 2px 12px rgba(0,0,0,0.3);
   opacity:0;transition:opacity 0.2s;pointer-events:none;
@@ -413,7 +412,7 @@ a,button{cursor:none;}
 <!-- ══ HERO ══ -->
 <header class="cs-hero">
   <div class="cs-hero-bg">
-    <video autoplay loop muted playsinline src="images/AI%20Test/Showing%20Results.mp4"></video>
+    <img src="images/resume-builder-resources/retail-ui-final.png" alt="Retail POS final design">
   </div>
   <div class="cs-hero-content">
     <!-- Title card (spans 2 cols) -->
@@ -465,8 +464,9 @@ a,button{cursor:none;}
     <p class="cs-p">It started with a single sentence at a workshop in Maldives.</p>
 
     <div class="cs-quote">
+      <div class="cs-quote-avatar">🧑‍💻</div>
       <p>"Cashiers are struggling with the new return process. They can't understand the design... but we don't know why."</p>
-      <cite>— Colleague, Maldives Workshop</cite>
+        <cite>— Colleague, Maldives Workshop</cite>
     </div>
 
     <p class="cs-p">That was all I needed to hear. I started watching cashiers work. Not through analytics dashboards — in person, on the shop floor, during real transactions.</p>
@@ -483,7 +483,7 @@ a,button{cursor:none;}
 
     <div class="cs-split">
       <div class="cs-split-media">
-        <img src="images/retail-ui-old.webp" alt="Old POS UI showing hidden features">
+        <img src="images/resume-builder-resources/retail-ui-old.png" alt="Old POS UI showing hidden features">
       </div>
       <div class="cs-split-text">
         <p class="cs-p">I audited the interface against the tasks cashiers performed most. Four features stood out — not because they were complex, but because they were hidden:</p>
@@ -528,7 +528,7 @@ a,button{cursor:none;}
 
     <div class="cs-split reverse">
       <div class="cs-split-media">
-        <img src="images/retail-ui-midfi.webp" alt="Mid-fidelity prototype">
+        <img src="images/resume-builder-resources/retail-ui-midfi.png" alt="Mid-fidelity prototype">
       </div>
       <div class="cs-split-text">
         <p class="cs-p">I restructured the menu around two principles: group by relationship, sort by frequency. The mid-fi prototype exposed every critical action on the primary screen.</p>
@@ -584,7 +584,7 @@ a,button{cursor:none;}
         </ul>
       </div>
       <div class="cs-split-media">
-        <img src="images/retail-ui-final.webp" alt="Final POS design">
+        <img src="images/resume-builder-resources/retail-ui-final.png" alt="Final POS design">
       </div>
     </div>
 
@@ -680,5 +680,38 @@ a,button{cursor:none;}
 <script src="js/atoms.js"></script>
 
 <script src="js/lightbox.js"></script>
+<!-- CHAT -->
+<button class="chat-trigger" id="chatTrigger" data-context="retail">
+  <svg class="ai-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l2.09 6.26L20.18 10l-6.09 1.74L12 18l-2.09-6.26L3.82 10l6.09-1.74L12 2z" stroke="currentColor"/><circle cx="19" cy="5" r="1.5" fill="currentColor" opacity="0.6"/><circle cx="5" cy="19" r="1" fill="currentColor" opacity="0.4"/></svg>
+  <span class="ai-label-full">Ask About This Project</span>
+  <span class="ai-label-short">AI</span>
+  <span class="dot"></span>
+</button>
+<div class="chat-overlay" id="chatOverlay"></div>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-header-title"><span class="dot"></span><span>Ask About This Project</span></div>
+    <button class="chat-close" id="chatClose"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-welcome">
+      <div class="chat-welcome-icon">&#x2728;</div>
+      <h3>Ask me about this project</h3>
+      <p>I can answer detailed questions about the process, decisions, and results.</p>
+      <div class="chat-suggestions">
+        <button class="chat-suggestion" data-q="What was the ROI?">What was the ROI?</button>
+        <button class="chat-suggestion" data-q="What research method was used?">What research method was used?</button>
+        <button class="chat-suggestion" data-q="What were the key changes?">What were the key changes?</button>
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-wrap">
+    <div class="chat-input-bar">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off">
+      <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+    </div>
+  </div>
+</div>
+<script src="js/chat.js"></script>
 </body>
 </html>

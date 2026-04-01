@@ -50,7 +50,7 @@ export default async function handler(req) {
     });
   }
 
-  const { messages } = await req.json();
+  const { messages, context } = await req.json();
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
@@ -60,8 +60,25 @@ export default async function handler(req) {
     });
   }
 
+  const CASE_STUDY_CONTEXT = {
+    retail: `The user is viewing the "From Feedback to 427% ROI" case study — Raytail POS return process redesign (2025). Role: UX Designer. Key details: Cashiers couldn't find the return button. Used a two-lens research method (business vs user heat maps). Found returns were undervalued by business but #1 cashier frustration. Redesigned with grouped activities, frequency sorting, icon+text labels, product-level actions. Results: 427% ROI, >50% time reduction (60s to <30s), faster onboarding. 4 lessons: almost redesigned wrong thing, low frequency ≠ low impact, design debt compounds, data wins buy-in. Tools: Figma, FigJam, Maze.`,
+    dashboard: `The user is viewing the "From Daily Ritual to 104% ROI" case study — TreeDots dashboard consolidation (2022). Role: Product Designer. Key details: Ops manager Mei spent 30 min every morning copy-pasting across Xero, spreadsheets, and supplier portal. Consolidated 3 tools into 1 real-time dashboard. Used Information Scent Theory for color-coded rows. Results: 104% ROI, 0.5h saved daily (125 hrs/year), real-time data freshness. User quote: "What do I do with my morning now?" Tools: Figma, FigJam, Notion, Xero.`,
+    'design-system': `The user is viewing the "Three Platforms. One Source of Truth" case study — Raytail multi-level design system (2025). Role: Lead UX Designer. Key details: One Figma file for POS, web, mobile caused 47 duplicate tokens, 31 near-duplicate components, 3-day onboarding. Built two-level architecture: Level 1 (global foundation) + Level 2 (platform libraries). Three-tier token architecture: Reference → Semantic → Component. POS-specific: 48px touch targets, dark surface, image-forward grid. Results: 70-90% faster handover, 100% consistency, 50-80% fewer QA tickets. Brand color change: 2 days → instant.`,
+    tokens: `The user is viewing the "Unified Design Tokens" case study — Raytail Figma plugin (2025). Role: Designer + Developer. Key details: Token names didn't match between Figma and code (camelCase vs PascalCase vs snake_case). Built a Figma plugin: Discovery → Config → Preview → Export to 6 platforms (CSS, JS/TS, Flutter, Kotlin, Swift, JSON). Syncs to Notion. Results: 50% time reduction, ~100% error reduction, 6 platforms, 4.3/5 dev satisfaction. Preview panel was most praised feature.`,
+    'golden-paths': `The user is viewing the "11pm. One Demo. Zero Testers" case study — Designer OS Golden Paths (2026). Role: Product Designer, Solo. Key details: 6/8 designers skip testing under deadline, 7/8 get vague feedback. Built AI+Puppeteer system that simulates user paths through prototypes. Screenshot-based detection works for any prototype URL. 9/11 AI-flagged blockers matched real user confusion. Results: 60s time to first feedback, 3min test setup, 24/7 availability, $0 per test. Marcus resolved his 11pm demo in 4 minutes.`,
+    'resume-pipeline': `The user is viewing the "47 Applications. 2 Interviews" case study — Designer OS AI Resume Pipeline (2026). Role: Product Designer, Solo. Key details: Designers spend 40 min per application with Google Doc + ChatGPT. Built 6-stage pipeline: Base Resume → Paste JD → AI Analyzes → Gap Analysis → Suggestions → Cover Letter. Key decisions: base resume first, gaps before praise, no full AI rewrite. Results: 40→15 min per application, 4→1 tools replaced, <5min cover letter. Sarah's story: 5 tailored apps, 2 callbacks.`,
+    'jar-aye-child': `The user is viewing the "Making Hard Math Feel Tractable" case study — Jar Aye Child App (2025). Role: UX Lead, team of 3. Key details: App for 6-12 year olds doing Singapore Math HOTS. Three user types: child (anxiety about being wrong), parent (is money working?), teacher (identify struggling students). Observational research with 5 children on competitor products. 5 HOTS strategies as navigable interface. 4-tier mastery system. Engagement: calendar not streak, grade-filtered leaderboard, completion points. Subscription states: expired vs frozen (semantic precision).`,
+    'jar-aye-parent': `The user is viewing the "Closing the Visibility Gap" case study — Jar Aye Parent App (2025). Role: UX Lead, team of 3. Key details: Parent pays but can't evaluate HOTS math herself. 5 constraints shaped every screen. Report screen is most strategic (comprehension = renewal). Social pride via Instagram/Telegram sharing. Freeze vs Cancel distinction. Results: <50s report comprehension, 4/5 identified weakest topic, 4.8/5 subscription flow clarity.`,
+    karaoke: `The user is viewing the "Next-Gen Karaoke Application" case study — COVID lockdown MVP (2021). Role: Product Design Owner, team of 2 designers + 1 BA + developers. Key details: 20 user interviews. 65% search by artist first. 85% use KBZ Pay. Competitor analysis: Smule (social), Joox (catalogue), Star Maker (emotion). MVP: kept basic karaoke + artist search + subscription + KBZ Pay. Cut social rooms, video recording. Lessons: defaults compound, local payment = local product, constraints breed clarity.`
+  };
+
+  let activePrompt = SYSTEM_PROMPT;
+  if (context && CASE_STUDY_CONTEXT[context]) {
+    activePrompt = SYSTEM_PROMPT + '\n\nCURRENT PAGE CONTEXT:\n' + CASE_STUDY_CONTEXT[context] + '\n\nFocus your answers on this specific project. Give detailed, specific answers about this case study. If asked something unrelated to this project, you can still answer from your general knowledge about Harry.';
+  }
+
   const geminiMessages = [
-    { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
+    { role: 'user', parts: [{ text: activePrompt }] },
     { role: 'model', parts: [{ text: 'Understood. I am Harry Hein\'s AI assistant. I\'ll answer questions about his work, experience, and availability concisely and professionally.' }] },
     ...messages.map(m => ({
       role: m.role === 'user' ? 'user' : 'model',
@@ -71,7 +88,7 @@ export default async function handler(req) {
 
   try {
     const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -79,13 +96,21 @@ export default async function handler(req) {
           contents: geminiMessages,
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 512,
+            maxOutputTokens: 2048,
           },
         }),
       }
     );
 
     const data = await res.json();
+
+    if (data.error) {
+      return new Response(JSON.stringify({ error: data.error.message || 'Gemini API error', debug: data.error }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
     const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I couldn\'t generate a response.';
 
     return new Response(JSON.stringify({ reply: text }), {
@@ -93,7 +118,7 @@ export default async function handler(req) {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: 'Failed to reach AI service' }), {
+    return new Response(JSON.stringify({ error: 'Failed to reach AI service', detail: err.message }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
