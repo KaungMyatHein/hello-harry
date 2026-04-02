@@ -77,7 +77,8 @@ body {
   cursor: none;
   background-image: radial-gradient(circle, rgba(240,230,211,0.12) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
-  background-attachment: fixed;
+  /* background-attachment:fixed causes GPU repaint on every scroll frame — use scroll instead */
+  background-attachment: scroll;
 }
 a, button { cursor: none; }
 
@@ -263,6 +264,82 @@ a, button { cursor: none; }
   background: var(--dark-2); letter-spacing: 0.04em;
 }
 .cs-img-full { margin: 40px -80px; width: calc(100% + 160px); max-width: calc(100% + 160px); }
+
+/* ── Photo Gallery Grid ── */
+.cs-gallery {
+  position: relative;
+  left: 50%; right: 50%;
+  margin-left: -50vw; margin-right: -50vw;
+  width: 100vw;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  background: var(--dark);
+}
+.cs-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 25vw;
+  gap: 0;
+  border-top: 1px solid rgba(240,230,211,0.04);
+  border-left: 1px solid rgba(240,230,211,0.04);
+}
+.cs-gallery-item {
+  overflow: hidden;
+  background: var(--dark-3);
+  position: relative;
+  border-right: 1px solid rgba(240,230,211,0.04);
+  border-bottom: 1px solid rgba(240,230,211,0.04);
+}
+/* Span variations for masonry-style layout */
+.cs-gallery-item.wide { grid-column: span 2; }
+.cs-gallery-item.tall { grid-row: span 2; }
+.cs-gallery-item.big  { grid-column: span 2; grid-row: span 2; }
+
+/* Even grid — all same size, 2 cols × 3 rows */
+.cs-gallery-grid--even {
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 50vw;
+}
+
+.cs-gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.6s cubic-bezier(.25,.1,.25,1);
+}
+.cs-gallery-item:has(img) { cursor: zoom-in; }
+.cs-gallery-item:hover img { transform: scale(1.05); }
+
+/* Empty placeholder — shown before images are added */
+.cs-gallery-item.empty {
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px;
+}
+.cs-gallery-item.empty::before {
+  content: '';
+  width: 28px; height: 28px;
+  border: 1.5px solid rgba(240,230,211,0.1);
+  border-radius: 6px;
+}
+.cs-gallery-item.empty::after {
+  content: attr(data-label);
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(240,230,211,0.15);
+}
+
+@media(max-width: 768px) {
+  .cs-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 50vw;
+  }
+  .cs-gallery-grid--even {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 50vw;
+  }
+  .cs-gallery-item.wide { grid-column: span 2; }
+  .cs-gallery-item.tall { grid-row: span 1; }
+  .cs-gallery-item.big  { grid-column: span 2; grid-row: span 1; }
+}
 
 /* ── Lists ── */
 .cs-list { list-style: none; margin: 24px 0; }

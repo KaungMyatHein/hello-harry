@@ -9,11 +9,12 @@
   var content = document.getElementById('lightboxContent');
   var closeBtn = document.getElementById('lightboxClose');
 
-  // Attach click to all media elements
-  document.querySelectorAll('.cs-img, .cs-split-media, .cs-video').forEach(function(el) {
+  // Attach click to all media elements + gallery items
+  document.querySelectorAll('.cs-img, .cs-split-media, .cs-video, .cs-gallery-item').forEach(function(el) {
     el.addEventListener('click', function() {
       var img = el.querySelector('img');
       var vid = el.querySelector('video');
+      if (!img && !vid) return;  // empty gallery placeholder — do nothing
       content.innerHTML = '';
 
       if (img) {
