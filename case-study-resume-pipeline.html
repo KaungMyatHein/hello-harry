@@ -16,6 +16,7 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "vytlshhwmy");
 </script>
+<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];var isBack=nav&&nav.type==="back_forward";var h=document.documentElement;if(!isBack){h.style.scrollSnapType="none";h.style.overflow="hidden";h.scrollTop=0;window.scrollTo(0,0);window.addEventListener("load",function(){h.scrollTop=0;window.scrollTo(0,0);setTimeout(function(){h.style.overflow="";h.style.scrollSnapType="";},60);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflow="";}});})();</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>Case Study -- AI Resume Pipeline | Harry Hein</title>
@@ -465,19 +466,22 @@
       <h3>Ask me about this project</h3>
       <p>I can answer detailed questions about the process, decisions, and results.</p>
       <div class="chat-suggestions">
-        <button class="chat-suggestion" data-q="How does gap analysis work?">How does gap analysis work?</button>
-        <button class="chat-suggestion" data-q="Why no full AI rewrite?">Why no full AI rewrite?</button>
-        <button class="chat-suggestion" data-q="What were the results?">What were the results?</button>
+        <button class="chat-suggestion" data-q="Why no full AI rewrite — and how did you explain that tradeoff to users who just wanted it done?">Why no full AI rewrite?</button>
+        <button class="chat-suggestion" data-q="How does the AI gap analysis rank which resume changes will have the highest impact?">How does gap analysis rank changes by impact?</button>
+        <button class="chat-suggestion" data-q="V1 showed 20+ suggestions and users froze — how did you solve suggestion overwhelm?">How did you solve suggestion overwhelm in V1?</button>
+        <button class="chat-suggestion" data-q="Why did you lead with gaps before praise, and how did that change how users felt during the process?">Why gaps before praise as a design principle?</button>
+        <button class="chat-suggestion" data-q="How did you validate that the AI suggestions were actually improving interview callback rates?">How did you validate AI suggestions improved callbacks?</button>
       </div>
     </div>
   </div>
   <div class="chat-input-wrap">
     <div class="chat-input-bar">
-      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off">
+      <textarea class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off" rows="1"></textarea>
       <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
     </div>
   </div>
 </div>
 <script src="js/chat.js"></script>
+<script src="js/tracking.js"></script>
 </body>
 </html>

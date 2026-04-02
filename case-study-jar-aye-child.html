@@ -16,6 +16,7 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "vytlshhwmy");
 </script>
+<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];var isBack=nav&&nav.type==="back_forward";var h=document.documentElement;if(!isBack){h.style.scrollSnapType="none";h.style.overflow="hidden";h.scrollTop=0;window.scrollTo(0,0);window.addEventListener("load",function(){h.scrollTop=0;window.scrollTo(0,0);setTimeout(function(){h.style.overflow="";h.style.scrollSnapType="";},60);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflow="";}});})();</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>Case Study -- Jar Aye Child App | Harry Hein</title>
@@ -451,19 +452,22 @@
       <h3>Ask me about this project</h3>
       <p>I can answer detailed questions about the process, decisions, and results.</p>
       <div class="chat-suggestions">
-        <button class="chat-suggestion" data-q="What are the HOTS strategies?">What are the HOTS strategies?</button>
-        <button class="chat-suggestion" data-q="How does engagement work?">How does engagement work?</button>
-        <button class="chat-suggestion" data-q="How does mastery work?">How does mastery work?</button>
+        <button class="chat-suggestion" data-q="What did you learn from watching real children use competitor apps in Mandalay?">What did you learn from watching kids use competitor apps?</button>
+        <button class="chat-suggestion" data-q="How do you design for a 3-second attention window before a child disengages?">How do you design for a 3-second attention window?</button>
+        <button class="chat-suggestion" data-q="Why a calendar instead of a streak counter, and how does that change the emotional dynamic?">Why a calendar instead of a streak counter?</button>
+        <button class="chat-suggestion" data-q="How does the 4-tier mastery system prevent kids from chasing points instead of understanding math?">How does mastery prevent gaming the system?</button>
+        <button class="chat-suggestion" data-q="How did you handle the tension between child engagement, parent reassurance, and teacher insight — all in one product?">How did you serve three competing users in one product?</button>
       </div>
     </div>
   </div>
   <div class="chat-input-wrap">
     <div class="chat-input-bar">
-      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off">
+      <textarea class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off" rows="1"></textarea>
       <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
     </div>
   </div>
 </div>
 <script src="js/chat.js"></script>
+<script src="js/tracking.js"></script>
 </body>
 </html>

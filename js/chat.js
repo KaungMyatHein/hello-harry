@@ -34,6 +34,12 @@
     if(btn) sendMessage(btn.dataset.q);
   });
 
+  function autoResize(){
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 140) + 'px';
+  }
+  input.addEventListener('input', autoResize);
+
   input.addEventListener('keydown', function(e){
     if(e.key === 'Enter' && !e.shiftKey){
       e.preventDefault();
@@ -52,6 +58,7 @@
 
     appendMsg('user', text);
     input.value = '';
+    input.style.height = 'auto';
     sendBtn.disabled = true;
     history.push({ role: 'user', content: text });
 

@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RKYXJ7H349"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-RKYXJ7H349");
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>From Daily Ritual to 104% ROI — Harry Hein</title>
@@ -8,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Roboto:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/atoms.css">
-<script>if(history.scrollRestoration)history.scrollRestoration="manual";window.scrollTo(0,0);</script><link rel="stylesheet" href="css/cs-base.css?v=dot1">
+<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];var isBack=nav&&nav.type==="back_forward";var h=document.documentElement;if(!isBack){h.style.scrollSnapType="none";h.style.overflow="hidden";h.scrollTop=0;window.scrollTo(0,0);window.addEventListener("load",function(){h.scrollTop=0;window.scrollTo(0,0);setTimeout(function(){h.style.overflow="";h.style.scrollSnapType="";},60);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflow="";}});})();</script><link rel="stylesheet" href="css/cs-base.css?v=dot1">
 <link rel="stylesheet" href="css/chat.css">
 </head>
 <body>
@@ -418,18 +426,21 @@
       <p>I can answer detailed questions about the process, decisions, and results.</p>
       <div class="chat-suggestions">
         <button class="chat-suggestion" data-q="How was the 104% ROI calculated?">How was the 104% ROI calculated?</button>
-        <button class="chat-suggestion" data-q="What was Mei's daily workflow?">What was Mei's daily workflow?</button>
-        <button class="chat-suggestion" data-q="What would you do differently?">What would you do differently?</button>
+        <button class="chat-suggestion" data-q="What was Mei actually doing every morning before this dashboard existed?">What was Mei actually doing every morning?</button>
+        <button class="chat-suggestion" data-q="Why was subtraction the highest-impact design decision here?">Why was subtraction the highest-impact decision?</button>
+        <button class="chat-suggestion" data-q="How did you calculate the cost of context switching between 3 separate tools?">How did you quantify context switching cost?</button>
+        <button class="chat-suggestion" data-q="How do you design for a task that happens before 9am, on autopilot, every single day?">How do you design for a daily autopilot task?</button>
       </div>
     </div>
   </div>
   <div class="chat-input-wrap">
     <div class="chat-input-bar">
-      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off">
+      <textarea class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off" rows="1"></textarea>
       <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
     </div>
   </div>
 </div>
 <script src="js/chat.js"></script>
+<script src="js/tracking.js"></script>
 </body>
 </html>

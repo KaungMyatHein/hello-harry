@@ -16,6 +16,7 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "vytlshhwmy");
 </script>
+<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];var isBack=nav&&nav.type==="back_forward";var h=document.documentElement;if(!isBack){h.style.scrollSnapType="none";h.style.overflow="hidden";h.scrollTop=0;window.scrollTo(0,0);window.addEventListener("load",function(){h.scrollTop=0;window.scrollTo(0,0);setTimeout(function(){h.style.overflow="";h.style.scrollSnapType="";},60);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflow="";}});})();</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>Case Study -- Jar Aye Parent App | Harry Hein</title>
@@ -389,19 +390,22 @@
       <h3>Ask me about this project</h3>
       <p>I can answer detailed questions about the process, decisions, and results.</p>
       <div class="chat-suggestions">
-        <button class="chat-suggestion" data-q="What makes the report strategic?">What makes the report strategic?</button>
-        <button class="chat-suggestion" data-q="How do subscription states differ?">How do subscription states differ?</button>
-        <button class="chat-suggestion" data-q="What would you revisit?">What would you revisit?</button>
+        <button class="chat-suggestion" data-q="Why did you build separate apps for parents and children instead of one unified app?">Why separate apps instead of one unified app?</button>
+        <button class="chat-suggestion" data-q="How do you design when the paying user and the primary user are completely different people?">How do you design when payer ≠ user?</button>
+        <button class="chat-suggestion" data-q="How did you make HOTS math legible to parents who cannot evaluate it themselves?">How did you make HOTS math legible to parents?</button>
+        <button class="chat-suggestion" data-q="How do subscription states like frozen vs cancelled change what parents can see and do?">How do subscription states change the experience?</button>
+        <button class="chat-suggestion" data-q="How did you design the report screen to answer 'is this worth it?' in under 50 seconds?">How did you make the report answer 'is this worth it?'</button>
       </div>
     </div>
   </div>
   <div class="chat-input-wrap">
     <div class="chat-input-bar">
-      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off">
+      <textarea class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off" rows="1"></textarea>
       <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
     </div>
   </div>
 </div>
 <script src="js/chat.js"></script>
+<script src="js/tracking.js"></script>
 </body>
 </html>
