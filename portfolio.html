@@ -547,6 +547,102 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 .sp-card:hover .sp-card-arrow svg{stroke:var(--dark);transform:translate(2px,-2px)}
 
 /* ══════════════════════════
+   SIDE PROJECTS — SPLIT SECTION
+══════════════════════════ */
+.sp-section-wrap{
+  display:flex;
+  height:100vh;height:100dvh;
+  overflow:hidden;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  background:var(--dark);
+}
+
+/* Left: section title panel */
+.sp-section-left{
+  width:340px;flex-shrink:0;
+  display:flex;flex-direction:column;justify-content:center;gap:28px;
+  padding:56px 48px;
+  border-right:1px solid rgba(240,230,211,0.06);
+  position:relative;overflow:hidden;
+}
+.sp-section-left::before{
+  content:'';position:absolute;
+  bottom:-80px;left:-80px;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,115,74,0.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.sp-section-num{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--accent);opacity:0.7;
+}
+.sp-section-title{
+  font-family:var(--font-serif);font-size:clamp(32px,3vw,44px);
+  font-weight:400;line-height:1.1;letter-spacing:-0.03em;color:var(--cream);
+}
+.sp-section-sub{
+  font-size:14px;line-height:1.75;color:var(--cream-dim);
+}
+
+/* Project nav dots */
+.sp-nav{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+.sp-nav-dot{
+  display:flex;align-items:center;gap:12px;
+  background:none;border:none;padding:0;cursor:none;text-align:left;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;
+  color:rgba(240,230,211,0.22);
+  transition:color 0.3s;
+}
+.sp-nav-pip{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;
+  background:rgba(240,230,211,0.15);
+  transition:width 0.3s,border-radius 0.3s,background 0.3s,box-shadow 0.3s;
+}
+.sp-nav-dot.active{color:rgba(240,230,211,0.65);}
+.sp-nav-dot.active .sp-nav-pip{
+  width:22px;border-radius:3px;
+  background:var(--accent);
+  box-shadow:0 0 8px rgba(232,115,74,0.4);
+}
+
+/* Counter */
+.sp-counter{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;
+  color:rgba(240,230,211,0.2);margin-top:auto;
+}
+.sp-counter strong{font-size:22px;font-weight:400;color:rgba(240,230,211,0.5);letter-spacing:-0.02em;}
+
+/* Right: scroll-snap project cards */
+.sp-section-right{
+  flex:1;
+  overflow-y:scroll;
+  scroll-snap-type:y mandatory;
+  scrollbar-width:none;
+}
+.sp-section-right::-webkit-scrollbar{display:none;}
+.sp-section-right .project{
+  height:100vh;height:100dvh;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  flex-shrink:0;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .sp-section-wrap{flex-direction:column;height:auto;}
+  .sp-section-left{
+    width:100%;border-right:none;
+    border-bottom:1px solid rgba(240,230,211,0.06);
+    padding:40px 24px 32px;
+    justify-content:flex-start;gap:16px;
+  }
+  .sp-section-right{height:100vh;height:100dvh;}
+  .sp-nav{flex-direction:row;}
+  .sp-counter{display:none;}
+}
+
+/* ══════════════════════════
    EXPERIENCE BENTO
 ══════════════════════════ */
 .exp-wrap{
@@ -1531,44 +1627,129 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 
 </div><!-- end .work-section -->
 
-<!-- ═══════ DESIGN FLASH CARDS HIGHLIGHT ═══════ -->
-<div class="project sp-project sr" data-href="https://design-flash-card.vercel.app/">
+<!-- ═══════ SIDE PROJECTS SECTION ═══════ -->
+<div class="sp-section-wrap sr">
+
+  <!-- Left: Section Title -->
+  <div class="sp-section-left">
+    <div class="sp-section-num">Side Projects</div>
+    <h2 class="sp-section-title">Built for fun.<br>Shipped anyway.</h2>
+    <p class="sp-section-sub">Two tools I built to scratch my own itch — then actually put them out into the world.</p>
+    <div class="sp-nav" id="sp-nav">
+      <button class="sp-nav-dot active" data-slide="0">
+        <div class="sp-nav-pip"></div>
+        <span>Design Flash Cards</span>
+      </button>
+      <button class="sp-nav-dot" data-slide="1">
+        <div class="sp-nav-pip"></div>
+        <span>Orchestra Syncs</span>
+      </button>
+    </div>
+    <div class="sp-counter"><strong id="sp-count">01</strong> / 02</div>
+  </div>
+
+  <!-- Right: Scroll-snapping project cards -->
+  <div class="sp-section-right" id="sp-section-right">
+
+<!-- ═══════ DESIGN FLASH CARDS ═══════ -->
+<div class="project sp-project sr">
   <div class="proj-thumb">
-    <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);"></div>
+    <div style="width:100%;height:100%;background:linear-gradient(150deg,#0a1122 0%,#0c1e35 55%,#091420 100%);">
+      <div style="position:absolute;bottom:-60px;right:-60px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(79,172,254,0.1) 0%,transparent 65%);"></div>
+      <div style="position:absolute;top:20%;left:8%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.06) 0%,transparent 70%);"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+        <div style="position:relative;width:280px;height:180px;">
+          <div style="position:absolute;inset:0;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;transform:rotate(-8deg) translateY(8px);"></div>
+          <div style="position:absolute;inset:0;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;transform:rotate(-4deg) translateY(4px);"></div>
+          <div style="position:absolute;inset:0;background:rgba(10,22,44,0.96);border:1px solid rgba(79,172,254,0.22);border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;padding:24px;box-shadow:0 0 50px rgba(79,172,254,0.07),inset 0 1px 0 rgba(255,255,255,0.05);">
+            <div style="font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(79,172,254,0.55);">UX Principle · 12 of 60</div>
+            <div style="font-family:'Roboto Serif',serif;font-size:19px;font-weight:400;color:#f0e6d3;text-align:center;line-height:1.3;">What is Fitts' Law?</div>
+            <div style="font-size:11px;color:rgba(240,230,211,0.22);font-family:'Roboto Mono',monospace;letter-spacing:0.08em;">tap to reveal →</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="proj-info">
     <div class="proj-recommend">Side Project</div>
     <div class="proj-tags">
       <span class="proj-tag">Web App</span>
+      <span class="proj-tag">React</span>
       <span class="proj-tag">Learning Tool</span>
     </div>
     <h3 class="proj-title">Design Flash Cards</h3>
-    <p class="proj-desc">A bilingual (English/Myanmar) learning app to help designers master UX principles through active recall. Spaced repetition, category filtering, and a clean study interface.</p>
-    <a href="https://design-flash-card.vercel.app/" target="_blank" rel="noopener" class="case-study-link">
-      Visit Site
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+    <p class="proj-desc">A bilingual (English/Myanmar) app to master UX principles through active recall. Spaced repetition, category filtering, and a clean study interface.</p>
+    <div class="proj-metrics">
+      <div><div class="pm-val">60+</div><div class="pm-label">UX Principles</div></div>
+      <div><div class="pm-val">2</div><div class="pm-label">Languages</div></div>
+      <div><div class="pm-val">$0</div><div class="pm-label">Cost to Run</div></div>
+    </div>
+    <a href="https://design-flash-card.vercel.app/" target="_blank" class="case-study-link">
+      Live App
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
     </a>
   </div>
 </div>
 
-<div class="project sp-project sr" data-href="https://orchestra.figma.site/">
+<!-- ═══════ ORCHESTRA SYNCS ═══════ -->
+<div class="project sp-project sr">
   <div class="proj-thumb">
-    <div style="width:100%;height:100%;background:linear-gradient(135deg,#2d1b69 0%,#11998e 100%);"></div>
+    <div style="width:100%;height:100%;background:linear-gradient(160deg,#0d0a1e 0%,#0a1a2e 55%,#060e18 100%);">
+      <div style="position:absolute;top:-60px;right:-60px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,0.12) 0%,transparent 65%);"></div>
+      <div style="position:absolute;bottom:-40px;left:-30px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,0.08) 0%,transparent 65%);"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:20px;padding:48px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="width:72px;height:72px;border-radius:14px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 38 57" width="26" height="26" fill="none"><path d="M19 28.5A9.5 9.5 0 1 1 28.5 19v9.5H19z" fill="rgba(99,102,241,0.6)"/><path d="M9.5 47.5A9.5 9.5 0 0 1 19 38v9.5H9.5z" fill="rgba(99,102,241,0.4)"/><circle cx="28.5" cy="28.5" r="9.5" fill="rgba(99,102,241,0.7)"/><path d="M9.5 9.5A9.5 9.5 0 0 0 19 19H9.5V9.5z" fill="rgba(99,102,241,0.5)"/><path d="M9.5 28.5A9.5 9.5 0 0 0 19 19H9.5v9.5z" fill="rgba(99,102,241,0.35)"/></svg>
+          </div>
+          <div style="font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,230,211,0.3);">Figma</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:rgba(240,230,211,0.18);">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div style="font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:0.1em;color:rgba(240,230,211,0.18);">SYNC</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="width:72px;height:72px;border-radius:14px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.22);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="rgba(16,185,129,0.65)"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </div>
+          <div style="font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,230,211,0.3);">GitHub</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:rgba(240,230,211,0.18);">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div style="font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:0.1em;color:rgba(240,230,211,0.18);">BUILD</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="width:72px;height:72px;border-radius:14px;background:rgba(232,115,74,0.08);border:1px solid rgba(232,115,74,0.22);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="rgba(232,115,74,0.65)" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div style="font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,230,211,0.3);">Tokens</div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="proj-info">
     <div class="proj-recommend">Side Project</div>
     <div class="proj-tags">
-      <span class="proj-tag">Figma Site</span>
-      <span class="proj-tag">Design</span>
+      <span class="proj-tag">Figma Plugin</span>
+      <span class="proj-tag">Design Tokens</span>
+      <span class="proj-tag">Automation</span>
     </div>
-    <h3 class="proj-title">Orchestra</h3>
-    <p class="proj-desc">A design concept exploring visual composition and layout systems — built and published directly with Figma Sites as a design exploration.</p>
-    <a href="https://orchestra.figma.site/" target="_blank" rel="noopener" class="case-study-link">
-      Visit Site
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+    <h3 class="proj-title">Orchestra Syncs</h3>
+    <p class="proj-desc">A Figma plugin that syncs Variables to GitHub and auto-builds design tokens for Web, iOS, Android, and Flutter — change once, update everywhere.</p>
+    <div class="proj-metrics">
+      <div><div class="pm-val">4</div><div class="pm-label">Platforms</div></div>
+      <div><div class="pm-val">0</div><div class="pm-label">Manual Steps</div></div>
+      <div><div class="pm-val" style="color:var(--green);">Live</div><div class="pm-label">Status</div></div>
+    </div>
+    <a href="https://orchestra.figma.site/" target="_blank" class="case-study-link">
+      View Site
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
     </a>
   </div>
 </div>
+
+  </div><!-- end .sp-section-right -->
+</div><!-- end .sp-section-wrap -->
 
 <!-- EXPERIENCE (scrollable snap container) -->
 <div class="exp-wrap" id="experience">
@@ -1959,14 +2140,21 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
     projectsExtra.style.display = 'none';
 
     let visibleCount = 0;
+    let firstVisible = null;
     projects.forEach(p => {
       mainGrid.appendChild(p);
       const tags = (p.dataset.filters || '').split(' ');
       const show = tags.includes(filter);
       p.style.display = show ? '' : 'none';
-      if (show) visibleCount++;
+      if (show) { visibleCount++; if (!firstVisible) firstVisible = p; }
     });
     if (countEl) countEl.textContent = visibleCount;
+
+    /* After DOM reshuffle, snap to first matching project so
+       scroll-snap doesn't land on a random card.             */
+    requestAnimationFrame(function(){
+      if (firstVisible) firstVisible.scrollIntoView({ behavior: 'instant', block: 'start' });
+    });
   }
 
   btns.forEach(btn => {
@@ -1975,6 +2163,34 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 
   // Apply default on load
   applyFilter('recommended');
+})();
+
+// ── Side Projects Section Navigation ──
+(function(){
+  var panel = document.getElementById('sp-section-right');
+  if(!panel) return;
+  var cards = panel.querySelectorAll('.project');
+  var navDots = document.querySelectorAll('#sp-nav .sp-nav-dot');
+  var countEl = document.getElementById('sp-count');
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var idx = Array.from(cards).indexOf(e.target);
+        navDots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+        if(countEl) countEl.textContent = (idx+1 < 10 ? '0' : '') + (idx+1);
+      }
+    });
+  },{root:panel,threshold:0.5});
+
+  cards.forEach(function(c){ observer.observe(c); });
+
+  navDots.forEach(function(dot){
+    dot.addEventListener('click',function(){
+      var idx = parseInt(dot.dataset.slide);
+      if(cards[idx]) cards[idx].scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
 })();
 
 // ── Clickable project cards ──

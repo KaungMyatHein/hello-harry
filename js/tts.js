@@ -106,27 +106,47 @@
     var section = num.closest('.cs-section');
     if (!section) return;
 
-    /* Build fullText + per-element char ranges */
+    /* Build fullText + per-element char ranges
+       Strategy: recursive DOM walk — collect any element whose
+       children are ALL inline tags (i.e. a "reading unit").
+       This catches every class automatically, including tables,
+       new components, and future additions.                      */
     var sourceEls = [];
-    var elRanges  = [];   // { start, end } in fullText
+    var elRanges  = [];
     var fullText  = '';
+    var seenEls   = new Set();
+
+    var INLINE = new Set(['SPAN','STRONG','EM','B','I','A','CODE','MARK',
+                          'SMALL','ABBR','CITE','Q','S','U','SUB','SUP',
+                          'VAR','TIME','KBD','SAMP','BR','WBR']);
+
+    function isReadingUnit(el){
+      if (!el.children.length) return true;
+      return Array.from(el.children).every(function(c){ return INLINE.has(c.tagName); });
+    }
 
     function addEl(el){
+      if (seenEls.has(el)) return;
       var t = el.textContent.trim();
-      if (!t || t.length < 5) return;
+      if (!t) return;
+      seenEls.add(el);
       var s = fullText.length;
       fullText += t + '. ';
       sourceEls.push(el);
       elRanges.push({ start: s, end: s + t.length });
     }
 
-    var h = section.querySelector('.cs-h2');
-    if (h) addEl(h);
-    section.querySelectorAll(
-      '.cs-p,.cs-list li,.cs-hook,.cs-quote p,.cs-lesson strong,.cs-lesson p,' +
-      '.cs-card-label,.cs-card .cs-p,.cs-data-desc,' +
-      '.cs-tt-title,.cs-tt-desc'
-    ).forEach(addEl);
+    function collect(el){
+      /* Skip TTS controls, buttons, decorative containers */
+      if (el === num) return;
+      if (el.matches('button,.tts-wrap,.cs-loader,.cs-hero-bg,.cs-next-cards,.cs-next-card')) return;
+      if (isReadingUnit(el)){
+        addEl(el);
+      } else {
+        Array.from(el.children).forEach(collect);
+      }
+    }
+    Array.from(section.children).forEach(collect);
 
     fullText = fullText.replace(/\.\s*\./g, '.').replace(/\s+/g, ' ').trim();
     if (!fullText || fullText.length < 20) return;
@@ -226,9 +246,13 @@
               found = wordMap[k].span; break;
             }
           }
-          if (found !== currentWordSpan){
+          /* Only update when a real word span is found —
+             keeps previous highlight during inter-element gaps
+             instead of flashing off then on.                  */
+          if (found && found !== currentWordSpan){
             clearWordHighlight();
-            if (found){ found.classList.add('tts-word-active'); currentWordSpan = found; }
+            found.classList.add('tts-word-active');
+            currentWordSpan = found;
           }
         };
 
