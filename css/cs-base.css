@@ -73,7 +73,12 @@
 
 /* ── Page Layout ── */
 html { scroll-snap-type: y mandatory; }
-body { cursor: none; }
+body {
+  cursor: none;
+  background-image: radial-gradient(circle, rgba(240,230,211,0.12) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  background-attachment: fixed;
+}
 a, button { cursor: none; }
 
 .cs-page {
