@@ -150,13 +150,29 @@
     <div class="cs-kpi">
       <div class="cs-kpi-group-label">Design KPIs</div>
       <div class="cs-kpi-grid">
-        <div class="cs-kpi-card"><div class="cs-kpi-val">0</div><div class="cs-kpi-label">Naming errors</div></div>
-        <div class="cs-kpi-card"><div class="cs-kpi-val">6</div><div class="cs-kpi-label">Platforms supported</div></div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">0</div>
+          <div class="cs-kpi-label">Semantic naming errors</div>
+          <div class="cs-kpi-why">Wrong token in wrong context (e.g. action colour on error state) breaks visual grammar silently — no linter catches it</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">6</div>
+          <div class="cs-kpi-label">Platforms from one source</div>
+          <div class="cs-kpi-why">iOS, Android, Web, Email, Dark mode, Print — one token change propagates everywhere without touching a single component</div>
+        </div>
       </div>
       <div class="cs-kpi-group-label">Business KPIs</div>
       <div class="cs-kpi-grid">
-        <div class="cs-kpi-card"><div class="cs-kpi-val">&gt;50%</div><div class="cs-kpi-label">Time reduction</div></div>
-        <div class="cs-kpi-card"><div class="cs-kpi-val">&gt;90%</div><div class="cs-kpi-label">Team adoption</div></div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">&gt;50%</div>
+          <div class="cs-kpi-label">Theming time reduction</div>
+          <div class="cs-kpi-why">Full brand retheming took weeks before tokens — with the system, it became a config change completed in under an hour</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">&gt;90%</div>
+          <div class="cs-kpi-label">Team adoption rate</div>
+          <div class="cs-kpi-why">High adoption validates the abstraction is intuitive, not just technically correct — low adoption means friction in the DX</div>
+        </div>
       </div>
     </div>
   </section>

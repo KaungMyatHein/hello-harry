@@ -159,8 +159,29 @@
     <div class="cs-kpi">
       <div class="cs-kpi-group-label">Design KPIs</div>
       <div class="cs-kpi-grid">
-        <div class="cs-kpi-card"><div class="cs-kpi-val">&lt;60s</div><div class="cs-kpi-label">Time to feedback</div></div>
-        <div class="cs-kpi-card"><div class="cs-kpi-val">&gt;80%</div><div class="cs-kpi-label">Blocker match rate</div></div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">&lt;60s</div>
+          <div class="cs-kpi-label">Time to surfaced blocker</div>
+          <div class="cs-kpi-why">Developers need immediate signal — delayed feedback breaks flow state and adds context-switching overhead to every review</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">&gt;80%</div>
+          <div class="cs-kpi-label">Blocker-to-fix match rate</div>
+          <div class="cs-kpi-why">If the path surfaces the wrong blocker, engineers build workarounds that compound into tech debt nobody owns</div>
+        </div>
+      </div>
+      <div class="cs-kpi-group-label">Business KPIs</div>
+      <div class="cs-kpi-grid">
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">&lt;3 min</div>
+          <div class="cs-kpi-label">Zero-to-feedback session</div>
+          <div class="cs-kpi-why">Full review cycle from prototype submission to structured output — longer sessions break adoption before the habit forms</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">&gt;70%</div>
+          <div class="cs-kpi-label">Weekly active reviewer rate</div>
+          <div class="cs-kpi-why">Tooling only works if the team actually uses it — adoption rate is the only signal that the friction is low enough</div>
+        </div>
       </div>
     </div>
   </section>

@@ -4,8 +4,44 @@
    study pages. Imports tokens via atoms.
    ═══════════════════════════════════════ */
 
-/* ── Type scale — defined here so font sizes never depend on tokens.css cache ── */
+/* ── All design tokens — defined here as complete fallback, independent of tokens.css cache ── */
 :root {
+  /* Backgrounds */
+  --dark:   #0a0a0a;
+  --dark-2: #111111;
+  --dark-3: #1a1a1a;
+  --dark-4: #222222;
+
+  /* Cream palette */
+  --cream:       #f0e6d3;
+  --cream-dim:   rgba(240,230,211,0.5);
+  --cream-faint: rgba(240,230,211,0.12);
+  --cream-ghost: rgba(240,230,211,0.06);
+
+  /* Accent (gold) */
+  --accent:      #c8a96e;
+  --accent-glow: rgba(200,169,110,0.15);
+
+  /* Green */
+  --green:      #7eb87e;
+  --green-glow: rgba(126,184,126,0.12);
+
+  /* Glass */
+  --glass-bg:     rgba(10,10,10,0.7);
+  --glass-blur:   blur(20px) saturate(1.4);
+  --glass-border: rgba(255,255,255,0.08);
+  --glass-border-top: rgba(255,255,255,0.12);
+  --glass-border-left: rgba(255,255,255,0.1);
+  --glass-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.3);
+  --glass-radius: 20px;
+
+  /* Fonts */
+  --font-serif: 'Roboto Serif', serif;
+  --font-sans:  'Roboto', sans-serif;
+  --font-mono:  'Roboto Mono', monospace;
+  --font-hand:  'Caveat', cursive;
+
+  /* Type scale */
   --text-xs:      11px;
   --text-sm:      13px;
   --text-base:    16px;
@@ -19,11 +55,15 @@
   --text-stat-sm: 32px;
   --text-stat-md: 38px;
   --text-stat-lg: 44px;
+
+  /* Leading */
   --leading-tight:   1.1;
   --leading-snug:    1.2;
   --leading-normal:  1.6;
   --leading-relaxed: 1.7;
   --leading-loose:   1.8;
+
+  /* Tracking */
   --tracking-tight: -0.03em;
   --tracking-snug:  -0.02em;
   --tracking-wide:   0.08em;
@@ -79,12 +119,8 @@ a, button { cursor: none; }
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
-  border-top-color: var(--glass-border-top);
-  border-left-color: rgba(255,255,255,0.1);
   border-radius: 20px;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.1),
-    inset 1px 0 0 rgba(255,255,255,0.05),
     0 4px 24px rgba(0,0,0,0.2),
     0 1px 3px rgba(0,0,0,0.15);
 }
@@ -103,7 +139,6 @@ a, button { cursor: none; }
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
-  border-top-color: var(--glass-border-top); border-left-color: rgba(255,255,255,0.1);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 1px 0 0 rgba(255,255,255,0.05), 0 4px 24px rgba(0,0,0,0.2);
   transition: all 0.3s;
 }
@@ -162,8 +197,10 @@ a, button { cursor: none; }
   font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-label); text-transform: uppercase;
   color: var(--accent); margin-bottom: 12px;
   display: flex; align-items: center; gap: 8px;
+  width: 100%;
 }
 .cs-section-num::before { content: ''; width: 16px; height: 1px; background: var(--accent); }
+.cs-section-num .tts-wrap { margin-left: auto; }
 
 .cs-h2 {
   font-family: var(--font-serif);
@@ -179,8 +216,8 @@ a, button { cursor: none; }
 .cs-p:last-child { margin-bottom: 0; }
 
 .cs-hook {
-  margin: 32px 0; padding: 16px 20px; border-radius: 12px;
-  background: var(--dark-2); border-left: 3px solid var(--accent);
+  margin: 32px 0; padding: 20px 24px; border-radius: 12px;
+  background: var(--dark-2); border: 1px solid var(--glass-border);
   font-size: var(--text-lg); color: var(--cream); line-height: var(--leading-relaxed); font-style: italic;
 }
 .cs-hook::before { content: "\1F9E0  "; font-style: normal; }
@@ -276,13 +313,12 @@ a, button { cursor: none; }
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
-  border-top-color: var(--glass-border-top); border-left-color: rgba(255,255,255,0.1);
   border-radius: 16px; padding: 24px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 1px 0 0 rgba(255,255,255,0.05), 0 4px 24px rgba(0,0,0,0.2);
 }
 .cs-data-card.span-2 { grid-column: span 2; }
 .cs-data-card.span-3 { grid-column: span 3; }
-.cs-data-card.highlight { border-top-color: var(--accent); border-top-width: 2px; }
+.cs-data-card.highlight { border-color: rgba(200,169,110,0.25); }
 .cs-data-num {
   font-family: var(--font-serif); font-size: var(--text-stat-md); font-weight: 400;
   color: var(--accent); letter-spacing: var(--tracking-tight); line-height: 1; margin-bottom: 6px;
@@ -432,6 +468,16 @@ a, button { cursor: none; }
 @keyframes eqBar    { 0%,100% { height: 4px; } 50% { height: 16px; } }
 @keyframes playGlow { 0%,100% { box-shadow: 0 4px 20px rgba(232,115,74,0.3), 0 0 40px rgba(232,115,74,0.1); } 50% { box-shadow: 0 4px 28px rgba(232,115,74,0.5), 0 0 60px rgba(232,115,74,0.2); } }
 
+/* ── TTS Word Highlight ── */
+.tts-word { display: inline; }
+.tts-word-active {
+  background: rgba(200,169,110,0.18);
+  border-radius: 3px;
+  color: var(--cream) !important;
+  box-shadow: 0 0 0 2px rgba(200,169,110,0.12);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
 /* ── Ending CTA ── */
 .cs-ending {
   min-height: 100vh; padding: 48px;
@@ -477,14 +523,12 @@ a, button { cursor: none; }
 .cs-ending-main {
   background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--cream); border: 1px solid var(--glass-border);
-  border-top-color: var(--glass-border-top); border-left-color: rgba(255,255,255,0.1);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 1px 0 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.2);
 }
 .cs-ending-main:hover { background: rgba(255,255,255,0.14); transform: translateY(-3px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 8px 40px rgba(0,0,0,0.3); }
 .cs-ending-alt {
   background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--cream-dim); border: 1px solid var(--glass-border);
-  border-top-color: rgba(255,255,255,0.1); border-left-color: rgba(255,255,255,0.06);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 16px rgba(0,0,0,0.15);
 }
 .cs-ending-alt:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: var(--cream); }
@@ -497,15 +541,57 @@ a, button { cursor: none; }
 }
 
 /* ── Time Travel Bento ── */
-.cs-timetravel { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 40px 0; }
-.cs-tt-card    { padding: 28px; display: flex; flex-direction: column; gap: 8px; }
-.cs-tt-num   { font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--accent); opacity: 0.7; }
-.cs-tt-title { font-family: var(--font-serif); font-size: 20px; font-weight: 400; color: var(--cream); line-height: var(--leading-snug); }
-.cs-tt-desc  { font-size: var(--text-base); color: var(--cream-dim); line-height: var(--leading-normal); }
-.cs-tt-card:nth-child(1) { border-left: 2px solid rgba(232,115,74,0.3); }
-.cs-tt-card:nth-child(2) { border-left: 2px solid rgba(232,115,74,0.2); }
-.cs-tt-card:nth-child(3) { border-left: 2px solid rgba(126,184,126,0.3); }
-.cs-tt-card:nth-child(4) { border-left: 2px solid rgba(126,184,126,0.2); }
+.cs-timetravel { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 40px 0; counter-reset: tt-step; }
+.cs-tt-card {
+  padding: 32px 28px; display: flex; flex-direction: column; gap: 10px;
+  position: relative; overflow: hidden;
+  counter-increment: tt-step;
+  transition: transform 0.3s cubic-bezier(.25,.1,.25,1);
+}
+.cs-tt-card:hover { transform: translateY(-3px); }
+
+/* Ghost step number watermark */
+.cs-tt-card::before {
+  content: counter(tt-step, decimal-leading-zero);
+  position: absolute; bottom: 16px; right: 20px;
+  font-family: var(--font-serif); font-size: 72px; font-weight: 400;
+  color: rgba(255,255,255,0.035); line-height: 1; pointer-events: none; user-select: none;
+}
+
+/* Glow blob per card */
+.cs-tt-card::after {
+  content: ''; position: absolute;
+  width: 140px; height: 140px; border-radius: 50%;
+  top: -40px; right: -40px; pointer-events: none;
+  opacity: 0.055; filter: blur(50px);
+  transition: opacity 0.4s;
+}
+.cs-tt-card:hover::after { opacity: 0.13; }
+.cs-tt-card:nth-child(1)::after { background: var(--cream); }
+.cs-tt-card:nth-child(2)::after { background: #e85d3a; }
+.cs-tt-card:nth-child(3)::after { background: var(--green); }
+.cs-tt-card:nth-child(4)::after { background: var(--accent); }
+
+/* Border tint per card type */
+.cs-tt-card:nth-child(1) { border-color: rgba(255,255,255,0.09); }
+.cs-tt-card:nth-child(2) { border-color: rgba(232,93,58,0.22); }
+.cs-tt-card:nth-child(3) { border-color: rgba(126,184,126,0.22); }
+.cs-tt-card:nth-child(4) { border-color: rgba(200,169,110,0.28); }
+
+/* Label pill per card type */
+.cs-tt-num {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--tracking-wider); text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 20px; align-self: flex-start;
+  margin-bottom: 6px;
+}
+.cs-tt-card:nth-child(1) .cs-tt-num { color: var(--cream-dim); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); }
+.cs-tt-card:nth-child(2) .cs-tt-num { color: #e8806a; background: rgba(232,93,58,0.08); border: 1px solid rgba(232,93,58,0.2); }
+.cs-tt-card:nth-child(3) .cs-tt-num { color: var(--green); background: rgba(126,184,126,0.08); border: 1px solid rgba(126,184,126,0.2); }
+.cs-tt-card:nth-child(4) .cs-tt-num { color: var(--accent); background: rgba(200,169,110,0.08); border: 1px solid rgba(200,169,110,0.25); }
+
+.cs-tt-title { font-family: var(--font-serif); font-size: 22px; font-weight: 400; color: var(--cream); line-height: var(--leading-snug); }
+.cs-tt-desc  { font-size: var(--text-md); color: var(--cream-dim); line-height: var(--leading-relaxed); margin-top: 4px; }
 
 /* ── Persona Bento ── */
 .cs-persona { margin: 40px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -540,9 +626,10 @@ a, button { cursor: none; }
 /* ── KPI Section ── */
 .cs-kpi { margin: 40px 0; }
 .cs-kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-.cs-kpi-card  { padding: 28px; text-align: center; }
-.cs-kpi-val   { font-family: var(--font-serif); font-size: var(--text-stat-sm); font-weight: 400; color: var(--accent); letter-spacing: var(--tracking-snug); }
-.cs-kpi-label { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-dim); margin-top: 8px; }
+.cs-kpi-card  { padding: 24px 20px 20px; text-align: left; display: flex; flex-direction: column; gap: 0; }
+.cs-kpi-val   { font-family: var(--font-serif); font-size: var(--text-stat-sm); font-weight: 400; color: var(--accent); letter-spacing: var(--tracking-snug); line-height: 1; }
+.cs-kpi-label { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); margin-top: 8px; }
+.cs-kpi-why   { font-size: var(--text-sm); color: rgba(240,230,211,0.45); line-height: 1.6; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); font-family: var(--font-sans); letter-spacing: 0; }
 .cs-kpi-group-label { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--accent); margin-bottom: 12px; margin-top: 24px; }
 .cs-kpi-group-label:first-child { margin-top: 0; }
 
@@ -556,7 +643,6 @@ a, button { cursor: none; }
 .cs-tl-num {
   width: 48px; height: 48px; border-radius: 50%;
   background: var(--dark-2); border: 1px solid var(--glass-border);
-  border-top-color: var(--glass-border-top);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; color: var(--accent);
   position: relative; z-index: 1; flex-shrink: 0;
@@ -598,8 +684,7 @@ a, button { cursor: none; }
   width: auto; padding: 32px;
   display: flex; flex-direction: column; justify-content: center; gap: 16px; z-index: 2;
   background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border); border-top-color: var(--glass-border-top);
-  border-left-color: rgba(255,255,255,0.1);
+  border: 1px solid var(--glass-border);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 1px 0 0 rgba(255,255,255,0.04), 0 8px 40px rgba(0,0,0,0.4);
   border-radius: 24px;
 }
