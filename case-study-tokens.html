@@ -335,6 +335,101 @@
     </div>
   </section>
 
+</div><!-- end cs-page -->
+
+<!-- ══ 09 — ORCHESTRA SYNCS CALLOUT (full-width full-height) ══ -->
+<section style="
+  min-height:100vh; min-height:100dvh;
+  scroll-snap-align:start; scroll-snap-stop:always;
+  position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  background: #020e0b;
+">
+  <!-- Background glow orbs -->
+  <div style="position:absolute;top:-10%;left:-10%;width:60%;height:70%;border-radius:50%;background:radial-gradient(circle,rgba(29,233,182,0.10) 0%,transparent 65%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-15%;right:-10%;width:55%;height:65%;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,0.07) 0%,transparent 65%);pointer-events:none;"></div>
+  <div style="position:absolute;top:40%;left:50%;width:40%;height:40%;border-radius:50%;background:radial-gradient(circle,rgba(29,233,182,0.05) 0%,transparent 65%);pointer-events:none;"></div>
+
+  <!-- Dot grid overlay -->
+  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(240,230,211,0.07) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;"></div>
+
+  <!-- Content -->
+  <div style="position:relative;z-index:2;max-width:800px;width:100%;padding:60px 48px;display:flex;flex-direction:column;gap:40px;">
+
+    <!-- Label -->
+    <div style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(29,233,182,0.75);display:flex;align-items:center;gap:10px;">
+      <span style="display:block;width:24px;height:1px;background:rgba(29,233,182,0.5);"></span>
+      09 — What Came Next
+    </div>
+
+    <!-- Hero text -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <h2 style="font-family:var(--font-serif);font-size:clamp(36px,5vw,64px);font-weight:400;line-height:1.1;letter-spacing:-0.03em;color:var(--cream);margin:0;">
+        The plugin became<br>a platform.
+      </h2>
+      <p style="font-size:18px;line-height:1.75;color:var(--cream-dim);max-width:560px;margin:0;">
+        Every limitation this plugin hit — manual triggers, no CI/CD, no multi-platform output — became the product brief for <strong style="color:var(--cream);">Orchestra Syncs</strong>.
+      </p>
+    </div>
+
+    <!-- Before / After comparison -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);">
+      <!-- This Plugin -->
+      <div style="padding:28px 32px;background:rgba(255,255,255,0.02);display:flex;flex-direction:column;gap:16px;">
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(240,230,211,0.25);">This Plugin</div>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;">
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:rgba(240,230,211,0.4);">
+            <span style="width:18px;height:18px;border-radius:50%;background:rgba(240,230,211,0.06);border:1px solid rgba(240,230,211,0.1);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">✕</span>
+            Manual export trigger
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:rgba(240,230,211,0.4);">
+            <span style="width:18px;height:18px;border-radius:50%;background:rgba(240,230,211,0.06);border:1px solid rgba(240,230,211,0.1);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">✕</span>
+            Plugin only, no CLI
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:rgba(240,230,211,0.4);">
+            <span style="width:18px;height:18px;border-radius:50%;background:rgba(240,230,211,0.06);border:1px solid rgba(240,230,211,0.1);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;">✕</span>
+            No CI/CD integration
+          </li>
+        </ul>
+      </div>
+      <!-- Orchestra Syncs -->
+      <div style="padding:28px 32px;background:rgba(29,233,182,0.05);border-left:1px solid rgba(29,233,182,0.2);display:flex;flex-direction:column;gap:16px;">
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(29,233,182,0.75);">Orchestra Syncs</div>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;">
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--cream-dim);">
+            <span style="width:18px;height:18px;border-radius:50%;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green);flex-shrink:0;">✓</span>
+            Auto-sync on push
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--cream-dim);">
+            <span style="width:18px;height:18px;border-radius:50%;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green);flex-shrink:0;">✓</span>
+            Plugin + CLI + GitHub Action
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--cream-dim);">
+            <span style="width:18px;height:18px;border-radius:50%;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green);flex-shrink:0;">✓</span>
+            Full CI/CD pipeline
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Platform pills + CTA -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:rgba(29,233,182,0.07);border:1px solid rgba(29,233,182,0.25);color:rgba(29,233,182,0.85);">🌐 Web</span>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:rgba(29,233,182,0.07);border:1px solid rgba(29,233,182,0.25);color:rgba(29,233,182,0.85);">📱 iOS</span>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:rgba(29,233,182,0.07);border:1px solid rgba(29,233,182,0.25);color:rgba(29,233,182,0.85);">🤖 Android</span>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:rgba(29,233,182,0.07);border:1px solid rgba(29,233,182,0.25);color:rgba(29,233,182,0.85);">💙 Flutter</span>
+      </div>
+      <a href="https://orchestra.figma.site/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream);text-decoration:none;background:rgba(29,233,182,0.12);border:1px solid rgba(29,233,182,0.4);padding:12px 22px;border-radius:12px;cursor:none;transition:all 0.3s;">
+        View Orchestra Syncs
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div class="cs-page">
   <section class="cs-ending">
     <div class="cs-ending-inner">
       <div class="cs-ending-label">Thanks for Reading</div>
@@ -359,7 +454,7 @@
   </section>
 
   <!-- ══ NEXT PROJECT ══ -->
-    </div><!-- end cs-page -->
+</div><!-- end cs-page -->
 
 <div class="cs-next">
     <div class="cs-next-sidebar">
@@ -368,7 +463,7 @@
     </div>
     <div class="cs-next-cards">
     <a href="case-study-design-system.html" class="cs-next-card">
-      <div class="cs-next-card-bg"><img src="images/coverphoto/3.svg" alt="Three Platforms. One Source of Truth."></div>
+      <div class="cs-next-card-bg"><img src="images/DS/★ Showcase — Multi-Palette Demo.png" alt="Three Platforms. One Source of Truth."></div>
       <div class="cs-next-card-info">
         <div class="cs-next-card-why">Direct companion — the architecture</div>
         <div class="cs-next-card-tags">Design System / Multi-Platform / 2025</div>
