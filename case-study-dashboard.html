@@ -8,476 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Roboto:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/atoms.css">
+<link rel="stylesheet" href="css/cs-base.css">
 <link rel="stylesheet" href="css/chat.css">
-<style>
-/* ── Page Layout ── */
-html{scroll-snap-type:y mandatory;}
-body{cursor:none;}
-a,button{cursor:none;}
-
-.cs-page{
-  max-width:800px;
-  margin:0 auto;
-  padding:0 32px 0;
-}
-
-/* ── Hero ── */
-.cs-hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;
-  justify-content:flex-end;
-  padding:0;
-  position:relative;
-  scroll-snap-align:start;
-  overflow:hidden;
-}
-.cs-hero-bg{
-  position:absolute;inset:0;z-index:0;
-  overflow:hidden;
-}
-.cs-hero-bg video,.cs-hero-bg img{
-  width:100%;height:100%;object-fit:cover;
-}
-.cs-hero-bg::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,10,10,0.95) 0%,rgba(10,10,10,0.6) 50%,rgba(10,10,10,0.2) 100%);
-}
-.cs-hero-content{
-  position:relative;z-index:2;
-  padding:40px 48px;
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  grid-template-rows:auto auto;
-  gap:12px;
-  width:100%;
-}
-.cs-bento{
-  background:var(--glass-bg);
-  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-  border:1px solid var(--glass-border);
-  border-top-color:var(--glass-border-top);
-  border-left-color:rgba(255,255,255,0.1);
-  border-radius:20px;
-  padding:28px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.1),
-    inset 1px 0 0 rgba(255,255,255,0.05),
-    0 4px 24px rgba(0,0,0,0.2),
-    0 1px 3px rgba(0,0,0,0.15);
-}
-.cs-bento-title{
-  grid-column:1 / 3;
-  display:flex;flex-direction:column;gap:16px;
-}
-.cs-bento-meta{
-  display:flex;flex-direction:column;gap:12px;
-}
-.cs-bento-metric{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;
-}
-.cs-back{
-  position:fixed;top:32px;left:32px;z-index:100;
-  font-family:var(--font-mono);font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
-  color:var(--cream);
-  display:flex;align-items:center;gap:8px;
-  padding:10px 18px;border-radius:14px;
-  background:var(--glass-bg);
-  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-  border:1px solid var(--glass-border);
-  border-top-color:var(--glass-border-top);border-left-color:rgba(255,255,255,0.1);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1),inset 1px 0 0 rgba(255,255,255,0.05),0 4px 24px rgba(0,0,0,0.2);
-  transition:all 0.3s;
-}
-.cs-back:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);}
-.cs-back svg{width:14px;height:14px;stroke:currentColor;}
-
-.cs-label{
-  font-family:var(--font-mono);font-size:14px;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:24px;
-  display:flex;align-items:center;gap:10px;
-}
-.cs-label::before{content:'';width:24px;height:1px;background:var(--accent);}
-
-.cs-hero-content .cs-title{
-  font-family:var(--font-serif);
-  font-size:clamp(40px,6vw,64px);font-weight:400;
-  line-height:1.1;letter-spacing:-0.03em;
-  margin:0;
-}
-
-.cs-subtitle{
-  font-size:20px;color:var(--cream-dim);line-height:1.7;
-  max-width:600px;
-}
-
-.cs-meta{display:flex;flex-direction:column;gap:12px;}
-.cs-meta-item{}
-.cs-meta-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
-.cs-meta-val{font-size:17px;color:var(--cream);line-height:1.4;}
-
-.cs-metrics{display:flex;gap:40px;padding-top:20px;border-top:1px solid rgba(240,230,211,0.08);}
-.cs-metric-num{font-family:var(--font-serif);font-size:44px;font-weight:400;color:var(--accent);letter-spacing:-0.03em;line-height:1;}
-.cs-metric-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream-dim);margin-top:8px;}
-
-/* ── Sections ── */
-.cs-section{
-  min-height:100vh;
-  display:flex;flex-direction:column;
-  justify-content:center;
-  padding:80px 0;
-  scroll-snap-align:start;
-}
-.cs-section-num{
-  font-family:var(--font-mono);font-size:13px;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:12px;
-  display:flex;align-items:center;gap:8px;
-}
-.cs-section-num::before{content:'';width:16px;height:1px;background:var(--accent);}
-
-.cs-h2{
-  font-family:var(--font-serif);
-  font-size:clamp(28px,3.5vw,40px);font-weight:400;
-  line-height:1.2;letter-spacing:-0.02em;
-  margin-bottom:24px;
-}
-
-.cs-p{
-  font-size:18px;color:var(--cream-dim);line-height:1.8;
-  margin-bottom:16px;max-width:680px;
-}
-.cs-p:last-child{margin-bottom:0;}
-
-.cs-hook{margin:32px 0;padding:16px 20px;border-radius:12px;background:var(--dark-2);border-left:3px solid var(--accent);font-size:18px;color:var(--cream);line-height:1.7;font-style:italic;}
-.cs-hook::before{content:"\1F9E0  ";font-style:normal;}
-
-
-
-/* ── Chat Quotes ── */
-.cs-quote{margin:32px 0;max-width:85%;}
-
-
-.cs-quote p{background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);border-radius:20px 20px 20px 4px;padding:16px 20px;font-size:18px;color:var(--cream);line-height:1.7;margin:0 0 6px;}
-.cs-quote cite{font-family:var(--font-mono);font-size:13px;letter-spacing:0.06em;color:var(--cream-dim);font-style:normal;display:block;padding-left:40px;}
-.cs-quote-avatar{width:28px;height:28px;border-radius:50%;background:var(--dark-3);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;flex-shrink:0;position:absolute;left:0;top:0;}
-.cs-quote{position:relative;padding-left:40px;}
-.cs-quote p{margin-left:0;}
-.cs-convo{display:flex;flex-direction:column;gap:16px;margin:32px 0;}
-.cs-convo .cs-quote{margin:0;}
-.cs-quote-reply{align-self:flex-end;}
-.cs-quote-reply p{border-radius:20px 20px 4px 20px !important;background:linear-gradient(135deg,rgba(232,115,74,0.08) 0%,rgba(200,169,110,0.04) 100%) !important;border-color:rgba(232,115,74,0.12) !important;}
-
-/* ── Images ── */
-.cs-img{
-  margin:40px 0;border-radius:12px;overflow:hidden;
-  border:1px solid var(--cream-ghost);
-}
-.cs-img img{width:100%;display:block;}
-.cs-img-caption{
-  font-family:var(--font-mono);font-size:13px;
-  color:var(--cream-dim);padding:12px 16px;
-  background:var(--dark-2);letter-spacing:0.04em;
-}
-.cs-img-full{
-  margin:40px -80px;width:calc(100% + 160px);max-width:calc(100% + 160px);
-}
-
-/* ── Lists ── */
-.cs-list{
-  list-style:none;margin:24px 0;
-}
-.cs-list li{
-  font-size:17px;color:var(--cream-dim);line-height:1.7;
-  padding:12px 0 12px 24px;position:relative;
-  border-bottom:1px solid var(--cream-ghost);
-}
-.cs-list li:last-child{border-bottom:none;}
-.cs-list li::before{
-  content:'';position:absolute;left:0;top:20px;
-  width:6px;height:6px;border-radius:50%;
-  background:var(--accent);
-}
-.cs-list li strong{color:var(--cream);}
-
-/* ── Table ── */
-.cs-table{
-  width:100%;border-collapse:collapse;margin:24px 0;
-}
-.cs-table th{
-  font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--accent);text-align:left;padding:12px 16px;
-  border-bottom:2px solid var(--cream-ghost);
-}
-.cs-table td{
-  font-size:17px;color:var(--cream-dim);padding:14px 16px;
-  border-bottom:1px solid var(--cream-ghost);
-}
-.cs-table td:first-child{color:var(--cream);font-weight:500;}
-
-/* ── Highlight Card ── */
-.cs-card{
-  background:var(--dark-2);border:1px solid var(--cream-ghost);
-  border-radius:16px;padding:32px;margin:32px 0;
-}
-.cs-card-label{
-  font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:12px;
-}
-
-/* ── Results Grid ── */
-.cs-results{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-  margin:32px 0;
-}
-.cs-result{
-  background:var(--dark-2);border:1px solid var(--cream-ghost);
-  border-radius:12px;padding:24px;text-align:center;
-}
-.cs-result-num{
-  font-family:var(--font-serif);font-size:34px;font-weight:400;
-  color:var(--accent);letter-spacing:-0.02em;
-}
-.cs-result-label{
-  font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--cream-dim);margin-top:8px;
-}
-
-/* ── Data Bento Grid ── */
-.cs-data-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:32px 0;}
-.cs-data-bento.cols-4{grid-template-columns:repeat(4,1fr);}
-.cs-data-bento.cols-2{grid-template-columns:repeat(2,1fr);}
-.cs-data-card{
-  background:var(--glass-bg);
-  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-  border:1px solid var(--glass-border);
-  border-top-color:var(--glass-border-top);border-left-color:rgba(255,255,255,0.1);
-  border-radius:16px;padding:24px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1),inset 1px 0 0 rgba(255,255,255,0.05),0 4px 24px rgba(0,0,0,0.2);
-}
-.cs-data-card.span-2{grid-column:span 2;}
-.cs-data-card.span-3{grid-column:span 3;}
-.cs-data-card.highlight{border-top-color:var(--accent);border-top-width:2px;}
-.cs-data-num{font-family:var(--font-serif);font-size:38px;font-weight:400;color:var(--accent);letter-spacing:-0.03em;line-height:1;margin-bottom:6px;}
-.cs-data-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,230,211,0.4);margin-bottom:4px;}
-.cs-data-desc{font-size:16px;color:rgba(240,230,211,0.55);line-height:1.6;margin-top:8px;}
-.cs-data-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(240,230,211,0.06);}
-.cs-data-row:last-child{border-bottom:none;}
-.cs-data-row-label{font-size:16px;color:var(--cream);}
-.cs-data-row-before{font-family:var(--font-mono);font-size:14px;color:rgba(240,230,211,0.3);text-decoration:line-through;}
-.cs-data-row-after{font-family:var(--font-mono);font-size:16px;color:var(--accent);font-weight:500;}
-
-/* ── Lessons ── */
-.cs-lesson{
-  padding:24px 0;border-bottom:1px solid var(--cream-ghost);
-}
-.cs-lesson:last-child{border-bottom:none;}
-.cs-lesson strong{color:var(--cream);display:block;margin-bottom:6px;font-size:18px;}
-.cs-lesson p{font-size:17px;color:var(--cream-dim);line-height:1.7;}
-
-/* ── Next Project ── */
-.cs-next{
-  min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  border-top:1px solid var(--cream-ghost);
-  text-align:center;
-  scroll-snap-align:start;
-}
-.cs-next-label{
-  font-family:var(--font-mono);font-size:13px;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--cream-dim);margin-bottom:16px;
-}
-.cs-next a{
-  font-family:var(--font-serif);font-size:clamp(28px,4vw,48px);font-weight:400;
-  color:var(--cream);letter-spacing:-0.02em;
-  transition:color 0.3s;display:inline-block;
-}
-
-.cs-next-arrow{
-  display:block;margin-top:16px;
-  font-family:var(--font-mono);font-size:14px;color:var(--accent);letter-spacing:0.1em;
-}
-
-/* ── Split Layout ── */
-.cs-split{display:flex;flex-direction:column;gap:32px;margin:40px -120px;width:calc(100% + 240px);max-width:calc(100% + 240px);}
-.cs-split.reverse{}
-
-.cs-split-media{border-radius:12px;overflow:hidden;border:1px solid var(--cream-ghost);}
-.cs-split-media img,.cs-split-media video{width:100%;display:block;}
-.cs-split-text{}
-.cs-split-text .cs-h2{margin-bottom:16px;}
-
-/* ── Video ── */
-.cs-video{margin:40px 0;border-radius:12px;overflow:hidden;border:1px solid var(--cream-ghost);}
-.cs-video-theater{margin:60px calc(-50vw + 50%);width:100vw;border-radius:0;border:none;border-top:1px solid var(--cream-ghost);border-bottom:1px solid var(--cream-ghost);background:var(--dark);padding:40px 0;}
-.cs-video-theater video{width:100%;max-height:80vh;object-fit:contain;display:block;margin:0 auto;}
-.cs-video-theater-label{font-family:var(--font-mono);font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:20px;}
-.cs-video video{width:100%;display:block;}
-
-/* ── Responsive ── */
-@media(max-width:768px){
-  .cs-page{padding:0 20px 0;}
-  .cs-hero{min-height:100vh;min-height:100dvh;}
-  .cs-hero-content{padding:20px;grid-template-columns:1fr 1fr;gap:8px;}
-  .cs-bento{padding:20px;border-radius:16px;}
-  .cs-bento-title{grid-column:1/-1;}
-  .cs-bento-metric{padding:16px;}
-  .cs-section{min-height:auto;padding:60px 0;scroll-snap-align:start;}
-  .cs-next{min-height:60vh;}
-  .cs-results{grid-template-columns:1fr;}
-  .cs-img-full{margin:40px -120px;width:calc(100% + 240px);max-width:calc(100% + 240px);}
-  .cs-back{top:16px;left:16px;padding:8px 14px;font-size:12px;border-radius:12px;}
-  .cs-data-bento{grid-template-columns:1fr 1fr;}
-  .cs-data-bento.cols-4{grid-template-columns:1fr 1fr;}
-  .cs-data-card.span-2{grid-column:span 1;}
-  .cs-data-card.span-3{grid-column:1/-1;}
-  .cs-split{margin:24px 0;width:100%;max-width:100%;}
-  .cs-split.reverse{direction:ltr;}
-}
-/* ── Lightbox ── */
-.cs-lightbox{
-  position:fixed;inset:0;z-index:9999;
-  background:rgba(0,0,0,0.92);
-  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;
-  transition:opacity 0.3s;
-  cursor:zoom-out;
-}
-.cs-lightbox.open{opacity:1;pointer-events:all;}
-.cs-lightbox img,.cs-lightbox video{
-  max-width:92vw;max-height:90vh;
-  border-radius:12px;
-  box-shadow:0 16px 80px rgba(0,0,0,0.5);
-  transition:transform 0.3s;
-}
-.cs-lightbox-close{
-  position:absolute;top:24px;right:24px;
-  width:40px;height:40px;border-radius:12px;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
-  border:1px solid rgba(255,255,255,0.1);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1),0 4px 16px rgba(0,0,0,0.3);
-  color:var(--cream);transition:background 0.2s;
-}
-.cs-lightbox-close:hover{background:rgba(255,255,255,0.12);}
-.cs-lightbox-close svg{width:18px;height:18px;stroke:currentColor;}
-.cs-img,.cs-split-media,.cs-video{cursor:zoom-in;position:relative;transition:transform 0.3s;}
-.cs-img:hover,.cs-split-media:hover,.cs-video:hover{transform:scale(1.01);}
-.cs-img::after,.cs-split-media::after,.cs-video::after{
-  content:"\2922";
-  position:absolute;top:12px;right:12px;
-  width:32px;height:32px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;color:var(--cream);
-  background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02));
-  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-  border:1px solid rgba(255,255,255,0.1);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1),0 2px 12px rgba(0,0,0,0.3);
-  opacity:0;transition:opacity 0.2s;pointer-events:none;
-}
-.cs-img:hover::after,.cs-split-media:hover::after,.cs-video:hover::after{opacity:1;}
-/* ── Page Loading ── */
-.cs-loader{position:fixed;inset:0;z-index:9998;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity 0.5s,visibility 0.5s;}
-.cs-loader.done{opacity:0;visibility:hidden;pointer-events:none;}
-.cs-loader-bar{width:120px;height:2px;background:var(--dark-3);border-radius:2px;overflow:hidden;}
-.cs-loader-bar::after{content:"";display:block;width:40%;height:100%;background:var(--accent);border-radius:2px;animation:loaderSlide 1s ease-in-out infinite;}
-.cs-loader-text{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream-dim);}
-@keyframes loaderSlide{0%{transform:translateX(-100%)}50%{transform:translateX(200%)}100%{transform:translateX(-100%)}}
-
-.tts-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);color:var(--cream-dim);font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;cursor:none;transition:all 0.2s;margin-bottom:16px;}
-.tts-btn:hover{background:rgba(255,255,255,0.06);color:var(--cream);border-color:rgba(255,255,255,0.1);}
-.tts-btn svg{width:14px;height:14px;flex-shrink:0;}
-.tts-btn.tts-playing{color:var(--accent);border-color:rgba(232,115,74,0.2);background:rgba(232,115,74,0.06);}
-.tts-btn.tts-playing svg{animation:ttsPulse 1.5s ease-in-out infinite;}
-@keyframes ttsPulse{0%,100%{opacity:1}50%{opacity:0.4}}
-/* ── Next Projects ── */
-.cs-next{padding:0;display:flex;position:relative;scroll-snap-align:start;}
-.cs-next-sidebar{
-  width:240px;flex-shrink:0;
-  position:sticky;top:0;height:100vh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:40px 20px;
-}
-.cs-next-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
-.cs-next-title{font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--cream);letter-spacing:-0.02em;line-height:1.15;}
-.cs-next-cards{flex:1;display:flex;flex-direction:column;padding:0;gap:0;}
-.cs-next-card{
-  position:relative;height:100vh;min-height:700px;flex-shrink:0;
-  overflow:hidden;background:#181614;
-  border:none;border-bottom:1px solid rgba(240,230,211,0.06);border-radius:0;
-  text-decoration:none;color:inherit;
-}
-.cs-next-card:hover .cs-next-card-bg img,.cs-next-card:hover .cs-next-card-bg video{transform:scale(1.03);}
-.cs-next-card-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
-.cs-next-card-bg img,.cs-next-card-bg video{width:100%;height:100%;object-fit:cover;transition:transform 0.6s cubic-bezier(.25,.1,.25,1);}
-.cs-next-card-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.9) 0%,rgba(10,10,10,0.5) 50%,rgba(10,10,10,0.2) 100%);}
-.cs-next-card-info{position:absolute;right:24px;bottom:24px;left:24px;top:auto;width:auto;padding:32px;display:flex;flex-direction:column;justify-content:center;gap:16px;z-index:2;background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-top-color:var(--glass-border-top);border-left-color:rgba(255,255,255,0.1);box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),inset 1px 0 0 rgba(255,255,255,0.04),0 8px 40px rgba(0,0,0,0.4);border-radius:24px;}
-.cs-next-card-why{font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);}
-.cs-next-card-tags{font-family:var(--font-mono);font-size:15px;letter-spacing:0.06em;text-transform:uppercase;color:var(--cream-dim);opacity:0.5;}
-.cs-next-card-title{font-family:var(--font-serif);font-size:30px;font-weight:400;line-height:1.3;letter-spacing:-0.02em;color:var(--cream);}
-.cs-next-card-metric{display:flex;align-items:baseline;gap:8px;}
-.cs-next-card-metric .val{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--accent);letter-spacing:-0.02em;}
-.cs-next-card-metric .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);}
-.cs-next-card-cta{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border:1.5px solid rgba(232,115,74,0.8);border-radius:12px;font-family:var(--font-mono);font-size:15px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);align-self:flex-start;transition:all 0.3s;}
-.cs-next-card-cta:hover{background:var(--accent);color:var(--dark);}
-@media(max-width:960px){
-  .cs-next{flex-direction:column;}
-  .cs-next-sidebar{width:auto;height:auto;position:relative;padding:40px 24px 24px;}
-  .cs-next-card{height:100vh;height:100dvh;min-height:unset;}
-}
-
-
-/* ── TTS Player ── */
-.tts-wrap{display:inline-flex;align-items:center;flex-shrink:0;vertical-align:middle;}
-.tts-btn{
-  display:flex;align-items:center;gap:0;
-  padding:0;border:none;cursor:none;
-  background:none;position:relative;
-}
-.tts-play{
-  width:44px;height:44px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,var(--accent) 0%,#d4845a 100%);
-  box-shadow:0 4px 20px rgba(232,115,74,0.3),0 0 40px rgba(232,115,74,0.1);
-  transition:all 0.3s cubic-bezier(.25,.1,.25,1);
-  position:relative;z-index:1;
-}
-.tts-play svg{width:12px;height:12px;color:var(--dark);margin-left:2px;}
-.tts-play .tts-icon-stop{display:none;margin-left:0;}
-.tts-btn:hover .tts-play{transform:scale(1.1);box-shadow:0 6px 28px rgba(232,115,74,0.4),0 0 60px rgba(232,115,74,0.15);}
-.tts-btn.tts-playing .tts-play{background:linear-gradient(135deg,#e85d3a 0%,var(--accent) 100%);animation:playGlow 2s ease-in-out infinite;}
-.tts-btn.tts-playing .tts-icon-play{display:none;}
-.tts-btn.tts-playing .tts-icon-stop{display:block;}
-
-.tts-track{
-  display:flex;align-items:center;gap:12px;
-  margin-left:-6px;padding:6px 14px 6px 14px;
-  border-radius:0 999px 999px 0;
-  background:var(--glass-bg);
-  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-  border:1px solid var(--glass-border);
-  border-left:none;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 2px 12px rgba(0,0,0,0.15);
-}
-
-.tts-eq{display:flex;align-items:flex-end;gap:2px;height:16px;width:20px;}
-.tts-eq span{width:3px;background:var(--cream-dim);border-radius:2px;height:4px;transition:background 0.3s;}
-.tts-btn.tts-playing .tts-eq span{background:var(--accent);animation:eqBar 0.8s ease-in-out infinite;}
-.tts-btn.tts-playing .tts-eq span:nth-child(2){animation-delay:0.15s;animation-duration:0.65s;}
-.tts-btn.tts-playing .tts-eq span:nth-child(3){animation-delay:0.3s;animation-duration:0.9s;}
-
-.tts-progress{width:48px;height:3px;border-radius:2px;background:rgba(255,255,255,0.08);overflow:hidden;}
-.tts-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),#d4845a);border-radius:2px;transition:width 0.3s linear;box-shadow:0 0 8px rgba(232,115,74,0.4);}
-
-.tts-meta{display:flex;flex-direction:column;gap:1px;}
-.tts-label-text{font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);transition:color 0.3s;}
-.tts-time{font-family:var(--font-mono);font-size:9px;color:var(--cream-dim);opacity:0.6;font-variant-numeric:tabular-nums;}
-.tts-btn.tts-playing .tts-label-text{color:var(--accent);}
-
-@keyframes eqBar{0%,100%{height:4px}50%{height:16px}}
-@keyframes playGlow{0%,100%{box-shadow:0 4px 20px rgba(232,115,74,0.3),0 0 40px rgba(232,115,74,0.1);}50%{box-shadow:0 4px 28px rgba(232,115,74,0.5),0 0 60px rgba(232,115,74,0.2);}}
-</style>
 </head>
 <body>
 <div class="cs-loader" id="pageLoader">
@@ -574,6 +106,35 @@ a,button{cursor:none;}
     <div class="cs-hook">The data existed. The design didn't.</div>
   </section>
 
+  <!-- Persona Bento -->
+  <section class="cs-section">
+    <div class="cs-section-num">Persona</div>
+    <h2 class="cs-h2">Mei, Ops Manager</h2>
+    <div class="cs-persona">
+      <div class="cs-persona-card span-2">
+        <div class="cs-persona-role">Primary User</div>
+        <div class="cs-persona-name">Mei, Ops Manager</div>
+        <div class="cs-persona-desc">Operations Manager at a multi-branch retail business. Responsible for daily financial reporting — a role that starts with the same 30-minute manual ritual every morning before any real work can begin.</div>
+        <div class="cs-persona-quote">"I know exactly what numbers the team needs. I just don't have them in one place."<cite>— Mei, Ops Manager</cite></div>
+      </div>
+      <div class="cs-persona-card">
+        <div class="cs-persona-stat"><div class="cs-persona-stat-val">30 min</div><div class="cs-persona-stat-label">Morning ritual, every day</div></div>
+      </div>
+      <div class="cs-persona-card">
+        <div class="cs-persona-stat"><div class="cs-persona-stat-val">12</div><div class="cs-persona-stat-label">Copy-pastes per morning</div></div>
+      </div>
+      <div class="cs-persona-card span-2">
+        <div class="cs-persona-role">Daily Friction</div>
+        <ul class="cs-persona-pain-list">
+          <li>Opens Xero, copies revenue numbers, checks supplier portal, reformats for leadership — manually, every day</li>
+          <li>One misplaced decimal cascades through the entire report — no validation, no sync</li>
+          <li>Amendments buried 3 clicks deep: Finance → Amendments submenu</li>
+          <li>Finance team makes decisions on day-old numbers — real-time data doesn't exist yet</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ 03 — OLD DESIGN PAIN POINTS ══ -->
   <section class="cs-section">
     <div class="cs-section-num">03 — Audit</div>
@@ -592,6 +153,23 @@ a,button{cursor:none;}
     </ul>
 
     <div class="cs-hook">We knew what was broken. Now — what should the fix look like?</div>
+  </section>
+
+  <section class="cs-section">
+    <div class="cs-section-num">Success Metrics</div>
+    <h2 class="cs-h2">How We'll Know It Worked</h2>
+    <div class="cs-kpi">
+      <div class="cs-kpi-group-label">Design KPIs</div>
+      <div class="cs-kpi-grid">
+        <div class="cs-kpi-card"><div class="cs-kpi-val">0 min</div><div class="cs-kpi-label">Morning prep time</div></div>
+        <div class="cs-kpi-card"><div class="cs-kpi-val">Real-time</div><div class="cs-kpi-label">Data freshness</div></div>
+      </div>
+      <div class="cs-kpi-group-label">Business KPIs</div>
+      <div class="cs-kpi-grid">
+        <div class="cs-kpi-card"><div class="cs-kpi-val">&gt;100%</div><div class="cs-kpi-label">ROI</div></div>
+        <div class="cs-kpi-card"><div class="cs-kpi-val">0</div><div class="cs-kpi-label">Copy-pastes needed</div></div>
+      </div>
+    </div>
   </section>
 
   <!-- ══ 04 — WHAT CHANGED ══ -->
@@ -730,6 +308,40 @@ a,button{cursor:none;}
     </div>
   </section>
 
+  <section class="cs-section">
+    <div class="cs-section-num">Time Machine</div>
+    <h2 class="cs-h2">If I Could Go Back</h2>
+    <div class="cs-timetravel">
+      <div class="cs-tt-card"><div class="cs-tt-num">What I assumed</div><div class="cs-tt-title">Structured usability test</div><div class="cs-tt-desc">Plan a formal usability study with defined tasks and metrics.</div></div>
+      <div class="cs-tt-card"><div class="cs-tt-num">What I missed</div><div class="cs-tt-title">Anecdote vs evidence</div><div class="cs-tt-desc">Stakeholders shared stories but we needed numbers to prove value.</div></div>
+      <div class="cs-tt-card"><div class="cs-tt-num">What I'd do</div><div class="cs-tt-title">A/B test with time-tracking</div><div class="cs-tt-desc">Run old vs new workflow with stopwatch data to quantify savings.</div></div>
+      <div class="cs-tt-card"><div class="cs-tt-num">Expected outcome</div><div class="cs-tt-title">Bulletproof ROI</div><div class="cs-tt-desc">Hard numbers that make the business case undeniable.</div></div>
+    </div>
+  </section>
+
+  <section class="cs-ending">
+    <div class="cs-ending-inner">
+      <div class="cs-ending-label">Thanks for Reading</div>
+      <h2 class="cs-ending-heading">Let's build<br>something <em>great</em></h2>
+      <p class="cs-ending-sub">Open to senior roles in product and UX. Looking for a team that ships things and cares whether they work.</p>
+      <div class="cs-ending-buttons">
+        <a href="mailto:kaungmyat9702@gmail.com" class="cs-ending-btn cs-ending-main">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Email Me
+        </a>
+        <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" class="cs-ending-btn cs-ending-alt" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="cs-ending-meta">
+        <span>kaungmyat9702@gmail.com</span>
+        <span>Open to Work</span>
+        <span>Senior Product Designer</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ NEXT PROJECT ══ -->
     </div><!-- end cs-page -->
 
@@ -759,6 +371,46 @@ a,button{cursor:none;}
         <div class="cs-next-card-cta">View Case Study &rarr;</div>
       </div>
     </a>
+    </div>
+  </div>
+</div>
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<script src="js/atoms.js"></script>
+<script src="js/tts.js"></script>
+<script>window.addEventListener("load",function(){var l=document.getElementById("pageLoader");if(l)setTimeout(function(){l.classList.add("done")},300);});</script>
+<script src="js/lightbox.js"></script>
+<script src="js/scroll-indicator.js"></script>
+<!-- CHAT -->
+<button class="chat-trigger" id="chatTrigger" data-context="dashboard">
+  <svg class="ai-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l2.09 6.26L20.18 10l-6.09 1.74L12 18l-2.09-6.26L3.82 10l6.09-1.74L12 2z" stroke="currentColor"/><circle cx="19" cy="5" r="1.5" fill="currentColor" opacity="0.6"/><circle cx="5" cy="19" r="1" fill="currentColor" opacity="0.4"/></svg>
+  <span class="ai-label-full">Ask About This Project</span>
+  <span class="ai-label-short">AI</span>
+  <span class="dot"></span>
+</button>
+<div class="chat-overlay" id="chatOverlay"></div>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-header-title"><span class="dot"></span><span>Ask About This Project</span></div>
+    <button class="chat-close" id="chatClose"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-welcome">
+      <div class="chat-welcome-icon">&#x2728;</div>
+      <h3>Ask me about this project</h3>
+      <p>I can answer detailed questions about the process, decisions, and results.</p>
+      <div class="chat-suggestions">
+        <button class="chat-suggestion" data-q="How was the 104% ROI calculated?">How was the 104% ROI calculated?</button>
+        <button class="chat-suggestion" data-q="What was Mei's daily workflow?">What was Mei's daily workflow?</button>
+        <button class="chat-suggestion" data-q="What would you do differently?">What would you do differently?</button>
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-wrap">
+    <div class="chat-input-bar">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off">
+      <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
     </div>
   </div>
 </div>

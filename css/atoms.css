@@ -853,3 +853,60 @@ footer {
   color: rgba(240,230,211,.75);
 }
 
+/* ─────────────────────────────────────
+   SCROLL SECTION INDICATOR
+   Vertical dashes on the right edge,
+   shows current section + counter.
+   ───────────────────────────────────── */
+.scroll-indicator {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  pointer-events: none;
+}
+
+.scroll-dot {
+  width: 2px;
+  height: 16px;
+  border-radius: 2px;
+  background: rgba(240, 230, 211, 0.15);
+  transition: height 0.35s cubic-bezier(.25,.1,.25,1),
+              background 0.35s cubic-bezier(.25,.1,.25,1);
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.scroll-dot.active {
+  height: 36px;
+  background: var(--accent);
+}
+
+.scroll-dot:hover:not(.active) {
+  background: rgba(240, 230, 211, 0.35);
+}
+
+.scroll-counter {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: rgba(240, 230, 211, 0.25);
+  margin-top: 10px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  pointer-events: none;
+  transition: color 0.3s;
+}
+
+@media (max-width: 768px) {
+  .scroll-indicator { right: 10px; gap: 4px; }
+  .scroll-dot { height: 12px; }
+  .scroll-dot.active { height: 24px; }
+  .scroll-counter { display: none; }
+}
+
