@@ -16,13 +16,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Roboto:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/atoms.css">
-<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];var isBack=nav&&nav.type==="back_forward";var h=document.documentElement;if(!isBack){h.style.scrollSnapType="none";h.style.overflow="hidden";h.scrollTop=0;window.scrollTo(0,0);window.addEventListener("load",function(){h.scrollTop=0;window.scrollTo(0,0);setTimeout(function(){h.style.overflow="";h.style.scrollSnapType="";},60);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflow="";}});})();</script><link rel="stylesheet" href="css/cs-base.css?v=dot1">
+<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var h=document.documentElement;function dismissLoader(){var l=document.getElementById("pageLoader");if(l)l.classList.add("done");}function isBackNav(){try{var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];if(nav)return nav.type==="back_forward";return sessionStorage.getItem("_visited")==="1";}catch(e){return false;}}sessionStorage.setItem("_visited","1");var back=isBackNav();if(!back){h.style.scrollSnapType="none";h.style.overflowY="hidden";window.scrollTo(0,0);window.addEventListener("load",function(){window.scrollTo(0,0);setTimeout(function(){h.style.overflowY="";h.style.scrollSnapType="";dismissLoader();},80);});}else{window.addEventListener("load",function(){setTimeout(dismissLoader,300);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflowY="";dismissLoader();}});})();</script><link rel="stylesheet" href="css/cs-base.css?v=dot1">
 <link rel="stylesheet" href="css/chat.css">
 </head>
 <body>
 <div class="cs-loader" id="pageLoader">
-  <div class="cs-loader-bar"></div>
-  <div class="cs-loader-text">Loading</div>
+  <div class="cs-loader-glow-a"></div>
+  <div class="cs-loader-glow-b"></div>
+  <div class="cs-loader-inner">
+    <div class="cs-loader-mono">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line class="hl" x1="16" y1="8" x2="16" y2="72" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <line class="hc" x1="16" y1="40" x2="64" y2="40" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <line class="hr" x1="64" y1="8" x2="64" y2="72" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cs-loader-name">Harry Hein</div>
+    <div class="cs-loader-role">Senior Product Designer</div>
+  </div>
+  <div class="cs-loader-progress"></div>
 </div>
 
 <!-- Back -->
@@ -434,7 +446,7 @@
 <div class="cursor-dot" id="cursorDot"></div>
 <script src="js/atoms.js"></script>
 <script src="js/tts.js"></script>
-<script>window.addEventListener("load",function(){var l=document.getElementById("pageLoader");if(l)setTimeout(function(){l.classList.add("done")},300);});</script>
+
 <script src="js/lightbox.js"></script>
 <script src="js/scroll-indicator.js"></script>
 <!-- CHAT -->

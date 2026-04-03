@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "hello-harry",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8080"],
+      "runtimeExecutable": "/opt/homebrew/bin/node",
+      "runtimeArgs": ["-e", "const http=require('http'),fs=require('fs'),path=require('path');http.createServer((req,res)=>{let u=req.url.split('?')[0];let f=path.join('/Users/harryhein/Desktop/Harry\\'s Portfolio/hello-harry',u==='/'?'/portfolio.html':u);fs.readFile(f,(e,d)=>{if(e){res.writeHead(404);res.end();}else{const ext=path.extname(f).slice(1);const m={html:'text/html',css:'text/css',js:'application/javascript',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',svg:'image/svg+xml',mp4:'video/mp4',webp:'image/webp',woff2:'font/woff2',woff:'font/woff',ico:'image/x-icon'};res.writeHead(200,{'Content-Type':m[ext]||'application/octet-stream'});res.end(d);}});}).listen(8080,()=>console.log('Server running on 8080'));"],
       "port": 8080
     }
   ]

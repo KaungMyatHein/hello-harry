@@ -19,7 +19,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Harry Hein — Senior Product Designer</title>
-<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];var isBack=nav&&nav.type==="back_forward";var h=document.documentElement;if(!isBack){h.style.scrollSnapType="none";h.style.overflow="hidden";h.scrollTop=0;window.scrollTo(0,0);window.addEventListener("load",function(){h.scrollTop=0;window.scrollTo(0,0);setTimeout(function(){h.style.overflow="";h.style.scrollSnapType="";},60);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflow="";}});})();</script>
+<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var h=document.documentElement;function dismissLoader(){var l=document.getElementById("pageLoader");if(l)l.classList.add("done");}function isBackNav(){try{var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];if(nav)return nav.type==="back_forward";return sessionStorage.getItem("_visited")==="1";}catch(e){return false;}}sessionStorage.setItem("_visited","1");var back=isBackNav();if(!back){h.style.scrollSnapType="none";h.style.overflowY="hidden";window.scrollTo(0,0);window.addEventListener("load",function(){window.scrollTo(0,0);setTimeout(function(){h.style.overflowY="";h.style.scrollSnapType="";dismissLoader();},80);});}else{window.addEventListener("load",function(){setTimeout(dismissLoader,300);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflowY="";dismissLoader();}});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Roboto:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
@@ -28,7 +28,27 @@
 <link rel="stylesheet" href="css/chat.css">
 <style>
 /* Custom cursor */
-html{scroll-snap-type:y mandatory;}
+html{scroll-snap-type:y mandatory;overflow-y:scroll;height:100%;}
+/* Page Loader */
+#pageLoader{position:fixed;inset:0;z-index:9998;background:#080808;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0;overflow:hidden;clip-path:inset(0);transition:clip-path 0.75s cubic-bezier(.76,0,.24,1);}
+#pageLoader::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(240,230,211,0.07) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;}
+#pageLoader.done{clip-path:inset(50% 0);pointer-events:none;}
+#pageLoader .ld-glow-a{position:absolute;top:-10%;left:-10%;width:55%;height:65%;border-radius:50%;background:radial-gradient(circle,rgba(200,169,110,0.10) 0%,transparent 65%);pointer-events:none;animation:ldOrb 4s ease-in-out infinite;}
+#pageLoader .ld-glow-b{position:absolute;bottom:-15%;right:-10%;width:50%;height:60%;border-radius:50%;background:radial-gradient(circle,rgba(200,169,110,0.07) 0%,transparent 65%);pointer-events:none;animation:ldOrb 4s ease-in-out infinite reverse;}
+#pageLoader .ld-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:0;}
+#pageLoader .ld-mono{margin-bottom:28px;}
+#pageLoader .ld-mono svg{display:block;}
+#pageLoader .ld-mono .hl{stroke-dasharray:64;stroke-dashoffset:64;animation:ldDraw 0.5s ease-out 0.15s forwards;}
+#pageLoader .ld-mono .hc{stroke-dasharray:48;stroke-dashoffset:48;animation:ldDraw 0.4s ease-out 0.55s forwards;}
+#pageLoader .ld-mono .hr{stroke-dasharray:64;stroke-dashoffset:64;animation:ldDraw 0.5s ease-out 0.75s forwards;}
+#pageLoader .ld-name{font-family:'Roboto Serif',serif;font-size:clamp(28px,4vw,44px);font-weight:400;letter-spacing:-0.02em;color:#f0e6d3;opacity:0;transform:translateY(10px);animation:ldFadeUp 0.6s ease-out 1.1s forwards;}
+#pageLoader .ld-role{font-family:'Roboto Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,230,211,0.3);margin-top:10px;opacity:0;animation:ldFadeUp 0.5s ease-out 1.3s forwards;}
+#pageLoader .ld-progress{position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(255,255,255,0.05);}
+#pageLoader .ld-progress::after{content:"";position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg,transparent,#c8a96e,transparent);animation:ldProgress 1.4s cubic-bezier(.4,0,.2,1) 0.1s both;}
+@keyframes ldOrb{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.08) translate(2%,2%)}}
+@keyframes ldDraw{to{stroke-dashoffset:0}}
+@keyframes ldProgress{from{width:0;opacity:0}to{width:100%;opacity:1}}
+@keyframes ldFadeUp{to{opacity:1;transform:translateY(0)}}
 body{cursor:none;}
 a,button,[data-toggle],.proj-arrow{cursor:none;}
 
@@ -925,6 +945,22 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 </style>
 </head>
 <body>
+<div id="pageLoader">
+  <div class="ld-glow-a"></div>
+  <div class="ld-glow-b"></div>
+  <div class="ld-inner">
+    <div class="ld-mono">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line class="hl" x1="16" y1="8" x2="16" y2="72" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <line class="hc" x1="16" y1="40" x2="64" y2="40" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <line class="hr" x1="64" y1="8" x2="64" y2="72" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="ld-name">Harry Hein</div>
+    <div class="ld-role">Senior Product Designer</div>
+  </div>
+  <div class="ld-progress"></div>
+</div>
 
 <!-- Custom Cursor -->
 <div class="cursor" id="cursor"></div>
