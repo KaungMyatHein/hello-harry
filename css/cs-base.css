@@ -75,10 +75,12 @@
 html {
   scroll-snap-type: y mandatory;
   overflow-y: scroll; /* required for Safari — without this, html is not treated as scroll container */
+  overflow-x: hidden;
   height: 100%;
 }
 body {
   cursor: none;
+  overflow-x: hidden;
   background-image: radial-gradient(circle, rgba(240,230,211,0.12) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
   /* background-attachment:fixed causes GPU repaint on every scroll frame — use scroll instead */
@@ -125,6 +127,7 @@ a, button { cursor: none; }
 
 /* ── Bento Cards (shared glass style) ── */
 .cs-bento, .cs-tt-card, .cs-persona-card, .cs-kpi-card {
+  min-width: 0; /* prevent grid blowout */
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -177,7 +180,7 @@ a, button { cursor: none; }
 }
 
 /* ── Meta (inside glass) ── */
-.cs-meta { display: flex; gap: 32px; padding-top: 20px; border-top: 1px solid rgba(240,230,211,0.08); }
+.cs-meta { display: flex; flex-wrap: wrap; gap: 16px 24px; padding-top: 20px; border-top: 1px solid rgba(240,230,211,0.08); }
 .cs-meta-label {
   font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-wider); text-transform: uppercase;
   color: var(--accent); margin-bottom: 6px;
@@ -864,18 +867,28 @@ a, button { cursor: none; }
   .cs-next-card { height: 100vh; height: 100dvh; min-height: unset; }
 }
 @media (max-width: 768px) {
+  /* prevent any element from blowing out the viewport */
+  .cs-page, .cs-hero-content, .cs-bento, .cs-section { overflow-x: hidden; }
+
   .cs-page { padding: 0 20px; }
   .cs-hero { min-height: 100vh; min-height: 100dvh; }
-  .cs-hero-content { padding: 20px; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .cs-bento { padding: 20px; border-radius: 16px; }
+  /* Hero bento grid: title full-width top, meta + metrics below in 2 cols */
+  .cs-hero-content { padding: 16px; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cs-bento { padding: 16px; border-radius: 16px; min-width: 0; }
   .cs-bento-title { grid-column: 1 / -1; }
-  .cs-bento-metric { padding: 16px; }
+  .cs-bento-meta  { grid-column: 1 / -1; } /* full-width on mobile so meta items wrap cleanly */
+  .cs-bento-metric { padding: 12px; }
+  .cs-bento-metric .cs-metric-num { font-size: var(--text-stat-sm); }
+
+  /* Meta items: wrap naturally, don't overflow */
+  .cs-meta { flex-wrap: wrap; gap: 12px 20px; }
+  .cs-meta > div { flex: 0 0 auto; }
+
   .cs-section { min-height: auto; padding: 60px 0; scroll-snap-align: start; }
   .cs-next { min-height: 60vh; }
-  .cs-meta { grid-template-columns: 1fr; }
   .cs-metrics { flex-direction: column; gap: 24px; }
   .cs-results { grid-template-columns: 1fr; }
-  .cs-img-full { margin: 40px -120px; width: calc(100% + 240px); max-width: calc(100% + 240px); }
+  .cs-img-full { margin: 40px 0; width: 100%; max-width: 100%; }
   .cs-back { top: 16px; left: 16px; padding: 8px 14px; font-size: var(--text-xs); border-radius: 12px; }
   .cs-data-bento { grid-template-columns: 1fr 1fr; }
   .cs-data-bento.cols-4 { grid-template-columns: 1fr 1fr; }
@@ -892,4 +905,11 @@ a, button { cursor: none; }
   .cs-timeline::before { top: 0; bottom: 0; left: 24px; right: auto; width: 1px; height: auto; }
   .cs-tl-item { flex-direction: row; text-align: left; align-items: flex-start; gap: 20px; padding: 0 0 32px 0; }
   .cs-tl-body { margin-top: 0; }
+}
+
+/* Very small phones */
+@media (max-width: 390px) {
+  .cs-hero-content { padding: 12px; gap: 6px; }
+  .cs-bento { padding: 12px; }
+  .cs-title { font-size: clamp(28px, 8vw, 48px); }
 }
