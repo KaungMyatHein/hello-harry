@@ -84,23 +84,21 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 }
 
 .hero-bento{
-  display:grid;
-  grid-template-columns:1fr 1fr 220px;
-  grid-template-rows:auto auto;
-  gap:12px;
+  display:flex;
+  justify-content:center;
   width:100%;max-width:1400px;
   margin:0 auto;
   position:relative;z-index:2;
 }
 
-/* Main name card — spans 2 cols × 2 rows */
+/* Main name card — full width */
 .hb-main{
-  grid-column:1/3;grid-row:1/3;
+  width:100%;
   background:var(--dark);
   border:1px solid rgba(240,230,211,0.1);
   border-radius:24px;
   padding:56px;
-  display:flex;flex-direction:column;justify-content:space-between;
+  display:flex;flex-direction:column;justify-content:center;
   min-height:480px;
   overflow:hidden;position:relative;
   opacity:0;animation:fadeUp 0.8s 0.2s forwards;
@@ -113,17 +111,17 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 
 /* Profile photo inside main card */
 .hb-profile-wrap{
-  position:absolute;right:0;bottom:0;
-  width:clamp(200px,30%,320px);
-  height:100%;
+  position:absolute;right:40px;bottom:0;top:0;
+  width:clamp(180px,22%,260px);
   z-index:1;pointer-events:none;
-  display:flex;align-items:flex-end;
+  display:flex;align-items:center;
+  opacity:0.15;
 }
 .hb-profile-img{
   width:100%;display:block;
   object-fit:cover;object-position:top center;
-  -webkit-mask-image:linear-gradient(to bottom,black 40%,transparent 92%),linear-gradient(to left,black 55%,transparent 100%);
-  mask-image:linear-gradient(to bottom,black 40%,transparent 92%),linear-gradient(to left,black 55%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 5%,black 30%,black 70%,transparent 95%),linear-gradient(to left,black 60%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 5%,black 30%,black 70%,transparent 95%),linear-gradient(to left,black 60%,transparent 100%);
   -webkit-mask-composite:destination-in;
   mask-composite:intersect;
 }
@@ -159,6 +157,23 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 .hero-name .line:nth-child(2) span{animation-delay:0.2s}
 .hero-name .line:nth-child(2){font-style:italic;color:var(--accent);}
 
+.hb-inline-stats{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-bottom:16px;opacity:0;animation:fadeUp 0.7s 0.6s forwards;
+  position:relative;z-index:1;
+}
+.hb-inline-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--green);padding:5px 12px;border-radius:20px;
+  background:rgba(126,184,126,0.1);border:1px solid rgba(126,184,126,0.25);
+}
+.hb-inline-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:glowPulse 2s infinite}
+.hb-inline-stat{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--cream-dim);padding:5px 12px;border-radius:20px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);
+}
 .hero-tagline{
   font-size:clamp(14px,1.3vw,16px);line-height:1.8;
   max-width:480px;color:var(--cream-dim);
@@ -881,10 +896,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
    RESPONSIVE
 ══════════════════════════ */
 @media(max-width:1100px){
-  .hero-bento{grid-template-columns:1fr 1fr;}
-  .hb-main{grid-column:1/-1;grid-row:1;min-height:360px;}
-  .hb-status{grid-column:1;grid-row:2;}
-  .hb-stats{grid-column:2;grid-row:2;}
+  .hb-main{min-height:360px;}
 }
 @media(max-width:960px){
   .hero{padding:72px 24px 32px;}
@@ -932,10 +944,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   .pd-metrics{flex-wrap:wrap;}
 }
 @media(max-width:600px){
-  .hero-bento{grid-template-columns:1fr;}
-  .hb-main{grid-column:1;}
-  .hb-status{grid-column:1;grid-row:auto;}
-  .hb-stats{grid-column:1;grid-row:auto;flex-direction:row;gap:0;}
+  .hb-main{padding:32px 24px;min-height:auto;}
   .hb-stat-divider{width:1px;height:auto;margin:0 20px;}
   .cta-buttons{flex-direction:column;align-items:center;}
   .hb-profile-wrap{display:none;}
@@ -1038,31 +1047,18 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
         <span class="line"><span>Harry</span></span>
         <span class="line"><span>Hein</span></span>
       </h1>
+      <div class="hero-role" style="font-family:var(--font-serif);font-size:clamp(18px,2vw,24px);color:var(--cream-dim);margin-bottom:12px;opacity:0;animation:fadeUp 0.7s 0.5s forwards;position:relative;z-index:1">Senior Product Designer</div>
+      <div class="hb-inline-stats">
+        <span class="hb-inline-badge"><span class="dot"></span> Available Now</span>
+        <span class="hb-inline-stat">7+ Years</span>
+        <span class="hb-inline-stat">50+ Projects</span>
+      </div>
       <p class="hero-tagline">I find the friction, design it out, then check if it actually worked.</p>
       <div class="hb-profile-wrap">
         <img src="images/profile.png" alt="Harry Hein" class="hb-profile-img" loading="eager">
       </div>
     </div>
 
-    <!-- Status card -->
-    <div class="hb-status">
-      <div class="hero-available"><span class="dot"></span> Open to Work</div>
-      <div class="hb-status-heading">Available Now</div>
-      <div class="hero-role">Senior Product Designer</div>
-    </div>
-
-    <!-- Stats card -->
-    <div class="hb-stats">
-      <div class="hb-stat-item">
-        <div class="hb-stat-num">7+</div>
-        <div class="hb-stat-label">Years Experience</div>
-      </div>
-      <div class="hb-stat-divider"></div>
-      <div class="hb-stat-item">
-        <div class="hb-stat-num">50+</div>
-        <div class="hb-stat-label">Projects Shipped</div>
-      </div>
-    </div>
 
   </div>
 </section>
@@ -1133,6 +1129,68 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
 <!-- PROJECTS -->
 <div class="projects" id="work">
 
+  <!-- ── Project 00 — Pharmacy POS ── -->
+  <div class="project featured sr" data-project data-filters="recommended saas">
+    <div class="proj-thumb">
+      <img src="images/ppos/New Payment Method.png" alt="Two Stores. One System.">
+    </div>
+    <div class="proj-info">
+      <div class="proj-recommend">Recommended</div>
+
+      <div class="proj-tags">
+        <span class="proj-tag">POS System</span>
+        <span class="proj-tag">UX Redesign</span>
+        <span class="proj-tag">STO Maldives</span>
+      </div>
+      <h3 class="proj-title">Two Stores. One System.</h3>
+      <p class="proj-desc">Redesigned a legacy Windows POS into a modern touchscreen system for STO's pharmacy and supermarket chains — 14 modules, 200+ screens, as the sole designer.</p>
+      <div class="proj-metrics">
+        <div><div class="pm-val">14+</div><div class="pm-label">Modules</div></div>
+        <div><div class="pm-val">200+</div><div class="pm-label">Screens</div></div>
+      </div>
+      <a href="case-study-pharmacy-pos.html" class="case-study-link">
+        View Full Case Study
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="proj-arrow" data-toggle>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="pd-block">
+          <div class="pd-label">What was broken</div>
+          <p class="pd-text">STO's pharmacy and supermarket chains ran on a legacy Windows-based POS — mouse-driven, clunky, and built for desktops. Development was stuck in a build-then-rework loop with no design validation before coding.</p>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">How I tackled it</div>
+          <ul class="pd-list">
+            <li>Mapped the rework trap and introduced prototype-first validation on real POS hardware</li>
+            <li>Designed for pharmacy complexity first, then stripped back for supermarket</li>
+            <li>Created a shared design system (Raytail Global Library) across all modules</li>
+            <li>Used comic-style storyboards to win stakeholder buy-in for BNPL feature</li>
+          </ul>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">What shipped</div>
+          <p class="pd-text">A complete touchscreen POS system serving both pharmacy and supermarket — NFC login, split-screen checkout, drug overlap detection, QR payments, 10 payment types, and dual-currency support (MVR + USD).</p>
+        </div>
+        <div class="pd-metrics">
+          <div class="pd-metric"><div class="pd-metric-val">14+</div><div class="pd-metric-label">Feature Modules</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">200+</div><div class="pd-metric-label">Screens Designed</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">22</div><div class="pd-metric-label">Figma Files</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">2</div><div class="pd-metric-label">Store Types</div></div>
+        </div>
+        <div class="pd-tools">
+          <span class="pd-tools-label">Tools:</span>
+          <span class="pd-tool">Figma</span>
+          <span class="pd-tool">FigJam</span>
+          <span class="pd-tool">EightShapes Spec</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── Project 01 — Golden Paths ── -->
   <div class="project featured sr" data-project data-filters="recommended ai saas">
     <div class="proj-thumb">
@@ -1198,7 +1256,7 @@ a,button,[data-toggle],.proj-arrow{cursor:none;}
   </div>
 
   <!-- ── Project 02 — Resume Pipeline ── -->
-  <div class="project featured sr" data-project data-filters="recommended ai saas">
+  <div class="project featured sr" data-project data-filters="ai saas">
     <div class="proj-thumb">
       <video data-src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mp4" autoplay loop muted playsinline preload="none" alt="47 Applications. 2 Interviews."></video>
     </div>
