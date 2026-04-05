@@ -22,7 +22,7 @@ body {
   color: var(--cream);
   font-family: var(--font-sans);
   font-weight: 400;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection { background: var(--accent); color: var(--dark); }

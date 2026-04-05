@@ -72,15 +72,16 @@
 }
 
 /* ── Page Layout ── */
-html {
+html, body {
   scroll-snap-type: y mandatory;
+}
+html {
   overflow-y: scroll; /* required for Safari — without this, html is not treated as scroll container */
   overflow-x: hidden;
   height: 100%;
 }
 body {
   cursor: none;
-  overflow-x: hidden;
   background-image: radial-gradient(circle, rgba(240,230,211,0.12) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
   /* background-attachment:fixed causes GPU repaint on every scroll frame — use scroll instead */
@@ -227,6 +228,183 @@ a, button { cursor: none; }
   margin-bottom: 16px; max-width: 680px;
 }
 .cs-p:last-child { margin-bottom: 0; }
+
+/* ── Pipeline: sticky sidebar + scrollable steps ── */
+/* Outer wrapper — full viewport, flex row */
+.cs-pipeline-wrap {
+  display: flex;
+  align-items: flex-start;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+/* LEFT: sticky sidebar (like .filter-nav on landing page) */
+.cs-pipeline-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--dark-2);
+  border-right: 1px solid rgba(255,255,255,0.07);
+  padding: 40px 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  z-index: 10;
+}
+.cs-pipeline-sidebar-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(240,230,211,0.25);
+  margin-bottom: 16px;
+  padding: 0 12px;
+}
+.cs-pipeline-sidebar-heading {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  padding: 0 12px;
+  margin-bottom: 24px;
+}
+.cs-step-nav-item {
+  padding: 10px 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  transition: all 0.25s;
+  cursor: default;
+}
+.cs-step-nav-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  opacity: 0.4;
+  flex-shrink: 0;
+  width: 22px;
+}
+.cs-step-nav-name {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--cream);
+  opacity: 0.3;
+  line-height: 1.2;
+}
+.cs-step-nav-item.active {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+}
+.cs-step-nav-item.active .cs-step-nav-num { opacity: 1; }
+.cs-step-nav-item.active .cs-step-nav-name { opacity: 1; }
+/* RIGHT: stacked step panels */
+.cs-pipeline-steps {
+  flex: 1;
+  min-width: 0;
+}
+.cs-pipeline-step {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  justify-content: center;
+  padding: 60px;
+}
+.cs-step-media {
+  position: relative;
+}
+.cs-step-media::after {
+  content: '';
+  position: absolute;
+  bottom: 12px; right: 12px;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='rgba(240,230,211,0.85)' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/%3E%3C/svg%3E") center/14px no-repeat;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.12);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.cs-step-media:hover::after {
+  opacity: 1;
+}
+.cs-step-media img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  max-height: 70vh;
+  object-fit: contain;
+  cursor: zoom-in;
+}
+.cs-step-media video {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  max-height: 62vh;
+  object-fit: cover;
+  background: var(--dark-3);
+  cursor: zoom-in;
+}
+
+/* Lightbox */
+.cs-lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(10,10,10,0.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+  backdrop-filter: blur(8px);
+}
+.cs-lightbox.open {
+  opacity: 1; pointer-events: all;
+}
+.cs-lightbox-inner {
+  max-width: 92vw; max-height: 92vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-lightbox-inner img {
+  max-width: 92vw; max-height: 92vh;
+  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+}
+.cs-lightbox-inner video {
+  max-width: 92vw; max-height: 92vh;
+  border-radius: 10px;
+  display: block;
+  background: var(--dark-3);
+}
+.cs-lightbox-close {
+  position: fixed; top: 20px; right: 20px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--cream); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; line-height: 1;
+  transition: background 0.2s;
+  font-family: var(--font-sans);
+}
+.cs-lightbox-close:hover {
+  background: rgba(255,255,255,0.2);
+}
+.cs-step-desc {
+  font-size: 17px;
+  color: rgba(240,230,211,0.55);
+  line-height: 1.75;
+  margin: 0;
+}
 
 .cs-hook {
   margin: 32px 0; padding: 20px 24px; border-radius: 12px;
@@ -867,8 +1045,9 @@ a, button { cursor: none; }
   .cs-next-card { height: 100vh; height: 100dvh; min-height: unset; }
 }
 @media (max-width: 768px) {
+  html { scroll-snap-type: y mandatory; }
   /* prevent any element from blowing out the viewport */
-  .cs-page, .cs-hero-content, .cs-bento, .cs-section { overflow-x: hidden; }
+  .cs-page, .cs-hero-content, .cs-bento { overflow-x: clip; }
 
   .cs-page { padding: 0 20px; }
   .cs-hero { min-height: 100vh; min-height: 100dvh; }
@@ -884,7 +1063,8 @@ a, button { cursor: none; }
   .cs-meta { flex-wrap: wrap; gap: 12px 20px; }
   .cs-meta > div { flex: 0 0 auto; }
 
-  .cs-section { min-height: auto; padding: 60px 0; scroll-snap-align: start; }
+  .cs-section { min-height: 100vh; min-height: 100dvh; padding: 40px 0; scroll-snap-align: start; scroll-snap-stop: always; overflow-x: clip; }
+  .cs-hero { scroll-snap-stop: always; }
   .cs-next { min-height: 60vh; }
   .cs-metrics { flex-direction: column; gap: 24px; }
   .cs-results { grid-template-columns: 1fr; }
@@ -905,6 +1085,15 @@ a, button { cursor: none; }
   .cs-timeline::before { top: 0; bottom: 0; left: 24px; right: auto; width: 1px; height: auto; }
   .cs-tl-item { flex-direction: row; text-align: left; align-items: flex-start; gap: 20px; padding: 0 0 32px 0; }
   .cs-tl-body { margin-top: 0; }
+
+  /* Pipeline on mobile: stack sidebar above steps */
+  .cs-pipeline-wrap { flex-direction: column; }
+  .cs-pipeline-sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 20px 16px; flex-direction: row; flex-wrap: wrap; gap: 6px; justify-content: flex-start; }
+  .cs-pipeline-sidebar-heading { font-size: 22px; margin-bottom: 8px; }
+  .cs-pipeline-sidebar-label { margin-bottom: 4px; }
+  .cs-step-nav-item { padding: 6px 10px; }
+  .cs-step-nav-name { font-size: 14px; }
+  .cs-pipeline-step { height: auto; min-height: 100vh; min-height: 100dvh; padding: 32px 20px; }
 }
 
 /* Very small phones */

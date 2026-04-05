@@ -24,8 +24,43 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Syne:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=Caveat:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <link href="css/atoms.css" rel="stylesheet"/>
-<link href="css/cs-base.css?v=dot1" rel="stylesheet"/>
+<link href="css/cs-base.css?v=dot4" rel="stylesheet"/>
 <link href="css/chat.css" rel="stylesheet"/>
+<style>
+.cs-section-figjam {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  overflow: hidden;
+  position: relative;
+  margin-left: calc(-1 * (100vw - 100%) / 2);
+}
+.cs-figjam-wrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.cs-figjam-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.cs-figjam-label {
+  position: absolute;
+  top: 24px; left: 32px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240,230,211,0.4);
+  z-index: 10;
+  pointer-events: none;
+}
+</style>
 </head>
 <body>
 <div class="cs-loader" id="pageLoader">
@@ -205,68 +240,57 @@
       <li><strong>Prototype, Test &amp; Iterate</strong> -- Figma Make prototypes. Five moderated usability tests. Weekly reviews with three beta testers. Iterations shared with eight beta users.</li>
     </ul>
 
-    <div class="cs-hook">Now let me walk you through the six stages of the pipeline itself.</div>
+    <div class="cs-hook">Here's the full user flow — then we'll break down each stage.</div>
   </section>
 
-  <!-- ════════════════ 05 — THE PIPELINE ════════════════ -->
-  <section class="cs-section">
-    <div class="cs-section-num">05 -- The Pipeline</div>
-    <h2 class="cs-h2">Six stages. One source of truth.</h2>
+  <!-- ════════════════ 05 — USER FLOW ════════════════ -->
+  <div class="cs-section-figjam">
+    <div class="cs-figjam-label">05 — User Flow</div>
+    <div class="cs-figjam-wrap">
+      <iframe
+        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fboard%2F23CMP63hdHTtINDt9bPOE0%2FUser-Flows%3Fnode-id%3D48-551%26t%3DYJlTtaY84UpxRNI1-1"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
 
-    <div class="cs-img"><img src="images/resume-builder-resources/the-engine.png" alt="The Engine -- Base Resume builder"/><div class="cs-img-caption">The Engine -- Base Resume splits editing and preview into a single source of truth.</div></div>
-
-    <div class="cs-timeline">
-      <div class="cs-tl-item">
-        <div class="cs-tl-num">01</div>
-        <div class="cs-tl-body">
-          <div class="cs-tl-title">Base Resume</div>
-          <div class="cs-tl-desc">Split-panel editor with live PDF preview — your source of truth.</div>
-        </div>
+  <!-- ════════════════ 06 — THE PIPELINE ════════════════ -->
+  <div class="cs-pipeline-wrap">
+    <!-- Sticky sidebar — stays for all 5 steps -->
+    <div class="cs-pipeline-sidebar">
+      <div class="cs-pipeline-sidebar-label">06 — The Pipeline</div>
+      <div class="cs-pipeline-sidebar-heading">Five<br>stages.</div>
+      <div class="cs-step-nav-item active" data-step="0"><span class="cs-step-nav-num">01</span><span class="cs-step-nav-name">Base Resume</span></div>
+      <div class="cs-step-nav-item" data-step="1"><span class="cs-step-nav-num">02</span><span class="cs-step-nav-name">Paste the JD</span></div>
+      <div class="cs-step-nav-item" data-step="2"><span class="cs-step-nav-num">03</span><span class="cs-step-nav-name">AI & Gap Analysis</span></div>
+      <div class="cs-step-nav-item" data-step="3"><span class="cs-step-nav-num">04</span><span class="cs-step-nav-name">Suggestions</span></div>
+      <div class="cs-step-nav-item" data-step="4"><span class="cs-step-nav-num">05</span><span class="cs-step-nav-name">Cover Letter</span></div>
+    </div>
+    <!-- Scrollable steps -->
+    <div class="cs-pipeline-steps">
+      <div class="cs-pipeline-step">
+        <div class="cs-step-media"><img src="images/resume-builder-resources/the-engine.png" alt="Base Resume split-panel editor"/></div>
+        <p class="cs-step-desc">A split-panel editor with live PDF preview. Edit on the left, see your resume rendered on the right in real time. Your single source of truth for every application.</p>
       </div>
-      <div class="cs-tl-item">
-        <div class="cs-tl-num">02</div>
-        <div class="cs-tl-body">
-          <div class="cs-tl-title">Paste the JD</div>
-          <div class="cs-tl-desc">AI normalizes messy copy-paste into structured role data.</div>
-        </div>
+      <div class="cs-pipeline-step">
+        <div class="cs-step-media"><video autoplay loop muted playsinline src="images/resume-builder-resources/addin%20jd%20in%20analyzer.mov"></video></div>
+        <p class="cs-step-desc">Drop in a raw job description — messy formatting, bullet points, whatever. The AI normalizes it into structured role data: title, seniority, required skills, culture signals.</p>
       </div>
-      <div class="cs-tl-item">
-        <div class="cs-tl-num">03</div>
-        <div class="cs-tl-body">
-          <div class="cs-tl-title">AI Analyzes</div>
-          <div class="cs-tl-desc">Extracts skills, seniority signals, and culture language from the JD.</div>
-        </div>
+      <div class="cs-pipeline-step">
+        <div class="cs-step-media"><video autoplay loop muted playsinline src="images/resume-builder-resources/analyze%20the%20gap.mov"></video></div>
+        <p class="cs-step-desc">The AI reads your resume and the JD, then maps them against each other. You get a match score, a list of missing keywords, and role intelligence — explained in plain language. No jargon. Just what's missing and why it matters.</p>
       </div>
-      <div class="cs-tl-item">
-        <div class="cs-tl-num">04</div>
-        <div class="cs-tl-body">
-          <div class="cs-tl-title">Gap Analysis</div>
-          <div class="cs-tl-desc">Match score, missing keywords, role intelligence — in plain language.</div>
-        </div>
+      <div class="cs-pipeline-step">
+        <div class="cs-step-media"><video autoplay loop muted playsinline src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mov"></video></div>
+        <p class="cs-step-desc">Impact-ranked rewrites for each gap. The AI proposes changes — you decide what to keep. Editorial control stays with you. Nothing gets changed without your approval.</p>
       </div>
-      <div class="cs-tl-item">
-        <div class="cs-tl-num">05</div>
-        <div class="cs-tl-body">
-          <div class="cs-tl-title">Suggestions</div>
-          <div class="cs-tl-desc">Impact-ranked rewrites. You keep editorial control over every change.</div>
-        </div>
-      </div>
-      <div class="cs-tl-item">
-        <div class="cs-tl-num">06</div>
-        <div class="cs-tl-body">
-          <div class="cs-tl-title">Cover Letter</div>
-          <div class="cs-tl-desc">Three-paragraph draft from JD + resume context in under 5 minutes.</div>
-        </div>
+      <div class="cs-pipeline-step">
+        <div class="cs-step-media"><img src="images/resume-builder-resources/cover-letter-filled.png" alt="Generated cover letter"/></div>
+        <p class="cs-step-desc">A three-paragraph draft generated from the JD plus your resume context — in under 5 minutes. Structured, specific, and already tailored to the role.</p>
       </div>
     </div>
-
-    <div class="cs-video"><video autoplay loop muted playsinline src="images/resume-builder-resources/addin%20jd%20in%20analyzer.mov"></video></div>
-    <div class="cs-video"><video autoplay loop muted playsinline src="images/resume-builder-resources/analyze%20the%20gap.mov"></video></div>
-    <div class="cs-video"><video autoplay loop muted playsinline src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mov"></video></div>
-    <div class="cs-img"><img src="images/resume-builder-resources/cover-letter-filled.png" alt="Generated cover letter"/><div class="cs-img-caption">Cover letter generated from JD + resume context.</div></div>
-
-    <div class="cs-hook">Let me show you the full pipeline in action.</div>
-  </section>
+  </div>
 
   <!-- ════════════════ 06 — FULL DEMO ════════════════ -->
   <section class="cs-section">
@@ -455,6 +479,63 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <script src="js/atoms.js"></script>
+<script>
+// Pipeline sidebar: update active step based on scroll
+(function(){
+  const steps = document.querySelectorAll('.cs-pipeline-step');
+  const navItems = document.querySelectorAll('[data-step]');
+  if (!steps.length || !navItems.length) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(steps).indexOf(entry.target);
+        navItems.forEach((item, i) => item.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.5 });
+  steps.forEach(s => io.observe(s));
+})();
+
+// Lightbox
+(function(){
+  const lb = document.createElement('div');
+  lb.className = 'cs-lightbox';
+  lb.innerHTML = '<div class="cs-lightbox-inner"></div><button class="cs-lightbox-close">✕</button>';
+  document.body.appendChild(lb);
+
+  const inner = lb.querySelector('.cs-lightbox-inner');
+  let origVideo = null;
+
+  function open(el) {
+    inner.innerHTML = '';
+    if (el.tagName === 'IMG') {
+      const img = document.createElement('img');
+      img.src = el.src; img.alt = el.alt;
+      inner.appendChild(img);
+    } else {
+      el.pause();
+      origVideo = el;
+      const v = document.createElement('video');
+      v.src = el.src; v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true; v.controls = true;
+      inner.appendChild(v);
+    }
+    lb.classList.add('open');
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    if (origVideo) { origVideo.play(); origVideo = null; }
+    setTimeout(() => { inner.innerHTML = ''; }, 250);
+  }
+
+  document.querySelectorAll('.cs-step-media img, .cs-step-media video').forEach(el => {
+    el.addEventListener('click', () => open(el));
+  });
+  lb.querySelector('.cs-lightbox-close').addEventListener('click', close);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
+</script>
 <script src="js/tts.js"></script>
 
 <script src="js/lightbox.js"></script>

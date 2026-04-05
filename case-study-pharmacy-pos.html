@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RKYXJ7H349"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-RKYXJ7H349");
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Stores. One System. — Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Roboto:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/atoms.css">
+<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var h=document.documentElement;function dismissLoader(){var l=document.getElementById("pageLoader");if(l)l.classList.add("done");}function isBackNav(){try{var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];if(nav)return nav.type==="back_forward";return sessionStorage.getItem("_visited")==="1";}catch(e){return false;}}sessionStorage.setItem("_visited","1");var back=isBackNav();if(!back){h.style.scrollSnapType="none";h.style.overflowY="hidden";window.scrollTo(0,0);window.addEventListener("load",function(){window.scrollTo(0,0);setTimeout(function(){h.style.overflowY="";h.style.scrollSnapType="";dismissLoader();},80);});}else{window.addEventListener("load",function(){setTimeout(dismissLoader,300);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflowY="";dismissLoader();}});})();</script><link rel="stylesheet" href="css/cs-base.css?v=dot1">
+<link rel="stylesheet" href="css/chat.css">
+
+<style>
+/* ── Before / After Comparison Slider ── */
+.cs-compare{position:relative;width:100vw;max-width:100vw;margin:20px 0;margin-left:calc(-1*(100vw - 100%)/2);border-radius:0;overflow:hidden;aspect-ratio:16/9;background:var(--dark-2);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);cursor:col-resize;user-select:none;-webkit-user-select:none}
+.cs-compare img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cs-compare-after{clip-path:inset(0 0 0 0)}
+.cs-compare-before{clip-path:inset(0 50% 0 0)}
+.cs-compare-line{position:absolute;top:0;bottom:0;left:50%;width:3px;background:rgba(30,30,30,0.7);z-index:3;transform:translateX(-50%);pointer-events:none;box-shadow:-1px 0 0 rgba(255,255,255,0.3),1px 0 0 rgba(255,255,255,0.3)}
+.cs-compare-handle{position:absolute;top:50%;left:50%;width:44px;height:44px;border-radius:50%;background:rgba(30,30,30,0.75);backdrop-filter:blur(12px) saturate(180%);-webkit-backdrop-filter:blur(12px) saturate(180%);border:2px solid rgba(255,255,255,0.5);transform:translate(-50%,-50%);z-index:4;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.15);pointer-events:none;transition:transform 0.2s,box-shadow 0.2s}
+.cs-compare:hover .cs-compare-handle{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 6px 24px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.2)}
+.cs-compare-handle svg{width:18px;height:18px;stroke:rgba(255,255,255,0.95);stroke-width:2.5;fill:none}
+.cs-compare-label{position:absolute;bottom:12px;z-index:5;font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream);background:rgba(0,0,0,0.6);padding:4px 10px;border-radius:6px;pointer-events:none}
+.cs-compare-label-before{left:12px}
+.cs-compare-label-after{right:12px}
+.cs-compare-maximize{position:absolute;top:12px;right:12px;z-index:5;width:36px;height:36px;border-radius:8px;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;transition:background 0.2s}
+.cs-compare-maximize:hover{background:rgba(0,0,0,0.8)}
+.cs-compare-maximize svg{width:16px;height:16px;stroke:var(--cream);stroke-width:2;fill:none}
+
+/* ── Kanban Board ── */
+.cs-kanban{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:20px}
+.cs-kanban-col{background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.cs-kanban-header{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:var(--tracking-label);text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid var(--glass-border);margin-bottom:4px}
+.cs-kanban-p0 .cs-kanban-header{color:var(--accent)}
+.cs-kanban-p1 .cs-kanban-header{color:var(--cream)}
+.cs-kanban-p2 .cs-kanban-header{color:var(--cream-dim)}
+.cs-kanban-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;font-size:var(--text-md);color:var(--cream);transition:transform 0.2s,border-color 0.2s}
+.cs-kanban-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.15)}
+.cs-kanban-p0 .cs-kanban-card{border-color:rgba(255,255,255,0.12)}
+.cs-kanban-p1 .cs-kanban-card{border-color:rgba(255,255,255,0.08)}
+.cs-kanban-p2 .cs-kanban-card{border-color:rgba(255,255,255,0.05)}
+@media(max-width:768px){.cs-kanban{grid-template-columns:1fr}}
+
+/* ── FigJam Embed ── */
+.cs-section-figjam{padding:0;width:100vw;height:100vh;min-height:100vh;scroll-snap-align:start;overflow:hidden;position:relative;margin-left:calc(-1*(100vw - 100%)/2)}
+.cs-figjam-wrap{width:100%;height:100%;position:absolute;inset:0}
+.cs-figjam-wrap iframe{width:100%;height:100%;border:none;display:block}
+
+/* ── Force scroll snap on this page ── */
+html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
+.cs-hero,.cs-section,.cs-ending,.cs-next{scroll-snap-align:start!important;scroll-snap-stop:always!important}
+</style>
+</head>
+<body>
+<div class="cs-loader" id="pageLoader">
+  <div class="cs-loader-glow-a"></div>
+  <div class="cs-loader-glow-b"></div>
+  <div class="cs-loader-inner">
+    <div class="cs-loader-mono">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line class="hl" x1="16" y1="8" x2="16" y2="72" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <line class="hc" x1="16" y1="40" x2="64" y2="40" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <line class="hr" x1="64" y1="8" x2="64" y2="72" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cs-loader-name">Harry Hein</div>
+    <div class="cs-loader-role">Senior Product Designer</div>
+  </div>
+  <div class="cs-loader-progress"></div>
+</div>
+
+<!-- Back -->
+<a href="portfolio.html#work" class="cs-back">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+  Back
+</a>
+
+<!-- ══ HERO ══ -->
+<header class="cs-hero">
+  <div class="cs-hero-bg">
+    <img src="images/ppos/New Payment Method.png" alt="Raytail POS system — Tender Operations">
+  </div>
+  <div class="cs-hero-content">
+    <div class="cs-bento cs-bento-title">
+      <div class="cs-label">Case Study — STO Maldives</div>
+      <h1 class="cs-title">Two Stores.<br>One System.</h1>
+      <p class="cs-subtitle">Redesigning a legacy Windows POS into a modern touchscreen system — 14 modules, 200+ screens, one designer.</p>
+    </div>
+    <div class="cs-bento cs-bento-meta">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Role</div>
+        <div class="cs-meta-val">Sole UX/UI Designer</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Team</div>
+        <div class="cs-meta-val">Design + IS Team<br>+ Development</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Client</div>
+        <div class="cs-meta-val">STO Peoples Choice<br>Pharmacy &amp; Supermarket</div>
+      </div>
+    </div>
+    <div class="cs-bento cs-bento-metric">
+      <div class="cs-metric-num">14+</div>
+      <div class="cs-metric-label">Feature Modules</div>
+    </div>
+    <div class="cs-bento cs-bento-metric">
+      <div class="cs-metric-num">200+</div>
+      <div class="cs-metric-label">Screens Designed</div>
+    </div>
+    <div class="cs-bento cs-bento-metric">
+      <div class="cs-metric-num">22</div>
+      <div class="cs-metric-label">Figma Files</div>
+    </div>
+  </div>
+</header>
+
+<div class="cs-page">
+
+  <!-- ══ 01 — PROBLEM ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">01 — The Problem</div>
+    <h2 class="cs-h2">From Windows to Touchscreen</h2>
+    <p class="cs-p">STO's pharmacy and supermarket chains were running on a legacy Windows-based POS. Clunky, mouse-driven, built for desktops — not for the fast-paced counter environment where every second counts.</p>
+    <p class="cs-p">The goal: redesign the entire system for touchscreen POS devices. Not a port — a complete UX rethink. 14 modules, 200+ screens, one designer.</p>
+    <div class="cs-hook">Before I touched UI, I found a process problem bleeding time across every module.</div>
+  </section>
+
+  <!-- ══ SUCCESS METRICS ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Success Metrics</div>
+    <h2 class="cs-h2">How Do We Define Success?</h2>
+    <p class="cs-p">Before designing, I defined what success looks like — measurable targets to validate every design decision against.</p>
+    <div class="cs-kpi">
+      <div class="cs-kpi-group-label">UX KPIs</div>
+      <div class="cs-kpi-grid">
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">0</div>
+          <div class="cs-kpi-label">Support calls from UI confusion</div>
+          <div class="cs-kpi-why">The old Windows UI generated constant support requests — staff couldn't find features or understand the flow</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">0</div>
+          <div class="cs-kpi-label">Training dependency</div>
+          <div class="cs-kpi-why">Staff should learn the system by using it — no trainer required at every branch</div>
+        </div>
+      </div>
+      <div class="cs-kpi-group-label">Business KPIs</div>
+      <div class="cs-kpi-grid">
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">0</div>
+          <div class="cs-kpi-label">Rework cycles</div>
+          <div class="cs-kpi-why">Prototype-first approach should eliminate build-then-rework loops entirely</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">1</div>
+          <div class="cs-kpi-label">System for 2 stores</div>
+          <div class="cs-kpi-why">One codebase serving both pharmacy and supermarket — no forking, no drift</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 02 — PROCESS FIX ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">02 — Discovery</div>
+    <h2 class="cs-h2">The Rework Trap</h2>
+    <p class="cs-p">Devs were building on designs the IS Team hadn't approved. Every module hit the same loop: build, review, rework. I mapped three workflows side by side — ideal, actual, and proposed — to make the waste visible. I then proposed putting Figma prototypes on the actual POS hardware — IS Team confirmed on the real device before any code was written.</p>
+    <div style="width:100%;height:400px;border-radius:12px;overflow:hidden;border:1px solid var(--glass-border);margin-top:20px">
+      <iframe style="border:none;width:100%;height:100%" src="https://embed.figma.com/board/nA5dQhEXZGHG9kXoBDmOM5/PPOS-analysis?node-id=40000002-909&embed-host=share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- ══ FEATURE PRIORITIZATION ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Feature Prioritization</div>
+    <h2 class="cs-h2">What We Built First — and Why</h2>
+    <p class="cs-p">With 14+ modules to design, I couldn't do everything at once. I prioritized based on business impact and operational dependency.</p>
+    <div class="cs-kanban">
+      <div class="cs-kanban-col cs-kanban-p0">
+        <div class="cs-kanban-header">P0 — Must Launch</div>
+        <div class="cs-kanban-card">Login</div>
+        <div class="cs-kanban-card">Checkout</div>
+        <div class="cs-kanban-card">Tender Operations</div>
+        <div class="cs-kanban-card">Receipts</div>
+        <div class="cs-kanban-card">Second Screen</div>
+      </div>
+      <div class="cs-kanban-col cs-kanban-p1">
+        <div class="cs-kanban-header">P1 — High Priority</div>
+        <div class="cs-kanban-card">E-Prescription</div>
+        <div class="cs-kanban-card">Customers</div>
+        <div class="cs-kanban-card">Check Stock</div>
+        <div class="cs-kanban-card">Manage Cash</div>
+        <div class="cs-kanban-card">Transactions</div>
+      </div>
+      <div class="cs-kanban-col cs-kanban-p2">
+        <div class="cs-kanban-header">P2 — Planned</div>
+        <div class="cs-kanban-card">BNPL</div>
+        <div class="cs-kanban-card">Discounts</div>
+        <div class="cs-kanban-card">Add Articles</div>
+        <div class="cs-kanban-card">Modify Qty/UOM</div>
+        <div class="cs-kanban-card">Notifications</div>
+        <div class="cs-kanban-card">Settings</div>
+        <div class="cs-kanban-card">Electronic Scale</div>
+        <div class="cs-kanban-card">CSAT Dashboard</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ USER FLOWS (FigJam) ══ -->
+  <section class="cs-section" style="padding:0;max-width:none">
+    <div style="padding:80px 32px 24px;max-width:800px;margin:0 auto">
+      <div class="cs-section-num">User Flows</div>
+      <h2 class="cs-h2">How It All Connects</h2>
+      <p class="cs-p">Every module started as a FigJam flow before any UI was designed — happy paths, edge cases, and decision points mapped first.</p>
+    </div>
+  </section>
+
+  <section class="cs-section-figjam">
+    <div class="cs-figjam-wrap">
+      <iframe src="https://embed.figma.com/board/Xnt7hhfMZaqUiKwGcW7Ouo/User-Flow?node-id=40000001-2152&embed-host=share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- ══ 04 — LOGIN ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">04 — Login</div>
+    <h2 class="cs-h2">One Tap In</h2>
+    <div class="cs-compare" data-compare>
+      <img class="cs-compare-after" src="images/ppos/New Login.png" alt="Login — After">
+      <img class="cs-compare-before" src="images/ppos/PPOS Login.png" alt="Login — Before">
+      <div class="cs-compare-line"></div>
+      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      <div class="cs-compare-label cs-compare-label-before">Before</div>
+      <div class="cs-compare-label cs-compare-label-after">After</div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>NFC card tap</strong> — one touch login for busy counters</li>
+      <li><strong>Manual fallback</strong> — employee code + pincode via on-screen keyboard</li>
+      <li><strong>Float gate</strong> — POS won't start without confirmed cash in drawer</li>
+    </ul>
+  </section>
+
+  <!-- ══ 05 — CHECKOUT ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">05 — Checkout</div>
+    <h2 class="cs-h2">The Central Hub</h2>
+    <div class="cs-compare" data-compare>
+      <img class="cs-compare-after" src="images/ppos/New Central Hub.png" alt="Checkout — After">
+      <img class="cs-compare-before" src="images/ppos/PPOS Central Hub.png" alt="Checkout — Before">
+      <div class="cs-compare-line"></div>
+      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      <div class="cs-compare-label cs-compare-label-before">Before</div>
+      <div class="cs-compare-label cs-compare-label-after">After</div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Split-screen</strong> — products left (65%), summary right (35%)</li>
+      <li><strong>Inline editing</strong> — qty, unit, batch editable in the table. No modals.</li>
+      <li><strong>Bottom menu</strong> — 2-row shortcuts to all 14 modules</li>
+    </ul>
+  </section>
+
+  <!-- ══ 06 — ADD ARTICLES ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">06 — Add Articles</div>
+    <h2 class="cs-h2">Search, Scan, Add</h2>
+    <div class="cs-compare" data-compare>
+      <img class="cs-compare-after" src="images/ppos/New Add Articles.png" alt="Add Articles — After">
+      <img class="cs-compare-before" src="images/ppos/PPOS Add Articles.png" alt="Add Articles — Before">
+      <div class="cs-compare-line"></div>
+      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      <div class="cs-compare-label cs-compare-label-before">Before</div>
+      <div class="cs-compare-label cs-compare-label-after">After</div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Autocomplete</strong> — search by code, name, or description with LOT + expiry + price</li>
+      <li><strong>Price override</strong> — supervisor permission + mandatory reason logging</li>
+    </ul>
+  </section>
+
+  <!-- ══ 07 — MODIFY QTY/UOM/BATCH ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">07 — Modify Qty, UOM &amp; Batch</div>
+    <h2 class="cs-h2">Edit Without Leaving</h2>
+    <div class="cs-compare" data-compare>
+      <img class="cs-compare-after" src="images/ppos/New Modify Qty.png" alt="Modify — After">
+      <img class="cs-compare-before" src="images/ppos/PPOS Modify Qty.png" alt="Modify — Before">
+      <div class="cs-compare-line"></div>
+      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      <div class="cs-compare-label cs-compare-label-before">Before</div>
+      <div class="cs-compare-label cs-compare-label-after">After</div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Inline edit</strong> — quantity (tablet count), UOM (Tab/Box/Strip/Bottle), batch/LOT</li>
+      <li><strong>Promo auto-detect</strong> — promotions trigger automatically when conditions are met</li>
+    </ul>
+  </section>
+
+  <!-- ══ 09 — E-PRESCRIPTION ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">09 — E-Prescription</div>
+    <h2 class="cs-h2">The Pharmacy Differentiator</h2>
+    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);aspect-ratio:16/9;overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative">
+      <img loading="lazy" decoding="async" src="images/ppos/E Prescription.png" alt="E-Prescription" style="width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in">
+    </div>
+    <ul class="cs-list">
+      <li><strong>Drug overlap</strong> — mandatory reason before override. Can't dismiss.</li>
+      <li><strong>Partial fulfillment</strong> — track unfulfilled medicines per prescription</li>
+      <li><strong>Pharmacy-only</strong> — this module doesn't exist in supermarket mode</li>
+    </ul>
+  </section>
+
+  <!-- ══ 10 — BNPL ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">10 — BNPL</div>
+    <h2 class="cs-h2">Buy Now, Pay Later</h2>
+    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);aspect-ratio:16/9;overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative">
+      <img loading="lazy" decoding="async" src="images/ppos/BNPL.png" alt="BNPL" style="width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in">
+    </div>
+    <ul class="cs-list">
+      <li><strong>Installment plans</strong> — flexible payment schedules for customers</li>
+      <li><strong>Comic storyboards</strong> — used to pitch the feature to stakeholders</li>
+    </ul>
+  </section>
+
+  <!-- ══ 11 — CUSTOMERS ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">11 — Customers</div>
+    <h2 class="cs-h2">Know Who's Buying</h2>
+    <div class="cs-compare" data-compare>
+      <img class="cs-compare-after" src="images/ppos/New Customers.png" alt="Customers — After">
+      <img class="cs-compare-before" src="images/ppos/PPOS Customers.png" alt="Customers — Before">
+      <div class="cs-compare-line"></div>
+      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      <div class="cs-compare-label cs-compare-label-before">Before</div>
+      <div class="cs-compare-label cs-compare-label-after">After</div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Select, add, edit</strong> — customer management from checkout</li>
+      <li><strong>Required for</strong> — BNPL and loyalty points need a linked customer</li>
+    </ul>
+  </section>
+
+  <!-- ══ 12 — TENDER ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">12 — Tender Operations</div>
+    <h2 class="cs-h2">Ten Ways to Pay</h2>
+    <div class="cs-compare" data-compare>
+      <img class="cs-compare-after" src="images/ppos/New Payment Method.png" alt="Tender — After">
+      <img class="cs-compare-before" src="images/ppos/PPOS Payment Method.png" alt="Tender — Before">
+      <div class="cs-compare-line"></div>
+      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      <div class="cs-compare-label cs-compare-label-before">Before</div>
+      <div class="cs-compare-label cs-compare-label-after">After</div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>10 payment types</strong> — Cash MVR/USD, Cards, BNPL, BML, Ooredoo, Insurance, Cheques, Coupon/Loyalty</li>
+      <li><strong>Split tender</strong> — partial cash + card + points in one transaction</li>
+      <li><strong>Reusable base</strong> — one component pattern across all 10 types</li>
+    </ul>
+  </section>
+
+  <!-- ══ 13 — SECOND SCREEN ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">13 — Second Screen</div>
+    <h2 class="cs-h2">The Customer's View</h2>
+    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);aspect-ratio:16/9;overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative">
+      <img loading="lazy" decoding="async" src="images/ppos/Second Screen.png" alt="Customer-facing second screen with QR payment" style="width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in">
+    </div>
+    <ul class="cs-list">
+      <li><strong>QR payment</strong> — m-Faisaa scan to pay. No cashier phone handling.</li>
+      <li><strong>Two sizes</strong> — 1920&times;1080 and 1024&times;600 for different hardware</li>
+      <li><strong>Touch + non-touch</strong> — variants for prescription confirmation</li>
+    </ul>
+  </section>
+
+  <!-- ══ 15 — TRANSACTIONS ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">15 — Transactions</div>
+    <h2 class="cs-h2">History &amp; Recovery</h2>
+    <div class="cs-compare" data-compare>
+      <img class="cs-compare-after" src="images/ppos/New Transactions.png" alt="Transactions — After">
+      <img class="cs-compare-before" src="images/ppos/PPOS Transactions.png" alt="Transactions — Before">
+      <div class="cs-compare-line"></div>
+      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      <div class="cs-compare-label cs-compare-label-before">Before</div>
+      <div class="cs-compare-label cs-compare-label-after">After</div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Reprint, recall, void, return</strong> — full transaction recovery</li>
+      <li><strong>Supervisor auth</strong> — voids and refunds require approval</li>
+    </ul>
+  </section>
+
+  <!-- ══ 16 — CHECK STOCK ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">16 — Check Stock</div>
+    <h2 class="cs-h2">Inventory at a Glance</h2>
+    <div class="cs-compare" data-compare>
+      <img class="cs-compare-after" src="images/ppos/New Check Stock.png" alt="Check Stock — After">
+      <img class="cs-compare-before" src="images/ppos/PPOS Check Stock.png" alt="Check Stock — Before">
+      <div class="cs-compare-line"></div>
+      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      <div class="cs-compare-label cs-compare-label-before">Before</div>
+      <div class="cs-compare-label cs-compare-label-after">After</div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Quick lookup</strong> — search products without leaving checkout</li>
+      <li><strong>Batch details</strong> — LOT numbers, expiry dates, multi-store visibility</li>
+    </ul>
+  </section>
+
+  <!-- ══ 17 — MANAGE CASH ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">17 — Manage Cash</div>
+    <h2 class="cs-h2">Cash Drawer Ops</h2>
+    <div class="cs-compare" data-compare>
+      <img class="cs-compare-after" src="images/ppos/New Cash Drawer.png" alt="Manage Cash — After">
+      <img class="cs-compare-before" src="images/ppos/PPOS Cash Drawer.png" alt="Manage Cash — Before">
+      <div class="cs-compare-line"></div>
+      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+      <div class="cs-compare-label cs-compare-label-before">Before</div>
+      <div class="cs-compare-label cs-compare-label-after">After</div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Float declaration</strong> — starting cash confirmation at shift start</li>
+      <li><strong>Cash in/out</strong> — track drawer operations throughout the shift</li>
+    </ul>
+  </section>
+
+  <!-- ══ 18 — SUPPORTING FEATURES ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">18 — Supporting Modules</div>
+    <h2 class="cs-h2">The Rest of the System</h2>
+    <div class="cs-data-bento cols-2">
+      <div class="cs-data-card">
+        <div class="cs-data-num">Scale</div>
+        <div class="cs-data-label">Electronic Scale</div>
+        <div class="cs-data-desc">Hardware integration for weight-based pricing</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">Alerts</div>
+        <div class="cs-data-label">Notifications</div>
+        <div class="cs-data-desc">Stock, promotions, prescriptions, shift reminders</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">Config</div>
+        <div class="cs-data-label">Settings</div>
+        <div class="cs-data-desc">Terminal, printer, WiFi, display configuration</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">CSAT</div>
+        <div class="cs-data-label">Satisfaction Dashboard</div>
+        <div class="cs-data-desc">Metrics tracking across stores and terminals</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BUSINESS IMPACT ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Business Impact</div>
+    <h2 class="cs-h2">Measuring Against Our KPIs</h2>
+    <p class="cs-p">At the start, we defined four success targets. Here's how the redesign delivered.</p>
+    <div class="cs-kpi">
+      <div class="cs-kpi-group-label">Results vs Targets</div>
+      <div class="cs-kpi-grid">
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">0 calls &check;</div>
+          <div class="cs-kpi-label">Support calls from UI confusion</div>
+          <div class="cs-kpi-why">Clear labels, intuitive touch layout, and consistent patterns eliminated UI-related support requests.</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">0 trainers &check;</div>
+          <div class="cs-kpi-label">Training dependency</div>
+          <div class="cs-kpi-why">Icon + text labels, on-screen keyboard, consistent 6-page file structure across all modules.</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">0 rework &check;</div>
+          <div class="cs-kpi-label">Rework cycles</div>
+          <div class="cs-kpi-why">Prototype-on-hardware approach confirmed designs before development started.</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">1 system &check;</div>
+          <div class="cs-kpi-label">Pharmacy + Supermarket</div>
+          <div class="cs-kpi-why">One shared codebase with contextual feature surfacing per store type.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-data-bento">
+      <div class="cs-data-card span-3">
+        <div class="cs-data-label">Platform Migration</div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Platform</div>
+          <div class="cs-data-row-before">Windows desktop</div>
+          <div class="cs-data-row-after">Touchscreen POS</div>
+        </div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Input</div>
+          <div class="cs-data-row-before">Mouse + keyboard</div>
+          <div class="cs-data-row-after">Touch + NFC</div>
+        </div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Design System</div>
+          <div class="cs-data-row-before">None</div>
+          <div class="cs-data-row-after">Raytail Global Library</div>
+        </div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Dev Process</div>
+          <div class="cs-data-row-before">Build then review</div>
+          <div class="cs-data-row-after">Prototype on device first</div>
+        </div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Stores Supported</div>
+          <div class="cs-data-row-before">Pharmacy only</div>
+          <div class="cs-data-row-after">Pharmacy + Supermarket</div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-data-bento cols-3">
+      <div class="cs-data-card highlight">
+        <div class="cs-data-num">14+</div>
+        <div class="cs-data-label">Modules Redesigned</div>
+      </div>
+      <div class="cs-data-card highlight">
+        <div class="cs-data-num">200+</div>
+        <div class="cs-data-label">Screens Delivered</div>
+      </div>
+      <div class="cs-data-card highlight">
+        <div class="cs-data-num">2</div>
+        <div class="cs-data-label">Store Types Unified</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DESIGN SYSTEM CALLOUT ══ -->
+  <section class="cs-section" style="padding:0;max-width:none">
+    <a href="case-study-design-system.html" class="cs-ds-callout" style="display:flex;align-items:center;justify-content:center;min-height:100vh;width:100vw;margin-left:calc(-1*(100vw - 100%)/2);background:linear-gradient(135deg,rgba(232,115,74,0.08) 0%,rgba(200,169,110,0.04) 50%,rgba(126,184,126,0.06) 100%);border-top:1px solid rgba(232,115,74,0.15);border-bottom:1px solid rgba(232,115,74,0.15);text-decoration:none;cursor:pointer;transition:background 0.3s;position:relative;overflow:hidden" onmouseover="this.style.background='linear-gradient(135deg,rgba(232,115,74,0.12) 0%,rgba(200,169,110,0.06) 50%,rgba(126,184,126,0.08) 100%)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(232,115,74,0.08) 0%,rgba(200,169,110,0.04) 50%,rgba(126,184,126,0.06) 100%)'">
+      <div style="text-align:center;max-width:600px;padding:40px 32px">
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px">Related Case Study</div>
+        <h2 style="font-family:var(--font-serif);font-size:var(--text-h2);font-weight:400;line-height:var(--leading-snug);letter-spacing:var(--tracking-snug);color:var(--cream);margin:0 0 16px">The System Behind<br>the System</h2>
+        <p style="font-size:var(--text-lg);color:var(--cream-dim);line-height:var(--leading-loose);margin:0 0 24px">Every component, token, and pattern you've seen was built on the Raytail Global Library — keeping 14 modules consistent.</p>
+        <span style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);padding:12px 24px;border:1px solid rgba(232,115,74,0.3);border-radius:12px;transition:all 0.2s">Read the Design System Case Study <span style="transition:transform 0.2s;display:inline-block">&rarr;</span></span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Time Travel -->
+  <section class="cs-section">
+    <div class="cs-section-num">Time Machine</div>
+    <h2 class="cs-h2">If I Could Go Back</h2>
+    <div class="cs-timetravel">
+      <div class="cs-tt-card"><div class="cs-tt-num">What I assumed</div><div class="cs-tt-title">One library is enough</div><div class="cs-tt-desc">Started with a single Raytail Global Library.</div></div>
+      <div class="cs-tt-card"><div class="cs-tt-num">What I missed</div><div class="cs-tt-title">14 modules need tokens early</div><div class="cs-tt-desc">Library needed systematic architecture sooner.</div></div>
+      <div class="cs-tt-card"><div class="cs-tt-num">What I'd do</div><div class="cs-tt-title">Build the system first</div><div class="cs-tt-desc">Tokenized design system before the first feature.</div></div>
+      <div class="cs-tt-card"><div class="cs-tt-num">Expected outcome</div><div class="cs-tt-title">Faster later modules</div><div class="cs-tt-desc">Compose from tokens, not create new patterns.</div></div>
+    </div>
+  </section>
+
+  <!-- ══ REFLECTION ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">19 — Reflection</div>
+    <h2 class="cs-h2">What I Learned</h2>
+    <div class="cs-lesson">
+      <strong>01 — Fix the process first.</strong>
+      <p>Prototype-on-hardware saved more time than any UI change.</p>
+    </div>
+    <div class="cs-lesson">
+      <strong>02 — Design for the harder context first.</strong>
+      <p>You can remove guardrails. You can't bolt them on.</p>
+    </div>
+    <div class="cs-lesson">
+      <strong>03 — Consistency at scale is structural.</strong>
+      <p>The repeatable 6-page file structure held 200+ screens together.</p>
+    </div>
+    <div class="cs-lesson">
+      <strong>04 — Stakeholder buy-in is a deliverable.</strong>
+      <p>Comic storyboards got BNPL funded. Design for decision-makers too.</p>
+    </div>
+  </section>
+
+  <section class="cs-ending">
+    <div class="cs-ending-inner">
+      <div class="cs-ending-label">Thanks for Reading</div>
+      <h2 class="cs-ending-heading">Let's build<br>something <em>great</em></h2>
+      <p class="cs-ending-sub">Open to senior roles in product and UX. Looking for a team that ships things and cares whether they work.</p>
+      <div class="cs-ending-buttons">
+        <a href="mailto:kaungmyat9702@gmail.com" class="cs-ending-btn cs-ending-main">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Email Me
+        </a>
+        <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" class="cs-ending-btn cs-ending-alt" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="cs-ending-meta">
+        <span>kaungmyat9702@gmail.com</span>
+        <span>Open to Work</span>
+        <span>Senior Product Designer</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NEXT PROJECT ══ -->
+    </div><!-- end cs-page -->
+
+<div class="cs-next">
+    <div class="cs-next-sidebar">
+      <div class="cs-next-label">Explore More</div>
+      <div class="cs-next-title">More<br>Case Studies</div>
+    </div>
+    <div class="cs-next-cards">
+    <a href="case-study-retail.html" class="cs-next-card">
+      <div class="cs-next-card-bg"><img src="images/resume-builder-resources/retail-ui-final.png" alt="From Feedback to 427% ROI"></div>
+      <div class="cs-next-card-info">
+        <div class="cs-next-card-why">Same company — retail POS redesign</div>
+        <div class="cs-next-card-tags">Retail POS / Cashier UX / 2025</div>
+        <div class="cs-next-card-title">From Feedback to 427% ROI</div>
+        <div class="cs-next-card-metric"><span class="val">427%</span><span class="lbl">ROI</span></div>
+        <div class="cs-next-card-cta">View Case Study &rarr;</div>
+      </div>
+    </a>
+    <a href="case-study-design-system.html" class="cs-next-card">
+      <div class="cs-next-card-bg"><img src="images/DS/★ Showcase — Multi-Palette Demo.png" alt="Three Platforms. One Source of Truth."></div>
+      <div class="cs-next-card-info">
+        <div class="cs-next-card-why">Same company — the system behind it</div>
+        <div class="cs-next-card-tags">Design System / Multi-Platform / 2025</div>
+        <div class="cs-next-card-title">Three Platforms. One Source of Truth.</div>
+        <div class="cs-next-card-metric"><span class="val">3</span><span class="lbl">Platforms</span></div>
+        <div class="cs-next-card-cta">View Case Study &rarr;</div>
+      </div>
+    </a>
+    </div>
+  </div>
+</div>
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<script src="js/atoms.js"></script>
+<script src="js/tts.js"></script>
+<script src="js/lightbox.js"></script>
+<script src="js/scroll-indicator.js"></script>
+
+<!-- Before/After Comparison Slider -->
+<script>
+(function(){
+  function initCompare(el){
+    var before=el.querySelector('.cs-compare-before');
+    var line=el.querySelector('.cs-compare-line');
+    var handle=el.querySelector('.cs-compare-handle');
+    var dragging=false;
+    function update(x){
+      var rect=el.getBoundingClientRect();
+      var pct=Math.max(0,Math.min(1,(x-rect.left)/rect.width));
+      before.style.clipPath='inset(0 '+(100-pct*100)+'% 0 0)';
+      line.style.left=pct*100+'%';
+      handle.style.left=pct*100+'%';
+    }
+    el.addEventListener('mousedown',function(e){if(e.target.closest('.cs-compare-maximize'))return;dragging=true;update(e.clientX);e.preventDefault();});
+    document.addEventListener('mousemove',function(e){if(dragging)update(e.clientX);});
+    document.addEventListener('mouseup',function(){dragging=false;});
+    el.addEventListener('touchstart',function(e){if(e.target.closest('.cs-compare-maximize'))return;dragging=true;update(e.touches[0].clientX);e.preventDefault();},{passive:false});
+    document.addEventListener('touchmove',function(e){if(dragging)update(e.touches[0].clientX);});
+    document.addEventListener('touchend',function(){dragging=false;});
+  }
+
+  // Add maximize button to each compare slider
+  document.querySelectorAll('[data-compare]').forEach(function(el){
+    var btn=document.createElement('button');
+    btn.className='cs-compare-maximize';
+    btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+    btn.title='Maximize';
+    el.appendChild(btn);
+
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var lb=document.getElementById('lightbox');
+      var content=document.getElementById('lightboxContent');
+      if(!lb||!content)return;
+      content.innerHTML='';
+
+      // Clone the compare slider into lightbox
+      var clone=document.createElement('div');
+      clone.className='cs-compare';
+      clone.setAttribute('data-compare','');
+      clone.style.cssText='width:92vw;max-width:1400px;height:85vh;aspect-ratio:auto;margin:0 auto;border-radius:12px';
+
+      var afterImg=el.querySelector('.cs-compare-after');
+      var beforeImg=el.querySelector('.cs-compare-before');
+
+      clone.innerHTML='<img class="cs-compare-after" src="'+afterImg.src+'" alt="'+afterImg.alt+'">'
+        +'<img class="cs-compare-before" src="'+beforeImg.src+'" alt="'+beforeImg.alt+'" style="clip-path:inset(0 50% 0 0)">'
+        +'<div class="cs-compare-line"></div>'
+        +'<div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>'
+        +'<div class="cs-compare-label cs-compare-label-before">Before</div>'
+        +'<div class="cs-compare-label cs-compare-label-after">After</div>';
+
+      content.appendChild(clone);
+      initCompare(clone);
+      lb.classList.add('open');
+    });
+
+    initCompare(el);
+  });
+})();
+</script>
+
+<!-- CHAT -->
+<button class="chat-trigger" id="chatTrigger" data-context="pharmacy-pos">
+  <svg class="ai-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l2.09 6.26L20.18 10l-6.09 1.74L12 18l-2.09-6.26L3.82 10l6.09-1.74L12 2z" stroke="currentColor"/><circle cx="19" cy="5" r="1.5" fill="currentColor" opacity="0.6"/><circle cx="5" cy="19" r="1" fill="currentColor" opacity="0.4"/></svg>
+  <span class="ai-label-full">Ask About This Project</span>
+  <span class="ai-label-short">AI</span>
+  <span class="dot"></span>
+</button>
+<div class="chat-overlay" id="chatOverlay"></div>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-header-title"><span class="dot"></span><span>Ask About This Project</span></div>
+    <button class="chat-close" id="chatClose"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-welcome">
+      <div class="chat-welcome-icon">&#x2728;</div>
+      <h3>Ask me about this project</h3>
+      <p>I can answer detailed questions about the process, decisions, and results.</p>
+      <div class="chat-suggestions">
+        <button class="chat-suggestion" data-q="How did you make one system work for both pharmacy and supermarket?">How does one system work for both stores?</button>
+        <button class="chat-suggestion" data-q="How did the prototype-first approach fix the rework cycle?">How did prototype-first fix rework?</button>
+        <button class="chat-suggestion" data-q="Why is drug overlap detection mandatory instead of dismissable?">Why is drug overlap mandatory?</button>
+        <button class="chat-suggestion" data-q="How did you manage 14+ modules as the sole designer?">How did you manage 14+ modules solo?</button>
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-wrap">
+    <div class="chat-input-bar">
+      <textarea class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off" rows="1"></textarea>
+      <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+    </div>
+  </div>
+</div>
+<script src="js/chat.js"></script>
+<script src="js/tracking.js"></script>
+</body>
+</html>
