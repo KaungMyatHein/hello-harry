@@ -331,4 +331,40 @@
     });
   }
 
+  /* ─────────────────────────────────────
+     SKELETON LOADER — media load detection
+     Adds .media-loaded to containers once
+     their img/video has finished loading,
+     hiding the shimmer placeholder.
+     ───────────────────────────────────── */
+  function onMediaLoaded(media) {
+    var container = media.closest('.proj-thumb, .cs-hero-bg, .cs-img');
+    if (container) container.classList.add('media-loaded');
+  }
+
+  /* Containers with no img/video (e.g. inline gradient backgrounds) — mark loaded immediately */
+  document.querySelectorAll('.proj-thumb').forEach(function (thumb) {
+    if (!thumb.querySelector('img, video')) thumb.classList.add('media-loaded');
+  });
+
+  /* Images */
+  document.querySelectorAll('.proj-thumb img, .cs-hero-bg img, .cs-img img, .cs-nav-card .proj-thumb img').forEach(function (img) {
+    if (img.complete && img.naturalWidth > 0) {
+      onMediaLoaded(img);
+    } else {
+      img.addEventListener('load', function () { onMediaLoaded(img); });
+      img.addEventListener('error', function () { onMediaLoaded(img); });
+    }
+  });
+
+  /* Videos */
+  document.querySelectorAll('.proj-thumb video, .cs-hero-bg video').forEach(function (vid) {
+    if (vid.readyState >= 2) {
+      onMediaLoaded(vid);
+    } else {
+      vid.addEventListener('loadeddata', function () { onMediaLoaded(vid); });
+      vid.addEventListener('error', function () { onMediaLoaded(vid); });
+    }
+  });
+
 })();
