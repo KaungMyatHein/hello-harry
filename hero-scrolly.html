@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero — Scrollytelling Terminal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Roboto:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/atoms.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#0a0706;color:var(--cream);font-family:var(--font-sans);overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+@keyframes blinkCursor{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes nudgeDown{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ══════════ Scrollytelling Terminal ══════════ */
+.hero{position:relative;height:300vh;}
+.hero-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 24px;}
+
+.term{width:min(820px,94vw);position:relative;}
+
+/* Progress dots (right side) */
+.term-progress{position:absolute;right:-44px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:5;}
+.term-progress span{width:7px;height:7px;border-radius:50%;border:1px solid rgba(232,115,74,0.4);background:transparent;transition:all .3s ease;}
+.term-progress span.on{background:var(--accent);box-shadow:0 0 10px var(--accent);border-color:var(--accent);}
+
+/* Terminal frame */
+.term-frame{background:#120d0a;border:1px solid rgba(232,115,74,0.22);box-shadow:0 50px 120px rgba(0,0,0,0.65),inset 0 1px 0 rgba(255,255,255,0.03);}
+.term-bar{padding:13px 18px;background:rgba(232,115,74,0.06);border-bottom:1px solid rgba(232,115,74,0.2);display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-dim);}
+.term-bar .dots{display:flex;gap:8px;}
+.term-bar .dots span{width:11px;height:11px;border-radius:50%;}
+.term-bar .dots .r{background:#ff5f57;}
+.term-bar .dots .y{background:#febc2e;}
+.term-bar .dots .g{background:#28c840;}
+.term-bar .brand{color:var(--accent);display:flex;align-items:center;gap:8px;}
+.term-bar .brand::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite;}
+
+.term-body{padding:40px 52px 52px;font-family:'IBM Plex Mono',var(--font-mono);font-size:15px;line-height:2.1;color:var(--cream);min-height:560px;}
+
+/* User badge — large photo */
+.term-user{display:flex;align-items:center;gap:22px;padding-bottom:26px;margin-bottom:26px;border-bottom:1px dashed rgba(232,115,74,0.25);}
+.term-user-photo{width:104px;height:104px;border-radius:50%;overflow:hidden;border:2px solid rgba(232,115,74,0.55);box-shadow:0 0 0 4px rgba(232,115,74,0.08),0 0 32px rgba(232,115,74,0.3);flex-shrink:0;position:relative;}
+.term-user-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.term-user-photo::after{content:'';position:absolute;bottom:4px;right:4px;width:15px;height:15px;border-radius:50%;background:var(--green);border:2.5px solid #120d0a;box-shadow:0 0 8px var(--green);animation:pulse 2.2s infinite;}
+.term-user-info{display:flex;flex-direction:column;gap:5px;line-height:1.4;}
+.term-user-name{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--accent);letter-spacing:0.04em;}
+.term-user-meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(240,230,211,0.45);letter-spacing:0.04em;}
+
+.term-cmd{color:var(--cream-dim);}
+.term-cmd .p{color:var(--accent);margin-right:10px;font-weight:500;}
+.term-cmd .type{color:var(--cream);}
+.term-cmd .type-cursor{display:inline-block;width:8px;height:16px;background:var(--accent);vertical-align:-2px;margin-left:2px;opacity:0;box-shadow:0 0 8px rgba(232,115,74,0.6);}
+.term-cmd.typing .type-cursor{opacity:1;animation:blinkCursor 0.8s infinite;}
+.term-big{font-family:var(--font-serif);font-size:clamp(44px,5.5vw,76px);font-weight:300;line-height:1.05;letter-spacing:-0.035em;color:var(--cream);margin:18px 0 10px;}
+.term-big em{font-style:italic;color:var(--accent);}
+.term-role{color:var(--cream);letter-spacing:0.02em;font-size:16px;}
+.term-dim{color:rgba(240,230,211,0.5);font-size:13px;}
+.term-live{color:var(--green);font-size:15px;}
+.term-live::before{content:'●';margin-right:8px;animation:pulse 2s infinite;}
+.term-cursor{display:inline-block;width:9px;height:20px;background:var(--accent);vertical-align:-4px;margin-left:4px;animation:blinkCursor 1s infinite;box-shadow:0 0 10px rgba(232,115,74,0.6);}
+.term-sp{height:20px;}
+.term-cta{color:rgba(240,230,211,0.55);font-size:13px;margin-top:4px;}
+.term-cta a{color:var(--accent);text-decoration:underline;text-decoration-color:rgba(232,115,74,0.4);text-underline-offset:3px;}
+.term-cta a:hover{text-decoration-color:var(--accent);}
+
+/* Scrollytelling reveal */
+.step{opacity:0;transform:translateY(8px);transition:opacity 0.45s ease,transform 0.45s ease;}
+.step.show{opacity:1;transform:translateY(0);}
+
+/* Scroll hint at the top (fades out on first scroll) */
+.scroll-hint{position:fixed;bottom:36px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.34em;text-transform:uppercase;color:rgba(240,230,211,0.55);transition:opacity 0.5s ease;pointer-events:none;}
+.scroll-hint.hide{opacity:0;}
+.scroll-hint .arrow{width:1px;height:32px;background:linear-gradient(180deg,rgba(232,115,74,0.6),transparent);animation:nudgeDown 1.8s ease-in-out infinite;}
+
+/* After section — optional end state */
+.end{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:60px 24px;text-align:center;background:#050403;border-top:1px dashed rgba(240,230,211,0.08);}
+.end-inner{max-width:560px;}
+.end-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
+.end-title{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;letter-spacing:-0.03em;color:var(--cream);margin-bottom:20px;}
+.end-title em{font-style:italic;color:var(--accent);}
+.end-sub{font-family:var(--font-mono);font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:32px;}
+.end-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--accent);color:#0a0706;border-radius:999px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.22em;text-transform:uppercase;transition:all .3s;}
+.end-btn:hover{background:#f0815a;transform:translateY(-2px);box-shadow:0 14px 40px rgba(232,115,74,0.35);}
+
+@media(max-width:900px){
+  .term-body{padding:32px 28px 36px;font-size:13px;}
+  .term-user-photo{width:84px;height:84px;}
+  .term-user-info{gap:3px;}
+  .term-user-name{font-size:13px;}
+  .term-progress{right:-28px;}
+}
+@media(max-width:560px){
+  .term-big{font-size:38px;}
+  .term-user-photo{width:72px;height:72px;}
+  .term-progress{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO: SCROLLYTELLING TERMINAL ══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-sticky">
+    <div class="term">
+      <div class="term-frame">
+        <div class="term-bar">
+          <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+          <span class="brand">harry@portfolio</span>
+          <span>zsh · ~</span>
+        </div>
+        <div class="term-body">
+
+          <!-- User badge -->
+          <div class="term-user step" data-step="0.02">
+            <div class="term-user-photo"><img src="images/profile.webp" alt="Harry Hein"></div>
+            <div class="term-user-info">
+              <span class="term-user-name">harry · Senior Product Designer</span>
+              <span class="term-user-meta">Last login: Apr 21 · 2026 · Yangon, MM</span>
+            </div>
+          </div>
+
+          <!-- ❯ whoami -->
+          <div class="term-cmd step" data-step="0.12">
+            <span class="p">❯</span><span class="type" data-type="whoami" data-start="0.12" data-end="0.20"></span><span class="type-cursor"></span>
+          </div>
+
+          <h1 class="term-big step" data-step="0.24">Harry <em>Hein.</em></h1>
+          <div class="term-role step" data-step="0.30">Senior Product Designer</div>
+          <div class="term-dim step" data-step="0.36">7 yrs active · 50+ shipped · Based in Yangon</div>
+
+          <div class="term-sp"></div>
+
+          <!-- ❯ cat manifesto.txt -->
+          <div class="term-cmd step" data-step="0.46">
+            <span class="p">❯</span><span class="type" data-type="cat manifesto.txt" data-start="0.46" data-end="0.56"></span><span class="type-cursor"></span>
+          </div>
+          <div class="term-big step" data-step="0.60" style="font-size:clamp(28px,3.4vw,44px);margin:10px 0 6px;">Friction, <em>out.</em> Impact, <em>in.</em></div>
+
+          <div class="term-sp"></div>
+
+          <!-- ❯ status -->
+          <div class="term-cmd step" data-step="0.70">
+            <span class="p">❯</span><span class="type" data-type="status" data-start="0.70" data-end="0.76"></span><span class="type-cursor"></span>
+          </div>
+          <div class="term-live step" data-step="0.80">Available for work · 2026</div>
+
+          <div class="term-sp"></div>
+
+          <!-- ❯ open ./projects -->
+          <div class="term-cmd step" data-step="0.88">
+            <span class="p">❯</span><span class="type" data-type="open ./projects" data-start="0.88" data-end="0.96"></span><span class="type-cursor"></span>
+          </div>
+          <div class="term-cta step" data-step="0.98">→ <a href="#work">scroll down to see the work</a></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll hint (fades out after first scroll) -->
+  <div class="scroll-hint" id="scrollHint">
+    <span>Scroll to begin</span>
+    <span class="arrow"></span>
+  </div>
+</section>
+
+<!-- ══════════ AFTER: end state placeholder ══════════ -->
+<section class="end" id="work">
+  <div class="end-inner">
+    <div class="end-tag">— End of demo —</div>
+    <h2 class="end-title">That's the hero.<br>The rest is <em>real work.</em></h2>
+    <p class="end-sub">Scroll back up to replay · or view case studies</p>
+    <a href="portfolio.html" class="end-btn">See the real portfolio →</a>
+  </div>
+</section>
+
+<script>
+(function(){
+  var section = document.getElementById('hero');
+  if (!section) return;
+  var steps = section.querySelectorAll('.step');
+  var types = section.querySelectorAll('[data-type]');
+  var hint = document.getElementById('scrollHint');
+  var hintHidden = false;
+
+  function update(){
+    var rect = section.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var total = rect.height - vh;
+    var progress = Math.max(0, Math.min(1, -rect.top / total));
+
+    steps.forEach(function(el){
+      var at = parseFloat(el.dataset.step);
+      if (progress >= at) el.classList.add('show');
+      else el.classList.remove('show');
+    });
+
+    types.forEach(function(el){
+      var start = parseFloat(el.dataset.start);
+      var end = parseFloat(el.dataset.end);
+      var text = el.dataset.type;
+      var cmd = el.closest('.term-cmd');
+      if (progress < start) {
+        el.textContent = '';
+        if (cmd) cmd.classList.remove('typing');
+      } else if (progress >= end) {
+        el.textContent = text;
+        if (cmd) cmd.classList.remove('typing');
+      } else {
+        var p = (progress - start) / (end - start);
+        el.textContent = text.substring(0, Math.ceil(text.length * p));
+        if (cmd) cmd.classList.add('typing');
+      }
+    });
+
+    if (!hintHidden && progress > 0.03) {
+      hint.classList.add('hide');
+      hintHidden = true;
+    } else if (hintHidden && progress <= 0.005) {
+      hint.classList.remove('hide');
+      hintHidden = false;
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+
+</body>
+</html>

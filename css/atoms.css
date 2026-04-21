@@ -84,14 +84,18 @@ body::after {
    NAVIGATION
    ───────────────────────────────────── */
 nav {
-  position: absolute;
+  position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 48px;
-  mix-blend-mode: difference;
+  padding: 18px 48px;
+  background: rgba(10, 7, 6, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .nav-logo {

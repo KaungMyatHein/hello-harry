@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crazy 8 — Round 4 (Clean)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Roboto:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Caveat:wght@400;500;600;700&family=Special+Elite&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/atoms.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--dark);color:var(--cream);font-family:var(--font-sans);cursor:auto;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+.cz-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:rgba(10,9,8,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(240,230,211,0.08);font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;}
+.cz-nav-title{color:var(--accent);}
+.cz-nav-links{display:flex;gap:10px;flex-wrap:wrap;}
+.cz-nav-links a{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(240,230,211,0.14);border-radius:50%;color:var(--cream-dim);font-size:11px;transition:all .25s ease;}
+.cz-nav-links a:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,115,74,0.08);}
+
+.cz-hero{position:relative;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:100px 24px 60px;border-bottom:1px dashed rgba(240,230,211,0.08);}
+.cz-label{position:absolute;top:70px;left:24px;z-index:50;display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--cream-dim);}
+.cz-label .num{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#0a0908;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:14px;font-weight:500;}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+@keyframes blinkCursor{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+/* ════════════ 1. CLEAN TERMINAL — Scrollytelling ════════════ */
+#cz1{background:#0a0706;min-height:auto;height:260vh;padding:0;border-bottom:1px dashed rgba(240,230,211,0.08);position:relative;align-items:stretch;display:block;}
+#cz1 .cz-label{top:88px;}
+
+.a1-stick{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;padding:90px 24px 40px;}
+.a1{width:min(760px,94vw);position:relative;}
+.a1-frame{background:#120d0a;border:1px solid rgba(232,115,74,0.22);box-shadow:0 40px 100px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.03);}
+.a1-bar{padding:12px 16px;background:rgba(232,115,74,0.06);border-bottom:1px solid rgba(232,115,74,0.2);display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-dim);}
+.a1-bar .brand{color:var(--accent);display:flex;align-items:center;gap:8px;}
+.a1-bar .brand::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite;}
+
+.a1-body{padding:36px 44px 44px;font-family:'IBM Plex Mono',var(--font-mono);font-size:15px;line-height:2.1;color:var(--cream);min-height:520px;}
+
+/* User badge with larger photo */
+.a1-user{display:flex;align-items:center;gap:20px;padding-bottom:24px;margin-bottom:26px;border-bottom:1px dashed rgba(232,115,74,0.25);}
+.a1-user-photo{width:96px;height:96px;border-radius:50%;overflow:hidden;border:2px solid rgba(232,115,74,0.5);box-shadow:0 0 0 4px rgba(232,115,74,0.08),0 0 30px rgba(232,115,74,0.3);flex-shrink:0;position:relative;}
+.a1-user-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.a1-user-photo::after{content:'';position:absolute;bottom:3px;right:3px;width:14px;height:14px;border-radius:50%;background:var(--green);border:2.5px solid #120d0a;box-shadow:0 0 8px var(--green);}
+.a1-user-info{display:flex;flex-direction:column;gap:4px;line-height:1.4;}
+.a1-user-name{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--accent);letter-spacing:0.04em;}
+.a1-user-meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(240,230,211,0.45);letter-spacing:0.04em;}
+
+.a1-cmd{color:var(--cream-dim);}
+.a1-cmd .p{color:var(--accent);margin-right:8px;}
+.a1-cmd .type{color:var(--cream);}
+.a1-cmd .type-cursor{display:inline-block;width:8px;height:16px;background:var(--accent);vertical-align:-2px;margin-left:2px;opacity:0;}
+.a1-cmd.typing .type-cursor{opacity:1;animation:blinkCursor 0.8s infinite;}
+.a1-big{font-family:var(--font-serif);font-size:clamp(42px,5vw,68px);font-weight:300;line-height:1.1;letter-spacing:-0.03em;color:var(--cream);margin:14px 0 8px;}
+.a1-big em{font-style:italic;color:var(--accent);}
+.a1-role{color:var(--cream);letter-spacing:0.02em;}
+.a1-dim{color:rgba(240,230,211,0.5);font-size:13px;}
+.a1-live{color:var(--green);}
+.a1-live::before{content:'●';margin-right:8px;animation:pulse 2s infinite;}
+.a1-cursor{display:inline-block;width:8px;height:18px;background:var(--accent);vertical-align:-3px;margin-left:4px;animation:blinkCursor 1s infinite;box-shadow:0 0 8px rgba(232,115,74,0.6);}
+.a1-sp{height:18px;}
+
+/* Scrollytelling reveal */
+.a1-step{opacity:0;transform:translateY(6px);transition:opacity 0.4s ease,transform 0.4s ease;}
+.a1-step.show{opacity:1;transform:translateY(0);}
+
+/* Progress indicator */
+.a1-progress{position:absolute;right:28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:5;}
+.a1-progress span{width:6px;height:6px;border-radius:50%;border:1px solid rgba(232,115,74,0.4);background:transparent;transition:all .3s ease;}
+.a1-progress span.on{background:var(--accent);box-shadow:0 0 8px var(--accent);border-color:var(--accent);}
+
+/* ════════════ 2. SPEC CARD ════════════ */
+#cz2{background:radial-gradient(ellipse at center,#1a1412,#0a0706);}
+.c2{width:min(440px,92vw);background:linear-gradient(180deg,#1a1410 0%,#120d0a 100%);border:1px solid rgba(232,115,74,0.18);padding:52px 48px;text-align:center;box-shadow:0 50px 120px rgba(0,0,0,0.6);}
+.c2-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:0.34em;text-transform:uppercase;color:var(--accent);margin-bottom:32px;}
+.c2-photo{width:140px;height:140px;border-radius:50%;overflow:hidden;margin:0 auto 28px;border:1px solid rgba(232,115,74,0.3);box-shadow:0 20px 50px rgba(0,0,0,0.5);}
+.c2-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.c2-name{font-family:var(--font-serif);font-size:44px;font-weight:400;letter-spacing:-0.03em;line-height:1;color:var(--cream);margin-bottom:8px;}
+.c2-name .dot{color:var(--accent);}
+.c2-role{font-family:var(--font-mono);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:36px;}
+.c2-rule{height:1px;background:linear-gradient(90deg,transparent,rgba(232,115,74,0.4),transparent);margin:0 auto 28px;}
+.c2-table{display:grid;grid-template-columns:auto auto;gap:14px 24px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;text-align:left;justify-content:space-between;margin-bottom:36px;}
+.c2-table dt{color:var(--accent);}
+.c2-table dd{color:var(--cream);text-align:right;}
+.c2-table dd.live{color:var(--green);}
+.c2-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;background:var(--accent);color:#0a0908;border-radius:999px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.22em;text-transform:uppercase;transition:all 0.3s;}
+.c2-btn:hover{background:#f0815a;transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,115,74,0.35);}
+
+/* ════════════ 3. TYPED MEMO ════════════ */
+#cz3{background:radial-gradient(ellipse at center,#1c1510,#0a0706);}
+.m3{width:min(620px,92vw);background:linear-gradient(180deg,#201811,#14100c);border:1px solid rgba(232,115,74,0.15);padding:60px 64px;font-family:'Special Elite',monospace;box-shadow:0 50px 120px rgba(0,0,0,0.6);position:relative;}
+.m3-head{display:flex;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid rgba(232,115,74,0.25);font-family:var(--font-mono);font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:36px;}
+.m3-head .re{color:var(--accent);}
+.m3-greet{font-size:17px;color:var(--cream-dim);margin-bottom:22px;letter-spacing:0.01em;}
+.m3-body{font-family:var(--font-serif);font-size:clamp(26px,3.2vw,38px);font-weight:300;line-height:1.3;letter-spacing:-0.015em;color:var(--cream);margin-bottom:30px;}
+.m3-body em{font-style:italic;color:var(--accent);}
+.m3-meta{font-family:'Special Elite',monospace;font-size:14px;line-height:1.9;color:rgba(240,230,211,0.78);margin-bottom:40px;letter-spacing:0.02em;}
+.m3-meta strong{color:var(--accent);font-weight:400;}
+.m3-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
+.m3-sig-wrap{display:flex;flex-direction:column;gap:2px;}
+.m3-sign-off{font-family:'Special Elite',monospace;font-size:13px;color:var(--cream-dim);letter-spacing:0.08em;}
+.m3-sig{font-family:var(--font-hand);font-size:50px;color:var(--cream);line-height:1;margin-top:4px;}
+.m3-role{font-family:var(--font-mono);font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--cream-dim);margin-top:4px;}
+.m3-stamp{border:2.5px double var(--accent);color:var(--accent);padding:12px 18px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;transform:rotate(-4deg);background:rgba(232,115,74,0.05);line-height:1.3;text-align:center;}
+.m3-stamp small{display:block;font-size:8px;letter-spacing:0.22em;margin-top:3px;opacity:0.8;}
+
+/* ════════════ 4. THREE CLEAN TILES ════════════ */
+#cz4{background:#0a0706;}
+.t4{width:min(1040px,95vw);display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.t4-card{background:linear-gradient(180deg,#1a1410,#120d0a);border:1px solid rgba(232,115,74,0.18);padding:36px;min-height:400px;display:flex;flex-direction:column;position:relative;}
+.t4-card-hd{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);padding-bottom:18px;border-bottom:1px solid rgba(232,115,74,0.2);margin-bottom:28px;}
+.t4-card-hd .n{color:rgba(240,230,211,0.35);}
+.t4-photo{width:80px;height:80px;border-radius:50%;overflow:hidden;margin-bottom:20px;border:1px solid rgba(232,115,74,0.3);}
+.t4-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.t4-name{font-family:var(--font-serif);font-size:36px;font-weight:400;letter-spacing:-0.03em;line-height:1;color:var(--cream);margin-bottom:8px;}
+.t4-name .dot{color:var(--accent);}
+.t4-role{font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--cream-dim);line-height:1.7;margin-top:auto;}
+.t4-manifesto{font-family:var(--font-serif);font-size:32px;font-weight:300;line-height:1.2;letter-spacing:-0.02em;color:var(--cream);}
+.t4-manifesto em{font-style:italic;color:var(--accent);}
+.t4-m-foot{margin-top:auto;font-family:var(--font-mono);font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(240,230,211,0.4);}
+.t4-stats{display:flex;flex-direction:column;gap:18px;}
+.t4-stat{display:flex;flex-direction:column;gap:4px;}
+.t4-stat .v{font-family:var(--font-serif);font-size:42px;font-weight:400;color:var(--accent);letter-spacing:-0.03em;line-height:1;}
+.t4-stat .l{font-family:var(--font-mono);font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--cream-dim);}
+.t4-stat .l.live{color:var(--green);}
+.t4-stat .l.live::before{content:'●';margin-right:6px;animation:pulse 2s infinite;}
+
+/* ════════════ 5. SIGNAL / TREND ════════════ */
+#cz5{background:radial-gradient(ellipse at center,#1a1412,#050403);}
+.g5{width:min(900px,95vw);background:#120d0a;border:1px solid rgba(232,115,74,0.18);padding:36px 40px 32px;box-shadow:0 50px 120px rgba(0,0,0,0.6);}
+.g5-hd{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid rgba(232,115,74,0.2);font-family:var(--font-mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--cream-dim);}
+.g5-hd .title{color:var(--accent);}
+.g5-chart{position:relative;aspect-ratio:16/7;margin:28px 0 14px;padding-left:40px;padding-bottom:24px;}
+.g5-chart::before{content:'';position:absolute;left:40px;top:0;bottom:24px;border-left:1px solid rgba(240,230,211,0.15);}
+.g5-chart::after{content:'';position:absolute;left:40px;right:0;bottom:24px;border-bottom:1px solid rgba(240,230,211,0.15);}
+.g5-yaxis{position:absolute;left:0;top:0;bottom:24px;display:flex;flex-direction:column;justify-content:space-between;font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;color:rgba(240,230,211,0.45);text-align:right;padding-right:8px;}
+.g5-xaxis{position:absolute;left:40px;right:0;bottom:0;display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;color:rgba(240,230,211,0.45);}
+.g5-svg{position:absolute;left:40px;right:0;top:0;bottom:24px;width:calc(100% - 40px);height:calc(100% - 24px);}
+.g5-dot{fill:var(--accent);}
+.g5-dot.hl{r:5;filter:drop-shadow(0 0 6px var(--accent));}
+.g5-label{position:absolute;font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;color:var(--accent);background:#120d0a;padding:2px 6px;text-transform:uppercase;}
+.g5-foot{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding-top:20px;border-top:1px solid rgba(232,115,74,0.15);}
+.g5-photo{width:60px;height:60px;border-radius:50%;overflow:hidden;border:1px solid rgba(232,115,74,0.3);}
+.g5-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.g5-who{display:flex;flex-direction:column;gap:2px;}
+.g5-who .n{font-family:var(--font-serif);font-size:24px;letter-spacing:-0.02em;color:var(--cream);line-height:1;}
+.g5-who .r{font-family:var(--font-mono);font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--cream-dim);margin-top:4px;}
+.g5-live{font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:8px;}
+.g5-live::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite;}
+
+/* ════════════ 6. ID BADGE ════════════ */
+#cz6{background:radial-gradient(ellipse at center,#1a1412,#050302);}
+.b6{width:min(380px,92vw);position:relative;}
+.b6-lanyard{height:80px;display:flex;justify-content:center;align-items:flex-end;margin-bottom:-8px;}
+.b6-lanyard::before{content:'';width:2px;height:100%;background:var(--accent);box-shadow:0 0 10px rgba(232,115,74,0.3);}
+.b6-ring{position:absolute;top:72px;left:50%;transform:translateX(-50%);width:26px;height:26px;border-radius:50%;border:3px solid #1a1412;background:var(--accent);z-index:2;}
+.b6-ring::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:#0a0908;}
+.b6-card{background:linear-gradient(180deg,#1e1712,#14100c);border:1px solid rgba(232,115,74,0.25);border-radius:12px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7);margin-top:20px;padding-top:18px;}
+.b6-top{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:var(--accent);color:#0a0908;font-family:var(--font-mono);font-size:11px;letter-spacing:0.26em;text-transform:uppercase;font-weight:600;margin:0 -1px;}
+.b6-top .hh{font-family:var(--font-serif);font-size:18px;font-style:italic;letter-spacing:-0.01em;text-transform:none;font-weight:400;}
+.b6-photo{margin:28px auto 20px;width:140px;height:170px;overflow:hidden;border:1px solid rgba(232,115,74,0.3);}
+.b6-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:contrast(1.05);}
+.b6-info{padding:0 28px 22px;text-align:center;display:flex;flex-direction:column;gap:6px;}
+.b6-name{font-family:var(--font-serif);font-size:32px;font-weight:400;letter-spacing:-0.03em;line-height:1;color:var(--cream);}
+.b6-role{font-family:var(--font-mono);font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--cream-dim);}
+.b6-rule{height:1px;background:rgba(232,115,74,0.3);margin:18px 0 12px;}
+.b6-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-dim);}
+.b6-stats .v{font-family:var(--font-serif);font-size:22px;color:var(--accent);letter-spacing:-0.02em;line-height:1;text-transform:none;font-style:italic;display:block;margin-bottom:2px;}
+.b6-live{margin-top:12px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:8px;justify-content:center;}
+.b6-live::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite;}
+.b6-bar{margin-top:20px;height:32px;background:repeating-linear-gradient(to right,#f0e6d3 0 2px,transparent 2px 3px,#f0e6d3 3px 4px,transparent 4px 7px);opacity:0.85;}
+.b6-serial{padding:8px 20px;background:#0a0706;font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(240,230,211,0.4);display:flex;justify-content:space-between;}
+
+/* ════════════ 7. POSTCARD BACK ════════════ */
+#cz7{background:radial-gradient(ellipse at center,#1a1410,#0a0706);}
+.p7{width:min(880px,95vw);background:linear-gradient(180deg,#1e1712,#14100c);border:1px solid rgba(232,115,74,0.18);box-shadow:0 50px 120px rgba(0,0,0,0.6);display:grid;grid-template-columns:1fr 1fr;min-height:440px;}
+.p7-left{padding:40px 40px;display:flex;flex-direction:column;gap:16px;position:relative;}
+.p7-left::after{content:'';position:absolute;top:30px;bottom:30px;right:0;width:1px;background:repeating-linear-gradient(to bottom,rgba(232,115,74,0.3) 0 4px,transparent 4px 8px);}
+.p7-greet{font-family:'Special Elite',monospace;font-size:15px;color:var(--cream-dim);letter-spacing:0.02em;}
+.p7-msg{font-family:var(--font-serif);font-size:clamp(24px,3vw,34px);font-weight:300;line-height:1.3;letter-spacing:-0.02em;color:var(--cream);}
+.p7-msg em{font-style:italic;color:var(--accent);}
+.p7-sig-wrap{margin-top:auto;padding-top:20px;border-top:1px dashed rgba(232,115,74,0.3);}
+.p7-sig-line{font-family:'Special Elite',monospace;font-size:13px;color:var(--cream-dim);margin-bottom:4px;letter-spacing:0.04em;}
+.p7-sig{font-family:var(--font-hand);font-size:42px;color:var(--cream);line-height:1;}
+.p7-right{padding:40px;display:flex;flex-direction:column;gap:20px;}
+.p7-stamp-wrap{align-self:flex-end;width:120px;height:140px;border:1.5px dashed rgba(232,115,74,0.5);padding:8px;position:relative;}
+.p7-stamp{width:100%;height:100%;overflow:hidden;position:relative;background:var(--accent);display:flex;flex-direction:column;justify-content:space-between;padding:8px;}
+.p7-stamp-val{font-family:var(--font-serif);font-size:22px;font-style:italic;color:#0a0908;letter-spacing:-0.02em;line-height:1;}
+.p7-stamp-photo{flex:1;margin:6px 0;background:rgba(10,9,8,0.15);overflow:hidden;}
+.p7-stamp-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;mix-blend-mode:multiply;filter:contrast(1.2);}
+.p7-stamp-country{font-family:var(--font-mono);font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#0a0908;text-align:center;}
+.p7-pmark{align-self:flex-end;margin-right:40px;margin-top:-20px;transform:rotate(-8deg);font-family:var(--font-mono);font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);border:1.5px solid var(--accent);border-radius:50%;width:80px;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.4;background:rgba(232,115,74,0.06);}
+.p7-pmark strong{font-family:var(--font-serif);font-style:italic;color:var(--accent);letter-spacing:0;font-size:13px;}
+.p7-addr-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.p7-addr{font-family:'Special Elite',monospace;font-size:15px;line-height:1.9;color:var(--cream);letter-spacing:0.02em;}
+.p7-addr strong{color:var(--accent);font-weight:400;}
+.p7-addr-block{margin-bottom:20px;}
+.p7-lines{height:1px;margin:10px 0;background:repeating-linear-gradient(to right,rgba(240,230,211,0.2) 0 20px,transparent 20px 24px);}
+
+/* ════════════ 8. LIBRARY CARD ════════════ */
+#cz8{background:radial-gradient(ellipse at center,#1a1410,#050302);}
+.l8{width:min(560px,92vw);background:linear-gradient(180deg,#1e1712,#14100c);border:1px solid rgba(232,115,74,0.2);padding:44px 48px;box-shadow:0 50px 120px rgba(0,0,0,0.6);position:relative;}
+.l8-hd{text-align:center;border-top:3px solid var(--accent);border-bottom:1px solid var(--accent);padding:18px 0 14px;margin-bottom:32px;}
+.l8-hd-sub{font-family:var(--font-mono);font-size:10px;letter-spacing:0.36em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.l8-code{font-family:var(--font-serif);font-size:26px;font-style:italic;letter-spacing:-0.02em;color:var(--cream);}
+.l8-title{font-family:var(--font-serif);font-size:clamp(36px,5vw,52px);font-weight:400;letter-spacing:-0.03em;line-height:1.05;color:var(--cream);text-align:center;margin-bottom:10px;}
+.l8-title em{font-style:italic;color:var(--accent);}
+.l8-subtitle{font-family:var(--font-mono);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--cream-dim);text-align:center;margin-bottom:32px;}
+.l8-log-hd{display:grid;grid-template-columns:110px 1fr auto;gap:16px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);padding-bottom:10px;border-bottom:1.5px solid var(--accent);}
+.l8-log-row{display:grid;grid-template-columns:110px 1fr auto;gap:16px;padding:14px 0;border-bottom:1px dashed rgba(240,230,211,0.12);font-family:'Special Elite',monospace;font-size:14px;color:var(--cream);letter-spacing:0.01em;align-items:center;}
+.l8-log-row .date{color:var(--accent);}
+.l8-log-row .stamp{padding:3px 10px;border:1.5px solid rgba(126,184,126,0.5);color:var(--green);font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;text-transform:uppercase;}
+.l8-log-row .stamp.active{border-color:var(--accent);color:var(--accent);animation:pulse 2.2s infinite;}
+.l8-foot{margin-top:32px;padding-top:18px;border-top:1px solid rgba(232,115,74,0.2);display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:rgba(240,230,211,0.5);}
+
+@media(max-width:900px){
+  .t4{grid-template-columns:1fr;}
+  .p7{grid-template-columns:1fr;}
+  .p7-left::after{display:none;}
+  .a1-body{padding:40px 28px;font-size:13px;}
+  .m3{padding:44px 32px;}
+  .c2{padding:40px 28px;}
+  .l8{padding:32px 24px;}
+  .l8-log-row,.l8-log-hd{grid-template-columns:90px 1fr auto;gap:10px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="cz-nav">
+  <span class="cz-nav-title">◆ CRAZY 8 — Round 4 (Clean)</span>
+  <div class="cz-nav-links">
+    <a href="#cz1">1</a><a href="#cz2">2</a><a href="#cz3">3</a><a href="#cz4">4</a>
+    <a href="#cz5">5</a><a href="#cz6">6</a><a href="#cz7">7</a><a href="#cz8">8</a>
+  </div>
+</nav>
+
+<!-- ────── 1. CLEAN TERMINAL — Scrollytelling ────── -->
+<section id="cz1" class="cz-hero">
+  <div class="cz-label"><span class="num">1</span> Clean Terminal · Scrolly</div>
+
+  <div class="a1-stick">
+    <div class="a1">
+      <div class="a1-progress" aria-hidden="true">
+        <span data-dot="0"></span>
+        <span data-dot="1"></span>
+        <span data-dot="2"></span>
+        <span data-dot="3"></span>
+        <span data-dot="4"></span>
+        <span data-dot="5"></span>
+      </div>
+      <div class="a1-frame">
+        <div class="a1-bar"><span class="brand">harry@portfolio</span><span>zsh · ~</span></div>
+        <div class="a1-body">
+          <div class="a1-user a1-step" data-step="0.02">
+            <div class="a1-user-photo"><img src="images/profile.webp" alt="Harry"></div>
+            <div class="a1-user-info">
+              <span class="a1-user-name">harry · Senior PD</span>
+              <span class="a1-user-meta">Last login: Apr 21 · 2026 · Yangon</span>
+            </div>
+          </div>
+
+          <div class="a1-cmd a1-step" data-step="0.14">
+            <span class="p">❯</span><span class="type" data-type="whoami" data-start="0.14" data-end="0.22"></span><span class="type-cursor"></span>
+          </div>
+
+          <h1 class="a1-big a1-step" data-step="0.26">Harry <em>Hein.</em></h1>
+          <div class="a1-role a1-step" data-step="0.32">Senior Product Designer</div>
+          <div class="a1-dim a1-step" data-step="0.38">7 yrs active · 50+ shipped · Yangon</div>
+
+          <div class="a1-sp"></div>
+
+          <div class="a1-cmd a1-step" data-step="0.50">
+            <span class="p">❯</span><span class="type" data-type="status" data-start="0.50" data-end="0.58"></span><span class="type-cursor"></span>
+          </div>
+          <div class="a1-live a1-step" data-step="0.64">Available for work</div>
+
+          <div class="a1-sp"></div>
+
+          <div class="a1-cmd a1-step" data-step="0.78">
+            <span class="p">❯</span><span class="type" data-type="open ./projects" data-start="0.78" data-end="0.90"></span><span class="type-cursor"></span>
+          </div>
+          <div class="a1-step" data-step="0.94" style="color:rgba(240,230,211,0.5);font-size:13px;">→ <span style="color:var(--accent);">scroll down to see the work</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var section = document.getElementById('cz1');
+  if (!section) return;
+  var steps = section.querySelectorAll('.a1-step');
+  var types = section.querySelectorAll('[data-type]');
+  var cmds = section.querySelectorAll('.a1-cmd.a1-step');
+  var dots = section.querySelectorAll('.a1-progress span');
+  var milestones = [0.02, 0.14, 0.26, 0.50, 0.64, 0.78];
+
+  function update(){
+    var rect = section.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var total = rect.height - vh;
+    var progress = Math.max(0, Math.min(1, -rect.top / total));
+
+    steps.forEach(function(el){
+      var at = parseFloat(el.dataset.step);
+      if (progress >= at) el.classList.add('show');
+      else el.classList.remove('show');
+    });
+
+    types.forEach(function(el){
+      var start = parseFloat(el.dataset.start);
+      var end = parseFloat(el.dataset.end);
+      var text = el.dataset.type;
+      var cmd = el.closest('.a1-cmd');
+      if (progress < start) {
+        el.textContent = '';
+        if (cmd) cmd.classList.remove('typing');
+      } else if (progress >= end) {
+        el.textContent = text;
+        if (cmd) cmd.classList.remove('typing');
+      } else {
+        var p = (progress - start) / (end - start);
+        el.textContent = text.substring(0, Math.ceil(text.length * p));
+        if (cmd) cmd.classList.add('typing');
+      }
+    });
+
+    dots.forEach(function(el, i){
+      if (progress >= milestones[i]) el.classList.add('on');
+      else el.classList.remove('on');
+    });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+
+<!-- ────── 2. SPEC CARD ────── -->
+<section id="cz2" class="cz-hero">
+  <div class="cz-label"><span class="num">2</span> Spec Card</div>
+  <div class="c2">
+    <div class="c2-tag">— Portfolio · 2026 —</div>
+    <div class="c2-photo"><img src="images/profile.webp" alt="Harry"></div>
+    <h1 class="c2-name">Harry Hein<span class="dot">.</span></h1>
+    <div class="c2-role">Senior Product Designer</div>
+    <div class="c2-rule"></div>
+    <dl class="c2-table">
+      <dt>Years</dt><dd>7+</dd>
+      <dt>Shipped</dt><dd>50+</dd>
+      <dt>Based</dt><dd>Yangon</dd>
+      <dt>Status</dt><dd class="live">● Available</dd>
+    </dl>
+    <a href="#" class="c2-btn">See the work →</a>
+  </div>
+</section>
+
+<!-- ────── 3. TYPED MEMO ────── -->
+<section id="cz3" class="cz-hero">
+  <div class="cz-label"><span class="num">3</span> Typed Memo</div>
+  <article class="m3">
+    <div class="m3-head">
+      <span>MEMO · № 024</span>
+      <span class="re">RE: Hello.</span>
+      <span>APR 21 · 2026</span>
+    </div>
+    <p class="m3-greet">Hi,</p>
+    <p class="m3-body">I'm a senior product designer who finds the friction — and designs it <em>out.</em></p>
+    <p class="m3-meta">
+      <strong>7 years</strong> in practice.<br>
+      <strong>50+</strong> products shipped.<br>
+      Based in Yangon · working globally.
+    </p>
+    <div class="m3-foot">
+      <div class="m3-sig-wrap">
+        <span class="m3-sign-off">Yours,</span>
+        <span class="m3-sig">Harry Hein</span>
+        <span class="m3-role">— Senior Product Designer</span>
+      </div>
+      <div class="m3-stamp">Available<small>FOR WORK · 2026</small></div>
+    </div>
+  </article>
+</section>
+
+<!-- ────── 4. THREE CLEAN TILES ────── -->
+<section id="cz4" class="cz-hero">
+  <div class="cz-label"><span class="num">4</span> Three Tiles</div>
+  <div class="t4">
+    <div class="t4-card">
+      <div class="t4-card-hd"><span>◆ Identity</span><span class="n">01</span></div>
+      <div class="t4-photo"><img src="images/profile.webp" alt="Harry"></div>
+      <h1 class="t4-name">Harry<span class="dot">.</span></h1>
+      <div class="t4-role">— Senior Product Designer —<br>Based in Yangon</div>
+    </div>
+    <div class="t4-card">
+      <div class="t4-card-hd"><span>◆ Manifesto</span><span class="n">02</span></div>
+      <p class="t4-manifesto">Friction, <em>out.</em><br>Impact, <em>in.</em></p>
+      <div class="t4-m-foot">— My only rule —</div>
+    </div>
+    <div class="t4-card">
+      <div class="t4-card-hd"><span>◆ Status</span><span class="n">03</span></div>
+      <div class="t4-stats">
+        <div class="t4-stat"><span class="v">7+</span><span class="l">Years shipping</span></div>
+        <div class="t4-stat"><span class="v">50+</span><span class="l">Products lived in</span></div>
+        <div class="t4-stat"><span class="v">2026</span><span class="l live">Available for work</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────── 5. SIGNAL / TREND ────── -->
+<section id="cz5" class="cz-hero">
+  <div class="cz-label"><span class="num">5</span> Signal / Trend</div>
+  <div class="g5">
+    <div class="g5-hd">
+      <span class="title">◆ IMPACT OVER TIME</span>
+      <span>7 YEARS · 50+ SHIPPED</span>
+    </div>
+    <div class="g5-chart">
+      <div class="g5-yaxis"><span>Impact</span><span>·</span><span>·</span><span>0</span></div>
+      <svg class="g5-svg" viewBox="0 0 800 280" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="g5grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e8734a" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#e8734a" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M 0 240 L 160 200 L 320 150 L 480 110 L 640 70 L 800 30 L 800 280 L 0 280 Z" fill="url(#g5grad)"/>
+        <path d="M 0 240 L 160 200 L 320 150 L 480 110 L 640 70 L 800 30" stroke="#e8734a" stroke-width="2" fill="none"/>
+        <circle cx="0" cy="240" r="4" class="g5-dot"/>
+        <circle cx="160" cy="200" r="4" class="g5-dot"/>
+        <circle cx="320" cy="150" r="4" class="g5-dot"/>
+        <circle cx="480" cy="110" r="4" class="g5-dot"/>
+        <circle cx="640" cy="70" r="4" class="g5-dot"/>
+        <circle cx="800" cy="30" r="6" fill="#e8734a" filter="drop-shadow(0 0 8px #e8734a)"/>
+      </svg>
+      <div class="g5-label" style="right:0;top:6%;">NOW · 50+</div>
+      <div class="g5-xaxis"><span>2018</span><span>2020</span><span>2022</span><span>2024</span><span>2026</span></div>
+    </div>
+    <div class="g5-foot">
+      <div class="g5-photo"><img src="images/profile.webp" alt="Harry"></div>
+      <div class="g5-who">
+        <span class="n">Harry Hein — Senior Product Designer</span>
+        <span class="r">Friction, out. Impact, in.</span>
+      </div>
+      <div class="g5-live">Available 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ────── 6. ID BADGE ────── -->
+<section id="cz6" class="cz-hero">
+  <div class="cz-label"><span class="num">6</span> ID Badge</div>
+  <div class="b6">
+    <div class="b6-lanyard"></div>
+    <div class="b6-ring"></div>
+    <div class="b6-card">
+      <div class="b6-top"><span>◆ STAFF ID</span><span class="hh">Harry</span></div>
+      <div class="b6-photo"><img src="images/profile.webp" alt="Harry"></div>
+      <div class="b6-info">
+        <h1 class="b6-name">Harry Hein</h1>
+        <div class="b6-role">Senior Product Designer</div>
+      </div>
+      <div class="b6-rule" style="margin:0 28px;"></div>
+      <div class="b6-info" style="padding-top:0;">
+        <div class="b6-stats">
+          <div><span class="v">7+</span>Years</div>
+          <div><span class="v">50+</span>Shipped</div>
+        </div>
+        <div class="b6-live">Available for work</div>
+      </div>
+      <div class="b6-bar"></div>
+      <div class="b6-serial"><span>ID · HH-024</span><span>EXP · 2026—∞</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ────── 7. POSTCARD BACK ────── -->
+<section id="cz7" class="cz-hero">
+  <div class="cz-label"><span class="num">7</span> Postcard</div>
+  <article class="p7">
+    <div class="p7-left">
+      <div class="p7-greet">Yangon, Apr 21 · 2026</div>
+      <p class="p7-msg">7 years in. 50+ products shipped. Still finding the friction, still designing it <em>out.</em></p>
+      <div class="p7-sig-wrap">
+        <div class="p7-sig-line">Yours —</div>
+        <div class="p7-sig">Harry Hein</div>
+      </div>
+    </div>
+    <div class="p7-right">
+      <div class="p7-stamp-wrap">
+        <div class="p7-stamp">
+          <span class="p7-stamp-val">7+</span>
+          <div class="p7-stamp-photo"><img src="images/profile.webp" alt=""></div>
+          <span class="p7-stamp-country">Harry · YGN</span>
+        </div>
+      </div>
+      <div class="p7-pmark">
+        <strong>Available</strong>
+        APR 21<br>2026
+      </div>
+      <div>
+        <div class="p7-addr-label">— To —</div>
+        <div class="p7-addr">
+          <strong>Your team</strong><br>
+          Your next great<br>
+          project · 2026
+        </div>
+        <div class="p7-lines"></div>
+        <div class="p7-addr-block" style="margin-top:16px;">
+          <div class="p7-addr-label">— From —</div>
+          <div class="p7-addr">
+            Harry Hein<br>
+            Sr. Product Designer<br>
+            Yangon · MM
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ────── 8. LIBRARY CARD ────── -->
+<section id="cz8" class="cz-hero">
+  <div class="cz-label"><span class="num">8</span> Library Card</div>
+  <div class="l8">
+    <div class="l8-hd">
+      <div class="l8-hd-sub">◆ Catalog Entry</div>
+      <div class="l8-code">741.6 / HEI · № 024</div>
+    </div>
+    <h1 class="l8-title">Harry <em>Hein</em></h1>
+    <div class="l8-subtitle">— Senior Product Designer —</div>
+    <div class="l8-log-hd"><span>Date</span><span>Milestone</span><span>Status</span></div>
+    <div class="l8-log-row">
+      <span class="date">2018</span>
+      <span>First product shipped</span>
+      <span class="stamp">Shipped</span>
+    </div>
+    <div class="l8-log-row">
+      <span class="date">2022</span>
+      <span>Senior Designer</span>
+      <span class="stamp">Shipped</span>
+    </div>
+    <div class="l8-log-row">
+      <span class="date">2024</span>
+      <span>50 products in the wild</span>
+      <span class="stamp">Shipped</span>
+    </div>
+    <div class="l8-log-row">
+      <span class="date">2026</span>
+      <span>Available for work</span>
+      <span class="stamp active">● Open</span>
+    </div>
+    <div class="l8-foot">
+      <span>Filed Apr 21 · 2026</span>
+      <span>Yangon · MM</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
