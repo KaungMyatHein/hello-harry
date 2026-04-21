@@ -331,13 +331,13 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 .projects{flex:1;display:flex;flex-direction:column;padding:0;gap:0;}
 .projects-extra{display:none}
 
-.project-title-card{height:100vh;min-height:700px;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;scroll-snap-align:start;scroll-snap-stop:normal;position:relative;overflow:hidden;}
+.project-title-card{height:100vh;min-height:700px;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;scroll-snap-align:start;scroll-snap-stop:always;position:relative;overflow:hidden;}
 .ptc-content{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;}
 .ptc-content .sec-num{font-family:var(--font-mono);font-size:15px;letter-spacing:0.15em;text-transform:uppercase;color:var(--dark);opacity:0.6;}
 .ptc-content .sec-title{font-family:var(--font-serif);font-size:clamp(40px,5vw,56px);font-weight:400;line-height:1.1;letter-spacing:-0.03em;color:var(--dark);}
 .ptc-content .sec-sub{font-size:17px;color:var(--dark);opacity:0.55;line-height:1.6;max-width:480px;}
 
-.project{position:relative;height:100vh;min-height:700px;flex-shrink:0;overflow:hidden;background:#181614;scroll-snap-align:start;scroll-snap-stop:normal;border:none;border-bottom:1px solid rgba(240,230,211,0.06);border-radius:0;}
+.project{position:relative;height:100vh;min-height:700px;flex-shrink:0;overflow:hidden;background:#181614;scroll-snap-align:start;scroll-snap-stop:always;border:none;border-bottom:1px solid rgba(240,230,211,0.06);border-radius:0;}
 .project:hover{transform:none;}
 .project[data-href]{cursor:none}
 .project[data-href] .proj-thumb,.project[data-href] .proj-info{cursor:none}
@@ -563,7 +563,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   height:100vh;height:100dvh;
   overflow:hidden;
   scroll-snap-align:start;
-  scroll-snap-stop:normal;
+  scroll-snap-stop:always;
   background:var(--dark);
 }
 
@@ -633,7 +633,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 .sp-section-right .project{
   height:100vh;height:100dvh;
   scroll-snap-align:start;
-  scroll-snap-stop:normal;
+  scroll-snap-stop:always;
   flex-shrink:0;
 }
 
@@ -658,7 +658,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   height:100vh;
   overflow-y:auto;
   scroll-snap-align:start;
-  scroll-snap-stop:normal;
+  scroll-snap-stop:always;
 }
 .exp-wrap .sec-head{scroll-snap-align:none;}
 .exp-section{
@@ -738,6 +738,20 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 .sk-row:last-child{border-bottom:none}
 .sk-badge{font-family:'Roboto Mono',monospace;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;}
 .sk-badge.expert{color:var(--accent)}
+
+/* Snap wrappers — each section is a mandatory-snap target sized to
+   one viewport; content scrolls internally if it overflows */
+.testi-wrap,.edu-wrap{
+  height:100vh;height:100dvh;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  overflow-y:auto;
+  scrollbar-width:none;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:32px 0;
+}
+.testi-wrap::-webkit-scrollbar,.edu-wrap::-webkit-scrollbar{width:0;display:none;}
+.testi-wrap > *,.edu-wrap > *{flex-shrink:0;}
 
 /* ══════════════════════════
    TESTIMONIALS BENTO
@@ -1025,7 +1039,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
             <div class="term-user-photo"><img src="images/profile.webp" alt="Harry Hein" loading="eager"></div>
             <div class="term-user-info">
               <span class="term-user-name">harry · Senior Product Designer</span>
-              <span class="term-user-meta">Last login: Apr 21 · 2026 · Yangon, MM</span>
+              <span class="term-user-meta">Last login: <span id="termLastLogin">—</span> · Bangkok, TH</span>
             </div>
           </div>
 
@@ -1036,7 +1050,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 
           <h1 class="term-big step" data-step="0.24">Harry <em>Hein.</em></h1>
           <div class="term-role step" data-step="0.30">Senior Product Designer</div>
-          <div class="term-dim step" data-step="0.36">7 yrs active · 50+ shipped · Based in Yangon</div>
+          <div class="term-dim step" data-step="0.36">7 yrs active · 50+ shipped · Based in Bangkok</div>
 
           <div class="term-sp"></div>
 
@@ -1078,6 +1092,14 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 (function(){
   var section = document.getElementById('hero');
   if (!section) return;
+
+  // Set last-login to current system date
+  var lastLoginEl = document.getElementById('termLastLogin');
+  if (lastLoginEl) {
+    var d = new Date();
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    lastLoginEl.textContent = months[d.getMonth()] + ' ' + d.getDate() + ' · ' + d.getFullYear();
+  }
 
   // Generate randomly-blinking dots — sparse + lightweight
   var grid = section.querySelector('.hero-grid');
@@ -2148,14 +2170,14 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 
 </div><!-- end .exp-wrap -->
 
-<!-- TESTIMONIALS HEADER -->
+<!-- TESTIMONIALS (snap-wrapped) -->
+<div class="testi-wrap">
 <div class="sec-head">
   <div class="sec-num sr">Voices</div>
   <h2 class="sec-title sr sr-d1">What They Say</h2>
   <p class="sec-sub sr sr-d2">Things colleagues and managers actually said — not paraphrased.</p>
 </div>
 
-<!-- TESTIMONIALS -->
 <div class="testi-section">
   <div class="testi-grid">
     <div class="testi-card sr">
@@ -2192,8 +2214,10 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
     </div>
   </div>
 </div>
+</div><!-- end .testi-wrap -->
 
-<!-- EDUCATION -->
+<!-- EDUCATION (snap-wrapped) -->
+<div class="edu-wrap">
 <div class="sec-head">
   <div class="sec-num sr">Education</div>
   <h2 class="sec-title sr sr-d1">Foundation</h2>
@@ -2214,6 +2238,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
     </ul>
   </div>
 </div>
+</div><!-- end .edu-wrap -->
 
 <!-- CTA -->
 <section class="cta" id="contact">
