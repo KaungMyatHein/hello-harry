@@ -2314,30 +2314,6 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   <span>Designed & built with intention</span>
 </footer>
 
-<!-- Lazy video loader — only fetch when near viewport -->
-<script>
-(function(){
-  var vids = document.querySelectorAll('video[data-src]');
-  if(!vids.length) return;
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        var v = e.target;
-        v.addEventListener('loadeddata', function(){
-          var thumb = v.closest('.proj-thumb, .cs-hero-bg');
-          if(thumb) thumb.classList.add('media-loaded');
-        });
-        v.src = v.dataset.src;
-        v.removeAttribute('data-src');
-        v.load();
-        obs.unobserve(v);
-      }
-    });
-  }, {rootMargin:'200px'});
-  vids.forEach(function(v){ obs.observe(v); });
-})();
-</script>
-
 <!-- Shared atom behaviors: cursor, scroll-reveal, smooth-scroll, project toggle, parallax -->
 <script src="js/atoms.js"></script>
 <script src="js/chat.js"></script>
