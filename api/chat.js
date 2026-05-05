@@ -69,7 +69,25 @@ export default async function handler(req) {
     'resume-pipeline': `The user is viewing the "47 Applications. 2 Interviews" case study — Designer OS AI Resume Pipeline (2026). Role: Product Designer, Solo. Key details: Designers spend 40 min per application with Google Doc + ChatGPT. Built 6-stage pipeline: Base Resume → Paste JD → AI Analyzes → Gap Analysis → Suggestions → Cover Letter. Key decisions: base resume first, gaps before praise, no full AI rewrite. Results: 40→15 min per application, 4→1 tools replaced, <5min cover letter. Sarah's story: 5 tailored apps, 2 callbacks.`,
     'jar-aye-child': `The user is viewing the "Making Hard Math Feel Tractable" case study — Jar Aye Child App (2025). Role: UX Lead, team of 3. Key details: App for 6-12 year olds doing Singapore Math HOTS. Three user types: child (anxiety about being wrong), parent (is money working?), teacher (identify struggling students). Observational research with 5 children on competitor products. 5 HOTS strategies as navigable interface. 4-tier mastery system. Engagement: calendar not streak, grade-filtered leaderboard, completion points. Subscription states: expired vs frozen (semantic precision).`,
     'jar-aye-parent': `The user is viewing the "Closing the Visibility Gap" case study — Jar Aye Parent App (2025). Role: UX Lead, team of 3. Key details: Parent pays but can't evaluate HOTS math herself. 5 constraints shaped every screen. Report screen is most strategic (comprehension = renewal). Social pride via Instagram/Telegram sharing. Freeze vs Cancel distinction. Results: <50s report comprehension, 4/5 identified weakest topic, 4.8/5 subscription flow clarity.`,
-    karaoke: `The user is viewing the "Next-Gen Karaoke Application" case study — COVID lockdown MVP (2021). Role: Product Design Owner, team of 2 designers + 1 BA + developers. Key details: 20 user interviews. 65% search by artist first. 85% use KBZ Pay. Competitor analysis: Smule (social), Joox (catalogue), Star Maker (emotion). MVP: kept basic karaoke + artist search + subscription + KBZ Pay. Cut social rooms, video recording. Lessons: defaults compound, local payment = local product, constraints breed clarity.`
+    karaoke: `The user is viewing the "Next-Gen Karaoke Application" case study — COVID lockdown MVP (2021). Role: Product Design Owner, team of 2 designers + 1 BA + developers. Key details: 20 user interviews. 65% search by artist first. 85% use KBZ Pay. Competitor analysis: Smule (social), Joox (catalogue), Star Maker (emotion). MVP: kept basic karaoke + artist search + subscription + KBZ Pay. Cut social rooms, video recording. Lessons: defaults compound, local payment = local product, constraints breed clarity.`,
+    'po-ai-intent': `The user is viewing the "Speak, Don't Click." case study — Po AI Intent Palette for Myanmar live-sellers (2026). Role: Product Designer + Engineer (solo). Tools: Next.js 16, React 19, TypeScript, Tailwind, Supabase, Claude API.
+
+DESIGN PROCESS:
+1. DISCOVERY — Interviewed 5 Myanmar live-sellers (avg 4 yrs experience). Surfaced one shared question across all five: "What did I sell in the past 2 weeks?" Sellers were doing it by hand because the CRM dashboard turned that one sentence into a five-step hunt: open Orders → pick dates manually → translate English labels → scroll 600 rows → give up.
+2. RESEARCH SYNTHESIS — Built a pain table with mention counts and severity. Top pains: date filtering (5/5, severe), bilingual mismatch (5/5, severe), endless scrolling (4/5, severe), context-switching across pages (3/5, moderate), exporting for Viber (3/5, moderate).
+3. COMPETITIVE TEARDOWN — Audited Shopify Inbox, Intercom Fin, ChatGPT Operator, Manychat, Zoko. None handled Myanmar grammar (postpositions, subject markers). All required structured menu navigation. Decided to design a bilingual intent palette (Cmd/K) instead of redesigning the dashboard.
+4. INTENT MAPPING — Started from 80 candidate phrases the sellers actually said. Clustered duplicates → 52 distinct intents. Scored each on impact × frequency × AI-fit. Result: 45 mapped → 38 prioritized → 28 scoped for MVP → 21 currently live in production.
+5. CLASSIFIER ARCHITECTURE — Chose pure-function regex first (≤50ms, deterministic), AI fallback only on unknown. Wrote separate Myanmar / English / mixed regex families with postposition + subject-marker support. Tested 200 phrases in 5 minutes; threshold gate set at 90% accuracy before each phase ships.
+6. INLINE RESULT CARDS — Designed ~25 cards that self-fetch their own data, cap list lengths, and end with a single primary CTA. URL contracts so palette filters always agree with destination pages. Shipped on existing /api/b/* — zero new backend endpoints.
+
+KEY DESIGN DECISIONS:
+- Palette over redesign: ride existing CRM, don't rebuild it.
+- Speak the user's grammar, not the database's: Burmese postpositions matter.
+- Regex before LLM: latency, cost, predictability — LLM only when regex fails.
+- Inline cards over navigation: answer in place, never make the seller leave the palette.
+- Honest funnel reporting: 45 → 38 → 28 → 21 (not a single vanity number).
+
+WHAT'S TRACKED NEXT: per-intent success rate, time-to-answer vs old dashboard flow, % of palette uses ending in zero clicks afterward.`
   };
 
   let activePrompt = SYSTEM_PROMPT;

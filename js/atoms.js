@@ -332,6 +332,42 @@
   }
 
   /* ─────────────────────────────────────
+     LAZY MEDIA LOADER
+     Swaps `data-src` → `src` on <video>/<img>
+     when the element nears the viewport.
+     Also marks containers loaded immediately
+     (poster/placeholder visible) so the
+     skeleton shimmer doesn't get stuck on
+     videos that haven't been triggered yet.
+     ───────────────────────────────────── */
+  var lazyMedia = document.querySelectorAll('video[data-src], img[data-src]');
+  if (lazyMedia.length) {
+    var loadMedia = function (el) {
+      if (el.dataset.src) {
+        el.src = el.dataset.src;
+        el.removeAttribute('data-src');
+        if (el.tagName === 'VIDEO') {
+          try { el.load(); } catch (e) {}
+        }
+      }
+    };
+    if ('IntersectionObserver' in window) {
+      var lazyObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            loadMedia(entry.target);
+            lazyObs.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '400px 0px' });
+      lazyMedia.forEach(function (el) { lazyObs.observe(el); });
+    } else {
+      /* Fallback: load all immediately */
+      lazyMedia.forEach(loadMedia);
+    }
+  }
+
+  /* ─────────────────────────────────────
      SKELETON LOADER — media load detection
      Adds .media-loaded to containers once
      their img/video has finished loading,
@@ -359,6 +395,16 @@
 
   /* Videos */
   document.querySelectorAll('.proj-thumb video, .cs-hero-bg video').forEach(function (vid) {
+    /* If video has a poster, reveal as soon as the poster image is decoded
+       so the skeleton doesn't sit on top of it (especially for lazy videos
+       whose `src` won't be set until they intersect the viewport). */
+    var poster = vid.getAttribute('poster');
+    if (poster) {
+      var pImg = new Image();
+      pImg.onload = function () { onMediaLoaded(vid); };
+      pImg.onerror = function () { onMediaLoaded(vid); };
+      pImg.src = poster;
+    }
     if (vid.readyState >= 2) {
       onMediaLoaded(vid);
     } else {

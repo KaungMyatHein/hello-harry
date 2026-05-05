@@ -1,1 +1,5 @@
 .vercel
+_originals/
+.DS_Store
+.claude/launch.json
+.claude/worktrees/
