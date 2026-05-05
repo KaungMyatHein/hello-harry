@@ -1270,7 +1270,73 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 <!-- PROJECTS -->
 <div class="projects" id="work">
 
-  <!-- ── Project 00 — Pharmacy POS ── -->
+  <!-- ── Project 00 — Po AI Intent Palette (Top · Recommended · SaaS) ── -->
+  <div class="project featured sr" data-project data-filters="recommended ai saas">
+    <div class="proj-thumb">
+      <img data-src="images/po-ai/hero-palette.webp" loading="lazy" decoding="async" alt="Po AI — Speak, Don't Click." onerror="this.style.background='linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%)';this.removeAttribute('src')">
+    </div>
+    <div class="proj-info">
+      <div class="proj-recommend">Recommended</div>
+
+      <div class="proj-tags">
+        <span class="proj-tag">AI Product</span>
+        <span class="proj-tag">SaaS</span>
+        <span class="proj-tag">Bilingual UX</span>
+        <span class="proj-tag">2026</span>
+      </div>
+      <h3 class="proj-title">Speak, Don't Click.</h3>
+      <p class="proj-desc">Replaced a traditional CRM dashboard with a bilingual intent palette. 28 intents in MVP, 21 already live in production — each rendering an inline action card. Myanmar sellers stop hunting menus and just say what they want.</p>
+      <div class="proj-metrics">
+        <div><div class="pm-val">21</div><div class="pm-label">Live in Prod</div></div>
+        <div><div class="pm-val">&lt;50ms</div><div class="pm-label">Match Latency</div></div>
+      </div>
+      <a href="case-study-po-ai-intent.html" class="case-study-link">
+        View Full Case Study
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="proj-arrow" data-toggle>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="pd-block">
+          <div class="pd-label">What was broken</div>
+          <p class="pd-text">A Myanmar live-seller has one question every Sunday: <em>"what did I sell in the past 2 weeks?"</em> The CRM dashboard turned that one sentence into a five-step hunt — open Orders, pick dates manually, translate English labels, scroll 600 rows, give up. The cost of using the software exceeded the cost of doing the work by hand.</p>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">How I tackled it</div>
+          <ul class="pd-list">
+            <li>Interviewed 5 sellers (4-yr avg experience) — surfaced one shared question across all five</li>
+            <li>Mapped 45 intents → prioritized 38 → scoped 28 for MVP using impact × frequency × AI-fit</li>
+            <li>Built a pure-function regex classifier — &lt;50ms matching, AI only on unknown</li>
+            <li>Wrote separate Myanmar / English / mixed regex families with postposition + subject-marker support</li>
+            <li>Designed ~25 inline result cards with self-fetched data, capped lists, single-CTA footers</li>
+            <li>Shipped on existing /api/b/* — zero new backend endpoints</li>
+          </ul>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">What shipped</div>
+          <p class="pd-text">A Cmd/K palette that handles English, Myanmar, and mixed grammar — possessives, subject markers, stacked digits. Inline cards for orders, customers, inventory CRUD, dashboard insights, discount performance, and AI-generated Facebook posts. URL contracts so palette and destination pages always agree on filters.</p>
+        </div>
+        <div class="pd-metrics">
+          <div class="pd-metric"><div class="pd-metric-val">21</div><div class="pd-metric-label">Live in Prod</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">28</div><div class="pd-metric-label">MVP Scope</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">6</div><div class="pd-metric-label">Phases</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">0</div><div class="pd-metric-label">New Endpoints</div></div>
+        </div>
+        <div class="pd-tools">
+          <span class="pd-tools-label">Stack:</span>
+          <span class="pd-tool">Next.js 16</span>
+          <span class="pd-tool">React 19</span>
+          <span class="pd-tool">TypeScript</span>
+          <span class="pd-tool">Tailwind</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Project 01 — Pharmacy POS ── -->
   <div class="project featured sr" data-project data-filters="recommended saas">
     <div class="proj-thumb">
       <img src="images/ppos/New Payment Method.webp" alt="Two Stores. One System.">

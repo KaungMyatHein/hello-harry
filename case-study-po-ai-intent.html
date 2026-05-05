@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RKYXJ7H349"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-RKYXJ7H349");
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Po AI — Speak, Don't Click. | Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/atoms.css">
+<script>(function(){if(history.scrollRestoration)history.scrollRestoration="manual";var h=document.documentElement;function dismissLoader(){var l=document.getElementById("pageLoader");if(l)l.classList.add("done");}function isBackNav(){try{var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];if(nav)return nav.type==="back_forward";return sessionStorage.getItem("_visited")==="1";}catch(e){return false;}}sessionStorage.setItem("_visited","1");var back=isBackNav();if(!back){h.style.scrollSnapType="none";h.style.overflowY="hidden";window.scrollTo(0,0);window.addEventListener("load",function(){window.scrollTo(0,0);setTimeout(function(){h.style.overflowY="";h.style.scrollSnapType="";dismissLoader();},80);});}else{window.addEventListener("load",function(){setTimeout(dismissLoader,300);});}window.addEventListener("pageshow",function(e){if(e.persisted){h.style.scrollSnapType="";h.style.overflowY="";dismissLoader();}});})();</script>
+<link rel="stylesheet" href="css/cs-base.css?v=dot1">
+<link rel="stylesheet" href="css/chat.css">
+
+<style>
+/* ── Before / After Comparison Slider ── */
+.cs-compare{position:relative;width:100vw;max-width:100vw;margin:20px 0;margin-left:calc(-1*(100vw - 100%)/2);border-radius:0;overflow:hidden;aspect-ratio:16/9;background:var(--dark-2);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);cursor:col-resize;user-select:none;-webkit-user-select:none}
+.cs-compare img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cs-compare-after{clip-path:inset(0 0 0 0)}
+.cs-compare-before{clip-path:inset(0 50% 0 0)}
+.cs-compare-line{position:absolute;top:0;bottom:0;left:50%;width:3px;background:rgba(30,30,30,0.7);z-index:3;transform:translateX(-50%);pointer-events:none;box-shadow:-1px 0 0 rgba(255,255,255,0.3),1px 0 0 rgba(255,255,255,0.3)}
+.cs-compare-handle{position:absolute;top:50%;left:50%;width:44px;height:44px;border-radius:50%;background:rgba(30,30,30,0.75);backdrop-filter:blur(12px) saturate(180%);-webkit-backdrop-filter:blur(12px) saturate(180%);border:2px solid rgba(255,255,255,0.5);transform:translate(-50%,-50%);z-index:4;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.15);pointer-events:none;transition:transform 0.2s,box-shadow 0.2s}
+.cs-compare:hover .cs-compare-handle{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 6px 24px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.2)}
+.cs-compare-handle svg{width:18px;height:18px;stroke:rgba(255,255,255,0.95);stroke-width:2.5;fill:none}
+.cs-compare-label{position:absolute;bottom:12px;z-index:5;font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream);background:rgba(0,0,0,0.6);padding:4px 10px;border-radius:6px;pointer-events:none}
+.cs-compare-label-before{left:12px}
+.cs-compare-label-after{right:12px}
+.cs-compare-maximize{position:absolute;top:12px;right:12px;z-index:5;width:36px;height:36px;border-radius:8px;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;transition:background 0.2s}
+.cs-compare-maximize:hover{background:rgba(0,0,0,0.8)}
+.cs-compare-maximize svg{width:16px;height:16px;stroke:var(--cream);stroke-width:2;fill:none}
+
+/* ── Kanban Board (Phases) ── */
+.cs-kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.cs-kanban-col{background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.cs-kanban-header{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:var(--tracking-label);text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid var(--glass-border);margin-bottom:4px}
+.cs-kanban-p0 .cs-kanban-header{color:var(--accent)}
+.cs-kanban-p1 .cs-kanban-header{color:var(--cream)}
+.cs-kanban-p2 .cs-kanban-header{color:var(--cream-dim)}
+.cs-kanban-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;font-size:var(--text-md);color:var(--cream);transition:transform 0.2s,border-color 0.2s}
+.cs-kanban-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.15)}
+.cs-kanban-sub{font-family:var(--font-mono);font-size:11px;color:var(--cream-dim);margin-top:4px;text-transform:uppercase;letter-spacing:0.06em}
+@media(max-width:768px){.cs-kanban{grid-template-columns:1fr}}
+
+/* ── Quote callout (bilingual) ── */
+.cs-bilingual{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0}
+.cs-bilingual-card{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.cs-bilingual-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)}
+.cs-bilingual-q{font-family:var(--font-serif);font-size:1.25rem;line-height:1.35;color:var(--cream)}
+.cs-bilingual-arrow{font-family:var(--font-mono);font-size:11px;color:var(--cream-dim);letter-spacing:0.08em;text-transform:uppercase}
+.cs-bilingual-out{font-size:0.95rem;color:var(--cream-dim)}
+@media(max-width:768px){.cs-bilingual{grid-template-columns:1fr}}
+
+/* ── Classifier flow diagram ── */
+.cs-flow{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch;margin:36px 0;padding:28px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:18px}
+.cs-flow-block{display:flex;flex-direction:column;justify-content:center;gap:8px}
+.cs-flow-block .cs-flow-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)}
+.cs-flow-block .cs-flow-h{font-family:var(--font-serif);font-size:1.4rem;color:var(--cream);line-height:1.25}
+.cs-flow-block .cs-flow-d{font-size:0.92rem;color:var(--cream-dim);line-height:1.5}
+.cs-flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--accent);font-family:var(--font-mono);font-size:1.6rem}
+.cs-flow-fork{display:grid;grid-template-columns:1fr;gap:10px}
+.cs-flow-fork-row{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 16px}
+.cs-flow-fork-row.primary{border-color:rgba(232,115,74,0.35)}
+.cs-flow-fork-row .l{font-family:var(--font-mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
+.cs-flow-fork-row.muted .l{color:var(--cream-dim)}
+.cs-flow-fork-row .v{font-size:0.95rem;color:var(--cream)}
+@media(max-width:768px){.cs-flow{grid-template-columns:1fr}.cs-flow-arrow{transform:rotate(90deg)}}
+
+/* ── Intent demo gallery ── */
+.cs-intent-demo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:32px 0}
+.cs-intent-demo{background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.2s,border-color 0.2s}
+.cs-intent-demo:hover{transform:translateY(-3px);border-color:rgba(232,115,74,0.25)}
+.cs-intent-demo-video{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%);overflow:hidden}
+.cs-intent-demo-video video,.cs-intent-demo-video img{width:100%;height:100%;object-fit:cover;display:block}
+.cs-intent-demo-video::before{content:attr(data-empty);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--cream-dim);font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.5;pointer-events:none}
+.cs-intent-demo-video.has-media::before{display:none}
+.cs-intent-demo-meta{padding:20px 22px;display:flex;flex-direction:column;gap:8px}
+.cs-intent-demo-name{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:0.08em;text-transform:lowercase;background:rgba(232,115,74,0.08);padding:4px 10px;border-radius:6px;align-self:flex-start;border:1px solid rgba(232,115,74,0.2)}
+.cs-intent-demo-title{font-family:var(--font-serif);font-size:1.3rem;color:var(--cream);line-height:1.3;margin-top:4px}
+.cs-intent-demo-query{font-family:var(--font-mono);font-size:0.78rem;color:var(--cream-dim);background:rgba(255,255,255,0.04);padding:6px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.06)}
+.cs-intent-demo-query::before{content:"▸ ";color:var(--accent)}
+.cs-intent-demo-desc{font-size:0.92rem;color:var(--cream-dim);line-height:1.55}
+@media(max-width:768px){.cs-intent-demo-grid{grid-template-columns:1fr}}
+
+/* ── Code block ── */
+.cs-code{background:#0f0f10;border:1px solid var(--glass-border);border-radius:14px;padding:24px;margin:24px 0;font-family:var(--font-mono);font-size:0.85rem;line-height:1.7;color:var(--cream-dim);overflow-x:auto;white-space:pre}
+.cs-code .k{color:#c084fc}
+.cs-code .s{color:#86efac}
+.cs-code .c{color:#64748b;font-style:italic}
+.cs-code .v{color:#fbbf24}
+.cs-code .f{color:#60a5fa}
+.cs-code .h{color:var(--cream)}
+
+/* ── Cascade table ── */
+.cs-cascade{display:grid;grid-template-columns:48px 1fr 1fr;gap:0;margin:24px 0;border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;background:var(--glass-bg)}
+.cs-cascade-head{background:rgba(255,255,255,0.04);font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);padding:14px 16px;border-bottom:1px solid var(--glass-border)}
+.cs-cascade-row{display:contents}
+.cs-cascade-row > div{padding:14px 16px;border-bottom:1px solid var(--glass-border);display:flex;align-items:center}
+.cs-cascade-row:last-child > div{border-bottom:none}
+.cs-cascade-num{font-family:var(--font-mono);color:var(--accent);font-size:0.9rem;justify-content:center}
+.cs-cascade-rule{color:var(--cream);font-family:var(--font-mono);font-size:0.85rem}
+.cs-cascade-out{color:var(--cream-dim);font-size:0.9rem}
+@media(max-width:768px){.cs-cascade{grid-template-columns:40px 1fr}.cs-cascade-out{display:none!important}}
+
+/* ── Intent inventory chips ── */
+.cs-intent-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:20px}
+.cs-intent-col{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:16px;padding:20px}
+.cs-intent-col h4{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+.cs-intent-chips{display:flex;flex-wrap:wrap;gap:6px}
+.cs-intent-chip{font-family:var(--font-mono);font-size:11px;color:var(--cream);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:6px 10px;border-radius:8px}
+@media(max-width:768px){.cs-intent-grid{grid-template-columns:1fr}}
+
+/* ── Prioritization-tagged inventory ── */
+.cs-prio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.cs-prio-col{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.cs-prio-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--glass-border);margin-bottom:6px}
+.cs-prio-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim)}
+.cs-prio-count{font-family:var(--font-mono);font-size:14px;color:var(--cream)}
+.cs-prio-p0 .cs-prio-tag{color:var(--accent)}
+.cs-prio-p0{border-color:rgba(232,115,74,0.25)}
+.cs-prio-p1 .cs-prio-tag{color:#9cc3ff}
+.cs-prio-p2 .cs-prio-tag{color:var(--cream-dim)}
+.cs-prio-sub{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--cream-dim);margin-top:10px}
+@media(max-width:768px){.cs-prio-grid{grid-template-columns:1fr}}
+
+/* ── 3 Axis split ── */
+.cs-axis{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}
+.cs-axis-col{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:16px;padding:20px}
+.cs-axis-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;border-bottom:1px solid var(--glass-border);padding-bottom:10px}
+.cs-axis-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim)}
+.cs-axis-yes .cs-axis-label{color:var(--accent)}
+.cs-axis-count{font-family:var(--font-mono);font-size:14px;color:var(--cream)}
+.cs-axis-pills{display:flex;flex-wrap:wrap;gap:6px}
+.cs-axis-pill{font-family:var(--font-mono);font-size:10.5px;color:var(--cream);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:5px 9px;border-radius:7px;letter-spacing:0.02em}
+.cs-axis-yes .cs-axis-pill{background:rgba(232,115,74,0.08);border-color:rgba(232,115,74,0.22);color:#f5b294}
+@media(max-width:768px){.cs-axis{grid-template-columns:1fr}}
+
+/* ── Taxonomy grid ── */
+.cs-tax{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
+.cs-tax-block{display:flex;flex-direction:column;gap:14px}
+.cs-tax-h{font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.cs-tax-group{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px;padding:16px}
+.cs-tax-grouph{font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:4px}
+.cs-tax-grouph small{color:var(--accent);font-size:10px;text-transform:none;letter-spacing:0;margin-left:8px}
+.cs-tax-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cs-tax-pill{font-family:var(--font-mono);font-size:11px;color:var(--cream);padding:5px 11px;border-radius:99px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04)}
+.cs-tax-pill.read{background:rgba(110,168,255,0.1);border-color:rgba(110,168,255,0.25);color:#9cc3ff}
+.cs-tax-pill.create{background:rgba(126,184,126,0.1);border-color:rgba(126,184,126,0.25);color:#a8d4a8}
+.cs-tax-pill.modify{background:rgba(245,210,120,0.08);border-color:rgba(245,210,120,0.22);color:#e7cf8a}
+.cs-tax-pill.delete{background:rgba(232,115,74,0.1);border-color:rgba(232,115,74,0.25);color:#f5b294}
+.cs-tax-pill.action{background:rgba(176,140,220,0.1);border-color:rgba(176,140,220,0.25);color:#cdb3eb}
+.cs-tax-pill.ai{background:rgba(220,168,220,0.1);border-color:rgba(220,168,220,0.28);color:#e9c8e9}
+.cs-utterance{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px;padding:18px;margin-top:24px}
+.cs-utterance-tok{font-family:var(--font-mono);font-size:13px;color:var(--cream);padding:8px 16px;border-radius:99px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)}
+.cs-utterance-tok.verb{background:rgba(245,210,120,0.08);border-color:rgba(245,210,120,0.25);color:#e7cf8a}
+.cs-utterance-tok.noun{background:rgba(126,184,126,0.1);border-color:rgba(126,184,126,0.25);color:#a8d4a8}
+.cs-utterance-tok.mod{color:var(--cream-dim)}
+.cs-utterance-tok.intent{background:rgba(110,168,255,0.1);border-color:rgba(110,168,255,0.3);color:#9cc3ff}
+.cs-utterance-op{font-family:var(--font-mono);color:var(--cream-dim);font-size:14px}
+.cs-samples{display:grid;grid-template-columns:auto auto auto auto;gap:8px 14px;margin-top:14px;font-family:var(--font-mono);font-size:11.5px;align-items:center}
+.cs-samples-h{color:var(--cream-dim);text-transform:uppercase;letter-spacing:0.08em;font-size:10px;padding-bottom:6px;border-bottom:1px solid var(--glass-border)}
+.cs-samples-cell{padding:6px 10px;border-radius:6px}
+.cs-samples-cell.v{background:rgba(245,210,120,0.08);color:#e7cf8a}
+.cs-samples-cell.n{background:rgba(126,184,126,0.1);color:#a8d4a8}
+.cs-samples-cell.m{color:var(--cream-dim)}
+.cs-samples-cell.r{background:rgba(110,168,255,0.1);color:#9cc3ff}
+@media(max-width:768px){.cs-tax{grid-template-columns:1fr}.cs-samples{grid-template-columns:1fr;gap:4px}.cs-samples-h{display:none}}
+
+/* ── Section hero video label chip ── */
+.cs-hero-vid-label{position:absolute;left:20px;bottom:20px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;color:var(--cream);background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:6px 12px;border-radius:7px;border:1px solid rgba(255,255,255,0.1);pointer-events:none;line-height:1.2;z-index:2}
+
+/* ── Component gallery (intent thumbs) — full-bleed gallery view ── */
+.cs-gallery{position:relative!important;left:50%!important;right:50%!important;margin-left:-50vw!important;margin-right:-50vw!important;width:100vw!important;background:var(--dark)!important;margin-top:24px!important;margin-bottom:24px!important;border-top:1px solid var(--glass-border)!important;border-bottom:1px solid var(--glass-border)!important}
+.cs-gallery-grid,
+.cs-gallery-grid.cs-gallery-grid--even{display:grid!important;grid-template-columns:repeat(2,1fr)!important;grid-auto-rows:auto!important;gap:0!important;align-items:stretch!important;border:none!important}
+.cs-gallery-item{position:relative!important;background:var(--dark-2)!important;border:none!important;border-right:1px solid var(--glass-border)!important;border-bottom:1px solid var(--glass-border)!important;border-radius:0!important;overflow:hidden!important;line-height:0!important;aspect-ratio:16/10!important}
+.cs-gallery-item:nth-child(2n){border-right:none!important}
+.cs-gallery-item video,.cs-gallery-item img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;background:var(--dark-2)!important;transition:none!important;transform:none!important}
+.cs-gallery-item:hover video,.cs-gallery-item:hover img{transform:none!important}
+.cs-gallery-item::after{content:attr(data-label);position:absolute;left:14px;bottom:14px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;color:var(--cream);background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:5px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);pointer-events:none;line-height:1.2;z-index:2}
+.cs-gallery-item.empty{display:flex!important;align-items:center!important;justify-content:center!important}
+.cs-gallery-item.empty::before{content:'';width:28px;height:28px;border:1.5px solid rgba(240,230,211,0.1);border-radius:6px}
+@media(max-width:640px){.cs-gallery-grid,.cs-gallery-grid.cs-gallery-grid--even{grid-template-columns:1fr!important}.cs-gallery-item{border-right:none!important}}
+
+/* ── Journey flows ── */
+.cs-journey{margin:18px 0;padding:18px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px}
+.cs-journey-h{font-family:var(--font-serif);font-size:1.2rem;color:var(--cream);margin:0 0 4px}
+.cs-journey-d{color:var(--cream-dim);font-size:0.92rem;margin:0 0 14px}
+.cs-journey-chain{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.cs-journey-step{font-family:var(--font-mono);font-size:11px;color:var(--cream);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 10px;border-radius:8px;white-space:nowrap}
+.cs-journey-step.warn{background:rgba(232,115,74,0.1);border-color:rgba(232,115,74,0.28);color:#f5b294}
+.cs-journey-arrow{color:var(--cream-dim);font-family:var(--font-mono);font-size:13px}
+
+/* ── Force scroll snap on this page ── */
+html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
+.cs-hero,.cs-section,.cs-ending,.cs-next{scroll-snap-align:start!important;scroll-snap-stop:always!important}
+
+/* ── Research evidence strip ── */
+.cs-research-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0 20px;padding:18px 22px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px}
+.cs-research-strip-cell{display:flex;flex-direction:column;gap:4px}
+.cs-research-strip-num{font-family:var(--font-serif);font-size:1.6rem;color:var(--accent);line-height:1}
+.cs-research-strip-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim)}
+@media(max-width:768px){.cs-research-strip{grid-template-columns:repeat(2,1fr)}}
+
+/* ── Pull quote ── */
+.cs-pullquote{margin:32px 0;padding:32px 36px;background:linear-gradient(135deg,rgba(232,115,74,0.06) 0%,rgba(232,115,74,0.02) 100%);border-left:3px solid var(--accent);border-radius:0 14px 14px 0;position:relative}
+.cs-pullquote-mark{position:absolute;top:8px;left:18px;font-family:var(--font-serif);font-size:4rem;color:var(--accent);opacity:0.35;line-height:1}
+.cs-pullquote-q{font-family:var(--font-serif);font-style:italic;font-size:1.5rem;line-height:1.5;color:var(--cream);padding-left:32px}
+.cs-pullquote-attr{font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);margin-top:14px;padding-left:32px}
+@media(max-width:768px){.cs-pullquote{padding:24px 20px}.cs-pullquote-q{font-size:1.15rem;padding-left:20px}.cs-pullquote-attr{padding-left:20px}}
+
+/* ── Pain point table ── */
+.cs-pain-table{margin:24px 0;border:1px solid var(--glass-border);border-radius:14px;overflow:hidden}
+.cs-pain-row{display:grid;grid-template-columns:1fr 80px 110px;gap:16px;padding:14px 18px;align-items:center;border-bottom:1px solid rgba(240,230,211,0.06)}
+.cs-pain-row:last-child{border-bottom:none}
+.cs-pain-row.head{background:rgba(255,255,255,0.03);font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim)}
+.cs-pain-text{color:var(--cream);font-size:0.95rem;line-height:1.4}
+.cs-pain-mention{font-family:var(--font-mono);font-size:0.85rem;color:var(--cream-dim);text-align:center}
+.cs-pain-sev{font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;text-align:center;padding:4px 8px;border-radius:6px}
+.cs-pain-sev.critical{background:rgba(232,115,74,0.12);color:var(--accent);border:1px solid rgba(232,115,74,0.3)}
+.cs-pain-sev.high{background:rgba(240,230,211,0.05);color:var(--cream-dim);border:1px solid rgba(240,230,211,0.1)}
+@media(max-width:768px){.cs-pain-row{grid-template-columns:1fr 60px 80px;gap:8px;padding:12px 14px}.cs-pain-text{font-size:0.85rem}}
+
+/* ── Competitive teardown ── */
+.cs-vendor-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:24px 0}
+.cs-vendor-card{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:12px;padding:14px 14px}
+.cs-vendor-name{font-family:var(--font-mono);font-size:11px;color:var(--cream);letter-spacing:0.05em;margin-bottom:6px}
+.cs-vendor-gap{font-size:0.82rem;color:var(--cream-dim);line-height:1.4}
+@media(max-width:768px){.cs-vendor-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── Intent funnel ── */
+.cs-funnel{display:grid;grid-template-columns:1fr 24px 1fr 24px 1fr 24px 1fr;gap:0;align-items:center;margin:28px 0 8px;padding:18px 22px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px}
+.cs-funnel-step{display:flex;flex-direction:column;gap:4px;padding:0 8px}
+.cs-funnel-num{font-family:var(--font-serif);font-size:1.7rem;color:var(--cream);line-height:1}
+.cs-funnel-step.live .cs-funnel-num{color:var(--accent)}
+.cs-funnel-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim)}
+.cs-funnel-arrow{display:flex;align-items:center;justify-content:center;color:var(--cream-dim);font-family:var(--font-mono);font-size:1.1rem;opacity:0.5}
+@media(max-width:768px){.cs-funnel{grid-template-columns:1fr 1fr;gap:14px;padding:16px}.cs-funnel-arrow{display:none}}
+
+/* ── Next-up note ── */
+.cs-next-note{margin-top:28px;padding:20px 24px;background:rgba(255,255,255,0.025);border:1px dashed rgba(240,230,211,0.15);border-radius:14px}
+.cs-next-note-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:10px}
+.cs-next-note-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.cs-next-note-item{display:flex;flex-direction:column;gap:4px}
+.cs-next-note-item-h{font-size:0.92rem;color:var(--cream);font-weight:500}
+.cs-next-note-item-d{font-size:0.82rem;color:var(--cream-dim);line-height:1.45}
+@media(max-width:768px){.cs-next-note-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="cs-loader" id="pageLoader">
+  <div class="cs-loader-glow-a"></div>
+  <div class="cs-loader-glow-b"></div>
+  <div class="cs-loader-inner">
+    <div class="cs-loader-mono">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line class="hl" x1="16" y1="8" x2="16" y2="72" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <line class="hc" x1="16" y1="40" x2="64" y2="40" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+        <line class="hr" x1="64" y1="8" x2="64" y2="72" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cs-loader-name">Harry Hein</div>
+    <div class="cs-loader-role">Senior Product Designer</div>
+  </div>
+  <div class="cs-loader-progress"></div>
+</div>
+
+<!-- Back -->
+<a href="portfolio.html#work" class="cs-back">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+  Back
+</a>
+
+<!-- ══ HERO ══ -->
+<header class="cs-hero">
+  <div class="cs-hero-bg">
+    <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/22-chain-restock.mp4" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.outerHTML='<img src=&quot;images/po-ai/hero-palette.webp&quot; alt=&quot;Po AI&quot; onerror=&quot;this.style.display=\&quot;none\&quot;&quot;>'"></video>
+  </div>
+  <div class="cs-hero-content">
+    <div class="cs-bento cs-bento-title">
+      <div class="cs-label">Case Study — Po AI Intent Palette</div>
+      <h1 class="cs-title">Speak,<br>Don't Click.</h1>
+      <p class="cs-subtitle">From a traditional CRM dashboard to a bilingual intent palette — 28 in MVP scope, 21 live in production, each rendering an inline action card. Sellers stop hunting through menus. They just say what they want.</p>
+    </div>
+    <div class="cs-bento cs-bento-meta">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Role</div>
+        <div class="cs-meta-val">Product Designer + Engineer</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Stack</div>
+        <div class="cs-meta-val">Next.js 16 · React 19<br>TypeScript · Tailwind</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Users</div>
+        <div class="cs-meta-val">Myanmar Live-Sellers<br>Facebook Commerce</div>
+      </div>
+    </div>
+    <div class="cs-bento cs-bento-metric">
+      <div class="cs-metric-num">21</div>
+      <div class="cs-metric-label">Live in Prod<br><span style="font-size:10px;opacity:0.55">of 28 in MVP · 45 mapped</span></div>
+    </div>
+    <div class="cs-bento cs-bento-metric">
+      <div class="cs-metric-num">6</div>
+      <div class="cs-metric-label">Phases</div>
+    </div>
+    <div class="cs-bento cs-bento-metric">
+      <div class="cs-metric-num">&lt;50ms</div>
+      <div class="cs-metric-label">Match Latency</div>
+    </div>
+  </div>
+</header>
+
+<div class="cs-page">
+
+  <!-- ══ 01 — PROBLEM ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">01 — The Problem</div>
+    <h2 class="cs-h2">"Show me past 2 weeks." The Dashboard Couldn't.</h2>
+    <p class="cs-p">A Myanmar live-seller has one question every Sunday: <em>what did I sell in the past 2 weeks?</em> One sentence. Clear intent.</p>
+    <p class="cs-p">The CRM dashboard turned that one sentence into a five-step hunt — and most sellers gave up halfway.</p>
+    <ul class="cs-list">
+      <li><strong>Open</strong> — Orders tab, buried two levels deep</li>
+      <li><strong>Filter</strong> — no "past 2 weeks" preset; pick start &amp; end dates manually</li>
+      <li><strong>Translate</strong> — every label in English, sellers think in Myanmar</li>
+      <li><strong>Scroll</strong> — 600 rows, no summary at the top</li>
+      <li><strong>Give up</strong> — rebuild the answer in Excel by hand</li>
+    </ul>
+    <div class="cs-hook">The seller already knew the question. The system made them prove it.</div>
+  </section>
+
+  <!-- ══ 02 — RESEARCH ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">02 — Research</div>
+    <h2 class="cs-h2">Five Sellers. One Critical Moment.</h2>
+    <p class="cs-p">Before mapping intents, I sat with sellers running real Facebook lives. Not a feature list — the moment of greatest friction.</p>
+
+    <div class="cs-research-strip">
+      <div class="cs-research-strip-cell"><div class="cs-research-strip-num">5</div><div class="cs-research-strip-label">Sellers Interviewed</div></div>
+      <div class="cs-research-strip-cell"><div class="cs-research-strip-num">4 yrs</div><div class="cs-research-strip-label">Avg Live Experience</div></div>
+      <div class="cs-research-strip-cell"><div class="cs-research-strip-num">5</div><div class="cs-research-strip-label">Distinct Pain Moments</div></div>
+      <div class="cs-research-strip-cell"><div class="cs-research-strip-num">1</div><div class="cs-research-strip-label">Shared Question</div></div>
+    </div>
+
+    <div class="cs-pullquote">
+      <div class="cs-pullquote-mark">"</div>
+      <div class="cs-pullquote-q">Every Sunday after the live, I want to know — what did I sell the past 2 weeks? The table has 600 rows. I scroll, lose count, give up. I just want to ask 'show me past 2 weeks.' That's it.</div>
+      <div class="cs-pullquote-attr">Seller A · Fashion live · 4 years experience</div>
+    </div>
+
+    <div class="cs-pain-table">
+      <div class="cs-pain-row head">
+        <div>Pain point</div>
+        <div style="text-align:center">Mentions</div>
+        <div style="text-align:center">Severity</div>
+      </div>
+      <div class="cs-pain-row">
+        <div class="cs-pain-text">Past-sales review = scroll 600 rows by hand</div>
+        <div class="cs-pain-mention">5/5</div>
+        <div class="cs-pain-sev critical">Critical</div>
+      </div>
+      <div class="cs-pain-row">
+        <div class="cs-pain-text">Weekly report rebuilt manually in Excel</div>
+        <div class="cs-pain-mention">4/5</div>
+        <div class="cs-pain-sev critical">Critical</div>
+      </div>
+      <div class="cs-pain-row">
+        <div class="cs-pain-text">Pending count invisible during live</div>
+        <div class="cs-pain-mention">4/5</div>
+        <div class="cs-pain-sev critical">Critical</div>
+      </div>
+      <div class="cs-pain-row">
+        <div class="cs-pain-text">"Did my order ship last Tuesday?" — staff stalls</div>
+        <div class="cs-pain-mention">3/5</div>
+        <div class="cs-pain-sev high">High</div>
+      </div>
+      <div class="cs-pain-row">
+        <div class="cs-pain-text">Different staff each need different slices</div>
+        <div class="cs-pain-mention">3/5</div>
+        <div class="cs-pain-sev high">High</div>
+      </div>
+    </div>
+
+    <div class="cs-hook">All five collapse into one question: <em>"Show me the right slice of orders."</em></div>
+
+    <div style="margin-top:36px">
+      <div class="cs-axis-label" style="margin-bottom:12px">Competitive teardown · the white space</div>
+      <div class="cs-vendor-grid">
+        <div class="cs-vendor-card"><div class="cs-vendor-name">Shopify Inbox</div><div class="cs-vendor-gap">No comment → order</div></div>
+        <div class="cs-vendor-card"><div class="cs-vendor-name">Intercom Fin</div><div class="cs-vendor-gap">Western SaaS only</div></div>
+        <div class="cs-vendor-card"><div class="cs-vendor-name">ChatGPT Operator</div><div class="cs-vendor-gap">No domain awareness</div></div>
+        <div class="cs-vendor-card"><div class="cs-vendor-name">Manychat</div><div class="cs-vendor-gap">Keywords only</div></div>
+        <div class="cs-vendor-card"><div class="cs-vendor-name">Zoko</div><div class="cs-vendor-gap">No FB Live</div></div>
+      </div>
+      <p class="cs-p" style="margin-top:14px"><strong>White space:</strong> FB Live + intent-driven + bilingual.</p>
+    </div>
+  </section>
+
+  <!-- ══ MAPPING ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Mapping</div>
+    <h2 class="cs-h2">45 Intents. One Rule.</h2>
+    <p class="cs-p">From the research, I extracted every action a seller does in a week. 45 intents across 6 surfaces.</p>
+    <p class="cs-p">Before writing a single regex, I had to map, classify, and chain them. Three artifacts came out of that — Intent Map, Three Axes, Verb × Noun.</p>
+  </section>
+
+  <!-- ══ INTENT MAP ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Intent Map</div>
+    <h2 class="cs-h2">45 Intents. 6 Surfaces.</h2>
+    <p class="cs-p">Every action a seller takes in a week, mapped. Grouped by domain — not by feature page.</p>
+    <div class="cs-intent-grid">
+      <div class="cs-intent-col">
+        <h4>Live (5)</h4>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">Get Live Sessions</span>
+          <span class="cs-intent-chip">Get Active Live</span>
+          <span class="cs-intent-chip">Get Live Orders</span>
+          <span class="cs-intent-chip">Update Live Catalog</span>
+          <span class="cs-intent-chip">Save Draft Catalog</span>
+        </div>
+      </div>
+      <div class="cs-intent-col">
+        <h4>Inventory (10)</h4>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">List Products</span>
+          <span class="cs-intent-chip">Get Product Details</span>
+          <span class="cs-intent-chip">Create Product</span>
+          <span class="cs-intent-chip">Update Product</span>
+          <span class="cs-intent-chip">Delete Product</span>
+          <span class="cs-intent-chip">Create Variant</span>
+          <span class="cs-intent-chip">Adjust Stock</span>
+          <span class="cs-intent-chip">Bulk Update Stock</span>
+          <span class="cs-intent-chip">View Stock History</span>
+          <span class="cs-intent-chip">Low Stock Alert</span>
+        </div>
+      </div>
+      <div class="cs-intent-col">
+        <h4>Orders + Customers (11)</h4>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">List Orders</span>
+          <span class="cs-intent-chip">Get Order Details</span>
+          <span class="cs-intent-chip">Create Order</span>
+          <span class="cs-intent-chip">Update Order Status</span>
+          <span class="cs-intent-chip">Cancel Order</span>
+          <span class="cs-intent-chip">Verify Payment Slip</span>
+          <span class="cs-intent-chip">Export Orders</span>
+          <span class="cs-intent-chip">List Customers</span>
+          <span class="cs-intent-chip">Get Customer Details</span>
+          <span class="cs-intent-chip">Search Customers</span>
+          <span class="cs-intent-chip">Customer Stats</span>
+        </div>
+      </div>
+      <div class="cs-intent-col">
+        <h4>Marketing (9)</h4>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">List Discounts</span>
+          <span class="cs-intent-chip">Create Discount</span>
+          <span class="cs-intent-chip">Toggle Discount</span>
+          <span class="cs-intent-chip">Delete Discount</span>
+          <span class="cs-intent-chip">Create Flash Sale</span>
+          <span class="cs-intent-chip">Generate Post Content</span>
+          <span class="cs-intent-chip">Create Product Post</span>
+          <span class="cs-intent-chip">Schedule Post</span>
+          <span class="cs-intent-chip">Publish Post Now</span>
+        </div>
+      </div>
+      <div class="cs-intent-col">
+        <h4>Insights (6)</h4>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">Dashboard Stats</span>
+          <span class="cs-intent-chip">Revenue Trend</span>
+          <span class="cs-intent-chip">Top Products</span>
+          <span class="cs-intent-chip">Pending Orders</span>
+          <span class="cs-intent-chip">List Notifications</span>
+          <span class="cs-intent-chip">Mark All Read</span>
+        </div>
+      </div>
+      <div class="cs-intent-col">
+        <h4>Config (4)</h4>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">List Payment Methods</span>
+          <span class="cs-intent-chip">Create Payment Method</span>
+          <span class="cs-intent-chip">List Delivery Zones</span>
+          <span class="cs-intent-chip">Create Delivery Zone</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ THREE AXES ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Three Axes</div>
+    <h2 class="cs-h2">Tag Every Intent. Three Times.</h2>
+    <p class="cs-p">Each intent is classified along three axes. Together they decide the card type, the confirm gate, and whether it can chain.</p>
+    <div class="cs-hook">Chainable &times; Confirm &times; Response = the rendering rule.</div>
+
+    <div style="margin-top:28px">
+      <div class="cs-axis-label" style="margin-bottom:10px">Axis 1 · Chainable</div>
+      <div class="cs-axis">
+        <div class="cs-axis-col cs-axis-yes">
+          <div class="cs-axis-head"><span class="cs-axis-label">✓ Chainable</span><span class="cs-axis-count">35</span></div>
+          <div class="cs-axis-pills">
+            <span class="cs-axis-pill">List Products</span>
+            <span class="cs-axis-pill">List Orders</span>
+            <span class="cs-axis-pill">Get Order Details</span>
+            <span class="cs-axis-pill">Top Products</span>
+            <span class="cs-axis-pill">Customer Stats</span>
+            <span class="cs-axis-pill">Adjust Stock</span>
+            <span class="cs-axis-pill">Generate Post Content</span>
+            <span class="cs-axis-pill">Create Discount</span>
+            <span class="cs-axis-pill">Verify Payment Slip</span>
+            <span class="cs-axis-pill">+ 26 more</span>
+          </div>
+        </div>
+        <div class="cs-axis-col">
+          <div class="cs-axis-head"><span class="cs-axis-label">✗ Not Chainable</span><span class="cs-axis-count">10</span></div>
+          <div class="cs-axis-pills">
+            <span class="cs-axis-pill">Delete Product</span>
+            <span class="cs-axis-pill">Cancel Order</span>
+            <span class="cs-axis-pill">Bulk Update Stock</span>
+            <span class="cs-axis-pill">Export Orders</span>
+            <span class="cs-axis-pill">Delete Discount</span>
+            <span class="cs-axis-pill">Schedule Post</span>
+            <span class="cs-axis-pill">Publish Post Now</span>
+            <span class="cs-axis-pill">Mark All Read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="cs-axis-label" style="margin-bottom:10px">Axis 2 · Needs Confirmation</div>
+      <div class="cs-axis">
+        <div class="cs-axis-col cs-axis-yes">
+          <div class="cs-axis-head"><span class="cs-axis-label">⚠ Needs Confirm</span><span class="cs-axis-count">17</span></div>
+          <div class="cs-axis-pills">
+            <span class="cs-axis-pill">Create Product</span>
+            <span class="cs-axis-pill">Update Product</span>
+            <span class="cs-axis-pill">Delete Product</span>
+            <span class="cs-axis-pill">Create Order</span>
+            <span class="cs-axis-pill">Cancel Order</span>
+            <span class="cs-axis-pill">Verify Payment</span>
+            <span class="cs-axis-pill">Schedule Post</span>
+            <span class="cs-axis-pill">Publish Post</span>
+            <span class="cs-axis-pill">+ 9 more</span>
+          </div>
+        </div>
+        <div class="cs-axis-col">
+          <div class="cs-axis-head"><span class="cs-axis-label">✓ Auto-execute</span><span class="cs-axis-count">28</span></div>
+          <div class="cs-axis-pills">
+            <span class="cs-axis-pill">List Orders</span>
+            <span class="cs-axis-pill">List Products</span>
+            <span class="cs-axis-pill">Top Products</span>
+            <span class="cs-axis-pill">Revenue Trend</span>
+            <span class="cs-axis-pill">Dashboard Stats</span>
+            <span class="cs-axis-pill">Customer Stats</span>
+            <span class="cs-axis-pill">Generate Post Content</span>
+            <span class="cs-axis-pill">+ 21 more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="cs-axis-label" style="margin-bottom:10px">Axis 3 · Response Type</div>
+      <div class="cs-axis">
+        <div class="cs-axis-col cs-axis-yes">
+          <div class="cs-axis-head"><span class="cs-axis-label">▦ UI Card</span><span class="cs-axis-count">26</span></div>
+          <div class="cs-axis-pills">
+            <span class="cs-axis-pill">List Orders</span>
+            <span class="cs-axis-pill">Order Detail</span>
+            <span class="cs-axis-pill">Verify Payment</span>
+            <span class="cs-axis-pill">Top Products</span>
+            <span class="cs-axis-pill">Revenue Trend</span>
+            <span class="cs-axis-pill">Dashboard Stats</span>
+            <span class="cs-axis-pill">Create Discount</span>
+            <span class="cs-axis-pill">+ 19 more</span>
+          </div>
+        </div>
+        <div class="cs-axis-col">
+          <div class="cs-axis-head"><span class="cs-axis-label">✎ Text Response</span><span class="cs-axis-count">19</span></div>
+          <div class="cs-axis-pills">
+            <span class="cs-axis-pill">Create Product</span>
+            <span class="cs-axis-pill">Update Product</span>
+            <span class="cs-axis-pill">Delete Product</span>
+            <span class="cs-axis-pill">Adjust Stock</span>
+            <span class="cs-axis-pill">Cancel Order</span>
+            <span class="cs-axis-pill">Toggle Discount</span>
+            <span class="cs-axis-pill">Mark All Read</span>
+            <span class="cs-axis-pill">+ 12 more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TAXONOMY ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Intent Taxonomy</div>
+    <h2 class="cs-h2">Verb × Noun.</h2>
+    <p class="cs-p">A conversation grammar. Combine a verb with a noun (+ modifiers) to form an intent. The verb decides the rules — render, confirm, chain.</p>
+
+    <div class="cs-tax">
+      <div class="cs-tax-block">
+        <div class="cs-tax-h">Verbs · the action</div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Read / Query <small>UI Card · auto-execute · chainable</small></div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill read">view</span><span class="cs-tax-pill read">show</span><span class="cs-tax-pill read">list</span><span class="cs-tax-pill read">get</span><span class="cs-tax-pill read">find</span><span class="cs-tax-pill read">search</span><span class="cs-tax-pill read">filter</span><span class="cs-tax-pill read">compare</span><span class="cs-tax-pill read">check</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Create <small>Text · needs confirm · chainable</small></div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill create">create</span><span class="cs-tax-pill create">add</span><span class="cs-tax-pill create">new</span><span class="cs-tax-pill create">make</span><span class="cs-tax-pill create">draft</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Modify <small>Text · needs confirm · chainable</small></div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill modify">update</span><span class="cs-tax-pill modify">edit</span><span class="cs-tax-pill modify">change</span><span class="cs-tax-pill modify">set</span><span class="cs-tax-pill modify">adjust</span><span class="cs-tax-pill modify">toggle</span><span class="cs-tax-pill modify">rename</span><span class="cs-tax-pill modify">move</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Delete <small>Text · needs confirm · NOT chainable</small></div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill delete">delete</span><span class="cs-tax-pill delete">remove</span><span class="cs-tax-pill delete">cancel</span><span class="cs-tax-pill delete">clear</span><span class="cs-tax-pill delete">disable</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Action / Workflow <small>Text · needs confirm · chainable</small></div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill action">verify</span><span class="cs-tax-pill action">approve</span><span class="cs-tax-pill action">mark</span><span class="cs-tax-pill action">publish</span><span class="cs-tax-pill action">send</span><span class="cs-tax-pill action">schedule</span><span class="cs-tax-pill action">export</span><span class="cs-tax-pill action">start</span><span class="cs-tax-pill action">stop</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">AI-assisted <small>Text · auto-execute · chainable</small></div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill ai">generate</span><span class="cs-tax-pill ai">suggest</span><span class="cs-tax-pill ai">summarize</span><span class="cs-tax-pill ai">explain</span><span class="cs-tax-pill ai">draft</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-tax-block">
+        <div class="cs-tax-h">Nouns · the entity</div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Commerce</div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill create">product</span><span class="cs-tax-pill create">variant</span><span class="cs-tax-pill create">stock</span><span class="cs-tax-pill create">category</span><span class="cs-tax-pill create">inventory</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Sales</div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill modify">order</span><span class="cs-tax-pill modify">payment</span><span class="cs-tax-pill modify">payment slip</span><span class="cs-tax-pill modify">delivery zone</span><span class="cs-tax-pill modify">invoice</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Customer</div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill read">customer</span><span class="cs-tax-pill read">contact</span><span class="cs-tax-pill read">conversation</span><span class="cs-tax-pill read">comment</span><span class="cs-tax-pill read">message</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Marketing</div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill action">discount</span><span class="cs-tax-pill action">flash sale</span><span class="cs-tax-pill action">post</span><span class="cs-tax-pill action">live session</span><span class="cs-tax-pill action">catalog</span><span class="cs-tax-pill action">campaign</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Insights</div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill delete">dashboard</span><span class="cs-tax-pill delete">revenue</span><span class="cs-tax-pill delete">top product</span><span class="cs-tax-pill delete">stat</span><span class="cs-tax-pill delete">trend</span><span class="cs-tax-pill delete">notification</span><span class="cs-tax-pill delete">alert</span>
+          </div>
+        </div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Config</div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill">AI personality</span><span class="cs-tax-pill">setting</span><span class="cs-tax-pill">subscription</span><span class="cs-tax-pill">quota</span><span class="cs-tax-pill">page</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-utterance">
+      <span class="cs-utterance-tok verb">[ VERB ]</span>
+      <span class="cs-utterance-op">+</span>
+      <span class="cs-utterance-tok noun">[ NOUN ]</span>
+      <span class="cs-utterance-op">+</span>
+      <span class="cs-utterance-tok mod">[ modifier ]</span>
+      <span class="cs-utterance-op">=</span>
+      <span class="cs-utterance-tok intent">INTENT</span>
+    </div>
+
+    <div class="cs-samples">
+      <div class="cs-samples-h">Verb</div>
+      <div class="cs-samples-h">Noun</div>
+      <div class="cs-samples-h">Modifier</div>
+      <div class="cs-samples-h">→ Resolves to</div>
+
+      <div class="cs-samples-cell v">show</div>
+      <div class="cs-samples-cell n">orders</div>
+      <div class="cs-samples-cell m">from yesterday</div>
+      <div class="cs-samples-cell r">List Orders (filtered)</div>
+
+      <div class="cs-samples-cell v">get</div>
+      <div class="cs-samples-cell n">product</div>
+      <div class="cs-samples-cell m">"blue hoodie"</div>
+      <div class="cs-samples-cell r">Get Product Details</div>
+
+      <div class="cs-samples-cell v">adjust</div>
+      <div class="cs-samples-cell n">stock</div>
+      <div class="cs-samples-cell m">set medium to 50</div>
+      <div class="cs-samples-cell r">Adjust Stock</div>
+
+      <div class="cs-samples-cell v">create</div>
+      <div class="cs-samples-cell n">flash sale</div>
+      <div class="cs-samples-cell m">20% off for 30 min</div>
+      <div class="cs-samples-cell r">Create Flash Sale ⚠</div>
+
+      <div class="cs-samples-cell v">verify</div>
+      <div class="cs-samples-cell n">payment slip</div>
+      <div class="cs-samples-cell m">on order #123</div>
+      <div class="cs-samples-cell r">Verify Payment Slip</div>
+
+      <div class="cs-samples-cell v">generate</div>
+      <div class="cs-samples-cell n">post</div>
+      <div class="cs-samples-cell m">for the new dress</div>
+      <div class="cs-samples-cell r">Generate Post Content (AI)</div>
+
+      <div class="cs-samples-cell v">schedule</div>
+      <div class="cs-samples-cell n">post</div>
+      <div class="cs-samples-cell m">tomorrow 9am</div>
+      <div class="cs-samples-cell r">Schedule Post ⚠</div>
+    </div>
+  </section>
+
+  <!-- ══ USER JOURNEYS ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">User Journeys</div>
+    <h2 class="cs-h2">Chains, Not One-Shots.</h2>
+    <p class="cs-p">Real sellers don't fire single intents. They chain them. Five journeys validated the chain rules — and exposed where confirm gates break flow.</p>
+
+    <div class="cs-journey">
+      <div class="cs-journey-h">Order Fulfillment</div>
+      <div class="cs-journey-d">Seller processes incoming orders after a live sale.</div>
+      <div class="cs-journey-chain">
+        <span class="cs-journey-step">List Orders</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">Get Order Details</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step warn">⚠ Verify Payment Slip</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step warn">⚠ Update Order Status</span>
+      </div>
+    </div>
+
+    <div class="cs-journey">
+      <div class="cs-journey-h">Live Sale Prep</div>
+      <div class="cs-journey-d">Seller plans tonight's live broadcast catalog and promo.</div>
+      <div class="cs-journey-chain">
+        <span class="cs-journey-step">Top Products</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">Get Product Details</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">Save Draft Catalog</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step warn">⚠ Create Flash Sale</span>
+      </div>
+    </div>
+
+    <div class="cs-journey">
+      <div class="cs-journey-h">Stock Replenishment</div>
+      <div class="cs-journey-d">Seller reviews low-stock items and tops up inventory.</div>
+      <div class="cs-journey-chain">
+        <span class="cs-journey-step">Low Stock Alert</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">Get Product Details</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">Adjust Stock</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">View Stock History</span>
+      </div>
+    </div>
+
+    <div class="cs-journey">
+      <div class="cs-journey-h">Launch a New Product</div>
+      <div class="cs-journey-d">Seller creates a product, variants, and a launch post.</div>
+      <div class="cs-journey-chain">
+        <span class="cs-journey-step warn">⚠ Create Product</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">Create Variant</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">Generate Post Content</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step warn">⚠ Schedule Post</span>
+      </div>
+    </div>
+
+    <div class="cs-journey">
+      <div class="cs-journey-h">Customer Insight</div>
+      <div class="cs-journey-d">Seller reviews top customers and reaches out.</div>
+      <div class="cs-journey-chain">
+        <span class="cs-journey-step">Customer Stats</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">Get Customer Details</span>
+        <span class="cs-journey-arrow">→</span>
+        <span class="cs-journey-step">List Orders</span>
+      </div>
+    </div>
+
+    <div class="cs-hook" style="margin-top:24px">Confirm gates break the chain. Read verbs keep it flowing.</div>
+  </section>
+
+  <!-- ══ PRIORITIZATION ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Prioritization</div>
+    <h2 class="cs-h2">Which 45 Ship First?</h2>
+    <p class="cs-p">Mapping was the easy part. Now: ship order. The journeys above told me what's daily — that wins.</p>
+    <div class="cs-hook">Ship order = frequency &times; learning-curve cost.</div>
+    <div class="cs-kanban">
+      <div class="cs-kanban-col cs-kanban-p0">
+        <div class="cs-kanban-header">P0 · Now</div>
+        <div class="cs-kanban-card">Orders + Customers <div class="cs-kanban-sub">11 intents · daily use</div></div>
+        <div class="cs-kanban-card">Inventory CRUD <div class="cs-kanban-sub">4 intents · weekly use</div></div>
+      </div>
+      <div class="cs-kanban-col cs-kanban-p1">
+        <div class="cs-kanban-header">P1 · Next</div>
+        <div class="cs-kanban-card">Insights <div class="cs-kanban-sub">5 intents · client-side compute</div></div>
+        <div class="cs-kanban-card">Discounts + Marketing <div class="cs-kanban-sub">6 intents · campaign cadence</div></div>
+      </div>
+      <div class="cs-kanban-col cs-kanban-p2">
+        <div class="cs-kanban-header">P2 · Later</div>
+        <div class="cs-kanban-card">Live Sales <div class="cs-kanban-sub">6 intents · planned</div></div>
+        <div class="cs-kanban-card">Multi-shop <div class="cs-kanban-sub">deferred · low frequency</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 — CLASSIFIER ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">03 — The Classifier</div>
+    <h2 class="cs-h2">Regex First. AI Last.</h2>
+    <p class="cs-p">Pure TypeScript function. No LLM call. No network.</p>
+    <div class="cs-flow">
+      <div class="cs-flow-block">
+        <div class="cs-flow-tag">Input</div>
+        <div class="cs-flow-h">Query string</div>
+        <div class="cs-flow-d">"pending orders ပြပါ"</div>
+      </div>
+      <div class="cs-flow-arrow">&rarr;</div>
+      <div class="cs-flow-fork">
+        <div class="cs-flow-fork-row primary">
+          <div class="l">&lt;50ms · primary</div>
+          <div class="v">Regex &rarr; Inline card</div>
+        </div>
+        <div class="cs-flow-fork-row primary">
+          <div class="l">&lt;50ms · primary</div>
+          <div class="v">Regex &rarr; Navigate</div>
+        </div>
+        <div class="cs-flow-fork-row muted">
+          <div class="l">~1–3s · rare</div>
+          <div class="v">No match &rarr; AI fallback</div>
+        </div>
+      </div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Latency</strong> — card renders before finger lifts off enter</li>
+      <li><strong>Cost</strong> — no API call per keystroke</li>
+      <li><strong>Determinism</strong> — regex is auditable. LLMs fail differently every time</li>
+    </ul>
+  </section>
+
+  <!-- ══ 03b — REGEX DETAIL ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">03b — Inside the Regex</div>
+    <h2 class="cs-h2">How a Sentence Becomes an Action.</h2>
+    <p class="cs-p">Each rule is a regex family + a capture function. Ordered by specificity — most specific first.</p>
+
+    <div class="cs-code"><span class="c">// 1. Match the intent</span>
+<span class="k">const</span> <span class="v">customerOrdersRe</span> = <span class="s">/^(.+?)(ရဲ့|၏|'s)\s*(orders|order|ဝယ်ထား|မှာထား)/i</span>;
+
+<span class="c">// 2. Extract parameters</span>
+<span class="k">function</span> <span class="f">classify</span>(query) {
+  <span class="k">const</span> m = query.<span class="f">match</span>(<span class="v">customerOrdersRe</span>);
+  <span class="k">if</span> (m) <span class="k">return</span> {
+    <span class="h">kind</span>: <span class="s">'list-orders'</span>,
+    <span class="h">customerName</span>: <span class="f">stripParticles</span>(m[<span class="v">1</span>]),
+    <span class="h">behaviour</span>: <span class="s">'inline'</span>
+  };
+  <span class="c">// ...next rule</span>
+}</div>
+
+    <p class="cs-p">The cascade runs top-down. First match wins. Below: the actual priority order for 28 intents.</p>
+
+    <div class="cs-cascade">
+      <div class="cs-cascade-head">#</div>
+      <div class="cs-cascade-head">Pattern (simplified)</div>
+      <div class="cs-cascade-head">Resolves to</div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">01</div>
+        <div class="cs-cascade-rule">customerName + 's + orders</div>
+        <div class="cs-cascade-out">list-orders + customerName filter</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">02</div>
+        <div class="cs-cascade-rule">best/top/ranking + discounts</div>
+        <div class="cs-cascade-out">list-discounts + byPerformance</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">03</div>
+        <div class="cs-cascade-rule">pending|paid|cancelled + orders</div>
+        <div class="cs-cascade-out">list-orders + statusFilter</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">04</div>
+        <div class="cs-cascade-rule">verify|approve + slip|payment</div>
+        <div class="cs-cascade-out">verify-payment</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">05</div>
+        <div class="cs-cascade-rule">low|out + stock</div>
+        <div class="cs-cascade-out">low-stock</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">06</div>
+        <div class="cs-cascade-rule">revenue + (week|7d|14d|30d)</div>
+        <div class="cs-cascade-out">revenue-trend + range</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">…</div>
+        <div class="cs-cascade-rule">22 more families</div>
+        <div class="cs-cascade-out">EN · MM · mixed variants each</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">∞</div>
+        <div class="cs-cascade-rule">no match</div>
+        <div class="cs-cascade-out">→ AI fallback (LLM)</div>
+      </div>
+    </div>
+
+    <p class="cs-p">Three things every rule does:</p>
+    <ul class="cs-list">
+      <li><strong>Match</strong> — does the query fit this shape?</li>
+      <li><strong>Capture</strong> — pull out productId · customerName · status · range</li>
+      <li><strong>Normalise</strong> — strip particles, convert MM digits, lowercase</li>
+    </ul>
+
+    <div class="cs-hook">Specificity beats cleverness. "Khin Hnin's orders" must match before plain "orders."</div>
+  </section>
+
+  <!-- ══ 04 — BILINGUAL ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">04 — Bilingual Matching</div>
+    <h2 class="cs-h2">Myanmar Isn't English in Different Glyphs.</h2>
+    <p class="cs-p">Myanmar glues grammar particles onto the noun — possession, subject, plural. No spaces. No apostrophes. No cues for a Latin-tuned regex.</p>
+    <div class="cs-bilingual">
+      <div class="cs-bilingual-card">
+        <div class="cs-bilingual-tag">English</div>
+        <div class="cs-bilingual-q">"show me pending orders"</div>
+        <div class="cs-bilingual-arrow">&darr; matches</div>
+        <div class="cs-bilingual-out">list-orders · status=PENDING</div>
+      </div>
+      <div class="cs-bilingual-card">
+        <div class="cs-bilingual-tag">Myanmar</div>
+        <div class="cs-bilingual-q">"လက်ကျန်အော်ဒါတွေပြပါ"</div>
+        <div class="cs-bilingual-arrow">&darr; matches</div>
+        <div class="cs-bilingual-out">list-orders · status=PENDING</div>
+      </div>
+      <div class="cs-bilingual-card">
+        <div class="cs-bilingual-tag">Mixed</div>
+        <div class="cs-bilingual-q">"pending order ပြပါ"</div>
+        <div class="cs-bilingual-arrow">&darr; matches</div>
+        <div class="cs-bilingual-out">list-orders · status=PENDING</div>
+      </div>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Possessive stripper</strong> — pulls bare names out of MM particles + EN 's</li>
+      <li><strong>Subject-marker parser</strong> — handles "[name] [marker] [verb]" purchase queries</li>
+      <li><strong>Digit normaliser</strong> — Myanmar digits (U+1040–U+1049) → ASCII</li>
+    </ul>
+  </section>
+
+  <!-- ══ 05 — INLINE CARDS ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">05 — Inline Cards</div>
+    <h2 class="cs-h2">Cards, Not Chat Bubbles.</h2>
+    <p class="cs-p">Ask "low stock" → get the actual list, sortable, with adjust-stock CTAs per row.</p>
+    <ul class="cs-list">
+      <li><strong>Self-contained</strong> — each card fetches its own data</li>
+      <li><strong>Compact</strong> — fit inside a 680px palette</li>
+      <li><strong>Actionable</strong> — at least one CTA per card</li>
+      <li><strong>Composable</strong> — one ListOrdersCard powers 4 intents</li>
+    </ul>
+    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative;background:var(--dark-2)">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/01-palette-empty-state.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:var(--cream-dim);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase&quot;>Palette empty state · placeholder</div>'"></video>
+      <span class="cs-hero-vid-label">palette · empty state</span>
+    </div>
+  </section>
+
+  <!-- ══ 06 — ORDERS + CUSTOMERS ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">06 — Orders + Customers</div>
+    <h2 class="cs-h2">A Pattern, Repeated.</h2>
+    <p class="cs-p">11 intents. One layout language.</p>
+    <div class="cs-intent-chips" style="margin:20px 0 24px">
+      <span class="cs-intent-chip">list-orders</span>
+      <span class="cs-intent-chip">order-detail</span>
+      <span class="cs-intent-chip">create-order</span>
+      <span class="cs-intent-chip">update-order-status</span>
+      <span class="cs-intent-chip">verify-payment</span>
+      <span class="cs-intent-chip">cancel-order</span>
+      <span class="cs-intent-chip">export-orders</span>
+      <span class="cs-intent-chip">list-customers</span>
+      <span class="cs-intent-chip">customer-detail</span>
+      <span class="cs-intent-chip">search-customers</span>
+      <span class="cs-intent-chip">customer-stats</span>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Header</strong> — icon pill + label + headline number</li>
+      <li><strong>Filter row</strong> — sticky chips with counts</li>
+      <li><strong>Body</strong> — top 8 rows + "N more" footer</li>
+      <li><strong>Footer</strong> — one CTA. Never two.</li>
+    </ul>
+    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative;background:var(--dark-2)">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/02-list-orders.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:var(--cream-dim);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase&quot;>Orders + Customers · video placeholder</div>'"></video>
+      <span class="cs-hero-vid-label">list-orders</span>
+    </div>
+    <div class="cs-gallery">
+      <div class="cs-gallery-grid cs-gallery-grid--even">
+        <div class="cs-gallery-item" data-label="list-orders"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/02-list-orders.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="order-detail"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/03-order-detail.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="create-order"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/04-create-order.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="update-order-status"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/05-update-order-status.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="verify-payment"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/06-verify-payment.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="cancel-order"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/07-cancel-order.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="export-orders"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/08-export-orders.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="list-customers"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/09-list-customers.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="customer-detail"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/10-customer-detail.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="search-customers"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/11-search-customers.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="customer-stats"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/12-customer-stats.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 07 — CRUD IN A PALETTE ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">07 — Inventory CRUD</div>
+    <h2 class="cs-h2">No Modals. Two-State Cards.</h2>
+    <p class="cs-p">Destructive flows: preview state → confirm state. No window.confirm. No modal stacking.</p>
+    <div class="cs-intent-chips" style="margin:20px 0 24px">
+      <span class="cs-intent-chip">create-product</span>
+      <span class="cs-intent-chip">update-product</span>
+      <span class="cs-intent-chip">delete-product</span>
+      <span class="cs-intent-chip">bulk-update-stock</span>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Bulk Update Stock</strong> — inline spreadsheet in 320px</li>
+      <li><strong>Dirty-row tracking</strong> — Save CTA disables when clean</li>
+      <li><strong>+10 / +50 quick fills</strong> — restock without typing</li>
+    </ul>
+    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative;background:var(--dark-2)">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/16-bulk-update-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:var(--cream-dim);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase&quot;>Inventory CRUD · video placeholder</div>'"></video>
+      <span class="cs-hero-vid-label">bulk-update-stock</span>
+    </div>
+    <div class="cs-gallery">
+      <div class="cs-gallery-grid cs-gallery-grid--even">
+        <div class="cs-gallery-item" data-label="create-product"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/13-create-product.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="update-product"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/14-update-product.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="delete-product"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/15-delete-product.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="bulk-update-stock"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/16-bulk-update-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+      </div>
+    </div>
+    <h3 style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cream-dim);margin:36px 0 16px">Foundation intents</h3>
+    <p class="cs-p" style="margin-bottom:20px">The five reads that anchor every workflow — list, detail, low-stock, adjust, history.</p>
+    <div class="cs-gallery">
+      <div class="cs-gallery-grid cs-gallery-grid--even">
+        <div class="cs-gallery-item" data-label="list-products"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/17-list-products.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="product-detail"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/18-product-detail.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="low-stock"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/19-low-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="adjust-stock"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/20-adjust-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="stock-history"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/21-stock-history.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 12 — CHAIN SUGGESTIONS ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">12 — Chain Suggestions</div>
+    <h2 class="cs-h2">Palette as Conversation.</h2>
+    <p class="cs-p">Every card ends with 2–3 "Try next" chips. Tailored per intent. One open, four answers.</p>
+    <ul class="cs-list">
+      <li><strong>After list-orders</strong> — pending · export · customer stats</li>
+      <li><strong>After order-detail</strong> — verify slip · mark paid · cancel</li>
+      <li><strong>After top-products</strong> — revenue trend · low stock</li>
+    </ul>
+    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative;background:var(--dark-2)">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/22-chain-restock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:var(--cream-dim);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase&quot;>Chain restock · video placeholder</div>'"></video>
+      <span class="cs-hero-vid-label">chain · low-stock → restock</span>
+    </div>
+  </section>
+
+  <!-- ══ 13 — URL CONTRACT ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">13 — Navigate vs Inline</div>
+    <h2 class="cs-h2">One URL. Two Surfaces Agree.</h2>
+    <ul class="cs-list">
+      <li><strong>Inline</strong> — one-shot actions (adjust stock, mark paid)</li>
+      <li><strong>Navigate</strong> — when user wants to keep working there (list views)</li>
+      <li><strong>Shared params</strong> — palette filters → /orders URL → page state</li>
+    </ul>
+  </section>
+
+  <!-- ══ INTENT INVENTORY (BY PRIORITY) ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Full Intent Inventory</div>
+    <h2 class="cs-h2">21 Shipped · 17 Planned</h2>
+    <p class="cs-p">Every intent, grouped by ship priority. P0 ships first because frequency × learning cost wins. Insights and Marketing wait — they're nice, not vital.</p>
+    <div class="cs-prio-grid">
+      <div class="cs-prio-col cs-prio-p0">
+        <div class="cs-prio-head"><span class="cs-prio-tag">P0 · Shipped</span><span class="cs-prio-count">21</span></div>
+        <div class="cs-prio-sub">Foundation (6)</div>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">list-products</span>
+          <span class="cs-intent-chip">get-product</span>
+          <span class="cs-intent-chip">adjust-stock</span>
+          <span class="cs-intent-chip">low-stock</span>
+          <span class="cs-intent-chip">stock-history</span>
+          <span class="cs-intent-chip">navigate</span>
+        </div>
+        <div class="cs-prio-sub">Orders + Customers (11)</div>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">list-orders</span>
+          <span class="cs-intent-chip">order-detail</span>
+          <span class="cs-intent-chip">create-order</span>
+          <span class="cs-intent-chip">update-order-status</span>
+          <span class="cs-intent-chip">verify-payment</span>
+          <span class="cs-intent-chip">cancel-order</span>
+          <span class="cs-intent-chip">export-orders</span>
+          <span class="cs-intent-chip">list-customers</span>
+          <span class="cs-intent-chip">customer-detail</span>
+          <span class="cs-intent-chip">search-customers</span>
+          <span class="cs-intent-chip">customer-stats</span>
+        </div>
+        <div class="cs-prio-sub">Inventory CRUD (4)</div>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">create-product</span>
+          <span class="cs-intent-chip">update-product</span>
+          <span class="cs-intent-chip">delete-product</span>
+          <span class="cs-intent-chip">bulk-update-stock</span>
+        </div>
+      </div>
+
+      <div class="cs-prio-col cs-prio-p1">
+        <div class="cs-prio-head"><span class="cs-prio-tag">P1 · Next</span><span class="cs-prio-count">11</span></div>
+        <div class="cs-prio-sub">Insights (5)</div>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">dashboard-stats</span>
+          <span class="cs-intent-chip">revenue-trend</span>
+          <span class="cs-intent-chip">top-products</span>
+          <span class="cs-intent-chip">notifications</span>
+          <span class="cs-intent-chip">mark-all-read</span>
+        </div>
+        <div class="cs-prio-sub">Discounts + Marketing (6)</div>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">list-discounts</span>
+          <span class="cs-intent-chip">create-discount</span>
+          <span class="cs-intent-chip">delete-discount</span>
+          <span class="cs-intent-chip">list-posts</span>
+          <span class="cs-intent-chip">create-post</span>
+          <span class="cs-intent-chip">generate-post-content</span>
+        </div>
+      </div>
+
+      <div class="cs-prio-col cs-prio-p2">
+        <div class="cs-prio-head"><span class="cs-prio-tag">P2 · Later</span><span class="cs-prio-count">6</span></div>
+        <div class="cs-prio-sub">Live Sales (6)</div>
+        <div class="cs-intent-chips">
+          <span class="cs-intent-chip">live-sales-view</span>
+          <span class="cs-intent-chip">payment-config</span>
+          <span class="cs-intent-chip">delivery-config</span>
+          <span class="cs-intent-chip">flash-sale-create</span>
+          <span class="cs-intent-chip">active-live-stats</span>
+          <span class="cs-intent-chip">live-catalog-edit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SHIP TARGETS ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Ship Targets</div>
+    <h2 class="cs-h2">What I Set Out To Hit.</h2>
+    <p class="cs-p">These are <em>output</em> metrics — what the build had to clear before sellers could touch it. Behavior outcomes are still being measured (see below).</p>
+
+    <div class="cs-funnel">
+      <div class="cs-funnel-step"><div class="cs-funnel-num">45</div><div class="cs-funnel-label">Mapped</div></div>
+      <div class="cs-funnel-arrow">→</div>
+      <div class="cs-funnel-step"><div class="cs-funnel-num">38</div><div class="cs-funnel-label">Prioritized</div></div>
+      <div class="cs-funnel-arrow">→</div>
+      <div class="cs-funnel-step"><div class="cs-funnel-num">28</div><div class="cs-funnel-label">MVP Scope</div></div>
+      <div class="cs-funnel-arrow">→</div>
+      <div class="cs-funnel-step live"><div class="cs-funnel-num">21</div><div class="cs-funnel-label">Live in Prod</div></div>
+    </div>
+
+    <div class="cs-kpi">
+      <div class="cs-kpi-group-label">Build Targets · Hit</div>
+      <div class="cs-kpi-grid">
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">28/28 &check;</div>
+          <div class="cs-kpi-label">Bilingual coverage</div>
+          <div class="cs-kpi-why">Every intent handles MM + EN.</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">64% &check;</div>
+          <div class="cs-kpi-label">Inline action</div>
+          <div class="cs-kpi-why">18 of 28 fully actionable.</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">0 &check;</div>
+          <div class="cs-kpi-label">New endpoints</div>
+          <div class="cs-kpi-why">Shipped on existing /api/b/*.</div>
+        </div>
+        <div class="cs-kpi-card">
+          <div class="cs-kpi-val">&lt;50ms &check;</div>
+          <div class="cs-kpi-label">Latency</div>
+          <div class="cs-kpi-why">Regex + reduce. AI on unknown only.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-data-bento">
+      <div class="cs-data-card span-3">
+        <div class="cs-data-label">CRM Dashboard → Intent Palette</div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">See pending orders</div>
+          <div class="cs-data-row-before">Open Orders → filter PENDING → scroll</div>
+          <div class="cs-data-row-after">Type. Card. Done.</div>
+        </div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Look up a customer's purchases</div>
+          <div class="cs-data-row-before">Customers → search → profile → tab</div>
+          <div class="cs-data-row-after">Type the name. Filtered list appears.</div>
+        </div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Build a discount</div>
+          <div class="cs-data-row-before">Three-screen settings form</div>
+          <div class="cs-data-row-after">One inline card. Scope + type chips.</div>
+        </div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Write a Facebook post</div>
+          <div class="cs-data-row-before">Switch tab. Compose. Copy back.</div>
+          <div class="cs-data-row-after">Generate inside the palette.</div>
+        </div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Check weekly revenue</div>
+          <div class="cs-data-row-before">No view. Ask backend.</div>
+          <div class="cs-data-row-after">Bar chart card. 7/14/30d toggle.</div>
+        </div>
+        <div class="cs-data-row">
+          <div class="cs-data-row-label">Query in Myanmar</div>
+          <div class="cs-data-row-before">Translate to English first</div>
+          <div class="cs-data-row-after">Type natively. Match instantly.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-data-bento cols-3">
+      <div class="cs-data-card highlight">
+        <div class="cs-data-num">21</div>
+        <div class="cs-data-label">Intents Shipped (P0)</div>
+      </div>
+      <div class="cs-data-card highlight">
+        <div class="cs-data-num">17</div>
+        <div class="cs-data-label">Planned (P1+P2)</div>
+      </div>
+      <div class="cs-data-card highlight">
+        <div class="cs-data-num">0</div>
+        <div class="cs-data-label">New Dependencies</div>
+      </div>
+    </div>
+
+    <div class="cs-next-note">
+      <div class="cs-next-note-tag">Honest gap · what I'm tracking next</div>
+      <p class="cs-p" style="margin:6px 0 14px">Ship metrics prove the system works. They don't prove sellers behave differently. Three behavior signals I'm instrumenting in the next release:</p>
+      <div class="cs-next-note-list">
+        <div class="cs-next-note-item">
+          <div class="cs-next-note-item-h">Time-to-answer</div>
+          <div class="cs-next-note-item-d">Seconds from question to result, palette vs old dashboard.</div>
+        </div>
+        <div class="cs-next-note-item">
+          <div class="cs-next-note-item-h">Palette adoption</div>
+          <div class="cs-next-note-item-d">% of intents reached via palette vs sidebar nav, weekly.</div>
+        </div>
+        <div class="cs-next-note-item">
+          <div class="cs-next-note-item-h">Past-2-weeks task</div>
+          <div class="cs-next-note-item-d">The Seller A north-star query — completion rate &amp; time.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Time Travel -->
+  <section class="cs-section">
+    <div class="cs-section-num">Time Machine</div>
+    <h2 class="cs-h2">If I Could Go Back</h2>
+    <div class="cs-timetravel">
+      <div class="cs-tt-card"><div class="cs-tt-num">What I assumed</div><div class="cs-tt-title">English first, MM later</div><div class="cs-tt-desc">Built English regex first, retrofitted Myanmar helpers.</div></div>
+      <div class="cs-tt-card"><div class="cs-tt-num">What I missed</div><div class="cs-tt-title">URL contract before cards</div><div class="cs-tt-desc">The customer-orders bug was a contract gap, not a UI bug.</div></div>
+      <div class="cs-tt-card"><div class="cs-tt-num">What I'd do</div><div class="cs-tt-title">Treat classifier as a product</div><div class="cs-tt-desc">Two of three real bugs were classifier gaps. Same review attention as UI.</div></div>
+      <div class="cs-tt-card"><div class="cs-tt-num">Expected outcome</div><div class="cs-tt-title">One sort-mode primitive</div><div class="cs-tt-desc">Performance ranking generalises to top customers, products, posts.</div></div>
+    </div>
+  </section>
+
+  <!-- ══ REFLECTION ══ -->
+  <section class="cs-section">
+    <div class="cs-section-num">Reflection</div>
+    <h2 class="cs-h2">What I Learned</h2>
+    <div class="cs-lesson">
+      <strong>01 — A command palette isn't a UI pattern. It's a contract.</strong>
+      <p>The seller speaks naturally; the system promises to meet them there.</p>
+    </div>
+    <div class="cs-lesson">
+      <strong>02 — Don't pretend Myanmar is "English with different glyphs."</strong>
+      <p>Postpositions, subject markers, and stacked digits need first-class support — not retrofits.</p>
+    </div>
+    <div class="cs-lesson">
+      <strong>03 — Matching intent is half the problem.</strong>
+      <p>Matching the user's <em>expectation of the result</em> is the other half. Ranking ≠ enumeration.</p>
+    </div>
+    <div class="cs-lesson">
+      <strong>04 — Regex is a feature, not a fallback.</strong>
+      <p>Predictable behaviour is itself a way of reducing what the user has to learn. The LLM is the rare path.</p>
+    </div>
+  </section>
+
+  <section class="cs-ending">
+    <div class="cs-ending-inner">
+      <div class="cs-ending-label">Thanks for Reading</div>
+      <h2 class="cs-ending-heading">Let's build<br>something <em>great</em></h2>
+      <p class="cs-ending-sub">Open to senior roles in product and UX. Looking for a team that ships things and cares whether they work.</p>
+      <div class="cs-ending-buttons">
+        <a href="mailto:kaungmyat9702@gmail.com" class="cs-ending-btn cs-ending-main">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Email Me
+        </a>
+        <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" class="cs-ending-btn cs-ending-alt" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="cs-ending-meta">
+        <span>kaungmyat9702@gmail.com</span>
+        <span>Open to Work</span>
+        <span>Senior Product Designer</span>
+      </div>
+    </div>
+  </section>
+
+  </div><!-- end cs-page -->
+
+<div class="cs-next">
+    <div class="cs-next-sidebar">
+      <div class="cs-next-label">Explore More</div>
+      <div class="cs-next-title">More<br>Case Studies</div>
+    </div>
+    <div class="cs-next-cards">
+    <a href="case-study-golden-paths.html" class="cs-next-card">
+      <div class="cs-next-card-bg"><video autoplay loop muted playsinline preload="metadata" src="images/AI%20Test/Showing%20Results.mp4"></video></div>
+      <div class="cs-next-card-info">
+        <div class="cs-next-card-why">Another AI product — built by a designer</div>
+        <div class="cs-next-card-tags">AI Product / UX Research / 2026</div>
+        <div class="cs-next-card-title">11pm. One Demo. Zero Testers.</div>
+        <div class="cs-next-card-metric"><span class="val">60s</span><span class="lbl">Feedback</span></div>
+        <div class="cs-next-card-cta">View Case Study &rarr;</div>
+      </div>
+    </a>
+    <a href="case-study-pharmacy-pos.html" class="cs-next-card">
+      <div class="cs-next-card-bg"><img src="images/ppos/New Payment Method.webp" alt="Two Stores. One System."></div>
+      <div class="cs-next-card-info">
+        <div class="cs-next-card-why">Same thesis — system learns the user</div>
+        <div class="cs-next-card-tags">POS / UX Redesign / 2025</div>
+        <div class="cs-next-card-title">Two Stores. One System.</div>
+        <div class="cs-next-card-metric"><span class="val">200+</span><span class="lbl">Screens</span></div>
+        <div class="cs-next-card-cta">View Case Study &rarr;</div>
+      </div>
+    </a>
+    </div>
+  </div>
+</div>
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<script src="js/atoms.js"></script>
+<script src="js/tts.js"></script>
+<script src="js/lightbox.js"></script>
+<script src="js/scroll-indicator.js"></script>
+
+<!-- Before/After Comparison Slider -->
+<script>
+(function(){
+  function initCompare(el){
+    var before=el.querySelector('.cs-compare-before');
+    var line=el.querySelector('.cs-compare-line');
+    var handle=el.querySelector('.cs-compare-handle');
+    var dragging=false;
+    function update(x){
+      var rect=el.getBoundingClientRect();
+      var pct=Math.max(0,Math.min(1,(x-rect.left)/rect.width));
+      before.style.clipPath='inset(0 '+(100-pct*100)+'% 0 0)';
+      line.style.left=pct*100+'%';
+      handle.style.left=pct*100+'%';
+    }
+    el.addEventListener('mousedown',function(e){if(e.target.closest('.cs-compare-maximize'))return;dragging=true;update(e.clientX);e.preventDefault();});
+    document.addEventListener('mousemove',function(e){if(dragging)update(e.clientX);});
+    document.addEventListener('mouseup',function(){dragging=false;});
+    el.addEventListener('touchstart',function(e){if(e.target.closest('.cs-compare-maximize'))return;dragging=true;update(e.touches[0].clientX);e.preventDefault();},{passive:false});
+    document.addEventListener('touchmove',function(e){if(dragging)update(e.touches[0].clientX);});
+    document.addEventListener('touchend',function(){dragging=false;});
+  }
+
+  document.querySelectorAll('[data-compare]').forEach(function(el){
+    var btn=document.createElement('button');
+    btn.className='cs-compare-maximize';
+    btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+    btn.title='Maximize';
+    el.appendChild(btn);
+
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var lb=document.getElementById('lightbox');
+      var content=document.getElementById('lightboxContent');
+      if(!lb||!content)return;
+      content.innerHTML='';
+
+      var clone=document.createElement('div');
+      clone.className='cs-compare';
+      clone.setAttribute('data-compare','');
+      clone.style.cssText='width:92vw;max-width:1400px;height:85vh;aspect-ratio:auto;margin:0 auto;border-radius:12px';
+
+      var afterImg=el.querySelector('.cs-compare-after');
+      var beforeImg=el.querySelector('.cs-compare-before');
+
+      clone.innerHTML='<img class="cs-compare-after" src="'+afterImg.src+'" alt="'+afterImg.alt+'">'
+        +'<img class="cs-compare-before" src="'+beforeImg.src+'" alt="'+beforeImg.alt+'" style="clip-path:inset(0 50% 0 0)">'
+        +'<div class="cs-compare-line"></div>'
+        +'<div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>'
+        +'<div class="cs-compare-label cs-compare-label-before">Before</div>'
+        +'<div class="cs-compare-label cs-compare-label-after">After</div>';
+
+      content.appendChild(clone);
+      initCompare(clone);
+      lb.classList.add('open');
+    });
+
+    initCompare(el);
+  });
+})();
+</script>
+
+<!-- CHAT -->
+<button class="chat-trigger" id="chatTrigger" data-context="po-ai-intent">
+  <svg class="ai-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l2.09 6.26L20.18 10l-6.09 1.74L12 18l-2.09-6.26L3.82 10l6.09-1.74L12 2z" stroke="currentColor"/><circle cx="19" cy="5" r="1.5" fill="currentColor" opacity="0.6"/><circle cx="5" cy="19" r="1" fill="currentColor" opacity="0.4"/></svg>
+  <span class="ai-label-full">Ask About This Project</span>
+  <span class="ai-label-short">AI</span>
+  <span class="dot"></span>
+</button>
+<div class="chat-overlay" id="chatOverlay"></div>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-header-title"><span class="dot"></span><span>Ask About This Project</span></div>
+    <button class="chat-close" id="chatClose"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-welcome">
+      <div class="chat-welcome-icon">&#x2728;</div>
+      <h3>Ask me about this project</h3>
+      <p>I can answer detailed questions about the classifier, the cards, and the bilingual matching.</p>
+      <div class="chat-suggestions">
+        <button class="chat-suggestion" data-q="Why regex first instead of an LLM router?">Why regex first instead of an LLM?</button>
+        <button class="chat-suggestion" data-q="How does the bilingual classifier handle Myanmar postpositions?">How does Myanmar matching work?</button>
+        <button class="chat-suggestion" data-q="How did you build insights with no analytics endpoint?">How did you ship insights with no API?</button>
+        <button class="chat-suggestion" data-q="What was the customer-orders bug and how did you fix it?">What was the customer-orders bug?</button>
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-wrap">
+    <div class="chat-input-bar">
+      <textarea class="chat-input" id="chatInput" placeholder="Ask about this project..." autocomplete="off" rows="1"></textarea>
+      <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+    </div>
+  </div>
+</div>
+<script src="js/chat.js"></script>
+<script src="js/tracking.js"></script>
+</body>
+</html>
