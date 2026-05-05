@@ -70,7 +70,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 ══════════════════════════ */
 .hero{
   position:relative;
-  height:300vh;
+  height:100vh;
   background:#0a0706;
   padding:0;
   isolation:isolate;
@@ -205,9 +205,9 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 .term-cta a{color:var(--accent);text-decoration:underline;text-decoration-color:rgba(232,115,74,0.4);text-underline-offset:3px;}
 .term-cta a:hover{text-decoration-color:var(--accent);}
 
-/* Scrollytelling reveal */
-.term .step{opacity:0;transform:translateY(8px);transition:opacity 0.45s ease,transform 0.45s ease;}
-.term .step.show{opacity:1;transform:translateY(0);}
+/* Auto-play reveal on load (no scroll required) */
+.term .step{opacity:0;transform:translateY(8px);animation:heroStepIn 0.55s cubic-bezier(.2,.8,.2,1) forwards;}
+@keyframes heroStepIn{to{opacity:1;transform:none;}}
 
 @keyframes termPulse{0%,100%{opacity:1}50%{opacity:0.4}}
 @keyframes termBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
@@ -1061,7 +1061,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 
           <h1 class="term-big step" data-step="0.24">Harry <em>Hein.</em></h1>
           <div class="term-role step" data-step="0.30">Senior Product Designer</div>
-          <div class="term-dim step" data-step="0.36">7 yrs active · 50+ shipped · Based in Bangkok</div>
+          <div class="term-dim step" data-step="0.36">7 yrs active · 50+ features shipped · Based in Bangkok</div>
 
           <div class="term-sp"></div>
 
@@ -1143,64 +1143,40 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
     _dotResizeTimer = setTimeout(buildDots, 250);
   });
 
+  // Auto-play reveal on load (no scroll required). Stagger via CSS animation-delay
+  // computed from each step's data-step value. Pre-fill all typing texts.
   var steps = section.querySelectorAll('.step');
   var types = section.querySelectorAll('[data-type]');
-  var hint = document.getElementById('scrollHint');
-  var hintHidden = false;
 
+  steps.forEach(function(el){
+    var at = parseFloat(el.dataset.step) || 0;
+    el.style.animationDelay = (at * 1.4).toFixed(2) + 's';
+  });
+  types.forEach(function(el){
+    el.textContent = el.dataset.type;
+  });
+
+  // Disable mandatory scroll-snap while the hero is on-screen so visitors
+  // can freely scroll back to the top without snap-fighting.
   var html = document.documentElement;
-  function update(){
+  function syncSnap(){
     var rect = section.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var total = rect.height - vh;
-    var progress = Math.max(0, Math.min(1, -rect.top / total));
-
-    // Disable scroll-snap while hero is visible or nearby (so scrolling
-    // back up from projects isn't blocked by mandatory snap)
-    if (rect.bottom > -vh * 0.5) {
-      html.classList.add('hero-free');
-    } else {
-      html.classList.remove('hero-free');
-    }
-
-    steps.forEach(function(el){
-      var at = parseFloat(el.dataset.step);
-      if (progress >= at) el.classList.add('show');
-      else el.classList.remove('show');
-    });
-
-    types.forEach(function(el){
-      var start = parseFloat(el.dataset.start);
-      var end = parseFloat(el.dataset.end);
-      var text = el.dataset.type;
-      var cmd = el.closest('.term-cmd');
-      if (progress < start) {
-        el.textContent = '';
-        if (cmd) cmd.classList.remove('typing');
-      } else if (progress >= end) {
-        el.textContent = text;
-        if (cmd) cmd.classList.remove('typing');
-      } else {
-        var p = (progress - start) / (end - start);
-        el.textContent = text.substring(0, Math.ceil(text.length * p));
-        if (cmd) cmd.classList.add('typing');
-      }
-    });
-
-    if (hint) {
-      if (!hintHidden && progress > 0.03) {
-        hint.classList.add('hide');
-        hintHidden = true;
-      } else if (hintHidden && progress <= 0.005) {
-        hint.classList.remove('hide');
-        hintHidden = false;
-      }
-    }
+    if (rect.bottom > window.innerHeight * -0.3) html.classList.add('hero-free');
+    else html.classList.remove('hero-free');
   }
+  syncSnap();
+  window.addEventListener('scroll', syncSnap, { passive: true });
+  window.addEventListener('resize', syncSnap);
 
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  update();
+  // Fade scroll hint after the user starts scrolling
+  var hint = document.getElementById('scrollHint');
+  if (hint) {
+    var hideHint = function(){
+      hint.classList.add('hide');
+      window.removeEventListener('scroll', hideHint);
+    };
+    window.addEventListener('scroll', hideHint, { passive: true });
+  }
 })();
 </script>
 
@@ -1241,7 +1217,8 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
     <div class="fbt-heading">Case Studies</div>
   </div>
   <div class="filter-bar">
-    <button class="filter-btn active" data-filter="recommended">Recommended</button>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="recommended">Recommended</button>
     <button class="filter-btn" data-filter="saas">SaaS Design</button>
     <button class="filter-btn" data-filter="mobile">Mobile Design</button>
     <button class="filter-btn" data-filter="ai">AI Powered</button>
@@ -1256,9 +1233,10 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
     <div class="filter-nav-heading">Case<br>Studies</div>
   </div>
   <div class="filter-nav-divider"></div>
-  <div class="filter-nav-count"><span class="fn-num" id="filterCount">4</span><span class="fn-label">Projects</span></div>
+  <div class="filter-nav-count"><span class="fn-num" id="filterCount">10</span><span class="fn-label">Projects</span></div>
   <div class="filter-nav-items">
-    <button class="filter-btn active" data-filter="recommended">Recommended</button>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="recommended">Recommended</button>
     <button class="filter-btn" data-filter="saas">SaaS Design</button>
     <button class="filter-btn" data-filter="mobile">Mobile Design</button>
     <button class="filter-btn" data-filter="ai">AI Powered</button>
@@ -1271,7 +1249,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 <div class="projects" id="work">
 
   <!-- ── Project 00 — Po AI Intent Palette (Top · Recommended · SaaS) ── -->
-  <div class="project featured sr" data-project data-filters="recommended ai saas">
+  <div class="project featured sr" data-project data-filters="all recommended ai saas">
     <div class="proj-thumb">
       <video src="videos/po-ai/22-chain-restock.mp4" autoplay loop muted playsinline preload="auto" alt="Po AI — Speak, Don't Click."></video>
     </div>
@@ -1337,7 +1315,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   </div>
 
   <!-- ── Project 01 — Pharmacy POS ── -->
-  <div class="project featured sr" data-project data-filters="recommended saas">
+  <div class="project featured sr" data-project data-filters="all recommended saas">
     <div class="proj-thumb">
       <img src="images/ppos/New Payment Method.webp" alt="Two Stores. One System.">
     </div>
@@ -1399,7 +1377,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   </div>
 
   <!-- ── Project 01 — Golden Paths ── -->
-  <div class="project featured sr" data-project data-filters="recommended ai saas">
+  <div class="project featured sr" data-project data-filters="all recommended ai saas">
     <div class="proj-thumb">
       <video data-src="images/AI%20Test/Showing%20Results.mp4" autoplay loop muted playsinline preload="none" alt="11pm. One Demo. Zero Testers."></video>
     </div>
@@ -1463,7 +1441,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   </div>
 
   <!-- ── Project 02 — Resume Pipeline ── -->
-  <div class="project featured sr" data-project data-filters="ai saas">
+  <div class="project featured sr" data-project data-filters="all ai saas">
     <div class="proj-thumb">
       <video data-src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mp4" autoplay loop muted playsinline preload="none" alt="47 Applications. 2 Interviews."></video>
     </div>
@@ -1527,7 +1505,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   </div>
 
   <!-- ── Project 03 — Retail ── -->
-  <div class="project featured sr" data-project data-filters="recommended saas">
+  <div class="project featured sr" data-project data-filters="all recommended saas">
     <div class="proj-thumb">
       <img src="images/resume-builder-resources/retail-ui-final.webp" alt="From Feedback to 427% ROI" loading="lazy">
       <div class="thumb-stat">427%<span>ROI Achieved</span></div>
@@ -1591,7 +1569,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   </div>
 
   <!-- ── Project 04 — Dashboard ── -->
-  <div class="project featured sr" data-project data-filters="saas">
+  <div class="project featured sr" data-project data-filters="all saas">
     <div class="proj-thumb">
       <img src="images/dash-ui-new.webp" alt="Dashboard consolidation" loading="lazy">
       <div class="thumb-stat">0.5h<span>saved daily</span></div>
@@ -1667,7 +1645,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 <div class="projects projects-extra" id="projectsExtra">
 
   <!-- ── Project 05 — Multi-Level Design System ── -->
-  <div class="project sr" data-project data-filters="recommended design-system">
+  <div class="project sr" data-project data-filters="all recommended design-system">
     <div class="proj-thumb">
       <img src="images/DS/★ Showcase — Multi-Palette Demo.webp" alt="Multi-Palette Design System Demo" loading="lazy">
       <div class="thumb-stat">100%<span>Consistency</span></div>
@@ -1732,7 +1710,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   </div>
 
   <!-- ── Project 06 — Tokens ── -->
-  <div class="project sr" data-project data-filters="design-system">
+  <div class="project sr" data-project data-filters="all design-system">
     <div class="proj-thumb">
       <img src="images/coverphoto/4.svg" alt="Design Tokens Generator" loading="lazy">
       <div class="thumb-stat">50%<span>time cut</span></div>
@@ -1795,7 +1773,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   </div>
 
   <!-- ── Project 07 — Jar Aye Child App ── -->
-  <div class="project sr" data-project data-filters="mobile">
+  <div class="project sr" data-project data-filters="all mobile">
     <div class="proj-thumb">
       <video data-src="images/Jar%20Aye%20Child/HOTS.mp4" autoplay loop muted playsinline preload="none" alt="Jar Aye Child App"></video>
       <div class="thumb-stat">5<span>HOTS strategies</span></div>
@@ -1860,7 +1838,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   </div>
 
   <!-- ── Project 08 — Jar Aye Parent App ── -->
-  <div class="project sr" data-project data-filters="mobile">
+  <div class="project sr" data-project data-filters="all mobile">
     <div class="proj-thumb">
       <video data-src="images/Jar%20Aye%20Parent/Report.mp4" autoplay loop muted playsinline preload="none" alt="Jar Aye Parent App"></video>
       <div class="thumb-stat">4<span>mastery tiers</span></div>
@@ -2273,22 +2251,6 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
         <div><div class="testi-name">Ricky Aung</div><div class="testi-role">Product Manager, Veneurific</div></div>
       </div>
     </div>
-    <div class="testi-card sr sr-d2">
-      <div class="testi-mark">&ldquo;</div>
-      <p class="testi-text">An outstanding coworker with an entrepreneurial mindset and exceptional time management. Highly recommended for any business seeking new talent.</p>
-      <div class="testi-author">
-        <div class="testi-avatar">A</div>
-        <div><div class="testi-name">AP</div><div class="testi-role">Senior UI/UX Designer, Treedots</div></div>
-      </div>
-    </div>
-    <div class="testi-card sr sr-d3">
-      <div class="testi-mark">&ldquo;</div>
-      <p class="testi-text">Harry's mentorship is transformative. He elevates everyone around him and drives meaningful impact through design.</p>
-      <div class="testi-author">
-        <div class="testi-avatar">C</div>
-        <div><div class="testi-name">Community Member</div><div class="testi-role">Design Matters Community</div></div>
-      </div>
-    </div>
   </div>
 </div>
 </div><!-- end .testi-wrap -->
@@ -2342,6 +2304,13 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
 
 <footer>
   <span>&copy; 2026 Harry Hein</span>
+  <div class="footer-links">
+    <a href="mailto:kaungmyat9702@gmail.com">Email</a>
+    <span class="footer-sep">·</span>
+    <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" target="_blank" rel="noopener">LinkedIn</a>
+    <span class="footer-sep">·</span>
+    <a href="https://designer-os-test.vercel.app/resume/share/84rG99PQ" target="_blank" rel="noopener">Resume</a>
+  </div>
   <span>Designed & built with intention</span>
 </footer>
 
@@ -2471,7 +2440,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
   });
 
   // Apply default on load
-  applyFilter('recommended');
+  applyFilter('all');
 })();
 
 // ── Side Projects Section Navigation ──

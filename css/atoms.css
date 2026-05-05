@@ -161,11 +161,30 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
   border-top: 1px solid var(--cream-faint);
   font-family: var(--font-mono);
   font-size: 15px;
   color: var(--cream-dim);
   letter-spacing: 0.04em;
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.footer-links a {
+  color: var(--cream-dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--cream);
+  border-bottom-color: var(--cream-faint);
+}
+.footer-sep {
+  opacity: 0.4;
 }
 
 /* ─────────────────────────────────────
