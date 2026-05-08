@@ -84,8 +84,57 @@
 
 <div class="cs-page">
 
+  <!-- ══ TL;DR ══ -->
+  <section class="cs-section" id="tldr" aria-label="At a glance">
+    <div class="cs-section-num">At a glance · 60 seconds</div>
+    <h2 class="cs-h2">One brand-color change took two days. QA still missed 14 screens.</h2>
+    <div class="cs-tldr">
+      <div>
+        <p class="cs-tldr-lede">Three platforms (POS, Web, Mobile) drifted apart from one Figma file. I rebuilt the foundation with a three-tier token model and governance rules so a single change reached all three platforms in minutes — and stayed reached. Pairs with the <a href="case-study-tokens.html" style="color:var(--accent)">Tokens plugin</a> that ships these tokens to code, and powers the <a href="case-study-pharmacy-pos.html" style="color:var(--accent)">Pharmacy POS</a> rollout.</p>
+        <div class="cs-tldr-jump">
+          <a href="#problem">Problem</a>
+          <a href="#audit">Audit</a>
+          <a href="#strategy">Strategy</a>
+          <a href="#tokens">Tokens</a>
+          <a href="#governance">Governance</a>
+          <a href="#results">Results</a>
+        </div>
+      </div>
+      <div class="cs-tldr-grid">
+        <div class="cs-tldr-item">
+          <div class="l">Problem</div>
+          <div class="v">One Figma file, three platforms, infinite drift. A green change took 2 days; QA still broke.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Architecture</div>
+          <div class="v">Three-tier tokens — primitives → semantic → component. Zero ambiguity per layer.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Governance</div>
+          <div class="v">Naming contracts, deprecation paths, owner-per-tier. Rules that prevent regression after launch.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Surfaces</div>
+          <div class="v">100% consistency across POS, Web, Mobile. A green change ships once, lands everywhere.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Outcome</div>
+          <div class="v"><strong>70–90% faster handover.</strong> 3 platforms unified.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Lesson</div>
+          <div class="v">A design system isn't components — it's the contract that prevents drift after launch.</div>
+        </div>
+        <div class="cs-tldr-item" style="grid-column:1/-1">
+          <div class="l">Connects</div>
+          <div class="v">Defines semantics for the <a href="case-study-tokens.html" style="color:var(--accent)">Tokens export plugin</a>. Powers the <a href="case-study-pharmacy-pos.html" style="color:var(--accent)">Pharmacy POS</a> system (200+ screens).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ 01 — THE BREAKING POINT ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="problem">
     <div class="cs-section-num">01 — The Problem</div>
     <h2 class="cs-h2">The Breaking Point</h2>
 
@@ -102,7 +151,7 @@
   </section>
 
   <!-- ══ 02 — THE AUDIT ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="audit">
     <div class="cs-section-num">02 — Audit</div>
     <h2 class="cs-h2">What the Audit Revealed</h2>
 
@@ -156,7 +205,7 @@
   </section>
 
   <!-- ══ 03 — OLD VS NEW ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="strategy">
     <div class="cs-section-num">03 — Strategy</div>
     <h2 class="cs-h2">Old vs. New Mental Model</h2>
 
@@ -206,7 +255,7 @@
   </section>
 
   <!-- ══ 04 — TOKEN ARCHITECTURE ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="tokens">
     <div class="cs-section-num">04 — Token Architecture</div>
     <h2 class="cs-h2">Three Tiers. Zero Ambiguity.</h2>
 
@@ -265,7 +314,7 @@
   </section>
 
   <!-- ══ 07 — GOVERNANCE ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="governance">
     <div class="cs-section-num">07 — Governance</div>
     <h2 class="cs-h2">Rules That Prevent Drift</h2>
 
@@ -284,7 +333,7 @@
   </section>
 
   <!-- ══ 08 — BEFORE & AFTER ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="results">
     <div class="cs-section-num">08 — Results</div>
     <h2 class="cs-h2">Before & After</h2>
 

@@ -126,8 +126,57 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
 
 <div class="cs-page">
 
+  <!-- ══ TL;DR ══ -->
+  <section class="cs-section" id="tldr" aria-label="At a glance">
+    <div class="cs-section-num">At a glance · 60 seconds</div>
+    <h2 class="cs-h2">14 modules. 200+ screens. One designer.</h2>
+    <div class="cs-tldr">
+      <div>
+        <p class="cs-tldr-lede">A legacy pharmacy POS had to move from Windows to touchscreen across two store formats. I owned the system end-to-end — feature prioritization, user flows, 22 Figma files — and held the throughline so e-prescription, BNPL, and tender ops felt like one product. Built on the <a href="case-study-design-system.html" style="color:var(--accent)">Design System</a> work; shares a token vocabulary with the <a href="case-study-tokens.html" style="color:var(--accent)">Tokens plugin</a>.</p>
+        <div class="cs-tldr-jump">
+          <a href="#problem">Problem</a>
+          <a href="#discovery">Discovery</a>
+          <a href="#prioritization">Prioritization</a>
+          <a href="#flows">Flows</a>
+          <a href="#checkout">Checkout</a>
+          <a href="#impact">Impact</a>
+        </div>
+      </div>
+      <div class="cs-tldr-grid">
+        <div class="cs-tldr-item">
+          <div class="l">Problem</div>
+          <div class="v">Touchscreen migration with retail + pharmacy variants and a "rework trap" of half-built modules.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Method</div>
+          <div class="v">KPI-anchored prioritization — what we built first, what we deferred, why.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Surfaces</div>
+          <div class="v">Login → checkout → add → tender. Plus pharmacy-specific e-prescription and BNPL.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Architecture</div>
+          <div class="v">22 Figma files, one design language. Powered by upstream design-system tokens.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Outcome</div>
+          <div class="v"><strong>200+ screens shipped.</strong> Two stores live on one system.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Lesson</div>
+          <div class="v">Big systems fail at the seams. Spend extra on the verbs that bridge modules — login, checkout, tender.</div>
+        </div>
+        <div class="cs-tldr-item" style="grid-column:1/-1">
+          <div class="l">Connects</div>
+          <div class="v">Built on the <a href="case-study-design-system.html" style="color:var(--accent)">Raytail Design System</a>; shares a token vocabulary with the <a href="case-study-tokens.html" style="color:var(--accent)">Tokens plugin</a>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ 01 — PROBLEM ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="problem">
     <div class="cs-section-num">01 — The Problem</div>
     <h2 class="cs-h2">From Windows to Touchscreen</h2>
     <p class="cs-p">STO's pharmacy and supermarket chains were running on a legacy Windows-based POS. Clunky, mouse-driven, built for desktops — not for the fast-paced counter environment where every second counts.</p>
@@ -171,7 +220,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   </section>
 
   <!-- ══ 02 — PROCESS FIX ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="discovery">
     <div class="cs-section-num">02 — Discovery</div>
     <h2 class="cs-h2">The Rework Trap</h2>
     <p class="cs-p">Devs were building on designs the IS Team hadn't approved. Every module hit the same loop: build, review, rework. I mapped three workflows side by side — ideal, actual, and proposed — to make the waste visible. I then proposed putting Figma prototypes on the actual POS hardware — IS Team confirmed on the real device before any code was written.</p>
@@ -181,7 +230,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   </section>
 
   <!-- ══ FEATURE PRIORITIZATION ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="prioritization">
     <div class="cs-section-num">Feature Prioritization</div>
     <h2 class="cs-h2">What We Built First — and Why</h2>
     <p class="cs-p">With 14+ modules to design, I couldn't do everything at once. I prioritized based on business impact and operational dependency.</p>
@@ -217,7 +266,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   </section>
 
   <!-- ══ USER FLOWS (FigJam) ══ -->
-  <section class="cs-section" style="padding:0;max-width:none">
+  <section class="cs-section" id="flows" style="padding:0;max-width:none">
     <div style="padding:80px 32px 24px;max-width:800px;margin:0 auto">
       <div class="cs-section-num">User Flows</div>
       <h2 class="cs-h2">How It All Connects</h2>
@@ -251,7 +300,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   </section>
 
   <!-- ══ 05 — CHECKOUT ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="checkout">
     <div class="cs-section-num">05 — Checkout</div>
     <h2 class="cs-h2">The Central Hub</h2>
     <div class="cs-compare" data-compare>
@@ -466,7 +515,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   </section>
 
   <!-- ══ BUSINESS IMPACT ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="impact">
     <div class="cs-section-num">Business Impact</div>
     <h2 class="cs-h2">Measuring Against Our KPIs</h2>
     <p class="cs-p">At the start, we defined four success targets. Here's how the redesign delivered.</p>

@@ -1110,3 +1110,31 @@ a, button { cursor: none; }
   .cs-bento { padding: 12px; }
   .cs-title { font-size: clamp(28px, 8vw, 48px); }
 }
+
+/* ── TL;DR scan-overview block (top of every case study, hiring-manager-friendly) ── */
+.cs-tldr{margin-top:24px;padding:32px;background:linear-gradient(180deg,rgba(232,115,74,0.06),rgba(255,255,255,0.02));border:1px solid var(--glass-border);border-radius:22px;display:grid;grid-template-columns:1fr 1.6fr;gap:32px}
+.cs-tldr-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.cs-tldr-h{font-family:var(--font-serif);font-size:1.7rem;line-height:1.2;color:var(--cream);margin:0 0 12px}
+.cs-tldr-lede{font-size:0.95rem;line-height:1.6;color:var(--cream-dim)}
+.cs-tldr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-content:start}
+.cs-tldr-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;transition:transform 0.18s,border-color 0.18s}
+.cs-tldr-item:hover{transform:translateY(-2px);border-color:rgba(232,115,74,0.25)}
+.cs-tldr-item .l{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)}
+.cs-tldr-item .v{font-size:0.92rem;color:var(--cream);line-height:1.4}
+.cs-tldr-item .v strong{color:var(--cream);font-weight:600}
+.cs-tldr-jump{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.cs-tldr-jump a{font-family:var(--font-mono);font-size:11px;color:var(--cream-dim);text-decoration:none;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 12px;border-radius:999px;letter-spacing:0.04em;transition:color 0.15s,border-color 0.15s,background 0.15s}
+.cs-tldr-jump a:hover{color:var(--accent);border-color:rgba(232,115,74,0.35);background:rgba(232,115,74,0.05)}
+.cs-tldr-jump a::before{content:"# ";color:var(--accent)}
+@media(max-width:900px){.cs-tldr{grid-template-columns:1fr;padding:24px;gap:20px}.cs-tldr-grid{grid-template-columns:1fr}}
+
+/* ── Accordion: brief copy upfront, detail tucked under summary ── */
+.cs-acc{margin-top:24px;border:1px solid var(--glass-border);border-radius:14px;background:rgba(255,255,255,0.02);overflow:hidden;transition:border-color 0.2s}
+.cs-acc[open]{border-color:rgba(232,115,74,0.25);background:rgba(232,115,74,0.03)}
+.cs-acc>summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream-dim);transition:color 0.18s}
+.cs-acc>summary::-webkit-details-marker{display:none}
+.cs-acc>summary:hover{color:var(--accent)}
+.cs-acc>summary::after{content:"+";font-family:var(--font-mono);font-size:18px;font-weight:300;color:var(--accent);transition:transform 0.25s ease}
+.cs-acc[open]>summary::after{content:"−"}
+.cs-acc-body{padding:6px 18px 22px;border-top:1px solid var(--glass-border);animation:cs-acc-fade 0.28s ease}
+@keyframes cs-acc-fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}

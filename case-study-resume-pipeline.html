@@ -113,8 +113,53 @@
 
 <div class="cs-page">
 
+  <!-- ══ TL;DR ══ -->
+  <section class="cs-section" id="tldr" aria-label="At a glance">
+    <div class="cs-section-num">At a glance · 60 seconds</div>
+    <h2 class="cs-h2">Six weeks. 47 applications. Two callbacks.</h2>
+    <div class="cs-tldr">
+      <div>
+        <p class="cs-tldr-lede">I was tailoring resumes manually in Google Docs and ChatGPT — 40 minutes per JD, generic output, no signal. I rebuilt the workflow as a structured pipeline: paste JD → gap analysis → tailored resume + cover letter, in 15 minutes.</p>
+        <div class="cs-tldr-jump">
+          <a href="#problem">Problem</a>
+          <a href="#research">Research</a>
+          <a href="#bet">Bet</a>
+          <a href="#build">Build</a>
+          <a href="#before-after">Before/After</a>
+          <a href="#lessons">Lessons</a>
+        </div>
+      </div>
+      <div class="cs-tldr-grid">
+        <div class="cs-tldr-item">
+          <div class="l">Problem</div>
+          <div class="v">40 min/app, 4 tools, generic copy. The spreadsheet had 47 rows; 2 were green.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Bet</div>
+          <div class="v">Treat the resume as a living argument. Every JD is a new brief.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Pipeline</div>
+          <div class="v">Paste → analyze gaps → rewrite → export. Vibe-code first, design system second.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Decisions</div>
+          <div class="v">Four deliberate trade-offs + one honest mistake — documented inline, not buried in a retro doc.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Outcome</div>
+          <div class="v"><strong>40 min → 15 min</strong> per app. Cover letter under 5 minutes. Callbacks started.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Lesson</div>
+          <div class="v">When the bottleneck is your own labour, ship the tool you'd hate to live without.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════════════ 01 — THE NIGHTLY RITUAL ════════════════ -->
-  <section class="cs-section">
+  <section class="cs-section" id="problem">
     <div class="cs-section-num">01 -- The Nightly Ritual</div>
     <h2 class="cs-h2">Six weeks in. The spreadsheet had 47 rows. Two were highlighted green.</h2>
     <p class="cs-p">Every evening, Sarah opened a new Google Doc, pasted the job description, and manually highlighted keywords she needed to match. Then she switched to ChatGPT for generic rewrites that never sounded like her. Resume v47 was still fundamentally the same document as v1. Every application started from scratch. No memory of what worked. No pattern from the 46 that didn't land.</p>
@@ -130,7 +175,7 @@
   </section>
 
   <!-- ════════════════ 02 — RESEARCH ════════════════ -->
-  <section class="cs-section">
+  <section class="cs-section" id="research">
     <div class="cs-section-num">02 -- What 12 Designers Said</div>
     <h2 class="cs-h2">Semi-structured interviews. 3 to 8 years experience.</h2>
     <p class="cs-p">I spoke with 12 product designers between January and February 2026 about their job application process. The conversations revealed three consistent patterns that shaped every downstream design decision.</p>
@@ -175,7 +220,7 @@
   </section>
 
   <!-- ════════════════ 03 — THE CORE BET ════════════════ -->
-  <section class="cs-section">
+  <section class="cs-section" id="bet">
     <div class="cs-section-num">03 -- The Core Bet</div>
     <h2 class="cs-h2">Treat the resume as a living argument. Every JD is a new brief.</h2>
     <p class="cs-p">If AI can analyze a job description against the designer's actual resume data -- surface gaps, rank them by impact, and generate rewrite-ready suggestions -- the designer gets intelligence instead of guesswork. Build the engine once. Run it for every application.</p>
@@ -228,7 +273,7 @@
   </section>
 
   <!-- ════════════════ 04 — HOW IT WAS BUILT ════════════════ -->
-  <section class="cs-section">
+  <section class="cs-section" id="build">
     <div class="cs-section-num">04 -- How It Was Built</div>
     <h2 class="cs-h2">Vibe code first. Design system second. Test throughout.</h2>
     <p class="cs-p">The build process followed a deliberate sequence designed to validate logic before committing to pixels. Start with a working proof of concept through conversational coding with Claude, then sync design variables from the codebase as Figma tokens so design and code stay in lockstep.</p>
@@ -337,7 +382,7 @@
   </section>
 
   <!-- ════════════════ 08 — BEFORE & AFTER ════════════════ -->
-  <section class="cs-section">
+  <section class="cs-section" id="before-after">
     <div class="cs-section-num">08 -- Before &amp; After</div>
     <h2 class="cs-h2">From forty minutes of guesswork to fifteen minutes of intelligence.</h2>
 
@@ -384,7 +429,7 @@
   </section>
 
   <!-- ════════════════ 11 — LESSONS ════════════════ -->
-  <section class="cs-section">
+  <section class="cs-section" id="lessons">
     <div class="cs-section-num">11 -- What This Taught Me</div>
     <h2 class="cs-h2">Four lessons from building the resume pipeline.</h2>
 

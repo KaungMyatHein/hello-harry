@@ -313,13 +313,13 @@ html, body { height: 100%; background: var(--dark); color: var(--cream); overflo
   <!-- ══ LEFT PANEL ══ -->
   <aside class="csp-left">
     <a href="portfolio.html" class="cs-back-left">← Back</a>
-    <div class="csp-eyebrow">Side Project</div>
+    <div class="csp-eyebrow">Design Pipeline Experiment</div>
     <h1 class="csp-title">Orchestra</h1>
-    <p class="csp-sub">Exploring visual composition without a brief.</p>
+    <p class="csp-sub">Skip the handoff. Ship from canvas.</p>
     <div class="csp-tags">
-      <span class="csp-tag">Visual Design</span>
       <span class="csp-tag">Figma Sites</span>
-      <span class="csp-tag">Concept</span>
+      <span class="csp-tag">Design Tokens</span>
+      <span class="csp-tag">Design-to-Dev</span>
       <span class="csp-tag">2025</span>
     </div>
     <div class="csp-meta">
@@ -333,7 +333,7 @@ html, body { height: 100%; background: var(--dark); color: var(--cream); overflo
       </div>
       <div class="csp-meta-row">
         <span class="csp-meta-label">Type</span>
-        <span class="csp-meta-val">Design Exploration</span>
+        <span class="csp-meta-val">Pipeline Experiment</span>
       </div>
     </div>
     <a href="https://orchestra.figma.site/" target="_blank" class="csp-cta">Visit Site →</a>
@@ -343,102 +343,189 @@ html, body { height: 100%; background: var(--dark); color: var(--cream); overflo
   <!-- ══ RIGHT PANEL ══ -->
   <main class="csp-right" id="cspRight">
 
-    <!-- ── Section 1: The Concept ── -->
-    <section class="csp-section">
-      <!-- Subtle purple/blue glow -->
-      <div class="csp-glow csp-glow-purple" style="width:420px;height:420px;top:-120px;right:-100px;opacity:0.14;"></div>
-      <div class="csp-glow csp-glow-blue"   style="width:280px;height:280px;bottom:-80px;left:-60px;opacity:0.10;"></div>
-      <div class="csp-section-inner">
-        <div class="csp-section-label">01 — Concept</div>
-        <h2 class="csp-h2">Design Without<br>a Client</h2>
-        <p class="csp-p">Most of my work is constrained by business requirements, technical limitations, and stakeholder consensus. Orchestra was a deliberate break — a space to explore visual composition for its own sake.</p>
-        <p class="csp-p">No deliverable other than: does this feel right?</p>
-
-        <div class="csp-quote-card">
-          <p>"Good designers know the rules. Great designers know when the rules are the constraint."</p>
+    <!-- ── Section 0: TL;DR (scan-overview) ── -->
+    <section class="csp-section" id="tldr" aria-label="At a glance">
+      <div class="csp-glow csp-glow-purple" style="width:420px;height:420px;top:-120px;right:-100px;opacity:0.12;"></div>
+      <div class="csp-section-inner" style="max-width:1100px">
+        <div class="csp-section-label">At a glance · 60 seconds</div>
+        <h2 class="csp-h2" style="font-size:clamp(28px,3.6vw,40px)">Skip the handoff.<br>Ship from canvas.</h2>
+        <div class="cs-tldr" style="margin-top:24px">
+          <div>
+            <p class="cs-tldr-lede">Most design-to-dev loses intent at the seam — the handoff. Orchestra removes the seam: I authored composition primitives (rhythm, weight, whitespace) directly in Figma Sites and shipped the canvas itself as the live site. Same canvas-as-source ethos as the <a href="case-study-tokens.html" style="color:var(--accent)">Tokens plugin</a>; same composition discipline as the <a href="case-study-design-system.html" style="color:var(--accent)">Design System</a> work — applied to publishing instead of components.</p>
+            <div class="cs-tldr-jump">
+              <a href="#problem">Problem</a>
+              <a href="#approach">Approach</a>
+              <a href="#composition">Composition</a>
+              <a href="#publishing">Publishing</a>
+              <a href="#reflection">Reflection</a>
+            </div>
+          </div>
+          <div class="cs-tldr-grid">
+            <div class="cs-tldr-item">
+              <div class="l">Problem</div>
+              <div class="v">Design-to-dev handoffs translate intent into ambiguity. Tokens help; layout still leaks.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Approach</div>
+              <div class="v">Eliminate the handoff. Canvas is the source. Publish to live URL with one action.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Composition</div>
+              <div class="v">Three reusable primitives — Rhythm, Weight, Whitespace — as the design language.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Trade-off</div>
+              <div class="v">Zero translation loss, but constrained type/layout primitives. I took the trade.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Outcome</div>
+              <div class="v">Live at <strong>orchestra.figma.site</strong>. The page is the file.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Lesson</div>
+              <div class="v">When the handoff itself is the bug, no translator can fix it — collapse the layers.</div>
+            </div>
+            <div class="cs-tldr-item" style="grid-column:1/-1">
+              <div class="l">Connects</div>
+              <div class="v">Same canvas-as-source ethos as <a href="case-study-tokens.html" style="color:var(--accent)">Tokens</a>; same composition discipline as <a href="case-study-design-system.html" style="color:var(--accent)">Design System</a> — applied to publishing.</div>
+            </div>
+          </div>
         </div>
-
-        <div class="csp-rule"></div>
-        <p class="csp-p" style="font-size:14px;">The name came from the idea of multiple elements — type, space, weight — performing in relation to each other. A page is a composition. Every choice affects every other.</p>
       </div>
     </section>
 
-    <!-- ── Section 2: Composition ── -->
-    <section class="csp-section">
+    <!-- ── Section 1: The Problem ── -->
+    <section class="csp-section" id="problem">
+      <div class="csp-glow csp-glow-purple" style="width:420px;height:420px;top:-120px;right:-100px;opacity:0.14;"></div>
+      <div class="csp-glow csp-glow-blue"   style="width:280px;height:280px;bottom:-80px;left:-60px;opacity:0.10;"></div>
+      <div class="csp-section-inner">
+        <div class="csp-section-label">01 — The Handoff Tax</div>
+        <h2 class="csp-h2">Every Handoff<br>Loses Intent.</h2>
+        <p class="csp-p">A design system reduces the loss. A token pipeline reduces it more. But layout — the relationship between elements — still leaks at the seam between Figma and code. A spacing decision becomes "8 or 12, eyeballed." A weight contrast becomes "close enough."</p>
+        <p class="csp-p">The <a href="case-study-design-system.html" style="color:var(--accent);text-decoration:underline">Design System</a> work fixes the vocabulary. The <a href="case-study-tokens.html" style="color:var(--accent);text-decoration:underline">Tokens plugin</a> ships that vocabulary to code. Orchestra goes one layer further: it asks what happens when the canvas itself is the published artifact — no exporter in between.</p>
+
+        <div class="csp-quote-card">
+          <p>"The handoff isn't where the bug lives. The handoff IS the bug."</p>
+        </div>
+
+        <div class="csp-rule"></div>
+        <p class="csp-p" style="font-size:14px;">Orchestra is named for the relationship between elements — type, space, weight — performing together. Compositions don't survive translation. So I stopped translating.</p>
+      </div>
+    </section>
+
+    <!-- ── Section 2: Approach (canvas-as-source) ── -->
+    <section class="csp-section" id="approach">
+      <div class="csp-glow csp-glow-blue" style="width:350px;height:350px;top:-100px;left:-80px;opacity:0.10;"></div>
+      <div class="csp-section-inner">
+        <div class="csp-section-label">02 — Canvas Is the Source</div>
+        <h2 class="csp-h2">Tokens Flow In.<br>The Site Flows Out.</h2>
+        <p class="csp-p">Same logic as the <a href="case-study-tokens.html" style="color:var(--accent);text-decoration:underline">Tokens plugin</a> — the canvas owns the truth — applied to publishing instead of components. I authored everything in Figma Sites: variables, type ramps, spacing scales, layout primitives. Then published the canvas as the live URL. No exporter, no developer-facing JSON, no translation step.</p>
+        <p class="csp-p">What I designed is what shipped. Pixel-for-pixel. Token-for-token.</p>
+
+        <div class="csp-verdict-pair">
+          <div class="csp-verdict good">
+            <div class="csp-verdict-label">Pipeline collapse</div>
+            <ul class="csp-verdict-list">
+              <li>Variables stay variables — not "approximate values"</li>
+              <li>Spacing tokens stay exact through publish</li>
+              <li>One round-trip: canvas edit → live URL</li>
+            </ul>
+          </div>
+          <div class="csp-verdict limit">
+            <div class="csp-verdict-label">The trade</div>
+            <ul class="csp-verdict-list">
+              <li>Type roster is constrained to Figma's web-safe set</li>
+              <li>No bespoke interaction logic — only declarative state</li>
+              <li>Rich media (video, embeds) needs workarounds</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Section 3: Composition primitives as design language ── -->
+    <section class="csp-section" id="composition">
       <div class="csp-glow csp-glow-purple" style="width:300px;height:300px;bottom:-80px;right:-60px;opacity:0.10;"></div>
       <div class="csp-section-inner">
-        <div class="csp-section-label">02 — Composition</div>
-        <h2 class="csp-h2">Rhythm, Weight,<br>and Whitespace</h2>
-        <p class="csp-p">The project focused on three compositional principles I wanted to internalise. Not as theory — as felt practice. I worked through dozens of variations before each one clicked.</p>
+        <div class="csp-section-label">03 — Composition Primitives</div>
+        <h2 class="csp-h2">Rhythm, Weight,<br>Whitespace as Tokens.</h2>
+        <p class="csp-p">If the canvas is the source, the design language has to be tokenised the same way colors and spacing already are. I codified three primitives — not as theory, as reusable canvas patterns. Each one works the way a semantic token works in the <a href="case-study-design-system.html" style="color:var(--accent);text-decoration:underline">Design System</a>: composable, named, swappable.</p>
 
         <div class="csp-comp-grid">
           <div class="csp-comp-card">
             <div class="csp-comp-accent-bar"></div>
             <div class="csp-comp-name">Rhythm</div>
-            <div class="csp-comp-body">Consistent vertical cadence creates readability without explicit grids.</div>
+            <div class="csp-comp-body">A vertical cadence token — applied across sections so spacing reads as intentional, not arbitrary.</div>
           </div>
           <div class="csp-comp-card">
             <div class="csp-comp-accent-bar" style="background: rgba(123,107,158,0.7);"></div>
             <div class="csp-comp-name">Weight</div>
-            <div class="csp-comp-body">Contrast in size and tone guides attention without arrows or labels.</div>
+            <div class="csp-comp-body">Type-size + tone pairings as a single decision. Hierarchy without arrows or labels.</div>
           </div>
           <div class="csp-comp-card">
             <div class="csp-comp-accent-bar" style="background: rgba(74,110,158,0.7);"></div>
             <div class="csp-comp-name">Whitespace</div>
-            <div class="csp-comp-body">Empty space is a design element, not absence of design.</div>
+            <div class="csp-comp-body">Negative space sized in tokens, not vibes. Empty space is a design element, not absence.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Section 3: Figma Sites ── -->
-    <section class="csp-section">
+    <!-- ── Section 4: Publishing — the design IS the code ── -->
+    <section class="csp-section" id="publishing">
       <div class="csp-glow csp-glow-blue" style="width:350px;height:350px;top:-100px;left:-80px;opacity:0.10;"></div>
       <div class="csp-section-inner">
-        <div class="csp-section-label">03 — Publishing</div>
-        <h2 class="csp-h2">The Design IS<br>the Code</h2>
-        <p class="csp-p">Orchestra was built and published entirely inside Figma Sites — no export, no handoff, no developer. Figma Sites let me publish directly from the canvas, which meant the design intent was preserved 1:1.</p>
-        <p class="csp-p">No translation loss. What I designed was what shipped.</p>
+        <div class="csp-section-label">04 — Publishing</div>
+        <h2 class="csp-h2">The Design IS<br>the Code.</h2>
+        <p class="csp-p">There is no exporter. There is no GitHub. There is no developer reading my Figma comments and approximating them in TSX. The canvas, with its variables and tokens intact, is what serves at the URL.</p>
+        <p class="csp-p">It's a smaller pipeline than what shipped Pharmacy POS or the Raytail Design System — but it's the only one with zero translation loss. For a site whose whole point is composition, that's the right trade.</p>
 
         <div class="csp-verdict-pair">
           <div class="csp-verdict good">
             <div class="csp-verdict-label">What worked</div>
             <ul class="csp-verdict-list">
-              <li>Direct publish from canvas</li>
-              <li>Zero translation loss in output</li>
-              <li>Instant iteration — change, publish, done</li>
+              <li>Edit-to-live cycle measured in seconds, not sprints</li>
+              <li>Token integrity preserved end-to-end</li>
+              <li>Composition decisions reach users intact</li>
             </ul>
           </div>
           <div class="csp-verdict limit">
-            <div class="csp-verdict-label">The limits</div>
+            <div class="csp-verdict-label">When it doesn't fit</div>
             <ul class="csp-verdict-list">
-              <li>No custom interaction logic</li>
-              <li>Font choices are constrained</li>
-              <li>Can't embed video or rich media</li>
+              <li>Anything that needs auth, state, or backend</li>
+              <li>Multi-platform (web + iOS + Android) — use the <a href="case-study-tokens.html" style="color:var(--accent);text-decoration:underline">Tokens plugin</a> instead</li>
+              <li>Sites with bespoke interaction systems</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Section 4: Reflection ── -->
-    <section class="csp-section">
+    <!-- ── Section 5: Reflection ── -->
+    <section class="csp-section" id="reflection">
       <div class="csp-glow csp-glow-purple" style="width:380px;height:380px;top:-100px;right:-80px;opacity:0.13;"></div>
       <div class="csp-glow csp-glow-accent" style="width:200px;height:200px;bottom:-60px;left:40px;opacity:0.08;"></div>
       <div class="csp-section-inner">
-        <div class="csp-section-label">04 — Reflection</div>
-        <h2 class="csp-h2">What It<br>Gave Me Back</h2>
-        <p class="csp-p">Side projects without clients teach you what you actually believe about design — not what you've been told to believe. Orchestra reminded me that restraint is a skill.</p>
-        <p class="csp-p">The best compositions I made were the ones with the fewest elements.</p>
+        <div class="csp-section-label">05 — Reflection</div>
+        <h2 class="csp-h2">Where Orchestra<br>Sits in the Pipeline.</h2>
+        <p class="csp-p">Orchestra is one of three pieces I treat as a single arc on design-to-dev. Each one solves a different part of the same problem: <em>how does design intent reach users without losing itself in translation?</em></p>
 
         <div class="csp-lessons">
           <div class="csp-lesson">
-            <div class="csp-lesson-num">01 — Constraints reveal taste.</div>
-            <div class="csp-lesson-body">Without a brief, your aesthetic defaults are exposed. I discovered I lean toward severe typographic hierarchy and generous negative space. That's useful to know about yourself.</div>
+            <div class="csp-lesson-num">01 — <a href="case-study-design-system.html" style="color:var(--cream);text-decoration:underline">Design System</a> defines the vocabulary.</div>
+            <div class="csp-lesson-body">Three-tier tokens (primitives → semantic → component) and governance rules that prevent drift. This is the <em>shared language</em> the other two pieces depend on.</div>
           </div>
           <div class="csp-lesson">
-            <div class="csp-lesson-num">02 — Process without pressure is underrated.</div>
-            <div class="csp-lesson-body">The absence of a deadline produced more considered decisions. Not every project should move fast. Some things only become clear when you're not rushing toward a handoff.</div>
+            <div class="csp-lesson-num">02 — <a href="case-study-tokens.html" style="color:var(--cream);text-decoration:underline">Tokens plugin</a> ships that language to code.</div>
+            <div class="csp-lesson-body">Six platform formats from one source. The pipeline that lets a multi-platform team consume design decisions without manual translation.</div>
+          </div>
+          <div class="csp-lesson">
+            <div class="csp-lesson-num">03 — Orchestra collapses the pipeline entirely.</div>
+            <div class="csp-lesson-body">For surfaces where the composition <em>is</em> the product — marketing sites, manifestos, design portfolios — the right pipeline is no pipeline. Canvas to URL, single action.</div>
+          </div>
+          <div class="csp-lesson">
+            <div class="csp-lesson-num">04 — Pick the smallest pipeline that survives the constraint.</div>
+            <div class="csp-lesson-body">Multi-platform product? Tokens plugin. Three platforms with shared library? Design System. Single canvas-driven site? Orchestra. The lesson isn't "always collapse" — it's "every translation step is a place intent goes to die." Use the fewest you can get away with.</div>
           </div>
         </div>
       </div>

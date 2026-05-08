@@ -84,8 +84,57 @@
 
 <div class="cs-page">
 
+  <!-- ══ TL;DR ══ -->
+  <section class="cs-section" id="tldr" aria-label="At a glance">
+    <div class="cs-section-num">At a glance · 60 seconds</div>
+    <h2 class="cs-h2">One variable. Six names. Zero sync.</h2>
+    <div class="cs-tldr">
+      <div>
+        <p class="cs-tldr-lede">The same color was called six different things across Figma, iOS, Android, Web, Tailwind, and JSON. Devs paid 2–3 hours per release. I built a Figma plugin that owns the export — four stages, zero manual translation. Pairs with the <a href="case-study-design-system.html" style="color:var(--accent)">Design System</a> work that defines token semantics upstream.</p>
+        <div class="cs-tldr-jump">
+          <a href="#problem">Problem</a>
+          <a href="#research">Research</a>
+          <a href="#strategy">Strategy</a>
+          <a href="#design">Design</a>
+          <a href="#solution">Solution</a>
+          <a href="#results">Results</a>
+        </div>
+      </div>
+      <div class="cs-tldr-grid">
+        <div class="cs-tldr-item">
+          <div class="l">Problem</div>
+          <div class="v">Token names diverged across 6 code targets. Devs paid the tax every release.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Strategy</div>
+          <div class="v">Four jobs — pick variables, name them, transform them, ship them. One panel, no swiveling.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Decision</div>
+          <div class="v">Plugin owns the round-trip. Designers never touch raw JSON; devs never rename.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Surfaces</div>
+          <div class="v">6 platform formats from one source. Every decision visible in one panel.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Outcome</div>
+          <div class="v"><strong>50% faster export.</strong> ~100% naming-error reduction.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Lesson</div>
+          <div class="v">When two roles disagree on a name, build the tool that makes the name irrelevant.</div>
+        </div>
+        <div class="cs-tldr-item" style="grid-column:1/-1">
+          <div class="l">Connects</div>
+          <div class="v">Receives semantics from the <a href="case-study-design-system.html" style="color:var(--accent)">Design System</a>. Same canvas-as-source ethos shows up in <a href="case-study-orchestra.html" style="color:var(--accent)">Orchestra</a>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ 01 — THE PROBLEM ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="problem">
     <div class="cs-section-num">01 — The Problem</div>
     <h2 class="cs-h2">One Variable. Six Names. Zero Sync.</h2>
 
@@ -101,7 +150,7 @@
   </section>
 
   <!-- ══ 02 — DISCOVERY ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="research">
     <div class="cs-section-num">02 — Research</div>
     <h2 class="cs-h2">The Discovery</h2>
 
@@ -148,7 +197,7 @@
   </section>
 
   <!-- ══ 03 — FOUR CORE JOBS ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="strategy">
     <div class="cs-section-num">03 — Strategy</div>
     <h2 class="cs-h2">Four Core Jobs</h2>
 
@@ -198,7 +247,7 @@
   </section>
 
   <!-- ══ 04 — PLUGIN ARCHITECTURE ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="design">
     <div class="cs-section-num">04 — Design</div>
     <h2 class="cs-h2">Four Stages. Zero Manual Translation.</h2>
 
@@ -244,7 +293,7 @@
   </section>
 
   <!-- ══ 05 — SMART CONTROLS ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="solution">
     <div class="cs-section-num">05 — Solution</div>
     <h2 class="cs-h2">Every Decision in One Panel</h2>
 
@@ -263,7 +312,7 @@
   </section>
 
   <!-- ══ 06 — BEFORE & AFTER ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="results">
     <div class="cs-section-num">06 — Results</div>
     <h2 class="cs-h2">Before & After</h2>
 

@@ -361,8 +361,55 @@ html, body { height: 100%; background: var(--dark); color: var(--cream); overflo
   <!-- ══ RIGHT PANEL ══ -->
   <main class="csp-right" id="cspRight">
 
+    <!-- ── Section 0: TL;DR (scan-overview) ── -->
+    <section class="csp-section" id="tldr" aria-label="At a glance">
+      <div class="csp-glow csp-glow-accent" style="width:400px;height:400px;top:-120px;right:-80px;opacity:0.12;"></div>
+      <div class="csp-section-inner" style="max-width:1100px">
+        <div class="csp-section-label">At a glance · 60 seconds</div>
+        <h2 class="csp-h2" style="font-size:clamp(28px,3.6vw,40px)">Design vocabulary, free,<br>in two languages.</h2>
+        <div class="cs-tldr" style="margin-top:24px">
+          <div>
+            <p class="cs-tldr-lede">I learned design in two languages and noticed the gap — Myanmar designers ship without the words. So I built a flash-card app for design vocabulary, side-project speed, Next.js + Vercel weekend.</p>
+            <div class="cs-tldr-jump">
+              <a href="#origin">Origin</a>
+              <a href="#problem">Problem</a>
+              <a href="#design">Design</a>
+              <a href="#build">Build</a>
+              <a href="#reflection">Reflection</a>
+            </div>
+          </div>
+          <div class="cs-tldr-grid">
+            <div class="cs-tldr-item">
+              <div class="l">Problem</div>
+              <div class="v">Design vocabulary is gatekept by language and price. Passive learning doesn't stick.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Bet</div>
+              <div class="v">Learning design should be free. One card, two languages, one concept.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Build</div>
+              <div class="v">Next.js + Vercel in a weekend. Ship before doubt sets in.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Surface</div>
+              <div class="v">Card-flip mechanic — the simplest active-recall loop possible.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Outcome</div>
+              <div class="v">Live, free, used by Myanmar design students.</div>
+            </div>
+            <div class="cs-tldr-item">
+              <div class="l">Lesson</div>
+              <div class="v">Side projects let you ship the conviction your day job can't justify.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Section 1: The Idea ── -->
-    <section class="csp-section">
+    <section class="csp-section" id="origin">
       <!-- Glow top-right -->
       <div class="csp-glow csp-glow-accent" style="width:400px;height:400px;top:-120px;right:-80px;"></div>
       <div class="csp-section-inner">
@@ -391,7 +438,7 @@ html, body { height: 100%; background: var(--dark); color: var(--cream); overflo
     </section>
 
     <!-- ── Section 2: The Problem ── -->
-    <section class="csp-section">
+    <section class="csp-section" id="problem">
       <div class="csp-glow csp-glow-blue" style="width:300px;height:300px;bottom:-60px;left:-40px;opacity:0.12;"></div>
       <div class="csp-section-inner">
         <div class="csp-section-label">02 — Problem</div>
@@ -420,7 +467,7 @@ html, body { height: 100%; background: var(--dark); color: var(--cream); overflo
     </section>
 
     <!-- ── Section 3: The Design ── -->
-    <section class="csp-section">
+    <section class="csp-section" id="design">
       <div class="csp-glow csp-glow-accent" style="width:250px;height:250px;top:50%;right:-60px;transform:translateY(-50%);opacity:0.1;"></div>
       <div class="csp-section-inner">
         <div class="csp-section-label">03 — Design</div>
@@ -437,7 +484,7 @@ html, body { height: 100%; background: var(--dark); color: var(--cream); overflo
     </section>
 
     <!-- ── Section 4: The Build ── -->
-    <section class="csp-section">
+    <section class="csp-section" id="build">
       <div class="csp-glow csp-glow-green" style="width:280px;height:280px;bottom:-80px;right:-40px;opacity:0.1;"></div>
       <div class="csp-section-inner">
         <div class="csp-section-label">04 — Build</div>
@@ -457,7 +504,7 @@ html, body { height: 100%; background: var(--dark); color: var(--cream); overflo
     </section>
 
     <!-- ── Section 5: Reflection ── -->
-    <section class="csp-section">
+    <section class="csp-section" id="reflection">
       <div class="csp-glow csp-glow-accent" style="width:350px;height:350px;top:-100px;left:-80px;opacity:0.12;"></div>
       <div class="csp-glow csp-glow-green" style="width:200px;height:200px;bottom:-60px;right:40px;opacity:0.08;"></div>
       <div class="csp-section-inner">

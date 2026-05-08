@@ -99,15 +99,15 @@
 .cs-code .h{color:var(--cream)}
 
 /* ── Cascade table ── */
-.cs-cascade{display:grid;grid-template-columns:48px 1fr 1fr;gap:0;margin:24px 0;border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;background:var(--glass-bg)}
+.cs-cascade{display:grid;grid-template-columns:minmax(140px,180px) minmax(0,1.2fr) minmax(0,1.4fr);gap:0;margin:24px 0;border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;background:var(--glass-bg)}
 .cs-cascade-head{background:rgba(255,255,255,0.04);font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-dim);padding:14px 16px;border-bottom:1px solid var(--glass-border)}
 .cs-cascade-row{display:contents}
-.cs-cascade-row > div{padding:14px 16px;border-bottom:1px solid var(--glass-border);display:flex;align-items:center}
+.cs-cascade-row > div{padding:14px 16px;border-bottom:1px solid var(--glass-border);display:flex;align-items:center;min-width:0;word-break:break-word}
 .cs-cascade-row:last-child > div{border-bottom:none}
-.cs-cascade-num{font-family:var(--font-mono);color:var(--accent);font-size:0.9rem;justify-content:center}
-.cs-cascade-rule{color:var(--cream);font-family:var(--font-mono);font-size:0.85rem}
+.cs-cascade-num{font-family:var(--font-mono);color:var(--accent);font-size:0.82rem;letter-spacing:0.04em;line-height:1.3}
+.cs-cascade-rule{color:var(--cream);font-family:var(--font-mono);font-size:0.85rem;word-break:break-all}
 .cs-cascade-out{color:var(--cream-dim);font-size:0.9rem}
-@media(max-width:768px){.cs-cascade{grid-template-columns:40px 1fr}.cs-cascade-out{display:none!important}}
+@media(max-width:768px){.cs-cascade{grid-template-columns:minmax(96px,128px) 1fr}.cs-cascade-head:nth-child(3),.cs-cascade-out{display:none!important}.cs-cascade-head,.cs-cascade-row > div{padding:10px 12px}.cs-cascade-num{font-size:0.72rem}.cs-cascade-rule{font-size:0.78rem}}
 
 /* ── Intent inventory chips ── */
 .cs-intent-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:20px}
@@ -244,6 +244,23 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
 .cs-funnel-arrow{display:flex;align-items:center;justify-content:center;color:var(--cream-dim);font-family:var(--font-mono);font-size:1.1rem;opacity:0.5}
 @media(max-width:768px){.cs-funnel{grid-template-columns:1fr 1fr;gap:14px;padding:16px}.cs-funnel-arrow{display:none}}
 
+/* ── TL;DR scan-overview (top of page, hiring-manager-friendly) ── */
+.cs-tldr{margin-top:24px;padding:32px;background:linear-gradient(180deg,rgba(232,115,74,0.06),rgba(255,255,255,0.02));border:1px solid var(--glass-border);border-radius:22px;display:grid;grid-template-columns:1fr 1.6fr;gap:32px}
+.cs-tldr-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.cs-tldr-h{font-family:var(--font-serif);font-size:1.7rem;line-height:1.2;color:var(--cream);margin:0 0 12px}
+.cs-tldr-lede{font-size:0.95rem;line-height:1.6;color:var(--cream-dim)}
+.cs-tldr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-content:start}
+.cs-tldr-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;transition:transform 0.18s,border-color 0.18s}
+.cs-tldr-item:hover{transform:translateY(-2px);border-color:rgba(232,115,74,0.25)}
+.cs-tldr-item .l{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)}
+.cs-tldr-item .v{font-size:0.92rem;color:var(--cream);line-height:1.4}
+.cs-tldr-item .v strong{color:var(--cream);font-weight:600}
+.cs-tldr-jump{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.cs-tldr-jump a{font-family:var(--font-mono);font-size:11px;color:var(--cream-dim);text-decoration:none;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 12px;border-radius:999px;letter-spacing:0.04em;transition:color 0.15s,border-color 0.15s,background 0.15s}
+.cs-tldr-jump a:hover{color:var(--accent);border-color:rgba(232,115,74,0.35);background:rgba(232,115,74,0.05)}
+.cs-tldr-jump a::before{content:"# ";color:var(--accent)}
+@media(max-width:900px){.cs-tldr{grid-template-columns:1fr;padding:24px;gap:20px}.cs-tldr-grid{grid-template-columns:1fr}}
+
 /* ── Next-up note ── */
 .cs-next-note{margin-top:28px;padding:20px 24px;background:rgba(255,255,255,0.025);border:1px dashed rgba(240,230,211,0.15);border-radius:14px}
 .cs-next-note-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:10px}
@@ -287,7 +304,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
     <div class="cs-bento cs-bento-title">
       <div class="cs-label">Case Study — Po AI Intent Palette</div>
       <h1 class="cs-title">Speak,<br>Don't Click.</h1>
-      <p class="cs-subtitle">From a traditional CRM dashboard to a bilingual intent palette — 28 in MVP scope, 21 live in production, each rendering an inline action card. Sellers stop hunting through menus. They just say what they want.</p>
+      <p class="cs-subtitle">A bilingual intent palette wired to <strong>Gemini tool-calling</strong>. Sellers ask in Myanmar or English; an LLM picks from 16 server-side tools; the page renders the answer as an inline card. No menus. No translation. 21 live in production of 28 MVP intents (45 mapped).</p>
     </div>
     <div class="cs-bento cs-bento-meta">
       <div class="cs-meta-item">
@@ -312,16 +329,61 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       <div class="cs-metric-label">Phases</div>
     </div>
     <div class="cs-bento cs-bento-metric">
-      <div class="cs-metric-num">&lt;50ms</div>
-      <div class="cs-metric-label">Match Latency</div>
+      <div class="cs-metric-num">16</div>
+      <div class="cs-metric-label">Tool Verbs<br><span style="font-size:10px;opacity:0.55">read · write · scoped to businessId</span></div>
     </div>
   </div>
 </header>
 
 <div class="cs-page">
 
+  <!-- ══ TL;DR (scan-overview for hiring managers + design leaders) ══ -->
+  <section class="cs-section" id="tldr" aria-label="At a glance">
+    <div class="cs-section-num">At a glance · 60 seconds</div>
+    <h2 class="cs-h2">Sellers stopped clicking. They started speaking.</h2>
+    <div class="cs-tldr">
+      <div>
+        <p class="cs-tldr-lede">A Myanmar live-seller's day is one long stream of "show me X, then do Y." The CRM dashboard turned every question into a five-step hunt. I replaced the navigation model with a bilingual intent palette wired to Gemini tool-calling — type or speak, the LLM picks the right verb, the answer renders inline.</p>
+        <div class="cs-tldr-jump">
+          <a href="#problem">Problem</a>
+          <a href="#research">Research</a>
+          <a href="#approach">Approach</a>
+          <a href="#classifier">Tool-Calling</a>
+          <a href="#cards">Cards</a>
+          <a href="#outcome">Outcome</a>
+        </div>
+      </div>
+      <div class="cs-tldr-grid">
+        <div class="cs-tldr-item">
+          <div class="l">Problem</div>
+          <div class="v">Dashboard built for office staff. Live-sellers think in Myanmar, work one-handed, ask in sentences.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Approach</div>
+          <div class="v"><strong>Intent palette + LLM tool-calling.</strong> 45 verbs mapped, 28 in MVP, 21 in production.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Mechanism</div>
+          <div class="v">Gemini 2.5 Flash picks 1–6 tools per turn from a 16-verb vocabulary. Server runs them, scoped to <code>businessId</code>.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Surfaces</div>
+          <div class="v">Inline cards, not chat bubbles. One ListOrders powers four intents — composition over duplication.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Outcome</div>
+          <div class="v">"Show me past 2 weeks" goes from a 5-step Excel rebuild to one sentence. Sundays back.</div>
+        </div>
+        <div class="cs-tldr-item">
+          <div class="l">Lesson</div>
+          <div class="v">Stop teaching users your menu. Move the labour into the model — schema descriptions are the new IA.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ 01 — PROBLEM ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="problem">
     <div class="cs-section-num">01 — The Problem</div>
     <h2 class="cs-h2">"Show me past 2 weeks." The Dashboard Couldn't.</h2>
     <p class="cs-p">A Myanmar live-seller has one question every Sunday: <em>what did I sell in the past 2 weeks?</em> One sentence. Clear intent.</p>
@@ -337,7 +399,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   </section>
 
   <!-- ══ 02 — RESEARCH ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="research">
     <div class="cs-section-num">02 — Research</div>
     <h2 class="cs-h2">Five Sellers. One Critical Moment.</h2>
     <p class="cs-p">Before mapping intents, I sat with sellers running real Facebook lives. Not a feature list — the moment of greatest friction.</p>
@@ -404,18 +466,18 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   </section>
 
   <!-- ══ MAPPING ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="approach">
     <div class="cs-section-num">Mapping</div>
     <h2 class="cs-h2">45 Intents. One Rule.</h2>
     <p class="cs-p">From the research, I extracted every action a seller does in a week. 45 intents across 6 surfaces.</p>
-    <p class="cs-p">Before writing a single regex, I had to map, classify, and chain them. Three artifacts came out of that — Intent Map, Three Axes, Verb × Noun.</p>
+    <p class="cs-p">Before wiring tools, I had to map, classify, and chain them. Three artifacts came out of that — Intent Map, Three Axes, Verb × Noun.</p>
   </section>
 
   <!-- ══ INTENT MAP ══ -->
   <section class="cs-section">
     <div class="cs-section-num">Intent Map</div>
     <h2 class="cs-h2">45 Intents. 6 Surfaces.</h2>
-    <p class="cs-p">Every action a seller takes in a week, mapped. Grouped by domain — not by feature page.</p>
+    <p class="cs-p">Every action a seller takes in a week, mapped. Grouped by domain — not by feature page. Live, Inventory, Orders+Customers, Marketing, Insights, Config — six surfaces, one front door.</p>
     <div class="cs-intent-grid">
       <div class="cs-intent-col">
         <h4>Live (5)</h4>
@@ -442,6 +504,11 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
           <span class="cs-intent-chip">Low Stock Alert</span>
         </div>
       </div>
+    </div>
+    <details class="cs-acc">
+      <summary>See more · 4 surfaces (30 intents)</summary>
+      <div class="cs-acc-body">
+    <div class="cs-intent-grid">
       <div class="cs-intent-col">
         <h4>Orders + Customers (11)</h4>
         <div class="cs-intent-chips">
@@ -493,13 +560,15 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
         </div>
       </div>
     </div>
+      </div>
+    </details>
   </section>
 
   <!-- ══ THREE AXES ══ -->
   <section class="cs-section">
     <div class="cs-section-num">Three Axes</div>
     <h2 class="cs-h2">Tag Every Intent. Three Times.</h2>
-    <p class="cs-p">Each intent is classified along three axes. Together they decide the card type, the confirm gate, and whether it can chain.</p>
+    <p class="cs-p">Each intent is classified along three axes. Together they decide the card type, the confirm gate, and whether it can chain. Chainable says whether the result can feed a follow-up. Confirm says whether to gate the action behind a destructive button. Response says whether to render a UI card or a text reply.</p>
     <div class="cs-hook">Chainable &times; Confirm &times; Response = the rendering rule.</div>
 
     <div style="margin-top:28px">
@@ -536,6 +605,9 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       </div>
     </div>
 
+    <details class="cs-acc">
+      <summary>See more · Axis 2 (Confirmation) + Axis 3 (Response Type)</summary>
+      <div class="cs-acc-body">
     <div style="margin-top:24px">
       <div class="cs-axis-label" style="margin-bottom:10px">Axis 2 · Needs Confirmation</div>
       <div class="cs-axis">
@@ -600,13 +672,25 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
         </div>
       </div>
     </div>
+      </div>
+    </details>
   </section>
 
   <!-- ══ TAXONOMY ══ -->
   <section class="cs-section">
     <div class="cs-section-num">Intent Taxonomy</div>
     <h2 class="cs-h2">Verb × Noun.</h2>
-    <p class="cs-p">A conversation grammar. Combine a verb with a noun (+ modifiers) to form an intent. The verb decides the rules — render, confirm, chain.</p>
+    <p class="cs-p">A conversation grammar. Combine a verb with a noun (+ modifiers) to form an intent. The verb decides the rules — render, confirm, chain. Six verb classes (Read, Create, Modify, Delete, Action, AI) crossed with six noun classes (Commerce, Sales, Customer, Marketing, Insights, Config) cover every intent without bespoke parsing.</p>
+
+    <div class="cs-utterance">
+      <span class="cs-utterance-tok verb">[ VERB ]</span>
+      <span class="cs-utterance-op">+</span>
+      <span class="cs-utterance-tok noun">[ NOUN ]</span>
+      <span class="cs-utterance-op">+</span>
+      <span class="cs-utterance-tok mod">[ modifier ]</span>
+      <span class="cs-utterance-op">=</span>
+      <span class="cs-utterance-tok intent">INTENT</span>
+    </div>
 
     <div class="cs-tax">
       <div class="cs-tax-block">
@@ -618,6 +702,26 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
             <span class="cs-tax-pill read">view</span><span class="cs-tax-pill read">show</span><span class="cs-tax-pill read">list</span><span class="cs-tax-pill read">get</span><span class="cs-tax-pill read">find</span><span class="cs-tax-pill read">search</span><span class="cs-tax-pill read">filter</span><span class="cs-tax-pill read">compare</span><span class="cs-tax-pill read">check</span>
           </div>
         </div>
+      </div>
+
+      <div class="cs-tax-block">
+        <div class="cs-tax-h">Nouns · the entity</div>
+
+        <div class="cs-tax-group">
+          <div class="cs-tax-grouph">Commerce</div>
+          <div class="cs-tax-pills">
+            <span class="cs-tax-pill create">product</span><span class="cs-tax-pill create">variant</span><span class="cs-tax-pill create">stock</span><span class="cs-tax-pill create">category</span><span class="cs-tax-pill create">inventory</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <details class="cs-acc">
+      <summary>See more · 5 more verb classes, 5 more noun classes, sample utterances</summary>
+      <div class="cs-acc-body">
+    <div class="cs-tax">
+      <div class="cs-tax-block">
+        <div class="cs-tax-h">Verbs · continued</div>
 
         <div class="cs-tax-group">
           <div class="cs-tax-grouph">Create <small>Text · needs confirm · chainable</small></div>
@@ -656,14 +760,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       </div>
 
       <div class="cs-tax-block">
-        <div class="cs-tax-h">Nouns · the entity</div>
-
-        <div class="cs-tax-group">
-          <div class="cs-tax-grouph">Commerce</div>
-          <div class="cs-tax-pills">
-            <span class="cs-tax-pill create">product</span><span class="cs-tax-pill create">variant</span><span class="cs-tax-pill create">stock</span><span class="cs-tax-pill create">category</span><span class="cs-tax-pill create">inventory</span>
-          </div>
-        </div>
+        <div class="cs-tax-h">Nouns · continued</div>
 
         <div class="cs-tax-group">
           <div class="cs-tax-grouph">Sales</div>
@@ -700,16 +797,6 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="cs-utterance">
-      <span class="cs-utterance-tok verb">[ VERB ]</span>
-      <span class="cs-utterance-op">+</span>
-      <span class="cs-utterance-tok noun">[ NOUN ]</span>
-      <span class="cs-utterance-op">+</span>
-      <span class="cs-utterance-tok mod">[ modifier ]</span>
-      <span class="cs-utterance-op">=</span>
-      <span class="cs-utterance-tok intent">INTENT</span>
     </div>
 
     <div class="cs-samples">
@@ -753,6 +840,8 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       <div class="cs-samples-cell m">tomorrow 9am</div>
       <div class="cs-samples-cell r">Schedule Post ⚠</div>
     </div>
+      </div>
+    </details>
   </section>
 
   <!-- ══ USER JOURNEYS ══ -->
@@ -858,122 +947,168 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   </section>
 
   <!-- ══ 03 — CLASSIFIER ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="classifier">
     <div class="cs-section-num">03 — The Classifier</div>
-    <h2 class="cs-h2">Regex First. AI Last.</h2>
-    <p class="cs-p">Pure TypeScript function. No LLM call. No network.</p>
+    <h2 class="cs-h2">LLM as Classifier. Tools as Verbs.</h2>
+    <p class="cs-p">First pass was 30+ regex families. It worked — until a seller said "ဒီတစ်ပါတ် ဘယ်လောက်ရလဲ ပြပြီး ပြန်မှာရမယ့်ဟာတွေပါ ပြပေး" in one sentence. Two intents, conjoined, with paraphrase. Regex caught one and missed the other.</p>
+    <p class="cs-p">So the architecture flipped. Gemini 2.5 Flash does the classification. The app exposes a fixed vocabulary of <strong>16 tools</strong> — each one a single verb the AI is allowed to perform. No tool call, no action. The LLM never touches the database directly.</p>
     <div class="cs-flow">
       <div class="cs-flow-block">
         <div class="cs-flow-tag">Input</div>
-        <div class="cs-flow-h">Query string</div>
-        <div class="cs-flow-d">"pending orders ပြပါ"</div>
+        <div class="cs-flow-h">Free-form query</div>
+        <div class="cs-flow-d">"ဒီလ ရောင်းအား တက်လား · ဘာတွေ ပြန်မှာရမလဲ"</div>
       </div>
       <div class="cs-flow-arrow">&rarr;</div>
       <div class="cs-flow-fork">
         <div class="cs-flow-fork-row primary">
-          <div class="l">&lt;50ms · primary</div>
-          <div class="v">Regex &rarr; Inline card</div>
+          <div class="l">Hop 1 · LLM picks tools</div>
+          <div class="v">get_revenue_trend(30) + get_smart_reorder()</div>
         </div>
         <div class="cs-flow-fork-row primary">
-          <div class="l">&lt;50ms · primary</div>
-          <div class="v">Regex &rarr; Navigate</div>
+          <div class="l">Hop 2 · server runs them</div>
+          <div class="v">Real Prisma queries · scoped to businessId</div>
         </div>
-        <div class="cs-flow-fork-row muted">
-          <div class="l">~1–3s · rare</div>
-          <div class="v">No match &rarr; AI fallback</div>
+        <div class="cs-flow-fork-row primary">
+          <div class="l">Hop 3 · LLM composes reply</div>
+          <div class="v">Bilingual answer · cites real numbers · renders inline card</div>
         </div>
       </div>
     </div>
+    <p class="cs-p">Up to <strong>6 hops per turn</strong>. One question can read three things, decide, and stop — all before the user sees anything.</p>
     <ul class="cs-list">
-      <li><strong>Latency</strong> — card renders before finger lifts off enter</li>
-      <li><strong>Cost</strong> — no API call per keystroke</li>
-      <li><strong>Determinism</strong> — regex is auditable. LLMs fail differently every time</li>
+      <li><strong>Generality</strong> — any phrasing in MM, EN, or mixed. No rule to write per variant.</li>
+      <li><strong>Composition</strong> — "show this AND do that" is one turn, not two.</li>
+      <li><strong>Safety</strong> — write tools (create, update, delete) live behind a confirm-intent rule baked into the system prompt.</li>
+      <li><strong>Auditability</strong> — every turn logs <code>tool_name(args) → result</code>. The reply can be replayed.</li>
     </ul>
   </section>
 
-  <!-- ══ 03b — REGEX DETAIL ══ -->
+  <!-- ══ 03b — TOOL DETAIL ══ -->
   <section class="cs-section">
-    <div class="cs-section-num">03b — Inside the Regex</div>
-    <h2 class="cs-h2">How a Sentence Becomes an Action.</h2>
-    <p class="cs-p">Each rule is a regex family + a capture function. Ordered by specificity — most specific first.</p>
+    <div class="cs-section-num">03b — Inside a Tool</div>
+    <h2 class="cs-h2">A Tool Is a Verb the AI Is Allowed to Say.</h2>
+    <p class="cs-p">Each tool is a JSON schema (so the LLM knows when to pick it) + a server handler (the only code that touches the DB). The schema's <em>description</em> is the prompt — bilingual phrases the seller might use go directly into it.</p>
 
-    <div class="cs-code"><span class="c">// 1. Match the intent</span>
-<span class="k">const</span> <span class="v">customerOrdersRe</span> = <span class="s">/^(.+?)(ရဲ့|၏|'s)\s*(orders|order|ဝယ်ထား|မှာထား)/i</span>;
+    <div class="cs-code"><span class="c">// Declaration — the LLM reads this</span>
+{
+  <span class="h">name</span>: <span class="s">'get_smart_reorder'</span>,
+  <span class="h">description</span>:
+    <span class="s">'AI-derived reorder suggestions: per variant, returns velocity </span>
+<span class="s">     (units/day past 30 days), days_left, and suggested reorder qty.</span>
+<span class="s">     Use for "smart reorder", "ဘာတွေ ပြန်မှာရမလဲ",</span>
+<span class="s">     "ပြန်ဖြည့်ဖို့", "stock ကုန်ခါနီးတာ ဘာရှိလဲ".'</span>,
+  <span class="h">parameters</span>: { <span class="h">type</span>: <span class="s">'OBJECT'</span>, <span class="h">properties</span>: {} },
+}
 
-<span class="c">// 2. Extract parameters</span>
-<span class="k">function</span> <span class="f">classify</span>(query) {
-  <span class="k">const</span> m = query.<span class="f">match</span>(<span class="v">customerOrdersRe</span>);
-  <span class="k">if</span> (m) <span class="k">return</span> {
-    <span class="h">kind</span>: <span class="s">'list-orders'</span>,
-    <span class="h">customerName</span>: <span class="f">stripParticles</span>(m[<span class="v">1</span>]),
-    <span class="h">behaviour</span>: <span class="s">'inline'</span>
-  };
-  <span class="c">// ...next rule</span>
+<span class="c">// Handler — the server runs this · scoped to businessId</span>
+<span class="k">async function</span> <span class="f">handleSmartReorder</span>(args, ctx) {
+  <span class="k">const</span> sales = <span class="k">await</span> ctx.prisma.orderItem.<span class="f">groupBy</span>({
+    <span class="h">where</span>: { order: { businessId: ctx.businessId, <span class="h">...last30Days</span> } },
+    <span class="h">_sum</span>: { <span class="h">quantity</span>: <span class="k">true</span> },
+    <span class="h">by</span>: [<span class="s">'variantId'</span>],
+  });
+  <span class="k">return</span> sales.<span class="f">map</span>(velocityToReorder);
 }</div>
 
-    <p class="cs-p">The cascade runs top-down. First match wins. Below: the actual priority order for 28 intents.</p>
+    <p class="cs-p">The orchestration loop is dumb on purpose:</p>
+
+    <div class="cs-code"><span class="k">for</span> (<span class="k">let</span> hop = <span class="v">0</span>; hop &lt; <span class="v">MAX_TOOL_HOPS</span>; hop++) {
+  <span class="k">const</span> result = <span class="k">await</span> chat.<span class="f">sendMessage</span>(pending);
+  <span class="k">const</span> calls = result.response.<span class="f">functionCalls</span>() ?? [];
+
+  <span class="k">if</span> (calls.length === <span class="v">0</span>) { finalText = result.response.<span class="f">text</span>(); <span class="k">break</span>; }
+
+  <span class="k">const</span> responseParts = [];
+  <span class="k">for</span> (<span class="k">const</span> call <span class="k">of</span> calls) {
+    <span class="k">const</span> out = <span class="k">await</span> <span class="f">runTool</span>(call.name, call.args, { businessId, prisma });
+    responseParts.<span class="f">push</span>({ <span class="h">functionResponse</span>: { <span class="h">name</span>: call.name, <span class="h">response</span>: { <span class="h">result</span>: out } } });
+  }
+  pending = responseParts; <span class="c">// ← LLM gets the data, decides next move</span>
+}</div>
+
+    <p class="cs-p">The full vocabulary — 16 tools, grouped:</p>
 
     <div class="cs-cascade">
-      <div class="cs-cascade-head">#</div>
-      <div class="cs-cascade-head">Pattern (simplified)</div>
-      <div class="cs-cascade-head">Resolves to</div>
+      <div class="cs-cascade-head">Group</div>
+      <div class="cs-cascade-head">Tool</div>
+      <div class="cs-cascade-head">Returns / Effect</div>
       <div class="cs-cascade-row">
-        <div class="cs-cascade-num">01</div>
-        <div class="cs-cascade-rule">customerName + 's + orders</div>
-        <div class="cs-cascade-out">list-orders + customerName filter</div>
+        <div class="cs-cascade-num">Read · Insights</div>
+        <div class="cs-cascade-rule">get_dashboard_stats</div>
+        <div class="cs-cascade-out">orders · revenue · customers · low-stock count</div>
       </div>
       <div class="cs-cascade-row">
-        <div class="cs-cascade-num">02</div>
-        <div class="cs-cascade-rule">best/top/ranking + discounts</div>
-        <div class="cs-cascade-out">list-discounts + byPerformance</div>
+        <div class="cs-cascade-num">Read · Insights</div>
+        <div class="cs-cascade-rule">get_revenue_trend(days)</div>
+        <div class="cs-cascade-out">daily revenue + order count, last N days</div>
       </div>
       <div class="cs-cascade-row">
-        <div class="cs-cascade-num">03</div>
-        <div class="cs-cascade-rule">pending|paid|cancelled + orders</div>
-        <div class="cs-cascade-out">list-orders + statusFilter</div>
+        <div class="cs-cascade-num">Read · Insights</div>
+        <div class="cs-cascade-rule">get_top_products(days, limit)</div>
+        <div class="cs-cascade-out">best sellers ranked by units + revenue</div>
       </div>
       <div class="cs-cascade-row">
-        <div class="cs-cascade-num">04</div>
-        <div class="cs-cascade-rule">verify|approve + slip|payment</div>
-        <div class="cs-cascade-out">verify-payment</div>
+        <div class="cs-cascade-num">Read · Inventory</div>
+        <div class="cs-cascade-rule">get_smart_reorder</div>
+        <div class="cs-cascade-out">velocity · days_left · suggested qty per variant</div>
       </div>
       <div class="cs-cascade-row">
-        <div class="cs-cascade-num">05</div>
-        <div class="cs-cascade-rule">low|out + stock</div>
-        <div class="cs-cascade-out">low-stock</div>
+        <div class="cs-cascade-num">Read · Inventory</div>
+        <div class="cs-cascade-rule">get_low_stock</div>
+        <div class="cs-cascade-out">variants ≤ threshold</div>
       </div>
       <div class="cs-cascade-row">
-        <div class="cs-cascade-num">06</div>
-        <div class="cs-cascade-rule">revenue + (week|7d|14d|30d)</div>
-        <div class="cs-cascade-out">revenue-trend + range</div>
+        <div class="cs-cascade-num">Read · Inventory</div>
+        <div class="cs-cascade-rule">list_products / find_product</div>
+        <div class="cs-cascade-out">catalog browse · single SKU lookup</div>
       </div>
       <div class="cs-cascade-row">
-        <div class="cs-cascade-num">…</div>
-        <div class="cs-cascade-rule">22 more families</div>
-        <div class="cs-cascade-out">EN · MM · mixed variants each</div>
+        <div class="cs-cascade-num">Read · Orders</div>
+        <div class="cs-cascade-rule">list_orders / get_order</div>
+        <div class="cs-cascade-out">filtered by status, customer, days</div>
       </div>
       <div class="cs-cascade-row">
-        <div class="cs-cascade-num">∞</div>
-        <div class="cs-cascade-rule">no match</div>
-        <div class="cs-cascade-out">→ AI fallback (LLM)</div>
+        <div class="cs-cascade-num">Read · Customers</div>
+        <div class="cs-cascade-rule">list_customers</div>
+        <div class="cs-cascade-out">profile + spend + last order</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">Write · Inventory</div>
+        <div class="cs-cascade-rule">create_product · update_product_price</div>
+        <div class="cs-cascade-out">create SKU · adjust price</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">Write · Inventory</div>
+        <div class="cs-cascade-rule">update_product_stock · add_product_variant</div>
+        <div class="cs-cascade-out">stock delta · new variant</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">Write · Inventory</div>
+        <div class="cs-cascade-rule">delete_product</div>
+        <div class="cs-cascade-out">soft-delete · confirm gated</div>
+      </div>
+      <div class="cs-cascade-row">
+        <div class="cs-cascade-num">Write · Orders</div>
+        <div class="cs-cascade-rule">update_order_status</div>
+        <div class="cs-cascade-out">CONFIRMED · PAID · DELIVERED · CANCELLED</div>
       </div>
     </div>
 
-    <p class="cs-p">Three things every rule does:</p>
+    <p class="cs-p">Three rules every tool follows:</p>
     <ul class="cs-list">
-      <li><strong>Match</strong> — does the query fit this shape?</li>
-      <li><strong>Capture</strong> — pull out productId · customerName · status · range</li>
-      <li><strong>Normalise</strong> — strip particles, convert MM digits, lowercase</li>
+      <li><strong>Scoped</strong> — every query carries <code>businessId</code> from the JWT. The AI cannot widen the blast radius.</li>
+      <li><strong>Bilingual in the description</strong> — MM + EN trigger phrases live in the schema, not in the prompt. Tools self-document.</li>
+      <li><strong>Confirm before write</strong> — system prompt forces a one-line confirm reply for any create/update/delete unless the user already gave full details.</li>
     </ul>
 
-    <div class="cs-hook">Specificity beats cleverness. "Khin Hnin's orders" must match before plain "orders."</div>
+    <div class="cs-hook">The LLM picks <em>which verb</em>. The server decides <em>what's allowed</em>. Two layers, never confused.</div>
   </section>
 
   <!-- ══ 04 — BILINGUAL ══ -->
   <section class="cs-section">
     <div class="cs-section-num">04 — Bilingual Matching</div>
     <h2 class="cs-h2">Myanmar Isn't English in Different Glyphs.</h2>
-    <p class="cs-p">Myanmar glues grammar particles onto the noun — possession, subject, plural. No spaces. No apostrophes. No cues for a Latin-tuned regex.</p>
+    <p class="cs-p">Myanmar glues grammar particles onto the noun — possession, subject, plural. No spaces. No apostrophes. No cues for a Latin-tuned classifier. The model handles this for free; the design work is loading each tool's <em>description</em> with the bilingual phrasing sellers actually use.</p>
     <div class="cs-bilingual">
       <div class="cs-bilingual-card">
         <div class="cs-bilingual-tag">English</div>
@@ -995,14 +1130,14 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       </div>
     </div>
     <ul class="cs-list">
-      <li><strong>Possessive stripper</strong> — pulls bare names out of MM particles + EN 's</li>
-      <li><strong>Subject-marker parser</strong> — handles "[name] [marker] [verb]" purchase queries</li>
-      <li><strong>Digit normaliser</strong> — Myanmar digits (U+1040–U+1049) → ASCII</li>
+      <li><strong>Trigger phrases in the schema</strong> — every tool's <code>description</code> includes the MM, EN, and mixed forms a seller might ask. The model picks the right verb without prompt-engineering tricks.</li>
+      <li><strong>Server-side normalisation</strong> — Myanmar digits (U+1040–U+1049) → ASCII before any DB query. The LLM doesn't have to know.</li>
+      <li><strong>System prompt sets language stance</strong> — reply in Myanmar by default; switch to English only when the user does. Keeps voice consistent across all 16 tools.</li>
     </ul>
   </section>
 
   <!-- ══ 05 — INLINE CARDS ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="cards">
     <div class="cs-section-num">05 — Inline Cards</div>
     <h2 class="cs-h2">Cards, Not Chat Bubbles.</h2>
     <p class="cs-p">Ask "low stock" → get the actual list, sortable, with adjust-stock CTAs per row.</p>
@@ -1018,11 +1153,43 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
     </div>
   </section>
 
-  <!-- ══ 06 — ORDERS + CUSTOMERS ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">06 — Orders + Customers</div>
-    <h2 class="cs-h2">A Pattern, Repeated.</h2>
-    <p class="cs-p">11 intents. One layout language.</p>
+  <!-- ══ 06 — INVENTORY READ FLOW ══ -->
+  <section class="cs-section" id="flow-inventory-read">
+    <div class="cs-section-num">06 — Inventory Read Flow</div>
+    <h2 class="cs-h2">Browse the Shelf, Spot What's Low.</h2>
+    <p class="cs-p">Inventory mirrors a physical shop — the seller already understands it. So I shipped the palette here first: same data, new front door. The five reads that anchor every later workflow — list, detail, low-stock, adjust, history — proved the card pattern on familiar ground before I asked the seller to trust it for orders or money.</p>
+    <div class="cs-intent-chips" style="margin:20px 0 24px">
+      <span class="cs-intent-chip">list-products</span>
+      <span class="cs-intent-chip">product-detail</span>
+      <span class="cs-intent-chip">low-stock</span>
+      <span class="cs-intent-chip">adjust-stock</span>
+      <span class="cs-intent-chip">stock-history</span>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Read first, then write</strong> — the five reads that anchor every later workflow</li>
+      <li><strong>Same data shapes</strong> — every later phase aggregates products, orders, and customers from this base</li>
+      <li><strong>Lowest-risk start</strong> — the seller's mental model of inventory survives; only the entry point changes</li>
+    </ul>
+    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative;background:var(--dark-2)">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/17-list-products.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:var(--cream-dim);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase&quot;>Foundation · video placeholder</div>'"></video>
+      <span class="cs-hero-vid-label">list-products</span>
+    </div>
+    <div class="cs-gallery">
+      <div class="cs-gallery-grid cs-gallery-grid--even">
+        <div class="cs-gallery-item" data-label="list-products"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/17-list-products.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="product-detail"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/18-product-detail.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="low-stock"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/19-low-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="adjust-stock"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/20-adjust-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+        <div class="cs-gallery-item" data-label="stock-history"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/21-stock-history.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 07 — ORDER LIFECYCLE FLOW ══ -->
+  <section class="cs-section" id="flow-order-lifecycle">
+    <div class="cs-section-num">07 — Order Lifecycle Flow</div>
+    <h2 class="cs-h2">From Pending to Paid, Without Leaving the Palette.</h2>
+    <p class="cs-p">The seller's busiest loop: see what's pending, open one, verify the payment slip, mark it paid — sometimes cancel, sometimes export at end-of-day. In the old app each step was three to four clicks across two pages. Collapsing the most-repeated workflow first produced the most felt relief per intent shipped.</p>
     <div class="cs-intent-chips" style="margin:20px 0 24px">
       <span class="cs-intent-chip">list-orders</span>
       <span class="cs-intent-chip">order-detail</span>
@@ -1031,10 +1198,6 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       <span class="cs-intent-chip">verify-payment</span>
       <span class="cs-intent-chip">cancel-order</span>
       <span class="cs-intent-chip">export-orders</span>
-      <span class="cs-intent-chip">list-customers</span>
-      <span class="cs-intent-chip">customer-detail</span>
-      <span class="cs-intent-chip">search-customers</span>
-      <span class="cs-intent-chip">customer-stats</span>
     </div>
     <ul class="cs-list">
       <li><strong>Header</strong> — icon pill + label + headline number</li>
@@ -1043,7 +1206,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       <li><strong>Footer</strong> — one CTA. Never two.</li>
     </ul>
     <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative;background:var(--dark-2)">
-      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/02-list-orders.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:var(--cream-dim);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase&quot;>Orders + Customers · video placeholder</div>'"></video>
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/02-list-orders.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:var(--cream-dim);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase&quot;>Orders · video placeholder</div>'"></video>
       <span class="cs-hero-vid-label">list-orders</span>
     </div>
     <div class="cs-gallery">
@@ -1055,6 +1218,32 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
         <div class="cs-gallery-item" data-label="verify-payment"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/06-verify-payment.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
         <div class="cs-gallery-item" data-label="cancel-order"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/07-cancel-order.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
         <div class="cs-gallery-item" data-label="export-orders"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/08-export-orders.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 08 — CUSTOMER INSIGHT FLOW ══ -->
+  <section class="cs-section" id="flow-customer-insight">
+    <div class="cs-section-num">08 — Customer Insight Flow</div>
+    <h2 class="cs-h2">Know the Buyer Before You Reply.</h2>
+    <p class="cs-p">Sellers don't just ship orders — they remember regulars. Who bought what, who's behind on payment, who deserves a private discount. Four intents that turn a name into context, without leaving the palette open on the message thread.</p>
+    <div class="cs-intent-chips" style="margin:20px 0 24px">
+      <span class="cs-intent-chip">list-customers</span>
+      <span class="cs-intent-chip">customer-detail</span>
+      <span class="cs-intent-chip">search-customers</span>
+      <span class="cs-intent-chip">customer-stats</span>
+    </div>
+    <ul class="cs-list">
+      <li><strong>Search by name in either language</strong> — Myanmar possessives strip cleanly to a bare name</li>
+      <li><strong>Detail card</strong> — total spend, last order, recency badge, jump to that customer's order list</li>
+      <li><strong>Stats card</strong> — top customers by revenue, ranked with gold/silver/bronze pills</li>
+    </ul>
+    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative;background:var(--dark-2)">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/12-customer-stats.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:var(--cream-dim);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase&quot;>Customer · video placeholder</div>'"></video>
+      <span class="cs-hero-vid-label">customer-stats</span>
+    </div>
+    <div class="cs-gallery">
+      <div class="cs-gallery-grid cs-gallery-grid--even">
         <div class="cs-gallery-item" data-label="list-customers"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/09-list-customers.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
         <div class="cs-gallery-item" data-label="customer-detail"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/10-customer-detail.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
         <div class="cs-gallery-item" data-label="search-customers"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/11-search-customers.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
@@ -1063,11 +1252,11 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
     </div>
   </section>
 
-  <!-- ══ 07 — CRUD IN A PALETTE ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">07 — Inventory CRUD</div>
-    <h2 class="cs-h2">No Modals. Two-State Cards.</h2>
-    <p class="cs-p">Destructive flows: preview state → confirm state. No window.confirm. No modal stacking.</p>
+  <!-- ══ 09 — PRODUCT WRITE FLOW ══ -->
+  <section class="cs-section" id="flow-product-write">
+    <div class="cs-section-num">09 — Product Write Flow</div>
+    <h2 class="cs-h2">Edit the Catalog Without Leaving the Question.</h2>
+    <p class="cs-p">Once the read flow earned the seller's trust, write actions could ride on the same surface. Create, edit, delete — and bulk-edit stock for the every-Saturday restock. Destructive flows use a two-step pattern: preview state, then confirm state. No <code>window.confirm</code>. No modal stacking on top of the palette.</p>
     <div class="cs-intent-chips" style="margin:20px 0 24px">
       <span class="cs-intent-chip">create-product</span>
       <span class="cs-intent-chip">update-product</span>
@@ -1075,9 +1264,10 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       <span class="cs-intent-chip">bulk-update-stock</span>
     </div>
     <ul class="cs-list">
-      <li><strong>Bulk Update Stock</strong> — inline spreadsheet in 320px</li>
-      <li><strong>Dirty-row tracking</strong> — Save CTA disables when clean</li>
-      <li><strong>+10 / +50 quick fills</strong> — restock without typing</li>
+      <li><strong>Bulk Update Stock</strong> — inline spreadsheet in 320px of vertical space</li>
+      <li><strong>Dirty-row tracking</strong> — "Save N changes" CTA disables when nothing is dirty</li>
+      <li><strong>+10 / +50 quick fills</strong> — restock the common case without typing</li>
+      <li><strong>Two-state delete</strong> — preview consequences, then a destructive confirm button</li>
     </ul>
     <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative;background:var(--dark-2)">
       <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/16-bulk-update-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.innerHTML='<div style=&quot;display:flex;align-items:center;justify-content:center;height:100%;color:var(--cream-dim);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase&quot;>Inventory CRUD · video placeholder</div>'"></video>
@@ -1091,23 +1281,12 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
         <div class="cs-gallery-item" data-label="bulk-update-stock"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/16-bulk-update-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
       </div>
     </div>
-    <h3 style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cream-dim);margin:36px 0 16px">Foundation intents</h3>
-    <p class="cs-p" style="margin-bottom:20px">The five reads that anchor every workflow — list, detail, low-stock, adjust, history.</p>
-    <div class="cs-gallery">
-      <div class="cs-gallery-grid cs-gallery-grid--even">
-        <div class="cs-gallery-item" data-label="list-products"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/17-list-products.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
-        <div class="cs-gallery-item" data-label="product-detail"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/18-product-detail.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
-        <div class="cs-gallery-item" data-label="low-stock"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/19-low-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
-        <div class="cs-gallery-item" data-label="adjust-stock"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/20-adjust-stock.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
-        <div class="cs-gallery-item" data-label="stock-history"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/21-stock-history.mp4" style="width:100%;height:auto;display:block" onerror="this.parentElement.classList.add('empty')"></video></div>
-      </div>
-    </div>
   </section>
 
   <!-- ══ 12 — CHAIN SUGGESTIONS ══ -->
   <section class="cs-section">
-    <div class="cs-section-num">12 — Chain Suggestions</div>
-    <h2 class="cs-h2">Palette as Conversation.</h2>
+    <div class="cs-section-num">10 — Chain Suggestion Flow</div>
+    <h2 class="cs-h2">One Question Becomes Three.</h2>
     <p class="cs-p">Every card ends with 2–3 "Try next" chips. Tailored per intent. One open, four answers.</p>
     <ul class="cs-list">
       <li><strong>After list-orders</strong> — pending · export · customer stats</li>
@@ -1122,7 +1301,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
 
   <!-- ══ 13 — URL CONTRACT ══ -->
   <section class="cs-section">
-    <div class="cs-section-num">13 — Navigate vs Inline</div>
+    <div class="cs-section-num">11 — URL Contract Flow</div>
     <h2 class="cs-h2">One URL. Two Surfaces Agree.</h2>
     <ul class="cs-list">
       <li><strong>Inline</strong> — one-shot actions (adjust stock, mark paid)</li>
@@ -1208,7 +1387,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   </section>
 
   <!-- ══ SHIP TARGETS ══ -->
-  <section class="cs-section">
+  <section class="cs-section" id="outcome">
     <div class="cs-section-num">Ship Targets</div>
     <h2 class="cs-h2">What I Set Out To Hit.</h2>
     <p class="cs-p">These are <em>output</em> metrics — what the build had to clear before sellers could touch it. Behavior outcomes are still being measured (see below).</p>

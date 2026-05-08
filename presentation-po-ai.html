@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Po AI — Speak, Don't Click. | Harry Hein</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Caveat:wght@500;700&family=Roboto+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5ebd5;
+  --paper-2:#ede0bf;
+  --ink:#1a1a1a;
+  --ink-2:#333;
+  --pop:#e8734a;
+  --sys:#6ea8ff;
+  --halftone:radial-gradient(circle,rgba(26,26,26,0.18) 1px,transparent 1.5px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--ink);color:var(--ink);overflow:hidden;font-family:'Space Grotesk',sans-serif}
+body{cursor:none}
+body.show-cursor{cursor:default}
+
+/* Slide deck container */
+.deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.slide{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:40px;background:var(--paper);background-image:var(--halftone);background-size:8px 8px}
+.slide.active{display:flex}
+.slide.active .panel,.slide.active .float{animation:pop 0.5s cubic-bezier(.34,1.56,.64,1) backwards}
+.slide.active .panel:nth-child(2){animation-delay:0.15s}
+.slide.active .panel:nth-child(3){animation-delay:0.3s}
+.slide.active .panel:nth-child(4){animation-delay:0.45s}
+.slide.active .panel:nth-child(5){animation-delay:0.6s}
+
+@keyframes pop{
+  from{opacity:0;transform:scale(0.85) rotate(-2deg)}
+  to{opacity:1;transform:scale(1) rotate(0)}
+}
+
+/* Comic panel base */
+.panel{
+  background:var(--paper-2);
+  border:5px solid var(--ink);
+  border-radius:6px;
+  padding:24px;
+  box-shadow:6px 6px 0 var(--ink);
+  position:relative;
+  overflow:hidden;
+}
+.panel.tilt-l{transform:rotate(-1.2deg)}
+.panel.tilt-r{transform:rotate(1.2deg)}
+.panel.pop{background:var(--pop);color:var(--paper)}
+.panel.sys{background:var(--sys);color:var(--ink)}
+.panel.dark{background:var(--ink);color:var(--paper)}
+
+/* Hand-letter title */
+.bang{font-family:'Bangers',sans-serif;letter-spacing:0.04em;line-height:0.95}
+.cav{font-family:'Caveat',cursive;font-weight:700}
+.mono{font-family:'Roboto Mono',monospace}
+.serif{font-family:'Instrument Serif',serif}
+
+/* Speech bubble */
+.bubble{
+  position:relative;
+  background:var(--paper);
+  border:4px solid var(--ink);
+  border-radius:24px;
+  padding:14px 22px;
+  font-family:'Caveat',cursive;
+  font-size:28px;
+  font-weight:700;
+  box-shadow:4px 4px 0 var(--ink);
+  display:inline-block;
+}
+.bubble::after{
+  content:"";position:absolute;
+  width:24px;height:24px;
+  background:var(--paper);
+  border-right:4px solid var(--ink);
+  border-bottom:4px solid var(--ink);
+  bottom:-14px;left:32px;
+  transform:rotate(45deg);
+}
+.bubble.right::after{left:auto;right:32px}
+.bubble.thought{border-radius:50px}
+.bubble.thought::after{
+  border-radius:50%;
+  width:14px;height:14px;
+  bottom:-22px;left:40px;
+  background:var(--paper);
+}
+.bubble.thought::before{
+  content:"";position:absolute;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--paper);border:3px solid var(--ink);
+  bottom:-32px;left:30px;
+}
+
+/* SFX text */
+.sfx{
+  font-family:'Bangers',sans-serif;
+  font-size:64px;
+  color:var(--pop);
+  -webkit-text-stroke:3px var(--ink);
+  transform:rotate(-8deg);
+  text-shadow:4px 4px 0 var(--ink);
+  display:inline-block;
+}
+
+/* Title slide */
+.title-slide{flex-direction:column;text-align:center;gap:24px}
+.title-slide .deck-title{font-size:clamp(80px,14vw,200px);color:var(--ink)}
+.title-slide .deck-sub{font-size:clamp(28px,4vw,52px);color:var(--pop)}
+.title-slide .deck-meta{font-size:14px;letter-spacing:0.3em;text-transform:uppercase;color:var(--ink-2);margin-top:40px}
+
+/* Layouts */
+.row{display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap;max-width:1300px}
+.col{display:flex;flex-direction:column;gap:20px;max-width:1100px;width:100%}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1300px;width:100%}
+.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:1400px;width:100%}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:1300px;width:100%;align-items:center}
+
+/* Panel sizes */
+.panel.lg{padding:48px;font-size:24px;line-height:1.4}
+.panel.xl{padding:64px;font-size:30px;line-height:1.4}
+.panel.sm{padding:18px;font-size:16px}
+
+.huge-quote{font-family:'Instrument Serif',serif;font-size:clamp(48px,7vw,96px);line-height:1.05;letter-spacing:-0.02em}
+.huge-quote em{color:var(--pop);font-style:italic}
+
+/* Sticky notes wall */
+.stickies{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:1300px}
+.sticky{
+  background:#fff5b8;border:2px solid var(--ink);
+  padding:18px 14px;font-family:'Caveat',cursive;font-weight:700;font-size:22px;
+  box-shadow:3px 3px 0 var(--ink);
+  text-align:center;
+  min-height:90px;display:flex;align-items:center;justify-content:center;
+}
+.sticky:nth-child(2n){background:#ffd6c2;transform:rotate(1.5deg)}
+.sticky:nth-child(3n){background:#c8e6f7;transform:rotate(-1.5deg)}
+.sticky:nth-child(4n){background:#d8f3c8;transform:rotate(0.8deg)}
+.sticky:nth-child(7n){background:#fff5b8;transform:rotate(-0.7deg)}
+
+/* Big metrics */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:1100px;width:100%}
+.metric{text-align:center}
+.metric-num{font-family:'Bangers',sans-serif;font-size:clamp(80px,12vw,180px);line-height:1;color:var(--ink)}
+.metric-num.pop{color:var(--pop)}
+.metric-lbl{font-family:'Roboto Mono',monospace;font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-2);margin-top:8px}
+
+/* Click-step boxes */
+.clicks{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:1300px;width:100%}
+.click{
+  border:4px solid var(--ink);background:var(--paper-2);
+  padding:18px 12px;text-align:center;
+  box-shadow:3px 3px 0 var(--ink);
+  font-family:'Roboto Mono',monospace;font-size:13px;
+  letter-spacing:0.06em;text-transform:uppercase;
+  position:relative;
+}
+.click .num{font-family:'Bangers',sans-serif;font-size:36px;color:var(--pop);display:block;line-height:1;margin-bottom:6px}
+.click.last{background:var(--ink);color:var(--paper)}
+.click.last .num{color:var(--pop)}
+
+/* Slide number */
+.page-num{position:fixed;bottom:24px;right:32px;font-family:'Roboto Mono',monospace;font-size:13px;letter-spacing:0.15em;color:var(--ink-2);z-index:10;mix-blend-mode:multiply}
+.help{position:fixed;bottom:24px;left:32px;font-family:'Roboto Mono',monospace;font-size:11px;letter-spacing:0.15em;color:var(--ink-2);text-transform:uppercase;z-index:10;mix-blend-mode:multiply;opacity:0.5}
+
+/* Caption box */
+.caption{
+  background:var(--ink);color:var(--paper);
+  padding:14px 24px;font-family:'Roboto Mono',monospace;font-size:14px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  border:3px solid var(--ink);
+  display:inline-block;
+}
+
+/* Halftone bg helper */
+.halftone-bg{background-image:radial-gradient(circle,rgba(26,26,26,0.4) 2px,transparent 2.5px);background-size:14px 14px}
+
+/* Vs panel layout */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;max-width:1300px;width:100%}
+.vs-divider{font-family:'Bangers',sans-serif;font-size:80px;color:var(--pop);-webkit-text-stroke:3px var(--ink)}
+
+/* Arrow shift */
+.shift-line{display:flex;align-items:center;gap:32px;justify-content:center;flex-wrap:wrap}
+.shift-word{font-family:'Caveat',cursive;font-size:clamp(56px,8vw,120px);font-weight:700;padding:16px 32px;border:5px solid var(--ink);background:var(--paper-2);box-shadow:6px 6px 0 var(--ink);transform:rotate(-2deg)}
+.shift-word.b{background:var(--pop);color:var(--paper);transform:rotate(2deg)}
+.shift-arrow{font-size:80px;color:var(--pop)}
+
+/* SVG illustration container */
+.svg-frame{background:var(--paper);border:4px solid var(--ink);padding:18px;box-shadow:5px 5px 0 var(--ink);display:flex;align-items:center;justify-content:center}
+.svg-frame svg{display:block;width:100%;height:auto;max-width:240px}
+
+/* Closing */
+.thanks{text-align:center}
+.thanks h1{font-family:'Bangers',sans-serif;font-size:clamp(96px,14vw,200px);line-height:1;color:var(--ink)}
+.thanks .sub{font-family:'Caveat',cursive;font-size:36px;color:var(--pop);margin-top:8px}
+.thanks .contact{margin-top:48px;font-family:'Roboto Mono',monospace;font-size:14px;letter-spacing:0.15em;color:var(--ink-2);display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+
+/* Progress bar */
+.progress{position:fixed;top:0;left:0;height:4px;background:var(--pop);z-index:100;transition:width 0.3s ease}
+
+@media (max-width:900px){
+  .grid-3,.grid-5,.grid-2,.metrics,.clicks{grid-template-columns:1fr 1fr;gap:12px}
+  .stickies{grid-template-columns:1fr 1fr}
+  .panel{padding:18px}
+  .panel.lg{padding:24px;font-size:18px}
+  .huge-quote{font-size:38px}
+  .sfx{font-size:42px}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+<!-- ─── SLIDE 1 — TITLE ─── -->
+<section class="slide title-slide active">
+  <div class="bang deck-title">PO AI.</div>
+  <div class="bang deck-sub">SPEAK, DON'T CLICK.</div>
+  <div class="row" style="margin-top:32px">
+    <span class="cav" style="font-size:36px;color:var(--ink-2)">a comic about teaching the system to listen</span>
+  </div>
+  <div class="deck-meta">Harry Hein · Senior Product Designer · 3 minutes</div>
+</section>
+
+<!-- ─── SLIDE 2 — INTRO ─── -->
+<section class="slide">
+  <div class="col">
+    <div class="row" style="justify-content:flex-start;margin-bottom:8px">
+      <span class="caption">Issue #01 · who's this guy</span>
+    </div>
+    <div class="grid-3">
+      <div class="panel tilt-l">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="40" width="160" height="120" fill="none" stroke="#1a1a1a" stroke-width="4"/>
+          <text x="100" y="115" text-anchor="middle" font-family="Bangers" font-size="80" fill="#e8734a" stroke="#1a1a1a" stroke-width="2">F</text>
+          <circle cx="100" cy="180" r="8" fill="#1a1a1a"/>
+        </svg>
+        <div class="cav" style="font-size:24px;text-align:center;margin-top:10px">in Figma</div>
+      </div>
+      <div class="panel" style="background:var(--ink);color:var(--paper);text-align:center">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="40" width="160" height="120" fill="none" stroke="#f5ebd5" stroke-width="4"/>
+          <text x="100" y="120" text-anchor="middle" font-family="Roboto Mono" font-weight="700" font-size="44" fill="#6ea8ff">&lt;/&gt;</text>
+        </svg>
+        <div class="cav" style="font-size:24px;margin-top:10px;color:var(--paper)">in code</div>
+      </div>
+      <div class="panel tilt-r pop" style="text-align:center">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 80 Q50 60 60 56 Q60 48 70 48 Q80 44 90 50 Q100 46 110 52 Q120 48 130 56 Q140 60 140 80" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+          <rect x="40" y="80" width="100" height="80" rx="6" fill="#f5ebd5" stroke="#1a1a1a" stroke-width="4"/>
+          <path d="M140 100 Q165 100 165 120 Q165 140 140 140" fill="none" stroke="#1a1a1a" stroke-width="4"/>
+          <text x="90" y="130" text-anchor="middle" font-family="Bangers" font-size="20" fill="#1a1a1a">COFFEE</text>
+        </svg>
+        <div class="cav" style="font-size:26px;margin-top:6px">…same brain</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:24px">
+      <span class="bubble">Hey everyone — I'm Harry. Designer who codes. Same Figma. Same PR. Same coffee. ☕</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 3 — THE FRAME ─── -->
+<section class="slide">
+  <div class="col">
+    <div class="row" style="justify-content:flex-start"><span class="caption">Issue #02 · the thing we all do</span></div>
+    <div class="grid-2" style="margin-top:24px">
+      <div class="panel tilt-l">
+        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- chaos modals -->
+          <rect x="10" y="20" width="80" height="50" fill="#fff5b8" stroke="#1a1a1a" stroke-width="3" transform="rotate(-4 50 45)"/>
+          <text x="50" y="50" text-anchor="middle" font-family="Roboto Mono" font-size="9" fill="#1a1a1a">Did you know?</text>
+          <rect x="100" y="40" width="80" height="50" fill="#ffd6c2" stroke="#1a1a1a" stroke-width="3" transform="rotate(3 140 65)"/>
+          <text x="140" y="70" text-anchor="middle" font-family="Roboto Mono" font-size="9" fill="#1a1a1a">Tooltip!</text>
+          <rect x="190" y="20" width="90" height="55" fill="#c8e6f7" stroke="#1a1a1a" stroke-width="3" transform="rotate(-2 235 47)"/>
+          <text x="235" y="50" text-anchor="middle" font-family="Roboto Mono" font-size="9" fill="#1a1a1a">5-step tour</text>
+          <!-- overwhelmed user -->
+          <circle cx="160" cy="140" r="22" fill="#f5ebd5" stroke="#1a1a1a" stroke-width="3"/>
+          <path d="M148 138 L154 134 M150 134 L154 138 M166 138 L172 134 M168 134 L172 138" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M148 152 Q160 146 172 152" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M138 165 L140 195 M182 165 L180 195" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="cav" style="font-size:26px;text-align:center;margin-top:8px">"please learn it"</div>
+      </div>
+      <div class="panel tilt-r sys">
+        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- giant ear -->
+          <path d="M160 30 C100 30 70 80 80 130 C85 160 110 175 125 175 C140 175 145 165 145 150 C145 135 135 130 135 115 C135 95 150 90 160 90 C190 90 200 110 200 80 C200 50 190 30 160 30Z" fill="#f5ebd5" stroke="#1a1a1a" stroke-width="4"/>
+          <circle cx="158" cy="90" r="14" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <!-- sound waves -->
+          <path d="M50 70 Q40 100 50 130" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+          <path d="M30 60 Q15 100 30 140" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="cav" style="font-size:28px;text-align:center;margin-top:8px">…what if it listened?</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <div class="bang" style="font-size:48px;color:var(--ink)">WE TEACH THE USER. <span style="color:var(--pop)">WHAT IF WE FLIPPED IT?</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 4 — SUNDAY MORNING ─── -->
+<section class="slide">
+  <div class="col">
+    <div class="row" style="justify-content:flex-start"><span class="caption">Issue #03 · meet the seller</span></div>
+    <div class="panel xl tilt-l" style="margin-top:24px">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center">
+        <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" style="width:200px">
+          <!-- seller -->
+          <circle cx="100" cy="60" r="34" fill="#f5ebd5" stroke="#1a1a1a" stroke-width="4"/>
+          <path d="M70 50 Q100 20 130 50 L132 70 Q120 60 100 60 Q80 60 68 70 Z" fill="#1a1a1a"/>
+          <circle cx="88" cy="62" r="2.5" fill="#1a1a1a"/>
+          <circle cx="112" cy="62" r="2.5" fill="#1a1a1a"/>
+          <path d="M90 76 Q100 80 110 76" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- body -->
+          <path d="M70 100 L70 180 L130 180 L130 100 Z" fill="#e8734a" stroke="#1a1a1a" stroke-width="4"/>
+          <!-- tea cup -->
+          <rect x="40" y="140" width="30" height="26" rx="2" fill="#f5ebd5" stroke="#1a1a1a" stroke-width="3"/>
+          <path d="M70 148 Q80 148 80 156 Q80 164 70 164" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+          <path d="M48 138 Q50 130 52 138 M58 138 Q60 130 62 138" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="bang" style="font-size:64px;color:var(--ink);line-height:0.95">SUNDAY.</div>
+          <div class="bang" style="font-size:28px;color:var(--pop);margin-top:8px">8:14 AM. ONE QUESTION.</div>
+          <div class="bubble thought" style="margin-top:24px;font-size:32px">What did I sell in the past 2 weeks?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 5 — THE HUNT ─── -->
+<section class="slide">
+  <div class="col">
+    <div class="row" style="justify-content:flex-start"><span class="caption">Issue #04 · the dashboard makes her work for it</span></div>
+    <div class="bang" style="font-size:36px;color:var(--ink);text-align:center;margin:16px 0 24px">ONE SENTENCE → FIVE STEPS</div>
+    <div class="clicks">
+      <div class="click"><span class="num">01</span>Open Orders</div>
+      <div class="click"><span class="num">02</span>Pick start date</div>
+      <div class="click"><span class="num">03</span>Pick end date</div>
+      <div class="click"><span class="num">04</span>Scroll 600 rows</div>
+      <div class="click last"><span class="num">05</span>Excel.<br>(give up)</div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <span class="sfx">UGH!</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 6 — DRAMATIC LINE ─── -->
+<section class="slide" style="background:var(--ink);background-image:radial-gradient(circle,rgba(245,235,213,0.15) 1px,transparent 1.5px);background-size:14px 14px">
+  <div style="text-align:center;max-width:1100px;padding:40px">
+    <div class="bang" style="font-size:clamp(60px,11vw,160px);color:var(--paper);line-height:0.95">THE SELLER<br>ALREADY KNEW<br>THE QUESTION.</div>
+    <div class="bang" style="font-size:clamp(40px,7vw,96px);color:var(--pop);margin-top:24px;line-height:1">THE SYSTEM<br>MADE HER<br><em style="font-style:italic;text-decoration:underline;text-decoration-thickness:6px;text-underline-offset:8px">PROVE IT.</em></div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 7 — 45 INTENTS ─── -->
+<section class="slide">
+  <div class="col">
+    <div class="row" style="justify-content:flex-start"><span class="caption">Issue #05 · the wall</span></div>
+    <div class="bang" style="font-size:48px;color:var(--ink);text-align:center;margin:16px 0">NOT FEATURES. NOT PAGES. <span style="color:var(--pop)">SENTENCES.</span></div>
+    <div class="stickies">
+      <div class="sticky">show me past 2 weeks</div>
+      <div class="sticky">mark this paid</div>
+      <div class="sticky">what's running low?</div>
+      <div class="sticky">today's revenue</div>
+      <div class="sticky">restock chain shirt</div>
+      <div class="sticky">cancel order #4521</div>
+      <div class="sticky">make a flash sale</div>
+      <div class="sticky">who hasn't paid</div>
+      <div class="sticky">export this week</div>
+      <div class="sticky">draft the FB post</div>
+    </div>
+    <div style="text-align:center;margin-top:24px">
+      <span class="bubble right">She doesn't think in tabs. She thinks in questions.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 8 — BILINGUAL ─── -->
+<section class="slide">
+  <div class="col">
+    <div class="row" style="justify-content:flex-start"><span class="caption">Issue #06 · her language, not ours</span></div>
+    <div class="vs" style="margin-top:32px">
+      <div class="panel tilt-l" style="text-align:center">
+        <div class="serif" style="font-size:48px;line-height:1.2">"ပြီးခဲ့တဲ့ ၂ ပတ် ပြပါ"</div>
+        <div class="mono" style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-2);margin-top:12px">myanmar · postpositions · stacked digits</div>
+      </div>
+      <div class="vs-divider">=</div>
+      <div class="panel tilt-r pop" style="text-align:center">
+        <div class="serif" style="font-size:48px;line-height:1.2">"show me past 2 weeks"</div>
+        <div class="mono" style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin-top:12px;color:var(--paper)">english · same intent</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <div class="bang" style="font-size:42px;color:var(--ink)">MYANMAR ISN'T <span style="color:var(--pop);text-decoration:line-through">ENGLISH IN DIFFERENT GLYPHS</span>.</div>
+      <div class="cav" style="font-size:32px;color:var(--ink-2);margin-top:8px">it's a first-class citizen — not a translation layer.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 9 — CARD NOT CHATTER ─── -->
+<section class="slide">
+  <div class="col">
+    <div class="row" style="justify-content:flex-start"><span class="caption">Issue #07 · text vs. tool</span></div>
+    <div class="grid-2" style="margin-top:24px">
+      <div class="panel tilt-l" style="background:#eee">
+        <div class="mono" style="font-size:11px;letter-spacing:0.2em;color:var(--ink-2);text-transform:uppercase;margin-bottom:14px">🤖 chatbot answer</div>
+        <div style="font-size:14px;line-height:1.6;color:var(--ink-2);font-family:Roboto Mono;monospace">Hey! Great question. So in the past 2 weeks you've sold roughly… let me think about this for a moment… according to my data which I'm now retrieving for you it appears that you have sold approximately 247 items totaling—</div>
+        <div class="cav" style="font-size:24px;text-align:center;margin-top:14px;color:var(--ink-2)">…wait, what was my question?</div>
+      </div>
+      <div class="panel tilt-r" style="background:var(--pop);color:var(--paper)">
+        <div class="mono" style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;opacity:0.8">▸ action card</div>
+        <div class="bang" style="font-size:56px;line-height:1">247 ITEMS</div>
+        <div class="bang" style="font-size:24px;color:var(--ink);margin-top:4px">¥1.2M · LAST 14 DAYS</div>
+        <div style="display:flex;gap:8px;margin-top:18px;flex-wrap:wrap">
+          <span style="background:var(--paper);color:var(--ink);padding:8px 14px;border:3px solid var(--ink);font-family:'Roboto Mono';font-size:12px;font-weight:700;letter-spacing:0.1em;box-shadow:3px 3px 0 var(--ink)">FILTER</span>
+          <span style="background:var(--paper);color:var(--ink);padding:8px 14px;border:3px solid var(--ink);font-family:'Roboto Mono';font-size:12px;font-weight:700;letter-spacing:0.1em;box-shadow:3px 3px 0 var(--ink)">EXPORT</span>
+          <span style="background:var(--paper);color:var(--ink);padding:8px 14px;border:3px solid var(--ink);font-family:'Roboto Mono';font-size:12px;font-weight:700;letter-spacing:0.1em;box-shadow:3px 3px 0 var(--ink)">DRILL IN</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <div class="bang" style="font-size:42px;color:var(--ink)">IF IT'S TEXT → CHATBOT.</div>
+      <div class="bang" style="font-size:48px;color:var(--pop);margin-top:6px">IF SHE CAN <em style="font-style:italic;text-decoration:underline">DO</em> IT → TOOL.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 10 — THE SHIFT ─── -->
+<section class="slide">
+  <div class="col" style="text-align:center;align-items:center">
+    <div class="caption">Issue #08 · the metric that matters</div>
+    <div class="cav" style="font-size:36px;color:var(--ink-2);margin:32px 0 24px">she stopped saying…</div>
+    <div class="shift-line">
+      <div class="shift-word">"how do I…"</div>
+      <div class="shift-arrow bang">→</div>
+      <div class="shift-word b">"show me…"</div>
+    </div>
+    <div class="cav" style="font-size:36px;color:var(--ink-2);margin-top:32px">…and started saying.</div>
+    <div class="bang" style="font-size:64px;color:var(--ink);margin-top:28px">THAT'S THE WHOLE SHIFT.</div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 11 — TAKEAWAY ─── -->
+<section class="slide" style="background:var(--ink);background-image:radial-gradient(circle,rgba(245,235,213,0.12) 1px,transparent 1.5px);background-size:14px 14px">
+  <div style="text-align:center;max-width:1200px;padding:40px">
+    <div class="caption" style="background:var(--pop);color:var(--ink);border-color:var(--pop)">Issue #09 · the takeaway</div>
+    <div class="huge-quote" style="color:var(--paper);margin:32px 0">
+      The interface isn't where the system <em>explains</em> itself.<br>
+      It's where the system <em>listens.</em>
+    </div>
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:140px;margin-top:20px">
+      <path d="M100 30 C60 30 40 70 50 110 C55 140 75 155 90 155 C105 155 110 140 110 130 C110 115 100 110 100 95 C100 80 115 75 125 75 C150 75 160 90 160 65 C160 40 140 30 100 30Z" fill="#f5ebd5" stroke="#e8734a" stroke-width="4"/>
+      <circle cx="118" cy="78" r="10" fill="none" stroke="#e8734a" stroke-width="3"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ─── SLIDE 12 — STATS ─── -->
+<section class="slide">
+  <div class="col" style="text-align:center;align-items:center">
+    <div class="caption">Issue #10 · what shipped</div>
+    <div class="metrics" style="margin-top:36px">
+      <div class="metric">
+        <div class="metric-num pop">21</div>
+        <div class="metric-lbl">live in production</div>
+        <div class="cav" style="font-size:18px;color:var(--ink-2);margin-top:4px">of 28 in MVP · 45 mapped</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">6</div>
+        <div class="metric-lbl">surfaces</div>
+        <div class="cav" style="font-size:18px;color:var(--ink-2);margin-top:4px">live · inv · orders<br>customers · marketing · insights</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num pop">&lt;50<span style="font-size:0.5em">ms</span></div>
+        <div class="metric-lbl">match latency</div>
+        <div class="cav" style="font-size:18px;color:var(--ink-2);margin-top:4px">regex first · ai last</div>
+      </div>
+    </div>
+    <div style="margin-top:48px">
+      <span class="bubble" style="font-size:32px">…but honestly? the metric I care about is the shift in her sentence.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SLIDE 13 — THANKS ─── -->
+<section class="slide">
+  <div class="thanks">
+    <div class="caption">fin.</div>
+    <h1 style="margin-top:24px">THANKS.</h1>
+    <div class="sub">let's chat after — i'd love to hear what you're building 🙏</div>
+    <div class="contact">
+      <span>kaungmyat9702@gmail.com</span>
+      <span>·</span>
+      <span>linkedin.com/in/kaung-myat-hein-harry</span>
+      <span>·</span>
+      <span>hello-harry.vercel.app</span>
+    </div>
+    <div style="margin-top:48px">
+      <span class="sfx" style="color:var(--pop)">PO AI!</span>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="page-num" id="pageNum">01 / 13</div>
+<div class="help">← → SPACE · F = fullscreen · ESC = exit</div>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const pageNum = document.getElementById('pageNum');
+  const progress = document.getElementById('progress');
+  let current = 0;
+
+  function go(i){
+    current = Math.max(0, Math.min(total - 1, i));
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+    pageNum.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    progress.style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(current + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(current - 1); }
+    else if (e.key === 'Home') go(0);
+    else if (e.key === 'End') go(total - 1);
+    else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  // Click to advance (right half) / go back (left half)
+  document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') return;
+    const x = e.clientX / window.innerWidth;
+    if (x > 0.5) go(current + 1); else go(current - 1);
+  });
+
+  // Show cursor on mouse move
+  let cursorTimer;
+  document.addEventListener('mousemove', () => {
+    document.body.classList.add('show-cursor');
+    clearTimeout(cursorTimer);
+    cursorTimer = setTimeout(() => document.body.classList.remove('show-cursor'), 2000);
+  });
+
+  go(0);
+})();
+</script>
+</body>
+</html>
