@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speak, Don't Click — Po AI Intent Palette · Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═════════════════════════════════════════════════
+   HYBRID CASE-STUDY — Apple base · Ollama type · PS blue
+═════════════════════════════════════════════════ */
+:root{
+  --paper:#ffffff; --canvas:#fafafa; --inset:#f4f4f5;
+  --ink:#0a0a0a; --ink-soft:#1f1f22; --muted:#5a5a5f; --dim:#737378;
+  --hairline:#e7e7e8; --hairline-soft:#efefef;
+  --ps-blue:#0066cc; --ps-blue-deep:#003791; --ps-blue-light:#3da5f5;
+  --accent:var(--ps-blue);
+  --success:#16a34a; --danger:#dc2626; --warning:#d97706;
+  --violet:#7c3aed; --amber:#a16207; --rose:#be185d; --mint:#047857;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --radius:14px; --radius-sm:8px; --radius-lg:20px; --pill:9999px;
+  --shadow-card:0 1px 2px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.05);
+  --shadow-lift:0 12px 40px rgba(0,0,0,0.10),0 0 0 1px rgba(0,0,0,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{background:var(--paper);color:var(--ink-soft);font-family:var(--sans);font-size:17px;line-height:1.55;letter-spacing:-0.012em;font-feature-settings:'calt','kern','liga','ss01','ss03';}
+a{color:inherit;text-decoration:none;transition:color 150ms ease;}
+ul,ol{list-style:none;}
+em{font-style:italic;color:inherit;}
+strong{font-weight:600;color:var(--ink);}
+code{font-family:var(--mono);font-size:0.86em;background:var(--inset);padding:1px 6px;border-radius:5px;color:var(--ink);}
+:focus{outline:none;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ps-blue);outline-offset:3px;border-radius:var(--radius-sm);}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}
+  video[data-lazy-video]{display:none;}
+}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,0.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hairline-soft);}
+.nav-inner{max-width:1180px;margin:0 auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+.brand-mark{width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;font-family:var(--mono);}
+.nav-actions{display:flex;align-items:center;gap:18px;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);font-weight:500;}
+.nav-back::before{content:"‹";font-size:18px;line-height:0;}
+.nav-back:hover{color:var(--ink);}
+.nav-cmd{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:9px 14px;min-height:38px;border-radius:var(--pill);font-size:12px;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:border-color 150ms ease,color 150ms ease;}
+.nav-cmd:hover{border-color:var(--ink);color:var(--ink);}
+.nav-cmd kbd{font-family:var(--mono);font-size:10px;background:var(--paper);border:1px solid var(--hairline);padding:1px 5px;border-radius:4px;color:var(--ink-soft);}
+.nav-cmd svg{width:13px;height:13px;color:var(--muted);}
+@media (max-width:768px){
+  .nav-inner{padding:0 16px;}
+  .nav-actions{gap:10px;}
+  .nav-cmd{padding:8px 12px;min-height:36px;gap:6px;}
+  .nav-cmd-label{display:none;}
+  .nav-cmd kbd{display:none;}
+  .hero{padding:64px 18px 40px;}
+  .hero h1{font-size:clamp(38px,9vw,56px);margin-bottom:18px;}
+  .hero-sub{font-size:15.5px;}
+  .hero-meta{gap:16px;padding:18px 0;margin-bottom:28px;}
+  .section{padding:56px 18px;}
+  .sec-head{margin-bottom:28px;padding-bottom:16px;}
+  .sec-title{font-size:clamp(26px,7.2vw,40px);}
+  .sec-sub{font-size:15px;}
+  .cta-band{padding:72px 18px;}
+  .cta-band h2{font-size:clamp(36px,9vw,56px);}
+  .cta-band p{font-size:16px;}
+  footer{padding:32px 18px 40px;}
+}
+@media (max-width:480px){
+  .nav-back{font-size:12px;}
+  .brand-label{display:none;}
+}
+
+/* HERO */
+.hero{padding:96px 28px 56px;background:var(--paper);}
+.hero-inner{max-width:1180px;margin:0 auto;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:6px 14px;border-radius:var(--pill);font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:28px;}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 8px rgba(22,163,74,0.6);}
+.hero h1{font-size:clamp(48px,7.4vw,88px);font-weight:600;letter-spacing:-0.035em;line-height:1.02;color:var(--ink);max-width:920px;margin-bottom:26px;}
+.hero h1 em{color:var(--muted);font-style:normal;}
+.hero-sub{font-size:clamp(18px,1.6vw,22px);font-weight:400;color:var(--muted);max-width:680px;line-height:1.5;letter-spacing:-0.011em;margin-bottom:40px;}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:24px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);margin-bottom:40px;}
+@media (max-width:780px){.hero-meta{grid-template-columns:repeat(2,1fr);}}
+.hero-meta-item{display:flex;flex-direction:column;gap:6px;}
+.hero-meta-label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);}
+.hero-meta-val{font-size:14px;font-weight:500;color:var(--ink);letter-spacing:-0.01em;}
+
+/* HERO BENTO */
+.hero-bento{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;margin-top:8px;}
+@media (max-width:900px){.hero-bento{grid-template-columns:1fr;}}
+.hero-stats{display:grid;grid-template-columns:1fr;gap:18px;}
+
+/* TILES — bento system */
+.tile{position:relative;border-radius:24px;overflow:hidden;background:var(--canvas);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);padding:36px;display:flex;flex-direction:column;}
+.tile.dark{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.tile.midnight{background:linear-gradient(180deg,#0a1430 0%,#000 100%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.tile.tint-blue{background:#e6efff;}
+.tile.tint-violet{background:#efeaff;}
+.tile.tint-amber{background:#fff4d6;}
+.tile.tint-rose{background:#ffe6ec;}
+.tile.tint-mint{background:#dcf7ec;}
+.tile-stamp{position:absolute;top:18px;right:22px;z-index:4;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(0,0,0,0.38);pointer-events:none;display:flex;align-items:center;gap:6px;}
+.tile-stamp::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.65;}
+.tile.dark .tile-stamp,.tile.midnight .tile-stamp{color:rgba(255,255,255,0.55);}
+
+.tile.hero-media{padding:0;min-height:380px;}
+.tile.hero-media video{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;}
+.tile.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,0.65) 100%);pointer-events:none;}
+.tile.hero-media .tile-cap{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;color:#fff;display:flex;align-items:center;gap:12px;}
+.tile.hero-media .play{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:rgba(255,255,255,0.18);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;}
+.tile.hero-media .play::after{content:"";width:0;height:0;margin-left:3px;border-style:solid;border-width:7px 0 7px 11px;border-color:transparent transparent transparent #fff;}
+.tile.hero-media .tile-cap-label{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.78;}
+.tile.hero-media .tile-cap-title{font-size:16px;font-weight:500;letter-spacing:-0.01em;margin-top:2px;}
+
+.tile.metric{padding:30px 32px;}
+.tile.metric .tstat-val{font-size:64px;font-weight:500;letter-spacing:-0.028em;line-height:1;font-variant-numeric:tabular-nums;color:inherit;margin-bottom:10px;}
+.tile.metric .tstat-lbl{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--muted);line-height:1.4;}
+.tile.metric.dark .tstat-lbl,.tile.metric.midnight .tstat-lbl{color:rgba(255,255,255,0.6);}
+.tile.metric .tstat-foot{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:6px;letter-spacing:0.4px;}
+.tile.metric.midnight .tstat-foot,.tile.metric.dark .tstat-foot{color:rgba(255,255,255,0.5);}
+
+/* SECTION */
+.section{max-width:1180px;margin:0 auto;padding:88px 28px;}
+.section.tight{padding:48px 28px;}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--hairline);}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.6px;}
+.sec-title{font-size:clamp(34px,4.2vw,52px);font-weight:600;letter-spacing:-0.03em;line-height:1.04;color:var(--ink);}
+.sec-sub{font-size:17px;color:var(--muted);max-width:760px;line-height:1.55;margin-top:6px;}
+
+.p{font-size:17px;line-height:1.65;color:var(--ink-soft);margin-bottom:18px;max-width:820px;}
+.p:last-child{margin-bottom:0;}
+.lede{font-size:21px;line-height:1.5;color:var(--ink);font-weight:400;letter-spacing:-0.014em;max-width:820px;margin-bottom:28px;}
+.subhead{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin:32px 0 14px;}
+
+/* TL;DR */
+.tldr{display:grid;grid-template-columns:1.1fr 1.2fr;gap:30px;align-items:start;}
+@media (max-width:900px){.tldr{grid-template-columns:1fr;}}
+.tldr-jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.tldr-jump a{font-family:var(--mono);font-size:11px;color:var(--ps-blue);background:rgba(0,102,204,0.08);padding:6px 12px;border-radius:var(--pill);letter-spacing:0.04em;border:1px solid rgba(0,102,204,0.15);}
+.tldr-jump a:hover{background:rgba(0,102,204,0.14);}
+.tldr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media (max-width:580px){.tldr-grid{grid-template-columns:1fr;}}
+.tldr-item{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;gap:6px;}
+.tldr-item .l{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--ps-blue);}
+.tldr-item .v{font-size:14px;color:var(--ink-soft);line-height:1.5;}
+
+/* Step list */
+.steps{display:grid;gap:12px;margin:24px 0 18px;counter-reset:step;list-style:none;padding:0;}
+.step{display:grid;grid-template-columns:44px 1fr;gap:20px;align-items:start;padding:20px 24px;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);transition:border-color 0.2s,background 0.2s;}
+.step:hover{border-color:rgba(0,102,204,0.25);background:#fff;}
+.step{counter-increment:step;}
+.step-num{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ps-blue);letter-spacing:0.08em;padding-top:4px;text-indent:-9999px;position:relative;}
+.step-num::before{content:counter(step,decimal-leading-zero);text-indent:0;position:absolute;left:0;top:4px;display:inline-block;}
+.step-text{font-size:15px;line-height:1.6;color:var(--muted);}
+.step-text strong{display:block;font-size:15px;color:var(--ink);margin-bottom:6px;font-weight:600;letter-spacing:-0.008em;}
+
+/* Hook callout */
+.hook{margin-top:28px;padding:24px 28px;background:var(--ink);color:#fff;border-radius:var(--radius-lg);font-size:18px;line-height:1.5;letter-spacing:-0.012em;max-width:820px;}
+.hook em{color:rgba(255,255,255,0.7);font-style:normal;}
+
+/* Metric strip */
+.metric-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0;}
+@media (max-width:780px){.metric-strip{grid-template-columns:repeat(2,1fr);}}
+
+/* Pull quote */
+.pullquote{margin:36px 0;padding:32px 36px 32px 44px;background:linear-gradient(135deg,rgba(0,102,204,0.05) 0%,rgba(0,102,204,0.015) 100%);border-left:3px solid var(--ps-blue);border-radius:0 var(--radius-lg) var(--radius-lg) 0;position:relative;}
+.pullquote::before{content:"\201C";position:absolute;top:6px;left:18px;font-family:Georgia,serif;font-size:64px;line-height:1;color:var(--ps-blue);opacity:0.32;}
+.pullquote-q{font-size:22px;line-height:1.45;color:var(--ink);letter-spacing:-0.012em;font-weight:400;padding-left:26px;}
+.pullquote-attr{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:16px;padding-left:26px;}
+
+/* Pain table */
+.pain-table{display:grid;border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;margin:28px 0;background:var(--paper);}
+.pain-row{display:grid;grid-template-columns:1fr 110px 130px;align-items:center;gap:18px;padding:16px 22px;border-bottom:1px solid var(--hairline-soft);}
+.pain-row:last-child{border-bottom:none;}
+.pain-row.head{background:var(--canvas);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);padding:12px 22px;}
+.pain-text{font-size:15px;color:var(--ink-soft);line-height:1.5;}
+.pain-mention{font-family:var(--mono);font-size:13px;color:var(--ink);text-align:center;font-variant-numeric:tabular-nums;}
+.pain-sev{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:5px 10px;border-radius:var(--pill);text-align:center;justify-self:end;font-weight:600;}
+.pain-sev.critical{background:rgba(220,38,38,0.08);color:#b91c1c;}
+.pain-sev.high{background:rgba(217,119,6,0.10);color:#b45309;}
+@media (max-width:780px){.pain-row{grid-template-columns:1fr;gap:6px;}.pain-row.head{display:none;}}
+
+/* Vendor grid */
+.vendor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:24px 0 8px;}
+.vendor-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-sm);padding:18px 20px;display:flex;flex-direction:column;gap:6px;}
+.vendor-name{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;}
+.vendor-gap{font-family:var(--mono);font-size:11px;color:var(--muted);}
+
+/* Surface bento — 6 case surfaces */
+.surface-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0;}
+@media (max-width:900px){.surface-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.surface-grid{grid-template-columns:1fr;}}
+.surface-tile{border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:8px;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);position:relative;}
+.surface-tile .num{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;color:var(--ps-blue);text-transform:uppercase;}
+.surface-tile .name{font-size:18px;font-weight:600;letter-spacing:-0.018em;color:var(--ink);}
+.surface-tile .count{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.06em;}
+.surface-tile .desc{font-size:13.5px;color:var(--ink-soft);line-height:1.45;}
+.surface-tile.tint-blue{background:#e6efff;}
+.surface-tile.tint-violet{background:#efeaff;}
+.surface-tile.tint-amber{background:#fff4d6;}
+.surface-tile.tint-rose{background:#ffe6ec;}
+.surface-tile.tint-mint{background:#dcf7ec;}
+.surface-tile.tint-blue .num{color:var(--ps-blue);}
+.surface-tile.tint-violet .num{color:var(--violet);}
+.surface-tile.tint-amber .num{color:var(--amber);}
+.surface-tile.tint-rose .num{color:var(--rose);}
+.surface-tile.tint-mint .num{color:var(--mint);}
+.surface-tile .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.surface-tile .chip{font-family:var(--mono);font-size:11px;background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.08);padding:4px 9px;border-radius:var(--pill);color:var(--ink-soft);letter-spacing:0.02em;}
+
+/* Three Axes — split columns */
+.axis{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin:16px 0 26px;}
+@media (max-width:780px){.axis{grid-template-columns:1fr;}}
+.axis-col{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:20px;}
+.axis-col.yes{border-color:rgba(0,102,204,0.25);background:linear-gradient(135deg,rgba(0,102,204,0.04) 0%,rgba(0,102,204,0.01) 100%);}
+.axis-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--hairline-soft);}
+.axis-label{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);}
+.axis-col.yes .axis-label{color:var(--ps-blue);}
+.axis-count{font-family:var(--mono);font-size:18px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;}
+.pills{display:flex;flex-wrap:wrap;gap:6px;}
+.pill{font-family:var(--mono);font-size:11px;background:var(--paper);border:1px solid var(--hairline);padding:5px 10px;border-radius:var(--pill);color:var(--ink-soft);letter-spacing:0.02em;}
+.axis-col.yes .pill{border-color:rgba(0,102,204,0.18);background:rgba(255,255,255,0.7);}
+
+/* Verb × Noun taxonomy */
+.utterance{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:20px 0 28px;padding:18px 22px;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);font-family:var(--mono);font-size:13px;}
+.utterance-tok{padding:6px 12px;border-radius:var(--radius-sm);font-weight:500;}
+.utterance-tok.verb{background:rgba(0,102,204,0.10);color:var(--ps-blue);}
+.utterance-tok.noun{background:rgba(124,58,237,0.10);color:var(--violet);}
+.utterance-tok.mod{background:rgba(161,98,7,0.10);color:var(--amber);}
+.utterance-tok.intent{background:var(--ink);color:#fff;}
+.utterance-op{color:var(--muted);font-size:14px;font-weight:600;}
+.tax{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0;}
+@media (max-width:780px){.tax{grid-template-columns:1fr;}}
+.tax-block{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;}
+.tax-h{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--hairline-soft);}
+.tax-group{margin-bottom:14px;}
+.tax-group:last-child{margin-bottom:0;}
+.tax-grouph{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--ink);margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.tax-grouph small{font-weight:400;color:var(--dim);font-size:10px;letter-spacing:0.04em;}
+.tax-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.tax-pill{font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:var(--pill);background:var(--paper);border:1px solid var(--hairline);color:var(--ink-soft);}
+.tax-pill.read{background:rgba(0,102,204,0.08);color:var(--ps-blue);border-color:rgba(0,102,204,0.18);}
+.tax-pill.create{background:rgba(4,120,87,0.08);color:var(--mint);border-color:rgba(4,120,87,0.18);}
+.tax-pill.modify{background:rgba(124,58,237,0.08);color:var(--violet);border-color:rgba(124,58,237,0.18);}
+.tax-pill.delete{background:rgba(190,24,93,0.08);color:var(--rose);border-color:rgba(190,24,93,0.18);}
+.tax-pill.action{background:rgba(161,98,7,0.08);color:var(--amber);border-color:rgba(161,98,7,0.18);}
+.tax-pill.ai{background:rgba(220,38,38,0.08);color:#b91c1c;border-color:rgba(220,38,38,0.18);}
+
+/* Sample utterances table */
+.samples{display:grid;grid-template-columns:80px 110px 1fr 1.2fr;gap:0;border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;margin:22px 0;}
+@media (max-width:780px){.samples{grid-template-columns:1fr 1fr;}}
+.samples-cell{padding:11px 14px;border-bottom:1px solid var(--hairline-soft);font-size:13px;font-family:var(--mono);}
+.samples-cell.h{background:var(--canvas);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);font-weight:600;}
+.samples-cell.v{color:var(--ps-blue);}
+.samples-cell.n{color:var(--violet);}
+.samples-cell.m{color:var(--amber);}
+.samples-cell.r{color:var(--ink);font-family:var(--sans);font-weight:500;}
+
+/* Journey chains */
+.journey{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px 24px;margin-bottom:14px;}
+.journey-h{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.014em;margin-bottom:4px;}
+.journey-d{font-size:13.5px;color:var(--muted);margin-bottom:14px;}
+.journey-chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+.journey-step{font-family:var(--mono);font-size:11px;background:var(--paper);border:1px solid var(--hairline);padding:6px 12px;border-radius:var(--pill);color:var(--ink-soft);letter-spacing:0.02em;}
+.journey-step.warn{background:rgba(217,119,6,0.08);border-color:rgba(217,119,6,0.25);color:var(--amber);}
+.journey-arrow{font-family:var(--mono);font-size:13px;color:var(--ps-blue);}
+
+/* Kanban */
+.kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0;}
+@media (max-width:780px){.kanban{grid-template-columns:1fr;}}
+.kanban-col{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:10px;}
+.kanban-col.p0{border-color:rgba(0,102,204,0.25);background:linear-gradient(135deg,rgba(0,102,204,0.04) 0%,rgba(0,102,204,0.01) 100%);}
+.kanban-col.p2{opacity:0.86;}
+.kanban-header{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);padding-bottom:10px;border-bottom:1px solid var(--hairline-soft);margin-bottom:4px;}
+.kanban-col.p0 .kanban-header{color:var(--ps-blue);}
+.kanban-card{background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;color:var(--ink-soft);font-weight:500;}
+.kanban-card .sub{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.6px;font-weight:400;}
+
+/* Classifier flow */
+.flow{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:stretch;gap:14px;margin:28px 0;padding:28px;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-lg);}
+@media (max-width:900px){.flow{grid-template-columns:1fr;}.flow-arrow{transform:rotate(90deg);height:24px;}}
+.flow-block{display:flex;flex-direction:column;gap:8px;padding:20px;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius);}
+.flow-block .tag{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ps-blue);}
+.flow-block .h{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.014em;line-height:1.3;}
+.flow-block .d{font-size:13px;color:var(--muted);line-height:1.5;}
+.flow-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:22px;color:var(--ps-blue);}
+
+/* Hop fork (vertical) */
+.hops{display:grid;gap:10px;margin:24px 0;}
+.hop{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:16px 20px;display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;}
+.hop.primary{border-color:rgba(0,102,204,0.25);background:linear-gradient(135deg,rgba(0,102,204,0.04) 0%,rgba(0,102,204,0.01) 100%);}
+.hop .l{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ps-blue);}
+.hop .v{font-size:14.5px;color:var(--ink-soft);line-height:1.5;}
+@media (max-width:780px){.hop{grid-template-columns:1fr;gap:4px;}}
+
+/* Tool table (cascade) */
+.tool-table{display:grid;grid-template-columns:200px 220px 1fr;gap:0;border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;margin:22px 0;background:var(--paper);}
+@media (max-width:780px){.tool-table{grid-template-columns:1fr;}}
+.tool-cell{padding:12px 16px;border-bottom:1px solid var(--hairline-soft);font-size:13.5px;line-height:1.5;}
+.tool-cell.h{background:var(--canvas);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);font-weight:600;}
+.tool-cell.g{font-family:var(--mono);font-size:11px;color:var(--ps-blue);text-transform:uppercase;letter-spacing:0.08em;}
+.tool-cell.r{font-family:var(--mono);font-size:12.5px;color:var(--ink);font-weight:500;}
+.tool-cell.o{color:var(--ink-soft);}
+
+/* Inline cards / video gallery */
+.intent-demos{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:28px 0;}
+@media (max-width:780px){.intent-demos{grid-template-columns:1fr;}}
+.intent-demo{background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform 200ms cubic-bezier(0.2,0.7,0.3,1),border-color 200ms ease,box-shadow 200ms ease;}
+.intent-demo:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:var(--shadow-card);}
+.intent-demo-media{background:linear-gradient(135deg,#f4f4f5 0%,#e7e7e8 100%);aspect-ratio:16/10;position:relative;}
+.intent-demo-media video,.intent-demo-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.intent-demo-body{padding:22px 24px;display:flex;flex-direction:column;gap:8px;}
+.intent-demo-tag{align-self:flex-start;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--ps-blue);background:rgba(0,102,204,0.08);padding:4px 10px;border-radius:var(--pill);}
+.intent-demo-title{font-size:18px;font-weight:600;letter-spacing:-0.018em;color:var(--ink);line-height:1.3;margin-top:2px;}
+.intent-demo-query{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:var(--inset);padding:8px 12px;border-radius:var(--radius-sm);border:1px solid var(--hairline);margin-top:6px;}
+.intent-demo-query::before{content:"▸ ";color:var(--ps-blue);}
+.intent-demo-desc{font-size:14px;color:var(--muted);line-height:1.55;margin-top:4px;}
+
+/* Workflow gallery — small video tiles */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:28px 0;}
+@media(max-width:640px){.gallery{grid-template-columns:1fr;gap:14px;}}
+.gallery-item{background:var(--ink);border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;aspect-ratio:16/10;position:relative;box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+.gallery-item video,.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery-item .label{position:absolute;left:10px;bottom:10px;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);padding:4px 9px;border-radius:5px;}
+
+/* Intent chip cluster */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;}
+.chips .chip{font-family:var(--mono);font-size:11px;background:var(--canvas);border:1px solid var(--hairline);padding:6px 11px;border-radius:var(--pill);color:var(--ink-soft);letter-spacing:0.02em;}
+
+/* Bilingual quotes */
+.bilingual{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0;}
+@media (max-width:900px){.bilingual{grid-template-columns:1fr;}}
+.bilingual-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px 24px;display:flex;flex-direction:column;gap:10px;}
+.bilingual-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ps-blue);}
+.bilingual-q{font-size:18px;line-height:1.4;color:var(--ink);letter-spacing:-0.012em;}
+.bilingual-arrow{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;}
+.bilingual-out{font-family:var(--mono);font-size:13px;color:var(--ink-soft);background:var(--inset);padding:8px 12px;border-radius:var(--radius-sm);}
+
+/* Funnel */
+.funnel{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:24px 0;flex-wrap:wrap;}
+.funnel-step{flex:1;min-width:140px;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px 18px;text-align:center;}
+.funnel-step.live{background:var(--ink);color:#fff;border-color:var(--ink);}
+.funnel-num{font-size:42px;font-weight:500;letter-spacing:-0.028em;line-height:1;color:inherit;font-variant-numeric:tabular-nums;}
+.funnel-label{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+.funnel-step.live .funnel-label{color:rgba(255,255,255,0.7);}
+.funnel-arrow{font-family:var(--mono);font-size:20px;color:var(--ps-blue);}
+
+/* Before / After data table */
+.data-table{border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;margin:22px 0;background:var(--paper);}
+.data-row{display:grid;grid-template-columns:1.1fr 1.6fr 1.6fr;gap:0;border-bottom:1px solid var(--hairline-soft);}
+.data-row:last-child{border-bottom:none;}
+.data-row.head{background:var(--canvas);}
+.data-row > div{padding:14px 18px;font-size:14px;color:var(--ink-soft);line-height:1.5;border-right:1px solid var(--hairline-soft);}
+.data-row > div:last-child{border-right:none;}
+.data-row.head > div{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);}
+.data-row .label{font-weight:600;color:var(--ink);}
+.data-row .before{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(220,38,38,0.4);text-decoration-thickness:1px;}
+.data-row .after{color:var(--ink);font-weight:500;}
+@media (max-width:780px){.data-row{grid-template-columns:1fr;}.data-row > div{border-right:none;border-bottom:1px solid var(--hairline-soft);}.data-row > div:last-child{border-bottom:none;}}
+
+/* KPI cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0;}
+@media (max-width:780px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+.kpi-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;}
+.kpi-val{font-size:32px;font-weight:500;letter-spacing:-0.028em;color:var(--ps-blue);line-height:1;margin-bottom:10px;font-variant-numeric:tabular-nums;}
+.kpi-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--ink);}
+.kpi-why{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;}
+
+/* Time Machine cards */
+.tt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0;}
+@media (max-width:900px){.tt-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.tt-grid{grid-template-columns:1fr;}}
+.tt-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:8px;}
+.tt-num{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--ps-blue);}
+.tt-title{font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.014em;line-height:1.3;}
+.tt-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+
+/* Lessons grid */
+.lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px;}
+@media (max-width:780px){.lessons{grid-template-columns:1fr;}}
+.lesson{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-lg);padding:26px 28px;display:flex;flex-direction:column;gap:8px;}
+.lesson-num{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.lesson-h{font-size:19px;font-weight:600;letter-spacing:-0.018em;color:var(--ink);line-height:1.3;}
+.lesson-d{font-size:14.5px;color:var(--ink-soft);line-height:1.6;}
+
+/* Honest gap callout */
+.gap-note{margin-top:24px;padding:24px 26px;background:var(--canvas);border:1px dashed var(--hairline);border-radius:var(--radius-lg);}
+.gap-note-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:6px;}
+.gap-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;}
+@media (max-width:780px){.gap-list{grid-template-columns:1fr;}}
+.gap-item{padding:14px;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-sm);}
+.gap-item-h{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;margin-bottom:4px;}
+.gap-item-d{font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+/* Priority inventory */
+.prio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0;}
+@media (max-width:900px){.prio-grid{grid-template-columns:1fr;}}
+.prio-col{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:14px;}
+.prio-col.p0{border-color:rgba(0,102,204,0.25);background:linear-gradient(135deg,rgba(0,102,204,0.04) 0%,rgba(0,102,204,0.01) 100%);}
+.prio-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;border-bottom:1px solid var(--hairline-soft);}
+.prio-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);font-weight:600;}
+.prio-col.p0 .prio-tag{color:var(--ps-blue);}
+.prio-count{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;}
+.prio-sub{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+/* Related — Horizontal-scroll tile cards (matches portfolio-hybrid landing tiles) */
+.related-scroll{display:flex;gap:20px;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:24px -32px 0;padding:8px 32px 36px;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,0.2) transparent;}
+.related-scroll::-webkit-scrollbar{height:8px;}
+.related-scroll::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.18);border-radius:4px;}
+.related-scroll::-webkit-scrollbar-track{background:transparent;}
+.related-card{flex:0 0 360px;scroll-snap-align:start;position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;border-radius:24px;overflow:hidden;padding:32px 22px 0;min-height:460px;background:var(--canvas);color:var(--ink);text-decoration:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);}
+.related-card:hover{transform:translateY(-3px);}
+.related-card.dark{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.related-card.midnight{background:linear-gradient(180deg,#0a1430 0%,#000 100%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.related-card.tint-violet{background:#efeaff;}
+.related-card.tint-amber{background:#fff4d6;}
+.related-card.tint-rose{background:#ffe6ec;}
+.related-card.tint-mint{background:#dcf7ec;}
+.related-card .r-eyebrow{font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;font-family:var(--mono);color:var(--ps-blue);margin-bottom:8px;display:inline-flex;align-items:center;gap:6px;}
+.related-card .r-eyebrow::before{content:"\2192";font-family:var(--mono);font-size:12px;opacity:0.75;}
+.related-card.dark .r-eyebrow,.related-card.midnight .r-eyebrow{color:#3da5f5;}
+.related-card.tint-violet .r-eyebrow{color:#7c3aed;}
+.related-card.tint-amber .r-eyebrow{color:#a16207;}
+.related-card.tint-rose .r-eyebrow{color:#be185d;}
+.related-card.tint-mint .r-eyebrow{color:#047857;}
+.related-card .r-h{font-size:24px;font-weight:600;letter-spacing:-0.03em;line-height:1.08;margin-bottom:10px;max-width:300px;}
+.related-card .r-sub{font-size:14px;line-height:1.45;color:var(--muted);letter-spacing:-0.005em;margin-bottom:18px;max-width:300px;}
+.related-card.dark .r-sub,.related-card.midnight .r-sub{color:rgba(255,255,255,0.78);}
+.related-card .r-cta{display:inline-flex;align-items:center;gap:4px;background:var(--ps-blue);color:#fff !important;padding:8px 16px;border-radius:var(--pill);font-size:13px;font-weight:500;letter-spacing:-0.01em;margin-bottom:22px;}
+.related-card .r-cta::after{content:"\203A";font-size:15px;line-height:1;margin-left:2px;}
+.related-card.dark .r-cta,.related-card.midnight .r-cta{background:#fff;color:var(--ink) !important;}
+.related-card.tint-violet .r-cta{background:#7c3aed;}
+.related-card.tint-amber .r-cta{background:#a16207;}
+.related-card.tint-rose .r-cta{background:#be185d;}
+.related-card.tint-mint .r-cta{background:#047857;}
+.related-card .r-media{margin-top:auto;width:100%;padding:0 14px;position:relative;}
+.related-card .r-media::before{content:"";position:absolute;left:50%;bottom:-8%;transform:translateX(-50%);width:78%;height:60%;background:radial-gradient(ellipse at center 60%,rgba(0,102,204,0.22) 0%,transparent 70%);filter:blur(36px);z-index:0;pointer-events:none;}
+.related-card.tint-violet .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(124,58,237,0.26) 0%,transparent 70%);}
+.related-card.tint-amber .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(245,158,11,0.32) 0%,transparent 70%);}
+.related-card.tint-rose .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(236,72,153,0.26) 0%,transparent 70%);}
+.related-card.dark .r-media::before,.related-card.midnight .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(61,165,245,0.34) 0%,transparent 70%);}
+.related-card .r-frame{position:relative;z-index:1;width:100%;max-width:300px;margin:0 auto;background:linear-gradient(180deg,#3a3a3d 0%,#2e2e30 5%,#232325 55%,#1c1c1e 100%);padding:10px 8px 8px;border-radius:10px 10px 3px 3px;filter:drop-shadow(0 22px 32px rgba(0,0,0,0.30)) drop-shadow(0 10px 16px rgba(0,0,0,0.18));box-shadow:inset 0 1px 0 rgba(255,255,255,0.10),inset 0 -1px 0 rgba(0,0,0,0.6);transition:transform 360ms cubic-bezier(0.2,0.7,0.3,1);}
+.related-card:hover .r-frame{transform:translateY(-4px);}
+.related-card .r-frame img,.related-card .r-frame video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#000;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.85);}
+.related-card .r-frame::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:54px;height:5px;background:#0a0a0a;border-radius:0 0 5px 5px;z-index:3;}
+@media (max-width:780px){.related-card{flex:0 0 280px;min-height:410px;padding:26px 18px 0;}.related-card .r-frame{max-width:230px;}.related-card .r-h{font-size:21px;}}
+
+/* CTA band */
+.cta-band{padding:120px 28px;text-align:center;background:var(--canvas);border-top:1px solid var(--hairline);position:relative;overflow:hidden;}
+.cta-band::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(0,102,204,0.06),transparent 60%);border-radius:50%;}
+.cta-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;}
+.cta-band h2{font-size:clamp(48px,7vw,84px);font-weight:600;letter-spacing:-0.035em;line-height:1;margin-bottom:22px;color:var(--ink);}
+.cta-band h2 em{font-style:normal;color:var(--muted);}
+.cta-band p{font-size:18px;color:var(--muted);max-width:540px;margin:0 auto 36px;line-height:1.55;}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff !important;padding:13px 26px;border-radius:var(--pill);font-size:14px;font-weight:500;transition:transform 120ms ease,opacity 120ms;letter-spacing:-0.01em;}
+.btn:hover{opacity:0.9;transform:translateY(-1px);}
+.btn.ghost{background:var(--paper);color:var(--ink) !important;border:1px solid var(--hairline);}
+.btn.ghost:hover{border-color:var(--ink);}
+
+footer{padding:48px 28px 64px;border-top:1px solid var(--hairline);text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:0.06em;text-transform:uppercase;}
+
+/* CMD PALETTE (Hybrid · matches landing page) */
+.cmd-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.32);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding-top:10vh;}
+.cmd-overlay.open{display:flex;}
+.cmd-modal{width:min(720px,94vw);max-height:80vh;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,0.30);}
+.cmd-header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--hairline);flex-shrink:0;}
+.cmd-header-icon{width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--ps-blue) 0%,#7c3aed 100%);color:#fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,102,204,0.3);}
+.cmd-header-icon svg{width:18px;height:18px;}
+.cmd-header-text{flex:1;min-width:0;}
+.cmd-header-title{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.cmd-header-pill{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.12em;color:var(--ps-blue);background:rgba(0,102,204,0.1);border:1px solid rgba(0,102,204,0.2);padding:2px 6px;border-radius:4px;}
+.cmd-header-sub{font-size:11px;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:1.2px;margin-top:2px;}
+.cmd-icon-btn{width:32px;height:32px;border-radius:8px;background:transparent;border:1px solid transparent;cursor:pointer;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;transition:border-color 150ms ease,color 150ms ease;}
+.cmd-icon-btn:hover{border-color:var(--hairline);color:var(--ink);}
+.cmd-icon-btn svg{width:16px;height:16px;}
+
+.cmd-conv{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:14px;min-height:240px;max-height:54vh;}
+.cmd-conv::-webkit-scrollbar{width:6px;}
+.cmd-conv::-webkit-scrollbar-thumb{background:var(--hairline);border-radius:3px;}
+.msg{max-width:88%;display:flex;flex-direction:column;gap:8px;}
+.msg.user{align-self:flex-end;align-items:flex-end;}
+.msg.bot{align-self:flex-start;align-items:flex-start;}
+.msg-text{padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.55;letter-spacing:-0.005em;}
+.msg.user .msg-text{background:var(--ink);color:#fff;border-bottom-right-radius:4px;}
+.msg.bot .msg-text{background:var(--canvas);color:var(--ink);border:1px solid var(--hairline);border-bottom-left-radius:4px;}
+.msg-text strong{font-weight:600;color:var(--ink);}
+.msg-text code{font-family:var(--mono);font-size:12.5px;background:rgba(0,0,0,0.05);padding:1px 5px;border-radius:4px;}
+.msg-typing{display:inline-flex;gap:4px;padding:14px 16px;background:var(--canvas);border:1px solid var(--hairline);border-radius:14px;border-bottom-left-radius:4px;}
+.msg-typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typing 1.2s infinite ease-in-out;}
+.msg-typing span:nth-child(2){animation-delay:0.15s;}
+.msg-typing span:nth-child(3){animation-delay:0.30s;}
+@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-4px);opacity:1;}}
+
+.resp-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
+.resp-chip{font-size:12px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--hairline);padding:7px 12px;border-radius:var(--pill);cursor:pointer;font-family:var(--sans);display:inline-flex;align-items:center;gap:6px;transition:border-color 150ms ease,color 150ms ease,background 150ms ease;}
+.resp-chip::before{content:"↳";opacity:0.4;}
+.resp-chip:hover{border-color:var(--ink);color:var(--ink);background:var(--canvas);}
+
+.cmd-quick{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 0;flex-shrink:0;}
+.cmd-quick-btn{font-size:12px;color:var(--ink-soft);background:var(--canvas);border:1px solid var(--hairline);padding:7px 12px;border-radius:var(--pill);cursor:pointer;font-family:var(--sans);min-height:32px;transition:border-color 150ms ease,color 150ms ease;}
+.cmd-quick-btn:hover{border-color:var(--ink);color:var(--ink);}
+
+.cmd-input-row{display:flex;align-items:center;gap:10px;padding:12px 14px;flex-shrink:0;border-top:1px solid var(--hairline);background:var(--canvas);}
+.cmd-input-wrap{flex:1;display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--pill);padding:0 18px 0 14px;min-height:44px;transition:border-color 150ms ease,box-shadow 150ms ease;}
+.cmd-input-wrap:focus-within{border-color:var(--ps-blue);box-shadow:0 0 0 3px rgba(0,102,204,0.12);}
+.cmd-input-spark{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ps-blue) 0%,#7c3aed 100%);color:#fff;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cmd-input-spark svg{width:13px;height:13px;}
+.cmd-input{flex:1;background:transparent;border:none;padding:11px 0;font-size:14px;font-family:var(--sans);color:var(--ink);outline:none;min-height:44px;}
+.cmd-input::placeholder{color:var(--dim);}
+.cmd-send{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:opacity 150ms ease;}
+.cmd-send:disabled{opacity:0.35;cursor:not-allowed;}
+.cmd-send svg{width:18px;height:18px;}
+
+@media (max-width:640px){
+  .cmd-overlay{padding-top:0;align-items:stretch;}
+  .cmd-modal{width:100%;max-height:100vh;height:100vh;border-radius:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="portfolio-hybrid.html" class="brand"><span class="brand-mark">H</span><span class="brand-label">Harry Hein</span></a>
+    <div class="nav-actions">
+      <a href="portfolio-hybrid.html#work" class="nav-back">All work</a>
+      <button class="nav-cmd" id="cmdTrigger" aria-label="Ask AI about this case">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="nav-cmd-label">Ask AI about this case</span>
+        <kbd>⌘K</kbd>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Case study · AI Product · Myanmar live-commerce</div>
+    <h1>Speak,<br>don't <em>click.</em></h1>
+    <p class="hero-sub">A bilingual intent palette wired to <strong>Gemini tool-calling</strong>. Sellers ask in Myanmar or English. An LLM picks from 16 server-side tools. The page renders the answer as an inline card — no menus, no translation, 21 already live.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Role</span><span class="hero-meta-val">Product Designer (sole)</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Built with</span><span class="hero-meta-val">1 backend engineer · founder review loop</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Users</span><span class="hero-meta-val">Myanmar live-sellers</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Status</span><span class="hero-meta-val">Early production · 2025 ongoing</span></div>
+    </div>
+
+    <div class="hero-bento">
+      <div class="tile hero-media midnight">
+        <span class="tile-stamp">Live · Chain restock</span>
+        <video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/22-chain-restock.mp4"></video>
+        <div class="tile-cap">
+          <div class="play"></div>
+          <div>
+            <div class="tile-cap-label">Demo · 00:14</div>
+            <div class="tile-cap-title">"Restock my low-stock items"</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="tile metric tint-blue"><span class="tile-stamp">Funnel</span><div class="tstat-val">21</div><div class="tstat-lbl">Live in production</div><div class="tstat-foot">of 28 MVP · 45 mapped</div></div>
+        <div class="tile metric tint-violet"><span class="tile-stamp">Vocabulary</span><div class="tstat-val">16</div><div class="tstat-lbl">Tool verbs</div><div class="tstat-foot">scoped to businessId</div></div>
+        <div class="tile metric tint-amber"><span class="tile-stamp">Coverage</span><div class="tstat-val">6</div><div class="tstat-lbl">Product surfaces</div><div class="tstat-foot">one front door</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TL;DR -->
+<section class="section" id="tldr">
+  <div class="sec-head">
+    <span class="sec-num">At a glance · 60 seconds</span>
+    <h2 class="sec-title">Sellers stopped clicking. They started speaking.</h2>
+  </div>
+  <div class="tldr">
+    <div>
+      <p class="lede">A Myanmar live-seller's day is one long stream of "show me X, then do Y." The CRM dashboard turned every question into a five-step hunt. I replaced the navigation model with a bilingual intent palette wired to Gemini tool-calling — type or speak, the LLM picks the right verb, the answer renders inline.</p>
+      <div class="tldr-jump">
+        <a href="#problem">Problem</a>
+        <a href="#research">Research</a>
+        <a href="#mapping">Mapping</a>
+        <a href="#axes">Three axes</a>
+        <a href="#taxonomy">Taxonomy</a>
+        <a href="#journeys">Journeys</a>
+        <a href="#classifier">Classifier</a>
+        <a href="#tools">Tools</a>
+        <a href="#bilingual">Bilingual</a>
+        <a href="#workflows">Workflows</a>
+        <a href="#inventory">Inventory</a>
+        <a href="#outcome">Outcome</a>
+        <a href="#reflection">Reflection</a>
+      </div>
+    </div>
+    <div class="tldr-grid">
+      <div class="tldr-item"><span class="l">Problem</span><span class="v">Dashboard built for office staff. Live-sellers think in Myanmar, work one-handed, ask in sentences.</span></div>
+      <div class="tldr-item"><span class="l">Approach</span><span class="v"><strong>Intent palette + LLM tool-calling.</strong> 45 mapped → 38 prioritized → 28 in MVP → 21 in production.</span></div>
+      <div class="tldr-item"><span class="l">Mechanism</span><span class="v">Gemini 2.5 Flash picks 1–6 tools per turn from a 16-verb vocabulary. Server runs them, scoped to <code>businessId</code>.</span></div>
+      <div class="tldr-item"><span class="l">Surfaces</span><span class="v">Inline cards, not chat bubbles. One <code>list_orders</code> verb powers four intents — composition over duplication.</span></div>
+      <div class="tldr-item"><span class="l">Outcome</span><span class="v">"Show me past 2 weeks" goes from a 5-step Excel rebuild to one sentence. Sundays back.</span></div>
+      <div class="tldr-item"><span class="l">Lesson</span><span class="v">Stop teaching users your menu. Move the labour into the model — schema descriptions are the new IA.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 — PROBLEM -->
+<section class="section" id="problem">
+  <div class="sec-head">
+    <span class="sec-num">01 — The Problem</span>
+    <h2 class="sec-title">"Show me past 2 weeks." The dashboard couldn't.</h2>
+    <p class="sec-sub">A Myanmar live-seller has one question every Sunday: <em>what did I sell in the past 2 weeks?</em> One sentence. Clear intent.</p>
+  </div>
+  <p class="lede">The CRM dashboard turned that one sentence into a five-step hunt — and most sellers gave up halfway through.</p>
+  <div class="steps">
+    <div class="step"><span class="step-num">01</span><span class="step-text"><strong>Open</strong>Orders tab, buried two levels deep behind a menu they didn't read.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text"><strong>Filter</strong>No "past 2 weeks" preset. Pick a start date and an end date by hand.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text"><strong>Translate</strong>Every label in English. Sellers think in Myanmar.</span></div>
+    <div class="step"><span class="step-num">04</span><span class="step-text"><strong>Scroll</strong>600 rows, no summary at the top. Lose your place. Start again.</span></div>
+    <div class="step"><span class="step-num">05</span><span class="step-text"><strong>Give up</strong>Rebuild the answer in Excel by hand. Sunday gone.</span></div>
+  </div>
+  <div class="hook">The seller already knew the question. <em>The system made them prove it.</em></div>
+</section>
+
+<!-- 02 — RESEARCH -->
+<section class="section" id="research">
+  <div class="sec-head">
+    <span class="sec-num">02 — Research</span>
+    <h2 class="sec-title">Five sellers. One critical moment.</h2>
+    <p class="sec-sub">Before mapping intents, I sat with sellers running real Facebook Lives. Not a feature list — the moment of greatest friction.</p>
+  </div>
+
+  <div class="metric-strip">
+    <div class="tile metric"><div class="tstat-val">5</div><div class="tstat-lbl">Sellers interviewed</div></div>
+    <div class="tile metric"><div class="tstat-val">4yr</div><div class="tstat-lbl">Avg live experience</div></div>
+    <div class="tile metric"><div class="tstat-val">5</div><div class="tstat-lbl">Distinct pain moments</div></div>
+    <div class="tile metric tint-blue"><div class="tstat-val">1</div><div class="tstat-lbl">Shared question</div></div>
+  </div>
+
+  <div class="pullquote">
+    <div class="pullquote-q">Every Sunday after the live, I want to know — what did I sell the past 2 weeks? The table has 600 rows. I scroll, lose count, give up. I just want to ask "show me past 2 weeks." That's it.</div>
+    <div class="pullquote-attr">Seller A · Fashion live · 4 years experience</div>
+  </div>
+
+  <h3 class="subhead">Pain points · ranked by mentions</h3>
+  <div class="pain-table">
+    <div class="pain-row head"><div>Pain point</div><div style="text-align:center">Mentions</div><div style="text-align:right">Severity</div></div>
+    <div class="pain-row"><div class="pain-text">Past-sales review = scroll 600 rows by hand</div><div class="pain-mention">5/5</div><div class="pain-sev critical">Critical</div></div>
+    <div class="pain-row"><div class="pain-text">Weekly report rebuilt manually in Excel</div><div class="pain-mention">4/5</div><div class="pain-sev critical">Critical</div></div>
+    <div class="pain-row"><div class="pain-text">Pending count invisible during live</div><div class="pain-mention">4/5</div><div class="pain-sev critical">Critical</div></div>
+    <div class="pain-row"><div class="pain-text">"Did my order ship last Tuesday?" — staff stalls</div><div class="pain-mention">3/5</div><div class="pain-sev high">High</div></div>
+    <div class="pain-row"><div class="pain-text">Different staff each need different slices</div><div class="pain-mention">3/5</div><div class="pain-sev high">High</div></div>
+  </div>
+  <div class="hook">All five collapse into one question: <em>"Show me the right slice of orders."</em></div>
+
+  <h3 class="subhead">Competitive teardown · the white space</h3>
+  <div class="vendor-grid">
+    <div class="vendor-card"><div class="vendor-name">Shopify Inbox</div><div class="vendor-gap">No comment → order</div></div>
+    <div class="vendor-card"><div class="vendor-name">Intercom Fin</div><div class="vendor-gap">Western SaaS only</div></div>
+    <div class="vendor-card"><div class="vendor-name">ChatGPT Operator</div><div class="vendor-gap">No domain awareness</div></div>
+    <div class="vendor-card"><div class="vendor-name">Manychat</div><div class="vendor-gap">Keywords only</div></div>
+    <div class="vendor-card"><div class="vendor-name">Zoko</div><div class="vendor-gap">No FB Live</div></div>
+  </div>
+  <p class="p" style="margin-top:18px;"><strong>White space:</strong> FB Live + intent-driven + bilingual.</p>
+</section>
+
+<!-- MAPPING -->
+<section class="section" id="mapping">
+  <div class="sec-head">
+    <span class="sec-num">Mapping</span>
+    <h2 class="sec-title">45 intents. 6 surfaces. One front door.</h2>
+    <p class="sec-sub">From research I extracted every action a seller does in a week — 45 in total. Grouped by domain, not by feature page. Before wiring tools I had to map, classify, and chain them.</p>
+  </div>
+
+  <div class="surface-grid">
+    <div class="surface-tile tint-rose">
+      <span class="num">01 · Live</span><span class="name">Live</span><span class="count">5 intents</span>
+      <p class="desc">Active session, live orders, draft catalog while broadcasting.</p>
+      <div class="chips"><span class="chip">Get Live Sessions</span><span class="chip">Get Active Live</span><span class="chip">Get Live Orders</span><span class="chip">Update Catalog</span><span class="chip">Save Draft</span></div>
+    </div>
+    <div class="surface-tile tint-amber">
+      <span class="num">02 · Inventory</span><span class="name">Inventory</span><span class="count">10 intents</span>
+      <p class="desc">Stock checks, low-stock alerts, restock chain, price + SKU edits.</p>
+      <div class="chips"><span class="chip">List Products</span><span class="chip">Get Product</span><span class="chip">Create</span><span class="chip">Update</span><span class="chip">Delete</span><span class="chip">Variant</span><span class="chip">Adjust Stock</span><span class="chip">Bulk Update</span><span class="chip">History</span><span class="chip">Low Stock</span></div>
+    </div>
+    <div class="surface-tile tint-blue">
+      <span class="num">03 · Orders</span><span class="name">Orders + Customers</span><span class="count">11 intents</span>
+      <p class="desc">Ranges, filters, shipment status, customer history — the heaviest surface.</p>
+      <div class="chips"><span class="chip">List Orders</span><span class="chip">Order Detail</span><span class="chip">Create</span><span class="chip">Update Status</span><span class="chip">Cancel</span><span class="chip">Verify Slip</span><span class="chip">Export</span><span class="chip">List Customers</span><span class="chip">Customer Detail</span><span class="chip">Search</span><span class="chip">Stats</span></div>
+    </div>
+    <div class="surface-tile tint-violet">
+      <span class="num">04 · Marketing</span><span class="name">Marketing</span><span class="count">9 intents</span>
+      <p class="desc">Promo blasts, voucher creation, broadcast lists, segment filters.</p>
+      <div class="chips"><span class="chip">List Discounts</span><span class="chip">Create</span><span class="chip">Toggle</span><span class="chip">Delete</span><span class="chip">Flash Sale</span><span class="chip">Generate Post</span><span class="chip">Create Post</span><span class="chip">Schedule</span><span class="chip">Publish</span></div>
+    </div>
+    <div class="surface-tile tint-mint">
+      <span class="num">05 · Insights</span><span class="name">Insights</span><span class="count">6 intents</span>
+      <p class="desc">"Best-selling this week", revenue trends, comparison vs last live.</p>
+      <div class="chips"><span class="chip">Dashboard Stats</span><span class="chip">Revenue Trend</span><span class="chip">Top Products</span><span class="chip">Pending Orders</span><span class="chip">Notifications</span><span class="chip">Mark Read</span></div>
+    </div>
+    <div class="surface-tile">
+      <span class="num">06 · Config</span><span class="name">Config</span><span class="count">4 intents</span>
+      <p class="desc">Business hours, staff roles, payment + shipping defaults.</p>
+      <div class="chips"><span class="chip">List Payment</span><span class="chip">Create Payment</span><span class="chip">List Zones</span><span class="chip">Create Zone</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE AXES -->
+<section class="section" id="axes">
+  <div class="sec-head">
+    <span class="sec-num">Three Axes</span>
+    <h2 class="sec-title">Tag every intent. Three times.</h2>
+    <p class="sec-sub">Each intent is classified along three axes. Together they decide the card type, the confirm gate, and whether it can chain.</p>
+  </div>
+  <div class="hook">Chainable × Confirm × Response = the rendering rule.</div>
+
+  <h3 class="subhead">Axis 1 · Chainable</h3>
+  <div class="axis">
+    <div class="axis-col yes">
+      <div class="axis-head"><span class="axis-label">✓ Chainable</span><span class="axis-count">35</span></div>
+      <div class="pills">
+        <span class="pill">List Products</span><span class="pill">List Orders</span><span class="pill">Get Order Details</span><span class="pill">Top Products</span><span class="pill">Customer Stats</span><span class="pill">Adjust Stock</span><span class="pill">Generate Post</span><span class="pill">Create Discount</span><span class="pill">Verify Payment</span><span class="pill">+ 26 more</span>
+      </div>
+    </div>
+    <div class="axis-col">
+      <div class="axis-head"><span class="axis-label">✗ Not Chainable</span><span class="axis-count">10</span></div>
+      <div class="pills">
+        <span class="pill">Delete Product</span><span class="pill">Cancel Order</span><span class="pill">Bulk Update</span><span class="pill">Export Orders</span><span class="pill">Delete Discount</span><span class="pill">Schedule Post</span><span class="pill">Publish Post</span><span class="pill">Mark All Read</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subhead">Axis 2 · Needs Confirmation</h3>
+  <div class="axis">
+    <div class="axis-col yes">
+      <div class="axis-head"><span class="axis-label">⚠ Needs Confirm</span><span class="axis-count">17</span></div>
+      <div class="pills">
+        <span class="pill">Create Product</span><span class="pill">Update Product</span><span class="pill">Delete Product</span><span class="pill">Create Order</span><span class="pill">Cancel Order</span><span class="pill">Verify Payment</span><span class="pill">Schedule Post</span><span class="pill">Publish Post</span><span class="pill">+ 9 more</span>
+      </div>
+    </div>
+    <div class="axis-col">
+      <div class="axis-head"><span class="axis-label">✓ Auto-execute</span><span class="axis-count">28</span></div>
+      <div class="pills">
+        <span class="pill">List Orders</span><span class="pill">List Products</span><span class="pill">Top Products</span><span class="pill">Revenue Trend</span><span class="pill">Dashboard Stats</span><span class="pill">Customer Stats</span><span class="pill">Generate Post</span><span class="pill">+ 21 more</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subhead">Axis 3 · Response Type</h3>
+  <div class="axis">
+    <div class="axis-col yes">
+      <div class="axis-head"><span class="axis-label">▦ UI Card</span><span class="axis-count">26</span></div>
+      <div class="pills">
+        <span class="pill">List Orders</span><span class="pill">Order Detail</span><span class="pill">Verify Payment</span><span class="pill">Top Products</span><span class="pill">Revenue Trend</span><span class="pill">Dashboard Stats</span><span class="pill">Create Discount</span><span class="pill">+ 19 more</span>
+      </div>
+    </div>
+    <div class="axis-col">
+      <div class="axis-head"><span class="axis-label">✎ Text Response</span><span class="axis-count">19</span></div>
+      <div class="pills">
+        <span class="pill">Create Product</span><span class="pill">Update Product</span><span class="pill">Delete Product</span><span class="pill">Adjust Stock</span><span class="pill">Cancel Order</span><span class="pill">Toggle Discount</span><span class="pill">Mark All Read</span><span class="pill">+ 12 more</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAXONOMY -->
+<section class="section" id="taxonomy">
+  <div class="sec-head">
+    <span class="sec-num">Intent Taxonomy</span>
+    <h2 class="sec-title">Verb × Noun.</h2>
+    <p class="sec-sub">A conversation grammar. Six verb classes crossed with six noun classes cover every intent without bespoke parsing.</p>
+  </div>
+
+  <div class="utterance">
+    <span class="utterance-tok verb">[ VERB ]</span>
+    <span class="utterance-op">+</span>
+    <span class="utterance-tok noun">[ NOUN ]</span>
+    <span class="utterance-op">+</span>
+    <span class="utterance-tok mod">[ modifier ]</span>
+    <span class="utterance-op">=</span>
+    <span class="utterance-tok intent">INTENT</span>
+  </div>
+
+  <div class="tax">
+    <div class="tax-block">
+      <div class="tax-h">Verbs · the action</div>
+      <div class="tax-group">
+        <div class="tax-grouph">Read / Query <small>UI Card · auto · chainable</small></div>
+        <div class="tax-pills"><span class="tax-pill read">view</span><span class="tax-pill read">show</span><span class="tax-pill read">list</span><span class="tax-pill read">get</span><span class="tax-pill read">find</span><span class="tax-pill read">search</span><span class="tax-pill read">filter</span><span class="tax-pill read">compare</span><span class="tax-pill read">check</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">Create <small>Text · confirm · chainable</small></div>
+        <div class="tax-pills"><span class="tax-pill create">create</span><span class="tax-pill create">add</span><span class="tax-pill create">new</span><span class="tax-pill create">make</span><span class="tax-pill create">draft</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">Modify <small>Text · confirm · chainable</small></div>
+        <div class="tax-pills"><span class="tax-pill modify">update</span><span class="tax-pill modify">edit</span><span class="tax-pill modify">change</span><span class="tax-pill modify">set</span><span class="tax-pill modify">adjust</span><span class="tax-pill modify">toggle</span><span class="tax-pill modify">rename</span><span class="tax-pill modify">move</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">Delete <small>Text · confirm · NOT chainable</small></div>
+        <div class="tax-pills"><span class="tax-pill delete">delete</span><span class="tax-pill delete">remove</span><span class="tax-pill delete">cancel</span><span class="tax-pill delete">clear</span><span class="tax-pill delete">disable</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">Action <small>Text · confirm · chainable</small></div>
+        <div class="tax-pills"><span class="tax-pill action">verify</span><span class="tax-pill action">approve</span><span class="tax-pill action">mark</span><span class="tax-pill action">publish</span><span class="tax-pill action">send</span><span class="tax-pill action">schedule</span><span class="tax-pill action">export</span><span class="tax-pill action">start</span><span class="tax-pill action">stop</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">AI-assisted <small>Text · auto · chainable</small></div>
+        <div class="tax-pills"><span class="tax-pill ai">generate</span><span class="tax-pill ai">suggest</span><span class="tax-pill ai">summarize</span><span class="tax-pill ai">explain</span><span class="tax-pill ai">draft</span></div>
+      </div>
+    </div>
+
+    <div class="tax-block">
+      <div class="tax-h">Nouns · the entity</div>
+      <div class="tax-group">
+        <div class="tax-grouph">Commerce</div>
+        <div class="tax-pills"><span class="tax-pill create">product</span><span class="tax-pill create">variant</span><span class="tax-pill create">stock</span><span class="tax-pill create">category</span><span class="tax-pill create">inventory</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">Sales</div>
+        <div class="tax-pills"><span class="tax-pill modify">order</span><span class="tax-pill modify">payment</span><span class="tax-pill modify">slip</span><span class="tax-pill modify">delivery zone</span><span class="tax-pill modify">invoice</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">Customer</div>
+        <div class="tax-pills"><span class="tax-pill read">customer</span><span class="tax-pill read">contact</span><span class="tax-pill read">conversation</span><span class="tax-pill read">comment</span><span class="tax-pill read">message</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">Marketing</div>
+        <div class="tax-pills"><span class="tax-pill action">discount</span><span class="tax-pill action">flash sale</span><span class="tax-pill action">post</span><span class="tax-pill action">live session</span><span class="tax-pill action">catalog</span><span class="tax-pill action">campaign</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">Insights</div>
+        <div class="tax-pills"><span class="tax-pill delete">dashboard</span><span class="tax-pill delete">revenue</span><span class="tax-pill delete">top product</span><span class="tax-pill delete">stat</span><span class="tax-pill delete">trend</span><span class="tax-pill delete">notification</span></div>
+      </div>
+      <div class="tax-group">
+        <div class="tax-grouph">Config</div>
+        <div class="tax-pills"><span class="tax-pill">AI personality</span><span class="tax-pill">setting</span><span class="tax-pill">subscription</span><span class="tax-pill">quota</span><span class="tax-pill">page</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subhead">Sample utterances</h3>
+  <div class="samples">
+    <div class="samples-cell h">Verb</div><div class="samples-cell h">Noun</div><div class="samples-cell h">Modifier</div><div class="samples-cell h">→ Resolves to</div>
+    <div class="samples-cell v">show</div><div class="samples-cell n">orders</div><div class="samples-cell m">from yesterday</div><div class="samples-cell r">List Orders (filtered)</div>
+    <div class="samples-cell v">get</div><div class="samples-cell n">product</div><div class="samples-cell m">"blue hoodie"</div><div class="samples-cell r">Get Product Details</div>
+    <div class="samples-cell v">adjust</div><div class="samples-cell n">stock</div><div class="samples-cell m">set medium to 50</div><div class="samples-cell r">Adjust Stock</div>
+    <div class="samples-cell v">create</div><div class="samples-cell n">flash sale</div><div class="samples-cell m">20% off for 30 min</div><div class="samples-cell r">Create Flash Sale ⚠</div>
+    <div class="samples-cell v">verify</div><div class="samples-cell n">payment slip</div><div class="samples-cell m">on order #123</div><div class="samples-cell r">Verify Payment Slip</div>
+    <div class="samples-cell v">generate</div><div class="samples-cell n">post</div><div class="samples-cell m">for the new dress</div><div class="samples-cell r">Generate Post (AI)</div>
+    <div class="samples-cell v">schedule</div><div class="samples-cell n">post</div><div class="samples-cell m">tomorrow 9am</div><div class="samples-cell r">Schedule Post ⚠</div>
+  </div>
+</section>
+
+<!-- JOURNEYS -->
+<section class="section" id="journeys">
+  <div class="sec-head">
+    <span class="sec-num">User Journeys</span>
+    <h2 class="sec-title">Chains, not one-shots.</h2>
+    <p class="sec-sub">Real sellers don't fire single intents. They chain them. Five journeys validated the chain rules — and exposed where confirm gates break flow.</p>
+  </div>
+
+  <div class="journey">
+    <div class="journey-h">Order fulfillment</div>
+    <div class="journey-d">Seller processes incoming orders after a live sale.</div>
+    <div class="journey-chain">
+      <span class="journey-step">List Orders</span><span class="journey-arrow">→</span>
+      <span class="journey-step">Get Order Details</span><span class="journey-arrow">→</span>
+      <span class="journey-step warn">⚠ Verify Payment</span><span class="journey-arrow">→</span>
+      <span class="journey-step warn">⚠ Update Status</span>
+    </div>
+  </div>
+  <div class="journey">
+    <div class="journey-h">Live sale prep</div>
+    <div class="journey-d">Seller plans tonight's live broadcast catalog and promo.</div>
+    <div class="journey-chain">
+      <span class="journey-step">Top Products</span><span class="journey-arrow">→</span>
+      <span class="journey-step">Get Product Details</span><span class="journey-arrow">→</span>
+      <span class="journey-step">Save Draft Catalog</span><span class="journey-arrow">→</span>
+      <span class="journey-step warn">⚠ Create Flash Sale</span>
+    </div>
+  </div>
+  <div class="journey">
+    <div class="journey-h">Stock replenishment</div>
+    <div class="journey-d">Seller reviews low-stock items and tops up inventory.</div>
+    <div class="journey-chain">
+      <span class="journey-step">Low Stock Alert</span><span class="journey-arrow">→</span>
+      <span class="journey-step">Get Product Details</span><span class="journey-arrow">→</span>
+      <span class="journey-step">Adjust Stock</span><span class="journey-arrow">→</span>
+      <span class="journey-step">View History</span>
+    </div>
+  </div>
+  <div class="journey">
+    <div class="journey-h">Launch a new product</div>
+    <div class="journey-d">Seller creates a product, variants, and a launch post.</div>
+    <div class="journey-chain">
+      <span class="journey-step warn">⚠ Create Product</span><span class="journey-arrow">→</span>
+      <span class="journey-step">Create Variant</span><span class="journey-arrow">→</span>
+      <span class="journey-step">Generate Post</span><span class="journey-arrow">→</span>
+      <span class="journey-step warn">⚠ Schedule Post</span>
+    </div>
+  </div>
+  <div class="journey">
+    <div class="journey-h">Customer insight</div>
+    <div class="journey-d">Seller reviews top customers and reaches out.</div>
+    <div class="journey-chain">
+      <span class="journey-step">Customer Stats</span><span class="journey-arrow">→</span>
+      <span class="journey-step">Get Customer</span><span class="journey-arrow">→</span>
+      <span class="journey-step">List Orders</span>
+    </div>
+  </div>
+  <div class="hook">Confirm gates break the chain. <em>Read verbs keep it flowing.</em></div>
+</section>
+
+<!-- PRIORITIZATION -->
+<section class="section" id="prioritization">
+  <div class="sec-head">
+    <span class="sec-num">Prioritization</span>
+    <h2 class="sec-title">Which 45 ship first?</h2>
+    <p class="sec-sub">Mapping was the easy part. Now: ship order. The journeys told me what's daily — that wins.</p>
+  </div>
+  <div class="hook">Ship order = frequency × learning-curve cost.</div>
+
+  <div class="kanban">
+    <div class="kanban-col p0">
+      <div class="kanban-header">P0 · Now</div>
+      <div class="kanban-card">Orders + Customers<div class="sub">11 intents · daily use</div></div>
+      <div class="kanban-card">Inventory CRUD<div class="sub">4 intents · weekly use</div></div>
+      <div class="kanban-card">Foundation reads<div class="sub">6 intents · the spine</div></div>
+    </div>
+    <div class="kanban-col p1">
+      <div class="kanban-header">P1 · Next</div>
+      <div class="kanban-card">Insights<div class="sub">5 intents · client-side compute</div></div>
+      <div class="kanban-card">Discounts + Marketing<div class="sub">6 intents · campaign cadence</div></div>
+    </div>
+    <div class="kanban-col p2">
+      <div class="kanban-header">P2 · Later</div>
+      <div class="kanban-card">Live Sales<div class="sub">6 intents · planned</div></div>
+      <div class="kanban-card">Multi-shop<div class="sub">deferred · low frequency</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — CLASSIFIER -->
+<section class="section" id="classifier">
+  <div class="sec-head">
+    <span class="sec-num">03 — The Classifier</span>
+    <h2 class="sec-title">LLM as classifier. Tools as verbs.</h2>
+    <p class="sec-sub">First pass was 30+ regex families. It worked — until a seller said "ဒီတစ်ပါတ် ဘယ်လောက်ရလဲ ပြပြီး ပြန်မှာရမယ့်ဟာတွေပါ ပြပေး" in one sentence. Two intents, conjoined, with paraphrase. Regex caught one and missed the other.</p>
+  </div>
+  <p class="p">So the architecture flipped. Gemini 2.5 Flash does the classification. The app exposes a fixed vocabulary of <strong>16 tools</strong> — each one a single verb the AI is allowed to perform. No tool call, no action. The LLM never touches the database directly.</p>
+
+  <div class="flow">
+    <div class="flow-block"><span class="tag">Input</span><span class="h">Free-form query</span><span class="d">"ဒီလ ရောင်းအား တက်လား · ဘာတွေ ပြန်မှာရမလဲ"</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-block"><span class="tag">Classifier</span><span class="h">Gemini picks 1–6 tools</span><span class="d">LLM as classifier. Tool schemas are the vocabulary, scoped to <code>businessId</code>.</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-block"><span class="tag">Render</span><span class="h">Inline card, not chat</span><span class="d">Server runs the tools. The page renders results in-place — not as a chat bubble.</span></div>
+  </div>
+
+  <h3 class="subhead">Three hops per turn</h3>
+  <div class="hops">
+    <div class="hop primary"><div class="l">Hop 1 · LLM picks tools</div><div class="v"><code>get_revenue_trend(30)</code> + <code>get_smart_reorder()</code></div></div>
+    <div class="hop primary"><div class="l">Hop 2 · server runs them</div><div class="v">Real Prisma queries · scoped to <code>businessId</code> from the JWT</div></div>
+    <div class="hop primary"><div class="l">Hop 3 · LLM composes reply</div><div class="v">Bilingual answer · cites real numbers · renders inline card</div></div>
+  </div>
+  <p class="p">Up to <strong>6 hops per turn</strong>. One question can read three things, decide, and stop — all before the user sees anything. The properties this gives me:</p>
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Generality</strong>Any phrasing in MM, EN, or mixed. No rule to write per variant.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Composition</strong>"Show this AND do that" is one turn, not two.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Safety</strong>Write tools live behind a confirm-intent rule baked into the system prompt.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Auditability</strong>Every turn logs <code>tool_name(args) → result</code>. The reply can be replayed.</span></li>
+  </ul>
+</section>
+
+<!-- INSIDE A TOOL -->
+<section class="section" id="tools">
+  <div class="sec-head">
+    <span class="sec-num">Inside a Tool</span>
+    <h2 class="sec-title">A tool is a verb the AI is allowed to say.</h2>
+    <p class="sec-sub">Each tool is a JSON schema (so the LLM knows when to pick it) + a server handler (the only code that touches the DB). The schema's <em>description</em> is the prompt — bilingual phrases the seller might use go directly into it.</p>
+  </div>
+  <p class="p">That description doubles as the discovery layer: when a seller types "ပြန်မှာရမယ့်ဟာ ဘာရှိလဲ", the LLM matches that phrase against the description text and picks the right verb. The orchestration loop is intentionally simple — the LLM calls a tool, the server runs it, the result goes back, repeat up to 6 hops. No state. All intelligence lives in the schema descriptions.</p>
+
+  <h3 class="subhead">The full 16-tool vocabulary</h3>
+  <div class="tool-table">
+    <div class="tool-cell h">Group</div><div class="tool-cell h">Tool</div><div class="tool-cell h">Returns / Effect</div>
+
+    <div class="tool-cell g">Read · Insights</div><div class="tool-cell r">get_dashboard_stats</div><div class="tool-cell o">orders · revenue · customers · low-stock count</div>
+    <div class="tool-cell g">Read · Insights</div><div class="tool-cell r">get_revenue_trend(days)</div><div class="tool-cell o">daily revenue + order count, last N days</div>
+    <div class="tool-cell g">Read · Insights</div><div class="tool-cell r">get_top_products(days, limit)</div><div class="tool-cell o">best sellers ranked by units + revenue</div>
+    <div class="tool-cell g">Read · Inventory</div><div class="tool-cell r">get_smart_reorder</div><div class="tool-cell o">velocity · days_left · suggested qty per variant</div>
+    <div class="tool-cell g">Read · Inventory</div><div class="tool-cell r">get_low_stock</div><div class="tool-cell o">variants ≤ threshold</div>
+    <div class="tool-cell g">Read · Inventory</div><div class="tool-cell r">list_products / find_product</div><div class="tool-cell o">catalog browse · single SKU lookup</div>
+    <div class="tool-cell g">Read · Orders</div><div class="tool-cell r">list_orders / get_order</div><div class="tool-cell o">filtered by status, customer, days</div>
+    <div class="tool-cell g">Read · Customers</div><div class="tool-cell r">list_customers</div><div class="tool-cell o">profile + spend + last order</div>
+    <div class="tool-cell g">Write · Inventory</div><div class="tool-cell r">create_product / update_price</div><div class="tool-cell o">create SKU · adjust price</div>
+    <div class="tool-cell g">Write · Inventory</div><div class="tool-cell r">update_stock / add_variant</div><div class="tool-cell o">stock delta · new variant</div>
+    <div class="tool-cell g">Write · Inventory</div><div class="tool-cell r">delete_product</div><div class="tool-cell o">soft-delete · confirm gated</div>
+    <div class="tool-cell g">Write · Orders</div><div class="tool-cell r">update_order_status</div><div class="tool-cell o">CONFIRMED · PAID · DELIVERED · CANCELLED</div>
+  </div>
+
+  <h3 class="subhead">Three rules every tool follows</h3>
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Scoped</strong>Every query carries <code>businessId</code> from the JWT. The AI cannot widen the blast radius.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Bilingual in the description</strong>MM + EN trigger phrases live in the schema, not in the prompt. Tools self-document.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Confirm before write</strong>System prompt forces a one-line confirm reply for any create/update/delete unless the user already gave full details.</span></li>
+  </ul>
+  <div class="hook">The LLM picks <em>which verb</em>. The server decides <em>what's allowed</em>. Two layers, never confused.</div>
+</section>
+
+<!-- BILINGUAL -->
+<section class="section" id="bilingual">
+  <div class="sec-head">
+    <span class="sec-num">Bilingual Matching</span>
+    <h2 class="sec-title">Myanmar isn't English in different glyphs.</h2>
+    <p class="sec-sub">Myanmar glues grammar particles onto the noun — possession, subject, plural. No spaces. No apostrophes. No cues for a Latin-tuned classifier.</p>
+  </div>
+  <p class="p">The model handles this for free; the design work is loading each tool's <em>description</em> with the bilingual phrasing sellers actually use.</p>
+
+  <div class="bilingual">
+    <div class="bilingual-card"><span class="bilingual-tag">English</span><div class="bilingual-q">"show me pending orders"</div><span class="bilingual-arrow">↓ matches</span><div class="bilingual-out">list_orders · status=PENDING</div></div>
+    <div class="bilingual-card"><span class="bilingual-tag">Myanmar</span><div class="bilingual-q">"လက်ကျန်အော်ဒါတွေပြပါ"</div><span class="bilingual-arrow">↓ matches</span><div class="bilingual-out">list_orders · status=PENDING</div></div>
+    <div class="bilingual-card"><span class="bilingual-tag">Mixed</span><div class="bilingual-q">"pending order ပြပါ"</div><span class="bilingual-arrow">↓ matches</span><div class="bilingual-out">list_orders · status=PENDING</div></div>
+  </div>
+
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Trigger phrases in the schema</strong>Every tool's <code>description</code> includes the MM, EN, and mixed forms a seller might ask.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Server-side normalisation</strong>Myanmar digits (U+1040–U+1049) → ASCII before any DB query.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>System prompt sets language stance</strong>Reply in Myanmar by default; switch to English only when the user does.</span></li>
+  </ul>
+</section>
+
+<!-- INLINE CARDS -->
+<section class="section" id="workflows">
+  <div class="sec-head">
+    <span class="sec-num">Inline Cards</span>
+    <h2 class="sec-title">Cards, not chat bubbles.</h2>
+    <p class="sec-sub">Ask "low stock" → get the actual list, sortable, with adjust-stock CTAs per row. The answer is the surface.</p>
+  </div>
+
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Self-contained</strong>Each card fetches its own data.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Compact</strong>Fits inside a 680px palette.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Actionable</strong>At least one CTA per card.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Composable</strong>One ListOrders card powers 4 intents.</span></li>
+  </ul>
+
+  <div class="intent-demos">
+    <div class="intent-demo">
+      <div class="intent-demo-media"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/01-palette-empty-state.mp4"></video></div>
+      <div class="intent-demo-body">
+        <span class="intent-demo-tag">palette · empty state</span>
+        <span class="intent-demo-title">One field, no menu</span>
+        <span class="intent-demo-query">⌘K to open · type anything</span>
+        <p class="intent-demo-desc">The palette is the only navigation. Empty state shows recent intents + suggested prompts.</p>
+      </div>
+    </div>
+    <div class="intent-demo">
+      <div class="intent-demo-media"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/22-chain-restock.mp4"></video></div>
+      <div class="intent-demo-body">
+        <span class="intent-demo-tag">chain · low-stock → restock</span>
+        <span class="intent-demo-title">Chained tool calls</span>
+        <span class="intent-demo-query">restock my low stock items</span>
+        <p class="intent-demo-desc">Gemini chains <code>get_low_stock</code> → propose qty → confirm. One sentence, three hops.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVENTORY READ FLOW -->
+<section class="section" id="inventory">
+  <div class="sec-head">
+    <span class="sec-num">06 — Inventory Read Flow</span>
+    <h2 class="sec-title">Browse the shelf, spot what's low.</h2>
+    <p class="sec-sub">Inventory mirrors a physical shop — the seller already understands it. So I shipped the palette here first: same data, new front door. The five reads that anchor every later workflow.</p>
+  </div>
+  <div class="chips"><span class="chip">list-products</span><span class="chip">product-detail</span><span class="chip">low-stock</span><span class="chip">adjust-stock</span><span class="chip">stock-history</span></div>
+  <div class="gallery">
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/17-list-products.mp4"></video><span class="label">list-products</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/18-product-detail.mp4"></video><span class="label">product-detail</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/19-low-stock.mp4"></video><span class="label">low-stock</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/20-adjust-stock.mp4"></video><span class="label">adjust-stock</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/21-stock-history.mp4"></video><span class="label">stock-history</span></div>
+  </div>
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Read first, then write</strong>Five reads anchor every later workflow.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Same data shapes</strong>Every later phase aggregates products, orders, and customers from this base.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Lowest-risk start</strong>The seller's mental model of inventory survives; only the entry point changes.</span></li>
+  </ul>
+</section>
+
+<!-- ORDER LIFECYCLE -->
+<section class="section">
+  <div class="sec-head">
+    <span class="sec-num">07 — Order Lifecycle</span>
+    <h2 class="sec-title">From pending to paid, without leaving the palette.</h2>
+    <p class="sec-sub">The seller's busiest loop: see what's pending, open one, verify the payment slip, mark it paid — sometimes cancel, sometimes export at end-of-day. Collapsing the most-repeated workflow first produced the most felt relief per intent shipped.</p>
+  </div>
+  <div class="chips"><span class="chip">list-orders</span><span class="chip">order-detail</span><span class="chip">create-order</span><span class="chip">update-status</span><span class="chip">verify-payment</span><span class="chip">cancel-order</span><span class="chip">export-orders</span></div>
+  <div class="gallery">
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/02-list-orders.mp4"></video><span class="label">list-orders</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/03-order-detail.mp4"></video><span class="label">order-detail</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/04-create-order.mp4"></video><span class="label">create-order</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/05-update-order-status.mp4"></video><span class="label">update-status</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/06-verify-payment.mp4"></video><span class="label">verify-payment</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/07-cancel-order.mp4"></video><span class="label">cancel-order</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/08-export-orders.mp4"></video><span class="label">export-orders</span></div>
+  </div>
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Header</strong>Icon pill + label + headline number.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Filter row</strong>Sticky chips with counts.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Body</strong>Top 8 rows + "N more" footer.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Footer</strong>One CTA. Never two.</span></li>
+  </ul>
+</section>
+
+<!-- CUSTOMER INSIGHT -->
+<section class="section">
+  <div class="sec-head">
+    <span class="sec-num">08 — Customer Insight</span>
+    <h2 class="sec-title">Know the buyer before you reply.</h2>
+    <p class="sec-sub">Sellers don't just ship orders — they remember regulars. Four intents that turn a name into context, without leaving the palette open on the message thread.</p>
+  </div>
+  <div class="chips"><span class="chip">list-customers</span><span class="chip">customer-detail</span><span class="chip">search-customers</span><span class="chip">customer-stats</span></div>
+  <div class="gallery">
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/09-list-customers.mp4"></video><span class="label">list-customers</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/10-customer-detail.mp4"></video><span class="label">customer-detail</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/11-search-customers.mp4"></video><span class="label">search-customers</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/12-customer-stats.mp4"></video><span class="label">customer-stats</span></div>
+  </div>
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Search by name in either language</strong>Myanmar possessives strip cleanly to a bare name.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Detail card</strong>Total spend, last order, recency badge, jump to that customer's order list.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Stats card</strong>Top customers by revenue, ranked with gold/silver/bronze pills.</span></li>
+  </ul>
+</section>
+
+<!-- PRODUCT WRITE -->
+<section class="section">
+  <div class="sec-head">
+    <span class="sec-num">09 — Product Write Flow</span>
+    <h2 class="sec-title">Edit the catalog without leaving the question.</h2>
+    <p class="sec-sub">Once the read flow earned the seller's trust, write actions could ride on the same surface. Destructive flows use a two-step pattern: preview state, then confirm state. No <code>window.confirm</code>. No modal stacking.</p>
+  </div>
+  <div class="chips"><span class="chip">create-product</span><span class="chip">update-product</span><span class="chip">delete-product</span><span class="chip">bulk-update-stock</span></div>
+  <div class="gallery">
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/13-create-product.mp4"></video><span class="label">create-product</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/14-update-product.mp4"></video><span class="label">update-product</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/15-delete-product.mp4"></video><span class="label">delete-product</span></div>
+    <div class="gallery-item"><video loop muted playsinline preload="none" data-lazy-video src="videos/po-ai/16-bulk-update-stock.mp4"></video><span class="label">bulk-update-stock</span></div>
+  </div>
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Bulk Update Stock</strong>Inline spreadsheet in 320px of vertical space.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Dirty-row tracking</strong>"Save N changes" CTA disables when nothing is dirty.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>+10 / +50 quick fills</strong>Restock the common case without typing.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Two-state delete</strong>Preview consequences, then a destructive confirm button.</span></li>
+  </ul>
+</section>
+
+<!-- CHAIN SUGGESTIONS + URL CONTRACT -->
+<section class="section">
+  <div class="sec-head">
+    <span class="sec-num">10 — Chains &amp; URL Contract</span>
+    <h2 class="sec-title">One question becomes three.</h2>
+    <p class="sec-sub">Every card ends with 2–3 "Try next" chips. Tailored per intent. One open, four answers. And one URL — palette and page agree.</p>
+  </div>
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>After list-orders</strong>Pending · export · customer stats.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>After order-detail</strong>Verify slip · mark paid · cancel.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>After top-products</strong>Revenue trend · low stock.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Inline vs Navigate</strong>One-shot actions render inline. List views deep-link to <code>/orders?status=PENDING</code> — palette filters and page state share the same URL.</span></li>
+  </ul>
+</section>
+
+<!-- FULL INVENTORY -->
+<section class="section">
+  <div class="sec-head">
+    <span class="sec-num">Full Intent Inventory</span>
+    <h2 class="sec-title">21 shipped · 17 planned.</h2>
+    <p class="sec-sub">Every intent, grouped by ship priority. P0 ships first because frequency × learning cost wins. Insights and Marketing wait — they're nice, not vital.</p>
+  </div>
+  <div class="prio-grid">
+    <div class="prio-col p0">
+      <div class="prio-head"><span class="prio-tag">P0 · Shipped</span><span class="prio-count">21</span></div>
+      <div><div class="prio-sub">Foundation (6)</div><div class="chips" style="margin:8px 0 0;"><span class="chip">list-products</span><span class="chip">get-product</span><span class="chip">adjust-stock</span><span class="chip">low-stock</span><span class="chip">stock-history</span><span class="chip">navigate</span></div></div>
+      <div><div class="prio-sub">Orders + Customers (11)</div><div class="chips" style="margin:8px 0 0;"><span class="chip">list-orders</span><span class="chip">order-detail</span><span class="chip">create-order</span><span class="chip">update-status</span><span class="chip">verify-payment</span><span class="chip">cancel-order</span><span class="chip">export-orders</span><span class="chip">list-customers</span><span class="chip">customer-detail</span><span class="chip">search-customers</span><span class="chip">customer-stats</span></div></div>
+      <div><div class="prio-sub">Inventory CRUD (4)</div><div class="chips" style="margin:8px 0 0;"><span class="chip">create-product</span><span class="chip">update-product</span><span class="chip">delete-product</span><span class="chip">bulk-update-stock</span></div></div>
+    </div>
+    <div class="prio-col">
+      <div class="prio-head"><span class="prio-tag">P1 · Next</span><span class="prio-count">11</span></div>
+      <div><div class="prio-sub">Insights (5)</div><div class="chips" style="margin:8px 0 0;"><span class="chip">dashboard-stats</span><span class="chip">revenue-trend</span><span class="chip">top-products</span><span class="chip">notifications</span><span class="chip">mark-all-read</span></div></div>
+      <div><div class="prio-sub">Discounts + Marketing (6)</div><div class="chips" style="margin:8px 0 0;"><span class="chip">list-discounts</span><span class="chip">create-discount</span><span class="chip">delete-discount</span><span class="chip">list-posts</span><span class="chip">create-post</span><span class="chip">generate-post</span></div></div>
+    </div>
+    <div class="prio-col">
+      <div class="prio-head"><span class="prio-tag">P2 · Later</span><span class="prio-count">6</span></div>
+      <div><div class="prio-sub">Live Sales (6)</div><div class="chips" style="margin:8px 0 0;"><span class="chip">live-sales-view</span><span class="chip">payment-config</span><span class="chip">delivery-config</span><span class="chip">flash-sale</span><span class="chip">live-stats</span><span class="chip">live-catalog</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — IMPACT -->
+<section class="section" id="outcome">
+  <div class="sec-head">
+    <span class="sec-num">Ship Targets</span>
+    <h2 class="sec-title">From 5 steps to one sentence.</h2>
+    <p class="sec-sub">These are <em>output</em> metrics — what the build had to clear before sellers could touch it. Behavior outcomes are still being measured (see honest gap below).</p>
+  </div>
+
+  <div class="funnel">
+    <div class="funnel-step"><div class="funnel-num">45</div><div class="funnel-label">Mapped</div></div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-step"><div class="funnel-num">38</div><div class="funnel-label">Prioritized</div></div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-step"><div class="funnel-num">28</div><div class="funnel-label">MVP Scope</div></div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-step live"><div class="funnel-num">21</div><div class="funnel-label">Live in Prod</div></div>
+  </div>
+
+  <div class="pullquote">
+    <div class="pullquote-q">Every Sunday after the live, I want to know — what did I sell the past 2 weeks? The table has 600 rows. I scroll, lose count, give up. I just want to ask "show me past 2 weeks." That's it.</div>
+    <div class="pullquote-attr">Live-seller A · the north-star query the palette was built to answer</div>
+  </div>
+
+  <h3 class="subhead">Build targets · hit</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-val">28/28 ✓</div><div class="kpi-label">Bilingual coverage</div><div class="kpi-why">Every intent handles MM + EN.</div></div>
+    <div class="kpi-card"><div class="kpi-val">64% ✓</div><div class="kpi-label">Inline action</div><div class="kpi-why">18 of 28 fully actionable.</div></div>
+    <div class="kpi-card"><div class="kpi-val">0 ✓</div><div class="kpi-label">New endpoints</div><div class="kpi-why">Shipped on existing /api/b/*.</div></div>
+    <div class="kpi-card"><div class="kpi-val">&lt;1.4s ✓</div><div class="kpi-label">P95 classify latency</div><div class="kpi-why">Gemini 2.5 Flash. AI on unknown only.</div></div>
+  </div>
+
+  <h3 class="subhead">CRM Dashboard → Intent Palette · before / after</h3>
+  <div class="data-table">
+    <div class="data-row head"><div>Task</div><div>Before</div><div>After</div></div>
+    <div class="data-row"><div class="label">See pending orders</div><div class="before">Open Orders → filter PENDING → scroll</div><div class="after">Type. Card. Done.</div></div>
+    <div class="data-row"><div class="label">Look up a customer's purchases</div><div class="before">Customers → search → profile → tab</div><div class="after">Type the name. Filtered list appears.</div></div>
+    <div class="data-row"><div class="label">Build a discount</div><div class="before">Three-screen settings form</div><div class="after">One inline card. Scope + type chips.</div></div>
+    <div class="data-row"><div class="label">Write a Facebook post</div><div class="before">Switch tab. Compose. Copy back.</div><div class="after">Generate inside the palette.</div></div>
+    <div class="data-row"><div class="label">Check weekly revenue</div><div class="before">No view. Ask backend.</div><div class="after">Bar chart card. 7/14/30d toggle.</div></div>
+    <div class="data-row"><div class="label">Query in Myanmar</div><div class="before">Translate to English first</div><div class="after">Type natively. Match instantly.</div></div>
+  </div>
+
+  <div class="gap-note">
+    <div class="gap-note-tag">Honest gap · what I'm tracking next</div>
+    <p class="p" style="margin:6px 0 14px;">Ship metrics prove the system works. They don't prove sellers behave differently. Three behavior signals I'm instrumenting in the next release:</p>
+    <div class="gap-list">
+      <div class="gap-item"><div class="gap-item-h">Time-to-answer</div><div class="gap-item-d">Seconds from question to result, palette vs old dashboard.</div></div>
+      <div class="gap-item"><div class="gap-item-h">Palette adoption</div><div class="gap-item-d">% of intents reached via palette vs sidebar nav, weekly.</div></div>
+      <div class="gap-item"><div class="gap-item-h">Past-2-weeks task</div><div class="gap-item-d">The Seller A north-star query — completion rate &amp; time.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIME MACHINE -->
+<section class="section">
+  <div class="sec-head">
+    <span class="sec-num">Time Machine</span>
+    <h2 class="sec-title">If I could go back.</h2>
+    <p class="sec-sub">Four things I'd change in the order I did them, knowing what I know now.</p>
+  </div>
+  <div class="tt-grid">
+    <div class="tt-card"><span class="tt-num">What I assumed</span><div class="tt-title">English first, MM later</div><div class="tt-desc">Built English regex first, retrofitted Myanmar helpers.</div></div>
+    <div class="tt-card"><span class="tt-num">What I missed</span><div class="tt-title">URL contract before cards</div><div class="tt-desc">The customer-orders bug was a contract gap, not a UI bug.</div></div>
+    <div class="tt-card"><span class="tt-num">What I'd do</span><div class="tt-title">Classifier as a product</div><div class="tt-desc">Two of three real bugs were classifier gaps. Same review attention as UI.</div></div>
+    <div class="tt-card"><span class="tt-num">Expected outcome</span><div class="tt-title">One sort-mode primitive</div><div class="tt-desc">Performance ranking generalises to top customers, products, posts.</div></div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="section" id="reflection">
+  <div class="sec-head">
+    <span class="sec-num">Reflection</span>
+    <h2 class="sec-title">Stop teaching users your menu.</h2>
+    <p class="sec-sub">Six things I'd take into the next AI surface. The most important: schema descriptions are the new IA.</p>
+  </div>
+
+  <div class="lessons">
+    <div class="lesson"><span class="lesson-num">Lesson 01</span><span class="lesson-h">A command palette is a contract</span><p class="lesson-d">It's not a UI pattern. The seller speaks naturally; the system promises to meet them there. Break that contract once and you lose trust on every later intent.</p></div>
+    <div class="lesson"><span class="lesson-num">Lesson 02</span><span class="lesson-h">Schemas are IA</span><p class="lesson-d">Tool descriptions are how users navigate now. Write them like nav labels, not API docs. The bilingual phrases live in the description — the LLM does the matching.</p></div>
+    <div class="lesson"><span class="lesson-num">Lesson 03</span><span class="lesson-h">Don't pretend Myanmar is "English with different glyphs"</span><p class="lesson-d">Postpositions, subject markers, and stacked digits need first-class support — not retrofits. Bilingual is one field, not a language toggle.</p></div>
+    <div class="lesson"><span class="lesson-num">Lesson 04</span><span class="lesson-h">Composition over duplication</span><p class="lesson-d">One <code>list_orders</code> verb powers four intents. Don't ship a new tool when arguments already cover it. Ranking ≠ enumeration.</p></div>
+    <div class="lesson"><span class="lesson-num">Lesson 05</span><span class="lesson-h">Regex is a feature, not a fallback</span><p class="lesson-d">Predictable behaviour is itself a way of reducing what the user has to learn. The LLM is the rare path, not the default — when latency matters, regex wins.</p></div>
+    <div class="lesson"><span class="lesson-num">Lesson 06</span><span class="lesson-h">Scope the scope</span><p class="lesson-d">Every tool runs scoped to <code>businessId</code>. Security model is the only thing you can't add later. The LLM picks <em>which</em> verb. The server decides <em>what's allowed</em>.</p></div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="section tight">
+  <div class="sec-head" style="margin-bottom:24px;">
+    <span class="sec-num">More work</span>
+    <h2 class="sec-title" style="font-size:clamp(28px,3vw,40px);">Related case studies</h2>
+  </div>
+  <div class="related-scroll">
+    <a href="case-study-design-system-hybrid.html" class="related-card tint-violet">
+      <div class="r-eyebrow">Design System</div>
+      <h3 class="r-h">Three platforms. One source of truth.</h3>
+      <p class="r-sub">A federated two-level token architecture across POS, web, and mobile.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><img src="images/DS/%E2%98%85%20Showcase%20%E2%80%94%20Multi-Palette%20Demo.webp" alt="Design system multi-palette demo" loading="lazy"></div></div>
+    </a>
+    <a href="case-study-pharmacy-pos-hybrid.html" class="related-card tint-amber">
+      <div class="r-eyebrow">Enterprise · POS</div>
+      <h3 class="r-h">Two stores. One system.</h3>
+      <p class="r-sub">14 modules, 200+ screens — a legacy Windows POS redesigned for touch.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><img src="images/ppos/New%20Central%20Hub.webp" alt="Pharmacy POS central hub" loading="lazy"></div></div>
+    </a>
+    <a href="case-study-retail-hybrid.html" class="related-card tint-rose">
+      <div class="r-eyebrow">Retail · 2025</div>
+      <h3 class="r-h">From feedback to 427% ROI.</h3>
+      <p class="r-sub">A broken returns process had CS drowning in tickets. Four months of research, three test rounds.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><img src="images/retail-ui-final.webp" alt="Retail returns redesign final UI" loading="lazy"></div></div>
+    </a>
+    <a href="case-study-golden-paths-hybrid.html" class="related-card dark">
+      <div class="r-eyebrow">AI Research · 2024</div>
+      <h3 class="r-h">Prototypes that never sleep.</h3>
+      <p class="r-sub">AI-simulated path analysis that matched human friction in 9 of 11 blockers tested.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><video src="images/AI%20Test/Demo.mp4" muted loop playsinline preload="none" data-lazy-video></video></div></div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-inner">
+    <h2>Let's <em>work together</em></h2>
+    <p>If you're building an AI surface, a design system, or anything where the labour should move from the user into the model — I'd love to hear about it.</p>
+    <div class="cta-row">
+      <a href="mailto:kaungmyat9702@gmail.com" class="btn">Email Harry</a>
+      <a href="portfolio-hybrid.html#work" class="btn ghost">See all work</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Harry Hein · Senior Product Designer</footer>
+
+<!-- CMD PALETTE MODAL -->
+<div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Po AI case study assistant">
+  <div class="cmd-modal">
+    <div class="cmd-header">
+      <span class="cmd-header-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.3 4.3 1.9-4.3 1.9L12 15.4l-1.9-4.3-4.3-1.9 4.3-1.9z"/><path d="M19 13l.95 2.05L22 16l-2.05.95L19 19l-.95-2.05L16 16l2.05-.95z"/></svg>
+      </span>
+      <div class="cmd-header-text">
+        <div class="cmd-header-title">Harry's Intent AI <span class="cmd-header-pill">BETA</span></div>
+        <div class="cmd-header-sub">Ask anything about this case · Gemini 2.5 Flash</div>
+      </div>
+      <button class="cmd-icon-btn" id="cmdRestart" aria-label="Restart conversation" title="Restart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+      </button>
+      <button class="cmd-icon-btn" id="cmdClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="cmd-conv" id="cmdConv" aria-live="polite"></div>
+
+    <div class="cmd-quick" id="cmdQuick">
+      <button class="cmd-quick-btn" data-q="What did seller research reveal? Walk me through the discovery phase.">Research</button>
+      <button class="cmd-quick-btn" data-q="How did you prioritize 45 mapped intents down to 28 for the MVP?">45 → 28 intents</button>
+      <button class="cmd-quick-btn" data-q="Why design an intent palette instead of redesigning the CRM dashboard?">Why a palette?</button>
+      <button class="cmd-quick-btn" data-q="How does bilingual Myanmar + English matching actually work?">Bilingual</button>
+      <button class="cmd-quick-btn" data-q="Why did you flip from regex to LLM classification?">Regex vs LLM</button>
+      <button class="cmd-quick-btn" data-q="What's the impact so far?">Impact</button>
+    </div>
+
+    <div class="cmd-input-row">
+      <div class="cmd-input-wrap">
+        <span class="cmd-input-spark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.3 4.3 1.9-4.3 1.9L12 15.4l-1.9-4.3-4.3-1.9 4.3-1.9z"/></svg>
+        </span>
+        <input class="cmd-input" id="cmdInput" placeholder="Ask Intent AI — research, design, classifier… EN / မြန်မာ" aria-label="Ask Intent AI about this case">
+      </div>
+      <button class="cmd-send" id="cmdSend" aria-label="Send message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById('cmdOverlay');
+  const trigger = document.getElementById('cmdTrigger');
+  const closeBtn = document.getElementById('cmdClose');
+  const restart = document.getElementById('cmdRestart');
+  const conv = document.getElementById('cmdConv');
+  const input = document.getElementById('cmdInput');
+  const sendBtn = document.getElementById('cmdSend');
+  const quickBar = document.getElementById('cmdQuick');
+
+  function el(tag, cls, html){
+    const e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(html != null) e.innerHTML = html;
+    return e;
+  }
+  function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function renderMarkdown(text){
+    return String(text)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,'<em>$1</em>')
+      .replace(/`([^`]+?)`/g,'<code>$1</code>')
+      .replace(/\n/g,'<br>');
+  }
+  function renderChips(chips){
+    const w = el('div','resp-chips');
+    chips.forEach(c => {
+      const b = el('button','resp-chip', esc(c.label));
+      b.dataset.q = c.q || c.label;
+      w.appendChild(b);
+    });
+    return w;
+  }
+  function showUser(text){
+    const m = el('div','msg user');
+    m.appendChild(el('div','msg-text', esc(text)));
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+  }
+  function showBot(parts){
+    const m = el('div','msg bot');
+    parts.forEach(p => {
+      if(typeof p === 'string') m.appendChild(el('div','msg-text', p));
+      else if(p) m.appendChild(p);
+    });
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+  }
+  function showTyping(){
+    const m = el('div','msg bot');
+    m.appendChild(el('div','msg-typing','<span></span><span></span><span></span>'));
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+    return m;
+  }
+
+  const chatHistory = [];
+  async function askGemini(q){
+    chatHistory.push({ role:'user', content:q });
+    const res = await fetch('/api/chat',{
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ messages: chatHistory, context: 'po-ai-intent' })
+    });
+    const data = await res.json();
+    if(data.error) throw new Error(data.error);
+    const reply = data.reply || '';
+    chatHistory.push({ role:'assistant', content: reply });
+    return reply;
+  }
+  function followUps(q){
+    const t = q.toLowerCase();
+    const chips = [];
+    if(/research|discover|interview|seller/.test(t)) chips.push({ label:'How did you map 45 intents?', q:'How did you map the 45 intents from research?' });
+    if(/intent|palette|dashboard/.test(t)) chips.push({ label:'Why palette over dashboard?', q:'Why design an intent palette instead of a CRM dashboard?' });
+    if(/bilingual|myanmar|burmese|language/.test(t)) chips.push({ label:'Tool schema trick', q:'How do trigger phrases inside the tool schema make bilingual matching work?' });
+    if(/classifier|llm|regex|gemini/.test(t)) chips.push({ label:'Three axes explained', q:'Explain the three axes: chainable, confirm, response type.' });
+    if(/impact|result|metric|number|ship|live/.test(t)) chips.push({ label:'Honest gaps', q:'What gaps are you still honest about?' });
+    if(chips.length < 2) chips.push({ label:'Walk me through the design', q:'Walk me through the design decisions step by step.' });
+    if(chips.length < 3) chips.push({ label:'What would you do differently?', q:"What would you do differently next time?" });
+    return chips.slice(0,3);
+  }
+
+  async function submit(text){
+    const q = (text || '').trim();
+    if(!q) return;
+    showUser(q);
+    input.value = '';
+    sendBtn.disabled = true;
+    const typing = showTyping();
+    try{
+      const reply = await askGemini(q);
+      typing.remove();
+      showBot([ renderMarkdown(reply), renderChips(followUps(q + ' ' + reply)) ]);
+    } catch(err){
+      typing.remove();
+      showBot([ 'Could not reach the AI service. Please try again.' ]);
+    } finally {
+      sendBtn.disabled = false;
+    }
+  }
+
+  function seedWelcome(){
+    showBot([
+      `Hi — I'm Harry's AI assistant for this case study. Ask about <strong>research</strong>, <strong>intent mapping</strong>, <strong>classifier design</strong>, <strong>bilingual UX</strong>, or <strong>shipped impact</strong>. EN / မြန်မာ both work.`,
+      renderChips([
+        { label:'What did sellers actually struggle with?', q:'What did sellers actually struggle with before this?' },
+        { label:'Why 16 tools, not 1 big one?', q:'Why did you split into 16 tools instead of one big endpoint?' },
+        { label:'Show me the impact', q:"What's the impact so far?" }
+      ])
+    ]);
+  }
+  function open(){
+    overlay.classList.add('open');
+    if(conv.children.length === 0) seedWelcome();
+    setTimeout(()=>input.focus(), 30);
+  }
+  function close(){ overlay.classList.remove('open'); }
+  function doRestart(){ conv.innerHTML = ''; chatHistory.length = 0; seedWelcome(); input.focus(); }
+
+  trigger.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  restart.addEventListener('click', doRestart);
+  overlay.addEventListener('click', e=>{ if(e.target === overlay) close(); });
+  sendBtn.addEventListener('click', ()=>submit(input.value));
+  input.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ e.preventDefault(); submit(input.value); }
+  });
+  quickBar.addEventListener('click', e=>{
+    const b = e.target.closest('button[data-q]');
+    if(b) submit(b.dataset.q);
+  });
+  conv.addEventListener('click', e=>{
+    const c = e.target.closest('.resp-chip[data-q]');
+    if(c){ e.preventDefault(); submit(c.dataset.q); }
+  });
+  document.addEventListener('keydown', e=>{
+    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){
+      e.preventDefault();
+      overlay.classList.contains('open') ? close() : open();
+      return;
+    }
+    if(e.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
+})();
+</script>
+
+
+<script>
+/* Lazy-load videos via IntersectionObserver — added by lazy-loading task */
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(rm&&rm.matches)return;
+  var vids=document.querySelectorAll('video[data-lazy-video]');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){
+        if(v.preload!=='auto')v.preload='auto';
+        var p=v.play();
+        if(p&&p.catch)p.catch(function(){});
+      }else{
+        v.pause();
+      }
+    });
+  },{rootMargin:'200px 0px',threshold:0.1});
+  vids.forEach(function(v){io.observe(v);});
+})();
+</script>
+
+</body>
+</html>

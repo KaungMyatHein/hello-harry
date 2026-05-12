@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Hein — Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* HYBRID — Apple base · Raycast ⌘K · Ollama typography · PlayStation project cards */
+:root{
+  --paper:#ffffff; --canvas:#fafafa; --inset:#f4f4f5;
+  --ink:#0a0a0a; --ink-soft:#1f1f22; --muted:#5a5a5f; --dim:#737378;
+  --hairline:#e7e7e8; --hairline-soft:#efefef;
+  --ps-blue:#0066cc; --ps-blue-deep:#003791; --ps-blue-light:#3da5f5;
+  /* Semantic aliases — use these in components */
+  --accent:var(--ps-blue); --accent-deep:var(--ps-blue-deep); --accent-soft:var(--ps-blue-light);
+  --success:#16a34a; --danger:#dc2626; --warning:#d97706;
+  --surface:var(--paper); --surface-muted:var(--canvas); --surface-sunk:var(--inset);
+  --on-surface:var(--ink-soft); --on-surface-strong:var(--ink); --on-surface-weak:var(--muted);
+  --border:var(--hairline); --border-soft:var(--hairline-soft);
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --radius:14px; --radius-sm:8px; --radius-lg:20px; --pill:9999px;
+  --shadow-card:0 1px 2px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.05);
+  --shadow-lift:0 12px 40px rgba(0,0,0,0.10),0 0 0 1px rgba(0,0,0,0.04);
+  /* Motion tokens */
+  --dur-fast:120ms; --dur:200ms; --dur-slow:320ms;
+  --ease-out:cubic-bezier(0.2,0.8,0.2,1);
+  --ease-in:cubic-bezier(0.4,0,1,1);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{background:var(--paper);color:var(--ink-soft);font-family:var(--sans);font-size:17px;line-height:1.55;letter-spacing:-0.012em;font-feature-settings:'calt','kern','liga','ss01','ss03';}
+a{color:inherit;text-decoration:none;transition:color 150ms ease;}
+ul{list-style:none;}
+kbd{font-family:var(--mono);font-size:11px;background:var(--inset);border:1px solid var(--hairline);color:var(--muted);padding:2px 6px;border-radius:4px;line-height:1;}
+
+/* Accessibility: visible keyboard focus */
+:focus{outline:none;}
+a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid var(--ps-blue);outline-offset:3px;border-radius:var(--radius-sm);
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}
+  video[data-lazy-video]{display:none;}
+}
+
+.nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,0.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hairline-soft);}
+@supports not ((backdrop-filter:blur(20px)) or (-webkit-backdrop-filter:blur(20px))){
+  .nav{background:rgba(255,255,255,0.96);}
+}
+.nav-inner{max-width:1180px;margin:0 auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+.brand-mark{width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;font-family:var(--mono);}
+.nav-links{display:flex;gap:30px;align-items:center;}
+.nav-links a{font-size:13px;color:var(--ink-soft);font-weight:500;display:inline-flex;align-items:center;min-height:44px;padding:0 4px;}
+.nav-links a:hover{color:var(--ink);}
+.nav-cmd{display:inline-flex;align-items:center;gap:8px;background:var(--inset);border:1px solid var(--hairline);padding:10px 14px;min-height:44px;border-radius:var(--pill);font-size:12px;color:var(--muted);cursor:pointer;transition:border-color 150ms ease;font-family:var(--sans);}
+.nav-cmd:hover{border-color:var(--ink);color:var(--ink);}
+.nav-cmd kbd{font-family:var(--mono);font-size:10px;background:var(--paper);border:1px solid var(--hairline);padding:1px 5px;border-radius:4px;color:var(--ink-soft);}
+
+/* === Mobile === */
+@media (max-width:768px){
+  .nav-inner{padding:0 16px;}
+  .nav-links{gap:10px;}
+  .nav-links a:not(.nav-cmd){display:none;}
+  .nav-cmd{padding:8px 12px;min-height:36px;gap:6px;}
+  .nav-cmd-text{display:none;}
+  .hero{padding:72px 18px 48px;}
+  .hero-bento{margin-top:32px;gap:14px;}
+  .section{padding:64px 18px;}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:28px;padding-bottom:18px;text-align:left;}
+  .sec-head > div{width:100%;}
+  .sec-head .sec-meta,.sec-head .sec-title,.sec-head .sec-sub,.sec-head .sec-action{text-align:left;}
+  .sec-action{align-self:flex-start;font-size:11px;}
+  .sec-title{font-size:clamp(28px,7.6vw,40px);line-height:1.1;}
+  .tile{padding:40px 22px 0;min-height:auto;border-radius:22px;}
+  .tile.full{padding-top:48px;min-height:auto;}
+  .cta-band{padding:72px 18px;}
+  .cta-band h2{font-size:clamp(36px,9vw,56px);}
+  .cta-band p{font-size:16px;}
+  .footer{padding:32px 18px;}
+}
+@media (max-width:480px){
+  .nav-cmd kbd{display:none;}
+  .brand-label{display:none;}
+}
+
+.hero{padding:112px 28px 64px;text-align:center;background:var(--paper);position:relative;overflow:hidden;}
+/* No z-index on hero-inner — would create a stacking context that isolates
+   the text ::after mix-blend-mode:difference from the .hero-xray backdrop. */
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;}
+
+/* X-Ray reveal — SVGs are hidden, only show under cursor spotlight.
+   No z-index either: DOM order alone places this below .hero-inner so the
+   text difference blend can reach it as backdrop. */
+.hero-xray{
+  position:absolute;inset:0;pointer-events:none;
+  background:url("images/hero-xray-bg.svg") center/cover no-repeat;
+  /* Just soften opacity so pure-black SVG strokes read as gray on paper,
+     without inverting (which flipped tones in a way Harry disliked). */
+  opacity:0.45;
+  -webkit-mask-image:
+    linear-gradient(180deg, rgba(0,0,0,0.6) 0%, #000 35%, #000 65%, rgba(0,0,0,0.6) 100%),
+    radial-gradient(circle 130px at var(--mx,-400px) var(--my,-400px), #000 0%, rgba(0,0,0,0.92) 55%, transparent 82%);
+  -webkit-mask-composite:source-in;
+  mask-image:
+    linear-gradient(180deg, rgba(0,0,0,0.6) 0%, #000 35%, #000 65%, rgba(0,0,0,0.6) 100%),
+    radial-gradient(circle 130px at var(--mx,-400px) var(--my,-400px), #000 0%, rgba(0,0,0,0.92) 55%, transparent 82%);
+  mask-composite:intersect;
+}
+/* Paper-colored halo around hero text so the X-Ray illustration lines can
+   never directly touch the glyphs. Text stays fully readable on any backdrop,
+   no blend-mode tricks required. */
+.hero h1,.hero-sub{
+  position:relative;
+  text-shadow:
+    0 0 6px var(--paper),
+    0 0 6px var(--paper),
+    0 0 12px var(--paper),
+    0 0 18px var(--paper);
+}
+.hero-lens{
+  position:absolute;width:200px;height:200px;
+  left:var(--mx,-400px);top:var(--my,-400px);
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  border:1px dashed rgba(0,102,204,0.45);
+  mix-blend-mode:difference;
+  pointer-events:none;z-index:4;opacity:0;
+  transition:opacity 180ms ease;
+}
+.hero.xray-on .hero-lens{opacity:1;}
+@media (hover:none){.hero-xray,.hero-lens{display:none;}}
+@media (prefers-reduced-motion:reduce){.hero-xray,.hero-lens{display:none;}}
+.hero-bento{
+  display:grid;grid-template-columns:1.15fr 0.85fr;gap:18px;
+  align-items:stretch;margin-top:44px;text-align:left;
+}
+@media (max-width:900px){.hero-bento{grid-template-columns:1fr;}}
+.hero-bento .palette{margin:0;max-width:none;width:100%;}
+.intro-tile{
+  position:relative;border-radius:18px;overflow:hidden;
+  background:#0a0a0a;min-height:340px;
+  box-shadow:0 24px 48px rgba(0,0,0,0.18),inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+.intro-tile video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+.intro-tile::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,0.7) 100%);
+  pointer-events:none;z-index:1;
+}
+.intro-glass{
+  position:absolute;inset:0;z-index:3;
+  border:0;padding:0;margin:0;cursor:pointer;
+  background:rgba(10,10,10,0.42);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  backdrop-filter:blur(18px) saturate(140%);
+  color:#fff;text-align:left;
+  display:flex;align-items:flex-end;
+  transition:opacity 380ms cubic-bezier(0.2,0.7,0.3,1);
+  font-family:inherit;
+}
+.intro-glass:hover .intro-glass-play{background:rgba(255,255,255,0.22);}
+.intro-glass.is-hidden{opacity:0;pointer-events:none;}
+.intro-glass-inner{padding:28px 28px 30px;width:100%;}
+.intro-glass-label{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.18em;
+  text-transform:uppercase;opacity:0.72;margin-bottom:12px;
+}
+.intro-glass-title{
+  font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-0.02em;
+  margin:0 0 12px;line-height:1.12;
+}
+.intro-glass-desc{
+  font-size:14.5px;line-height:1.55;opacity:0.86;
+  margin:0 0 20px;max-width:480px;
+}
+.intro-glass-play{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 18px 10px 14px;border-radius:999px;
+  background:rgba(255,255,255,0.16);
+  border:1px solid rgba(255,255,255,0.28);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  font-size:14px;font-weight:500;
+  transition:background 220ms ease;
+}
+.intro-glass-play .play-icon{
+  width:0;height:0;display:inline-block;
+  border-style:solid;border-width:6px 0 6px 10px;
+  border-color:transparent transparent transparent #fff;
+  margin-left:2px;
+}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:6px 14px;border-radius:var(--pill);font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:32px;}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#16a34a;box-shadow:0 0 8px rgba(22,163,74,0.6);}
+.hero h1{font-size:clamp(48px,7.4vw,88px);font-weight:600;letter-spacing:-0.035em;line-height:1.05;color:var(--ink);margin:0 auto 22px;max-width:920px;}
+.hero h1 em{font-style:normal;color:var(--muted);}
+.hero-sub{font-size:clamp(18px,1.6vw,22px);font-weight:400;color:var(--muted);max-width:640px;margin:0 auto 40px;line-height:1.5;letter-spacing:-0.011em;}
+
+.palette{max-width:680px;margin:0 auto;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lift);text-align:left;}
+.palette-preview{cursor:pointer;transition:border-color 180ms ease,box-shadow 180ms ease,transform 180ms ease;}
+.palette-preview:hover,.palette-preview:focus-visible{border-color:var(--ink);box-shadow:0 28px 56px rgba(0,0,0,0.16);transform:translateY(-2px);}
+.palette-preview .intent-card{pointer-events:none;}
+.palette-preview .palette-input{cursor:pointer;}
+.palette-search{padding:18px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--hairline);}
+.palette-icon{width:18px;height:18px;color:var(--muted);flex-shrink:0;}
+.palette-input{flex:1;background:transparent;border:none;color:var(--ink);font-family:var(--sans);font-size:16px;outline:none;letter-spacing:-0.012em;}
+.palette-input::placeholder{color:var(--dim);}
+.palette-shortcut{font-family:var(--mono);font-size:11px;color:var(--dim);}
+.palette-section{padding:10px 22px;font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1.4px;background:var(--canvas);border-bottom:1px solid var(--hairline-soft);}
+.palette-row{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid var(--hairline-soft);transition:background 120ms ease;}
+.palette-row:last-of-type{border-bottom:none;}
+.palette-row:hover{background:var(--canvas);}
+.palette-row.selected{background:rgba(0,102,204,0.06);}
+.palette-row.selected .palette-name{color:var(--ink);}
+.row-icon{width:24px;height:24px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;font-family:var(--mono);letter-spacing:0.5px;}
+.icon-ai{background:rgba(0,102,204,0.10);color:var(--ps-blue);}
+.icon-ds{background:rgba(124,58,237,0.10);color:#7c3aed;}
+.icon-pos{background:rgba(234,179,8,0.12);color:#a16207;}
+.icon-rt{background:rgba(220,38,38,0.10);color:#dc2626;}
+.icon-gp{background:rgba(234,88,12,0.10);color:#ea580c;}
+.palette-name{flex:1;font-size:14px;font-weight:500;color:var(--ink-soft);letter-spacing:-0.01em;}
+.palette-meta{font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:0.6px;}
+.palette-footer{padding:11px 22px;display:flex;justify-content:space-between;align-items:center;background:var(--canvas);font-family:var(--mono);font-size:11px;color:var(--dim);}
+.palette-footer .left,.palette-footer .right{display:flex;gap:14px;align-items:center;}
+
+.section{max-width:1180px;margin:0 auto;padding:96px 28px;}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--hairline);}
+.sec-meta{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:10px;}
+.sec-title{font-size:clamp(34px,4.2vw,52px);font-weight:600;letter-spacing:-0.03em;line-height:1.05;color:var(--ink);}
+.sec-sub{font-size:16px;color:var(--muted);margin-top:10px;max-width:580px;line-height:1.55;}
+.sec-action{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+
+/* APPLE-STYLE BENTO TILES — single row per case study */
+.bento,.bento-three{display:grid;gap:18px;grid-template-columns:1fr;}
+.bento .full{grid-column:1 / -1;}
+
+/* === Writing / Blog bento — Apple-style 3-up tiles === */
+.bento-blog{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media (max-width:900px){.bento-blog{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.bento-blog{grid-template-columns:1fr;}}
+.blog-tile{position:relative;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;padding:32px 28px;min-height:280px;background:var(--canvas);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);text-decoration:none;}
+.blog-tile:hover{transform:translateY(-2px);}
+.blog-tile.tint-blue{background:#e6efff;}
+.blog-tile.tint-violet{background:#efeaff;}
+.blog-tile.tint-amber{background:#fff4d6;}
+.blog-tile.tint-rose{background:#ffe6ec;}
+.blog-tile.tint-mint{background:#dcf7ec;}
+.blog-tile.dark{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.blog-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.blog-tile.dark .blog-eyebrow{color:rgba(255,255,255,0.65);}
+.blog-eyebrow .dot{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:0.5;}
+.blog-h{font-size:22px;font-weight:600;letter-spacing:-0.02em;line-height:1.18;color:inherit;margin-bottom:12px;}
+.blog-sub{font-size:14px;line-height:1.5;color:var(--muted);margin-bottom:auto;}
+.blog-tile.dark .blog-sub{color:rgba(255,255,255,0.7);}
+.blog-cta{margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ps-blue);display:inline-flex;align-items:center;gap:4px;}
+.blog-tile.dark .blog-cta{color:#3da5f5;}
+.blog-tile.tint-violet .blog-cta{color:#7c3aed;}
+.blog-tile.tint-amber .blog-cta{color:#a16207;}
+.blog-tile.tint-rose .blog-cta{color:#be185d;}
+.blog-tile.tint-mint .blog-cta{color:#047857;}
+.blog-cta::after{content:" \203A";font-size:14px;}
+
+.tile{
+  position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
+  border-radius:28px;overflow:hidden;
+  padding:56px 32px 0;min-height:560px;
+  background:var(--canvas);color:var(--ink);
+  transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);
+  text-decoration:none;
+}
+.tile.full{min-height:620px;padding-top:64px;}
+.tile:hover{transform:translateY(-2px);}
+
+
+/* Subtle inner hairline that follows border-radius — Ollama doc-frame vibe */
+.tile{box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);}
+.tile.dark,.tile.midnight{box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+
+/* Mono serial badge on the right — section identifier (Raycast/Ollama) */
+.tile-stamp{
+  position:absolute;top:24px;right:26px;z-index:4;
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(0,0,0,0.38);pointer-events:none;
+  display:flex;align-items:center;gap:6px;
+}
+.tile-stamp::before{
+  content:"";width:5px;height:5px;border-radius:50%;
+  background:currentColor;opacity:0.65;
+}
+.tile.dark .tile-stamp,.tile.midnight .tile-stamp{color:rgba(255,255,255,0.55);}
+.tile.dark{background:var(--ink);color:#fff;}
+.tile.midnight{background:linear-gradient(180deg,#0a1430 0%,#000 100%);color:#fff;}
+.tile.tint-blue{background:#e6efff;}
+.tile.tint-violet{background:#efeaff;}
+.tile.tint-amber{background:#fff4d6;}
+.tile.tint-rose{background:#ffe6ec;}
+.tile.tint-mint{background:#dcf7ec;}
+
+.tile-eyebrow{
+  font-size:12px;font-weight:500;letter-spacing:0.14em;
+  text-transform:uppercase;font-family:var(--mono);
+  color:var(--ps-blue);margin-bottom:10px;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.tile-eyebrow::before{
+  content:"→";font-family:var(--mono);
+  font-size:13px;opacity:0.75;
+}
+.tile.full .tile-eyebrow{font-size:16px;}
+.tile.dark .tile-eyebrow,.tile.midnight .tile-eyebrow{color:var(--ps-blue-light);}
+.tile.tint-violet .tile-eyebrow{color:#7c3aed;}
+.tile.tint-amber .tile-eyebrow{color:#a16207;}
+.tile.tint-rose .tile-eyebrow{color:#be185d;}
+.tile.tint-mint .tile-eyebrow{color:#047857;}
+
+.tile-h{
+  font-size:clamp(34px,3.4vw,52px);font-weight:600;
+  letter-spacing:-0.035em;line-height:1.05;
+  margin-bottom:14px;max-width:560px;
+}
+.tile.full .tile-h{font-size:clamp(44px,5vw,72px);max-width:780px;}
+.tile-sub{
+  font-size:17px;line-height:1.45;color:var(--muted);
+  margin-bottom:22px;max-width:520px;letter-spacing:-0.012em;
+}
+.tile.full .tile-sub{font-size:20px;max-width:640px;}
+.tile.dark .tile-sub,.tile.midnight .tile-sub{color:rgba(255,255,255,0.78);}
+
+.tile-cta-row{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:32px;}
+.tile-cta-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--ps-blue);color:#fff !important;
+  padding:9px 20px;border-radius:var(--pill);
+  font-size:14px;font-weight:500;letter-spacing:-0.01em;
+  transition:background 160ms ease;
+}
+.tile-cta-pill:hover{background:var(--ps-blue-deep);}
+.tile.dark .tile-cta-pill,.tile.midnight .tile-cta-pill{background:#fff;color:var(--ink) !important;}
+.tile.dark .tile-cta-pill:hover,.tile.midnight .tile-cta-pill:hover{background:rgba(255,255,255,0.88);}
+.tile-cta-link{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:15px;font-weight:400;
+  color:var(--ps-blue);letter-spacing:-0.01em;
+}
+.tile-cta-link::after{content:"›";font-size:18px;line-height:1;margin-left:2px;}
+.tile-cta-link:hover{text-decoration:underline;}
+.tile.dark .tile-cta-link,.tile.midnight .tile-cta-link{color:var(--ps-blue-light);}
+.tile.tint-violet .tile-cta-link,.tile.tint-violet .tile-cta-pill{background:#7c3aed;color:#fff !important;}
+.tile.tint-violet .tile-cta-link{background:transparent;color:#7c3aed !important;}
+.tile.tint-amber .tile-cta-link,.tile.tint-amber .tile-cta-pill{background:#a16207;color:#fff !important;}
+.tile.tint-amber .tile-cta-link{background:transparent;color:#a16207 !important;}
+.tile.tint-rose .tile-cta-link,.tile.tint-rose .tile-cta-pill{background:#be185d;color:#fff !important;}
+.tile.tint-rose .tile-cta-link{background:transparent;color:#be185d !important;}
+.tile.tint-mint .tile-cta-link,.tile.tint-mint .tile-cta-pill{background:#047857;color:#fff !important;}
+.tile.tint-mint .tile-cta-link{background:transparent;color:#047857 !important;}
+/* === Briefing button — opens modal with self-recorded briefing video === */
+.tile-cta-link.briefing-btn{cursor:pointer;border:0;background:transparent;font:inherit;letter-spacing:inherit;padding:0;display:inline-flex;align-items:center;gap:7px;}
+.tile-cta-link.briefing-btn::after{content:none;}
+.tile-cta-link.briefing-btn:hover{text-decoration:underline;}
+.briefing-play{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:currentColor;flex-shrink:0;transition:transform 150ms ease;text-decoration:none;}
+.briefing-play::before{content:"";width:0;height:0;margin-left:2px;border-style:solid;border-width:4px 0 4px 6px;border-color:transparent transparent transparent #fff;}
+.tile.dark .briefing-play::before,.tile.midnight .briefing-play::before{border-left-color:var(--ink);}
+.briefing-btn:hover .briefing-play{transform:scale(1.1);}
+
+/* === Briefing modal === */
+.briefing-modal{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(10,10,10,0.72);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  backdrop-filter:blur(14px) saturate(160%);
+  display:none;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;transition:opacity 240ms cubic-bezier(0.2,0.7,0.3,1);
+}
+.briefing-modal.is-open{display:flex;opacity:1;}
+.briefing-modal-content{
+  position:relative;width:100%;max-width:920px;
+  background:#000;border-radius:16px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,0.4);
+  aspect-ratio:16/9;
+  transform:scale(0.96);transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);
+}
+.briefing-modal.is-open .briefing-modal-content{transform:scale(1);}
+.briefing-modal-content video{width:100%;height:100%;display:block;background:#000;}
+.briefing-modal-close{
+  position:absolute;top:14px;right:14px;z-index:2;
+  width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(255,255,255,0.16);color:#fff;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;
+  transition:background 200ms ease;
+}
+.briefing-modal-close:hover{background:rgba(255,255,255,0.28);}
+.briefing-modal-fallback{
+  position:absolute;inset:0;display:none;
+  align-items:center;justify-content:center;flex-direction:column;gap:10px;
+  color:#fff;text-align:center;padding:40px;
+}
+.briefing-modal-content.no-video .briefing-modal-fallback{display:flex;}
+.briefing-modal-content.no-video video{display:none;}
+.briefing-modal-fallback .bf-title{font-size:18px;font-weight:600;}
+.briefing-modal-fallback .bf-sub{font-size:14px;opacity:0.7;}
+@media (max-width:780px){
+  .briefing-modal{padding:12px;}
+  .briefing-modal-content{aspect-ratio:9/16;max-width:420px;}
+  .briefing-modal-close{top:10px;right:10px;}
+}
+
+.tile-art{
+  margin-top:auto;width:100%;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:0;position:relative;
+}
+.tile-glyph{
+  font-family:var(--mono);font-weight:300;
+  font-size:clamp(160px,18vw,260px);
+  letter-spacing:-8px;line-height:0.78;
+  color:rgba(0,0,0,0.06);
+  padding-bottom:28px;
+}
+.tile.full .tile-glyph{font-size:clamp(220px,24vw,360px);}
+.tile.dark .tile-glyph,.tile.midnight .tile-glyph{color:rgba(255,255,255,0.07);}
+.tile.tint-blue .tile-glyph{color:rgba(0,102,204,0.15);}
+.tile.tint-violet .tile-glyph{color:rgba(124,58,237,0.15);}
+.tile.tint-amber .tile-glyph{color:rgba(161,98,7,0.18);}
+.tile.tint-rose .tile-glyph{color:rgba(190,24,93,0.15);}
+.tile.tint-mint .tile-glyph{color:rgba(4,120,87,0.16);}
+
+.tile-stats{
+  display:flex;gap:48px;justify-content:center;flex-wrap:wrap;
+  padding:28px 0 40px;border-top:1px solid rgba(0,0,0,0.06);
+  margin-top:auto;width:80%;
+}
+.tile.dark .tile-stats,.tile.midnight .tile-stats{border-top-color:rgba(255,255,255,0.12);}
+.tstat-val{font-size:36px;font-weight:500;letter-spacing:-0.028em;line-height:1;color:inherit;font-variant-numeric:tabular-nums;}
+.tstat-lbl{font-family:var(--mono);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:8px;}
+.tile.dark .tstat-lbl,.tile.midnight .tstat-lbl{color:rgba(255,255,255,0.6);}
+
+.tile.compact{min-height:480px;padding:48px 28px 0;}
+.tile.compact .tile-h{font-size:clamp(28px,2.4vw,38px);}
+.tile.compact .tile-sub{font-size:16px;}
+.tile.compact .tile-glyph{font-size:clamp(120px,12vw,180px);}
+
+/* MEDIA — Apple-style floating device mockup with ambient glow */
+.tile-media{
+  margin-top:auto;width:100%;
+  padding:0 40px 48px;position:relative;
+}
+.tile.full .tile-media{padding:0 64px 56px;}
+.tile.compact .tile-media{padding:0 28px 40px;}
+
+/* Ambient color-themed glow behind the device */
+.tile-media::before{
+  content:"";position:absolute;
+  left:50%;bottom:-10%;transform:translateX(-50%);
+  width:78%;height:62%;
+  background:radial-gradient(ellipse at center 60%,rgba(0,102,204,0.22) 0%,transparent 70%);
+  filter:blur(48px);z-index:0;pointer-events:none;
+}
+.tile.tint-violet .tile-media::before{background:radial-gradient(ellipse at center 60%,rgba(124,58,237,0.26) 0%,transparent 70%);}
+.tile.tint-amber .tile-media::before{background:radial-gradient(ellipse at center 60%,rgba(245,158,11,0.32) 0%,transparent 70%);}
+.tile.tint-rose .tile-media::before{background:radial-gradient(ellipse at center 60%,rgba(236,72,153,0.26) 0%,transparent 70%);}
+.tile.tint-mint .tile-media::before{background:radial-gradient(ellipse at center 60%,rgba(16,185,129,0.26) 0%,transparent 70%);}
+.tile.tint-blue .tile-media::before{background:radial-gradient(ellipse at center 60%,rgba(0,102,204,0.26) 0%,transparent 70%);}
+.tile.dark .tile-media::before,.tile.midnight .tile-media::before{
+  background:radial-gradient(ellipse at center 60%,rgba(61,165,245,0.34) 0%,transparent 70%);
+}
+
+/* MacBook mockup — refined: notch, aluminum highlights, hinge, fingertip recess */
+.media-frame{
+  position:relative;z-index:1;
+  width:100%;max-width:720px;margin:0 auto;
+  /* Aluminum lid gradient — subtle brushed feel */
+  background:
+    linear-gradient(180deg,
+      #3a3a3d 0%,
+      #2e2e30 5%,
+      #232325 55%,
+      #1c1c1e 100%);
+  padding:18px 13px 13px;          /* top bezel taller than sides/bottom — like real MacBook */
+  border-radius:16px 16px 5px 5px; /* less round at bottom where it meets hinge */
+  filter:
+    drop-shadow(0 44px 64px rgba(0,0,0,0.34))
+    drop-shadow(0 18px 30px rgba(0,0,0,0.22));
+  transition:transform 360ms cubic-bezier(0.2,0.7,0.3,1);
+  /* Aluminum chamfer highlights + hinge groove */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),       /* top edge highlight */
+    inset 1px 0 0 rgba(255,255,255,0.04),        /* left edge */
+    inset -1px 0 0 rgba(255,255,255,0.04),       /* right edge */
+    inset 0 -1.5px 0 rgba(0,0,0,0.65),           /* hinge groove */
+    inset 0 -3px 0 -1px rgba(255,255,255,0.04);  /* hinge highlight above groove */
+}
+.tile:hover .media-frame{transform:translateY(-6px);}
+
+/* Display screen with subtle inner bezel ring */
+.media-frame img,.media-frame video{
+  display:block;width:100%;aspect-ratio:16/10;
+  object-fit:contain;background:#000;
+  border-radius:3px;
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,0.85),
+    inset 0 0 0 2px rgba(255,255,255,0.04);
+}
+
+/* Notch — wider rounded-rectangle cut at top bezel center */
+.media-frame::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:96px;height:8px;
+  background:#0a0a0a;
+  border-radius:0 0 8px 8px;
+  z-index:3;
+  box-shadow:
+    inset 0 -0.5px 0 rgba(255,255,255,0.05),
+    0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* Base / chassis — wider than shell, with hinge highlight + fingertip recess */
+.media-frame::after{
+  content:"";position:absolute;
+  left:-7.5%;right:-7.5%;bottom:-16px;height:16px;
+  background:
+    /* fingertip recess — subtle dark divot at bottom center */
+    radial-gradient(ellipse 44px 7px at 50% 100%, rgba(0,0,0,0.85) 0 5px, transparent 70%),
+    /* aluminum chassis gradient: highlight → body → shadow */
+    linear-gradient(180deg,
+      #4d4d50 0%,
+      #3c3c3e 8%,
+      #2a2a2c 36%,
+      #1a1a1c 72%,
+      #060607 100%);
+  border-radius:3px 3px 16px 16px;
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.16),  /* hinge highlight where base meets shell */
+    inset 0 -1px 0 rgba(0,0,0,0.6),           /* dark front edge */
+    0 8px 16px rgba(0,0,0,0.28);              /* shadow beneath base */
+}
+
+/* Featured (full hero) — bigger MacBook, cinematic 21:10 */
+.tile.full .media-frame{max-width:960px;padding:22px 16px 16px;border-radius:18px 18px 6px 6px;}
+.tile.full .media-frame img,.tile.full .media-frame video{aspect-ratio:16/10;}
+.tile.full .media-frame::before{width:120px;height:10px;border-radius:0 0 10px 10px;}
+.tile.full .media-frame::after{bottom:-19px;height:19px;border-radius:4px 3px 18px 18px;}
+
+/* iPad variant — uniform bezels, no chassis, no notch — just a camera dot */
+.media-frame.is-ipad{
+  max-width:640px;
+  padding:14px;
+  border-radius:28px;
+  background:
+    linear-gradient(180deg,
+      #2e2e30 0%,
+      #232325 50%,
+      #1c1c1e 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    inset 1px 0 0 rgba(255,255,255,0.04),
+    inset -1px 0 0 rgba(255,255,255,0.04),
+    inset 0 -1px 0 rgba(0,0,0,0.4);
+}
+.media-frame.is-ipad img,
+.media-frame.is-ipad video{
+  aspect-ratio:16/10;          /* fits the 16:9 retail UI with minimal letterbox */
+  object-fit:contain;
+  background:#0a0a0a;
+  border-radius:14px;
+}
+.media-frame.is-ipad::before{
+  /* Front camera dot at top-center of bezel */
+  width:5px;height:5px;
+  top:4px;
+  background:#0a0a0a;
+  border-radius:50%;
+  box-shadow:
+    inset 0 0 1px rgba(255,255,255,0.18),
+    0 0 0 1px rgba(255,255,255,0.04);
+}
+.media-frame.is-ipad::after{display:none;}
+
+/* Compact (3-up) — smaller MacBook with smaller notch */
+.tile.compact .media-frame{max-width:460px;padding:14px 10px 10px;border-radius:12px 12px 4px 4px;}
+.tile.compact .media-frame img,.tile.compact .media-frame video{border-radius:2px;}
+.tile.compact .media-frame::before{width:64px;height:6px;border-radius:0 0 6px 6px;}
+.tile.compact .media-frame::after{left:-7%;right:-7%;bottom:-12px;height:12px;border-radius:2px 2px 12px 12px;}
+
+/* Compact iPad — uniform bezels, smaller body, no chassis */
+.tile.compact .media-frame.is-ipad{max-width:520px;padding:11px;border-radius:22px;}
+.tile.compact .media-frame.is-ipad img,.tile.compact .media-frame.is-ipad video{border-radius:11px;}
+.tile.compact .media-frame.is-ipad::before{width:4px;height:4px;top:3.5px;}
+
+/* iPhone variant — opt-in via .phone modifier */
+.media-frame.phone{
+  max-width:260px;
+  background:linear-gradient(180deg,#1c1c1e 0%,#0a0a0a 100%);
+  padding:8px 8px 0;
+  border-radius:38px 38px 0 0;
+  filter:
+    drop-shadow(0 32px 44px rgba(0,0,0,0.36))
+    drop-shadow(0 16px 24px rgba(0,0,0,0.22));
+}
+.media-frame.phone img,.media-frame.phone video{
+  aspect-ratio:9/17;
+  border-radius:30px 30px 0 0;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+.media-frame.phone::before{
+  /* Dynamic Island */
+  top:20px;width:36%;height:24px;
+  background:#000;border-radius:14px;
+  box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.10);
+}
+.media-frame.phone::after{display:none;}
+.tile.compact .media-frame.phone{max-width:200px;border-radius:32px 32px 0 0;padding:6px 6px 0;}
+.tile.compact .media-frame.phone img,.tile.compact .media-frame.phone video{border-radius:26px 26px 0 0;}
+.tile.compact .media-frame.phone::before{top:14px;width:38%;height:18px;}
+
+.exp-list{display:grid;gap:0;border-top:1px solid var(--hairline);}
+.exp-row{display:block;padding:24px 0;border-bottom:1px solid var(--hairline);transition:background 150ms ease,padding 150ms ease;}
+.exp-row:hover{background:var(--canvas);padding-left:16px;padding-right:16px;}
+.exp-head{display:grid;grid-template-columns:160px 1fr 200px 1.2fr;gap:28px;align-items:start;}
+.exp-period{font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:0.8px;padding-top:4px;}
+.exp-co{font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-0.018em;margin-bottom:4px;}
+.exp-loc{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;}
+.exp-role{font-size:14px;color:var(--ink-soft);font-weight:500;padding-top:4px;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;padding-top:4px;}
+.exp-tag{font-family:var(--mono);font-size:10px;background:var(--inset);color:var(--ink-soft);padding:3px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:0.5px;}
+.exp-desc{margin:14px 0 0 188px;padding:0;list-style:none;color:var(--ink-soft);font-size:14px;line-height:1.6;max-width:780px;}
+.exp-desc li{padding:3px 0 3px 14px;position:relative;}
+.exp-desc li::before{content:'—';position:absolute;left:0;color:var(--muted);}
+@media (max-width:900px){.exp-head{grid-template-columns:1fr;gap:8px;}.exp-desc{margin-left:0;}}
+
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+@media (max-width:900px){.testi-grid{grid-template-columns:1fr;}}
+.testi{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:32px;position:relative;}
+.testi-mark{font-family:Georgia,serif;font-size:48px;color:var(--ps-blue);line-height:0.8;margin-bottom:14px;opacity:0.7;}
+.testi-quote{font-size:17px;line-height:1.55;color:var(--ink-soft);margin-bottom:22px;letter-spacing:-0.012em;}
+.testi-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--hairline);padding-top:14px;}
+.testi-name{font-size:14px;font-weight:600;color:var(--ink);}
+.testi-role{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;}
+
+.edu{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:36px;display:grid;grid-template-columns:1fr 1.6fr;gap:36px;}
+@media (max-width:900px){.edu{grid-template-columns:1fr;gap:24px;}}
+.edu-degree{font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-0.02em;margin-bottom:6px;}
+.edu-school{font-size:14px;color:var(--ink-soft);margin-bottom:4px;}
+.edu-period{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;}
+.edu ul{display:grid;gap:10px;}
+.edu li{font-size:14.5px;color:var(--ink-soft);padding-left:22px;position:relative;line-height:1.55;}
+.edu li::before{content:"→";position:absolute;left:0;color:var(--ps-blue);font-family:var(--mono);}
+
+.cta-band{padding:120px 28px;text-align:center;background:var(--canvas);border-top:1px solid var(--hairline);position:relative;overflow:hidden;}
+.cta-band::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(0,102,204,0.06),transparent 60%);border-radius:50%;}
+.cta-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;}
+.cta-band h2{font-size:clamp(48px,7vw,84px);font-weight:600;letter-spacing:-0.035em;line-height:1.0;margin-bottom:22px;color:var(--ink);}
+.cta-band h2 em{font-style:normal;color:var(--muted);}
+.cta-band p{font-size:18px;color:var(--muted);max-width:540px;margin:0 auto 36px;line-height:1.55;}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff !important;padding:13px 26px;border-radius:var(--pill);font-size:14px;font-weight:500;transition:transform 120ms ease,opacity 120ms;letter-spacing:-0.01em;}
+.btn:hover{opacity:0.88;transform:translateY(-1px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink) !important;padding:13px 26px;border-radius:var(--pill);font-size:14px;font-weight:500;border:1px solid var(--hairline);transition:border-color 120ms ease;letter-spacing:-0.01em;}
+.btn-ghost:hover{border-color:var(--ink);}
+
+.footer{padding:36px 28px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;border-top:1px solid var(--hairline);}
+.footer a{color:var(--ps-blue);}
+
+.cmd-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.32);backdrop-filter:blur(6px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding-top:10vh;}
+.cmd-overlay.open{display:flex;}
+.cmd-modal{width:min(720px,94vw);max-height:80vh;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,0.30);}
+
+/* === SMART INTENT INTERFACE === */
+
+/* Header */
+.cmd-header{
+  display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--hairline);flex-shrink:0;
+}
+.cmd-header-icon{
+  width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;
+  background:var(--ink);color:#fff;flex-shrink:0;
+}
+.cmd-header-icon svg{width:16px;height:16px;}
+.cmd-header-text{flex:1;}
+.cmd-header-title{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;}
+.cmd-header-sub{font-size:11px;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:1.2px;}
+.cmd-icon-btn{
+  width:32px;height:32px;border-radius:8px;background:transparent;border:1px solid transparent;
+  cursor:pointer;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;
+  transition:border-color 150ms ease,color 150ms ease;
+}
+.cmd-icon-btn:hover{border-color:var(--hairline);color:var(--ink);}
+.cmd-icon-btn svg{width:16px;height:16px;}
+
+/* Conversation scroll area */
+.cmd-conv{
+  flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:14px;
+  min-height:240px;max-height:54vh;
+}
+.cmd-conv::-webkit-scrollbar{width:6px;}
+.cmd-conv::-webkit-scrollbar-thumb{background:var(--hairline);border-radius:3px;}
+
+/* Message bubbles */
+.msg{max-width:88%;display:flex;flex-direction:column;gap:8px;}
+.msg.user{align-self:flex-end;align-items:flex-end;}
+.msg.bot{align-self:flex-start;align-items:flex-start;}
+.msg-text{padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.55;letter-spacing:-0.005em;}
+.msg.user .msg-text{background:var(--ink);color:#fff;border-bottom-right-radius:4px;}
+.msg.bot .msg-text{background:var(--canvas);color:var(--ink);border:1px solid var(--hairline-soft);border-bottom-left-radius:4px;}
+.msg-typing{display:inline-flex;gap:4px;padding:14px 16px;background:var(--canvas);border:1px solid var(--hairline-soft);border-radius:14px;border-bottom-left-radius:4px;}
+.msg-typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typing 1.2s infinite ease-in-out;}
+.msg-typing span:nth-child(2){animation-delay:0.15s;}
+.msg-typing span:nth-child(3){animation-delay:0.30s;}
+@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-4px);opacity:1;}}
+
+/* === Response renderers === */
+
+/* === Project hero card — compact variant of .tile bento === */
+.resp-card{
+  display:block;text-decoration:none;color:inherit;position:relative;
+  width:100%;border-radius:20px;overflow:hidden;
+  padding:22px 22px 0;
+  background:var(--canvas);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);
+  transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);
+}
+.resp-card:hover{transform:translateY(-2px);}
+.resp-card.tint-blue   { background:#e6efff; }
+.resp-card.tint-violet { background:#efeaff; }
+.resp-card.tint-amber  { background:#fff4d6; }
+.resp-card.tint-rose   { background:#ffe6ec; }
+.resp-card.tint-mint   { background:#dcf7ec; }
+.resp-card.dark        { background:var(--ink);color:#fff; }
+.resp-card.midnight    { background:linear-gradient(180deg,#0a1430 0%,#000 100%);color:#fff; }
+.resp-card.dark,.resp-card.midnight{ box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08); }
+
+.resp-card-eyebrow{
+  font-family:var(--mono);font-size:10.5px;font-weight:500;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ps-blue);margin-bottom:8px;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.resp-card-eyebrow::before{content:"→";font-family:var(--mono);font-size:12px;opacity:0.75;}
+.resp-card.tint-violet .resp-card-eyebrow{color:#7c3aed;}
+.resp-card.tint-amber  .resp-card-eyebrow{color:#a16207;}
+.resp-card.tint-rose   .resp-card-eyebrow{color:#be185d;}
+.resp-card.tint-mint   .resp-card-eyebrow{color:#047857;}
+.resp-card.dark .resp-card-eyebrow,.resp-card.midnight .resp-card-eyebrow{color:var(--ps-blue-light);}
+
+.resp-card-h{
+  font-size:22px;font-weight:600;letter-spacing:-0.025em;line-height:1.12;margin-bottom:8px;max-width:480px;
+}
+.resp-card-sub{
+  font-size:13.5px;line-height:1.5;color:var(--muted);
+  margin-bottom:16px;max-width:480px;letter-spacing:-0.005em;
+}
+.resp-card.dark .resp-card-sub,.resp-card.midnight .resp-card-sub{color:rgba(255,255,255,0.78);}
+
+.resp-card-cta{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--ps-blue);color:#fff;
+  padding:8px 16px;border-radius:var(--pill);
+  font-size:13px;font-weight:500;letter-spacing:-0.005em;
+  margin-bottom:18px;
+}
+.resp-card-cta svg{width:12px;height:12px;}
+.resp-card.tint-violet .resp-card-cta{background:#7c3aed;}
+.resp-card.tint-amber  .resp-card-cta{background:#a16207;}
+.resp-card.tint-rose   .resp-card-cta{background:#be185d;}
+.resp-card.tint-mint   .resp-card-cta{background:#047857;}
+.resp-card.dark .resp-card-cta,.resp-card.midnight .resp-card-cta{background:#fff;color:var(--ink);}
+
+/* Browser-frame media (mirrors .media-frame on .tile.compact) */
+.resp-card-media{display:flex;justify-content:center;padding:0 4px;}
+.resp-card-frame{
+  width:100%;max-width:480px;position:relative;
+  background:var(--paper);
+  border-radius:10px 10px 4px 4px;
+  padding:10px 8px 0;
+  box-shadow:0 12px 24px rgba(0,0,0,0.14),0 0 0 1px rgba(0,0,0,0.06);
+}
+.resp-card-frame::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:48px;height:5px;border-radius:0 0 5px 5px;
+  background:rgba(0,0,0,0.2);
+}
+.resp-card-frame img,.resp-card-frame video{
+  width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-radius:3px;
+}
+
+/* === Horizontal rail for multi-case-study display === */
+.resp-rail{
+  display:flex;gap:12px;width:calc(100% + 32px);margin:0 -16px;
+  padding:4px 16px 16px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.resp-rail::-webkit-scrollbar{display:none;}
+.resp-rail > .resp-card{
+  flex:0 0 86%;max-width:380px;min-width:280px;
+  scroll-snap-align:start;
+  padding:18px 18px 0;
+}
+.resp-rail > .resp-card .resp-card-h{font-size:19px;}
+.resp-rail > .resp-card .resp-card-sub{font-size:12.5px;margin-bottom:14px;}
+.resp-rail > .resp-card .resp-card-cta{font-size:12px;padding:7px 14px;margin-bottom:14px;}
+.resp-rail > .resp-card .resp-card-frame{max-width:none;}
+.resp-rail-hint{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--muted);
+  margin-top:-4px;margin-bottom:-4px;
+}
+.resp-rail-hint svg{width:12px;height:12px;}
+
+/* === Mini cards — tinted accent strip on left, mirrors tile aesthetic === */
+.resp-grid{display:flex;flex-direction:column;gap:8px;width:100%;}
+.resp-mini{
+  display:flex;align-items:center;gap:12px;padding:14px 16px 14px 14px;
+  border-radius:14px;background:var(--canvas);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06),inset 4px 0 0 var(--ps-blue);
+  text-decoration:none;color:inherit;
+  transition:transform 200ms ease,box-shadow 200ms ease;
+}
+.resp-mini:hover{transform:translateY(-1px);box-shadow:inset 0 0 0 1px rgba(0,0,0,0.12),inset 4px 0 0 var(--ps-blue),0 8px 18px rgba(0,0,0,0.08);}
+.resp-mini.tint-violet{box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06),inset 4px 0 0 #7c3aed;background:#faf8ff;}
+.resp-mini.tint-amber {box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06),inset 4px 0 0 #a16207;background:#fffaeb;}
+.resp-mini.tint-rose  {box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06),inset 4px 0 0 #be185d;background:#fff5f7;}
+.resp-mini.tint-mint  {box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06),inset 4px 0 0 #047857;background:#f1fdf7;}
+.resp-mini.dark       {box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08),inset 4px 0 0 var(--ps-blue-light);background:var(--ink);color:#fff;}
+.resp-mini.midnight   {box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08),inset 4px 0 0 var(--ps-blue-light);background:linear-gradient(180deg,#0a1430,#000);color:#fff;}
+
+.resp-mini-eyebrow{
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ps-blue);margin-bottom:3px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.resp-mini-eyebrow::before{content:"→";font-family:var(--mono);font-size:11px;opacity:0.75;}
+.resp-mini.tint-violet .resp-mini-eyebrow{color:#7c3aed;}
+.resp-mini.tint-amber  .resp-mini-eyebrow{color:#a16207;}
+.resp-mini.tint-rose   .resp-mini-eyebrow{color:#be185d;}
+.resp-mini.tint-mint   .resp-mini-eyebrow{color:#047857;}
+.resp-mini.dark .resp-mini-eyebrow,.resp-mini.midnight .resp-mini-eyebrow{color:var(--ps-blue-light);}
+
+.resp-mini-body{flex:1;min-width:0;}
+.resp-mini-title{font-size:14px;font-weight:600;color:inherit;letter-spacing:-0.014em;line-height:1.25;}
+.resp-mini-sub{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.resp-mini.dark .resp-mini-sub,.resp-mini.midnight .resp-mini-sub{color:rgba(255,255,255,0.7);}
+.resp-mini-arrow{color:var(--muted);flex-shrink:0;}
+.resp-mini-arrow svg{width:16px;height:16px;}
+.resp-mini.dark .resp-mini-arrow,.resp-mini.midnight .resp-mini-arrow{color:rgba(255,255,255,0.6);}
+
+/* Metric tile grid */
+.resp-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%;}
+@media (max-width:520px){.resp-metrics{grid-template-columns:1fr;}}
+.resp-metric{
+  padding:14px 16px;border-radius:12px;background:var(--canvas);border:1px solid var(--hairline-soft);
+}
+.resp-metric-value{font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-0.025em;font-variant-numeric:tabular-nums;line-height:1.1;}
+.resp-metric-label{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.35;}
+
+/* Comparison (two side by side) */
+.resp-compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;}
+@media (max-width:520px){.resp-compare{grid-template-columns:1fr;}}
+.resp-compare .resp-mini{flex-direction:column;align-items:flex-start;gap:8px;}
+
+/* CTA card (email / link action) */
+.resp-cta{
+  display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(0,102,204,0.06),rgba(124,58,237,0.05));
+  border:1px solid rgba(0,102,204,0.20);
+  text-decoration:none;color:inherit;
+  transition:border-color 150ms ease,transform 150ms ease;
+}
+.resp-cta:hover{border-color:var(--ps-blue);transform:translateY(-1px);}
+.resp-cta-icon{width:36px;height:36px;border-radius:8px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.resp-cta-icon svg{width:18px;height:18px;}
+.resp-cta-body{flex:1;}
+.resp-cta-title{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;}
+.resp-cta-sub{font-size:12px;color:var(--muted);font-family:var(--mono);}
+
+/* Tag chips (about response) */
+.resp-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.resp-tag{padding:5px 10px;border-radius:var(--pill);background:var(--canvas);border:1px solid var(--hairline);font-family:var(--mono);font-size:11px;color:var(--ink-soft);letter-spacing:0.3px;}
+
+/* Chain chips (suggestion follow-ups) */
+.resp-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
+.resp-chip{
+  font-size:12px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--hairline);
+  padding:7px 12px;border-radius:var(--pill);cursor:pointer;font-family:var(--sans);
+  display:inline-flex;align-items:center;gap:6px;
+  transition:border-color 150ms ease,color 150ms ease,background 150ms ease;
+}
+.resp-chip::before{content:"↳";opacity:0.4;}
+.resp-chip:hover{border-color:var(--ink);color:var(--ink);background:var(--canvas);}
+
+/* Quick intents bar (always above input) */
+.cmd-quick{
+  display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 0;flex-shrink:0;
+}
+.cmd-quick-btn{
+  font-size:12px;color:var(--ink-soft);background:var(--canvas);border:1px solid var(--hairline);
+  padding:7px 12px;border-radius:var(--pill);cursor:pointer;font-family:var(--sans);min-height:32px;
+  transition:border-color 150ms ease,color 150ms ease;
+}
+.cmd-quick-btn:hover{border-color:var(--ink);color:var(--ink);}
+
+/* Input bar */
+.cmd-input-row{display:flex;align-items:center;gap:10px;padding:12px 14px;flex-shrink:0;}
+.cmd-input{flex:1;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--pill);padding:12px 18px;font-size:14px;font-family:var(--sans);color:var(--ink);outline:none;min-height:44px;}
+.cmd-input:focus{border-color:var(--ink);}
+.cmd-send{
+  width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:opacity 150ms ease;
+}
+.cmd-send:disabled{opacity:0.35;cursor:not-allowed;}
+.cmd-send svg{width:18px;height:18px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#"><span class="brand-mark">H</span><span class="brand-label">Harry Hein</span></a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#voices">Voices</a>
+      <a href="#writing">Writing</a>
+      <button class="nav-cmd" id="cmdTrigger" aria-label="Search Harry's work">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="nav-cmd-text">Search Harry's Work</span>
+        <kbd>⌘</kbd><kbd>K</kbd>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-xray" aria-hidden="true"></div>
+  <div class="hero-lens" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Senior Product Designer · Available 2026</div>
+    <h1 data-text="Design. Ship.&#10;Measure.">Design. Ship.<br><em>Measure.</em></h1>
+    <p class="hero-sub" data-text="AI-first systems for complex enterprise tooling — seven years of work that ships and gets measured.">AI-first systems for complex enterprise tooling — seven years of work that ships and gets measured.</p>
+
+    <div class="hero-bento">
+    <div class="palette" role="dialog" aria-label="Search palette">
+      <div class="palette-search palette-search-trigger" id="heroPaletteTrigger" role="button" tabindex="0" aria-label="Open intent palette">
+        <svg class="palette-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input class="palette-input" placeholder="What do you want to do? Ask anything…" readonly aria-label="Search" tabindex="-1">
+        <span class="palette-shortcut">⌘ K</span>
+      </div>
+      <div class="palette-section">Recommended Case Studies</div>
+      <a href="case-study-po-ai-intent-hybrid.html" class="palette-row selected">
+        <span class="row-icon icon-ai">AI</span>
+        <span class="palette-name">Speak, don't click — bilingual intent palette</span>
+        <span class="palette-meta">Case Study</span>
+        <kbd>⌘ 1</kbd>
+      </a>
+      <a href="case-study-design-system-hybrid.html" class="palette-row">
+        <span class="row-icon icon-ds">DS</span>
+        <span class="palette-name">Three platforms. One source of truth.</span>
+        <span class="palette-meta">Design System</span>
+        <kbd>⌘ 2</kbd>
+      </a>
+      <a href="case-study-pharmacy-pos-hybrid.html" class="palette-row">
+        <span class="row-icon icon-pos">PX</span>
+        <span class="palette-name">Two stores. One system. — 200+ screens.</span>
+        <span class="palette-meta">POS</span>
+        <kbd>⌘ 3</kbd>
+      </a>
+      <a href="case-study-retail-hybrid.html" class="palette-row">
+        <span class="row-icon icon-rt">RT</span>
+        <span class="palette-name">From feedback to 427% ROI</span>
+        <span class="palette-meta">Retail</span>
+        <kbd>⌘ 4</kbd>
+      </a>
+      <a href="case-study-golden-paths-hybrid.html" class="palette-row">
+        <span class="row-icon icon-gp">GP</span>
+        <span class="palette-name">Prototypes that never sleep — 9/11 matched</span>
+        <span class="palette-meta">AI Research</span>
+        <kbd>⌘ 5</kbd>
+      </a>
+      <div class="palette-footer">
+        <span class="left">Open <kbd>↵</kbd></span>
+        <span class="right">Ask AI <kbd>⌘</kbd> <kbd>K</kbd></span>
+      </div>
+    </div>
+
+    <div class="intro-tile">
+      <video src="videos/self-intro/self-intro.mp4" playsinline preload="none" poster="videos/self-intro/self-intro-poster.jpg"></video>
+      <button type="button" class="intro-glass" aria-label="Play 43-second self-introduction" onclick="var v=this.parentNode.querySelector('video');v.controls=true;v.play();this.classList.add('is-hidden');">
+        <div class="intro-glass-inner">
+          <div class="intro-glass-label">Intro · 43 sec</div>
+          <h3 class="intro-glass-title">Meet Harry.</h3>
+          <p class="intro-glass-desc">Senior Product Designer in Bangkok. Seven years on AI-first products, enterprise tooling, and design systems. Engineering-trained, research-first, bilingual.</p>
+          <span class="intro-glass-play"><span class="play-icon" aria-hidden="true"></span>Play introduction</span>
+        </div>
+      </button>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Work · Selected</div>
+      <h2 class="sec-title">Case studies.</h2>
+      <p class="sec-sub">Five deep-dives. Each one shipped, measured, and reflected on — with the actual numbers attached.</p>
+    </div>
+    <div class="sec-action">5 results · ⌘1–⌘5</div>
+  </div>
+
+  <div class="bento">
+    <div class="tile midnight full">
+      <div class="tile-eyebrow">New · AI Product</div>
+      <h3 class="tile-h">Speak, don't click.</h3>
+      <p class="tile-sub">A bilingual intent palette that replaced an enterprise CRM dashboard. 28 intents in MVP, 21 already live — sellers just say what they want.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-po-ai-intent-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="01-po-ai-intent"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <video src="videos/po-ai/01-palette-empty-state.mp4" muted loop playsinline preload="none" data-lazy-video poster="images/po-ai/hero-palette.webp"></video>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile tint-violet">
+      <div class="tile-eyebrow">Design System</div>
+      <h3 class="tile-h">Three platforms. One source of truth.</h3>
+      <p class="tile-sub">A federated two-level token architecture across POS, web, and mobile.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-design-system-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="02-design-system"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <img src="images/DS/%E2%98%85%20Showcase%20%E2%80%94%20Multi-Palette%20Demo.webp" alt="Design system multi-palette demo" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="tile tint-amber">
+      <div class="tile-eyebrow">Enterprise · POS</div>
+      <h3 class="tile-h">Two stores.<br>One system.</h3>
+      <p class="tile-sub">14 modules, 200+ screens — a legacy Windows POS redesigned for touch.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-pharmacy-pos-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="03-pharmacy-pos"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <img src="images/ppos/New%20Central%20Hub.webp" alt="Pharmacy POS central hub" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="tile tint-rose">
+      <div class="tile-eyebrow">Retail · 2025</div>
+      <h3 class="tile-h">From feedback to 427% ROI.</h3>
+      <p class="tile-sub">A broken returns process had CS drowning in tickets. Four months of research, three test rounds.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-retail-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="04-retail"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame is-ipad">
+          <img src="images/retail-ui-final.webp" alt="Retail returns redesign final UI" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="tile dark">
+      <div class="tile-eyebrow">AI Research · 2024</div>
+      <h3 class="tile-h">Prototypes that never sleep.</h3>
+      <p class="tile-sub">AI-simulated path analysis that matched human friction in 9 of 11 blockers tested.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-golden-paths-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="05-golden-paths"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <video src="images/AI%20Test/Demo.mp4" muted loop playsinline preload="none" data-lazy-video></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="more">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Work · More</div>
+      <h2 class="sec-title">More projects.</h2>
+    </div>
+    <div class="sec-action">3 results</div>
+  </div>
+
+  <div class="bento-three" style="margin-bottom:14px;">
+    <div class="tile tint-rose compact">
+      <div class="tile-eyebrow">AI Tools · 2025</div>
+      <h3 class="tile-h">47 apps. 2 interviews.</h3>
+      <p class="tile-sub">A 15-minute AI pipeline replaced Sarah's 40-minute resume ritual.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-resume-pipeline-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="06-resume-pipeline"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <video src="images/resume-builder-resources/resume-builder-concept-video.mp4" muted loop playsinline preload="none" data-lazy-video poster="images/resume-builder-resources/the-engine.webp"></video>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile tint-mint compact">
+      <div class="tile-eyebrow">Finance · 2022</div>
+      <h3 class="tile-h">Daily ritual to 104% ROI.</h3>
+      <p class="tile-sub">Three apps for the same numbers became one screen.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-dashboard-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="07-dashboard"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame is-ipad">
+          <img src="images/dash-ui-new.webp" alt="Finance dashboard new UI" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="tile tint-violet compact">
+      <div class="tile-eyebrow">Figma Plugin · 2024</div>
+      <h3 class="tile-h">Unified design tokens.</h3>
+      <p class="tile-sub">Four files and four chances to drift, collapsed into one click.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-tokens-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <a href="https://orchestra.figma.site/" target="_blank" rel="noopener" class="tile-cta-link">Try the plugin</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="08-tokens"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <img src="images/coverphoto/4.svg" alt="Design tokens — cover art" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EdTech & Entertainment temporarily hidden
+  <div class="bento">
+    <div class="tile tint-blue">
+      <div class="tile-eyebrow">EdTech · 2025</div>
+      <h3 class="tile-h">Making hard math feel tractable.</h3>
+      <p class="tile-sub">A HOTS mathematics learning app for 6–12 year olds — productive struggle without frustration.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-jar-aye-child.html" class="tile-cta-pill">Read case study</a>
+        <a href="case-study-jar-aye-child.html" class="tile-cta-link">Learn more</a>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <video src="images/Jar%20Aye%20Child/HOTS.mp4" muted loop playsinline preload="none" data-lazy-video></video>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile dark">
+      <div class="tile-eyebrow">Entertainment · 2023</div>
+      <h3 class="tile-h">Sing together,<br>anywhere.</h3>
+      <p class="tile-sub">Social karaoke for friends on different continents — synchronized playback, mixed vocals, single tap to join.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-karaoke.html" class="tile-cta-pill">Read case study</a>
+        <a href="case-study-karaoke.html" class="tile-cta-link">Learn more</a>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <img src="images/karaoke-ui.webp" alt="Karaoke app UI" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+</section>
+
+<section class="section" id="experience">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Experience · Log</div>
+      <h2 class="sec-title">Seven years.<br>Shipped at every stop.</h2>
+    </div>
+    <div class="sec-action">5 entries</div>
+  </div>
+  <div class="exp-list">
+    <div class="exp-row">
+      <div class="exp-head">
+        <div class="exp-period">2023.12 — 2025.12</div>
+        <div>
+          <div class="exp-co">Raytail</div>
+          <div class="exp-loc">Maldives · Remote</div>
+        </div>
+        <div class="exp-role">UX Lead</div>
+        <div class="exp-tags">
+          <span class="exp-tag">200% UX ROI</span><span class="exp-tag">$10K Savings</span><span class="exp-tag">Design System</span><span class="exp-tag">WCAG</span><span class="exp-tag">A/B Testing</span>
+        </div>
+      </div>
+      <ul class="exp-desc">
+        <li>Drove design work that delivered 200% UX ROI across a multi-product ecosystem</li>
+        <li>Redesigned the POS checkout and order workflows — $10K/month saved in operational costs</li>
+        <li>Built a design system from scratch; still the foundation the team runs on today</li>
+        <li>Worked async-first with a fully remote team in Maldives — Figma comments got very specific</li>
+        <li>Enforced WCAG accessibility standards across all products</li>
+        <li>Cleared years of design debt through structured A/B testing</li>
+      </ul>
+    </div>
+    <div class="exp-row">
+      <div class="exp-head">
+        <div class="exp-period">2022.10 — 2023.04</div>
+        <div>
+          <div class="exp-co">Lexagle</div>
+          <div class="exp-loc">Singapore</div>
+        </div>
+        <div class="exp-role">Senior UX Designer</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Legal Tech</span><span class="exp-tag">Feature Ownership</span>
+        </div>
+      </div>
+      <ul class="exp-desc">
+        <li>Owned obligation management feature end-to-end — concept to handoff</li>
+        <li>Built public link form that cut back-and-forth in the contract inquiry flow</li>
+        <li>Kept design consistent across the product while moving fast in a small team</li>
+        <li>Stayed close to the PM so design decisions served the business, not just the mockup</li>
+      </ul>
+    </div>
+    <div class="exp-row">
+      <div class="exp-head">
+        <div class="exp-period">2021.11 — 2022.10</div>
+        <div>
+          <div class="exp-co">Treedots</div>
+          <div class="exp-loc">Singapore</div>
+        </div>
+        <div class="exp-role">UX/UI Designer</div>
+        <div class="exp-tags">
+          <span class="exp-tag">B2B Portal</span><span class="exp-tag">Launched DS</span>
+        </div>
+      </div>
+      <ul class="exp-desc">
+        <li>Spent the first month mapping every broken flow before touching Figma</li>
+        <li>Designed the B2B Supplier Portal from scratch — complex workflows, lots of edge cases</li>
+        <li>Built detailed interactive prototypes that made dev conversations a lot shorter</li>
+        <li>Launched a design system that's still the foundation for every new feature</li>
+      </ul>
+    </div>
+    <div class="exp-row">
+      <div class="exp-head">
+        <div class="exp-period">2020.09 — 2021.11</div>
+        <div>
+          <div class="exp-co">Nexlabs</div>
+          <div class="exp-loc">Myanmar</div>
+        </div>
+        <div class="exp-role">Product Designer</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Multi-industry</span><span class="exp-tag">Prototyping</span>
+        </div>
+      </div>
+      <ul class="exp-desc">
+        <li>Shipped across healthcare, logistics, fintech, and retail — four industries in fourteen months</li>
+        <li>Research was never optional; every project started with a discovery phase</li>
+        <li>Always started with low-fidelity wireframes before high-fidelity work</li>
+        <li>Learned fast how to explain design decisions in terms clients cared about</li>
+      </ul>
+    </div>
+    <div class="exp-row">
+      <div class="exp-head">
+        <div class="exp-period">2018.12 — 2020.09</div>
+        <div>
+          <div class="exp-co">Adventsoft</div>
+          <div class="exp-loc">Myanmar</div>
+        </div>
+        <div class="exp-role">UI/UX Designer</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Eng → Design</span><span class="exp-tag">Hi-Fi Prototypes</span>
+        </div>
+      </div>
+      <ul class="exp-desc">
+        <li>Made the switch from software engineer to designer here — still the best call I've made</li>
+        <li>Used prototypes as specs so developers knew exactly what to build before a word was said</li>
+        <li>Presented work to clients in plain language — no design jargon, no glazed-over looks</li>
+        <li>Reading code meant handoffs were smoother than most designers could manage</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="voices">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Voices · Peers</div>
+      <h2 class="sec-title">What collaborators say.</h2>
+    </div>
+    <div class="sec-action">2 quotes</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi">
+      <div class="testi-mark">&ldquo;</div>
+      <p class="testi-quote">The amount of passion you've put into your work is very much appreciated and truly inspiring. It's incredible how often you exceed expectations.</p>
+      <div class="testi-foot">
+        <span class="testi-name">Diana Eddie</span>
+        <span class="testi-role">Design Lead · Treedots</span>
+      </div>
+    </div>
+    <div class="testi">
+      <div class="testi-mark">&ldquo;</div>
+      <p class="testi-quote">An amazing founder of the local UX design community. He shared his knowledge with the intention for designers to improve their skills.</p>
+      <div class="testi-foot">
+        <span class="testi-name">Ricky Aung</span>
+        <span class="testi-role">Product Manager · Veneurific</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="education">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Education</div>
+      <h2 class="sec-title">Foundation.</h2>
+    </div>
+  </div>
+  <div class="edu">
+    <div>
+      <div class="edu-degree">B.Sc. Computer Science</div>
+      <div class="edu-school">UCS Taunggyi</div>
+      <div class="edu-period">2013 — 2018 · Myanmar</div>
+    </div>
+    <ul>
+      <li>Human Computer Interaction & Digital Design focus</li>
+      <li>Graduated with Distinction in Cyber Security</li>
+      <li>Founded CS Club at University</li>
+      <li>Engineering background bridges design & development</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="writing">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Writing · Notes</div>
+      <h2 class="sec-title">Recent writing.</h2>
+      <p class="sec-sub">Process notes, AI-first design patterns, and what I've learned shipping enterprise tooling in Southeast Asia.</p>
+    </div>
+    <div class="sec-action">3 posts</div>
+  </div>
+
+  <div class="bento-blog">
+    <a href="#" class="blog-tile tint-blue">
+      <div class="blog-eyebrow">AI-First Design <span class="dot"></span> Apr 2026</div>
+      <h3 class="blog-h">Speak, don't click — designing intent palettes.</h3>
+      <p class="blog-sub">Why I replaced a CRM dashboard with a bilingual intent palette. The math behind &lt;50ms regex matching and when AI is the wrong tool.</p>
+      <span class="blog-cta">Read post</span>
+    </a>
+
+    <a href="#" class="blog-tile tint-violet">
+      <div class="blog-eyebrow">Design Systems <span class="dot"></span> Feb 2026</div>
+      <h3 class="blog-h">Tokens, naming, and the trust contract.</h3>
+      <p class="blog-sub">Five things I learned shipping a Figma plugin across POS, web, and mobile — and why preserving original casing matters more than people think.</p>
+      <span class="blog-cta">Read post</span>
+    </a>
+
+    <a href="#" class="blog-tile dark">
+      <div class="blog-eyebrow">Process <span class="dot"></span> Jan 2026</div>
+      <h3 class="blog-h">Dual-audience research at the shop floor.</h3>
+      <p class="blog-sub">Same questions, two audiences, one heat-map overlay. How I found a 427% ROI hidden in a feature business leadership rated 2/5.</p>
+      <span class="blog-cta">Read post</span>
+    </a>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <div class="cta-inner">
+    <h2>Let's build something<br><em>worth measuring.</em></h2>
+    <p>I'm available for senior product design roles starting 2026 — remote-friendly, Bangkok-based, happy to relocate for the right team.</p>
+    <div class="cta-row">
+      <a href="mailto:kaungmyat9702@gmail.com" class="btn">Email Harry</a>
+      <a href="https://designer-os-test.vercel.app/resume/share/84rG99PQ" target="_blank" rel="noopener" class="btn-ghost">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Download resume
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2026 Harry Hein · <a href="mailto:kaungmyat9702@gmail.com">kaungmyat9702@gmail.com</a> · Bangkok / Remote
+</footer>
+
+<div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Harry's AI intent assistant">
+  <div class="cmd-modal">
+    <div class="cmd-header">
+      <span class="cmd-header-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </span>
+      <div class="cmd-header-text">
+        <div class="cmd-header-title">Harry's AI</div>
+        <div class="cmd-header-sub">Intent assistant · beta</div>
+      </div>
+      <button class="cmd-icon-btn" id="cmdRestart" aria-label="Restart conversation" title="Restart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+      </button>
+      <button class="cmd-icon-btn" id="cmdClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="cmd-conv" id="cmdConv" aria-live="polite"></div>
+
+    <div class="cmd-quick" id="cmdQuick">
+      <button class="cmd-quick-btn" data-q="show me all case studies">Case studies</button>
+      <button class="cmd-quick-btn" data-q="impact">Impact</button>
+      <button class="cmd-quick-btn" data-q="process">Process</button>
+      <button class="cmd-quick-btn" data-q="hire">Hire me</button>
+      <button class="cmd-quick-btn" data-q="about">About</button>
+    </div>
+
+    <div class="cmd-input-row">
+      <input class="cmd-input" id="cmdInput" placeholder="Ask anything — EN / မြန်မာ" aria-label="Ask Harry's AI">
+      <button class="cmd-send" id="cmdSend" aria-label="Send message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ─── Elements ─────────────────────────────────────────────────────
+  const overlay   = document.getElementById('cmdOverlay');
+  const trigger   = document.getElementById('cmdTrigger');
+  const heroOpen  = document.getElementById('heroPaletteTrigger');
+  const closeBtn  = document.getElementById('cmdClose');
+  const restart   = document.getElementById('cmdRestart');
+  const conv      = document.getElementById('cmdConv');
+  const input     = document.getElementById('cmdInput');
+  const sendBtn   = document.getElementById('cmdSend');
+  const quickBar  = document.getElementById('cmdQuick');
+
+  // ─── Data ─────────────────────────────────────────────────────────
+  const projects = {
+    poai:   { name:"Speak, don't click",          tag:'AI Product',     summary:'Bilingual intent palette that replaced a CRM dashboard. 28 intents in MVP, 21 already live.', img:'images/po-ai/hero-palette.webp',                                          video:'videos/po-ai/01-palette-empty-state.mp4', url:'case-study-po-ai-intent-hybrid.html', color:'icon-ai', mono:'AI', tint:'midnight' },
+    ds:     { name:'Three platforms, one truth',  tag:'Design System',  summary:'Federated two-level token architecture across POS, web, and mobile. Zero drift after rollout.',     img:'images/DS/%E2%98%85%20Showcase%20%E2%80%94%20Multi-Palette%20Demo.webp',  url:'case-study-design-system-hybrid.html', color:'icon-ds', mono:'DS', tint:'tint-violet' },
+    pos:    { name:'Two stores. One system.',     tag:'Enterprise POS', summary:'14 modules, 200+ screens — a legacy Windows POS redesigned for touch.',                              img:'images/ppos/New%20Central%20Hub.webp',                                    url:'case-study-pharmacy-pos-hybrid.html', color:'icon-pos', mono:'PX', tint:'tint-amber' },
+    retail: { name:'From feedback to 427% ROI',   tag:'Retail',         summary:'Returns flow rebuilt from 4 months of research and 3 test rounds. Real revenue impact.',              img:'images/retail-ui-final.webp',                                             url:'case-study-retail-hybrid.html',       color:'icon-rt', mono:'RT', tint:'tint-rose' },
+    gp:     { name:'Prototypes that never sleep', tag:'AI Research',    summary:'AI-simulated path analysis. Matched human friction in 9 of 11 blockers tested.',                       video:'images/AI%20Test/Demo.mp4',                                             url:'case-study-golden-paths-hybrid.html', color:'icon-gp', mono:'GP', tint:'dark' }
+  };
+  const metrics = [
+    { value:'427%', label:'Retail returns ROI lift' },
+    { value:'9/11', label:'Golden Paths blockers matched by AI' },
+    { value:'28',   label:'PO AI intents shipped (21 live)' },
+    { value:'200+', label:'POS screens redesigned' },
+    { value:'7y',   label:'Senior product design experience' },
+    { value:'3',    label:'Platforms unified by one design system' }
+  ];
+
+  // ─── Helpers ──────────────────────────────────────────────────────
+  function el(tag, cls, html){
+    const e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(html != null) e.innerHTML = html;
+    return e;
+  }
+  function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function matchProjects(s){
+    const hits = new Set();
+    if(/po\s*ai|intent\s*palette|bilingual|speak/.test(s)) hits.add('poai');
+    if(/design\s*system|tokens?|three\s*platforms?|source\s*of\s*truth/.test(s)) hits.add('ds');
+    if(/pharmacy|pos|two\s*stores?/.test(s)) hits.add('pos');
+    if(/retail|427|returns?/.test(s)) hits.add('retail');
+    if(/golden|prototype|9.?11|never\s+sleep/.test(s)) hits.add('gp');
+    return [...hits];
+  }
+
+  // ─── Intent classifier ────────────────────────────────────────────
+  function classify(q){
+    const s = q.toLowerCase().trim();
+    if(!s) return { intent:'fallback' };
+
+    if(/[\u1000-\u109F]/.test(q) && !matchProjects(s).length) return { intent:'burmese' };
+    if(/^(tell\s+me\s+(a\s+)?story|surprise\s+me|recommend|impress|wow)/.test(s)) return { intent:'chain-story' };
+
+    if(/(compare|\bvs\.?\b|versus|difference)/.test(s)){
+      return { intent:'compare', names: matchProjects(s) };
+    }
+
+    const single = matchProjects(s);
+    if(single.length === 1) return { intent:'project', id: single[0] };
+    if(single.length >= 2)  return { intent:'compare', names: single };
+
+    if(/\bai\b.*\b(project|case|work|stud|powered|driven|first|related)/.test(s) || /\b(project|case|work|stud).*\bai\b/.test(s) || /^(show\s+me\s+)?ai\s*(project|work)?s?$|ai-first|ai-powered|ai-driven/.test(s)) return { intent:'list', tag:'ai' };
+    if(/(can|does|is|could|did)\s+harry.*\bai\b|\bharry\b.*(design|build|make|ship).*\bai\b|good\s+at.*\bai\b/.test(s)) return { intent:'list', tag:'ai' };
+    if(/all\s*(project|case|work)|every|everything|^(show\s+me\s+)?(case\s*stud(ies|y))|\bportfolio\b|\bprojects?\b/.test(s)) return { intent:'list', tag:'all' };
+
+    if(/result|impact|metric|number|outcome|roi|stats|measure/.test(s)) return { intent:'impact' };
+    if(/\btool|\bstack\b|software|figma|sketch|framer|cursor|claude|tech\b|what.*use|which.*use/.test(s)) return { intent:'tools' };
+    if(/how\s+long|timeline|duration|weeks?\b|months?\b|take.*finish|when.*done|delivery|deadline/.test(s)) return { intent:'timeline' };
+    if(/process|method|how\s+(do|did)\s+you|approach|workflow|ship/.test(s)) return { intent:'process' };
+    if(/hire|available|freelance|contract|consult|engage|work\s+(with|together)|opportunit|\bjob\b|role/.test(s)) return { intent:'hire' };
+    if(/contact|email|reach|message|\bdm\b|get\s+in\s+touch/.test(s)) return { intent:'contact' };
+    if(/experien|career|cv|resume|history|past\s+(job|work|role|compan)|companies|where.*work|work.*(at|for)/.test(s)) return { intent:'about' };
+    if(/who|background|about|bio|harry|where|location|years/.test(s)) return { intent:'about' };
+
+    return { intent:'fallback', q };
+  }
+
+  // ─── Renderers ────────────────────────────────────────────────────
+  function renderCard(p){
+    const a = el('a','resp-card ' + (p.tint || ''));
+    a.href = p.url;
+    a.appendChild(el('div','resp-card-eyebrow', esc(p.tag)));
+    a.appendChild(el('div','resp-card-h', esc(p.name)));
+    a.appendChild(el('div','resp-card-sub', esc(p.summary)));
+    a.appendChild(el('div','resp-card-cta','Open case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'));
+    const media = el('div','resp-card-media');
+    const frame = el('div','resp-card-frame');
+    if(p.img){
+      const img = el('img'); img.src = p.img; img.alt = p.name; img.loading = 'lazy';
+      frame.appendChild(img);
+    } else if(p.video){
+      const v = el('video'); v.src = p.video; v.autoplay=true; v.muted=true; v.loop=true; v.playsInline=true; v.preload='metadata';
+      frame.appendChild(v);
+    }
+    media.appendChild(frame);
+    a.appendChild(media);
+    return a;
+  }
+  function renderMini(p){
+    const a = el('a','resp-mini ' + (p.tint || ''));
+    a.href = p.url;
+    const body = el('div','resp-mini-body');
+    body.appendChild(el('div','resp-mini-eyebrow', esc(p.tag)));
+    body.appendChild(el('div','resp-mini-title', esc(p.name)));
+    a.appendChild(body);
+    a.appendChild(el('span','resp-mini-arrow','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>'));
+    return a;
+  }
+  function renderGrid(ids){
+    const g = el('div','resp-grid');
+    ids.forEach(id => g.appendChild(renderMini(projects[id])));
+    return g;
+  }
+  function renderRail(ids){
+    const r = el('div','resp-rail');
+    ids.forEach(id => r.appendChild(renderCard(projects[id])));
+    return r;
+  }
+  function renderMetrics(items){
+    const g = el('div','resp-metrics');
+    items.forEach(m => {
+      const t = el('div','resp-metric');
+      t.appendChild(el('div','resp-metric-value', esc(m.value)));
+      t.appendChild(el('div','resp-metric-label', esc(m.label)));
+      g.appendChild(t);
+    });
+    return g;
+  }
+  function renderCompare(ids){
+    const c = el('div','resp-compare');
+    ids.slice(0,2).forEach(id => {
+      const p = projects[id];
+      const card = el('a','resp-mini ' + (p.tint || ''));
+      card.href = p.url;
+      const body = el('div','resp-mini-body');
+      body.appendChild(el('div','resp-mini-eyebrow', esc(p.tag)));
+      body.appendChild(el('div','resp-mini-title', esc(p.name)));
+      body.appendChild(el('div','resp-mini-sub', esc(p.summary)));
+      card.appendChild(body);
+      card.appendChild(el('span','resp-mini-arrow','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>'));
+      c.appendChild(card);
+    });
+    return c;
+  }
+  function renderCTA(opts){
+    const a = el('a','resp-cta');
+    a.href = opts.href;
+    a.appendChild(el('span','resp-cta-icon', opts.icon));
+    const body = el('div','resp-cta-body');
+    body.appendChild(el('div','resp-cta-title', esc(opts.title)));
+    body.appendChild(el('div','resp-cta-sub', esc(opts.sub)));
+    a.appendChild(body);
+    return a;
+  }
+  function renderTags(arr){
+    const w = el('div','resp-tags');
+    arr.forEach(t => w.appendChild(el('span','resp-tag', esc(t))));
+    return w;
+  }
+  function renderChips(chips){
+    const w = el('div','resp-chips');
+    chips.forEach(c => {
+      const b = el('button','resp-chip', esc(c.label));
+      b.dataset.q = c.q || c.label;
+      w.appendChild(b);
+    });
+    return w;
+  }
+
+  // ─── Message bubbles ──────────────────────────────────────────────
+  function showUser(text){
+    const m = el('div','msg user');
+    m.appendChild(el('div','msg-text', esc(text)));
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+  }
+  function showBot(parts){
+    const m = el('div','msg bot');
+    parts.forEach(p => {
+      if(typeof p === 'string') m.appendChild(el('div','msg-text', p));
+      else if(p) m.appendChild(p);
+    });
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+  }
+  function showTyping(){
+    const m = el('div','msg bot');
+    m.appendChild(el('div','msg-typing','<span></span><span></span><span></span>'));
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+    return m;
+  }
+
+  // ─── Chain state ──────────────────────────────────────────────────
+  let pendingChain = null;
+
+  // ─── Intent → response parts ──────────────────────────────────────
+  function partsFor(r, original){
+    const prior = pendingChain;
+    pendingChain = null;
+
+    // Chain follow-ups
+    if(prior && prior.type === 'hire-role'){
+      const s = original.toLowerCase();
+      let detail = "Got it. Email me with details — I'll respond within 24 hours.";
+      if(/full\s*time|lead|senior/.test(s)) detail = "Full-time lead/senior roles work great — Bangkok or remote, AI-first product preferred.";
+      else if(/contract|3.?6\s*mo/.test(s)) detail = "3–6 month contracts are my sweet spot — enough time to research, ship, and measure.";
+      else if(/consult|advisor/.test(s))   detail = "Consulting/advisory works for design system audits, AI-product positioning, or sprint reviews.";
+      return [
+        detail,
+        renderCTA({
+          title:'kaungmyat9702@gmail.com',
+          sub:'Mention your role and timeline',
+          href:'mailto:kaungmyat9702@gmail.com?subject=Working with Harry',
+          icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>'
+        })
+      ];
+    }
+
+    switch(r.intent){
+      case 'project': {
+        const p = projects[r.id];
+        return [
+          `Here's <b>${esc(p.name)}</b> — quick look:`,
+          renderCard(p),
+          renderChips([
+            { label:'Walk me through it', q:`walk me through ${p.name}` },
+            { label:"What's the impact?", q:'impact' },
+            { label:'Compare with another', q:`compare ${p.name}` }
+          ])
+        ];
+      }
+      case 'list': {
+        const ids = r.tag === 'ai' ? ['poai','gp'] : ['poai','ds','pos','retail','gp'];
+        const parts = [`Showing ${ids.length} project${ids.length>1?'s':''}:`];
+        parts.push(renderRail(ids));
+        if(ids.length >= 2){
+          parts.push(el('div','resp-rail-hint','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Swipe to explore'));
+        }
+        parts.push(renderChips([
+          { label:'See impact numbers', q:'impact' },
+          { label:'Your process?', q:'process' }
+        ]));
+        return parts;
+      }
+      case 'compare': {
+        if(r.names && r.names.length >= 2){
+          const [a,b] = r.names;
+          return [
+            `<b>${esc(projects[a].name)}</b> vs <b>${esc(projects[b].name)}</b>:`,
+            renderCompare([a,b]),
+            renderChips([
+              { label:`Open ${projects[a].name}`, q:projects[a].name },
+              { label:`Open ${projects[b].name}`, q:projects[b].name }
+            ])
+          ];
+        }
+        if(r.names && r.names.length === 1){
+          const anchor = r.names[0];
+          return [
+            `Compare <b>${esc(projects[anchor].name)}</b> with which one?`,
+            renderChips(
+              Object.keys(projects).filter(id => id !== anchor).map(id => ({
+                label: projects[id].name,
+                q: `compare ${projects[anchor].name} vs ${projects[id].name}`
+              }))
+            )
+          ];
+        }
+        return [
+          `Pick two projects to compare:`,
+          renderChips(Object.keys(projects).map(id => ({ label: projects[id].name, q: `compare ${projects[id].name}` })))
+        ];
+      }
+      case 'impact':
+        return [
+          `Shipped numbers across recent work:`,
+          renderMetrics(metrics),
+          renderChips([
+            { label:'See the projects behind these', q:'show me all case studies' },
+            { label:'Talk to Harry', q:'hire' }
+          ])
+        ];
+      case 'process':
+        return [
+          `Research first, then constraints, then ship. I run 5–8 user interviews, audit the current flow, prototype with real data, ship behind a flag, and measure. Empathy-forward, outcome-focused.`,
+          renderChips([
+            { label:'How long does a project take?', q:'how long is your design process' },
+            { label:'Show a real example', q:'PO AI' },
+            { label:'Tools you use?', q:'what tools do you use' }
+          ])
+        ];
+      case 'tools':
+        return [
+          `Daily: <b>Figma</b> + tokens, <b>Cursor</b> + Claude for prototypes, <b>Framer</b> for motion, <b>Notion</b> for research. I prototype in code when the design needs to feel real, not just look real.`,
+          renderTags(['Figma','Cursor','Claude','Framer','Notion','React','Tailwind']),
+          renderChips([
+            { label:'See an AI prototype', q:'golden paths' },
+            { label:'Your process?', q:'process' },
+            { label:'All case studies', q:'all case studies' }
+          ])
+        ];
+      case 'timeline':
+        return [
+          `Discovery 1–2 weeks → design 3–6 weeks → ship + measure. Small features: 2–3 weeks end-to-end. Platform work: 2–3 months. Always behind a flag, always measured.`,
+          renderChips([
+            { label:'See impact numbers', q:'impact' },
+            { label:'Your process?', q:'process' },
+            { label:'Talk to Harry', q:'hire' }
+          ])
+        ];
+      case 'hire':
+        pendingChain = { type:'hire-role' };
+        return [
+          `Yes — available now, Bangkok or remote. What kind of engagement?`,
+          renderChips([
+            { label:'Full-time / lead', q:'full time role' },
+            { label:'Contract (3–6 mo)', q:'contract role' },
+            { label:'Consulting / advisory', q:'consulting' }
+          ])
+        ];
+      case 'contact':
+        return [
+          `Easiest is email — I read everything within 24 hours.`,
+          renderCTA({
+            title:'kaungmyat9702@gmail.com',
+            sub:'Bangkok / Remote · replies within 24h',
+            href:'mailto:kaungmyat9702@gmail.com',
+            icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>'
+          })
+        ];
+      case 'about':
+        return [
+          `Senior Product Designer based in Bangkok, working remotely across SEA and beyond. Seven years on enterprise tooling, AI-first products, and design systems that hold across platforms.`,
+          renderTags(['Bangkok / Remote','7 years','AI-first','Enterprise','Bilingual EN/MM','Available 2026']),
+          renderChips([
+            { label:'See my work', q:'show me all case studies' },
+            { label:'Your process?', q:'process' },
+            { label:'Hire me', q:'hire' }
+          ])
+        ];
+      case 'chain-story':
+        return [
+          `What flavor of story?`,
+          renderChips([
+            { label:'AI that ships', q:'PO AI' },
+            { label:'Numbers that moved', q:'retail' },
+            { label:'Systems thinking', q:'design system' },
+            { label:'Research depth', q:'golden paths' }
+          ])
+        ];
+      case 'burmese':
+        return [
+          `ဟုတ်ပါတယ် — မြန်မာဘာသာနဲ့ မေးနိုင်ပါတယ်။ Project တွေ၊ process၊ hire အကြောင်း မေးကြည့်ပါ။`,
+          renderChips([
+            { label:'Case studies ပြပါ', q:'show me all case studies' },
+            { label:'Hire လုပ်ချင်တယ်', q:'hire' }
+          ])
+        ];
+      default:
+        return [
+          `Not sure what to show for "<b>${esc(original)}</b>". Try one of these:`,
+          renderChips([
+            { label:'Case studies', q:'show me all case studies' },
+            { label:'Impact numbers', q:'impact' },
+            { label:'Your process?', q:'process' },
+            { label:'About you', q:'about' },
+            { label:'Hire me', q:'hire' }
+          ])
+        ];
+    }
+  }
+
+  // ─── Gemini fallback ──────────────────────────────────────────────
+  const chatHistory = [];
+  function renderMarkdown(text){
+    const safe = String(text)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,'<em>$1</em>')
+      .replace(/`([^`]+?)`/g,'<code>$1</code>')
+      .replace(/\n/g,'<br>');
+    return safe;
+  }
+  function buildIntentHint(r){
+    if(!r || r.intent === 'fallback') return '';
+    const names = ids => ids.map(id => projects[id] && projects[id].name).filter(Boolean).join(', ');
+    switch(r.intent){
+      case 'project':  return `Showing the "${projects[r.id].name}" case-study card.`;
+      case 'list':     return r.tag === 'ai'
+        ? `Showing AI case studies: ${names(['poai','gp'])}.`
+        : `Showing all 5 case studies in a horizontal rail: ${names(['poai','ds','pos','retail','gp'])}.`;
+      case 'compare':  return r.names && r.names.length >= 2
+        ? `Showing a side-by-side compare of: ${names(r.names.slice(0,2))}.`
+        : `Showing compare chip picker.`;
+      case 'impact':   return `Showing a metrics tile grid (427% ROI, 9/11 AI matches, 28 intents shipped, 200+ POS screens, 7y experience, 3 platforms).`;
+      case 'process':  return `Showing process summary + follow-up chips (timeline, real example, tools).`;
+      case 'tools':    return `Showing tool tags (Figma, Cursor, Claude, Framer, Notion, React, Tailwind).`;
+      case 'timeline': return `Showing timeline summary chips.`;
+      case 'hire':     return `Showing engagement-type picker (full-time, contract, consulting).`;
+      case 'contact':  return `Showing contact CTA card (email: kaungmyat9702@gmail.com).`;
+      case 'about':    return `Showing about tags (Bangkok / Remote, 7 years, AI-first, Enterprise, Bilingual EN/MM, Available 2026).`;
+    }
+    return '';
+  }
+  async function askGemini(q, intentHint){
+    const enriched = intentHint
+      ? `${q}\n\n[Interface note — I am simultaneously rendering structured cards next to your reply: ${intentHint} Keep your reply to 1–3 short sentences that naturally bridge to those cards. Don't list the case studies again or repeat metrics — the cards already show them. Speak in Harry's first-person voice.]`
+      : q;
+    chatHistory.push({ role:'user', content:q });
+    const res = await fetch('/api/chat',{
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({
+        messages: [...chatHistory.slice(0,-1), { role:'user', content: enriched }],
+        context: ''
+      })
+    });
+    const data = await res.json();
+    if(data.error) throw new Error(data.error);
+    const reply = data.reply || '';
+    chatHistory.push({ role:'assistant', content: reply });
+    return reply;
+  }
+  function suggestChipsFor(text){
+    const t = text.toLowerCase();
+    const chips = [];
+    if(/\bai\b|intent|prototype/.test(t)) chips.push({ label:'See AI projects', q:'show me AI case studies' });
+    if(/design\s*system|token/.test(t)) chips.push({ label:'Design system case', q:'design system' });
+    if(/retail|pos|return/.test(t)) chips.push({ label:'POS / Retail work', q:'retail' });
+    if(/hire|available|contract|work\s+with/.test(t)) chips.push({ label:'Hire Harry', q:'hire' });
+    if(/email|contact|reach/.test(t)) chips.push({ label:'Contact', q:'contact' });
+    if(chips.length < 2) chips.push({ label:'All case studies', q:'show me all case studies' });
+    if(chips.length < 3) chips.push({ label:'Impact numbers', q:'impact' });
+    return chips.slice(0,3);
+  }
+
+  // Intents where AI text adds little (static structured answer is enough)
+  const SKIP_AI = new Set(['burmese','chain-story']);
+
+  // ─── Submit flow ──────────────────────────────────────────────────
+  async function submit(text){
+    const q = (text || '').trim();
+    if(!q) return;
+    showUser(q);
+    input.value = '';
+    const r = classify(q);
+    const typing = showTyping();
+
+    // Skip AI for purely structured intents
+    if(SKIP_AI.has(r.intent)){
+      setTimeout(()=>{
+        typing.remove();
+        showBot(partsFor(r, q));
+      }, 350);
+      return;
+    }
+
+    try{
+      const hint = buildIntentHint(r);
+      const reply = await askGemini(q, hint);
+      typing.remove();
+
+      if(r.intent === 'fallback'){
+        showBot([ renderMarkdown(reply), renderChips(suggestChipsFor(q + ' ' + reply)) ]);
+        return;
+      }
+
+      // Matched intent: AI text bridges into the structured cards/chips below
+      const parts = partsFor(r, q);
+      const cards = parts.filter(p => typeof p !== 'string');
+      showBot([ renderMarkdown(reply), ...cards ]);
+    } catch(err){
+      typing.remove();
+      showBot(partsFor(r, q));
+    }
+  }
+
+  // ─── Open / close / restart ───────────────────────────────────────
+  function seedWelcome(){
+    showBot([
+      `Hi — I'm Harry's AI intent assistant. Ask about case studies, process, hiring, or anything else (EN / မြန်မာ).`,
+      renderChips([
+        { label:'Show me your best work', q:'tell me a story' },
+        { label:"What numbers have you shipped?", q:'impact' },
+        { label:'Are you available to hire?', q:'hire' }
+      ])
+    ]);
+  }
+  function open(seed){
+    overlay.classList.add('open');
+    if(conv.children.length === 0) seedWelcome();
+    setTimeout(()=>input.focus(), 30);
+    if(seed) submit(seed);
+  }
+  function close(){ overlay.classList.remove('open'); }
+  function doRestart(){ conv.innerHTML = ''; pendingChain = null; seedWelcome(); input.focus(); }
+
+  // ─── Events ───────────────────────────────────────────────────────
+  trigger.addEventListener('click', ()=>open());
+  if(heroOpen){
+    heroOpen.addEventListener('click', ()=>open());
+    heroOpen.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); }
+    });
+  }
+  closeBtn.addEventListener('click', close);
+  restart.addEventListener('click', doRestart);
+  overlay.addEventListener('click', e=>{ if(e.target === overlay) close(); });
+
+  sendBtn.addEventListener('click', ()=>submit(input.value));
+  input.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ e.preventDefault(); submit(input.value); }
+  });
+
+  quickBar.addEventListener('click', e=>{
+    const b = e.target.closest('button[data-q]');
+    if(b) submit(b.dataset.q);
+  });
+  conv.addEventListener('click', e=>{
+    const c = e.target.closest('.resp-chip[data-q]');
+    if(c){ e.preventDefault(); submit(c.dataset.q); }
+  });
+
+  document.addEventListener('keydown', e=>{
+    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){
+      e.preventDefault();
+      overlay.classList.contains('open') ? close() : open();
+      return;
+    }
+    if(e.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
+
+  // Hero X-Ray spotlight
+  const hero = document.getElementById('hero');
+  if(hero && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    let raf = 0, lastX = -400, lastY = -400;
+    function apply(){
+      hero.style.setProperty('--mx', lastX+'px');
+      hero.style.setProperty('--my', lastY+'px');
+      raf = 0;
+    }
+    hero.addEventListener('pointermove', (e)=>{
+      const r = hero.getBoundingClientRect();
+      lastX = e.clientX - r.left; lastY = e.clientY - r.top;
+      if(!raf) raf = requestAnimationFrame(apply);
+    });
+    hero.addEventListener('pointerenter', ()=> hero.classList.add('xray-on'));
+    hero.addEventListener('pointerleave', ()=>{
+      hero.classList.remove('xray-on');
+      lastX = -400; lastY = -400; if(!raf) raf = requestAnimationFrame(apply);
+    });
+  }
+})();
+</script>
+
+
+<script>
+/* Lazy-load videos via IntersectionObserver — added by lazy-loading task */
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(rm&&rm.matches)return;
+  var vids=document.querySelectorAll('video[data-lazy-video]');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){
+        if(v.preload!=='auto')v.preload='auto';
+        var p=v.play();
+        if(p&&p.catch)p.catch(function(){});
+      }else{
+        v.pause();
+      }
+    });
+  },{rootMargin:'200px 0px',threshold:0.1});
+  vids.forEach(function(v){io.observe(v);});
+})();
+</script>
+
+
+<!-- Briefing modal — lazy-loaded video player -->
+<div class="briefing-modal" id="briefingModal" role="dialog" aria-modal="true" aria-label="Briefing video">
+  <div class="briefing-modal-content" id="briefingModalContent">
+    <button type="button" class="briefing-modal-close" id="briefingModalClose" aria-label="Close briefing">×</button>
+    <video id="briefingVideo" playsinline controls preload="none"></video>
+    <div class="briefing-modal-fallback">
+      <div class="bf-title">Briefing video coming soon</div>
+      <div class="bf-sub">This 30-second briefing hasn't been recorded yet. Read the case study instead.</div>
+    </div>
+  </div>
+</div>
+<script>
+/* Briefing modal: click View briefing → lazy-load + play, click close/esc/backdrop → pause + free memory */
+(function(){
+  var modal=document.getElementById('briefingModal');
+  var content=document.getElementById('briefingModalContent');
+  var video=document.getElementById('briefingVideo');
+  var closeBtn=document.getElementById('briefingModalClose');
+  if(!modal||!video)return;
+
+  function openBriefing(slug){
+    content.classList.remove('no-video');
+    var src='videos/briefings/'+slug+'.mp4';
+    video.src=src;
+    video.load();
+    modal.classList.add('is-open');
+    document.body.style.overflow='hidden';
+    video.play().catch(function(){});
+  }
+  function closeBriefing(){
+    modal.classList.remove('is-open');
+    document.body.style.overflow='';
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+    content.classList.remove('no-video');
+  }
+  video.addEventListener('error',function(){
+    content.classList.add('no-video');
+  });
+  document.querySelectorAll('.briefing-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var slug=btn.getAttribute('data-briefing');
+      if(slug)openBriefing(slug);
+    });
+  });
+  closeBtn.addEventListener('click',closeBriefing);
+  modal.addEventListener('click',function(e){
+    if(e.target===modal)closeBriefing();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&modal.classList.contains('is-open'))closeBriefing();
+  });
+})();
+</script>
+</body>
+</html>

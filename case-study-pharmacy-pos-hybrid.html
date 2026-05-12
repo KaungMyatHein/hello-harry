@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Stores. One System. — Pharmacy POS · Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═════════════════════════════════════════════════
+   HYBRID CASE-STUDY — Apple base · Ollama type · PS blue
+   Pharmacy POS · amber accent
+═════════════════════════════════════════════════ */
+:root{
+  --paper:#ffffff; --canvas:#fafafa; --inset:#f4f4f5;
+  --ink:#0a0a0a; --ink-soft:#1f1f22; --muted:#5a5a5f; --dim:#737378;
+  --hairline:#e7e7e8; --hairline-soft:#efefef;
+  --ps-blue:#0066cc; --ps-blue-deep:#003791; --ps-blue-light:#3da5f5;
+  --accent:var(--ps-blue);
+  --success:#16a34a; --danger:#dc2626; --warning:#d97706;
+  --violet:#7c3aed; --amber:#a16207; --rose:#be185d; --mint:#047857;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --radius:14px; --radius-sm:8px; --radius-lg:20px; --pill:9999px;
+  --shadow-card:0 1px 2px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.05);
+  --shadow-lift:0 12px 40px rgba(0,0,0,0.10),0 0 0 1px rgba(0,0,0,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{background:var(--paper);color:var(--ink-soft);font-family:var(--sans);font-size:17px;line-height:1.55;letter-spacing:-0.012em;font-feature-settings:'calt','kern','liga','ss01','ss03';}
+a{color:inherit;text-decoration:none;transition:color 150ms ease;}
+ul,ol{list-style:none;}
+em{font-style:italic;color:inherit;}
+strong{font-weight:600;color:var(--ink);}
+code{font-family:var(--mono);font-size:0.86em;background:var(--inset);padding:1px 6px;border-radius:5px;color:var(--ink);}
+:focus{outline:none;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ps-blue);outline-offset:3px;border-radius:var(--radius-sm);}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}
+  video[data-lazy-video]{display:none;}
+}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,0.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hairline-soft);}
+.nav-inner{max-width:1180px;margin:0 auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+.brand-mark{width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;font-family:var(--mono);}
+.nav-actions{display:flex;align-items:center;gap:18px;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);font-weight:500;}
+.nav-back::before{content:"‹";font-size:18px;line-height:0;}
+.nav-back:hover{color:var(--ink);}
+.nav-cmd{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:9px 14px;min-height:38px;border-radius:var(--pill);font-size:12px;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:border-color 150ms ease,color 150ms ease;}
+.nav-cmd:hover{border-color:var(--ink);color:var(--ink);}
+.nav-cmd kbd{font-family:var(--mono);font-size:10px;background:var(--paper);border:1px solid var(--hairline);padding:1px 5px;border-radius:4px;color:var(--ink-soft);}
+.nav-cmd svg{width:13px;height:13px;color:var(--muted);}
+@media (max-width:768px){
+  .nav-inner{padding:0 16px;}
+  .nav-actions{gap:10px;}
+  .nav-cmd{padding:8px 12px;min-height:36px;gap:6px;}
+  .nav-cmd-label{display:none;}
+  .nav-cmd kbd{display:none;}
+  .hero{padding:64px 18px 40px;}
+  .hero h1{font-size:clamp(38px,9vw,56px);margin-bottom:18px;}
+  .hero-sub{font-size:15.5px;}
+  .hero-meta{gap:16px;padding:18px 0;margin-bottom:28px;}
+  .section{padding:56px 18px;}
+  .sec-head{margin-bottom:28px;padding-bottom:16px;}
+  .sec-title{font-size:clamp(26px,7.2vw,40px);}
+  .sec-sub{font-size:15px;}
+  .cta-band{padding:72px 18px;}
+  .cta-band h2{font-size:clamp(36px,9vw,56px);}
+  .cta-band p{font-size:16px;}
+  footer{padding:32px 18px 40px;}
+}
+@media (max-width:480px){
+  .nav-back{font-size:12px;}
+  .brand-label{display:none;}
+}
+
+/* HERO */
+.hero{padding:96px 28px 56px;background:var(--paper);}
+.hero-inner{max-width:1180px;margin:0 auto;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:6px 14px;border-radius:var(--pill);font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:28px;}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 8px rgba(22,163,74,0.6);}
+.hero h1{font-size:clamp(48px,7.4vw,88px);font-weight:600;letter-spacing:-0.035em;line-height:1.02;color:var(--ink);max-width:920px;margin-bottom:26px;}
+.hero h1 em{color:var(--muted);font-style:normal;}
+.hero-sub{font-size:clamp(18px,1.6vw,22px);font-weight:400;color:var(--muted);max-width:680px;line-height:1.5;letter-spacing:-0.011em;margin-bottom:40px;}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:24px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);margin-bottom:40px;}
+@media (max-width:780px){.hero-meta{grid-template-columns:repeat(2,1fr);}}
+.hero-meta-item{display:flex;flex-direction:column;gap:6px;}
+.hero-meta-label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);}
+.hero-meta-val{font-size:14px;font-weight:500;color:var(--ink);letter-spacing:-0.01em;}
+
+/* HERO BENTO */
+.hero-bento{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;margin-top:8px;}
+@media (max-width:900px){.hero-bento{grid-template-columns:1fr;}}
+.hero-stats{display:grid;grid-template-columns:1fr;gap:18px;}
+
+/* TILES — bento system */
+.tile{position:relative;border-radius:24px;overflow:hidden;background:var(--canvas);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);padding:36px;display:flex;flex-direction:column;}
+.tile.dark{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.tile.midnight{background:linear-gradient(180deg,#0a1430 0%,#000 100%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.tile.tint-blue{background:#e6efff;}
+.tile.tint-violet{background:#efeaff;}
+.tile.tint-amber{background:#fff4d6;}
+.tile.tint-rose{background:#ffe6ec;}
+.tile.tint-mint{background:#dcf7ec;}
+.tile-stamp{position:absolute;top:18px;right:22px;z-index:4;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(0,0,0,0.38);pointer-events:none;display:flex;align-items:center;gap:6px;}
+.tile-stamp::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.65;}
+.tile.dark .tile-stamp,.tile.midnight .tile-stamp{color:rgba(255,255,255,0.55);}
+
+.tile.hero-media{padding:0;min-height:380px;}
+.tile.hero-media img,.tile.hero-media video{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;}
+.tile.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,0.65) 100%);pointer-events:none;}
+.tile.hero-media .tile-cap{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;color:#fff;display:flex;align-items:center;gap:12px;}
+.tile.hero-media .play{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:rgba(255,255,255,0.18);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;}
+.tile.hero-media .play::after{content:"";width:0;height:0;margin-left:3px;border-style:solid;border-width:7px 0 7px 11px;border-color:transparent transparent transparent #fff;}
+.tile.hero-media .tile-cap-label{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.78;}
+.tile.hero-media .tile-cap-title{font-size:16px;font-weight:500;letter-spacing:-0.01em;margin-top:2px;}
+
+.tile.metric{padding:30px 32px;}
+.tile.metric .tstat-val{font-size:64px;font-weight:500;letter-spacing:-0.028em;line-height:1;font-variant-numeric:tabular-nums;color:inherit;margin-bottom:10px;}
+.tile.metric .tstat-lbl{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--muted);line-height:1.4;}
+.tile.metric.dark .tstat-lbl,.tile.metric.midnight .tstat-lbl{color:rgba(255,255,255,0.6);}
+.tile.metric .tstat-foot{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:6px;letter-spacing:0.4px;}
+.tile.metric.midnight .tstat-foot,.tile.metric.dark .tstat-foot{color:rgba(255,255,255,0.5);}
+
+/* SECTION */
+.section{max-width:1180px;margin:0 auto;padding:88px 28px;}
+.section.tight{padding:48px 28px;}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--hairline);}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.6px;}
+.sec-title{font-size:clamp(34px,4.2vw,52px);font-weight:600;letter-spacing:-0.03em;line-height:1.04;color:var(--ink);}
+.sec-sub{font-size:17px;color:var(--muted);max-width:760px;line-height:1.55;margin-top:6px;}
+
+.p{font-size:17px;line-height:1.65;color:var(--ink-soft);margin-bottom:18px;max-width:820px;}
+.p:last-child{margin-bottom:0;}
+.lede{font-size:21px;line-height:1.5;color:var(--ink);font-weight:400;letter-spacing:-0.014em;max-width:820px;margin-bottom:28px;}
+.subhead{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin:32px 0 14px;}
+
+/* TL;DR */
+.tldr{display:grid;grid-template-columns:1.1fr 1.2fr;gap:30px;align-items:start;}
+@media (max-width:900px){.tldr{grid-template-columns:1fr;}}
+.tldr-jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.tldr-jump a{font-family:var(--mono);font-size:11px;color:var(--ps-blue);background:rgba(0,102,204,0.08);padding:6px 12px;border-radius:var(--pill);letter-spacing:0.04em;border:1px solid rgba(0,102,204,0.15);}
+.tldr-jump a:hover{background:rgba(0,102,204,0.14);}
+.tldr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media (max-width:580px){.tldr-grid{grid-template-columns:1fr;}}
+.tldr-item{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;gap:6px;}
+.tldr-item .l{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--ps-blue);}
+.tldr-item .v{font-size:14px;color:var(--ink-soft);line-height:1.5;}
+
+/* Step list */
+.steps{display:grid;gap:12px;margin:24px 0 18px;counter-reset:step;list-style:none;padding:0;}
+.step{display:grid;grid-template-columns:44px 1fr;gap:20px;align-items:start;padding:20px 24px;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);transition:border-color 0.2s,background 0.2s;}
+.step:hover{border-color:rgba(0,102,204,0.25);background:#fff;}
+.step{counter-increment:step;}
+.step-num{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ps-blue);letter-spacing:0.08em;padding-top:4px;text-indent:-9999px;position:relative;}
+.step-num::before{content:counter(step,decimal-leading-zero);text-indent:0;position:absolute;left:0;top:4px;display:inline-block;}
+.step-text{font-size:15px;line-height:1.6;color:var(--muted);}
+.step-text strong{display:block;font-size:15px;color:var(--ink);margin-bottom:6px;font-weight:600;letter-spacing:-0.008em;}
+
+/* Hook callout */
+.hook{margin-top:28px;padding:24px 28px;background:var(--ink);color:#fff;border-radius:var(--radius-lg);font-size:18px;line-height:1.5;letter-spacing:-0.012em;max-width:820px;}
+.hook em{color:rgba(255,255,255,0.7);font-style:normal;}
+
+/* Metric strip */
+.metric-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0;}
+@media (max-width:780px){.metric-strip{grid-template-columns:repeat(2,1fr);}}
+
+/* Pull quote */
+.pullquote{margin:36px 0;padding:32px 36px 32px 44px;background:linear-gradient(135deg,rgba(161,98,7,0.05) 0%,rgba(161,98,7,0.015) 100%);border-left:3px solid var(--amber);border-radius:0 var(--radius-lg) var(--radius-lg) 0;position:relative;}
+.pullquote::before{content:"\201C";position:absolute;top:6px;left:18px;font-family:Georgia,serif;font-size:64px;line-height:1;color:var(--amber);opacity:0.32;}
+.pullquote-q{font-size:22px;line-height:1.45;color:var(--ink);letter-spacing:-0.012em;font-weight:400;padding-left:26px;}
+.pullquote-attr{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:16px;padding-left:26px;}
+
+/* Media frame — browser-framed images */
+.media-frame{position:relative;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow:hidden;margin:28px 0;box-shadow:var(--shadow-card);}
+.media-frame-bar{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#f4f4f5;border-bottom:1px solid var(--hairline);}
+.media-frame-bar::before{content:"";display:flex;gap:6px;width:50px;height:12px;background:radial-gradient(circle 6px,#ff5f57 99%,transparent 100%) 0 50% /16px 100% no-repeat,
+  radial-gradient(circle 6px,#febc2e 99%,transparent 100%) 17px 50% /16px 100% no-repeat,
+  radial-gradient(circle 6px,#28c840 99%,transparent 100%) 34px 50% /16px 100% no-repeat;}
+.media-frame-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-left:8px;}
+.media-frame img,.media-frame iframe{width:100%;display:block;border:none;}
+.media-frame iframe{aspect-ratio:16/9;height:auto;}
+.media-frame.tall iframe{aspect-ratio:auto;height:600px;}
+
+/* Compare slider — draggable before/after */
+.compare-slider{position:relative;width:100%;margin:28px 0;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:16/10;background:var(--canvas);border:1px solid var(--hairline);cursor:col-resize;user-select:none;-webkit-user-select:none;touch-action:none;}
+.compare-slider img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;}
+.compare-slider-after{clip-path:inset(0 0 0 0);}
+.compare-slider-before{clip-path:inset(0 50% 0 0);}
+.compare-slider-line{position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,0.85);z-index:3;transform:translateX(-50%);pointer-events:none;box-shadow:0 0 0 1px rgba(10,10,10,0.25);}
+.compare-slider-handle{position:absolute;top:50%;left:50%;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border:1px solid rgba(10,10,10,0.12);transform:translate(-50%,-50%);z-index:4;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.18);pointer-events:none;transition:transform 0.18s ease;}
+.compare-slider:hover .compare-slider-handle{transform:translate(-50%,-50%) scale(1.06);}
+.compare-slider-handle svg{width:18px;height:18px;stroke:var(--ink);stroke-width:2.4;fill:none;}
+.compare-slider-label{position:absolute;bottom:14px;z-index:5;font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#fff;background:rgba(10,10,10,0.72);padding:5px 11px;border-radius:var(--pill);pointer-events:none;font-weight:600;}
+.compare-slider-label-before{left:14px;}
+.compare-slider-label-after{right:14px;background:rgba(0,102,204,0.92);}
+.compare-slider-hint{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:5;font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#fff;background:rgba(10,10,10,0.55);padding:5px 10px;border-radius:var(--pill);pointer-events:none;opacity:0.85;}
+@media (max-width:780px){.compare-slider{aspect-ratio:4/3;}}
+
+/* Kanban */
+.kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0;}
+@media (max-width:780px){.kanban{grid-template-columns:1fr;}}
+.kanban-col{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:10px;}
+.kanban-col.p0{border-color:rgba(161,98,7,0.30);background:linear-gradient(135deg,rgba(161,98,7,0.05) 0%,rgba(161,98,7,0.01) 100%);}
+.kanban-col.p2{opacity:0.86;}
+.kanban-header{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);padding-bottom:10px;border-bottom:1px solid var(--hairline-soft);margin-bottom:4px;}
+.kanban-col.p0 .kanban-header{color:var(--amber);}
+.kanban-card{background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;color:var(--ink-soft);font-weight:500;}
+.kanban-card .sub{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.6px;font-weight:400;}
+
+/* Option compare (A vs B for decisions) */
+.options{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 26px;}
+@media (max-width:780px){.options{grid-template-columns:1fr;}}
+.option{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px 24px;display:flex;flex-direction:column;gap:8px;}
+.option.pick{border-color:rgba(161,98,7,0.30);background:linear-gradient(135deg,rgba(161,98,7,0.05) 0%,rgba(161,98,7,0.01) 100%);}
+.option-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.option.pick .option-tag{color:var(--amber);}
+.option-name{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.014em;}
+.option-desc{font-size:14px;color:var(--ink-soft);line-height:1.55;}
+
+/* Surface bento — modules */
+.surface-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0;}
+@media (max-width:900px){.surface-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.surface-grid{grid-template-columns:1fr;}}
+.surface-tile{border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:8px;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);position:relative;}
+.surface-tile .num{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;color:var(--amber);text-transform:uppercase;}
+.surface-tile .name{font-size:18px;font-weight:600;letter-spacing:-0.018em;color:var(--ink);}
+.surface-tile .desc{font-size:13.5px;color:var(--ink-soft);line-height:1.45;}
+.surface-tile.tint-amber{background:#fff4d6;}
+.surface-tile.tint-blue{background:#e6efff;}
+.surface-tile.tint-violet{background:#efeaff;}
+.surface-tile.tint-rose{background:#ffe6ec;}
+.surface-tile.tint-mint{background:#dcf7ec;}
+
+/* Before / After data table */
+.data-table{border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;margin:22px 0;background:var(--paper);}
+.data-row{display:grid;grid-template-columns:1.1fr 1.6fr 1.6fr;gap:0;border-bottom:1px solid var(--hairline-soft);}
+.data-row:last-child{border-bottom:none;}
+.data-row.head{background:var(--canvas);}
+.data-row > div{padding:14px 18px;font-size:14px;color:var(--ink-soft);line-height:1.5;border-right:1px solid var(--hairline-soft);}
+.data-row > div:last-child{border-right:none;}
+.data-row.head > div{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);}
+.data-row .label{font-weight:600;color:var(--ink);}
+.data-row .before{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(220,38,38,0.4);text-decoration-thickness:1px;}
+.data-row .after{color:var(--ink);font-weight:500;}
+@media (max-width:780px){.data-row{grid-template-columns:1fr;}.data-row > div{border-right:none;border-bottom:1px solid var(--hairline-soft);}.data-row > div:last-child{border-bottom:none;}}
+
+/* KPI cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0;}
+@media (max-width:780px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+.kpi-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;}
+.kpi-card.amber{background:#fff4d6;border-color:rgba(161,98,7,0.20);}
+.kpi-val{font-size:32px;font-weight:500;letter-spacing:-0.028em;color:var(--amber);line-height:1;margin-bottom:10px;font-variant-numeric:tabular-nums;}
+.kpi-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--ink);}
+.kpi-why{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;}
+.kpi-group-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:24px 0 10px;}
+
+/* Time Machine cards */
+.tt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0;}
+@media (max-width:900px){.tt-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.tt-grid{grid-template-columns:1fr;}}
+.tt-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:8px;}
+.tt-num{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--amber);}
+.tt-title{font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.014em;line-height:1.3;}
+.tt-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+
+/* Lessons grid */
+.lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px;}
+@media (max-width:780px){.lessons{grid-template-columns:1fr;}}
+.lesson{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-lg);padding:26px 28px;display:flex;flex-direction:column;gap:8px;}
+.lesson-num{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.lesson-h{font-size:19px;font-weight:600;letter-spacing:-0.018em;color:var(--ink);line-height:1.3;}
+.lesson-d{font-size:14.5px;color:var(--ink-soft);line-height:1.6;}
+
+/* Module gallery — other 11 */
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0;}
+@media (max-width:900px){.module-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.module-grid{grid-template-columns:1fr;}}
+.module-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:6px;transition:border-color 200ms ease,transform 200ms ease;}
+.module-card:hover{border-color:var(--amber);transform:translateY(-2px);}
+.module-num{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);}
+.module-name{font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.014em;line-height:1.3;}
+.module-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin-top:4px;}
+
+/* Related — Horizontal-scroll tile cards (matches portfolio-hybrid landing tiles) */
+.related-scroll{display:flex;gap:20px;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:24px -32px 0;padding:8px 32px 36px;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,0.2) transparent;}
+.related-scroll::-webkit-scrollbar{height:8px;}
+.related-scroll::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.18);border-radius:4px;}
+.related-scroll::-webkit-scrollbar-track{background:transparent;}
+.related-card{flex:0 0 360px;scroll-snap-align:start;position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;border-radius:24px;overflow:hidden;padding:32px 22px 0;min-height:460px;background:var(--canvas);color:var(--ink);text-decoration:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);}
+.related-card:hover{transform:translateY(-3px);}
+.related-card.dark{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.related-card.midnight{background:linear-gradient(180deg,#0a1430 0%,#000 100%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.related-card.tint-violet{background:#efeaff;}
+.related-card.tint-amber{background:#fff4d6;}
+.related-card.tint-rose{background:#ffe6ec;}
+.related-card.tint-mint{background:#dcf7ec;}
+.related-card .r-eyebrow{font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;font-family:var(--mono);color:var(--ps-blue);margin-bottom:8px;display:inline-flex;align-items:center;gap:6px;}
+.related-card .r-eyebrow::before{content:"\2192";font-family:var(--mono);font-size:12px;opacity:0.75;}
+.related-card.dark .r-eyebrow,.related-card.midnight .r-eyebrow{color:#3da5f5;}
+.related-card.tint-violet .r-eyebrow{color:#7c3aed;}
+.related-card.tint-amber .r-eyebrow{color:#a16207;}
+.related-card.tint-rose .r-eyebrow{color:#be185d;}
+.related-card.tint-mint .r-eyebrow{color:#047857;}
+.related-card .r-h{font-size:24px;font-weight:600;letter-spacing:-0.03em;line-height:1.08;margin-bottom:10px;max-width:300px;}
+.related-card .r-sub{font-size:14px;line-height:1.45;color:var(--muted);letter-spacing:-0.005em;margin-bottom:18px;max-width:300px;}
+.related-card.dark .r-sub,.related-card.midnight .r-sub{color:rgba(255,255,255,0.78);}
+.related-card .r-cta{display:inline-flex;align-items:center;gap:4px;background:var(--ps-blue);color:#fff !important;padding:8px 16px;border-radius:var(--pill);font-size:13px;font-weight:500;letter-spacing:-0.01em;margin-bottom:22px;}
+.related-card .r-cta::after{content:"\203A";font-size:15px;line-height:1;margin-left:2px;}
+.related-card.dark .r-cta,.related-card.midnight .r-cta{background:#fff;color:var(--ink) !important;}
+.related-card.tint-violet .r-cta{background:#7c3aed;}
+.related-card.tint-amber .r-cta{background:#a16207;}
+.related-card.tint-rose .r-cta{background:#be185d;}
+.related-card.tint-mint .r-cta{background:#047857;}
+.related-card .r-media{margin-top:auto;width:100%;padding:0 14px;position:relative;}
+.related-card .r-media::before{content:"";position:absolute;left:50%;bottom:-8%;transform:translateX(-50%);width:78%;height:60%;background:radial-gradient(ellipse at center 60%,rgba(0,102,204,0.22) 0%,transparent 70%);filter:blur(36px);z-index:0;pointer-events:none;}
+.related-card.tint-violet .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(124,58,237,0.26) 0%,transparent 70%);}
+.related-card.tint-amber .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(245,158,11,0.32) 0%,transparent 70%);}
+.related-card.tint-rose .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(236,72,153,0.26) 0%,transparent 70%);}
+.related-card.dark .r-media::before,.related-card.midnight .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(61,165,245,0.34) 0%,transparent 70%);}
+.related-card .r-frame{position:relative;z-index:1;width:100%;max-width:300px;margin:0 auto;background:linear-gradient(180deg,#3a3a3d 0%,#2e2e30 5%,#232325 55%,#1c1c1e 100%);padding:10px 8px 8px;border-radius:10px 10px 3px 3px;filter:drop-shadow(0 22px 32px rgba(0,0,0,0.30)) drop-shadow(0 10px 16px rgba(0,0,0,0.18));box-shadow:inset 0 1px 0 rgba(255,255,255,0.10),inset 0 -1px 0 rgba(0,0,0,0.6);transition:transform 360ms cubic-bezier(0.2,0.7,0.3,1);}
+.related-card:hover .r-frame{transform:translateY(-4px);}
+.related-card .r-frame img,.related-card .r-frame video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#000;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.85);}
+.related-card .r-frame::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:54px;height:5px;background:#0a0a0a;border-radius:0 0 5px 5px;z-index:3;}
+@media (max-width:780px){.related-card{flex:0 0 280px;min-height:410px;padding:26px 18px 0;}.related-card .r-frame{max-width:230px;}.related-card .r-h{font-size:21px;}}
+.rel-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ps-blue);}
+.rel-h{font-size:20px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);line-height:1.25;}
+.rel-sub{font-size:13.5px;color:var(--muted);line-height:1.5;}
+.rel-cta{font-family:var(--mono);font-size:11px;color:var(--ps-blue);letter-spacing:0.06em;margin-top:auto;padding-top:18px;}
+.rel-cta::after{content:" ›";}
+
+/* CTA band */
+.cta-band{padding:120px 28px;text-align:center;background:var(--canvas);border-top:1px solid var(--hairline);position:relative;overflow:hidden;}
+.cta-band::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(161,98,7,0.06),transparent 60%);border-radius:50%;}
+.cta-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;}
+.cta-band h2{font-size:clamp(48px,7vw,84px);font-weight:600;letter-spacing:-0.035em;line-height:1;margin-bottom:22px;color:var(--ink);}
+.cta-band h2 em{font-style:normal;color:var(--muted);}
+.cta-band p{font-size:18px;color:var(--muted);max-width:540px;margin:0 auto 36px;line-height:1.55;}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff !important;padding:13px 26px;border-radius:var(--pill);font-size:14px;font-weight:500;transition:transform 120ms ease,opacity 120ms;letter-spacing:-0.01em;}
+.btn:hover{opacity:0.9;transform:translateY(-1px);}
+.btn.ghost{background:var(--paper);color:var(--ink) !important;border:1px solid var(--hairline);}
+.btn.ghost:hover{border-color:var(--ink);}
+
+footer{padding:48px 28px 64px;border-top:1px solid var(--hairline);text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:0.06em;text-transform:uppercase;}
+
+/* CMD PALETTE (Hybrid · matches landing page) */
+.cmd-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.32);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding-top:10vh;}
+.cmd-overlay.open{display:flex;}
+.cmd-modal{width:min(720px,94vw);max-height:80vh;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,0.30);}
+.cmd-header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--hairline);flex-shrink:0;}
+.cmd-header-icon{width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--ps-blue) 0%,#7c3aed 100%);color:#fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,102,204,0.3);}
+.cmd-header-icon svg{width:18px;height:18px;}
+.cmd-header-text{flex:1;min-width:0;}
+.cmd-header-title{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.cmd-header-pill{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.12em;color:var(--ps-blue);background:rgba(0,102,204,0.1);border:1px solid rgba(0,102,204,0.2);padding:2px 6px;border-radius:4px;}
+.cmd-header-sub{font-size:11px;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:1.2px;margin-top:2px;}
+.cmd-icon-btn{width:32px;height:32px;border-radius:8px;background:transparent;border:1px solid transparent;cursor:pointer;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;transition:border-color 150ms ease,color 150ms ease;}
+.cmd-icon-btn:hover{border-color:var(--hairline);color:var(--ink);}
+.cmd-icon-btn svg{width:16px;height:16px;}
+
+.cmd-conv{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:14px;min-height:240px;max-height:54vh;}
+.cmd-conv::-webkit-scrollbar{width:6px;}
+.cmd-conv::-webkit-scrollbar-thumb{background:var(--hairline);border-radius:3px;}
+.msg{max-width:88%;display:flex;flex-direction:column;gap:8px;}
+.msg.user{align-self:flex-end;align-items:flex-end;}
+.msg.bot{align-self:flex-start;align-items:flex-start;}
+.msg-text{padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.55;letter-spacing:-0.005em;}
+.msg.user .msg-text{background:var(--ink);color:#fff;border-bottom-right-radius:4px;}
+.msg.bot .msg-text{background:var(--canvas);color:var(--ink);border:1px solid var(--hairline);border-bottom-left-radius:4px;}
+.msg-text strong{font-weight:600;color:var(--ink);}
+.msg-text code{font-family:var(--mono);font-size:12.5px;background:rgba(0,0,0,0.05);padding:1px 5px;border-radius:4px;}
+.msg-typing{display:inline-flex;gap:4px;padding:14px 16px;background:var(--canvas);border:1px solid var(--hairline);border-radius:14px;border-bottom-left-radius:4px;}
+.msg-typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typing 1.2s infinite ease-in-out;}
+.msg-typing span:nth-child(2){animation-delay:0.15s;}
+.msg-typing span:nth-child(3){animation-delay:0.30s;}
+@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-4px);opacity:1;}}
+
+.resp-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
+.resp-chip{font-size:12px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--hairline);padding:7px 12px;border-radius:var(--pill);cursor:pointer;font-family:var(--sans);display:inline-flex;align-items:center;gap:6px;transition:border-color 150ms ease,color 150ms ease,background 150ms ease;}
+.resp-chip::before{content:"↳";opacity:0.4;}
+.resp-chip:hover{border-color:var(--ink);color:var(--ink);background:var(--canvas);}
+
+.cmd-quick{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 0;flex-shrink:0;}
+.cmd-quick-btn{font-size:12px;color:var(--ink-soft);background:var(--canvas);border:1px solid var(--hairline);padding:7px 12px;border-radius:var(--pill);cursor:pointer;font-family:var(--sans);min-height:32px;transition:border-color 150ms ease,color 150ms ease;}
+.cmd-quick-btn:hover{border-color:var(--ink);color:var(--ink);}
+
+.cmd-input-row{display:flex;align-items:center;gap:10px;padding:12px 14px;flex-shrink:0;border-top:1px solid var(--hairline);background:var(--canvas);}
+.cmd-input-wrap{flex:1;display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--pill);padding:0 18px 0 14px;min-height:44px;transition:border-color 150ms ease,box-shadow 150ms ease;}
+.cmd-input-wrap:focus-within{border-color:var(--ps-blue);box-shadow:0 0 0 3px rgba(0,102,204,0.12);}
+.cmd-input-spark{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ps-blue) 0%,#7c3aed 100%);color:#fff;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cmd-input-spark svg{width:13px;height:13px;}
+.cmd-input{flex:1;background:transparent;border:none;padding:11px 0;font-size:14px;font-family:var(--sans);color:var(--ink);outline:none;min-height:44px;}
+.cmd-input::placeholder{color:var(--dim);}
+.cmd-send{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:opacity 150ms ease;}
+.cmd-send:disabled{opacity:0.35;cursor:not-allowed;}
+.cmd-send svg{width:18px;height:18px;}
+
+@media (max-width:640px){
+  .cmd-overlay{padding-top:0;align-items:stretch;}
+  .cmd-modal{width:100%;max-height:100vh;height:100vh;border-radius:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="portfolio-hybrid.html" class="brand"><span class="brand-mark">H</span><span class="brand-label">Harry Hein</span></a>
+    <div class="nav-actions">
+      <a href="portfolio-hybrid.html#work" class="nav-back">All work</a>
+      <button class="nav-cmd" id="cmdTrigger" aria-label="Ask AI about this case">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="nav-cmd-label">Ask AI about this case</span>
+        <kbd>⌘K</kbd>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Case study · Enterprise POS · STO Maldives</div>
+    <h1>Two stores.<br><em>One system.</em></h1>
+    <p class="hero-sub">Redesigning a legacy Windows POS into a modern touchscreen system — <strong>14 modules, 200+ screens, one designer.</strong> Pharmacy and supermarket on the same codebase, with contextual feature surfacing.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Role</span><span class="hero-meta-val">Sole Designer (UX + UI)</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Client</span><span class="hero-meta-val">STO Peoples Choice · ~20 stores</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Partners</span><span class="hero-meta-val">IS team · Compliance · Finance · Devs</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Status</span><span class="hero-meta-val">~20 stores in production</span></div>
+    </div>
+
+    <div class="hero-bento">
+      <div class="tile hero-media midnight">
+        <span class="tile-stamp">Live · Tender Operations</span>
+        <img src="images/ppos/New Payment Method.webp" alt="Raytail POS system — Tender Operations">
+        <div class="tile-cap">
+          <div class="play"></div>
+          <div>
+            <div class="tile-cap-label">Surface · Checkout</div>
+            <div class="tile-cap-title">"One payment at a time, not all at once."</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="tile metric tint-amber"><span class="tile-stamp">Scope</span><div class="tstat-val">14</div><div class="tstat-lbl">Total Modules Shipped</div><div class="tstat-foot">3 deep-dives · 11 supporting</div></div>
+        <div class="tile metric tint-amber"><span class="tile-stamp">Output</span><div class="tstat-val">200+</div><div class="tstat-lbl">Screens Delivered</div><div class="tstat-foot">22 Figma files · one language</div></div>
+        <div class="tile metric tint-amber"><span class="tile-stamp">Footprint</span><div class="tstat-val">~20</div><div class="tstat-lbl">Stores In Production</div><div class="tstat-foot">Pharmacy + Supermarket unified</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TL;DR -->
+<section class="section" id="tldr">
+  <div class="sec-head">
+    <span class="sec-num">At a glance · 60 seconds</span>
+    <h2 class="sec-title">14 modules. 200+ screens. One designer.</h2>
+    <p class="sec-sub">A legacy pharmacy POS had to move from Windows to touchscreen across two store formats. I owned the system end-to-end — feature prioritization, user flows, 22 Figma files — and held the throughline so e-prescription, BNPL, and tender ops felt like one product.</p>
+  </div>
+  <div class="tldr">
+    <div>
+      <p class="lede">Built on the <a href="case-study-design-system-hybrid.html" style="color:var(--ps-blue)">Design System</a> work; shares a token vocabulary with the Tokens plugin. The story arc: fix the process before fixing the UI, then design for the harder context first so guardrails can be removed but never bolted on.</p>
+      <div class="tldr-jump">
+        <a href="#problem">Problem</a>
+        <a href="#metrics">Metrics</a>
+        <a href="#discovery">Discovery</a>
+        <a href="#prioritization">Prioritization</a>
+        <a href="#flows">Flows</a>
+        <a href="#login">Login</a>
+        <a href="#eprescription">E-Prescription</a>
+        <a href="#tender">Tender</a>
+        <a href="#modules">Modules</a>
+        <a href="#impact">Impact</a>
+        <a href="#reflection">Reflection</a>
+      </div>
+    </div>
+    <div class="tldr-grid">
+      <div class="tldr-item"><span class="l">Problem</span><span class="v">Touchscreen migration with retail + pharmacy variants and a "rework trap" of half-built modules.</span></div>
+      <div class="tldr-item"><span class="l">Method</span><span class="v">KPI-anchored prioritization — what we built first, what we deferred, why.</span></div>
+      <div class="tldr-item"><span class="l">Surfaces</span><span class="v">Login → checkout → add → tender. Plus pharmacy-specific e-prescription and BNPL.</span></div>
+      <div class="tldr-item"><span class="l">Architecture</span><span class="v">22 Figma files, one design language. Powered by upstream design-system tokens.</span></div>
+      <div class="tldr-item"><span class="l">Outcome</span><span class="v"><strong>200+ screens shipped.</strong> Two stores live on one system.</span></div>
+      <div class="tldr-item"><span class="l">Lesson</span><span class="v">Big systems fail at the seams. Spend extra on the verbs that bridge modules — login, checkout, tender.</span></div>
+      <div class="tldr-item" style="grid-column:1/-1"><span class="l">Connects</span><span class="v">Built on the <a href="case-study-design-system-hybrid.html" style="color:var(--ps-blue)">Raytail Design System</a>; shares a token vocabulary with the Tokens plugin.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 — PROBLEM -->
+<section class="section" id="problem">
+  <div class="sec-head">
+    <span class="sec-num">01 — Problem</span>
+    <h2 class="sec-title">From Windows to touchscreen.</h2>
+    <p class="sec-sub">STO's pharmacy and supermarket chains were running on a legacy Windows-based POS. Clunky, mouse-driven, built for desktops — not for the fast-paced counter environment where every second counts.</p>
+  </div>
+  <p class="lede">The goal: redesign the entire system for touchscreen POS devices. Not a port — a complete UX rethink. 14 modules, 200+ screens, one designer.</p>
+  <p class="p">A port would have shipped faster. It would also have failed: a Windows form ported to a touch screen still expects pixel-precise clicks, hover states, keyboard tab order. The pharmacy counter has none of those things — only a 15-inch screen, a busy cashier, and a queue that doesn't care.</p>
+  <div class="hook">Before I touched UI, I found a process problem bleeding time across every module.</div>
+</section>
+
+<!-- SUCCESS METRICS -->
+<section class="section" id="metrics">
+  <div class="sec-head">
+    <span class="sec-num">Success Metrics</span>
+    <h2 class="sec-title">How do we define success?</h2>
+    <p class="sec-sub">Before designing, I defined what success looks like — measurable targets to validate every design decision against.</p>
+  </div>
+
+  <div class="kpi-group-label">UX KPIs</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-val">0</div>
+      <div class="kpi-label">Support calls from UI confusion</div>
+      <div class="kpi-why">The old Windows UI generated constant support requests — staff couldn't find features or understand the flow.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">0</div>
+      <div class="kpi-label">Training dependency</div>
+      <div class="kpi-why">Staff should learn the system by using it — no trainer required at every branch.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">0</div>
+      <div class="kpi-label">Rework cycles</div>
+      <div class="kpi-why">Prototype-first approach should eliminate build-then-rework loops entirely.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">1</div>
+      <div class="kpi-label">System for 2 stores</div>
+      <div class="kpi-why">One codebase serving both pharmacy and supermarket — no forking, no drift.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — DISCOVERY -->
+<section class="section" id="discovery">
+  <div class="sec-head">
+    <span class="sec-num">02 — Discovery</span>
+    <h2 class="sec-title">The rework trap.</h2>
+    <p class="sec-sub">Devs were building on designs the IS Team hadn't approved. Every module hit the same loop: build, review, rework.</p>
+  </div>
+  <p class="p">I mapped three workflows side by side — ideal, actual, and proposed — to make the waste visible. The actual workflow had a feedback loop the size of a feature. The proposed one cut that loop out by moving validation upstream.</p>
+  <p class="p">I then proposed putting Figma prototypes on the actual POS hardware — IS Team confirmed on the real device before any code was written. This single change saved more time than any UI decision I made on the entire project.</p>
+
+  <div class="media-frame tall">
+    <div class="media-frame-bar"><span class="media-frame-label">FigJam · Workflow analysis</span></div>
+    <iframe src="https://embed.figma.com/board/nA5dQhEXZGHG9kXoBDmOM5/PPOS-analysis?node-id=40000002-909&embed-host=share" allowfullscreen></iframe>
+  </div>
+
+  <div class="pullquote">
+    <div class="pullquote-q">Prototype-on-hardware saved more time than any UI change. The cost was a few hours per module. The savings were entire rework cycles.</div>
+    <div class="pullquote-attr">Lesson 01 · from the reflection at the end of this case</div>
+  </div>
+</section>
+
+<!-- PRIORITIZATION -->
+<section class="section" id="prioritization">
+  <div class="sec-head">
+    <span class="sec-num">Feature Prioritization</span>
+    <h2 class="sec-title">What we built first — and why.</h2>
+    <p class="sec-sub">With 14+ modules to design, I couldn't do everything at once. I prioritized based on business impact and operational dependency.</p>
+  </div>
+  <div class="hook">Ship order = blocking-the-counter × downstream-dependency.</div>
+
+  <div class="kanban">
+    <div class="kanban-col p0">
+      <div class="kanban-header">P0 · Must Launch</div>
+      <div class="kanban-card">Login<div class="sub">auth gate · every shift</div></div>
+      <div class="kanban-card">Checkout<div class="sub">the central hub</div></div>
+      <div class="kanban-card">Tender Operations<div class="sub">10 payment types</div></div>
+      <div class="kanban-card">Receipts<div class="sub">printed proof of sale</div></div>
+      <div class="kanban-card">Second Screen<div class="sub">customer-facing display</div></div>
+    </div>
+    <div class="kanban-col">
+      <div class="kanban-header">P1 · High Priority</div>
+      <div class="kanban-card">E-Prescription<div class="sub">pharmacy compliance</div></div>
+      <div class="kanban-card">Customers<div class="sub">BNPL + loyalty linkage</div></div>
+      <div class="kanban-card">Check Stock<div class="sub">LOT · expiry · multi-store</div></div>
+      <div class="kanban-card">Manage Cash<div class="sub">drawer ops</div></div>
+      <div class="kanban-card">Transactions<div class="sub">recovery flows</div></div>
+    </div>
+    <div class="kanban-col p2">
+      <div class="kanban-header">P2 · Planned</div>
+      <div class="kanban-card">BNPL<div class="sub">installments</div></div>
+      <div class="kanban-card">Discounts<div class="sub">promo engine</div></div>
+      <div class="kanban-card">Add Articles<div class="sub">code · name · LOT · expiry</div></div>
+      <div class="kanban-card">Modify Qty/UOM<div class="sub">inline edit</div></div>
+      <div class="kanban-card">Notifications<div class="sub">unified surface</div></div>
+      <div class="kanban-card">Settings<div class="sub">terminal · printer · WiFi</div></div>
+      <div class="kanban-card">Electronic Scale<div class="sub">weight-priced items</div></div>
+      <div class="kanban-card">CSAT Dashboard<div class="sub">cross-store comparison</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- USER FLOWS -->
+<section class="section" id="flows">
+  <div class="sec-head">
+    <span class="sec-num">User Flows</span>
+    <h2 class="sec-title">How it all connects.</h2>
+    <p class="sec-sub">Every module started as a FigJam flow before any UI was designed — happy paths, edge cases, and decision points mapped first.</p>
+  </div>
+  <p class="p">The discipline was simple: no Figma frame got drawn until the flow had a confirmed start state, a confirmed end state, and at least three branch points in between. This caught the seams between modules — login handing off to checkout, checkout handing off to tender — before the seam became a UI bug.</p>
+
+  <div class="media-frame tall">
+    <div class="media-frame-bar"><span class="media-frame-label">FigJam · Full user-flow map</span></div>
+    <iframe src="https://embed.figma.com/board/Xnt7hhfMZaqUiKwGcW7Ouo/User-Flow?node-id=40000001-2152&embed-host=share" allowfullscreen></iframe>
+  </div>
+</section>
+
+<!-- 04 — LOGIN -->
+<section class="section" id="login">
+  <div class="sec-head">
+    <span class="sec-num">04 — Deep Dive · Login</span>
+    <h2 class="sec-title">Use the card they already carry.</h2>
+    <p class="sec-sub">The old Windows POS opened on a username/password screen. Cashiers shared logins to skip it. Audit trail broken on day one.</p>
+  </div>
+
+  <p class="p"><strong>The problem.</strong> The IS team wanted hardened auth; the cashiers wanted to start scanning groceries inside 10 seconds. The existing flow gave neither side what they needed.</p>
+
+  <p class="p"><strong>The constraint that unlocked the decision.</strong> Every cashier already carried an NFC staff card for the building turnstile. The hardware on the new touchscreen POS terminal had an NFC reader built in. No new credential to issue, no extra cost, no behaviour change to teach — just point the existing card at a different surface.</p>
+
+  <div class="compare-slider" data-compare aria-label="Drag to compare legacy Windows login vs NFC tap-to-login">
+    <img class="compare-slider-after" src="images/ppos/New Login.webp" alt="Login — After · NFC tap-to-login">
+    <img class="compare-slider-before" src="images/ppos/PPOS Login.webp" alt="Login — Before · legacy Windows">
+    <div class="compare-slider-hint">← Drag to compare →</div>
+    <div class="compare-slider-line"></div>
+    <div class="compare-slider-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+    <div class="compare-slider-label compare-slider-label-before">Before · legacy Windows</div>
+    <div class="compare-slider-label compare-slider-label-after">After · NFC tap-to-login</div>
+  </div>
+
+  <p class="p"><strong>What I designed.</strong> Tap-to-login as the primary path, with a manual employee-code fallback for lost/forgotten cards and a forced float-declaration step before the register opens. The fallback exists because hardware fails — but it's the slow path, not the default.</p>
+
+  <ul class="steps">
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>NFC card tap</strong>Reuse the existing staff badge. Auth in &lt;2s. Audit trail per cashier, not per terminal.</span></li>
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>Manual fallback</strong>Employee code + pincode via on-screen keyboard. Slow on purpose so it isn't the habit.</span></li>
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>Float gate</strong>Drawer-count required before checkout opens. Compliance Team requirement; surfaced as a single screen, not a popup chain.</span></li>
+  </ul>
+</section>
+
+<!-- 09 — E-PRESCRIPTION -->
+<section class="section" id="eprescription">
+  <div class="sec-head">
+    <span class="sec-num">09 — Deep Dive · E-Prescription</span>
+    <h2 class="sec-title">Friction where it belongs.</h2>
+    <p class="sec-sub">A pharmacy cashier scans a prescription. The system detects two drugs that overlap dangerously. In the old POS, a warning popup appeared and could be dismissed with one tap of "OK". Compliance flagged this: every override left no record of why.</p>
+  </div>
+
+  <p class="p"><strong>The two options on the table.</strong></p>
+
+  <div class="options">
+    <div class="option">
+      <span class="option-tag">Option A</span>
+      <span class="option-name">Hard block</span>
+      <p class="option-desc">Refuse the sale outright when the system detects an overlap. Pharmacist must remove the conflict before continuing.</p>
+    </div>
+    <div class="option pick">
+      <span class="option-tag">Option B · picked ✓</span>
+      <span class="option-name">Override + mandatory reason</span>
+      <p class="option-desc">Allow the sale, but force the pharmacist to type a free-text reason. No skip, no preset dropdown, no "OK" button until the text field has content.</p>
+    </div>
+  </div>
+
+  <p class="p"><strong>Why Option B.</strong> Hard blocks treat the cashier as a hazard. Real pharmacy work has legitimate overrides — a doctor authorising a known interaction, a refill for a patient already stable on the combo. The Compliance Team's actual need wasn't to prevent overrides; it was to make every override <em>auditable</em>. Friction is the audit trail.</p>
+
+  <div class="media-frame">
+    <div class="media-frame-bar"><span class="media-frame-label">Surface · E-Prescription override</span></div>
+    <img src="images/ppos/E Prescription.webp" alt="E-Prescription override screen">
+  </div>
+
+  <ul class="steps">
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>Drug overlap</strong>Typed reason required, minimum 10 chars. Submit button disabled until satisfied.</span></li>
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>Partial fulfillment</strong>Pharmacy can dispense 3 of 5 items now, leave 2 open. Status sticks to the prescription, not the transaction.</span></li>
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>Pharmacy-only</strong>Module hidden in supermarket-mode terminals. Same codebase, contextual surfacing.</span></li>
+  </ul>
+</section>
+
+<!-- 12 — TENDER -->
+<section class="section" id="tender">
+  <div class="sec-head">
+    <span class="sec-num">12 — Deep Dive · Tender Operations</span>
+    <h2 class="sec-title">One payment at a time, not all at once.</h2>
+    <p class="sec-sub">Ten payment types: Cash MVR, Cash USD, Cards, BNPL, BML, Ooredoo, Insurance, Cheques, Coupon, Loyalty. Some transactions take two of these (rare), most take exactly one. The old POS dropped everything into one dense form regardless.</p>
+  </div>
+
+  <p class="p"><strong>The two options on the table.</strong></p>
+
+  <div class="options">
+    <div class="option pick">
+      <span class="option-tag">Option A · picked ✓</span>
+      <span class="option-name">Separate screen per payment type</span>
+      <p class="option-desc">Cashier picks the type first, then sees a screen tuned only to that type. To split, they finish one, then start another against the remainder.</p>
+    </div>
+    <div class="option">
+      <span class="option-tag">Option C</span>
+      <span class="option-name">Unified split-tender canvas</span>
+      <p class="option-desc">All ten payment fields visible at once. Cashier fills any combination in one screen and submits.</p>
+    </div>
+  </div>
+
+  <p class="p"><strong>Why Option A.</strong> Two reasons, both anchored in how cashiers actually think:</p>
+
+  <ul class="steps">
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>Split tender is rare</strong>Most transactions are one payment, full amount. Optimising the screen for the common case (1 method) is the right tradeoff — a unified canvas makes the 90% case slower so the 10% case is faster.</span></li>
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>Cashiers think one payment at a time</strong>Watching shifts, I saw the verbal pattern: <em>"that's 240 on cash" → counts → "and the rest on card"</em>. The screen should mirror the speech, not contradict it. Option C asks the cashier to hold the whole split in their head before any field is filled.</span></li>
+  </ul>
+
+  <div class="compare-slider" data-compare aria-label="Drag to compare legacy dense tender form vs picker + focused screen">
+    <img class="compare-slider-after" src="images/ppos/New Payment Method.webp" alt="Tender — After · picker + focused screen">
+    <img class="compare-slider-before" src="images/ppos/PPOS Payment Method.webp" alt="Tender — Before · dense form">
+    <div class="compare-slider-hint">← Drag to compare →</div>
+    <div class="compare-slider-line"></div>
+    <div class="compare-slider-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
+    <div class="compare-slider-label compare-slider-label-before">Before · dense form</div>
+    <div class="compare-slider-label compare-slider-label-after">After · picker + focused screen</div>
+  </div>
+
+  <p class="p"><strong>What I designed.</strong> A picker grid of 10 payment tiles → one focused screen per type → a persistent "remaining balance" header that updates as each payment posts. Split tender becomes a loop of single payments, not a parallel form.</p>
+
+  <ul class="steps">
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>10 payment types</strong>One reusable screen component, configured by type. Cash MVR/USD has denomination buttons; Cards has terminal-reference field; Cheque has bank + serial.</span></li>
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>Split tender</strong>Sequential, not parallel. Remaining balance always visible at the top.</span></li>
+    <li class="step"><span class="step-num"></span><span class="step-text"><strong>One component pattern</strong>Adding an 11th payment type later is a config change, not a redesign.</span></li>
+  </ul>
+</section>
+
+<!-- OTHER MODULES -->
+<section class="section" id="modules">
+  <div class="sec-head">
+    <span class="sec-num">Also Shipped · The Other 11 Modules</span>
+    <h2 class="sec-title">Same patterns, different surfaces.</h2>
+    <p class="sec-sub">The three deep-dives above carry the decision-heavy work. The remaining eleven modules reused those patterns — the same component library, the same prototype-on-hardware loop, the same supervisor-auth + mandatory-reason scaffolding where compliance required it.</p>
+  </div>
+
+  <div class="module-grid">
+    <div class="module-card">
+      <span class="module-num">05 · Central Hub</span>
+      <span class="module-name">Checkout</span>
+      <p class="module-desc">65/35 split — products left, summary right. Inline edit, no modals. 2-row module shortcut bar.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">06 · Catalog</span>
+      <span class="module-name">Add Articles</span>
+      <p class="module-desc">Autocomplete by code/name/LOT/expiry. Price override = supervisor auth + mandatory reason.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">07 · Inline</span>
+      <span class="module-name">Modify Qty · UOM · Batch</span>
+      <p class="module-desc">Inline edit on the line. Promo auto-detect when conditions met. No popup chain.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">10 · Pitch-first</span>
+      <span class="module-name">BNPL · Installments</span>
+      <p class="module-desc">Pitched via comic storyboards to stakeholders before any pixel — fastest alignment in the project.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">11 · Identity</span>
+      <span class="module-name">Customers</span>
+      <p class="module-desc">Select / add / edit inline. Required for BNPL + loyalty linkage. Reuses the Article-add component.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">13 · Display</span>
+      <span class="module-name">Customer-Facing Second Screen</span>
+      <p class="module-desc">QR pay (m-Faisaa) — cashier never handles the customer's phone. Two resolutions, touch + non-touch variants.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">15 · Recovery</span>
+      <span class="module-name">Transactions</span>
+      <p class="module-desc">Reprint, recall, void, return. Voids and refunds gated by supervisor auth — same auth pattern as price override.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">16 · Lookup</span>
+      <span class="module-name">Check Stock</span>
+      <p class="module-desc">Search without leaving checkout. LOT, expiry, multi-store visibility on a single panel.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">17 · Drawer Ops</span>
+      <span class="module-name">Manage Cash</span>
+      <p class="module-desc">Float declaration at shift start (paired with the Login float-gate). Cash in/out tracked per cashier.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">18a · Hardware</span>
+      <span class="module-name">Scale &amp; Notifications</span>
+      <p class="module-desc">Electronic-scale hardware integration for weight-priced items. Unified notification surface for stock, promo, prescription, and shift events.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">18b · Config</span>
+      <span class="module-name">Settings &amp; CSAT</span>
+      <p class="module-desc">Terminal / printer / WiFi / display config. Satisfaction dashboard for cross-store comparison.</p>
+    </div>
+    <div class="module-card">
+      <span class="module-num">3 · Deep-Dives</span>
+      <span class="module-name">Login · E-Prescription · Tender</span>
+      <p class="module-desc">The three modules above carried the project's decision-heavy work and validated patterns that repeated across the other eleven.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="section" id="impact">
+  <div class="sec-head">
+    <span class="sec-num">04 — Impact</span>
+    <h2 class="sec-title">Measuring against our KPIs.</h2>
+    <p class="sec-sub">At the start, we defined four success targets. Here's how the redesign delivered against each.</p>
+  </div>
+
+  <div class="pullquote">
+    <div class="pullquote-q">The build-review-rework loop was eating two weeks of every module. Prototyping on the device before code shipped — that's what broke it. The pharmacy + supermarket merge wouldn't have been possible without the shared library underneath.</div>
+    <div class="pullquote-attr">STO IS Team Lead · confirmed at end-of-program review</div>
+  </div>
+
+  <div class="kpi-group-label">Results vs Targets · directional, observed across rollout</div>
+  <div class="kpi-grid">
+    <div class="kpi-card amber">
+      <div class="kpi-val">↓ near-zero</div>
+      <div class="kpi-label">UI-confusion support calls</div>
+      <div class="kpi-why">Tracked via STO IS ticket categories post-launch. Remaining tickets were data / hardware, not UI.</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-val">0 trainer-led</div>
+      <div class="kpi-label">Rollout sessions after week 2</div>
+      <div class="kpi-why">Icon + text labels and the consistent 6-page file structure let new stores self-onboard from the second wave onward.</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-val">Cycle broken</div>
+      <div class="kpi-label">Build-review-rework loop</div>
+      <div class="kpi-why">Prototype-on-hardware moved review left. Modules entered dev with the contentious decisions already resolved on-device.</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-val">1 codebase</div>
+      <div class="kpi-label">Pharmacy + supermarket · ~20 stores</div>
+      <div class="kpi-why">One shared library with contextual feature surfacing per store type — the merge the prior architecture could not deliver.</div>
+    </div>
+  </div>
+
+  <h3 class="subhead">Platform migration · before / after</h3>
+  <div class="data-table">
+    <div class="data-row head"><div>Dimension</div><div>Before</div><div>After</div></div>
+    <div class="data-row"><div class="label">Platform</div><div class="before">Windows desktop</div><div class="after">Touchscreen POS</div></div>
+    <div class="data-row"><div class="label">Input</div><div class="before">Mouse + keyboard</div><div class="after">Touch + NFC</div></div>
+    <div class="data-row"><div class="label">Design System</div><div class="before">None</div><div class="after">Raytail Global Library</div></div>
+    <div class="data-row"><div class="label">Dev Process</div><div class="before">Build then review</div><div class="after">Prototype on device first</div></div>
+    <div class="data-row"><div class="label">Stores Supported</div><div class="before">Pharmacy only</div><div class="after">Pharmacy + Supermarket</div></div>
+  </div>
+
+  <h3 class="subhead">Headline numbers</h3>
+  <div class="metric-strip">
+    <div class="tile metric tint-amber"><div class="tstat-val">14+</div><div class="tstat-lbl">Modules Redesigned</div></div>
+    <div class="tile metric tint-amber"><div class="tstat-val">200+</div><div class="tstat-lbl">Screens Delivered</div></div>
+    <div class="tile metric tint-amber"><div class="tstat-val">2</div><div class="tstat-lbl">Store Types Unified</div></div>
+    <div class="tile metric tint-amber"><div class="tstat-val">22</div><div class="tstat-lbl">Figma Files · One Language</div></div>
+  </div>
+</section>
+
+<!-- DESIGN SYSTEM CALLOUT -->
+<section class="section">
+  <div class="sec-head">
+    <span class="sec-num">Related case study</span>
+    <h2 class="sec-title">The system behind the system.</h2>
+    <p class="sec-sub">Every component, token, and pattern you've seen was built on the Raytail Global Library — keeping 14 modules consistent across two store types and 200+ screens.</p>
+  </div>
+  <p class="p">If this case study answered <em>"what got shipped"</em>, the design-system case study answers <em>"how does it stay consistent at scale."</em> The two are inseparable — the POS could not have shipped this fast without the upstream tokens, and the tokens would not have been justified without a 14-module consumer to validate them.</p>
+  <a href="case-study-design-system-hybrid.html" class="btn" style="margin-top:12px;">Read the Design System case study</a>
+</section>
+
+<!-- TIME MACHINE -->
+<section class="section">
+  <div class="sec-head">
+    <span class="sec-num">Time Machine</span>
+    <h2 class="sec-title">If I could go back.</h2>
+    <p class="sec-sub">Four things I'd change in the order I did them, knowing what I know now.</p>
+  </div>
+  <div class="tt-grid">
+    <div class="tt-card"><span class="tt-num">What I assumed</span><div class="tt-title">One library is enough</div><div class="tt-desc">Started with a single Raytail Global Library.</div></div>
+    <div class="tt-card"><span class="tt-num">What I missed</span><div class="tt-title">14 modules need tokens early</div><div class="tt-desc">Library needed systematic architecture sooner.</div></div>
+    <div class="tt-card"><span class="tt-num">What I'd do</span><div class="tt-title">Build the system first</div><div class="tt-desc">Tokenized design system before the first feature.</div></div>
+    <div class="tt-card"><span class="tt-num">Expected outcome</span><div class="tt-title">Faster later modules</div><div class="tt-desc">Compose from tokens, not create new patterns.</div></div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="section" id="reflection">
+  <div class="sec-head">
+    <span class="sec-num">05 — Reflection</span>
+    <h2 class="sec-title">What I learned.</h2>
+    <p class="sec-sub">Four lessons that survived the project and that I'd carry into the next enterprise system without question.</p>
+  </div>
+
+  <div class="lessons">
+    <div class="lesson">
+      <span class="lesson-num">Lesson 01</span>
+      <span class="lesson-h">Fix the process first</span>
+      <p class="lesson-d">Prototype-on-hardware saved more time than any UI change. The cost was a few hours per module. The savings were entire rework cycles — and the trust that came from IS Team confirming on a real device.</p>
+    </div>
+    <div class="lesson">
+      <span class="lesson-num">Lesson 02</span>
+      <span class="lesson-h">Design for the harder context first</span>
+      <p class="lesson-d">You can remove guardrails. You can't bolt them on. Pharmacy compliance (mandatory reason, supervisor auth) shaped the patterns; the supermarket simply inherited them without the friction.</p>
+    </div>
+    <div class="lesson">
+      <span class="lesson-num">Lesson 03</span>
+      <span class="lesson-h">Consistency at scale is structural</span>
+      <p class="lesson-d">The repeatable 6-page file structure held 200+ screens together. Same headers, same nav, same auth pattern, same component library — applied 14 times.</p>
+    </div>
+    <div class="lesson">
+      <span class="lesson-num">Lesson 04</span>
+      <span class="lesson-h">Stakeholder buy-in is a deliverable</span>
+      <p class="lesson-d">Comic storyboards got BNPL funded. Design for decision-makers too — they don't read specs, they look at pictures and ask "can we afford this?"</p>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="section tight">
+  <div class="sec-head" style="margin-bottom:24px;">
+    <span class="sec-num">More work</span>
+    <h2 class="sec-title" style="font-size:clamp(28px,3vw,40px);">Related case studies</h2>
+  </div>
+  <div class="related-scroll">
+    <a href="case-study-po-ai-intent-hybrid.html" class="related-card midnight">
+      <div class="r-eyebrow">New · AI Product</div>
+      <h3 class="r-h">Speak, don't click.</h3>
+      <p class="r-sub">A bilingual intent palette that replaced an enterprise CRM dashboard. 28 intents in MVP, 21 already live.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><video src="videos/po-ai/01-palette-empty-state.mp4" muted loop playsinline preload="none" data-lazy-video poster="images/po-ai/hero-palette.webp"></video></div></div>
+    </a>
+    <a href="case-study-design-system-hybrid.html" class="related-card tint-violet">
+      <div class="r-eyebrow">Design System</div>
+      <h3 class="r-h">Three platforms. One source of truth.</h3>
+      <p class="r-sub">A federated two-level token architecture across POS, web, and mobile.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><img src="images/DS/%E2%98%85%20Showcase%20%E2%80%94%20Multi-Palette%20Demo.webp" alt="Design system multi-palette demo" loading="lazy"></div></div>
+    </a>
+    <a href="case-study-retail-hybrid.html" class="related-card tint-rose">
+      <div class="r-eyebrow">Retail · 2025</div>
+      <h3 class="r-h">From feedback to 427% ROI.</h3>
+      <p class="r-sub">A broken returns process had CS drowning in tickets. Four months of research, three test rounds.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><img src="images/retail-ui-final.webp" alt="Retail returns redesign final UI" loading="lazy"></div></div>
+    </a>
+    <a href="case-study-golden-paths-hybrid.html" class="related-card dark">
+      <div class="r-eyebrow">AI Research · 2024</div>
+      <h3 class="r-h">Prototypes that never sleep.</h3>
+      <p class="r-sub">AI-simulated path analysis that matched human friction in 9 of 11 blockers tested.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><video src="images/AI%20Test/Demo.mp4" muted loop playsinline preload="none" data-lazy-video></video></div></div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-inner">
+    <h2>Let's build<br>something <em>great</em></h2>
+    <p>Open to senior roles in product and UX. Looking for a team that ships things and cares whether they work.</p>
+    <div class="cta-row">
+      <a href="mailto:kaungmyat9702@gmail.com" class="btn">Email Harry</a>
+      <a href="portfolio-hybrid.html#work" class="btn ghost">See all work</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Harry Hein · Senior Product Designer</footer>
+
+<!-- CMD PALETTE MODAL -->
+<div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Pharmacy POS case study assistant">
+  <div class="cmd-modal">
+    <div class="cmd-header">
+      <span class="cmd-header-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.3 4.3 1.9-4.3 1.9L12 15.4l-1.9-4.3-4.3-1.9 4.3-1.9z"/><path d="M19 13l.95 2.05L22 16l-2.05.95L19 19l-.95-2.05L16 16l2.05-.95z"/></svg>
+      </span>
+      <div class="cmd-header-text">
+        <div class="cmd-header-title">Harry's Intent AI <span class="cmd-header-pill">BETA</span></div>
+        <div class="cmd-header-sub">Ask anything about this case · Gemini 2.5 Flash</div>
+      </div>
+      <button class="cmd-icon-btn" id="cmdRestart" aria-label="Restart conversation" title="Restart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+      </button>
+      <button class="cmd-icon-btn" id="cmdClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="cmd-conv" id="cmdConv" aria-live="polite"></div>
+
+    <div class="cmd-quick" id="cmdQuick">
+      <button class="cmd-quick-btn" data-q="Why 14 modules? How did you scope the project?">14 modules</button>
+      <button class="cmd-quick-btn" data-q="How did you deliver 200+ screens as a solo designer?">200+ screens</button>
+      <button class="cmd-quick-btn" data-q="How did you redesign a Windows POS for touch?">Touch redesign</button>
+      <button class="cmd-quick-btn" data-q="How did you migrate from the legacy Windows system?">Legacy migration</button>
+      <button class="cmd-quick-btn" data-q="Walk me through the pharmacy-specific flows like e-prescription.">Pharmacy flow</button>
+      <button class="cmd-quick-btn" data-q="What's the impact of this redesign?">Impact</button>
+    </div>
+
+    <div class="cmd-input-row">
+      <div class="cmd-input-wrap">
+        <span class="cmd-input-spark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.3 4.3 1.9-4.3 1.9L12 15.4l-1.9-4.3-4.3-1.9 4.3-1.9z"/></svg>
+        </span>
+        <input class="cmd-input" id="cmdInput" placeholder="Ask Intent AI — POS, modules, workflows… EN / မြန်မာ" aria-label="Ask Intent AI about this case">
+      </div>
+      <button class="cmd-send" id="cmdSend" aria-label="Send message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById('cmdOverlay');
+  const trigger = document.getElementById('cmdTrigger');
+  const closeBtn = document.getElementById('cmdClose');
+  const restart = document.getElementById('cmdRestart');
+  const conv = document.getElementById('cmdConv');
+  const input = document.getElementById('cmdInput');
+  const sendBtn = document.getElementById('cmdSend');
+  const quickBar = document.getElementById('cmdQuick');
+
+  function el(tag, cls, html){
+    const e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(html != null) e.innerHTML = html;
+    return e;
+  }
+  function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function renderMarkdown(text){
+    return String(text)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,'<em>$1</em>')
+      .replace(/`([^`]+?)`/g,'<code>$1</code>')
+      .replace(/\n/g,'<br>');
+  }
+  function renderChips(chips){
+    const w = el('div','resp-chips');
+    chips.forEach(c => {
+      const b = el('button','resp-chip', esc(c.label));
+      b.dataset.q = c.q || c.label;
+      w.appendChild(b);
+    });
+    return w;
+  }
+  function showUser(text){
+    const m = el('div','msg user');
+    m.appendChild(el('div','msg-text', esc(text)));
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+  }
+  function showBot(parts){
+    const m = el('div','msg bot');
+    parts.forEach(p => {
+      if(typeof p === 'string') m.appendChild(el('div','msg-text', p));
+      else if(p) m.appendChild(p);
+    });
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+  }
+  function showTyping(){
+    const m = el('div','msg bot');
+    m.appendChild(el('div','msg-typing','<span></span><span></span><span></span>'));
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+    return m;
+  }
+
+  const chatHistory = [];
+  async function askGemini(q){
+    chatHistory.push({ role:'user', content:q });
+    const res = await fetch('/api/chat',{
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ messages: chatHistory, context: 'pharmacy-pos' })
+    });
+    const data = await res.json();
+    if(data.error) throw new Error(data.error);
+    const reply = data.reply || '';
+    chatHistory.push({ role:'assistant', content: reply });
+    return reply;
+  }
+  function followUps(q){
+    const t = q.toLowerCase();
+    const chips = [];
+    if(/research|discover|interview|seller/.test(t)) chips.push({ label:'How did you map 45 intents?', q:'How did you map the 45 intents from research?' });
+    if(/intent|palette|dashboard/.test(t)) chips.push({ label:'Why palette over dashboard?', q:'Why design an intent palette instead of a CRM dashboard?' });
+    if(/bilingual|myanmar|burmese|language/.test(t)) chips.push({ label:'Tool schema trick', q:'How do trigger phrases inside the tool schema make bilingual matching work?' });
+    if(/classifier|llm|regex|gemini/.test(t)) chips.push({ label:'Three axes explained', q:'Explain the three axes: chainable, confirm, response type.' });
+    if(/impact|result|metric|number|ship|live/.test(t)) chips.push({ label:'Honest gaps', q:'What gaps are you still honest about?' });
+    if(chips.length < 2) chips.push({ label:'Walk me through the design', q:'Walk me through the design decisions step by step.' });
+    if(chips.length < 3) chips.push({ label:'What would you do differently?', q:"What would you do differently next time?" });
+    return chips.slice(0,3);
+  }
+
+  async function submit(text){
+    const q = (text || '').trim();
+    if(!q) return;
+    showUser(q);
+    input.value = '';
+    sendBtn.disabled = true;
+    const typing = showTyping();
+    try{
+      const reply = await askGemini(q);
+      typing.remove();
+      showBot([ renderMarkdown(reply), renderChips(followUps(q + ' ' + reply)) ]);
+    } catch(err){
+      typing.remove();
+      showBot([ 'Could not reach the AI service. Please try again.' ]);
+    } finally {
+      sendBtn.disabled = false;
+    }
+  }
+
+  function seedWelcome(){
+    showBot([
+      `Hi — I'm Harry's AI assistant for this case study. Ask about <strong>process</strong>, <strong>module design</strong>, <strong>compliance flows</strong>, <strong>tender ops</strong>, or <strong>shipped impact</strong>. EN / မြန်မာ both work.`,
+      renderChips([
+        { label:'How did you redesign a Windows POS for touch?', q:'How did you redesign a Windows POS for touch?' },
+        { label:'Why 14 modules?', q:'Why 14 modules? How did you scope the project?' },
+        { label:"What's the impact?", q:"What's the impact of this redesign?" }
+      ])
+    ]);
+  }
+  function open(){
+    overlay.classList.add('open');
+    if(conv.children.length === 0) seedWelcome();
+    setTimeout(()=>input.focus(), 30);
+  }
+  function close(){ overlay.classList.remove('open'); }
+  function doRestart(){ conv.innerHTML = ''; chatHistory.length = 0; seedWelcome(); input.focus(); }
+
+  trigger.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  restart.addEventListener('click', doRestart);
+  overlay.addEventListener('click', e=>{ if(e.target === overlay) close(); });
+  sendBtn.addEventListener('click', ()=>submit(input.value));
+  input.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ e.preventDefault(); submit(input.value); }
+  });
+  quickBar.addEventListener('click', e=>{
+    const b = e.target.closest('button[data-q]');
+    if(b) submit(b.dataset.q);
+  });
+  conv.addEventListener('click', e=>{
+    const c = e.target.closest('.resp-chip[data-q]');
+    if(c){ e.preventDefault(); submit(c.dataset.q); }
+  });
+  document.addEventListener('keydown', e=>{
+    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){
+      e.preventDefault();
+      overlay.classList.contains('open') ? close() : open();
+      return;
+    }
+    if(e.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
+})();
+</script>
+
+<!-- Before/After comparison slider — drag/touch init -->
+<script>
+(function(){
+  function initCompare(el){
+    var before = el.querySelector('.compare-slider-before');
+    var line = el.querySelector('.compare-slider-line');
+    var handle = el.querySelector('.compare-slider-handle');
+    var hint = el.querySelector('.compare-slider-hint');
+    var dragging = false;
+    var hintShown = true;
+    function update(x){
+      var rect = el.getBoundingClientRect();
+      var pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+      before.style.clipPath = 'inset(0 ' + (100 - pct * 100) + '% 0 0)';
+      line.style.left = pct * 100 + '%';
+      handle.style.left = pct * 100 + '%';
+      if(hintShown && hint){ hint.style.opacity = '0'; hint.style.transition = 'opacity 220ms'; hintShown = false; }
+    }
+    el.addEventListener('mousedown', function(e){ dragging = true; update(e.clientX); e.preventDefault(); });
+    document.addEventListener('mousemove', function(e){ if(dragging) update(e.clientX); });
+    document.addEventListener('mouseup', function(){ dragging = false; });
+    el.addEventListener('touchstart', function(e){ dragging = true; update(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+    document.addEventListener('touchmove', function(e){ if(dragging) update(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('touchend', function(){ dragging = false; });
+  }
+  document.querySelectorAll('.compare-slider[data-compare]').forEach(initCompare);
+})();
+</script>
+
+
+<script>
+/* Lazy-load videos via IntersectionObserver — added by lazy-loading task */
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(rm&&rm.matches)return;
+  var vids=document.querySelectorAll('video[data-lazy-video]');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){
+        if(v.preload!=='auto')v.preload='auto';
+        var p=v.play();
+        if(p&&p.catch)p.catch(function(){});
+      }else{
+        v.pause();
+      }
+    });
+  },{rootMargin:'200px 0px',threshold:0.1});
+  vids.forEach(function(v){io.observe(v);});
+})();
+</script>
+
+</body>
+</html>

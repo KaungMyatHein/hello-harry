@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Platforms. One Source of Truth. — Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═════════════════════════════════════════════════
+   HYBRID CASE-STUDY — Apple base · Ollama type · PS blue
+═════════════════════════════════════════════════ */
+:root{
+  --paper:#ffffff; --canvas:#fafafa; --inset:#f4f4f5;
+  --ink:#0a0a0a; --ink-soft:#1f1f22; --muted:#5a5a5f; --dim:#737378;
+  --hairline:#e7e7e8; --hairline-soft:#efefef;
+  --ps-blue:#0066cc; --ps-blue-deep:#003791; --ps-blue-light:#3da5f5;
+  --accent:var(--ps-blue);
+  --success:#16a34a; --danger:#dc2626; --warning:#d97706;
+  --violet:#7c3aed; --amber:#a16207; --rose:#be185d; --mint:#047857;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --radius:14px; --radius-sm:8px; --radius-lg:20px; --pill:9999px;
+  --shadow-card:0 1px 2px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.05);
+  --shadow-lift:0 12px 40px rgba(0,0,0,0.10),0 0 0 1px rgba(0,0,0,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{background:var(--paper);color:var(--ink-soft);font-family:var(--sans);font-size:17px;line-height:1.55;letter-spacing:-0.012em;font-feature-settings:'calt','kern','liga','ss01','ss03';}
+a{color:inherit;text-decoration:none;transition:color 150ms ease;}
+ul,ol{list-style:none;}
+em{font-style:italic;color:inherit;}
+strong{font-weight:600;color:var(--ink);}
+code{font-family:var(--mono);font-size:0.86em;background:var(--inset);padding:1px 6px;border-radius:5px;color:var(--ink);}
+:focus{outline:none;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ps-blue);outline-offset:3px;border-radius:var(--radius-sm);}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}
+  video[data-lazy-video]{display:none;}
+}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,0.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hairline-soft);}
+.nav-inner{max-width:1180px;margin:0 auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+.brand-mark{width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;font-family:var(--mono);}
+.nav-actions{display:flex;align-items:center;gap:18px;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);font-weight:500;}
+.nav-back::before{content:"‹";font-size:18px;line-height:0;}
+.nav-back:hover{color:var(--ink);}
+.nav-cmd{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:9px 14px;min-height:38px;border-radius:var(--pill);font-size:12px;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:border-color 150ms ease,color 150ms ease;}
+.nav-cmd:hover{border-color:var(--ink);color:var(--ink);}
+.nav-cmd kbd{font-family:var(--mono);font-size:10px;background:var(--paper);border:1px solid var(--hairline);padding:1px 5px;border-radius:4px;color:var(--ink-soft);}
+.nav-cmd svg{width:13px;height:13px;color:var(--muted);}
+@media (max-width:768px){
+  .nav-inner{padding:0 16px;}
+  .nav-actions{gap:10px;}
+  .nav-cmd{padding:8px 12px;min-height:36px;gap:6px;}
+  .nav-cmd-label{display:none;}
+  .nav-cmd kbd{display:none;}
+  .hero{padding:64px 18px 40px;}
+  .hero h1{font-size:clamp(38px,9vw,56px);margin-bottom:18px;}
+  .hero-sub{font-size:15.5px;}
+  .hero-meta{gap:16px;padding:18px 0;margin-bottom:28px;}
+  .section{padding:56px 18px;}
+  .sec-head{margin-bottom:28px;padding-bottom:16px;}
+  .sec-title{font-size:clamp(26px,7.2vw,40px);}
+  .sec-sub{font-size:15px;}
+  .cta-band{padding:72px 18px;}
+  .cta-band h2{font-size:clamp(36px,9vw,56px);}
+  .cta-band p{font-size:16px;}
+  footer{padding:32px 18px 40px;}
+}
+@media (max-width:480px){
+  .nav-back{font-size:12px;}
+  .brand-label{display:none;}
+}
+
+/* HERO */
+.hero{padding:96px 28px 56px;background:var(--paper);}
+.hero-inner{max-width:1180px;margin:0 auto;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:6px 14px;border-radius:var(--pill);font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:28px;}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 8px rgba(22,163,74,0.6);}
+.hero h1{font-size:clamp(48px,7.4vw,88px);font-weight:600;letter-spacing:-0.035em;line-height:1.02;color:var(--ink);max-width:920px;margin-bottom:26px;}
+.hero h1 em{color:var(--muted);font-style:normal;}
+.hero-sub{font-size:clamp(18px,1.6vw,22px);font-weight:400;color:var(--muted);max-width:680px;line-height:1.5;letter-spacing:-0.011em;margin-bottom:40px;}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:24px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);margin-bottom:40px;}
+@media (max-width:780px){.hero-meta{grid-template-columns:repeat(2,1fr);}}
+.hero-meta-item{display:flex;flex-direction:column;gap:6px;}
+.hero-meta-label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);}
+.hero-meta-val{font-size:14px;font-weight:500;color:var(--ink);letter-spacing:-0.01em;}
+
+/* HERO BENTO */
+.hero-bento{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;margin-top:8px;}
+@media (max-width:900px){.hero-bento{grid-template-columns:1fr;}}
+.hero-stats{display:grid;grid-template-columns:1fr;gap:18px;}
+
+/* TILES — bento system */
+.tile{position:relative;border-radius:24px;overflow:hidden;background:var(--canvas);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);padding:36px;display:flex;flex-direction:column;}
+.tile.dark{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.tile.midnight{background:linear-gradient(180deg,#0a1430 0%,#000 100%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.tile.tint-blue{background:#e6efff;}
+.tile.tint-violet{background:#efeaff;}
+.tile.tint-amber{background:#fff4d6;}
+.tile.tint-rose{background:#ffe6ec;}
+.tile.tint-mint{background:#dcf7ec;}
+.tile-stamp{position:absolute;top:18px;right:22px;z-index:4;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(0,0,0,0.38);pointer-events:none;display:flex;align-items:center;gap:6px;}
+.tile-stamp::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.65;}
+.tile.dark .tile-stamp,.tile.midnight .tile-stamp{color:rgba(255,255,255,0.55);}
+
+.tile.hero-media{padding:0;min-height:380px;}
+.tile.hero-media img,.tile.hero-media video{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;}
+.tile.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,0.65) 100%);pointer-events:none;}
+.tile.hero-media .tile-cap{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;color:#fff;display:flex;align-items:center;gap:12px;}
+.tile.hero-media .play{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:rgba(255,255,255,0.18);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;}
+.tile.hero-media .play::after{content:"";width:0;height:0;margin-left:3px;border-style:solid;border-width:7px 0 7px 11px;border-color:transparent transparent transparent #fff;}
+.tile.hero-media .tile-cap-label{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.78;}
+.tile.hero-media .tile-cap-title{font-size:16px;font-weight:500;letter-spacing:-0.01em;margin-top:2px;}
+
+.tile.metric{padding:30px 32px;}
+.tile.metric .tstat-val{font-size:64px;font-weight:500;letter-spacing:-0.028em;line-height:1;font-variant-numeric:tabular-nums;color:inherit;margin-bottom:10px;}
+.tile.metric .tstat-lbl{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--muted);line-height:1.4;}
+.tile.metric.dark .tstat-lbl,.tile.metric.midnight .tstat-lbl{color:rgba(255,255,255,0.6);}
+.tile.metric .tstat-foot{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:6px;letter-spacing:0.4px;}
+.tile.metric.midnight .tstat-foot,.tile.metric.dark .tstat-foot{color:rgba(255,255,255,0.5);}
+
+/* SECTION */
+.section{max-width:1180px;margin:0 auto;padding:88px 28px;}
+.section.tight{padding:48px 28px;}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--hairline);}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.6px;}
+.sec-title{font-size:clamp(34px,4.2vw,52px);font-weight:600;letter-spacing:-0.03em;line-height:1.04;color:var(--ink);}
+.sec-sub{font-size:17px;color:var(--muted);max-width:760px;line-height:1.55;margin-top:6px;}
+
+.p{font-size:17px;line-height:1.65;color:var(--ink-soft);margin-bottom:18px;max-width:820px;}
+.p:last-child{margin-bottom:0;}
+.lede{font-size:21px;line-height:1.5;color:var(--ink);font-weight:400;letter-spacing:-0.014em;max-width:820px;margin-bottom:28px;}
+.subhead{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin:32px 0 14px;}
+
+/* TL;DR */
+.tldr{display:grid;grid-template-columns:1.1fr 1.2fr;gap:30px;align-items:start;}
+@media (max-width:900px){.tldr{grid-template-columns:1fr;}}
+.tldr-jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.tldr-jump a{font-family:var(--mono);font-size:11px;color:var(--ps-blue);background:rgba(0,102,204,0.08);padding:6px 12px;border-radius:var(--pill);letter-spacing:0.04em;border:1px solid rgba(0,102,204,0.15);}
+.tldr-jump a:hover{background:rgba(0,102,204,0.14);}
+.tldr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media (max-width:580px){.tldr-grid{grid-template-columns:1fr;}}
+.tldr-item{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;gap:6px;}
+.tldr-item .l{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--ps-blue);}
+.tldr-item .v{font-size:14px;color:var(--ink-soft);line-height:1.5;}
+
+/* Step list */
+.steps{display:grid;gap:12px;margin:24px 0 18px;counter-reset:step;list-style:none;padding:0;}
+.step{display:grid;grid-template-columns:44px 1fr;gap:20px;align-items:start;padding:20px 24px;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);transition:border-color 0.2s,background 0.2s;}
+.step:hover{border-color:rgba(0,102,204,0.25);background:#fff;}
+.step{counter-increment:step;}
+.step-num{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ps-blue);letter-spacing:0.08em;padding-top:4px;text-indent:-9999px;position:relative;}
+.step-num::before{content:counter(step,decimal-leading-zero);text-indent:0;position:absolute;left:0;top:4px;display:inline-block;}
+.step-text{font-size:15px;line-height:1.6;color:var(--muted);}
+.step-text strong{display:block;font-size:15px;color:var(--ink);margin-bottom:6px;font-weight:600;letter-spacing:-0.008em;}
+
+/* Hook callout */
+.hook{margin-top:28px;padding:24px 28px;background:var(--ink);color:#fff;border-radius:var(--radius-lg);font-size:18px;line-height:1.5;letter-spacing:-0.012em;max-width:820px;}
+.hook em{color:rgba(255,255,255,0.7);font-style:normal;}
+
+/* Metric strip */
+.metric-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0;}
+@media (max-width:780px){.metric-strip{grid-template-columns:repeat(2,1fr);}}
+
+/* Pull quote */
+.pullquote{margin:36px 0;padding:32px 36px 32px 44px;background:linear-gradient(135deg,rgba(0,102,204,0.05) 0%,rgba(0,102,204,0.015) 100%);border-left:3px solid var(--ps-blue);border-radius:0 var(--radius-lg) var(--radius-lg) 0;position:relative;}
+.pullquote::before{content:"\201C";position:absolute;top:6px;left:18px;font-family:Georgia,serif;font-size:64px;line-height:1;color:var(--ps-blue);opacity:0.32;}
+.pullquote-q{font-size:22px;line-height:1.45;color:var(--ink);letter-spacing:-0.012em;font-weight:400;padding-left:26px;}
+.pullquote-attr{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:16px;padding-left:26px;}
+
+/* Audit cards (3 column) */
+.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0;}
+@media (max-width:900px){.audit-grid{grid-template-columns:1fr;}}
+.audit-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:10px;}
+.audit-card .tag{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--violet);}
+.audit-card .num{font-size:32px;font-weight:500;letter-spacing:-0.024em;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums;}
+.audit-card .h{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;}
+.audit-card .d{font-size:13.5px;color:var(--muted);line-height:1.55;}
+
+/* Persona bento */
+.persona-bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0;}
+@media (max-width:900px){.persona-bento{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.persona-bento{grid-template-columns:1fr;}}
+.persona-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:8px;}
+.persona-card.span-2{grid-column:span 2;}
+@media (max-width:580px){.persona-card.span-2{grid-column:span 1;}}
+.persona-role{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ps-blue);}
+.persona-name{font-size:20px;font-weight:600;letter-spacing:-0.018em;color:var(--ink);}
+.persona-desc{font-size:14px;color:var(--ink-soft);line-height:1.55;}
+.persona-quote{font-size:14px;font-style:italic;color:var(--ink-soft);background:var(--paper);border-left:3px solid var(--ps-blue);padding:10px 14px;margin-top:auto;border-radius:0 var(--radius-sm) var(--radius-sm) 0;}
+.persona-quote cite{display:block;font-style:normal;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:6px;}
+.persona-stat-val{font-size:36px;font-weight:500;letter-spacing:-0.024em;color:var(--ps-blue);line-height:1;font-variant-numeric:tabular-nums;}
+.persona-stat-label{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;margin-top:6px;}
+.persona-pain-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
+.persona-pain-list li{font-size:13.5px;color:var(--ink-soft);line-height:1.5;padding-left:18px;position:relative;}
+.persona-pain-list li::before{content:"·";color:var(--ps-blue);font-weight:700;font-size:18px;position:absolute;left:6px;top:-2px;}
+
+/* Table */
+.dtable{display:grid;border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;margin:22px 0;background:var(--paper);}
+.dtable-row{display:grid;align-items:stretch;border-bottom:1px solid var(--hairline-soft);}
+.dtable-row:last-child{border-bottom:none;}
+.dtable-row.head{background:var(--canvas);}
+.dtable-row > div{padding:14px 18px;font-size:14px;color:var(--ink-soft);line-height:1.5;border-right:1px solid var(--hairline-soft);}
+.dtable-row > div:last-child{border-right:none;}
+.dtable-row.head > div{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);}
+.dtable-row .label{font-weight:600;color:var(--ink);}
+.dtable-row .before{color:var(--muted);}
+.dtable-row .before s{text-decoration:line-through;text-decoration-color:rgba(220,38,38,0.4);text-decoration-thickness:1px;}
+.dtable-row .after{color:var(--ink);font-weight:500;}
+.dtable.tri .dtable-row{grid-template-columns:1.1fr 1.6fr 1.6fr;}
+.dtable.pos .dtable-row{grid-template-columns:1fr 1fr 1fr;}
+@media (max-width:780px){.dtable .dtable-row{grid-template-columns:1fr;}.dtable .dtable-row > div{border-right:none;border-bottom:1px solid var(--hairline-soft);}.dtable .dtable-row > div:last-child{border-bottom:none;}}
+
+/* Token tier list (mini hops) */
+.tiers{display:grid;gap:12px;margin:22px 0;}
+.tier{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:20px 24px;display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:start;}
+.tier.primary{border-color:rgba(0,102,204,0.25);background:linear-gradient(135deg,rgba(0,102,204,0.04) 0%,rgba(0,102,204,0.01) 100%);}
+.tier .l{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ps-blue);}
+.tier .l strong{display:block;font-family:var(--sans);font-size:15px;color:var(--ink);letter-spacing:-0.012em;text-transform:none;font-weight:600;margin-top:4px;}
+.tier .v{font-size:14.5px;color:var(--ink-soft);line-height:1.55;}
+@media (max-width:780px){.tier{grid-template-columns:1fr;gap:6px;}}
+
+/* Old vs New (axis) */
+.axis{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+@media (max-width:780px){.axis{grid-template-columns:1fr;}}
+.axis-col{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px 24px;}
+.axis-col.yes{border-color:rgba(0,102,204,0.25);background:linear-gradient(135deg,rgba(0,102,204,0.04) 0%,rgba(0,102,204,0.01) 100%);}
+.axis-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--hairline-soft);}
+.axis-label{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);}
+.axis-col.yes .axis-label{color:var(--ps-blue);}
+.axis-body{font-size:14.5px;color:var(--ink-soft);line-height:1.6;}
+.axis-body strong{color:var(--ink);}
+
+/* Funnel-like result strip */
+.metric-strip-lg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0;}
+@media (max-width:780px){.metric-strip-lg{grid-template-columns:1fr;}}
+
+/* KPI grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0;}
+@media (max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.kpi-grid{grid-template-columns:1fr;}}
+.kpi-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;}
+.kpi-val{font-size:32px;font-weight:500;letter-spacing:-0.028em;color:var(--ps-blue);line-height:1;margin-bottom:10px;font-variant-numeric:tabular-nums;}
+.kpi-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--ink);}
+.kpi-why{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;}
+
+/* Time Machine */
+.tt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0;}
+@media (max-width:900px){.tt-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.tt-grid{grid-template-columns:1fr;}}
+.tt-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:8px;}
+.tt-num{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--ps-blue);}
+.tt-title{font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.014em;line-height:1.3;}
+.tt-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+
+/* Lessons grid */
+.lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px;}
+@media (max-width:780px){.lessons{grid-template-columns:1fr;}}
+.lesson{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-lg);padding:26px 28px;display:flex;flex-direction:column;gap:8px;}
+.lesson-num{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.lesson-h{font-size:19px;font-weight:600;letter-spacing:-0.018em;color:var(--ink);line-height:1.3;}
+.lesson-d{font-size:14.5px;color:var(--ink-soft);line-height:1.6;}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin:28px 0;}
+@media(max-width:640px){.gallery{grid-template-columns:1fr;gap:14px;}}
+.gallery-item{background:var(--ink);border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;aspect-ratio:16/10;position:relative;box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+.gallery-item img,.gallery-item video{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery-item .label{position:absolute;left:10px;bottom:10px;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);padding:4px 9px;border-radius:5px;}
+
+/* Code-like token sample */
+.code-block{font-family:var(--mono);font-size:13px;background:var(--ink);color:#e6e6e8;padding:18px 22px;border-radius:var(--radius);overflow-x:auto;line-height:1.7;margin:18px 0;}
+.code-block .comment{color:rgba(255,255,255,0.45);}
+.code-block .key{color:#9ec5ff;}
+.code-block .val{color:#ffb86c;}
+
+/* Related — Horizontal-scroll tile cards (matches portfolio-hybrid landing tiles) */
+.related-scroll{display:flex;gap:20px;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:24px -32px 0;padding:8px 32px 36px;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,0.2) transparent;}
+.related-scroll::-webkit-scrollbar{height:8px;}
+.related-scroll::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.18);border-radius:4px;}
+.related-scroll::-webkit-scrollbar-track{background:transparent;}
+.related-card{flex:0 0 360px;scroll-snap-align:start;position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;border-radius:24px;overflow:hidden;padding:32px 22px 0;min-height:460px;background:var(--canvas);color:var(--ink);text-decoration:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);}
+.related-card:hover{transform:translateY(-3px);}
+.related-card.dark{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.related-card.midnight{background:linear-gradient(180deg,#0a1430 0%,#000 100%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.related-card.tint-violet{background:#efeaff;}
+.related-card.tint-amber{background:#fff4d6;}
+.related-card.tint-rose{background:#ffe6ec;}
+.related-card.tint-mint{background:#dcf7ec;}
+.related-card .r-eyebrow{font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;font-family:var(--mono);color:var(--ps-blue);margin-bottom:8px;display:inline-flex;align-items:center;gap:6px;}
+.related-card .r-eyebrow::before{content:"\2192";font-family:var(--mono);font-size:12px;opacity:0.75;}
+.related-card.dark .r-eyebrow,.related-card.midnight .r-eyebrow{color:#3da5f5;}
+.related-card.tint-violet .r-eyebrow{color:#7c3aed;}
+.related-card.tint-amber .r-eyebrow{color:#a16207;}
+.related-card.tint-rose .r-eyebrow{color:#be185d;}
+.related-card.tint-mint .r-eyebrow{color:#047857;}
+.related-card .r-h{font-size:24px;font-weight:600;letter-spacing:-0.03em;line-height:1.08;margin-bottom:10px;max-width:300px;}
+.related-card .r-sub{font-size:14px;line-height:1.45;color:var(--muted);letter-spacing:-0.005em;margin-bottom:18px;max-width:300px;}
+.related-card.dark .r-sub,.related-card.midnight .r-sub{color:rgba(255,255,255,0.78);}
+.related-card .r-cta{display:inline-flex;align-items:center;gap:4px;background:var(--ps-blue);color:#fff !important;padding:8px 16px;border-radius:var(--pill);font-size:13px;font-weight:500;letter-spacing:-0.01em;margin-bottom:22px;}
+.related-card .r-cta::after{content:"\203A";font-size:15px;line-height:1;margin-left:2px;}
+.related-card.dark .r-cta,.related-card.midnight .r-cta{background:#fff;color:var(--ink) !important;}
+.related-card.tint-violet .r-cta{background:#7c3aed;}
+.related-card.tint-amber .r-cta{background:#a16207;}
+.related-card.tint-rose .r-cta{background:#be185d;}
+.related-card.tint-mint .r-cta{background:#047857;}
+.related-card .r-media{margin-top:auto;width:100%;padding:0 14px;position:relative;}
+.related-card .r-media::before{content:"";position:absolute;left:50%;bottom:-8%;transform:translateX(-50%);width:78%;height:60%;background:radial-gradient(ellipse at center 60%,rgba(0,102,204,0.22) 0%,transparent 70%);filter:blur(36px);z-index:0;pointer-events:none;}
+.related-card.tint-violet .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(124,58,237,0.26) 0%,transparent 70%);}
+.related-card.tint-amber .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(245,158,11,0.32) 0%,transparent 70%);}
+.related-card.tint-rose .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(236,72,153,0.26) 0%,transparent 70%);}
+.related-card.dark .r-media::before,.related-card.midnight .r-media::before{background:radial-gradient(ellipse at center 60%,rgba(61,165,245,0.34) 0%,transparent 70%);}
+.related-card .r-frame{position:relative;z-index:1;width:100%;max-width:300px;margin:0 auto;background:linear-gradient(180deg,#3a3a3d 0%,#2e2e30 5%,#232325 55%,#1c1c1e 100%);padding:10px 8px 8px;border-radius:10px 10px 3px 3px;filter:drop-shadow(0 22px 32px rgba(0,0,0,0.30)) drop-shadow(0 10px 16px rgba(0,0,0,0.18));box-shadow:inset 0 1px 0 rgba(255,255,255,0.10),inset 0 -1px 0 rgba(0,0,0,0.6);transition:transform 360ms cubic-bezier(0.2,0.7,0.3,1);}
+.related-card:hover .r-frame{transform:translateY(-4px);}
+.related-card .r-frame img,.related-card .r-frame video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#000;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.85);}
+.related-card .r-frame::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:54px;height:5px;background:#0a0a0a;border-radius:0 0 5px 5px;z-index:3;}
+@media (max-width:780px){.related-card{flex:0 0 280px;min-height:410px;padding:26px 18px 0;}.related-card .r-frame{max-width:230px;}.related-card .r-h{font-size:21px;}}
+.rel-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ps-blue);}
+.rel-h{font-size:20px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);line-height:1.25;}
+.rel-sub{font-size:13.5px;color:var(--muted);line-height:1.5;}
+.rel-cta{font-family:var(--mono);font-size:11px;color:var(--ps-blue);letter-spacing:0.06em;margin-top:auto;padding-top:18px;}
+.rel-cta::after{content:" ›";}
+
+/* CTA band */
+.cta-band{padding:120px 28px;text-align:center;background:var(--canvas);border-top:1px solid var(--hairline);position:relative;overflow:hidden;}
+.cta-band::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(0,102,204,0.06),transparent 60%);border-radius:50%;}
+.cta-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;}
+.cta-band h2{font-size:clamp(48px,7vw,84px);font-weight:600;letter-spacing:-0.035em;line-height:1;margin-bottom:22px;color:var(--ink);}
+.cta-band h2 em{font-style:normal;color:var(--muted);}
+.cta-band p{font-size:18px;color:var(--muted);max-width:540px;margin:0 auto 36px;line-height:1.55;}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff !important;padding:13px 26px;border-radius:var(--pill);font-size:14px;font-weight:500;transition:transform 120ms ease,opacity 120ms;letter-spacing:-0.01em;}
+.btn:hover{opacity:0.9;transform:translateY(-1px);}
+.btn.ghost{background:var(--paper);color:var(--ink) !important;border:1px solid var(--hairline);}
+.btn.ghost:hover{border-color:var(--ink);}
+
+footer{padding:48px 28px 64px;border-top:1px solid var(--hairline);text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:0.06em;text-transform:uppercase;}
+
+/* CMD PALETTE */
+.cmd-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.32);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding-top:10vh;}
+.cmd-overlay.open{display:flex;}
+.cmd-modal{width:min(720px,94vw);max-height:80vh;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,0.30);}
+.cmd-header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--hairline);flex-shrink:0;}
+.cmd-header-icon{width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--ps-blue) 0%,#7c3aed 100%);color:#fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,102,204,0.3);}
+.cmd-header-icon svg{width:18px;height:18px;}
+.cmd-header-text{flex:1;min-width:0;}
+.cmd-header-title{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.cmd-header-pill{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.12em;color:var(--ps-blue);background:rgba(0,102,204,0.1);border:1px solid rgba(0,102,204,0.2);padding:2px 6px;border-radius:4px;}
+.cmd-header-sub{font-size:11px;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:1.2px;margin-top:2px;}
+.cmd-icon-btn{width:32px;height:32px;border-radius:8px;background:transparent;border:1px solid transparent;cursor:pointer;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;transition:border-color 150ms ease,color 150ms ease;}
+.cmd-icon-btn:hover{border-color:var(--hairline);color:var(--ink);}
+.cmd-icon-btn svg{width:16px;height:16px;}
+
+.cmd-conv{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:14px;min-height:240px;max-height:54vh;}
+.cmd-conv::-webkit-scrollbar{width:6px;}
+.cmd-conv::-webkit-scrollbar-thumb{background:var(--hairline);border-radius:3px;}
+.msg{max-width:88%;display:flex;flex-direction:column;gap:8px;}
+.msg.user{align-self:flex-end;align-items:flex-end;}
+.msg.bot{align-self:flex-start;align-items:flex-start;}
+.msg-text{padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.55;letter-spacing:-0.005em;}
+.msg.user .msg-text{background:var(--ink);color:#fff;border-bottom-right-radius:4px;}
+.msg.bot .msg-text{background:var(--canvas);color:var(--ink);border:1px solid var(--hairline);border-bottom-left-radius:4px;}
+.msg-text strong{font-weight:600;color:var(--ink);}
+.msg-text code{font-family:var(--mono);font-size:12.5px;background:rgba(0,0,0,0.05);padding:1px 5px;border-radius:4px;}
+.msg-typing{display:inline-flex;gap:4px;padding:14px 16px;background:var(--canvas);border:1px solid var(--hairline);border-radius:14px;border-bottom-left-radius:4px;}
+.msg-typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typing 1.2s infinite ease-in-out;}
+.msg-typing span:nth-child(2){animation-delay:0.15s;}
+.msg-typing span:nth-child(3){animation-delay:0.30s;}
+@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-4px);opacity:1;}}
+
+.resp-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
+.resp-chip{font-size:12px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--hairline);padding:7px 12px;border-radius:var(--pill);cursor:pointer;font-family:var(--sans);display:inline-flex;align-items:center;gap:6px;transition:border-color 150ms ease,color 150ms ease,background 150ms ease;}
+.resp-chip::before{content:"↳";opacity:0.4;}
+.resp-chip:hover{border-color:var(--ink);color:var(--ink);background:var(--canvas);}
+
+.cmd-quick{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 0;flex-shrink:0;}
+.cmd-quick-btn{font-size:12px;color:var(--ink-soft);background:var(--canvas);border:1px solid var(--hairline);padding:7px 12px;border-radius:var(--pill);cursor:pointer;font-family:var(--sans);min-height:32px;transition:border-color 150ms ease,color 150ms ease;}
+.cmd-quick-btn:hover{border-color:var(--ink);color:var(--ink);}
+
+.cmd-input-row{display:flex;align-items:center;gap:10px;padding:12px 14px;flex-shrink:0;border-top:1px solid var(--hairline);background:var(--canvas);}
+.cmd-input-wrap{flex:1;display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--pill);padding:0 18px 0 14px;min-height:44px;transition:border-color 150ms ease,box-shadow 150ms ease;}
+.cmd-input-wrap:focus-within{border-color:var(--ps-blue);box-shadow:0 0 0 3px rgba(0,102,204,0.12);}
+.cmd-input-spark{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--ps-blue) 0%,#7c3aed 100%);color:#fff;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cmd-input-spark svg{width:13px;height:13px;}
+.cmd-input{flex:1;background:transparent;border:none;padding:11px 0;font-size:14px;font-family:var(--sans);color:var(--ink);outline:none;min-height:44px;}
+.cmd-input::placeholder{color:var(--dim);}
+.cmd-send{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:opacity 150ms ease;}
+.cmd-send:disabled{opacity:0.35;cursor:not-allowed;}
+.cmd-send svg{width:18px;height:18px;}
+
+@media (max-width:640px){
+  .cmd-overlay{padding-top:0;align-items:stretch;}
+  .cmd-modal{width:100%;max-height:100vh;height:100vh;border-radius:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="portfolio-hybrid.html" class="brand"><span class="brand-mark">H</span><span class="brand-label">Harry Hein</span></a>
+    <div class="nav-actions">
+      <a href="portfolio-hybrid.html#work" class="nav-back">All work</a>
+      <button class="nav-cmd" id="cmdTrigger" aria-label="Ask AI about this case">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="nav-cmd-label">Ask AI about this case</span>
+        <kbd>⌘K</kbd>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Case study · Design System · Raytail · 2025</div>
+    <h1>Three Platforms.<br>One <em>Source of Truth.</em></h1>
+    <p class="hero-sub">One Figma file for POS, Web, and Mobile. A brand color change took <strong>2 days</strong> and QA still found <strong>14 mismatched screens</strong>. So I rebuilt the foundation.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Role</span><span class="hero-meta-val">Senior Product Designer · Foundation Team</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Team</span><span class="hero-meta-val">Solo design + 1 engineer review</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Company</span><span class="hero-meta-val">Raytail</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Timeline</span><span class="hero-meta-val">2025</span></div>
+    </div>
+
+    <div class="hero-bento">
+      <div class="tile hero-media midnight">
+        <span class="tile-stamp">Multi-palette demo</span>
+        <img src="images/DS/★ Showcase — Multi-Palette Demo.webp" alt="Multi-Palette Design System Demo">
+        <div class="tile-cap">
+          <div class="play"></div>
+          <div>
+            <div class="tile-cap-label">Showcase · Multi-palette</div>
+            <div class="tile-cap-title">"One token, three platforms"</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="tile metric tint-violet"><span class="tile-stamp">Handover</span><div class="tstat-val">Days→Hours</div><div class="tstat-lbl">Cycle time</div><div class="tstat-foot">brand-color swap, timed</div></div>
+        <div class="tile metric tint-violet"><span class="tile-stamp">Surfaces</span><div class="tstat-val">3</div><div class="tstat-lbl">Platforms unified</div><div class="tstat-foot">POS · Web · Mobile</div></div>
+        <div class="tile metric tint-blue"><span class="tile-stamp">Consistency</span><div class="tstat-val">100%</div><div class="tstat-lbl">Design parity</div><div class="tstat-foot">0 duplicate tokens</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TL;DR -->
+<section class="section" id="tldr">
+  <div class="sec-head">
+    <span class="sec-num">At a glance · 60 seconds</span>
+    <h2 class="sec-title">One brand-color change took two days. QA still missed 14 screens.</h2>
+  </div>
+  <div class="tldr">
+    <div>
+      <p class="lede">Three platforms (POS, Web, Mobile) drifted apart from one Figma file. I rebuilt the foundation with a three-tier token model and governance rules so a single change reached all three platforms in minutes — and stayed reached. Pairs with the <a href="case-study-tokens.html" style="color:var(--ps-blue)">Tokens plugin</a> that ships these tokens to code, and powers the <a href="case-study-pharmacy-pos-hybrid.html" style="color:var(--ps-blue)">Pharmacy POS</a> rollout.</p>
+      <div class="tldr-jump">
+        <a href="#problem">Problem</a>
+        <a href="#audit">Audit</a>
+        <a href="#persona">Persona</a>
+        <a href="#strategy">Strategy</a>
+        <a href="#metrics">Targets</a>
+        <a href="#tokens">Tokens</a>
+        <a href="#pos">POS</a>
+        <a href="#components">Components</a>
+        <a href="#governance">Governance</a>
+        <a href="#results">Results</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#resolution">Resolution</a>
+        <a href="#reflection">Reflection</a>
+      </div>
+    </div>
+    <div class="tldr-grid">
+      <div class="tldr-item"><span class="l">Problem</span><span class="v">One Figma file, three platforms, infinite drift. A green change took 2 days; QA still broke.</span></div>
+      <div class="tldr-item"><span class="l">Architecture</span><span class="v">Three-tier tokens — primitives → semantic → component. Zero ambiguity per layer.</span></div>
+      <div class="tldr-item"><span class="l">Governance</span><span class="v">Naming contracts, deprecation paths, owner-per-tier. Rules that prevent regression after launch.</span></div>
+      <div class="tldr-item"><span class="l">Surfaces</span><span class="v">100% consistency across POS, Web, Mobile. A green change ships once, lands everywhere.</span></div>
+      <div class="tldr-item"><span class="l">Outcome</span><span class="v"><strong>Handover cycle: days → hours.</strong> 3 platforms unified on one foundation.</span></div>
+      <div class="tldr-item"><span class="l">Lesson</span><span class="v">A design system isn't components — it's the contract that prevents drift after launch.</span></div>
+      <div class="tldr-item" style="grid-column:1/-1"><span class="l">Connects</span><span class="v">Defines semantics for the <a href="case-study-tokens.html" style="color:var(--ps-blue)">Tokens export plugin</a>. Powers the <a href="case-study-pharmacy-pos-hybrid.html" style="color:var(--ps-blue)">Pharmacy POS</a> system (200+ screens).</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 — PROBLEM -->
+<section class="section" id="problem">
+  <div class="sec-head">
+    <span class="sec-num">01 — The Problem</span>
+    <h2 class="sec-title">The breaking point.</h2>
+    <p class="sec-sub">The brand green changed. A simple hex value update. The team spent two days manually updating components across every platform file. QA still found 14 screens they missed.</p>
+  </div>
+
+  <p class="lede">Three products shared one Figma file: POS for cashiers, Web dashboard for managers, Mobile for staff. Three radically different interaction models — touch targets, information density, gesture patterns — all crammed into a single library.</p>
+
+  <p class="p">The shared file was supposed to keep things consistent. Instead, it became the single point of failure. Every change rippled unpredictably. Every new designer asked the same question on day one.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-q">I don't know which file is right.</div>
+    <div class="pullquote-attr">New designer · day 3 of onboarding</div>
+  </div>
+
+  <div class="hook">That file was the problem. <em>But what would the solution look like?</em></div>
+</section>
+
+<!-- 02 — AUDIT -->
+<section class="section" id="audit">
+  <div class="sec-head">
+    <span class="sec-num">02 — Audit</span>
+    <h2 class="sec-title">What the audit revealed.</h2>
+    <p class="sec-sub">I ran three audits — tokens, components, and team interviews. Each one told the same story: drift at every level.</p>
+  </div>
+
+  <div class="audit-grid">
+    <div class="audit-card">
+      <span class="tag">Token Audit</span>
+      <span class="num">47</span>
+      <div class="h">Duplicate color values</div>
+      <p class="d">The brand primary had drifted 2-6 shades from spec — a different hex in POS, Web, and Mobile. Nobody noticed because nobody had a single source to check against.</p>
+    </div>
+    <div class="audit-card">
+      <span class="tag">Component Audit</span>
+      <span class="num">31</span>
+      <div class="h">Near-duplicate components</div>
+      <p class="d">Fixing one never fixed the others. Button height: 48px in POS, 36px in Web, 44px in Mobile. Three teams, three interpretations of "the same button."</p>
+    </div>
+    <div class="audit-card">
+      <span class="tag">Team Interviews</span>
+      <span class="num">3 days</span>
+      <div class="h">New designer onboarding</div>
+      <p class="d">Most of that time spent figuring out which components were current and which were abandoned. Tribal knowledge replaced documentation.</p>
+    </div>
+  </div>
+
+  <div class="hook">The root cause was clear: <em>one shared library doesn't scale for three radically different surfaces.</em></div>
+</section>
+
+<!-- PERSONA -->
+<section class="section" id="persona">
+  <div class="sec-head">
+    <span class="sec-num">Persona</span>
+    <h2 class="sec-title">Platform Designer.</h2>
+    <p class="sec-sub">Responsible for maintaining component libraries across POS, Web, and Mobile. Spends more time hunting inconsistencies than shipping new work.</p>
+  </div>
+
+  <div class="persona-bento">
+    <div class="persona-card span-2">
+      <span class="persona-role">Primary User</span>
+      <span class="persona-name">Platform Designer</span>
+      <p class="persona-desc">Responsible for maintaining component libraries across POS, Web, and Mobile. Spends more time hunting inconsistencies than shipping new work. Every change feels risky because nothing is predictable.</p>
+      <div class="persona-quote">"I don't know which file is right."<cite>— New designer, day 3 of onboarding</cite></div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-stat-val">47</div>
+      <div class="persona-stat-label">Duplicate tokens found</div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-stat-val">3 days</div>
+      <div class="persona-stat-label">New designer onboarding</div>
+    </div>
+    <div class="persona-card span-2">
+      <span class="persona-role">Daily Friction</span>
+      <ul class="persona-pain-list">
+        <li>One shared library for all 3 platforms — fast to start, catastrophic to maintain</li>
+        <li>Every change ripples unpredictably — no separation between foundations and platform-specific needs</li>
+        <li>New designers spend 3 days asking "which file is right?" before doing real work</li>
+        <li>47 duplicate tokens across POS, Web, and Mobile — same value, different names</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — STRATEGY -->
+<section class="section" id="strategy">
+  <div class="sec-head">
+    <span class="sec-num">03 — Strategy</span>
+    <h2 class="sec-title">Old vs. new mental model.</h2>
+    <p class="sec-sub">A shared core that defines what's universal — then platform libraries that extend without redefining the foundation. Changes flow down, never sideways.</p>
+  </div>
+
+  <div class="axis">
+    <div class="axis-col">
+      <div class="axis-head"><span class="axis-label">✗ Old Model</span></div>
+      <div class="axis-body"><strong>One library for all platforms.</strong> Fast to start. Catastrophic to maintain. Every change ripples unpredictably because there's no separation between shared foundations and platform-specific needs.</div>
+    </div>
+    <div class="axis-col yes">
+      <div class="axis-head"><span class="axis-label">✓ New Model</span></div>
+      <div class="axis-body"><strong>Foundation + Platform layers.</strong> A shared core defines what's universal — platform libraries extend without redefining the foundation. Changes flow down, never sideways.</div>
+    </div>
+  </div>
+
+  <h3 class="subhead">The architecture</h3>
+  <div class="tiers">
+    <div class="tier primary">
+      <div class="l">Level 1<strong>Global Foundation</strong></div>
+      <div class="v">Raytail Style Guidelines. Primitives, Typography, Brand, Base Logic. Published once. Consumed by all three platform libraries.</div>
+    </div>
+    <div class="tier">
+      <div class="l">Level 2<strong>Platform Libraries</strong></div>
+      <div class="v">POS gets 48px touch targets and dark surfaces. Web gets light surfaces and dense tables. Mobile gets gesture-aware components and bottom sheets. Each extends the foundation — none redefine it.</div>
+    </div>
+  </div>
+
+  <h3 class="subhead">Why not just adopt Carbon or Material?</h3>
+  <div class="options">
+    <div class="option">
+      <span class="option-tag">Option A</span>
+      <span class="option-name">Consume IBM Carbon as the foundation</span>
+      <p class="option-desc">Skip the foundation layer entirely. Inherit a battle-tested system. <strong>Rejected:</strong> Raytail's POS hardware needed 48px+ touch targets and high-contrast retail-lighting tokens Carbon doesn't expose. Theming Carbon back to brand spec would have been a constant fight against its defaults.</p>
+    </div>
+    <div class="option">
+      <span class="option-tag">Option B</span>
+      <span class="option-name">Single shared library across all platforms</span>
+      <p class="option-desc">One Figma file. One token set. <strong>Rejected:</strong> Same model as the old system — the one we were replacing because every change rippled unpredictably. Speed today, drift tomorrow.</p>
+    </div>
+    <div class="option pick">
+      <span class="option-tag">Option C · picked ✓</span>
+      <span class="option-name">Two-level federation</span>
+      <p class="option-desc">Foundation owns primitives; platform libraries own composition. Slower to set up, but the only model where a platform team can add a POS-specific dark-mode token without breaking Mobile.</p>
+    </div>
+  </div>
+
+  <div class="hook">How do the tokens flow through this architecture?</div>
+</section>
+
+<!-- SUCCESS METRICS -->
+<section class="section" id="metrics">
+  <div class="sec-head">
+    <span class="sec-num">Success Metrics</span>
+    <h2 class="sec-title">How I'd know it worked.</h2>
+    <p class="sec-sub">Targets set before the rebuild — split into design quality and business impact.</p>
+  </div>
+
+  <h3 class="subhead">Design KPIs</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-val">&lt;1 day</div><div class="kpi-label">Designer onboarding</div><div class="kpi-why">Before the system, new designers needed 3–5 days to decode component logic, naming conventions, and Figma structure.</div></div>
+    <div class="kpi-card"><div class="kpi-val">0</div><div class="kpi-label">Duplicate token count</div><div class="kpi-why">Duplicate tokens silently diverge — same name, different value, inconsistent UI that slips past every visual QA pass.</div></div>
+  </div>
+
+  <h3 class="subhead">Business KPIs</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-val">&gt;50%</div><div class="kpi-label">QA defect reduction</div><div class="kpi-why">Token inconsistencies were the #1 source of design–dev mismatch bugs filed in every sprint review cycle.</div></div>
+    <div class="kpi-card"><div class="kpi-val">&lt;1 day</div><div class="kpi-label">Onboarding-to-contribution</div><div class="kpi-why">Faster ramp = more time building components, less time reverse-engineering what already exists in the library.</div></div>
+  </div>
+</section>
+
+<!-- 04 — TOKEN ARCHITECTURE -->
+<section class="section" id="tokens">
+  <div class="sec-head">
+    <span class="sec-num">04 — Token Architecture</span>
+    <h2 class="sec-title">Three tiers. Zero ambiguity.</h2>
+    <p class="sec-sub">The token system needed to be strict enough to prevent drift, but flexible enough to support three different surfaces. I designed a three-tier model — reviewed weekly with the platform engineer.</p>
+  </div>
+
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Tier 1 — Reference</strong>Raw primitives. <code>color/green/500: #1B7A4A</code>. Never used in components directly. These are the atomic building blocks that only semantic tokens reference.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Tier 2 — Semantic</strong>Named by intent. <code>action/primary</code> resolves differently per platform. <code>surface/base</code> is <code>#0D0E0F</code> on POS, <code>#FFFFFF</code> on Web. Same name, appropriate value.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Tier 3 — Component</strong>Scoped overrides. <code>button/bg/primary</code> points to <code>action/primary</code>. Reskin without touching globals. The escape hatch that never breaks the system.</span></li>
+  </ul>
+
+  <div class="code-block">
+<span class="comment">// Tier 1 — Reference</span>
+<span class="key">color/green/500</span>: <span class="val">#1B7A4A</span>
+
+<span class="comment">// Tier 2 — Semantic (per platform)</span>
+<span class="key">action/primary</span>     <span class="comment">→ color/green/500</span>
+<span class="key">surface/base [POS]</span> <span class="comment">→ #0D0E0F</span>
+<span class="key">surface/base [Web]</span> <span class="comment">→ #FFFFFF</span>
+
+<span class="comment">// Tier 3 — Component</span>
+<span class="key">button/bg/primary</span>  <span class="comment">→ action/primary</span>
+  </div>
+
+  <p class="p">The three-tier model meant a brand color change was now a single token update at Tier 1. It propagated through semantic and component tokens automatically. No manual hunt. No missed screens.</p>
+
+  <div class="hook">With tokens defined, <em>how did platform-specific decisions shape each product?</em></div>
+</section>
+
+<!-- 05 — POS DECISIONS -->
+<section class="section" id="pos">
+  <div class="sec-head">
+    <span class="sec-num">05 — Platform Decisions</span>
+    <h2 class="sec-title">POS: design for the shop floor.</h2>
+    <p class="sec-sub">The POS had the most extreme constraints. Every design decision was shaped by the physical environment — retail lighting, touch hardware, transaction speed, and the cost of errors.</p>
+  </div>
+
+  <div class="dtable pos">
+    <div class="dtable-row head"><div>Constraint</div><div>Decision</div><div>Outcome</div></div>
+    <div class="dtable-row"><div class="label">High-ambient lighting</div><div>Dark surface default</div><div class="after">Legible under direct light</div></div>
+    <div class="dtable-row"><div class="label">Touch hardware, no mouse</div><div>48px min touch targets</div><div class="after">Tap errors reduced</div></div>
+    <div class="dtable-row"><div class="label">Fast transaction queue</div><div>Sidebar collapses to icons</div><div class="after">Max screen for transactions</div></div>
+    <div class="dtable-row"><div class="label">Payment failure is costly</div><div>High-contrast error state</div><div class="after">Errors caught at POS</div></div>
+    <div class="dtable-row"><div class="label">Scanning text is slow</div><div>Image-forward product grid</div><div class="after">Faster item selection</div></div>
+  </div>
+
+  <p class="p">The constraint that mattered most: <strong>POS Button has no Small variant.</strong> 32px is inaccessible on touchscreen hardware. This wasn't a design preference — it was a platform requirement baked into the component library.</p>
+
+  <div class="hook">Components defined. <em>But who owns what — and how do I prevent drift from returning?</em></div>
+</section>
+
+<!-- 06 — COMPONENT STRATEGY -->
+<section class="section" id="components">
+  <div class="sec-head">
+    <span class="sec-num">06 — Components</span>
+    <h2 class="sec-title">Atoms, molecules, organisms.</h2>
+    <p class="sec-sub">The component strategy followed the same two-level split as the architecture: global atoms owned by the foundation, platform molecules and organisms owned by each team.</p>
+  </div>
+
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Atoms (Global)</strong>Color, Type Scale, Icon Set, Spacing, Radius, Shadow. Defined once. Inherited everywhere. No platform can redefine these.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Molecules (Platform)</strong>POS: Numpad, Transaction Row. Web: Data Table, Filter Chip. Mobile: List Item, Bottom Sheet. Each platform builds what it needs from shared atoms.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Organisms (Platform)</strong>POS: Transaction Panel, Product Grid. Web: Analytics Header, Inventory Table. Complex compositions that only make sense in their platform context.</span></li>
+  </ul>
+
+  <div class="hook">The system was built. <em>Now it needed rules to stay alive.</em></div>
+</section>
+
+<!-- 07 — GOVERNANCE -->
+<section class="section" id="governance">
+  <div class="sec-head">
+    <span class="sec-num">07 — Governance</span>
+    <h2 class="sec-title">Rules that prevent drift.</h2>
+    <p class="sec-sub">A design system without governance is a wiki that nobody reads. I established four rules — each one addressing a specific failure mode from the old model.</p>
+  </div>
+
+  <ul class="steps">
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Foundation Team owns Level 1</strong>Breaking changes require cross-team coordination. No silent updates.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Platform Teams own Level 2</strong>Can add components freely. Cannot redefine global tokens. Gaps become proposals, not workarounds.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Naming Convention</strong><code>category/property/variant</code>. Enforced globally. Inconsistent naming is the #1 cause of drift.</span></li>
+    <li class="step"><span class="step-num">·</span><span class="step-text"><strong>Docs live in Figma</strong>Documentation that drifts from the component is worse than no documentation. If the doc isn't attached to the component, it doesn't exist.</span></li>
+  </ul>
+
+  <p class="p">The critical rule: <strong>global token updates sync all platforms on publish.</strong> Manual propagation is architecturally impossible. The system enforces consistency — it doesn't rely on discipline.</p>
+
+  <div class="hook">Did the new architecture <em>actually deliver on its promise?</em></div>
+</section>
+
+<!-- 08 — RESULTS -->
+<section class="section" id="results">
+  <div class="sec-head">
+    <span class="sec-num">08 — Results</span>
+    <h2 class="sec-title">Before &amp; after.</h2>
+    <p class="sec-sub">A brand-color swap that used to take two designers two days now takes one token update and ships by end of day.</p>
+  </div>
+
+  <div class="dtable tri">
+    <div class="dtable-row head"><div>Metric</div><div>Before</div><div>After</div></div>
+    <div class="dtable-row"><div class="label">Handover Time</div><div class="before"><s>3-5 days</s></div><div class="after">&lt;1 day</div></div>
+    <div class="dtable-row"><div class="label">Manual Style Overrides</div><div class="before"><s>Many</s></div><div class="after">Zero</div></div>
+    <div class="dtable-row"><div class="label">QA Visual Bugs</div><div class="before"><s>Routine</s></div><div class="after">Rare</div></div>
+    <div class="dtable-row"><div class="label">Duplicate Token Values</div><div class="before"><s>47</s></div><div class="after">0</div></div>
+    <div class="dtable-row"><div class="label">Designer Onboarding</div><div class="before"><s>~3 days</s></div><div class="after">&lt;1 day</div></div>
+  </div>
+
+  <div class="metric-strip-lg">
+    <div class="tile metric tint-violet"><span class="tile-stamp">Cycle</span><div class="tstat-val">Days→Hours</div><div class="tstat-lbl">Handover cycle</div><div class="tstat-foot">timed on three brand-color swaps · engineer confirmed</div></div>
+    <div class="tile metric tint-violet"><span class="tile-stamp">Tokens</span><div class="tstat-val">0</div><div class="tstat-lbl">Duplicate tokens</div><div class="tstat-foot">47 → 0 after rebuild</div></div>
+    <div class="tile metric tint-blue"><span class="tile-stamp">Surfaces</span><div class="tstat-val">3</div><div class="tstat-lbl">Platforms unified</div><div class="tstat-foot">POS · Web · Mobile</div></div>
+  </div>
+
+  <div class="pullquote">
+    <div class="pullquote-q">The federated tokens eliminated the cross-platform rework cycle that was eating our sprint velocity. Brand changes used to be a two-day fire drill — now they're a token update.</div>
+    <div class="pullquote-attr">Project Lead · confirmed during the next quarterly review</div>
+  </div>
+
+  <p class="p">A brand-color swap that used to take two designers two days — chasing 14 screens across POS, Web, and Mobile — now took one token update and shipped by end of day. I don't have current-state ticket data, but at the time of handoff the new model had eliminated the cross-team rework cycle that motivated the project.</p>
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gallery">
+  <div class="sec-head">
+    <span class="sec-num">Visual Showcase</span>
+    <h2 class="sec-title">The system, in pictures.</h2>
+    <p class="sec-sub">Color palettes, typography variables, multi-palette demonstrations, and the global / POS component libraries.</p>
+  </div>
+  <div class="gallery">
+    <div class="gallery-item"><img loading="lazy" decoding="async" src="images/DS/★ Showcase — Color Palette.webp" alt="Color Palette"><span class="label">Color palette</span></div>
+    <div class="gallery-item"><img loading="lazy" decoding="async" src="images/DS/★ Showcase — Multi-Palette Demo.webp" alt="Multi-Palette Demo"><span class="label">Multi-palette demo</span></div>
+    <div class="gallery-item"><img loading="lazy" decoding="async" src="images/DS/★ Showcase — Typography.webp" alt="Typography"><span class="label">Typography</span></div>
+    <div class="gallery-item"><img loading="lazy" decoding="async" src="images/DS/★ Showcase — Typo Variables.webp" alt="Type Variables"><span class="label">Type variables</span></div>
+    <div class="gallery-item"><img loading="lazy" decoding="async" src="images/DS/Global Component.webp" alt="Global Components"><span class="label">Global components</span></div>
+    <div class="gallery-item"><img loading="lazy" decoding="async" src="images/DS/POS Level Components.webp" alt="POS Components"><span class="label">POS-level components</span></div>
+  </div>
+</section>
+
+<!-- 09 — RESOLUTION -->
+<section class="section" id="resolution">
+  <div class="sec-head">
+    <span class="sec-num">09 — Resolution</span>
+    <h2 class="sec-title">The green changed again.</h2>
+    <p class="sec-sub">The proof was the next brand swap. Same change. New system. Different story.</p>
+  </div>
+
+  <p class="lede">Brand primary green changed again. This time: one token update. Every screen across POS, Web, and Mobile reflected it by end of day. QA flagged zero inconsistencies.</p>
+
+  <p class="p">The same change that took two days and missed 14 screens now took minutes and missed nothing. The system shifted from designer overhead to a strategic asset.</p>
+</section>
+
+<!-- 10 — REFLECTION -->
+<section class="section" id="reflection">
+  <div class="sec-head">
+    <span class="sec-num">10 — Reflection</span>
+    <h2 class="sec-title">What I would revisit.</h2>
+    <p class="sec-sub">Two things I'd take into v2 of the system, knowing what I know now.</p>
+  </div>
+
+  <div class="lessons">
+    <div class="lesson"><span class="lesson-num">Lesson 01</span><span class="lesson-h">Motion Tokens</span><p class="lesson-d">Left out of v1. Platform teams implemented animations independently — creating jarring inconsistencies that only surfaced at QA. Motion should have been a foundation-level concern from the start.</p></div>
+    <div class="lesson"><span class="lesson-num">Lesson 02</span><span class="lesson-h">Theming Architecture</span><p class="lesson-d">The two-level model supports white-labeling — but only if semantic tokens never reference raw hex directly. This constraint needs to be enforced architecturally, not documented.</p></div>
+  </div>
+</section>
+
+<!-- TIME MACHINE -->
+<section class="section">
+  <div class="sec-head">
+    <span class="sec-num">Time Machine</span>
+    <h2 class="sec-title">If I could go back.</h2>
+    <p class="sec-sub">The thing I'd change earliest: ship motion tokens alongside color and spacing on day one.</p>
+  </div>
+  <div class="tt-grid">
+    <div class="tt-card"><span class="tt-num">What I assumed</span><div class="tt-title">Motion tokens from day one</div><div class="tt-desc">Include animation and motion tokens in the initial system release.</div></div>
+    <div class="tt-card"><span class="tt-num">What I missed</span><div class="tt-title">Interaction consistency</div><div class="tt-desc">Without motion tokens, each platform animated differently — same component, different feel.</div></div>
+    <div class="tt-card"><span class="tt-num">What I'd do</span><div class="tt-title">Motion token tier in v1</div><div class="tt-desc">Ship a basic motion token set alongside color and spacing from launch.</div></div>
+    <div class="tt-card"><span class="tt-num">Expected outcome</span><div class="tt-title">Zero animation QA</div><div class="tt-desc">Consistent interactions across all three platforms without per-component fixes.</div></div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="section tight">
+  <div class="sec-head" style="margin-bottom:24px;">
+    <span class="sec-num">More work</span>
+    <h2 class="sec-title" style="font-size:clamp(28px,3vw,40px);">Related case studies</h2>
+  </div>
+  <div class="related-scroll">
+    <a href="case-study-po-ai-intent-hybrid.html" class="related-card midnight">
+      <div class="r-eyebrow">New · AI Product</div>
+      <h3 class="r-h">Speak, don't click.</h3>
+      <p class="r-sub">A bilingual intent palette that replaced an enterprise CRM dashboard. 28 intents in MVP, 21 already live.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><video src="videos/po-ai/01-palette-empty-state.mp4" muted loop playsinline preload="none" data-lazy-video poster="images/po-ai/hero-palette.webp"></video></div></div>
+    </a>
+    <a href="case-study-pharmacy-pos-hybrid.html" class="related-card tint-amber">
+      <div class="r-eyebrow">Enterprise · POS</div>
+      <h3 class="r-h">Two stores. One system.</h3>
+      <p class="r-sub">14 modules, 200+ screens — a legacy Windows POS redesigned for touch.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><img src="images/ppos/New%20Central%20Hub.webp" alt="Pharmacy POS central hub" loading="lazy"></div></div>
+    </a>
+    <a href="case-study-retail-hybrid.html" class="related-card tint-rose">
+      <div class="r-eyebrow">Retail · 2025</div>
+      <h3 class="r-h">From feedback to 427% ROI.</h3>
+      <p class="r-sub">A broken returns process had CS drowning in tickets. Four months of research, three test rounds.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><img src="images/retail-ui-final.webp" alt="Retail returns redesign final UI" loading="lazy"></div></div>
+    </a>
+    <a href="case-study-golden-paths-hybrid.html" class="related-card dark">
+      <div class="r-eyebrow">AI Research · 2024</div>
+      <h3 class="r-h">Prototypes that never sleep.</h3>
+      <p class="r-sub">AI-simulated path analysis that matched human friction in 9 of 11 blockers tested.</p>
+      <span class="r-cta">Read case study</span>
+      <div class="r-media"><div class="r-frame"><video src="images/AI%20Test/Demo.mp4" muted loop playsinline preload="none" data-lazy-video></video></div></div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-inner">
+    <h2>Let's build<br>something <em>great</em></h2>
+    <p>Open to senior roles in product and UX. Looking for a team that ships things and cares whether they work.</p>
+    <div class="cta-row">
+      <a href="mailto:kaungmyat9702@gmail.com" class="btn">Email Harry</a>
+      <a href="portfolio-hybrid.html#work" class="btn ghost">See all work</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Harry Hein · Senior Product Designer</footer>
+
+<!-- CMD PALETTE MODAL -->
+<div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Design System case study assistant">
+  <div class="cmd-modal">
+    <div class="cmd-header">
+      <span class="cmd-header-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.3 4.3 1.9-4.3 1.9L12 15.4l-1.9-4.3-4.3-1.9 4.3-1.9z"/><path d="M19 13l.95 2.05L22 16l-2.05.95L19 19l-.95-2.05L16 16l2.05-.95z"/></svg>
+      </span>
+      <div class="cmd-header-text">
+        <div class="cmd-header-title">Harry's Intent AI <span class="cmd-header-pill">BETA</span></div>
+        <div class="cmd-header-sub">Ask anything about this case · Gemini 2.5 Flash</div>
+      </div>
+      <button class="cmd-icon-btn" id="cmdRestart" aria-label="Restart conversation" title="Restart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+      </button>
+      <button class="cmd-icon-btn" id="cmdClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="cmd-conv" id="cmdConv" aria-live="polite"></div>
+
+    <div class="cmd-quick" id="cmdQuick">
+      <button class="cmd-quick-btn" data-q="Walk me through the three-tier token architecture.">Token architecture</button>
+      <button class="cmd-quick-btn" data-q="Why federated tokens — Foundation plus Platform — instead of one shared file?">Federated tokens</button>
+      <button class="cmd-quick-btn" data-q="What does drift mean in a design system and how did you prevent it?">Drift problem</button>
+      <button class="cmd-quick-btn" data-q="How do you keep POS, Web, and Mobile consistent across radically different surfaces?">Multi-platform</button>
+      <button class="cmd-quick-btn" data-q="How did you roll the new system out without freezing platform teams?">Rollout</button>
+      <button class="cmd-quick-btn" data-q="What's the impact of the new design system?">Impact</button>
+    </div>
+
+    <div class="cmd-input-row">
+      <div class="cmd-input-wrap">
+        <span class="cmd-input-spark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.3 4.3 1.9-4.3 1.9L12 15.4l-1.9-4.3-4.3-1.9 4.3-1.9z"/></svg>
+        </span>
+        <input class="cmd-input" id="cmdInput" placeholder="Ask Intent AI — tokens, multi-platform, drift… EN / မြန်မာ" aria-label="Ask Intent AI about this case">
+      </div>
+      <button class="cmd-send" id="cmdSend" aria-label="Send message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById('cmdOverlay');
+  const trigger = document.getElementById('cmdTrigger');
+  const closeBtn = document.getElementById('cmdClose');
+  const restart = document.getElementById('cmdRestart');
+  const conv = document.getElementById('cmdConv');
+  const input = document.getElementById('cmdInput');
+  const sendBtn = document.getElementById('cmdSend');
+  const quickBar = document.getElementById('cmdQuick');
+
+  function el(tag, cls, html){
+    const e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(html != null) e.innerHTML = html;
+    return e;
+  }
+  function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function renderMarkdown(text){
+    return String(text)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,'<em>$1</em>')
+      .replace(/`([^`]+?)`/g,'<code>$1</code>')
+      .replace(/\n/g,'<br>');
+  }
+  function renderChips(chips){
+    const w = el('div','resp-chips');
+    chips.forEach(c => {
+      const b = el('button','resp-chip', esc(c.label));
+      b.dataset.q = c.q || c.label;
+      w.appendChild(b);
+    });
+    return w;
+  }
+  function showUser(text){
+    const m = el('div','msg user');
+    m.appendChild(el('div','msg-text', esc(text)));
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+  }
+  function showBot(parts){
+    const m = el('div','msg bot');
+    parts.forEach(p => {
+      if(typeof p === 'string') m.appendChild(el('div','msg-text', p));
+      else if(p) m.appendChild(p);
+    });
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+  }
+  function showTyping(){
+    const m = el('div','msg bot');
+    m.appendChild(el('div','msg-typing','<span></span><span></span><span></span>'));
+    conv.appendChild(m); conv.scrollTop = conv.scrollHeight;
+    return m;
+  }
+
+  const chatHistory = [];
+  async function askGemini(q){
+    chatHistory.push({ role:'user', content:q });
+    const res = await fetch('/api/chat',{
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ messages: chatHistory, context: 'design-system' })
+    });
+    const data = await res.json();
+    if(data.error) throw new Error(data.error);
+    const reply = data.reply || '';
+    chatHistory.push({ role:'assistant', content: reply });
+    return reply;
+  }
+  function followUps(q){
+    const t = q.toLowerCase();
+    const chips = [];
+    if(/token|tier|primitive|semantic|component/.test(t)) chips.push({ label:'How do tiers prevent drift?', q:'How do the three token tiers prevent drift in practice?' });
+    if(/drift|consistency|qa|bug/.test(t)) chips.push({ label:'Governance rules', q:'Walk me through the four governance rules.' });
+    if(/platform|pos|mobile|web|surface/.test(t)) chips.push({ label:'POS-specific decisions', q:'What design decisions were unique to the POS platform?' });
+    if(/governance|rule|own|owner/.test(t)) chips.push({ label:'Why federated?', q:'Why federate ownership between Foundation and Platform teams?' });
+    if(/impact|result|metric|number|outcome/.test(t)) chips.push({ label:'What you would revisit', q:'What would you revisit in v2 of the system?' });
+    if(chips.length < 2) chips.push({ label:'Walk me through the design', q:'Walk me through the design decisions step by step.' });
+    if(chips.length < 3) chips.push({ label:'What would you do differently?', q:"What would you do differently next time?" });
+    return chips.slice(0,3);
+  }
+
+  async function submit(text){
+    const q = (text || '').trim();
+    if(!q) return;
+    showUser(q);
+    input.value = '';
+    sendBtn.disabled = true;
+    const typing = showTyping();
+    try{
+      const reply = await askGemini(q);
+      typing.remove();
+      showBot([ renderMarkdown(reply), renderChips(followUps(q + ' ' + reply)) ]);
+    } catch(err){
+      typing.remove();
+      showBot([ 'Could not reach the AI service. Please try again.' ]);
+    } finally {
+      sendBtn.disabled = false;
+    }
+  }
+
+  function seedWelcome(){
+    showBot([
+      `Hi — I'm Harry's AI assistant for this case study. Ask about <strong>token architecture</strong>, <strong>federated ownership</strong>, <strong>drift prevention</strong>, <strong>multi-platform decisions</strong>, or <strong>shipped impact</strong>. EN / မြန်မာ both work.`,
+      renderChips([
+        { label:'Why federated tokens?', q:'Why federated tokens — Foundation plus Platform — instead of one shared file?' },
+        { label:'How did you prevent drift?', q:'How did you prevent drift after launch with governance rules?' },
+        { label:"What's the impact?", q:"What's the impact of the new design system?" }
+      ])
+    ]);
+  }
+  function open(){
+    overlay.classList.add('open');
+    if(conv.children.length === 0) seedWelcome();
+    setTimeout(()=>input.focus(), 30);
+  }
+  function close(){ overlay.classList.remove('open'); }
+  function doRestart(){ conv.innerHTML = ''; chatHistory.length = 0; seedWelcome(); input.focus(); }
+
+  trigger.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  restart.addEventListener('click', doRestart);
+  overlay.addEventListener('click', e=>{ if(e.target === overlay) close(); });
+  sendBtn.addEventListener('click', ()=>submit(input.value));
+  input.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ e.preventDefault(); submit(input.value); }
+  });
+  quickBar.addEventListener('click', e=>{
+    const b = e.target.closest('button[data-q]');
+    if(b) submit(b.dataset.q);
+  });
+  conv.addEventListener('click', e=>{
+    const c = e.target.closest('.resp-chip[data-q]');
+    if(c){ e.preventDefault(); submit(c.dataset.q); }
+  });
+  document.addEventListener('keydown', e=>{
+    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){
+      e.preventDefault();
+      overlay.classList.contains('open') ? close() : open();
+      return;
+    }
+    if(e.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
+})();
+</script>
+
+
+<script>
+/* Lazy-load videos via IntersectionObserver — added by lazy-loading task */
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(rm&&rm.matches)return;
+  var vids=document.querySelectorAll('video[data-lazy-video]');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){
+        if(v.preload!=='auto')v.preload='auto';
+        var p=v.play();
+        if(p&&p.catch)p.catch(function(){});
+      }else{
+        v.pause();
+      }
+    });
+  },{rootMargin:'200px 0px',threshold:0.1});
+  vids.forEach(function(v){io.observe(v);});
+})();
+</script>
+
+</body>
+</html>
