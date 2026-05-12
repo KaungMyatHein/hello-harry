@@ -250,12 +250,12 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 @media (max-width:580px){.bento-blog{grid-template-columns:1fr;}}
 .blog-tile{position:relative;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;padding:32px 28px;min-height:280px;background:var(--canvas);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);text-decoration:none;}
 .blog-tile:hover{transform:translateY(-2px);}
-.blog-tile.tint-blue{background:#e6efff;}
-.blog-tile.tint-violet{background:#efeaff;}
-.blog-tile.tint-amber{background:#fff4d6;}
-.blog-tile.tint-rose{background:#ffe6ec;}
-.blog-tile.tint-mint{background:#dcf7ec;}
-.blog-tile.dark{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.blog-tile.tint-blue{background:linear-gradient(135deg,#eef4ff 0%,#e6efff 45%,#dde9fa 100%);}
+.blog-tile.tint-violet{background:linear-gradient(135deg,#f5f1ff 0%,#efeaff 45%,#e6dffa 100%);}
+.blog-tile.tint-amber{background:linear-gradient(135deg,#fff8e5 0%,#fff4d6 45%,#faecc4 100%);}
+.blog-tile.tint-rose{background:linear-gradient(135deg,#ffeef2 0%,#ffe6ec 45%,#fadce4 100%);}
+.blog-tile.tint-mint{background:linear-gradient(135deg,#e5faf0 0%,#dcf7ec 45%,#cef0e0 100%);}
+.blog-tile.dark{background:linear-gradient(135deg,#141414 0%,#0a0a0a 55%,#040404 100%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
 .blog-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .blog-tile.dark .blog-eyebrow{color:rgba(255,255,255,0.65);}
 .blog-eyebrow .dot{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:0.5;}
@@ -299,13 +299,13 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   background:currentColor;opacity:0.65;
 }
 .tile.dark .tile-stamp,.tile.midnight .tile-stamp{color:rgba(255,255,255,0.55);}
-.tile.dark{background:var(--ink);color:#fff;}
+.tile.dark{background:linear-gradient(135deg,#141414 0%,#0a0a0a 55%,#040404 100%);color:#fff;}
 .tile.midnight{background:linear-gradient(180deg,#0a1430 0%,#000 100%);color:#fff;}
-.tile.tint-blue{background:#e6efff;}
-.tile.tint-violet{background:#efeaff;}
-.tile.tint-amber{background:#fff4d6;}
-.tile.tint-rose{background:#ffe6ec;}
-.tile.tint-mint{background:#dcf7ec;}
+.tile.tint-blue{background:linear-gradient(135deg,#eef4ff 0%,#e6efff 45%,#dde9fa 100%);}
+.tile.tint-violet{background:linear-gradient(135deg,#f5f1ff 0%,#efeaff 45%,#e6dffa 100%);}
+.tile.tint-amber{background:linear-gradient(135deg,#fff8e5 0%,#fff4d6 45%,#faecc4 100%);}
+.tile.tint-rose{background:linear-gradient(135deg,#ffeef2 0%,#ffe6ec 45%,#fadce4 100%);}
+.tile.tint-mint{background:linear-gradient(135deg,#e5faf0 0%,#dcf7ec 45%,#cef0e0 100%);}
 
 .tile-eyebrow{
   font-size:12px;font-weight:500;letter-spacing:0.14em;
@@ -951,8 +951,8 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   <div class="hero-lens" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-eyebrow"><span class="dot"></span>Senior Product Designer · Available 2026</div>
-    <h1 data-text="Design. Ship.&#10;Measure.">Design. Ship.<br><em>Measure.</em></h1>
-    <p class="hero-sub" data-text="AI-first systems for complex enterprise tooling — seven years of work that ships and gets measured.">AI-first systems for complex enterprise tooling — seven years of work that ships and gets measured.</p>
+    <h1 data-text="I make complicated user journeys simple.">I make complicated user journeys <em>simple.</em></h1>
+    <p class="hero-sub" data-text="Seven years finding the simple journey inside complicated enterprise tools — AI palettes, POS systems, design systems. Designed, built, and measured.">Seven years finding the simple journey inside complicated enterprise tools — AI palettes, POS systems, design systems. Designed, built, and measured.</p>
 
     <div class="hero-bento">
     <div class="palette" role="dialog" aria-label="Search palette">
