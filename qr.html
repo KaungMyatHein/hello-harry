@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scan to see Harry's portfolio</title>
+<meta name="description" content="Scan the QR code with your phone camera to open Harry Hein's product design portfolio.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fafaf9; --canvas:#f5f4f0;
+  --ink:#0a0a0a; --ink-soft:#3a3a3a; --muted:#6b6b67;
+  --hairline:rgba(10,10,10,0.08);
+  --ps-blue:#0066cc;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--paper);
+  color:var(--ink-soft);
+  font-family:var(--sans);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:48px 20px 80px;
+  text-align:center;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  letter-spacing:-0.012em;
+}
+.kicker{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:14px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.kicker::before{
+  content:"";
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--ps-blue);
+  box-shadow:0 0 8px rgba(0,102,204,0.5);
+}
+h1{
+  font-size:clamp(28px,3.4vw,42px);
+  font-weight:600;
+  letter-spacing:-0.025em;
+  color:var(--ink);
+  margin-bottom:12px;
+  line-height:1.1;
+}
+.sub{
+  font-size:16px;
+  color:var(--muted);
+  margin-bottom:40px;
+  max-width:440px;
+  line-height:1.5;
+}
+.qr-box{
+  display:inline-block;
+  padding:28px;
+  background:#fff;
+  border-radius:28px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.08),
+    0 6px 24px rgba(0,0,0,0.04),
+    inset 0 0 0 1px rgba(0,0,0,0.04);
+  margin-bottom:32px;
+}
+#qr{
+  width:280px;
+  height:280px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#qr svg{
+  display:block;
+  width:100%;
+  height:100%;
+}
+.qr-loading{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+@media (min-width:640px){
+  #qr{width:340px;height:340px;}
+}
+.url-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--ink);
+  background:var(--canvas);
+  border:1px solid var(--hairline);
+  padding:11px 20px;
+  border-radius:9999px;
+  text-decoration:none;
+  transition:border-color 150ms ease,background 150ms ease;
+}
+.url-pill:hover{border-color:var(--ink);background:#fff;}
+.url-pill::before{content:"→";color:var(--ps-blue);font-size:15px;line-height:1;}
+footer{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  opacity:0.6;
+}
+</style>
+</head>
+<body>
+
+<div class="kicker">Harry Hein &middot; Portfolio</div>
+<h1>Scan to see my work.</h1>
+<p class="sub">Point your phone camera at the code. It will take you straight to the portfolio.</p>
+
+<div class="qr-box">
+  <div id="qr"><div class="qr-loading">Loading&hellip;</div></div>
+</div>
+
+<a class="url-pill" href="https://hello-harry.vercel.app/" target="_blank" rel="noopener">hello-harry.vercel.app</a>
+
+<footer>&copy; 2026 Harry Hein</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<script>
+(function(){
+  var target = document.getElementById('qr');
+  var url = 'https://hello-harry.vercel.app/';
+  function render(){
+    try{
+      var qr = qrcode(0, 'M');
+      qr.addData(url);
+      qr.make();
+      target.innerHTML = qr.createSvgTag({ cellSize: 10, margin: 0, scalable: true });
+    } catch(e){
+      target.innerHTML = '<div class="qr-loading">QR failed to load &mdash; visit the URL below.</div>';
+    }
+  }
+  if (typeof qrcode === 'function') render();
+  else window.addEventListener('load', render);
+})();
+</script>
+
+</body>
+</html>
