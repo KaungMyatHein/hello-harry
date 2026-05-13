@@ -64,6 +64,7 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 .nav-cmd{display:inline-flex;align-items:center;gap:8px;background:var(--inset);border:1px solid var(--hairline);padding:10px 14px;min-height:44px;border-radius:var(--pill);font-size:12px;color:var(--muted);cursor:pointer;transition:border-color 150ms ease;font-family:var(--sans);}
 .nav-cmd:hover{border-color:var(--ink);color:var(--ink);}
 .nav-cmd kbd{font-family:var(--mono);font-size:10px;background:var(--paper);border:1px solid var(--hairline);padding:1px 5px;border-radius:4px;color:var(--ink-soft);}
+.nav-cmd-ai{display:none;}
 
 /* === Mobile === */
 @media (max-width:768px){
@@ -72,6 +73,7 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   .nav-links a:not(.nav-cmd){display:none;}
   .nav-cmd{padding:8px 12px;min-height:36px;gap:6px;}
   .nav-cmd-text{display:none;}
+  .nav-cmd-ai{display:inline;font-weight:600;font-size:11px;letter-spacing:0.08em;color:var(--ink);}
   .hero{padding:72px 18px 48px;}
   .hero-bento{margin-top:32px;gap:14px;}
   .section{padding:64px 18px;}
@@ -948,9 +950,10 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
       <a href="#experience">Experience</a>
       <a href="#voices">Voices</a>
       <a href="#writing">Writing</a>
-      <button class="nav-cmd" id="cmdTrigger" aria-label="Search Harry's work">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <span class="nav-cmd-text">Search Harry's Work</span>
+      <button class="nav-cmd" id="cmdTrigger" aria-label="Open Harry's AI assistant">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+        <span class="nav-cmd-text">Ask Harry's AI</span>
+        <span class="nav-cmd-ai">AI</span>
         <kbd>⌘</kbd><kbd>K</kbd>
       </button>
     </div>
