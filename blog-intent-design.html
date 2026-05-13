@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intent Design — Software That Listens to You · Harry Hein</title>
+
+<!-- SEO -->
+<meta name="description" content="Stop making the user learn the software. Make the software learn the user. A 5-minute essay on Intent Design — typing what you want and letting the app do it.">
+<meta name="author" content="Harry Hein">
+<meta name="keywords" content="Intent Design, UX, Product Design, AI Palette, Conversational UI, Harry Hein">
+<meta name="theme-color" content="#0066cc">
+<link rel="canonical" href="https://harryhein.com/blog-intent-design.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intent Design — Software That Listens to You">
+<meta property="og:description" content="Stop making the user learn the software. Make the software learn the user. A 5-minute essay on the shift from menus to intent.">
+<meta property="og:image" content="https://harryhein.com/images/po-ai/hero-palette.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Po AI Intent Palette — type a sentence, the app does it.">
+<meta property="og:url" content="https://harryhein.com/blog-intent-design.html">
+<meta property="og:site_name" content="Harry Hein · Portfolio">
+<meta property="article:author" content="Harry Hein">
+<meta property="article:section" content="Design Essays">
+<meta property="article:tag" content="Intent Design">
+<meta property="article:tag" content="UX">
+<meta property="article:tag" content="AI">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Intent Design — Software That Listens to You">
+<meta name="twitter:description" content="Stop making the user learn the software. Make the software learn the user.">
+<meta name="twitter:image" content="https://harryhein.com/images/po-ai/hero-palette.jpg">
+<meta name="twitter:image:alt" content="Po AI Intent Palette — type a sentence, the app does it.">
+<meta name="twitter:creator" content="@harryhein">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --canvas:#fafafa; --inset:#f4f4f5;
+  --ink:#0a0a0a; --ink-soft:#1f1f22; --muted:#5a5a5f; --dim:#737378;
+  --hairline:#e7e7e8; --hairline-soft:#efefef;
+  --ps-blue:#0066cc; --ps-blue-deep:#003791; --ps-blue-light:#3da5f5;
+  --accent:var(--ps-blue);
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --radius:14px; --radius-sm:8px; --radius-lg:20px; --pill:9999px;
+  --shadow-card:0 1px 2px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.05);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{background:var(--paper);color:var(--ink-soft);font-family:var(--sans);font-size:17px;line-height:1.65;letter-spacing:-0.012em;}
+a{color:inherit;text-decoration:none;transition:color 150ms ease;}
+strong{font-weight:600;color:var(--ink);}
+em{font-style:italic;color:inherit;}
+code{font-family:var(--mono);font-size:0.86em;background:var(--inset);padding:1px 6px;border-radius:5px;color:var(--ink);}
+ul,ol{list-style:none;}
+
+.nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,0.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hairline-soft);}
+.nav-inner{max-width:880px;margin:0 auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+.brand-mark{width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;font-family:var(--mono);}
+.nav-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);font-weight:500;}
+.nav-back::before{content:"‹";font-size:18px;line-height:0;}
+.nav-back:hover{color:var(--ink);}
+
+.hero{padding:88px 28px 40px;}
+.hero-inner{max-width:760px;margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:6px 14px;border-radius:var(--pill);font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--ps-blue);box-shadow:0 0 8px rgba(0,102,204,0.6);}
+h1.title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,68px);line-height:1.04;letter-spacing:-0.02em;color:var(--ink);margin-bottom:22px;}
+.tagline{font-size:clamp(18px,1.8vw,21px);color:var(--ink);line-height:1.5;letter-spacing:-0.012em;max-width:640px;margin-bottom:28px;font-style:italic;}
+.tagline strong{font-style:normal;}
+.meta-row{display:flex;flex-wrap:wrap;gap:18px;padding:18px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);margin-bottom:36px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);}
+.meta-row span strong{color:var(--ink);font-weight:600;letter-spacing:0;text-transform:none;font-family:var(--sans);font-size:13px;margin-left:6px;}
+
+.media{margin:32px 0;border-radius:var(--radius-lg);overflow:hidden;background:#000;box-shadow:var(--shadow-card);position:relative;cursor:zoom-in;transition:transform 0.3s ease,box-shadow 0.3s ease;}
+.media:hover{transform:scale(1.005);box-shadow:0 8px 28px rgba(0,0,0,0.12),0 2px 6px rgba(0,0,0,0.08);}
+.media video,.media img{display:block;width:100%;height:auto;}
+.media::after{content:"";position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 21l-4.35-4.35'/><circle cx='10.5' cy='10.5' r='7.5'/><line x1='10.5' y1='7' x2='10.5' y2='14'/><line x1='7' y1='10.5' x2='14' y2='10.5'/></svg>");background-position:center;background-repeat:no-repeat;background-size:18px;opacity:0;transition:opacity 0.2s ease;pointer-events:none;}
+.media:hover::after{opacity:1;}
+.media-cap{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--dim);text-transform:uppercase;margin-top:10px;text-align:center;}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s ease;}
+.lightbox.open{opacity:1;pointer-events:all;}
+.lightbox-content{max-width:92vw;max-height:90vh;display:flex;align-items:center;justify-content:center;transform:scale(0.96);transition:transform 0.3s cubic-bezier(0.2,0.8,0.3,1);}
+.lightbox.open .lightbox-content{transform:scale(1);}
+.lightbox-content video,.lightbox-content img{max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);background:#000;display:block;}
+.lightbox-close{position:fixed;top:24px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.18);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s ease,transform 0.2s ease;z-index:1001;}
+.lightbox-close:hover{background:rgba(255,255,255,0.18);transform:rotate(90deg);}
+.lightbox-close svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.lightbox-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);z-index:1001;}
+.lightbox-hint kbd{font-family:var(--mono);font-size:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);padding:2px 6px;border-radius:4px;color:#fff;margin:0 2px;}
+
+section{padding:48px 28px;max-width:820px;margin:0 auto;}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,42px);line-height:1.1;letter-spacing:-0.018em;color:var(--ink);margin-bottom:22px;}
+h2 .num{display:inline-block;font-family:var(--mono);font-size:14px;font-weight:500;color:var(--ps-blue);letter-spacing:0.1em;margin-right:14px;vertical-align:middle;}
+h3{font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;margin:28px 0 10px;}
+p{margin-bottom:18px;max-width:680px;}
+p:last-child{margin-bottom:0;}
+
+ul.bullets,ol.numbered{margin:18px 0 22px;padding-left:0;}
+ul.bullets li,ol.numbered li{position:relative;padding:6px 0 6px 28px;font-size:17px;line-height:1.6;color:var(--ink-soft);}
+ul.bullets li::before{content:"";position:absolute;left:8px;top:16px;width:6px;height:6px;border-radius:50%;background:var(--ps-blue);}
+ol.numbered{counter-reset:n;}
+ol.numbered li{counter-increment:n;}
+ol.numbered li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:6px;font-family:var(--mono);font-size:12px;color:var(--ps-blue);font-weight:600;letter-spacing:0.06em;}
+
+.quote{margin:32px 0;padding:24px 28px 24px 32px;background:linear-gradient(135deg,rgba(0,102,204,0.05) 0%,rgba(0,102,204,0.015) 100%);border-left:3px solid var(--ps-blue);border-radius:0 var(--radius-lg) var(--radius-lg) 0;font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--ink);font-style:italic;letter-spacing:-0.012em;}
+.quote-pair{margin:32px 0;display:grid;gap:10px;}
+.quote-pair .q{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--ink);padding:14px 22px;border-left:2px solid var(--hairline);}
+.quote-pair .q.accent{border-left-color:var(--ps-blue);color:var(--ink);}
+
+.mermaid-wrap{margin:36px 0;padding:40px 32px;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-lg);display:flex;justify-content:center;align-items:center;overflow-x:auto;min-height:220px;}
+.mermaid{font-family:var(--sans)!important;width:100%;max-width:780px;display:flex;justify-content:center;}
+.mermaid svg{width:100%!important;max-width:780px;height:auto!important;min-height:200px;}
+.mermaid .nodeLabel,.mermaid .edgeLabel{font-size:18px!important;font-weight:500!important;}
+.mermaid .cluster-label .nodeLabel{font-size:14px!important;font-weight:600!important;letter-spacing:0.08em;text-transform:uppercase;}
+@media (max-width:680px){
+  .mermaid-wrap{padding:24px 16px;min-height:auto;}
+  .mermaid svg{min-height:auto;}
+  .mermaid .nodeLabel,.mermaid .edgeLabel{font-size:15px!important;}
+}
+
+.tbl{margin:28px 0;border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;background:var(--paper);}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;}
+.tbl th{background:var(--canvas);text-align:left;padding:14px 18px;font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);border-bottom:1px solid var(--hairline);}
+.tbl td{padding:14px 18px;border-bottom:1px solid var(--hairline-soft);color:var(--ink-soft);vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl td:first-child{font-weight:500;color:var(--ink);width:30%;}
+.tbl em{color:var(--ps-blue);font-style:italic;}
+
+.divider{margin:56px auto;max-width:680px;border:none;border-top:1px solid var(--hairline);}
+
+.cta{margin:64px auto 24px;max-width:760px;padding:40px 32px;background:var(--ink);color:#fff;border-radius:var(--radius-lg);text-align:center;}
+.cta .cta-eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.55);margin-bottom:14px;}
+.cta h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.4vw,36px);color:#fff;letter-spacing:-0.018em;line-height:1.2;margin-bottom:14px;}
+.cta p{color:rgba(255,255,255,0.7);font-size:16px;margin:0 auto 24px;max-width:520px;}
+.cta a.btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--ink);font-weight:500;padding:14px 24px;border-radius:var(--pill);font-size:14px;letter-spacing:-0.005em;transition:transform 150ms ease;}
+.cta a.btn:hover{transform:translateY(-1px);}
+.cta a.btn::after{content:"→";font-size:16px;}
+
+footer{padding:32px 28px 56px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;}
+
+@media (max-width:680px){
+  .nav-inner{padding:0 18px;}
+  .hero{padding:56px 18px 28px;}
+  section{padding:36px 18px;}
+  h1.title{font-size:clamp(36px,9vw,52px);}
+  .quote{padding:20px 22px 20px 26px;font-size:19px;}
+  .quote-pair .q{font-size:18px;padding:12px 18px;}
+  .tbl table{font-size:14px;}
+  .tbl th,.tbl td{padding:12px 14px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="portfolio-hybrid.html">
+      <span class="brand-mark">H</span>
+      <span class="brand-label">Harry Hein</span>
+    </a>
+    <a class="nav-back" href="portfolio-hybrid.html">Back to work</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span>Blog · Design Essay</div>
+    <h1 class="title">Intent Design — Software That Listens to You</h1>
+    <p class="tagline"><strong>Stop making the user learn the software. Make the software learn the user.</strong></p>
+    <div class="meta-row">
+      <span>Author <strong>Harry Hein</strong></span>
+      <span>Topic <strong>Intent Design</strong></span>
+      <span>Read <strong>5 min</strong></span>
+    </div>
+    <div class="media">
+      <video src="videos/po-ai/22-chain-restock.mp4" autoplay muted loop playsinline></video>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2><span class="num">01</span>What is Intent Design?</h2>
+  <p>You type what you want. The app does it.</p>
+  <p>No menus. No clicking through tabs. One text box.</p>
+  <ul class="bullets">
+    <li><strong>Old way:</strong> <em>"Where is the button to mark this order paid?"</em></li>
+    <li><strong>New way:</strong> <em>"Mark order #1042 paid."</em> → done.</li>
+  </ul>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+flowchart LR
+    A[Type a sentence] --> B[Intent Classifier]
+    B --> C[Action happens right there]
+    </pre>
+  </div>
+
+  <div class="media">
+    <video src="videos/po-ai/01-palette-empty-state.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <p class="media-cap">Empty palette — one text box, infinite intents.</p>
+</section>
+
+<hr class="divider">
+
+<section>
+  <h2><span class="num">02</span>Why Intent Design?</h2>
+  <p>Menus make new users do homework:</p>
+  <ol class="numbered">
+    <li><strong>Where</strong> is the feature?</li>
+    <li><strong>What</strong> is it called?</li>
+    <li><strong>Which</strong> clicks open it?</li>
+  </ol>
+  <p>Intent Design skips all three. The user speaks. The system meets them.</p>
+  <div class="quote">"We make the system understand the user — not the other way around."</div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <h2><span class="num">03</span>What You Need to Know</h2>
+  <p>Four pieces.</p>
+
+  <h3>3.1 Classifier first, AI second</h3>
+  <p>Regex matches common queries in 50ms. AI handles only the weird stuff.</p>
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+flowchart LR
+    Q[query] --> R[regex ~50ms]
+    R -->|match| OK[card]
+    R -->|no match| AI[AI ~2s]
+    AI --> OK
+    </pre>
+  </div>
+
+  <h3>3.2 Build cards, not paragraphs</h3>
+  <p>Every answer is a small interactive card. The user acts right there.</p>
+  <div class="media">
+    <video src="videos/po-ai/17-list-products.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <p class="media-cap">Real listing page — cards over paragraphs.</p>
+
+  <h3>3.3 Card and page share one URL</h3>
+  <p>Same filters in both places. They never disagree.</p>
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+flowchart LR
+    P["Palette card"] --> U["?customer=Khin&status=PENDING"]
+    U --> Pg["/orders page"]
+    </pre>
+  </div>
+
+  <h3>3.4 Chain the next step</h3>
+  <p>After each result, show 2–3 follow-up chips. One palette open, many actions.</p>
+  <div class="media">
+    <video src="videos/po-ai/22-chain-restock.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <p class="media-cap">Chain flow — each action suggests the next.</p>
+</section>
+
+<hr class="divider">
+
+<section>
+  <h2><span class="num">04</span>Advantages Over Traditional Design</h2>
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>Task</th><th>Traditional</th><th>Intent Design</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Pending orders</td><td>Orders → Filter → Pending</td><td>Type <em>"pending orders"</em></td></tr>
+        <tr><td>Mark paid</td><td>Order page → scroll → click</td><td>Type <em>"mark #1042 paid"</em></td></tr>
+        <tr><td>Customer's orders</td><td>Customers → search → Orders tab</td><td>Type <em>"Khin Hnin orders"</em></td></tr>
+        <tr><td>Ask in Myanmar</td><td>Hope menus are translated</td><td>Type in Myanmar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+flowchart TB
+    subgraph T [Traditional]
+        H[Home] --> M[Menu] --> S[Sub-menu] --> F[Filter] --> A[Action]
+    end
+    subgraph I [Intent Design]
+        X[Type once] --> Y[Action]
+    end
+    </pre>
+  </div>
+
+  <h3>Five wins</h3>
+  <ol class="numbered">
+    <li>No learning curve.</li>
+    <li>Any language works.</li>
+    <li>Action happens in place.</li>
+    <li>Fast for experts, easy for beginners.</li>
+    <li>Accessible by default (type = speak).</li>
+  </ol>
+
+  <div class="quote-pair">
+    <div class="q">Traditional: "Learn me first."</div>
+    <div class="q accent">Intent: "Tell me, I'll do it."</div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="cta-eyebrow">Related Case Study</div>
+  <h3>See Intent Design in action</h3>
+  <p>The full story behind the Po AI Intent Palette — research, classifier architecture, card system, and shipping decisions.</p>
+  <a class="btn" href="case-study-po-ai-intent-hybrid.html">Read the Case Study</a>
+</div>
+
+<footer>
+  © Harry Hein · 2026
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <div class="lightbox-content" id="lightboxContent"></div>
+  <div class="lightbox-hint">Press <kbd>ESC</kbd> or click outside to close</div>
+</div>
+
+<script>
+(function(){
+  var lb = document.getElementById('lightbox');
+  var content = document.getElementById('lightboxContent');
+  var closeBtn = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.media').forEach(function(el){
+    el.addEventListener('click', function(){
+      var src = el.querySelector('video, img');
+      if(!src) return;
+      content.innerHTML = '';
+      if(src.tagName === 'VIDEO'){
+        var v = document.createElement('video');
+        v.src = src.currentSrc || src.src;
+        v.controls = true;
+        v.autoplay = true;
+        v.loop = true;
+        v.playsInline = true;
+        content.appendChild(v);
+      } else {
+        var img = document.createElement('img');
+        img.src = src.src;
+        img.alt = src.alt || '';
+        content.appendChild(img);
+      }
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function close(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    var v = content.querySelector('video');
+    if(v) v.pause();
+    setTimeout(function(){ content.innerHTML = ''; }, 250);
+  }
+
+  closeBtn.addEventListener('click', function(e){ e.stopPropagation(); close(); });
+  lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && lb.classList.contains('open')) close(); });
+})();
+</script>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      fontFamily: 'Inter, -apple-system, sans-serif',
+      fontSize: '20px',
+      primaryColor: '#ffffff',
+      primaryTextColor: '#0a0a0a',
+      primaryBorderColor: '#0066cc',
+      lineColor: '#0066cc',
+      secondaryColor: '#fafafa',
+      tertiaryColor: '#f4f4f5',
+      clusterBkg: '#ffffff',
+      clusterBorder: '#0066cc',
+      edgeLabelBackground: '#fafafa',
+    },
+    flowchart: { curve: 'basis', htmlLabels: true, nodeSpacing: 60, rankSpacing: 80, padding: 24, useMaxWidth: true }
+  });
+</script>
+
+</body>
+</html>
