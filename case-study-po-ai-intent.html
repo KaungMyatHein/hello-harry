@@ -270,6 +270,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
 .cs-next-note-item-d{font-size:0.82rem;color:var(--cream-dim);line-height:1.45}
 @media(max-width:768px){.cs-next-note-list{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="lightbox.css">
 </head>
 <body>
 <div class="cs-loader" id="pageLoader">
@@ -1590,7 +1591,7 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
 <div class="cursor-dot" id="cursorDot"></div>
 <script src="js/atoms.js"></script>
 <script src="js/tts.js"></script>
-<script src="js/lightbox.js"></script>
+<!-- legacy lightbox removed; root lightbox.js handles all media -->
 <script src="js/scroll-indicator.js"></script>
 
 <!-- Before/After Comparison Slider -->
@@ -1690,5 +1691,6 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
 </div>
 <script src="js/chat.js"></script>
 <script src="js/tracking.js"></script>
+<script src="lightbox.js" defer></script>
 </body>
 </html>

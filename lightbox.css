@@ -1,0 +1,59 @@
+/* Lightbox — shared overlay for case study media (img + video) */
+.lb-overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.94);
+  z-index:99999;
+  display:none;
+  align-items:center; justify-content:center;
+  padding:48px 32px;
+  cursor:zoom-out;
+  opacity:0;
+  transition:opacity 180ms ease;
+  -webkit-backdrop-filter:blur(2px);
+  backdrop-filter:blur(2px);
+}
+.lb-overlay.open{display:flex; opacity:1;}
+.lb-content{
+  position:relative;
+  cursor:default;
+  max-width:92vw; max-height:92vh;
+  display:flex; align-items:center; justify-content:center;
+}
+.lb-content img,
+.lb-content video{
+  display:block;
+  max-width:92vw; max-height:92vh;
+  width:auto; height:auto;
+  object-fit:contain;
+  background:#000;
+  border-radius:8px;
+  box-shadow:0 40px 100px rgba(0,0,0,0.55);
+}
+.lb-close{
+  position:fixed;
+  top:20px; right:20px;
+  width:44px; height:44px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:50%;
+  color:#fff;
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  transition:background 150ms ease, transform 150ms ease, border-color 150ms ease;
+  padding:0;
+  font-family:inherit;
+  z-index:100000;
+}
+.lb-close:hover{
+  background:rgba(255,255,255,0.16);
+  border-color:rgba(255,255,255,0.32);
+  transform:scale(1.06);
+}
+.lb-close:focus-visible{outline:2px solid #fff; outline-offset:3px;}
+body.lb-active{overflow:hidden;}
+[data-lb-trigger]{cursor:zoom-in;}
+[data-lb-trigger]:hover{filter:brightness(1.04);}
