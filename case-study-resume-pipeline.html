@@ -61,6 +61,7 @@
   pointer-events: none;
 }
 </style>
+<link rel="stylesheet" href="lightbox.css">
 </head>
 <body>
 <div class="cs-loader" id="pageLoader">
@@ -541,49 +542,11 @@
   steps.forEach(s => io.observe(s));
 })();
 
-// Lightbox
-(function(){
-  const lb = document.createElement('div');
-  lb.className = 'cs-lightbox';
-  lb.innerHTML = '<div class="cs-lightbox-inner"></div><button class="cs-lightbox-close">✕</button>';
-  document.body.appendChild(lb);
-
-  const inner = lb.querySelector('.cs-lightbox-inner');
-  let origVideo = null;
-
-  function open(el) {
-    inner.innerHTML = '';
-    if (el.tagName === 'IMG') {
-      const img = document.createElement('img');
-      img.src = el.src; img.alt = el.alt;
-      inner.appendChild(img);
-    } else {
-      el.pause();
-      origVideo = el;
-      const v = document.createElement('video');
-      v.src = el.src; v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true; v.controls = true;
-      inner.appendChild(v);
-    }
-    lb.classList.add('open');
-  }
-
-  function close() {
-    lb.classList.remove('open');
-    if (origVideo) { origVideo.play(); origVideo = null; }
-    setTimeout(() => { inner.innerHTML = ''; }, 250);
-  }
-
-  document.querySelectorAll('.cs-step-media img, .cs-step-media video').forEach(el => {
-    el.addEventListener('click', () => open(el));
-  });
-  lb.querySelector('.cs-lightbox-close').addEventListener('click', close);
-  lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-})();
+// Lightbox handled by root lightbox.js
 </script>
 <script src="js/tts.js"></script>
 
-<script src="js/lightbox.js"></script>
+<!-- legacy lightbox removed; root lightbox.js handles all media -->
 <script src="js/scroll-indicator.js"></script>
 <!-- CHAT -->
 <button class="chat-trigger" id="chatTrigger" data-context="resume-pipeline">
@@ -621,5 +584,6 @@
 </div>
 <script src="js/chat.js"></script>
 <script src="js/tracking.js"></script>
+<script src="lightbox.js" defer></script>
 </body>
 </html>

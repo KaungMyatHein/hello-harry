@@ -90,9 +90,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ps-blue);outline-of
 .tile.metric .tstat-lbl{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--muted);line-height:1.4;}
 .tile.metric .tstat-foot{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:6px;letter-spacing:0.4px;}
 
-.media-frame{position:relative;width:100%;max-width:920px;margin:24px auto;background:linear-gradient(180deg,#2e2e30 0%,#1c1c1e 100%);padding:18px 13px 13px;border-radius:14px 14px 5px 5px;filter:drop-shadow(0 24px 40px rgba(0,0,0,0.22));box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);}
-.media-frame img,.media-frame video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#000;border-radius:3px;}
-.media-frame::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;height:8px;background:#0a0a0a;border-radius:0 0 8px 8px;z-index:3;}
+.media-frame{position:relative;width:100%;max-width:920px;margin:32px auto 56px;background:linear-gradient(180deg,#2a2a2c 0%,#161618 100%);padding:24px 14px 14px;border-radius:16px 16px 4px 4px;box-shadow:inset 0 0 0 1.5px #38383a,inset 0 1px 0 rgba(255,255,255,0.08),0 28px 50px rgba(0,0,0,0.28),0 10px 20px rgba(0,0,0,0.16);}
+.media-frame img,.media-frame video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#000;border-radius:2px;}
+.media-frame::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:6px;height:6px;background:#0a0a0a;border-radius:50%;box-shadow:inset 0 0 0 1px #1f1f21;z-index:3;}
+.media-frame::after{content:"";position:absolute;bottom:-14px;left:-2.2%;width:104.4%;height:14px;background:linear-gradient(180deg,#d4d4d8 0%,#a8a8ac 45%,#7a7a7e 100%);border-radius:2px 2px 16px 16px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.45),0 8px 14px rgba(0,0,0,0.22);}
 
 .section{max-width:1180px;margin:0 auto;padding:88px 28px;}
 .sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--hairline);}
@@ -217,6 +218,7 @@ footer{padding:48px 28px 64px;border-top:1px solid var(--hairline);text-align:ce
   footer{padding:32px 18px 40px;}
 }
 </style>
+<link rel="stylesheet" href="lightbox.css">
 </head>
 <body>
 
@@ -243,7 +245,7 @@ footer{padding:48px 28px 64px;border-top:1px solid var(--hairline);text-align:ce
     <div class="hero-bento">
       <div class="tile hero-media midnight">
         <span class="tile-stamp">Summary · 1 min</span>
-        <video src="videos/briefings/06-resume-pipeline.mp4" poster="images/resume-builder-resources/the-engine.webp" playsinline preload="metadata" controls></video>
+        <video src="videos/resume-pipeline/06-resume-pipeline.mp4" poster="images/resume-builder-resources/the-engine.webp" playsinline preload="metadata" controls></video>
       </div>
       <div class="hero-stats">
         <div class="tile metric tint-rose"><span class="tile-stamp">Per app</span><div class="tstat-val">40&rarr;15</div><div class="tstat-lbl">Minutes per application</div><div class="tstat-foot">62% time reduction</div></div>
@@ -347,10 +349,6 @@ footer{padding:48px 28px 64px;border-top:1px solid var(--hairline);text-align:ce
     <p class="sec-sub">Built with Claude (vibe-coded proof of concept), Figma variables synced as tokens, prototyped in Figma Make, tested with 5 designers, iterated with 8 beta users.</p>
   </div>
 
-  <div class="media-frame">
-    <img src="images/resume-builder-resources/the-engine.webp" alt="Base resume builder &mdash; the engine">
-  </div>
-
   <ol class="steps">
     <li class="step"><span class="step-num"></span><div class="step-text"><strong>Base resume.</strong> Split-panel editor with live PDF preview. The single source of truth for every downstream operation.</div></li>
     <li class="step"><span class="step-num"></span><div class="step-text"><strong>Paste the JD.</strong> Any job board. System normalizes messy copy-paste &mdash; bullet artifacts, weird unicode, broken formatting.</div></li>
@@ -362,17 +360,17 @@ footer{padding:48px 28px 64px;border-top:1px solid var(--hairline);text-align:ce
 
   <h3 class="subhead">Stage 02 &middot; Paste the JD &middot; normalizer in action</h3>
   <div class="media-frame">
-    <video src="images/resume-builder-resources/addin%20jd%20in%20analyzer.mp4" muted loop playsinline preload="none" data-lazy-video></video>
+    <video src="videos/resume-pipeline/stage-02-paste-jd.mp4" muted loop playsinline preload="none" data-lazy-video></video>
   </div>
 
   <h3 class="subhead">Stage 03 &middot; AI analyzes the gap</h3>
   <div class="media-frame">
-    <video src="images/resume-builder-resources/analyze%20the%20gap.mp4" muted loop playsinline preload="none" data-lazy-video></video>
+    <video src="videos/resume-pipeline/stage-03-analyze-gap.mp4" muted loop playsinline preload="none" data-lazy-video></video>
   </div>
 
   <h3 class="subhead">Stage 05 &middot; AI suggests &middot; designer decides</h3>
   <div class="media-frame">
-    <video src="images/resume-builder-resources/AI%20Suggesst,%20Designer%20Decide.mp4" muted loop playsinline preload="none" data-lazy-video></video>
+    <video src="videos/resume-pipeline/stage-05-ai-suggests.mp4" muted loop playsinline preload="none" data-lazy-video></video>
   </div>
 
   <h3 class="subhead">Stage 06 &middot; Cover letter &middot; generated draft</h3>
@@ -484,5 +482,6 @@ footer{padding:48px 28px 64px;border-top:1px solid var(--hairline);text-align:ce
 })();
 </script>
 
+<script src="lightbox.js" defer></script>
 </body>
 </html>
