@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Po AI — Speak, Don't Click. | Harry Hein (Notion style)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --paper:#fafaf9; --ink:#37352f; --ink-2:#787774; --ink-3:#9b9a97;
+  --line:#ebebea;
+  --tint-blue:#deebf7; --tint-blue-text:#0b6e99;
+  --tint-yellow:#fdecc8; --tint-yellow-text:#cb912f;
+  --tint-pink:#f5e0e9; --tint-pink-text:#ad1a72;
+  --tint-green:#dbeddb; --tint-green-text:#448361;
+  --tint-orange:#faebdd; --tint-orange-text:#d9730d;
+  --tint-purple:#eae4f2; --tint-purple-text:#6940a5;
+  --tint-red:#ffe2dd; --tint-red-text:#e03e3e;
+  --tint-gray:#ededec;
+  --display:"Inter",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  --r:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--display);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration:underline;text-decoration-color:rgba(55,53,47,0.25);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--ink)}
+
+.nav{position:sticky;top:0;background:rgba(255,255,255,0.85);backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);z-index:40}
+.nav-in{max-width:900px;margin:0 auto;padding:8px 24px;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--ink-2)}
+.nav a{text-decoration:none;color:var(--ink-2);padding:4px 8px;border-radius:var(--r)}
+.nav a:hover{background:var(--line)}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 96px}
+@media(max-width:720px){.wrap{padding:0 20px}}
+
+.cover{height:200px;background:linear-gradient(120deg,#dbeddb 0%,#deebf7 50%,#f5e0e9 100%)}
+
+.page-head{padding:36px 0 12px;position:relative}
+.page-icon{font-size:48px;line-height:1;margin-top:-66px;background:#fff;border-radius:6px;width:80px;height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.page-title{font-size:40px;font-weight:700;letter-spacing:-0.02em;line-height:1.2;margin-bottom:8px;color:var(--ink)}
+.page-sub{color:var(--ink-2);font-size:18px;line-height:1.5;max-width:680px}
+
+.props{margin:24px 0;display:flex;flex-direction:column;gap:6px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.prop{display:grid;grid-template-columns:160px 1fr;align-items:center;font-size:14px}
+.prop .l{color:var(--ink-3)}
+.tag{display:inline-block;padding:2px 8px;border-radius:var(--r);font-size:13px;line-height:1.5;font-weight:500}
+.tag.blue{background:var(--tint-blue);color:var(--tint-blue-text)}
+.tag.yellow{background:var(--tint-yellow);color:var(--tint-yellow-text)}
+.tag.green{background:var(--tint-green);color:var(--tint-green-text)}
+.tag.pink{background:var(--tint-pink);color:var(--tint-pink-text)}
+.tag.orange{background:var(--tint-orange);color:var(--tint-orange-text)}
+.tag.purple{background:var(--tint-purple);color:var(--tint-purple-text)}
+.tag.red{background:var(--tint-red);color:var(--tint-red-text)}
+.tag.gray{background:var(--tint-gray);color:var(--ink-2)}
+
+.toc{margin:24px 0;padding:16px;background:var(--paper);border-radius:var(--r);border:1px solid var(--line)}
+.toc-h{font-size:12px;font-family:var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px}
+.toc-list{display:flex;flex-direction:column;gap:4px}
+.toc-list a{padding:4px 6px;border-radius:var(--r);font-size:14px;color:var(--ink);text-decoration:none}
+.toc-list a:hover{background:var(--line)}
+
+h2{font-size:30px;font-weight:700;letter-spacing:-0.02em;margin:48px 0 6px;line-height:1.25}
+.h2-meta{font-family:var(--mono);font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:18px}
+p{margin:8px 0;font-size:16px;color:var(--ink);line-height:1.6}
+p code,code{font-family:var(--mono);background:rgba(135,131,120,0.15);color:#eb5757;padding:2px 5px;border-radius:3px;font-size:0.85em}
+
+.callout{display:flex;gap:12px;background:var(--paper);border-radius:var(--r);padding:16px;margin:18px 0;border:1px solid var(--line)}
+.callout-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.callout-body{flex:1;font-size:15px;color:var(--ink);line-height:1.5}
+.callout.blue{background:var(--tint-blue);border-color:transparent}
+.callout.blue .callout-body{color:var(--tint-blue-text)}
+.callout.yellow{background:var(--tint-yellow);border-color:transparent}
+.callout.yellow .callout-body{color:var(--tint-yellow-text)}
+
+.quote{margin:24px 0;padding:8px 16px;border-left:3px solid var(--ink);font-size:18px;font-style:italic;color:var(--ink);line-height:1.55}
+.quote-attr{font-style:normal;font-size:13px;color:var(--ink-2);margin-top:8px;font-family:var(--mono)}
+
+ul.list,ol.list{margin:8px 0 8px 4px;padding-left:0;list-style:none}
+ul.list li,ol.list li{position:relative;padding:4px 0 4px 28px;font-size:16px;line-height:1.5}
+ul.list li::before{content:"•";position:absolute;left:8px;color:var(--ink);font-size:18px}
+ol.list{counter-reset:n}
+ol.list li{counter-increment:n}
+ol.list li::before{content:counter(n) ".";position:absolute;left:4px;color:var(--ink-2);font-family:var(--mono);font-size:13px;top:6px}
+
+.db{margin:18px 0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+.db-head{padding:8px 12px;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--ink-2)}
+.db-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:1px solid var(--line);font-size:14px}
+.db-row:last-child{border-bottom:none}
+.db-row > div{padding:8px 12px;border-right:1px solid var(--line)}
+.db-row > div:last-child{border-right:none}
+.db-row.head > div{font-size:12px;color:var(--ink-3);background:var(--paper)}
+@media(max-width:720px){.db-row{grid-template-columns:1fr 1fr}.db-row > div:nth-child(n+3){display:none}.db-row.head > div:nth-child(n+3){display:none}}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:24px 0}
+.gcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.gcard .t{font-size:12px;color:var(--ink-3);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px}
+.gcard .q{font-size:15px;color:var(--ink);font-weight:500;margin-bottom:6px;line-height:1.35}
+.gcard .o{font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+@media(max-width:720px){.gallery{grid-template-columns:1fr}}
+
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}
+.metric{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.metric .n{font-size:32px;font-weight:700;letter-spacing:-0.02em;color:var(--ink)}
+.metric .l{font-size:13px;color:var(--ink-2);margin-top:4px}
+@media(max-width:720px){.metrics{grid-template-columns:1fr 1fr}}
+
+.toggle{margin:12px 0;border-radius:var(--r);background:var(--paper);border:1px solid var(--line)}
+.toggle summary{padding:10px 14px;font-size:15px;font-weight:500;cursor:pointer;list-style:none}
+.toggle summary::before{content:"▸ ";color:var(--ink-3);font-size:11px;margin-right:6px}
+.toggle[open] summary::before{content:"▾ "}
+.toggle-body{padding:4px 14px 14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chips .tag{font-family:var(--mono);font-size:12px}
+
+.divider{height:1px;background:var(--line);margin:48px 0}
+
+footer{padding:48px 0 80px;text-align:left}
+footer h2{font-size:36px;margin-bottom:8px}
+footer p{color:var(--ink-2)}
+.btn{display:inline-block;margin-top:18px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:var(--r);text-decoration:none;font-size:14px}
+.btn:hover{opacity:0.9}
+
+.media-hero{margin:24px 0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#f4f3f0;aspect-ratio:16/9;position:relative}
+.media-hero video,.media-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.media-wide{margin:18px 0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#f4f3f0;aspect-ratio:16/9;position:relative}
+.media-wide video,.media-wide img{width:100%;height:100%;object-fit:cover;display:block}
+.media-caption{font-size:13px;color:var(--ink-2);margin:6px 0 18px;font-style:italic}
+.media-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+.media-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.media-tile{background:#f4f3f0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;aspect-ratio:9/16;position:relative}
+.media-tile video,.media-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.media-tile .label{position:absolute;left:8px;bottom:8px;font-family:var(--mono);font-size:10px;color:#fff;background:rgba(0,0,0,0.65);padding:3px 7px;border-radius:4px}
+@media(max-width:900px){.media-grid{grid-template-columns:repeat(2,1fr)}.media-grid-3{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="lightbox.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div><a href="portfolio-notion.html">Harry Hein</a> / <a href="portfolio-notion.html">Work</a> / Po AI Intent</div>
+    <a href="portfolio-notion.html">Share</a>
+  </div>
+</nav>
+
+<div class="cover"></div>
+
+<div class="wrap">
+  <div class="page-head">
+    <div class="page-icon">🎙️</div>
+    <h1 class="page-title">Po AI Intent — Speak, Don't Click.</h1>
+    <p class="page-sub">A bilingual intent palette wired to Gemini tool-calling. Sellers ask in Myanmar or English; an LLM picks from 16 server-side tools; the page renders the answer as an inline card.</p>
+    <div class="media-hero">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/22-chain-restock.mp4" onerror="this.outerHTML='<img src=&quot;images/po-ai/hero-palette.webp&quot; alt=&quot;Po AI palette&quot;>'"></video>
+    </div>
+  </div>
+
+  <div class="props">
+    <div class="prop"><div class="l">Role</div><div><span class="tag blue">Product Designer (sole)</span></div></div>
+    <div class="prop"><div class="l">Company</div><div><span class="tag purple">Po Commerce</span></div></div>
+    <div class="prop"><div class="l">Users</div><div><span class="tag green">Myanmar live-sellers</span> <span class="tag green">Facebook Commerce</span></div></div>
+    <div class="prop"><div class="l">Status</div><div><span class="tag orange">Early production</span></div></div>
+    <div class="prop"><div class="l">Tags</div><div><span class="tag pink">AI</span> <span class="tag pink">Bilingual</span> <span class="tag pink">Live commerce</span></div></div>
+    <div class="prop"><div class="l">Date</div><div style="color:var(--ink-2);font-size:14px">2025 — present</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-h">On this page</div>
+    <div class="toc-list">
+      <a href="#problem">01 · The Problem</a>
+      <a href="#research">02 · Research</a>
+      <a href="#mapping">03 · Mapping</a>
+      <a href="#tools">04 · Tool-calling</a>
+      <a href="#bilingual">05 · Bilingual</a>
+      <a href="#cards">06 · Inline cards</a>
+      <a href="#impact">07 · Impact</a>
+      <a href="#reflection">Reflection</a>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body"><strong>TL;DR.</strong> Sellers stopped clicking. They started speaking. 45 intents mapped → 28 in MVP → 21 live in production. One palette, two languages, sub-50ms latency.</div>
+  </div>
+
+  <h2 id="problem">01 · The Problem</h2>
+  <div class="h2-meta">"Show me past 2 weeks." The dashboard couldn't.</div>
+  <p>A Myanmar live-seller has one question every Sunday: <em>what did I sell in the past 2 weeks?</em> One sentence. Clear intent.</p>
+  <p>The CRM dashboard turned that one sentence into a five-step hunt — and most sellers gave up halfway.</p>
+  <ol class="list">
+    <li><strong>Open</strong> — Orders tab, buried two levels deep</li>
+    <li><strong>Filter</strong> — no preset; pick dates manually</li>
+    <li><strong>Translate</strong> — every label in English</li>
+    <li><strong>Scroll</strong> — 600 rows, no summary at the top</li>
+    <li><strong>Give up</strong> — rebuild in Excel by hand</li>
+  </ol>
+  <div class="callout yellow">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">The seller already knew the question. The system made them prove it.</div>
+  </div>
+
+  <h2 id="research">02 · Research</h2>
+  <div class="h2-meta">Five sellers. One critical moment.</div>
+  <p>Before mapping intents, I sat with sellers running real Facebook lives. Not a feature list — the moment of greatest friction.</p>
+  <div class="quote">"Every Sunday after the live, I want to know — what did I sell the past 2 weeks? The table has 600 rows. I scroll, lose count, give up. I just want to ask 'show me past 2 weeks.' That's it."<div class="quote-attr">— Seller A · Fashion live · 4 years experience</div></div>
+
+  <div class="db">
+    <div class="db-head"><span>Pain inventory · synthesis</span><span style="font-family:var(--mono);font-size:12px">5 rows</span></div>
+    <div class="db-row head"><div>Pain point</div><div>Mentions</div><div>Severity</div><div>Domain</div></div>
+    <div class="db-row"><div>Past-sales review = scroll 600 rows</div><div>5/5</div><div><span class="tag red">Critical</span></div><div><span class="tag blue">Orders</span></div></div>
+    <div class="db-row"><div>Weekly report rebuilt in Excel</div><div>4/5</div><div><span class="tag red">Critical</span></div><div><span class="tag blue">Insights</span></div></div>
+    <div class="db-row"><div>Pending count invisible during live</div><div>4/5</div><div><span class="tag red">Critical</span></div><div><span class="tag green">Live</span></div></div>
+    <div class="db-row"><div>"Did my order ship Tuesday?"</div><div>3/5</div><div><span class="tag orange">High</span></div><div><span class="tag purple">Customer</span></div></div>
+    <div class="db-row"><div>Different staff need different slices</div><div>3/5</div><div><span class="tag orange">High</span></div><div><span class="tag blue">Orders</span></div></div>
+  </div>
+
+  <h2 id="mapping">03 · Mapping</h2>
+  <div class="h2-meta">45 intents. 6 surfaces. One front door.</div>
+  <p>From the research, I extracted every action a seller does in a week. Grouped by domain — not by feature page.</p>
+  <details class="toggle" open>
+    <summary>Live (5)</summary>
+    <div class="toggle-body"><div class="chips"><span class="tag green">Get Live Sessions</span><span class="tag green">Get Active Live</span><span class="tag green">Get Live Orders</span><span class="tag green">Update Live Catalog</span><span class="tag green">Save Draft Catalog</span></div></div>
+  </details>
+  <details class="toggle">
+    <summary>Inventory (10)</summary>
+    <div class="toggle-body"><div class="chips"><span class="tag blue">List Products</span><span class="tag blue">Get Product Details</span><span class="tag blue">Create Product</span><span class="tag blue">Update Product</span><span class="tag blue">Adjust Stock</span><span class="tag blue">Low Stock Alert</span><span class="tag gray">+ 4 more</span></div></div>
+  </details>
+  <details class="toggle">
+    <summary>Orders + Customers (11)</summary>
+    <div class="toggle-body"><div class="chips"><span class="tag purple">List Orders</span><span class="tag purple">Order Details</span><span class="tag purple">Verify Payment Slip</span><span class="tag purple">List Customers</span><span class="tag purple">Customer Stats</span><span class="tag gray">+ 6 more</span></div></div>
+  </details>
+  <details class="toggle">
+    <summary>Marketing · Insights · Config (19)</summary>
+    <div class="toggle-body"><div class="chips"><span class="tag pink">Create Discount</span><span class="tag pink">Generate Post</span><span class="tag orange">Revenue Trend</span><span class="tag orange">Dashboard Stats</span><span class="tag gray">+ 15 more</span></div></div>
+  </details>
+  <div class="media-wide">
+    <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/01-palette-empty-state.mp4" onerror="this.parentElement.style.display='none'"></video>
+  </div>
+  <div class="media-caption">Palette empty state — domains as the front door.</div>
+
+  <h2 id="tools">04 · Tool-calling</h2>
+  <div class="h2-meta">LLM as classifier. Tools as verbs.</div>
+  <p>Gemini 2.5 Flash picks 1–6 tools per turn from a 16-verb vocabulary. The server runs them, scoped to <code>businessId</code>.</p>
+  <div class="callout">
+    <div class="callout-icon">🔧</div>
+    <div class="callout-body"><strong>A tool is a verb the AI is allowed to say.</strong> Read · write · modify · delete. Each one returns a card schema the frontend renders inline.</div>
+  </div>
+  <div class="media-grid">
+    <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/17-list-products.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">list-products</div></div>
+    <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/18-product-detail.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">product-detail</div></div>
+    <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/19-low-stock.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">low-stock</div></div>
+    <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/21-stock-history.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">stock-history</div></div>
+  </div>
+  <div class="media-caption">Four tools, four cards — rendered inline, scoped to <code>businessId</code>.</div>
+
+  <h2 id="bilingual">05 · Bilingual</h2>
+  <div class="h2-meta">Myanmar isn't English in different glyphs.</div>
+  <p>Postpositions, subject markers, stacked digits. Each needs first-class support, not retrofits.</p>
+  <div class="gallery">
+    <div class="gcard"><div class="t">English</div><div class="q">"Show me past 2 weeks"</div><div class="o">→ list-orders · range=14d</div></div>
+    <div class="gcard"><div class="t">Myanmar</div><div class="q">"ပြီးခဲ့တဲ့ ၂ ပတ်"</div><div class="o">→ list-orders · range=14d</div></div>
+    <div class="gcard"><div class="t">Mixed</div><div class="q">"customer Hnin past orders"</div><div class="o">→ search-customers + list-orders</div></div>
+  </div>
+
+  <h2 id="cards">06 · Inline cards</h2>
+  <div class="h2-meta">From pending to paid, without leaving the palette.</div>
+  <p>Sellers don't want chat bubbles. They want the answer as a card with actions inline.</p>
+  <div class="db">
+    <div class="db-head"><span>Before → After</span><span style="font-family:var(--mono);font-size:12px">5 tasks</span></div>
+    <div class="db-row head"><div>Task</div><div>Before</div><div>After</div><div>Tool</div></div>
+    <div class="db-row"><div>See pending orders</div><div>Orders → filter → scroll</div><div>Type. Card. Done.</div><div><span class="tag green">list-orders</span></div></div>
+    <div class="db-row"><div>Look up a customer</div><div>Customers → search → tab</div><div>Filtered list appears</div><div><span class="tag green">search-customers</span></div></div>
+    <div class="db-row"><div>Build a discount</div><div>3-screen settings form</div><div>One inline card</div><div><span class="tag green">create-discount</span></div></div>
+    <div class="db-row"><div>Weekly revenue</div><div>No view. Ask backend.</div><div>Bar chart card</div><div><span class="tag green">revenue-trend</span></div></div>
+  </div>
+  <div class="media-grid-3">
+    <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/02-list-orders.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">list-orders</div></div>
+    <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/03-order-detail.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">order-detail</div></div>
+    <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/12-customer-stats.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">customer-stats</div></div>
+  </div>
+  <div class="media-caption">Pending → paid, without leaving the palette.</div>
+
+  <h2 id="impact">07 · Impact</h2>
+  <div class="h2-meta">What I set out to hit.</div>
+  <div class="metrics">
+    <div class="metric"><div class="n">21</div><div class="l">Live in prod</div></div>
+    <div class="metric"><div class="n">28/28</div><div class="l">Bilingual coverage</div></div>
+    <div class="metric"><div class="n">&lt;50ms</div><div class="l">Latency p95</div></div>
+    <div class="metric"><div class="n">0</div><div class="l">New endpoints</div></div>
+  </div>
+  <div class="media-wide">
+    <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/16-bulk-update-stock.mp4" onerror="this.parentElement.style.display='none'"></video>
+  </div>
+  <div class="media-caption">Bulk update stock — &lt;50ms p95, 0 hallucinated SKUs.</div>
+
+  <div class="divider"></div>
+
+  <h2 id="reflection">Reflection</h2>
+  <div class="h2-meta">What I learned</div>
+  <ol class="list">
+    <li><strong>A command palette isn't a UI pattern. It's a contract.</strong> The seller speaks naturally; the system promises to meet them there.</li>
+    <li><strong>Don't pretend Myanmar is "English with different glyphs."</strong> Postpositions, subject markers, stacked digits need first-class support.</li>
+    <li><strong>Matching intent is half the problem.</strong> Matching the user's expectation of the result is the other half.</li>
+    <li><strong>Regex is a feature, not a fallback.</strong> Predictable behavior is itself a way of reducing what the user has to learn.</li>
+  </ol>
+
+  <div class="divider"></div>
+
+  <footer>
+    <h2>Let's build something great.</h2>
+    <p>Bilingual product design · AI tool-calling · live commerce systems</p>
+    <a class="btn" href="portfolio-notion.html">← Back to work</a>
+  </footer>
+</div>
+
+<script src="lightbox.js" defer></script>
+</body>
+</html>

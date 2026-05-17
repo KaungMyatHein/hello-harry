@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Harry Hein — Senior Product Designer</title>
+<script>
+  // Scrollytelling gate — added synchronously to prevent FOUC.
+  // CSS reveal styles only apply when this class is set, so no-JS users see content normally.
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('has-reveal');
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -938,6 +945,229 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 }
 .cmd-send:disabled{opacity:0.35;cursor:not-allowed;}
 .cmd-send svg{width:18px;height:18px;}
+
+/* GITHUB CONTRIBUTIONS — bento grid: heatmap tile + info tiles */
+.gh-bento{display:grid;grid-template-columns:2fr 1fr;gap:18px;}
+.gh-bento .gh-side{display:flex;flex-direction:column;gap:18px;}
+@media (max-width:900px){.gh-bento{grid-template-columns:1fr;}}
+
+.gh-tile{
+  background:var(--canvas);border-radius:24px;padding:32px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);
+  display:flex;flex-direction:column;gap:20px;
+  transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);
+}
+.gh-tile-link{text-decoration:none;color:inherit;}
+.gh-tile-link:hover{transform:translateY(-2px);}
+
+.gh-tile-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--muted);display:inline-flex;align-items:center;gap:8px;
+}
+.gh-dot{width:8px;height:8px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px rgba(10,10,10,0.10);flex-shrink:0;}
+
+.gh-heatmap-frame{
+  background:var(--paper);border-radius:16px;padding:20px 20px 16px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,0.05);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:auto;
+}
+.gh-heatmap{display:block;width:100%;min-width:640px;height:auto;}
+.gh-legend{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:14px;font-family:var(--mono);font-size:10px;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);
+}
+.gh-legend-scale{display:inline-flex;align-items:center;gap:6px;}
+.gh-legend-scale .sq{width:10px;height:10px;border-radius:2px;display:inline-block;}
+.gh-legend-scale .sq-0{background:#f1f1f2;}
+.gh-legend-scale .sq-1{background:#d4d4d6;}
+.gh-legend-scale .sq-2{background:#9b9ba1;}
+.gh-legend-scale .sq-3{background:#525258;}
+.gh-legend-scale .sq-4{background:#1a1a1d;}
+
+.gh-tile-title{font-size:22px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;color:var(--ink);margin:0;}
+.gh-tile-sub{font-size:14px;color:var(--muted);line-height:1.5;margin:0;}
+
+.gh-stack-list{display:flex;flex-wrap:wrap;gap:6px;}
+
+.gh-cta-tile{
+  background:var(--ink);color:#fff;border-radius:24px;padding:28px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:24px;
+  text-decoration:none;min-height:160px;
+  transition:transform 280ms cubic-bezier(0.2,0.7,0.3,1);
+}
+.gh-cta-tile:hover{transform:translateY(-2px);}
+.gh-cta-tile .gh-tile-eyebrow{color:rgba(255,255,255,0.6);}
+.gh-cta-tile-foot{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:14px;
+}
+.gh-cta-tile-foot strong{
+  font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.1;
+  font-family:var(--sans);
+}
+.gh-cta-arrow{
+  width:44px;height:44px;border-radius:50%;background:#fff;color:var(--ink);
+  display:inline-flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:20px;
+  transition:transform 180ms ease;
+}
+.gh-cta-tile:hover .gh-cta-arrow{transform:translateX(4px);}
+
+@media (max-width:600px){
+  .gh-tile,.gh-cta-tile{padding:22px;border-radius:18px;}
+  .gh-heatmap-frame{padding:14px 14px 12px;border-radius:12px;}
+}
+
+/* CODE BAND — full-bleed dark showcase for the GitHub heatmap section */
+.section-band-dark{
+  position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#0a0a0a 0%,#15151a 50%,#0a0a0a 100%);
+  border-top:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:120px 0;margin-top:24px;
+}
+.section-band-dark::before{
+  content:"";position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:min(1200px,90vw);height:600px;
+  background:radial-gradient(ellipse at center,rgba(255,255,255,0.05) 0%,transparent 65%);
+  pointer-events:none;
+}
+.section-band-dark > .section-inner{
+  max-width:1180px;margin:0 auto;padding:0 28px;position:relative;z-index:1;
+}
+.section-band-dark .sec-head{border-bottom-color:rgba(255,255,255,0.10);margin-bottom:48px;padding-bottom:24px;}
+.section-band-dark .sec-meta{color:rgba(255,255,255,0.5);}
+.section-band-dark .sec-title{color:#fff;font-size:clamp(40px,5.4vw,68px);}
+.section-band-dark .sec-sub{color:rgba(255,255,255,0.65);}
+.section-band-dark .sec-action{color:rgba(255,255,255,0.5);}
+
+/* Bento tiles on the dark band: Apple liquid-glass material */
+.section-band-dark .gh-tile{
+  background:rgba(255,255,255,0.05);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);
+          backdrop-filter:blur(10px) saturate(140%);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
+.section-band-dark .gh-tile-title{color:#fff;}
+.section-band-dark .gh-tile-sub{color:rgba(255,255,255,0.65);}
+.section-band-dark .gh-tile-eyebrow{color:rgba(255,255,255,0.50);}
+
+/* gh-dot on glass — softer white pulse */
+.section-band-dark .gh-dot{
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(255,255,255,0.18);
+}
+
+/* Heatmap frame stays "screen" — bright surface inside the glass tile so the SVG reads */
+.section-band-dark .gh-heatmap-frame{
+  background:rgba(255,255,255,0.94);
+  -webkit-backdrop-filter:none;
+          backdrop-filter:none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.10),
+    0 8px 24px rgba(0,0,0,0.22);
+}
+.section-band-dark .gh-legend{color:var(--muted);}
+
+/* Tech chips become translucent glass pills */
+.section-band-dark .gh-stack-list .exp-tag{
+  background:rgba(255,255,255,0.08);
+  color:rgba(255,255,255,0.85);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.10);
+}
+
+/* CTA tile — glass too, with a bright solid pill arrow as its accent */
+.section-band-dark .gh-cta-tile{
+  background:rgba(255,255,255,0.05);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);
+          backdrop-filter:blur(10px) saturate(140%);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+  color:#fff;
+}
+.section-band-dark .gh-cta-tile:hover{
+  background:rgba(255,255,255,0.08);
+}
+.section-band-dark .gh-cta-arrow{
+  background:#fff;color:var(--ink);
+  box-shadow:0 4px 12px rgba(255,255,255,0.18);
+}
+
+/* Matrix rain canvas — sits behind .section-inner */
+.section-band-dark .matrix-rain{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+  opacity:0.28;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 14%,#000 86%,transparent 100%);
+          mask-image:linear-gradient(180deg,transparent 0%,#000 14%,#000 86%,transparent 100%);
+}
+@media (prefers-reduced-motion: reduce){
+  .section-band-dark .matrix-rain{display:none;}
+}
+
+@media (max-width:600px){
+  .section-band-dark{padding:72px 0;margin-top:0;}
+  .section-band-dark .sec-head{margin-bottom:32px;}
+  .section-band-dark .matrix-rain{opacity:0.18;}
+}
+
+/* SCROLLYTELLING — fade+slide reveals as content enters the viewport */
+.has-reveal :is(.sec-head, .tile, .gh-tile, .gh-cta-tile, .exp-row, .testi, .edu, .blog-tile, .cta-inner){
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.8s cubic-bezier(0.2,0.7,0.3,1), transform 0.8s cubic-bezier(0.2,0.7,0.3,1);
+  transition-delay:var(--reveal-delay,0s);
+  will-change:opacity, transform;
+}
+.has-reveal :is(.sec-head, .tile, .gh-tile, .gh-cta-tile, .exp-row, .testi, .edu, .blog-tile, .cta-inner).is-visible{
+  opacity:1;transform:none;
+  will-change:auto;
+}
+
+/* Staggered children inside grids */
+.has-reveal .bento .tile:nth-child(2),
+.has-reveal .bento-three .tile:nth-child(2),
+.has-reveal .testi-grid .testi:nth-child(2),
+.has-reveal .bento-blog .blog-tile:nth-child(2),
+.has-reveal .gh-bento .gh-side > *:nth-child(1){transition-delay:0.08s;}
+.has-reveal .bento .tile:nth-child(3),
+.has-reveal .bento-three .tile:nth-child(3),
+.has-reveal .testi-grid .testi:nth-child(3),
+.has-reveal .bento-blog .blog-tile:nth-child(3),
+.has-reveal .gh-bento .gh-side > *:nth-child(2){transition-delay:0.16s;}
+.has-reveal .bento .tile:nth-child(4){transition-delay:0.24s;}
+.has-reveal .bento .tile:nth-child(5){transition-delay:0.32s;}
+
+.has-reveal .exp-list .exp-row:nth-child(2){transition-delay:0.08s;}
+.has-reveal .exp-list .exp-row:nth-child(3){transition-delay:0.16s;}
+.has-reveal .exp-list .exp-row:nth-child(4){transition-delay:0.24s;}
+.has-reveal .exp-list .exp-row:nth-child(5){transition-delay:0.32s;}
+
+/* Heatmap wipe — reveals left-to-right when the dark band enters view */
+.has-reveal .gh-heatmap{
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path 1.6s cubic-bezier(0.2,0.7,0.3,1) 0.4s;
+}
+.has-reveal .gh-heatmap.is-visible{
+  clip-path:inset(0 0 0 0);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .has-reveal :is(.sec-head, .tile, .gh-tile, .gh-cta-tile, .exp-row, .testi, .edu, .blog-tile, .cta-inner),
+  .has-reveal .gh-heatmap{
+    opacity:1 !important;
+    transform:none !important;
+    clip-path:none !important;
+    transition:none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -1315,6 +1545,78 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
       </ul>
     </div>
   </div>
+</section>
+
+<section class="section-band-dark" id="code">
+  <canvas class="matrix-rain" aria-hidden="true"></canvas>
+  <div class="section-inner">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Code · Practice</div>
+      <h2 class="sec-title">Designer who ships code.</h2>
+      <p class="sec-sub">I don't just hand off Figma files — I live in the repo. Weekend builds, design tooling, and the occasional Figma plugin.</p>
+    </div>
+    <div class="sec-action">@KaungMyatHein</div>
+  </div>
+
+  <div class="gh-bento">
+    <!-- Heatmap tile -->
+    <div class="gh-tile">
+      <div class="gh-tile-eyebrow">
+        <span class="gh-dot"></span>
+        <span>Contributions · last 12 months</span>
+      </div>
+      <div>
+        <h3 class="gh-tile-title">Building publicly.</h3>
+        <p class="gh-tile-sub">Every green square is a day I shipped something — weekend builds, design tooling, or a side project worth opening a PR for.</p>
+      </div>
+      <div class="gh-heatmap-frame">
+        <img class="gh-heatmap"
+             src="images/heatmap.svg"
+             alt="GitHub contribution heatmap for KaungMyatHein over the past year"
+             loading="eager"
+             decoding="async">
+        <div class="gh-legend">
+          <span>Less</span>
+          <span class="gh-legend-scale">
+            <span class="sq sq-0"></span>
+            <span class="sq sq-1"></span>
+            <span class="sq sq-2"></span>
+            <span class="sq sq-3"></span>
+            <span class="sq sq-4"></span>
+          </span>
+          <span>More</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side column: stack + CTA -->
+    <div class="gh-side">
+      <div class="gh-tile">
+        <div class="gh-tile-eyebrow">Stack · 2026</div>
+        <div>
+          <h3 class="gh-tile-title">Languages I ship in.</h3>
+          <p class="gh-tile-sub">Reading code makes handoffs smoother. Writing code makes prototypes real.</p>
+        </div>
+        <div class="gh-stack-list">
+          <span class="exp-tag">HTML / CSS</span>
+          <span class="exp-tag">JavaScript</span>
+          <span class="exp-tag">React</span>
+          <span class="exp-tag">Figma Plugins</span>
+          <span class="exp-tag">Design Tokens</span>
+        </div>
+      </div>
+
+      <a class="gh-cta-tile" href="https://github.com/KaungMyatHein" target="_blank" rel="noopener">
+        <div class="gh-tile-eyebrow">@KaungMyatHein</div>
+        <div class="gh-cta-tile-foot">
+          <strong>View profile<br>on GitHub.</strong>
+          <span class="gh-cta-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  </div><!-- /.section-inner -->
 </section>
 
 <section class="section" id="voices">
@@ -2076,6 +2378,138 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'&&modal.classList.contains('is-open'))closeBriefing();
   });
+})();
+</script>
+
+<!-- Scrollytelling — observe reveal targets and fade them in as they enter viewport -->
+<script>
+(function initScrollReveal(){
+  // Guard: if the head gate didn't fire, nothing to do.
+  if(!document.documentElement.classList.contains('has-reveal'))return;
+
+  var SELECTOR='.sec-head, .tile, .gh-tile, .gh-cta-tile, .exp-row, .testi, .edu, .blog-tile, .cta-inner, .gh-heatmap';
+  var targets=document.querySelectorAll(SELECTOR);
+  if(!targets.length)return;
+
+  if(!('IntersectionObserver' in window)){
+    // Fallback: reveal immediately. Also remove gate class so reduced-effort browsers don't keep hidden state.
+    document.documentElement.classList.remove('has-reveal');
+    return;
+  }
+
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+
+  // Any target ALREADY in the viewport at page load should reveal immediately (no fade-in)
+  targets.forEach(function(el){
+    var r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight && r.bottom>0){
+      el.classList.add('is-visible');
+    }else{
+      obs.observe(el);
+    }
+  });
+
+  // Safety: the heatmap <img> can have height:0 before the SVG decodes,
+  // which makes IntersectionObserver behave inconsistently. Re-check
+  // when the image finishes loading, and force-reveal after a timeout
+  // so the heatmap never stays clipped if the observer misses it.
+  var heatmaps=document.querySelectorAll('.gh-heatmap');
+  heatmaps.forEach(function(img){
+    function recheck(){
+      if(img.classList.contains('is-visible'))return;
+      var r=img.getBoundingClientRect();
+      if(r.top<window.innerHeight && r.bottom>0){
+        img.classList.add('is-visible');
+        obs.unobserve(img);
+      }
+    }
+    if(img.complete){
+      recheck();
+    }else{
+      img.addEventListener('load', recheck, {once:true});
+      img.addEventListener('error', function(){
+        // Even if the SVG fails, don't leave the frame clipped.
+        img.classList.add('is-visible');
+      }, {once:true});
+    }
+  });
+  // Final fallback: 2.5s after init, force any unrevealed heatmap visible.
+  setTimeout(function(){
+    document.querySelectorAll('.gh-heatmap:not(.is-visible)').forEach(function(img){
+      img.classList.add('is-visible');
+    });
+  }, 2500);
+})();
+</script>
+
+<!-- Matrix rain effect for the "Designer who ships code" section -->
+<script>
+(function initMatrixRain(){
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var canvas=document.querySelector('#code .matrix-rain');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  var CHARS='01アァカサタナハマヤラワイィキシチニヒミリヰウゥクスツヌフムユルエェケセテネヘメレヱオォコソトノホモヨロヲンッ{};()<>=+-*/&|';
+  var FONT_SIZE=15;
+  var dpr=window.devicePixelRatio||1;
+  var width=0,height=0,columns=0,drops=[];
+  function resize(){
+    var rect=canvas.getBoundingClientRect();
+    width=rect.width;height=rect.height;
+    canvas.width=Math.floor(width*dpr);
+    canvas.height=Math.floor(height*dpr);
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.scale(dpr,dpr);
+    columns=Math.ceil(width/FONT_SIZE);
+    drops=[];
+    for(var i=0;i<columns;i++)drops[i]=Math.random()*-50;
+  }
+  function draw(){
+    // Soft fade — leaves a dim trail without piling up
+    ctx.fillStyle='rgba(10,10,10,0.14)';
+    ctx.fillRect(0,0,width,height);
+    ctx.font=FONT_SIZE+'px ui-monospace, "JetBrains Mono", monospace';
+    ctx.textBaseline='top';
+    for(var i=0;i<columns;i++){
+      var ch=CHARS.charAt(Math.floor(Math.random()*CHARS.length));
+      var x=i*FONT_SIZE;
+      var y=drops[i]*FONT_SIZE;
+      // Single soft head — trail emerges naturally from the fade overlay
+      ctx.fillStyle='#7fc89a';
+      ctx.fillText(ch,x,y);
+      // Reset column with some randomness
+      if(y>height&&Math.random()>0.985){
+        drops[i]=0;
+      }
+      drops[i]+=0.18;
+    }
+  }
+  var rafId=null;
+  function loop(){draw();rafId=requestAnimationFrame(loop);}
+  function start(){if(!rafId)loop();}
+  function stop(){if(rafId){cancelAnimationFrame(rafId);rafId=null;}}
+  // Pause when section is off-screen to save battery
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){e.isIntersecting?start():stop();});
+    },{threshold:0});
+    io.observe(canvas);
+  }else{
+    start();
+  }
+  var resizeTimer;
+  window.addEventListener('resize',function(){
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(resize,150);
+  });
+  resize();
 })();
 </script>
 </body>

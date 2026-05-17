@@ -1,0 +1,198 @@
+{
+  "main": {
+    "id": "b9196915ec284ae0",
+    "type": "split",
+    "children": [
+      {
+        "id": "84b42e19e0b698ad",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "acb8865b0888e233",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "06-resume-pipeline.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "06-resume-pipeline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bcbba56bc3a0c2e4",
+    "type": "split",
+    "children": [
+      {
+        "id": "df45320871bb34ab",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0780c50dda994b1e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "28c8187f27d8a568",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "07c988e05957055c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "eaa5475db77cc6a9",
+    "type": "split",
+    "children": [
+      {
+        "id": "c203fdd3c0b58f3b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "eac3c9c2698b7671",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "06-resume-pipeline.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 06-resume-pipeline"
+            }
+          },
+          {
+            "id": "a3c9818ec2f21e29",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "06-resume-pipeline.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 06-resume-pipeline"
+            }
+          },
+          {
+            "id": "53bfbf613e0dff56",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "edaa62e8bf49a850",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "720ad4d903673116",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "06-resume-pipeline.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 06-resume-pipeline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "acb8865b0888e233",
+  "lastOpenFiles": [
+    "05-golden-paths.md",
+    "06-resume-pipeline.md",
+    "08-tokens.md",
+    "07-dashboard.md",
+    "04-retail.md",
+    "03-pharmacy-pos.md",
+    "01-po-ai-intent.md",
+    "00-self-intro.md",
+    "02-design-system.md"
+  ]
+}

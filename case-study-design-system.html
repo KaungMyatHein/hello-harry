@@ -57,11 +57,11 @@
     <div class="cs-bento cs-bento-meta">
       <div class="cs-meta-item">
         <div class="cs-meta-label">Role</div>
-        <div class="cs-meta-val">Lead UX Designer</div>
+        <div class="cs-meta-val">Senior Product Designer<br>Foundation Team</div>
       </div>
       <div class="cs-meta-item">
         <div class="cs-meta-label">Team</div>
-        <div class="cs-meta-val">3 Platform Design<br>Teams (POS, Web, Mobile)</div>
+        <div class="cs-meta-val">Solo design + 1 engineer<br>review</div>
       </div>
       <div class="cs-meta-item">
         <div class="cs-meta-label">Company</div>
@@ -69,8 +69,8 @@
       </div>
     </div>
     <div class="cs-bento cs-bento-metric">
-      <div class="cs-metric-num">70-90%</div>
-      <div class="cs-metric-label">Faster Handover</div>
+      <div class="cs-metric-num">Days&rarr;Hours</div>
+      <div class="cs-metric-label">Handover Cycle</div>
     </div>
     <div class="cs-bento cs-bento-metric">
       <div class="cs-metric-num">3</div>
@@ -120,7 +120,7 @@
         </div>
         <div class="cs-tldr-item">
           <div class="l">Outcome</div>
-          <div class="v"><strong>70–90% faster handover.</strong> 3 platforms unified.</div>
+          <div class="v"><strong>Handover cycle: days → hours.</strong> 3 platforms unified on one foundation.</div>
         </div>
         <div class="cs-tldr-item">
           <div class="l">Lesson</div>
@@ -353,20 +353,20 @@
 
     <div class="cs-results">
       <div class="cs-result">
-        <div class="cs-result-num">70-90%</div>
-        <div class="cs-result-label">Faster Handover</div>
-      </div>
-      <div class="cs-result">
-        <div class="cs-result-num">50-80%</div>
-        <div class="cs-result-label">Fewer Tickets</div>
+        <div class="cs-result-num">Days&rarr;Hours</div>
+        <div class="cs-result-label">Handover Cycle<br><span style="font-size:0.7em;opacity:0.6">Timed on three brand-color swaps; engineer confirmed.</span></div>
       </div>
       <div class="cs-result">
         <div class="cs-result-num">0</div>
         <div class="cs-result-label">Duplicate Tokens</div>
       </div>
+      <div class="cs-result">
+        <div class="cs-result-num">3</div>
+        <div class="cs-result-label">Platforms Unified</div>
+      </div>
     </div>
 
-    <p class="cs-p">POS hit 90% faster handover (simpler components). Web landed at 70% (more complex tables and data density). Maintenance tickets dropped 50-80% across all three platforms.</p>
+    <p class="cs-p">A brand-color swap that used to take two designers two days — chasing 14 screens across POS, Web, and Mobile — now took one token update and shipped by end of day. Project Lead confirmed the shift during the next quarterly review. I don't have current-state ticket data, but at the time of handoff the new model had eliminated the cross-team rework cycle that motivated the project.</p>
   </section>
 
   <!-- ══ PHOTO GALLERY ══ -->
@@ -412,15 +412,7 @@
       <p>Left out of v1. Platform teams implemented animations independently — creating jarring inconsistencies that only surfaced at QA. Motion should have been a foundation-level concern from the start.</p>
     </div>
     <div class="cs-lesson">
-      <strong>02 — Accessibility Tokens.</strong>
-      <p>Minimum contrast ratios should be token constraints, not designer knowledge. If the system can't enforce accessibility, it relies on individual awareness — which doesn't scale.</p>
-    </div>
-    <div class="cs-lesson">
-      <strong>03 — Component Status.</strong>
-      <p>Without stable / experimental / deprecated labels, teams consumed experimental components and hit breaking changes. Status metadata prevents teams from building on unstable foundations.</p>
-    </div>
-    <div class="cs-lesson">
-      <strong>04 — Theming Architecture.</strong>
+      <strong>02 — Theming Architecture.</strong>
       <p>The two-level model supports white-labeling — but only if semantic tokens never reference raw hex directly. This constraint needs to be enforced architecturally, not documented.</p>
     </div>
   </section>

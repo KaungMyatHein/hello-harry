@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Hein — Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ──────────────────────────────────────────────────
+   APPLE-INSPIRED MINIMALIST · BENTO GRID
+   Tokens lifted from Apple DESIGN.md
+   ────────────────────────────────────────────────── */
+:root{
+  --ink:#1d1d1f;
+  --ink-soft:#424245;
+  --ink-mute:#6e6e73;
+  --hairline:#d2d2d7;
+  --hairline-soft:#e5e5e7;
+  --paper:#ffffff;
+  --parchment:#f5f5f7;
+  --tile-dark:#1d1d1f;
+  --tile-dark-2:#272729;
+  --accent:#0066cc;
+  --accent-hover:#0077ed;
+  --product-shadow:0 4px 24px rgba(0,0,0,0.06);
+  --radius-sm:12px;
+  --radius-md:18px;
+  --radius-lg:22px;
+  --radius-pill:980px;
+  --font:'SF Pro Display','SF Pro Text','Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{
+  font-family:var(--font);
+  font-size:17px;
+  line-height:1.47;
+  color:var(--ink);
+  background:var(--paper);
+  letter-spacing:-0.022em;
+}
+a{color:var(--accent);text-decoration:none;}
+a:hover{color:var(--accent-hover);text-decoration:underline;}
+img{max-width:100%;display:block;}
+button{font:inherit;cursor:pointer;border:none;background:none;}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:50;
+  height:48px;
+  background:rgba(255,255,255,0.72);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--hairline-soft);
+}
+.nav-inner{
+  max-width:1024px;margin:0 auto;height:100%;
+  padding:0 22px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{font-size:21px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:12px;color:var(--ink-soft);letter-spacing:-0.01em;}
+.nav-links a:hover{color:var(--ink);text-decoration:none;}
+
+/* HERO */
+.hero{padding:120px 22px 96px;text-align:center;background:var(--paper);}
+.hero-eyebrow{
+  display:inline-block;font-size:14px;font-weight:500;
+  color:var(--accent);margin-bottom:18px;letter-spacing:-0.01em;
+}
+.hero h1{
+  font-size:clamp(40px,6.4vw,80px);line-height:1.05;
+  font-weight:600;letter-spacing:-0.035em;color:var(--ink);
+  max-width:920px;margin:0 auto 22px;
+}
+.hero h1 em{font-style:normal;color:var(--ink-mute);}
+.hero-sub{
+  font-size:clamp(19px,2.2vw,24px);color:var(--ink-soft);
+  font-weight:400;max-width:640px;margin:0 auto 36px;
+  letter-spacing:-0.012em;line-height:1.4;
+}
+.hero-meta{font-size:14px;color:var(--ink-mute);margin-bottom:40px;}
+.hero-meta .dot{margin:0 8px;opacity:0.5;}
+.hero-cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  height:40px;padding:0 20px;border-radius:var(--radius-pill);
+  font-size:15px;font-weight:400;letter-spacing:-0.01em;
+  transition:all 0.2s ease;
+}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-hover);text-decoration:none;color:#fff;}
+.btn-text{color:var(--accent);padding:0 4px;}
+.btn-text:hover{text-decoration:underline;color:var(--accent-hover);}
+.btn-secondary{
+  background:transparent;color:var(--ink);
+  border:1px solid var(--hairline);padding:0 19px;
+}
+.btn-secondary:hover{background:var(--parchment);text-decoration:none;color:var(--ink);}
+
+/* SECTIONS */
+.section{padding:80px 22px;}
+.section-parchment{background:var(--parchment);}
+.section-dark{background:var(--tile-dark);color:#f5f5f7;}
+.section-inner{max-width:1024px;margin:0 auto;}
+
+.section-head{text-align:center;margin-bottom:48px;}
+.section-eyebrow{
+  font-size:14px;font-weight:500;color:var(--accent);
+  margin-bottom:12px;letter-spacing:-0.01em;
+}
+.section-title{
+  font-size:clamp(34px,4.2vw,56px);line-height:1.07;
+  font-weight:600;letter-spacing:-0.028em;color:inherit;
+}
+.section-sub{
+  font-size:21px;color:var(--ink-soft);
+  margin-top:16px;max-width:580px;margin-left:auto;margin-right:auto;
+  font-weight:400;letter-spacing:-0.012em;
+}
+.section-dark .section-sub{color:rgba(245,245,247,0.7);}
+
+/* BENTO */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+.bento-card{
+  background:var(--paper);border:1px solid var(--hairline-soft);
+  border-radius:var(--radius-lg);padding:32px;
+  display:flex;flex-direction:column;
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+  text-decoration:none;color:inherit;
+  position:relative;overflow:hidden;min-height:260px;
+}
+.bento-card:hover{
+  transform:translateY(-2px);box-shadow:var(--product-shadow);
+  text-decoration:none;color:inherit;
+}
+.bento-card.featured{grid-column:span 6;min-height:340px;}
+.bento-card.half{grid-column:span 3;}
+.bento-card.third{grid-column:span 2;}
+.bento-card.dark{
+  background:var(--tile-dark);color:#f5f5f7;border-color:var(--tile-dark-2);
+}
+.bento-card.dark .bento-desc,
+.bento-card.dark .bento-meta-label{color:rgba(245,245,247,0.65);}
+.bento-card.dark .bento-tag{
+  background:rgba(255,255,255,0.08);color:#f5f5f7;border-color:rgba(255,255,255,0.08);
+}
+.bento-card.dark .bento-metric-val{color:#f5f5f7;}
+.bento-card.dark .bento-metric{border-top-color:rgba(255,255,255,0.1);}
+
+.bento-eyebrow{
+  display:inline-block;font-size:12px;font-weight:500;
+  color:var(--accent);letter-spacing:-0.005em;margin-bottom:8px;
+}
+.bento-card.dark .bento-eyebrow{color:#2997ff;}
+
+.bento-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.bento-tag{
+  display:inline-block;font-size:11px;font-weight:500;
+  padding:4px 10px;border-radius:var(--radius-pill);
+  background:var(--parchment);border:1px solid var(--hairline-soft);
+  color:var(--ink-soft);
+}
+.bento-title{
+  font-size:28px;line-height:1.1;font-weight:600;
+  letter-spacing:-0.025em;color:inherit;margin-bottom:10px;
+}
+.bento-card.featured .bento-title{font-size:40px;}
+.bento-desc{
+  font-size:15px;line-height:1.5;color:var(--ink-soft);
+  font-weight:400;letter-spacing:-0.012em;
+  margin-bottom:18px;flex-grow:1;
+}
+.bento-card.featured .bento-desc{font-size:17px;line-height:1.47;}
+
+.bento-metric{
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:16px;border-top:1px solid var(--hairline-soft);
+  margin-bottom:18px;
+}
+.bento-metric-item{display:flex;flex-direction:column;}
+.bento-metric-val{
+  font-size:22px;font-weight:600;letter-spacing:-0.02em;
+  color:var(--ink);line-height:1;
+}
+.bento-meta-label{font-size:11px;color:var(--ink-mute);margin-top:4px;}
+
+.bento-arrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:14px;font-weight:500;color:var(--accent);
+  letter-spacing:-0.01em;margin-top:auto;
+}
+.bento-arrow svg{width:14px;height:14px;transition:transform 0.2s;}
+.bento-card:hover .bento-arrow svg{transform:translateX(3px);}
+.bento-card.dark .bento-arrow{color:#2997ff;}
+
+/* EXPERIENCE */
+.exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.exp-card{
+  background:var(--paper);border:1px solid var(--hairline-soft);
+  border-radius:var(--radius-md);padding:28px;
+}
+.exp-card.wide{grid-column:span 2;}
+.exp-head{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:16px;padding-bottom:16px;
+  border-bottom:1px solid var(--hairline-soft);gap:12px;
+}
+.exp-company{font-size:22px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+.exp-role{font-size:14px;color:var(--accent);margin-top:2px;letter-spacing:-0.01em;}
+.exp-period{
+  font-size:12px;color:var(--ink-mute);
+  text-align:right;flex-shrink:0;line-height:1.4;
+}
+.exp-list{list-style:none;}
+.exp-list li{
+  font-size:14px;line-height:1.5;color:var(--ink-soft);
+  padding:6px 0 6px 18px;position:relative;letter-spacing:-0.01em;
+}
+.exp-list li::before{
+  content:"";position:absolute;left:0;top:14px;
+  width:4px;height:4px;border-radius:50%;background:var(--ink-mute);
+}
+.exp-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px;}
+
+/* FACTS */
+.facts{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;margin-bottom:64px;
+}
+.fact{
+  background:var(--paper);border:1px solid var(--hairline-soft);
+  border-radius:var(--radius-md);padding:28px 24px;text-align:center;
+}
+.fact-val{
+  font-size:48px;font-weight:600;letter-spacing:-0.03em;
+  color:var(--ink);line-height:1;margin-bottom:6px;
+}
+.fact-val em{color:var(--accent);font-style:normal;}
+.fact-label{font-size:13px;color:var(--ink-mute);}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.testi-card{
+  background:var(--paper);border:1px solid var(--hairline-soft);
+  border-radius:var(--radius-md);padding:32px;
+}
+.testi-text{
+  font-size:19px;line-height:1.45;color:var(--ink);
+  font-weight:400;letter-spacing:-0.018em;margin-bottom:22px;
+}
+.testi-author{display:flex;align-items:center;gap:12px;}
+.testi-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--parchment);border:1px solid var(--hairline-soft);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:600;color:var(--ink);
+}
+.testi-name{font-size:15px;font-weight:600;letter-spacing:-0.012em;}
+.testi-role{font-size:13px;color:var(--ink-mute);}
+
+/* EDUCATION */
+.edu-card{
+  background:var(--paper);border:1px solid var(--hairline-soft);
+  border-radius:var(--radius-md);padding:32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+}
+.edu-degree{font-size:24px;font-weight:600;letter-spacing:-0.02em;margin-bottom:6px;}
+.edu-school{font-size:14px;color:var(--accent);margin-bottom:6px;letter-spacing:-0.01em;}
+.edu-period{font-size:13px;color:var(--ink-mute);}
+.edu-list{list-style:none;}
+.edu-list li{
+  font-size:14px;line-height:1.5;color:var(--ink-soft);
+  padding:6px 0 6px 18px;position:relative;letter-spacing:-0.01em;
+}
+.edu-list li::before{
+  content:"";position:absolute;left:0;top:14px;
+  width:4px;height:4px;border-radius:50%;background:var(--ink-mute);
+}
+
+/* CTA */
+.cta{
+  padding:120px 22px;background:var(--tile-dark);
+  color:#f5f5f7;text-align:center;
+}
+.cta h2{
+  font-size:clamp(40px,5.6vw,72px);line-height:1.05;font-weight:600;
+  letter-spacing:-0.032em;margin-bottom:18px;
+}
+.cta h2 em{font-style:normal;color:#2997ff;}
+.cta p{
+  font-size:21px;color:rgba(245,245,247,0.7);
+  max-width:520px;margin:0 auto 36px;letter-spacing:-0.012em;
+}
+.cta-btns{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.cta .btn-primary{background:#2997ff;color:#fff;}
+.cta .btn-primary:hover{background:#147ce5;}
+.cta .btn-secondary{
+  background:transparent;color:#f5f5f7;
+  border:1px solid rgba(255,255,255,0.18);
+}
+.cta .btn-secondary:hover{background:rgba(255,255,255,0.06);}
+
+/* FOOTER */
+.footer{
+  padding:32px 22px;background:var(--parchment);
+  border-top:1px solid var(--hairline-soft);
+  text-align:center;font-size:12px;color:var(--ink-mute);
+}
+.footer-links{
+  display:flex;gap:20px;justify-content:center;
+  margin-bottom:12px;flex-wrap:wrap;
+}
+.footer-links a{color:var(--ink-soft);}
+.footer-links a:hover{color:var(--ink);text-decoration:underline;}
+.footer-note{margin-top:6px;}
+.footer-alt{margin-top:8px;}
+.footer-alt a{color:var(--accent);}
+
+/* MARQUEE */
+.marquee{
+  padding:24px 0;border-top:1px solid var(--hairline-soft);
+  border-bottom:1px solid var(--hairline-soft);
+  overflow:hidden;background:var(--paper);
+}
+.marquee-track{
+  display:flex;gap:48px;animation:slide 40s linear infinite;white-space:nowrap;
+}
+.marquee-track span{font-size:14px;color:var(--ink-mute);flex-shrink:0;}
+.marquee-track .sep{color:var(--hairline);}
+@keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .bento{grid-template-columns:1fr;gap:12px;}
+  .bento-card,.bento-card.featured,.bento-card.half,.bento-card.third{grid-column:span 1;}
+  .exp-grid{grid-template-columns:1fr;}
+  .exp-card.wide{grid-column:span 1;}
+  .exp-head{flex-direction:column;align-items:flex-start;}
+  .exp-period{text-align:left;}
+  .facts{grid-template-columns:1fr 1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+  .edu-card{grid-template-columns:1fr;gap:20px;}
+  .nav-links{display:none;}
+  .section{padding:64px 18px;}
+  .hero{padding:80px 18px 64px;}
+}
+@media(max-width:540px){
+  .facts{grid-template-columns:1fr;}
+  .bento-card{padding:24px;}
+  .exp-card{padding:22px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">Harry Hein</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#testimonials">Voices</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Senior Product Designer · Available 2026</div>
+  <h1>Design. Ship. <em>Measure.</em></h1>
+  <p class="hero-sub">AI-first systems for complex enterprise tooling. Seven years of work that ships and gets measured.</p>
+  <div class="hero-meta">Bangkok, TH <span class="dot">·</span> Designer who codes <span class="dot">·</span> 7 yrs experience</div>
+  <div class="hero-cta">
+    <a href="#work" class="btn btn-primary">See the work</a>
+    <a href="#contact" class="btn btn-text">Get in touch ›</a>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Product Design</span><span class="sep">·</span>
+    <span>UX Research</span><span class="sep">·</span>
+    <span>Design Systems</span><span class="sep">·</span>
+    <span>AI-First Design</span><span class="sep">·</span>
+    <span>Interaction Design</span><span class="sep">·</span>
+    <span>Product Strategy</span><span class="sep">·</span>
+    <span>Accessibility</span><span class="sep">·</span>
+    <span>Figma</span><span class="sep">·</span>
+    <span>Rapid Prototyping</span><span class="sep">·</span>
+    <span>Design Thinking</span><span class="sep">·</span>
+    <span>Product Design</span><span class="sep">·</span>
+    <span>UX Research</span><span class="sep">·</span>
+    <span>Design Systems</span><span class="sep">·</span>
+    <span>AI-First Design</span><span class="sep">·</span>
+    <span>Interaction Design</span><span class="sep">·</span>
+    <span>Product Strategy</span><span class="sep">·</span>
+    <span>Accessibility</span><span class="sep">·</span>
+    <span>Figma</span><span class="sep">·</span>
+    <span>Rapid Prototyping</span><span class="sep">·</span>
+    <span>Design Thinking</span><span class="sep">·</span>
+  </div>
+</div>
+
+<section class="section section-parchment" id="work">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Selected Work</div>
+      <h2 class="section-title">Case Studies</h2>
+      <p class="section-sub">Five recommended deep-dives. Each one shipped, measured, and reflected on.</p>
+    </div>
+
+    <div class="bento" style="margin-bottom:16px;">
+      <a href="case-study-po-ai-intent-apple.html" class="bento-card featured dark">
+        <div class="bento-eyebrow">Recommended · 2026</div>
+        <div class="bento-tags">
+          <span class="bento-tag">AI Product</span>
+          <span class="bento-tag">SaaS</span>
+          <span class="bento-tag">Bilingual UX</span>
+        </div>
+        <h3 class="bento-title">Speak, Don't Click.</h3>
+        <p class="bento-desc">Replaced a traditional CRM dashboard with a bilingual intent palette. 28 intents in MVP, 21 already live in production — each rendering an inline action card. Myanmar sellers stop hunting menus and just say what they want.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">21</div>
+            <div class="bento-meta-label">Live in Prod</div>
+          </div>
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">&lt;50ms</div>
+            <div class="bento-meta-label">Match Latency</div>
+          </div>
+        </div>
+        <span class="bento-arrow">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="bento" style="margin-bottom:16px;">
+      <a href="case-study-design-system.html" class="bento-card half">
+        <div class="bento-eyebrow">Recommended · 2025</div>
+        <div class="bento-tags">
+          <span class="bento-tag">Design System</span>
+          <span class="bento-tag">Design Tokens</span>
+          <span class="bento-tag">Multi-Platform</span>
+        </div>
+        <h3 class="bento-title">Three Platforms.<br>One Source of Truth.</h3>
+        <p class="bento-desc">Maintaining one design system across POS, web, and mobile using a federated two-level architecture — shared global foundation plus platform-specific libraries.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">Days → Hours</div>
+            <div class="bento-meta-label">Handover Time</div>
+          </div>
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">100%</div>
+            <div class="bento-meta-label">Consistency</div>
+          </div>
+        </div>
+        <span class="bento-arrow">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="case-study-pharmacy-pos.html" class="bento-card half">
+        <div class="bento-eyebrow">Recommended · 2025</div>
+        <div class="bento-tags">
+          <span class="bento-tag">POS System</span>
+          <span class="bento-tag">UX Redesign</span>
+          <span class="bento-tag">STO Maldives</span>
+        </div>
+        <h3 class="bento-title">Two Stores.<br>One System.</h3>
+        <p class="bento-desc">Redesigned a legacy Windows POS into a modern touchscreen system for STO's pharmacy and supermarket chains — 14 modules, 200+ screens, as the sole designer.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">14+</div>
+            <div class="bento-meta-label">Modules</div>
+          </div>
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">200+</div>
+            <div class="bento-meta-label">Screens</div>
+          </div>
+        </div>
+        <span class="bento-arrow">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="bento" style="margin-bottom:16px;">
+      <a href="case-study-retail.html" class="bento-card half">
+        <div class="bento-eyebrow">Recommended · 2025</div>
+        <div class="bento-tags">
+          <span class="bento-tag">Retail</span>
+          <span class="bento-tag">Redesign</span>
+        </div>
+        <h3 class="bento-title">From Feedback<br>to 427% ROI</h3>
+        <p class="bento-desc">A broken return process had the CS team drowning in tickets. Four months of research, three rounds of testing, and 427% ROI later — here's how it happened.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">427%</div>
+            <div class="bento-meta-label">ROI Achieved</div>
+          </div>
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">&gt;50%</div>
+            <div class="bento-meta-label">Time Reduction</div>
+          </div>
+        </div>
+        <span class="bento-arrow">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="case-study-golden-paths.html" class="bento-card half dark">
+        <div class="bento-eyebrow">Recommended · 2024</div>
+        <div class="bento-tags">
+          <span class="bento-tag">AI Product</span>
+          <span class="bento-tag">UX Research</span>
+        </div>
+        <h3 class="bento-title">Prototypes That<br>Never Sleep.</h3>
+        <p class="bento-desc">User testing used to mean weeks of scheduling, facilitation, and synthesis. I designed an AI-simulated path analysis that matched human friction in 9 of 11 flow blockers tested.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">9/11</div>
+            <div class="bento-meta-label">Blockers Matched</div>
+          </div>
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">4.2×</div>
+            <div class="bento-meta-label">Avg Runs/Proto</div>
+          </div>
+        </div>
+        <span class="bento-arrow">View case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="more">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">More Work</div>
+      <h2 class="section-title">Other Projects</h2>
+      <p class="section-sub">Shorter case studies and side experiments.</p>
+    </div>
+
+    <div class="bento" style="margin-bottom:16px;">
+      <a href="case-study-resume-pipeline.html" class="bento-card third">
+        <div class="bento-eyebrow">2025</div>
+        <div class="bento-tags"><span class="bento-tag">AI Tools</span></div>
+        <h3 class="bento-title" style="font-size:22px;">47 Apps.<br>2 Interviews.</h3>
+        <p class="bento-desc">Sarah applied to 47 jobs and got 2 interviews. The problem wasn't her resume — it was the 40-minute manual tailoring ritual. I replaced it with a 15-minute AI pipeline.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">40→15</div>
+            <div class="bento-meta-label">Min Per App</div>
+          </div>
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">4→1</div>
+            <div class="bento-meta-label">Tools</div>
+          </div>
+        </div>
+        <span class="bento-arrow">Open
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="case-study-dashboard.html" class="bento-card third">
+        <div class="bento-eyebrow">2022</div>
+        <div class="bento-tags"><span class="bento-tag">Dashboard</span><span class="bento-tag">Finance</span></div>
+        <h3 class="bento-title" style="font-size:22px;">Daily Ritual<br>to 104% ROI</h3>
+        <p class="bento-desc">Every morning, the finance team opened three different apps to see the same numbers. I made that one screen instead.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">0.5h</div>
+            <div class="bento-meta-label">Saved Daily</div>
+          </div>
+        </div>
+        <span class="bento-arrow">Open
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="case-study-tokens.html" class="bento-card third">
+        <div class="bento-eyebrow">2024</div>
+        <div class="bento-tags"><span class="bento-tag">Figma Plugin</span></div>
+        <h3 class="bento-title" style="font-size:22px;">Unified<br>Design Tokens</h3>
+        <p class="bento-desc">Token exports meant four separate files and four chances for things to drift. I wrote a plugin that made the whole process a single click.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">50%</div>
+            <div class="bento-meta-label">Time Reduced</div>
+          </div>
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">~100%</div>
+            <div class="bento-meta-label">Error Reduction</div>
+          </div>
+        </div>
+        <span class="bento-arrow">Open
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="bento">
+      <a href="case-study-jar-aye-child.html" class="bento-card half">
+        <div class="bento-eyebrow">2025</div>
+        <div class="bento-tags"><span class="bento-tag">EdTech</span><span class="bento-tag">Children UX</span></div>
+        <h3 class="bento-title">Making Hard Math Feel Tractable</h3>
+        <p class="bento-desc">Designing a HOTS mathematics learning app for 6–12 year olds aligned to the Singapore curriculum — keeping children in productive struggle without tipping into frustration or boredom.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">5</div>
+            <div class="bento-meta-label">HOTS Strategies</div>
+          </div>
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">3</div>
+            <div class="bento-meta-label">User Types</div>
+          </div>
+        </div>
+        <span class="bento-arrow">Open
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="case-study-jar-aye-parent.html" class="bento-card half">
+        <div class="bento-eyebrow">2025</div>
+        <div class="bento-tags"><span class="bento-tag">EdTech</span><span class="bento-tag">Parent UX</span></div>
+        <h3 class="bento-title">Closing the Visibility Gap</h3>
+        <p class="bento-desc">Designing the companion app that gives non-expert parents meaningful insight into their child's HOTS mathematical development — without overwhelming them with data they can't interpret.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">4</div>
+            <div class="bento-meta-label">Mastery Tiers</div>
+          </div>
+          <div class="bento-metric-item">
+            <div class="bento-metric-val">3</div>
+            <div class="bento-meta-label">Sub States</div>
+          </div>
+        </div>
+        <span class="bento-arrow">Open
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-parchment">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Side Projects</div>
+      <h2 class="section-title">Built on Weekends</h2>
+    </div>
+
+    <div class="bento">
+      <a href="https://design-flash-card.vercel.app/" target="_blank" class="bento-card half">
+        <div class="bento-eyebrow">Live</div>
+        <div class="bento-tags"><span class="bento-tag">Web App</span><span class="bento-tag">React</span></div>
+        <h3 class="bento-title">Design Flash Cards</h3>
+        <p class="bento-desc">A bilingual (English/Myanmar) app to master UX principles through active recall. Spaced repetition, category filtering, and a clean study interface.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item"><div class="bento-metric-val">60+</div><div class="bento-meta-label">UX Principles</div></div>
+          <div class="bento-metric-item"><div class="bento-metric-val">2</div><div class="bento-meta-label">Languages</div></div>
+          <div class="bento-metric-item"><div class="bento-metric-val">$0</div><div class="bento-meta-label">Cost to Run</div></div>
+        </div>
+        <span class="bento-arrow">Open ↗</span>
+      </a>
+
+      <a href="https://orchestra.figma.site/" target="_blank" class="bento-card half">
+        <div class="bento-eyebrow">Live</div>
+        <div class="bento-tags"><span class="bento-tag">Figma Plugin</span><span class="bento-tag">Automation</span></div>
+        <h3 class="bento-title">Orchestra Syncs</h3>
+        <p class="bento-desc">A Figma plugin that syncs Variables to GitHub and auto-builds design tokens for Web, iOS, Android, and Flutter — change once, update everywhere.</p>
+        <div class="bento-metric">
+          <div class="bento-metric-item"><div class="bento-metric-val">4</div><div class="bento-meta-label">Platforms</div></div>
+          <div class="bento-metric-item"><div class="bento-metric-val">0</div><div class="bento-meta-label">Manual Steps</div></div>
+        </div>
+        <span class="bento-arrow">Open ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Experience</div>
+      <h2 class="section-title">Where I've Shipped</h2>
+      <p class="section-sub">Five companies. One career switch from engineering. A lot of Figma files.</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><div class="fact-val"><em>7</em></div><div class="fact-label">Years Experience</div></div>
+      <div class="fact"><div class="fact-val">5</div><div class="fact-label">Companies</div></div>
+      <div class="fact"><div class="fact-val"><em>200%</em></div><div class="fact-label">UX ROI · Raytail</div></div>
+      <div class="fact"><div class="fact-val">$10K</div><div class="fact-label">Monthly Savings</div></div>
+    </div>
+
+    <div class="exp-grid">
+      <div class="exp-card wide">
+        <div class="exp-head">
+          <div>
+            <div class="exp-company">Raytail</div>
+            <div class="exp-role">UX Lead</div>
+          </div>
+          <div class="exp-period">Dec 2023 — Dec 2025<br>Maldives · Remote</div>
+        </div>
+        <ul class="exp-list">
+          <li>Drove design work that delivered 200% UX ROI across a multi-product ecosystem</li>
+          <li>Redesigned the POS checkout and order workflows — $10K/month saved in operational costs</li>
+          <li>Built a design system from scratch; still the foundation the team runs on today</li>
+          <li>Worked async-first with a fully remote team in Maldives — Figma comments got very specific</li>
+          <li>Enforced WCAG accessibility standards across all products</li>
+          <li>Cleared years of design debt through structured A/B testing</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="bento-tag">200% UX ROI</span>
+          <span class="bento-tag">$10K Savings</span>
+          <span class="bento-tag">Design System</span>
+          <span class="bento-tag">WCAG</span>
+          <span class="bento-tag">A/B Testing</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-company">Lexagle</div>
+            <div class="exp-role">Senior UX Designer</div>
+          </div>
+          <div class="exp-period">Oct 2022 — Apr 2023<br>Singapore</div>
+        </div>
+        <ul class="exp-list">
+          <li>Owned obligation management feature end-to-end — concept to handoff</li>
+          <li>Built public link form that cut back-and-forth in the contract inquiry flow</li>
+          <li>Kept design consistent across the product while moving fast in a small team</li>
+          <li>Stayed close to the PM so design decisions served the business, not just the mockup</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="bento-tag">Legal Tech</span>
+          <span class="bento-tag">Feature Ownership</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-company">Treedots</div>
+            <div class="exp-role">UX/UI Designer</div>
+          </div>
+          <div class="exp-period">Nov 2021 — Oct 2022<br>Singapore</div>
+        </div>
+        <ul class="exp-list">
+          <li>Spent the first month mapping every broken flow before touching Figma</li>
+          <li>Designed the B2B Supplier Portal from scratch — complex workflows, lots of edge cases</li>
+          <li>Built detailed interactive prototypes that made dev conversations a lot shorter</li>
+          <li>Launched a design system that's still the foundation for every new feature</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="bento-tag">B2B Portal</span>
+          <span class="bento-tag">Launched DS</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-company">Nexlabs</div>
+            <div class="exp-role">Product Designer</div>
+          </div>
+          <div class="exp-period">Sep 2020 — Nov 2021<br>Myanmar</div>
+        </div>
+        <ul class="exp-list">
+          <li>Shipped across healthcare, logistics, fintech, and retail — four industries in fourteen months</li>
+          <li>Research was never optional; every project started with a discovery phase</li>
+          <li>Always started with low-fidelity wireframes before high-fidelity work</li>
+          <li>Learned fast how to explain design decisions in terms clients cared about</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="bento-tag">Multi-industry</span>
+          <span class="bento-tag">Prototyping</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-company">Adventsoft</div>
+            <div class="exp-role">UI/UX Designer</div>
+          </div>
+          <div class="exp-period">Dec 2018 — Sep 2020<br>Myanmar</div>
+        </div>
+        <ul class="exp-list">
+          <li>Made the switch from software engineer to designer here — still the best call I've made</li>
+          <li>Used prototypes as specs so developers knew exactly what to build before a word was said</li>
+          <li>Presented work to clients in plain language — no design jargon, no glazed-over looks</li>
+          <li>Reading code meant handoffs were smoother than most designers could manage</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="bento-tag">Eng → Design</span>
+          <span class="bento-tag">Hi-Fi Prototypes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-parchment" id="testimonials">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Voices</div>
+      <h2 class="section-title">What They Say</h2>
+      <p class="section-sub">Things colleagues and managers actually said — not paraphrased.</p>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-text">"The amount of passion you've put into your work is very much appreciated and truly inspiring. It's incredible how often you exceed expectations."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">D</div>
+          <div>
+            <div class="testi-name">Diana Eddie</div>
+            <div class="testi-role">Design Lead, Treedots</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-text">"An amazing founder of the local UX design community. He shared his knowledge with the intention for designers to improve their skills."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div>
+            <div class="testi-name">Ricky Aung</div>
+            <div class="testi-role">Product Manager, Veneurific</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Education</div>
+      <h2 class="section-title">Foundation</h2>
+    </div>
+
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">B.Sc. Computer Science</div>
+        <div class="edu-school">University of Computer Studies, Taunggyi</div>
+        <div class="edu-period">2013 — 2018 · Myanmar</div>
+      </div>
+      <ul class="edu-list">
+        <li>Human Computer Interaction & Digital Design focus</li>
+        <li>Graduated with Distinction in Cyber Security</li>
+        <li>Founded CS Club at University</li>
+        <li>Engineering background bridges design & development</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <h2>Let's build<br>something <em>great</em></h2>
+  <p>Looking for a team that ships things and cares whether they work. Open to senior roles in product and UX.</p>
+  <div class="cta-btns">
+    <a href="mailto:kaungmyat9702@gmail.com" class="btn btn-primary">Email me</a>
+    <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" target="_blank" class="btn btn-secondary">LinkedIn ↗</a>
+    <a href="https://designer-os-test.vercel.app/resume/share/84rG99PQ" target="_blank" class="btn btn-secondary">Resume ↗</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="#work">Work</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-note">© 2026 Harry Hein · Bangkok, TH</div>
+  <div class="footer-alt"><a href="portfolio.html">View original portfolio →</a></div>
+</footer>
+
+</body>
+</html>

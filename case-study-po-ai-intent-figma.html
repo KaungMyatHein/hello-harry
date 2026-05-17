@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PO AI Intent — Figma Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f5f5;
+  --canvas:#e5e5e5;
+  --ink:#1e1e1e;
+  --muted:#7a7a7a;
+  --line:#d4d4d4;
+  --frame:#ffffff;
+  --blue:#0d99ff;
+  --purple:#9747ff;
+  --green:#14ae5c;
+  --pink:#f24e1e;
+  --yellow:#ffc107;
+  --orange:#ff7a00;
+  --pastel-blue:#e3f2ff;
+  --pastel-purple:#f3e8ff;
+  --pastel-green:#e3f9eb;
+  --pastel-pink:#ffe5db;
+  --pastel-yellow:#fff8d6;
+  --pastel-orange:#ffead0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--canvas);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+
+nav{background:var(--frame);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.navbar{max-width:1280px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav-left{display:flex;align-items:center;gap:14px}
+.fig-logo{width:24px;height:36px}
+.fig-logo svg{width:100%;height:100%}
+.brand{font-weight:600;font-size:13px}
+.brand .sep{color:var(--muted);margin:0 8px;font-weight:400}
+.nav-icons{display:flex;align-items:center;gap:6px}
+.nav-icon{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px}
+.nav-icon.active{background:#e1f0ff;color:var(--blue)}
+.nav-right{display:flex;align-items:center;gap:8px;font-size:12px}
+.avatar{width:24px;height:24px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;border:2px solid var(--frame);box-shadow:0 0 0 1px var(--blue)}
+.share-btn{padding:6px 12px;background:var(--blue);color:#fff;border-radius:6px;font-size:12px;font-weight:500}
+
+.workspace{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 50px)}
+.layers{background:var(--frame);border-right:1px solid var(--line);padding:12px 0;font-size:12px;overflow-y:auto;max-height:calc(100vh - 50px);position:sticky;top:50px}
+.layer{padding:5px 12px 5px 24px;display:flex;align-items:center;gap:8px;font-size:12px;position:relative}
+.layer:hover{background:#f0f0f0}
+.layer.selected{background:#e1f0ff;color:var(--blue)}
+.layer.selected::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--blue)}
+.layer-ic{width:14px;height:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px}
+.layer-child{padding-left:36px}
+.layer-page{font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:0.06em;color:var(--muted);padding:10px 12px 4px}
+
+.canvas{background:var(--canvas);background-image:radial-gradient(circle,#cccccc 1px,transparent 1px);background-size:18px 18px;padding:40px 24px}
+
+.frame{background:var(--frame);border-radius:6px;box-shadow:0 0 0 2px rgba(13,153,255,0.4);position:relative;margin-bottom:60px;overflow:hidden}
+.frame::before{content:attr(data-name);position:absolute;top:-22px;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);font-weight:500;background:var(--canvas);padding:1px 4px}
+.frame-pad{padding:48px}
+
+.hero-frame{background:linear-gradient(135deg,var(--pastel-pink) 0%,var(--pastel-yellow) 100%)}
+.hero-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.fpill{padding:4px 10px;background:#fff;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;display:inline-flex;align-items:center;gap:6px;box-shadow:0 1px 2px rgba(0,0,0,0.06)}
+.fpill.live{color:var(--green)}
+.fpill.live::before{content:"●";font-size:8px}
+.fpill.role::before{content:"◇";font-size:9px}
+.fpill.lang::before{content:"◆";font-size:9px}
+.fpill.time::before{content:"◯";font-size:9px}
+
+h1{font-size:clamp(40px,5.5vw,72px);font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-bottom:16px;max-width:900px}
+h1 .hi-pink{background:var(--pink);color:#fff;padding:0 10px;border-radius:6px;display:inline-block;transform:rotate(-1deg)}
+h1 .hi-blue{background:var(--blue);color:#fff;padding:0 10px;border-radius:6px;display:inline-block;transform:rotate(1deg)}
+.lede{font-size:18px;color:#444;max-width:640px;line-height:1.5;margin-bottom:24px}
+
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.thumb{aspect-ratio:1.4;background:#fff;border-radius:10px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;position:relative;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.thumb-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:0.08em}
+.thumb-num{font-size:42px;font-weight:800;letter-spacing:-0.03em;line-height:1}
+.thumb-sub{font-size:11px;color:var(--muted);margin-top:4px}
+.thumb.b1{background:var(--pastel-blue)}
+.thumb.b2{background:var(--pastel-purple)}
+.thumb.b3{background:var(--pastel-green)}
+.thumb.b4{background:var(--pastel-orange)}
+
+.sec-frame{background:var(--frame);border-radius:8px;padding:48px;margin-bottom:60px;position:relative;box-shadow:0 0 0 1px var(--line)}
+.sec-frame::before{content:attr(data-name);position:absolute;top:-22px;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--purple);font-weight:500;background:var(--canvas);padding:1px 4px}
+.sec-num{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue);font-weight:600;background:var(--pastel-blue);padding:4px 10px;border-radius:999px;margin-bottom:14px}
+.sec-num::before{content:"⬢";font-size:10px}
+h2{font-size:34px;font-weight:700;letter-spacing:-0.02em;line-height:1.1;margin-bottom:14px;max-width:760px}
+.sec-lead{font-size:16px;color:#444;max-width:720px;line-height:1.6}
+.sec-lead strong{font-weight:700;background:var(--pastel-yellow);padding:0 4px;border-radius:3px}
+
+.cells{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.cell{background:var(--frame);border-radius:8px;padding:24px;position:relative;box-shadow:0 0 0 1px var(--line)}
+.cell::before{content:attr(data-comp);position:absolute;top:-20px;left:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);font-weight:500;background:var(--canvas);padding:1px 4px}
+.cell.c1{background:var(--pastel-blue)}
+.cell.c2{background:var(--pastel-purple)}
+.cell.c3{background:var(--pastel-pink)}
+.cell.c4{background:var(--pastel-green)}
+.cell.c5{background:var(--pastel-yellow)}
+.cell.c6{background:var(--pastel-orange)}
+.cell-h{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
+.cell-t{font-size:18px;font-weight:700;letter-spacing:-0.01em;margin-bottom:6px}
+.cell-b{font-size:13px;color:#555;line-height:1.5}
+
+.fquote{margin-top:28px;background:var(--ink);color:#fff;border-radius:12px;padding:36px 40px;position:relative}
+.fquote::before{content:"Quote";position:absolute;top:-20px;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--orange);font-weight:500;background:var(--canvas);padding:1px 4px}
+.fquote p{font-size:22px;font-weight:600;line-height:1.4;letter-spacing:-0.01em}
+.fquote cite{display:block;font-style:normal;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;opacity:0.6}
+
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:24px}
+.flow-step{background:var(--frame);border-radius:6px;padding:16px 14px;box-shadow:0 0 0 1px var(--line);position:relative}
+.flow-step:nth-child(odd){background:var(--pastel-blue)}
+.flow-step:nth-child(even){background:var(--pastel-purple)}
+.flow-step::after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--ink);font-weight:700;font-size:14px}
+.flow-step:last-child::after{display:none}
+.flow-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);font-weight:600}
+.flow-title{font-size:13px;font-weight:700;margin:4px 0 4px}
+.flow-lat{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pink);font-weight:600}
+
+.tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:24px}
+.tool{padding:8px 12px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px}
+.tool::before{content:"◧";font-size:11px}
+.tool:nth-child(6n+1){background:var(--pastel-blue);color:#0a5fa3}
+.tool:nth-child(6n+2){background:var(--pastel-purple);color:#5a1f9e}
+.tool:nth-child(6n+3){background:var(--pastel-pink);color:#a82d12}
+.tool:nth-child(6n+4){background:var(--pastel-green);color:#0c6e3a}
+.tool:nth-child(6n+5){background:var(--pastel-yellow);color:#8a6700}
+.tool:nth-child(6n){background:var(--pastel-orange);color:#a04d00}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.compare-col{padding:32px;border-radius:10px;position:relative;box-shadow:0 0 0 1px var(--line)}
+.compare-col::before{content:attr(data-tag);position:absolute;top:-20px;left:0;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;background:var(--canvas);padding:1px 4px}
+.compare-col.before{background:var(--pastel-pink)}
+.compare-col.before::before{color:var(--pink)}
+.compare-col.after{background:var(--pastel-green)}
+.compare-col.after::before{color:var(--green)}
+.compare-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;color:var(--muted);margin-bottom:10px}
+.compare-num{font-size:72px;font-weight:800;letter-spacing:-0.03em;line-height:1}
+.compare-col p{font-size:13px;color:#555;margin-top:8px}
+
+.props{background:var(--frame);border-radius:8px;margin-top:24px;box-shadow:0 0 0 1px var(--line);overflow:hidden}
+.props-h{padding:10px 16px;background:var(--canvas);border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+.props-row{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:10px 16px;border-bottom:1px solid var(--line);font-size:12px}
+.props-row:last-child{border-bottom:0}
+.props-k{font-family:'JetBrains Mono',monospace;color:var(--muted)}
+.props-v{font-family:'JetBrains Mono',monospace;color:var(--ink)}
+.props-v .swatch{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:middle;margin-right:4px;border:1px solid var(--line)}
+
+.lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.lesson{border-radius:8px;padding:24px;position:relative;box-shadow:0 0 0 1px var(--line)}
+.lesson.l1{background:var(--pastel-blue)}
+.lesson.l2{background:var(--pastel-purple)}
+.lesson.l3{background:var(--pastel-pink)}
+.lesson.l4{background:var(--pastel-green)}
+.lesson-n{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--muted);background:#fff;padding:2px 8px;border-radius:4px;margin-bottom:10px}
+.lesson-t{font-size:18px;font-weight:700;letter-spacing:-0.01em;margin-bottom:8px}
+.lesson-b{font-size:13px;color:#555;line-height:1.6}
+
+footer{padding:30px 0 50px;color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace;text-align:center}
+
+@media (max-width:920px){
+  .workspace{grid-template-columns:1fr}
+  .layers{display:none}
+  .thumbs,.cells,.tool-grid{grid-template-columns:repeat(2,1fr)}
+  .compare,.lessons{grid-template-columns:1fr}
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .flow-step::after{display:none}
+}
+
+.media-hero{margin-top:32px;border-radius:8px;overflow:hidden;background:#1a1a1a;aspect-ratio:16/9;position:relative;box-shadow:0 0 0 2px var(--blue),0 24px 60px rgba(13,153,255,0.18)}
+.media-hero video,.media-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.media-hero .tag{position:absolute;left:-2px;top:-22px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);background:transparent;padding:0;font-weight:500;z-index:2}
+.media-wide{margin-top:32px;border-radius:6px;overflow:hidden;background:#1a1a1a;aspect-ratio:16/9;position:relative;box-shadow:0 0 0 1px var(--line)}
+.media-wide video,.media-wide img{width:100%;height:100%;object-fit:cover;display:block}
+.media-caption{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--purple);margin-top:8px;font-weight:500}
+.media-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.media-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.media-tile{background:#1a1a1a;border-radius:6px;overflow:hidden;aspect-ratio:9/16;position:relative;box-shadow:0 0 0 1px var(--line)}
+.media-tile video,.media-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.media-tile .label{position:absolute;left:-1px;top:-22px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);background:transparent;padding:0;font-weight:500}
+.media-tile-wrap{position:relative;padding-top:22px}
+@media(max-width:900px){.media-grid{grid-template-columns:repeat(2,1fr)}.media-grid-3{grid-template-columns:1fr}
+}
+</style>
+<link rel="stylesheet" href="lightbox.css">
+</head>
+<body>
+
+<nav>
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="portfolio-figma.html" class="fig-logo" aria-label="Figma">
+        <svg viewBox="0 0 38 57" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z" fill="#1abcfe"/>
+          <path d="M0 47.5a9.5 9.5 0 0 1 9.5-9.5H19v9.5a9.5 9.5 0 1 1-19 0z" fill="#0acf83"/>
+          <path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#ff7262"/>
+          <path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#f24e1e"/>
+          <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#a259ff"/>
+        </svg>
+      </a>
+      <span class="brand">harry-portfolio<span class="sep">/</span>case-studies<span class="sep">/</span>PO AI Intent</span>
+      <div class="nav-icons">
+        <div class="nav-icon active">⌖</div>
+        <div class="nav-icon">⬚</div>
+        <div class="nav-icon">T</div>
+        <div class="nav-icon">○</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="avatar">HM</div>
+      <div class="share-btn">Share</div>
+    </div>
+  </div>
+</nav>
+
+<div class="workspace">
+
+  <aside class="layers">
+    <div class="layer-page">▾ Page 1 — Case Study</div>
+    <div class="layer selected"><span class="layer-ic">▣</span>Hero / Frame</div>
+    <div class="layer layer-child"><span class="layer-ic">T</span>Title</div>
+    <div class="layer layer-child"><span class="layer-ic">⬚</span>Metric Tiles</div>
+    <div class="layer"><span class="layer-ic">▣</span>01 · Problem</div>
+    <div class="layer"><span class="layer-ic">▣</span>02 · Research</div>
+    <div class="layer"><span class="layer-ic">▣</span>03 · Intent Mapping</div>
+    <div class="layer"><span class="layer-ic">▣</span>04 · Golden Tools</div>
+    <div class="layer"><span class="layer-ic">▣</span>05 · Bilingual</div>
+    <div class="layer"><span class="layer-ic">▣</span>06 · Inline Cards</div>
+    <div class="layer"><span class="layer-ic">▣</span>07 · Impact</div>
+    <div class="layer"><span class="layer-ic">▣</span>Reflection</div>
+    <div class="layer-page" style="margin-top:14px">▸ Components</div>
+    <div class="layer"><span class="layer-ic">◈</span>ToolPill</div>
+    <div class="layer"><span class="layer-ic">◈</span>FlowStep</div>
+    <div class="layer"><span class="layer-ic">◈</span>QuoteBlock</div>
+    <div class="layer-page" style="margin-top:14px">▸ Tokens</div>
+    <div class="layer"><span class="layer-ic">●</span>Color/Pink</div>
+    <div class="layer"><span class="layer-ic">●</span>Color/Blue</div>
+    <div class="layer"><span class="layer-ic">●</span>Color/Green</div>
+  </aside>
+
+  <main class="canvas">
+    <div class="wrap">
+
+      <div class="frame hero-frame" data-name="Hero · 1280 × Auto">
+        <div class="frame-pad">
+          <div class="hero-row">
+            <span class="fpill live">Live · v1.0</span>
+            <span class="fpill role">Product Owner / Designer</span>
+            <span class="fpill lang">my · en</span>
+            <span class="fpill time">ပြီးခဲ့တဲ့ ၂ ပတ်</span>
+          </div>
+          <h1>SMB sellers <span class="hi-pink">speak</span>. We turn it into <span class="hi-blue">structured action</span>.</h1>
+          <p class="lede">A voice-first AI intent layer that maps Burmese-English mixed utterances to deterministic tool calls — under fifty milliseconds, twenty-eight tools wide, zero hallucinated SKUs.</p>
+          <div class="thumbs">
+            <div class="thumb b1"><div class="thumb-label">Interviews</div><div><div class="thumb-num">21</div><div class="thumb-sub">sellers · 2 cities</div></div></div>
+            <div class="thumb b2"><div class="thumb-label">Latency p95</div><div><div class="thumb-num">&lt;50</div><div class="thumb-sub">milliseconds</div></div></div>
+            <div class="thumb b3"><div class="thumb-label">Tools mapped</div><div><div class="thumb-num">28</div><div class="thumb-sub">out of 28</div></div></div>
+            <div class="thumb b4"><div class="thumb-label">Hallucinations</div><div><div class="thumb-num">0</div><div class="thumb-sub">SKU drift events</div></div></div>
+          </div>
+          <div class="media-hero">
+            <span class="tag">Hero/Demo · 1280 × 720</span>
+            <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/22-chain-restock.mp4" onerror="this.outerHTML='<img src=&quot;images/po-ai/hero-palette.webp&quot; alt=&quot;Po AI palette&quot;>'"></video>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-frame" data-name="01 · Problem">
+        <div class="sec-num">01 · Problem</div>
+        <h2>Sellers type with one hand, hold inventory with the other.</h2>
+        <p class="sec-lead">In <strong>21 contextual interviews</strong> across Yangon and Mandalay, every seller had the same blocker: switching between Messenger chats, the seller app, and a paper notebook. They wanted to <em>say it once</em> and have the system file the order, deduct stock, print a receipt, and tag the buyer.</p>
+        <div class="cells">
+          <div class="cell c1" data-comp="Friction/A"><div class="cell-h">App-switching tax</div><div class="cell-t">3 apps per order</div><div class="cell-b">Sellers toggled Messenger, seller app, and notebook while their hands held product on camera.</div></div>
+          <div class="cell c2" data-comp="Friction/B"><div class="cell-h">Number drift</div><div class="cell-t">One-digit typos</div><div class="cell-b">Prices and stock mistyped. Mistakes piled into refund threads at the end of every live session.</div></div>
+          <div class="cell c3" data-comp="Friction/C"><div class="cell-h">Paper-to-app gap</div><div class="cell-t">Hours of rekey</div><div class="cell-b">Peak orders went on paper, re-keyed hours later — often wrong, sometimes lost in the stack.</div></div>
+        </div>
+      </div>
+
+      <div class="sec-frame" data-name="02 · Research">
+        <div class="sec-num">02 · Research</div>
+        <h2>21 interviews. 4 archetypes. 1 shared verb-noun grammar.</h2>
+        <p class="sec-lead">I shadowed sellers for 2–3 hours each. The breakthrough: regardless of category — beauty, food, electronics, fashion — sellers spoke in the same shape. <strong>Verb + product + modifier</strong>. The grammar was already there. We just had to listen.</p>
+        <div class="fquote">
+          <p>"ငါက လက်က ထုပ်နေတယ်၊ ပါးစပ်နဲ့ပဲ ပြောချင်တာ။ App က နားလည်ပေးရင် တော်လောက်ပါပြီ။"</p>
+          <cite>Seller A · Yangon · Mar 14, 2026</cite>
+        </div>
+      </div>
+
+      <div class="sec-frame" data-name="03 · Intent Mapping">
+        <div class="sec-num">03 · Intent Mapping</div>
+        <h2>Utterance to tool-call: a 6-phase deterministic chain.</h2>
+        <p class="sec-lead">No LLM gets to invent verbs. The model selects from a closed <strong>set of 28 named tools</strong>. Each tool has a JSON schema. The model fills slots; the runtime validates and executes.</p>
+        <div class="flow">
+          <div class="flow-step"><div class="flow-num">01</div><div class="flow-title">Capture</div><div class="flow-lat">~8ms</div></div>
+          <div class="flow-step"><div class="flow-num">02</div><div class="flow-title">Transcribe</div><div class="flow-lat">~14ms</div></div>
+          <div class="flow-step"><div class="flow-num">03</div><div class="flow-title">Normalize</div><div class="flow-lat">~2ms</div></div>
+          <div class="flow-step"><div class="flow-num">04</div><div class="flow-title">Classify</div><div class="flow-lat">~9ms</div></div>
+          <div class="flow-step"><div class="flow-num">05</div><div class="flow-title">Slot-fill</div><div class="flow-lat">~11ms</div></div>
+          <div class="flow-step"><div class="flow-num">06</div><div class="flow-title">Execute</div><div class="flow-lat">~4ms</div></div>
+        </div>
+        <div class="props">
+          <div class="props-h">Properties · ToolRouter</div>
+          <div class="props-row"><span class="props-k">Tools</span><span class="props-v">28</span></div>
+          <div class="props-row"><span class="props-k">Languages</span><span class="props-v">my, en (code-switched)</span></div>
+          <div class="props-row"><span class="props-k">Strategy</span><span class="props-v">closed-set classifier + JSON schema</span></div>
+          <div class="props-row"><span class="props-k">p95</span><span class="props-v"><span class="swatch" style="background:#14ae5c"></span>48ms</span></div>
+        </div>
+        <div class="media-wide">
+          <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/01-palette-empty-state.mp4" onerror="this.parentElement.style.display='none'"></video>
+        </div>
+        <div class="media-caption">Demo · Palette empty state · 45 intents · 6 surfaces</div>
+      </div>
+
+      <div class="sec-frame" data-name="04 · Golden Tools">
+        <div class="sec-num">04 · Golden Tools</div>
+        <h2>28 tools. Each one is a button the model is allowed to press.</h2>
+        <p class="sec-lead">Tools are namespaced by domain. Every visible word is templated from a tool result — the model never speaks freely.</p>
+        <div class="tool-grid">
+          <div class="tool">order.create</div><div class="tool">order.amend</div><div class="tool">order.cancel</div><div class="tool">order.lookup</div>
+          <div class="tool">stock.add</div><div class="tool">stock.deduct</div><div class="tool">stock.check</div><div class="tool">stock.threshold</div>
+          <div class="tool">price.set</div><div class="tool">price.bulk_update</div><div class="tool">price.history</div><div class="tool">customer.tag</div>
+          <div class="tool">customer.note</div><div class="tool">customer.lookup</div><div class="tool">delivery.assign</div><div class="tool">delivery.fee</div>
+          <div class="tool">delivery.track</div><div class="tool">report.daily</div><div class="tool">report.weekly</div><div class="tool">report.top_seller</div>
+          <div class="tool">receipt.print</div><div class="tool">receipt.share</div><div class="tool">session.start_live</div><div class="tool">session.end_live</div>
+          <div class="tool">session.pause</div><div class="tool">help.fallback</div><div class="tool">locale.switch</div><div class="tool">echo.confirm</div>
+        </div>
+        <div class="media-grid">
+          <div class="media-tile"><div class="label">Tool/list-products</div><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/17-list-products.mp4" onerror="this.parentElement.style.display='none'"></video></div>
+          <div class="media-tile"><div class="label">Tool/product-detail</div><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/18-product-detail.mp4" onerror="this.parentElement.style.display='none'"></video></div>
+          <div class="media-tile"><div class="label">Tool/low-stock</div><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/19-low-stock.mp4" onerror="this.parentElement.style.display='none'"></video></div>
+          <div class="media-tile"><div class="label">Tool/stock-history</div><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/21-stock-history.mp4" onerror="this.parentElement.style.display='none'"></video></div>
+        </div>
+        <div class="media-caption">Components/Cards · rendered inline</div>
+      </div>
+
+      <div class="sec-frame" data-name="05 · Bilingual">
+        <div class="sec-num">05 · Bilingual</div>
+        <h2>Burmese-first, English-tolerant, code-switched by default.</h2>
+        <p class="sec-lead">Real sellers mix languages every sentence. We trained the router on <strong>4,200 code-switched utterances</strong>. Zero translation step. The router operates on tokens, not language tags.</p>
+        <div class="cells">
+          <div class="cell c4" data-comp="Lang/my"><div class="cell-h">my · Pure Burmese</div><div class="cell-t">"ဆေး နှစ်ဖူး ထည့်ပေး၊ ဈေး နှစ်ထောင်"</div><div class="cell-b">order.create(item=ဆေး, qty=2, price=2000)</div></div>
+          <div class="cell c5" data-comp="Lang/en"><div class="cell-h">en · Pure English</div><div class="cell-t">"add two units, price two thousand"</div><div class="cell-b">order.create(qty=2, price=2000, item=&lt;prompt&gt;)</div></div>
+          <div class="cell c6" data-comp="Lang/mix"><div class="cell-h">mix · Code-switched</div><div class="cell-t">"stock ၃ ဖူး deduct, receipt print ပေး"</div><div class="cell-b">stock.deduct(qty=3) → receipt.print</div></div>
+        </div>
+      </div>
+
+      <div class="sec-frame" data-name="06 · Inline Cards">
+        <div class="sec-num">06 · Inline Cards</div>
+        <h2>No chat bubbles. Just compact, editable result cards.</h2>
+        <p class="sec-lead">Every tool result renders as a card the seller can tap to amend. Numbers are big, status is colored, the primary action is always reversible.</p>
+        <div class="cells">
+          <div class="cell c1" data-comp="Card/Order"><div class="cell-h">OrderCreated</div><div class="cell-t">buyer · items · total · delivery</div><div class="cell-b">From order.create — fully editable.</div></div>
+          <div class="cell c2" data-comp="Card/Stock"><div class="cell-h">StockChanged</div><div class="cell-t">SKU · before · after · delta</div><div class="cell-b">From stock.deduct — reversible in one tap.</div></div>
+          <div class="cell c3" data-comp="Card/Receipt"><div class="cell-h">ReceiptReady</div><div class="cell-t">order · QR · print/share</div><div class="cell-b">From receipt.print — primary action visible.</div></div>
+        </div>
+      </div>
+
+      <div class="sec-frame" data-name="07 · Impact">
+        <div class="sec-num">07 · Impact</div>
+        <h2>Before vs. after the intent layer.</h2>
+        <p class="sec-lead">Median time to file one order, measured across 14 sellers in the first 14 days post-launch.</p>
+        <div class="compare">
+          <div class="compare-col before" data-tag="State/Before">
+            <div class="compare-label">Before</div>
+            <div class="compare-num">45s</div>
+            <p>Open app, search SKU, type qty, type price, tag buyer, confirm.</p>
+          </div>
+          <div class="compare-col after" data-tag="State/After">
+            <div class="compare-label">After</div>
+            <div class="compare-num">6s</div>
+            <p>Utter, glance at card, tap confirm. Zero typing.</p>
+          </div>
+        </div>
+        <div class="fquote" style="margin-top:32px">
+          <p>"အရင်က order တစ်ခုကို မိနစ်တစ်ဝက်လောက်လုပ်ရတယ်။ အခုဆို ပြောလိုက်ရုံပဲ။"</p>
+          <cite>Seller A · post-launch · Apr 28, 2026</cite>
+        </div>
+      </div>
+
+      <div class="sec-frame" data-name="Reflection">
+        <div class="sec-num">∞ · Reflection</div>
+        <h2>Four lessons I'll carry into the next AI feature.</h2>
+        <div class="lessons">
+          <div class="lesson l1"><span class="lesson-n">01</span><div class="lesson-t">Tools, not freeform text.</div><div class="lesson-b">Closing the action set to 28 tools killed an entire class of hallucination error.</div></div>
+          <div class="lesson l2"><span class="lesson-n">02</span><div class="lesson-t">Latency is the feature.</div><div class="lesson-b">Below 50ms feels like causation. Above 200ms feels like a server. Optimize phase-by-phase.</div></div>
+          <div class="lesson l3"><span class="lesson-n">03</span><div class="lesson-t">Bilingual is one language.</div><div class="lesson-b">Treating code-switching as first-class input cut router complexity in half.</div></div>
+          <div class="lesson l4"><span class="lesson-n">04</span><div class="lesson-t">The card is the truth.</div><div class="lesson-b">Voice in, card out. The seller never re-listens. They glance, tap, move on.</div></div>
+        </div>
+      </div>
+
+      <footer>© 2026 Harry · PO AI Intent · Figma Edition · Frame 1280 × Auto</footer>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="lightbox.js" defer></script>
+</body>
+</html>

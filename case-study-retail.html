@@ -97,7 +97,7 @@
     <h2 class="cs-h2">Cashiers couldn't find the return button.</h2>
     <div class="cs-tldr">
       <div>
-        <p class="cs-tldr-lede">Four features were live, all invisible. Each wasted second across thousands of daily transactions added up to real revenue loss. I ran a two-lens audit — cashier flow + owner economics — restructured the POS hierarchy, and surfaced the verbs that mattered most.</p>
+        <p class="cs-tldr-lede">Four features were live, all invisible. Each wasted second across thousands of daily transactions added up to real revenue loss. I asked the same questions of cashiers and business stakeholders, overlaid the answers, restructured the POS hierarchy around the gap, and surfaced the verbs that mattered most.</p>
         <div class="cs-tldr-jump">
           <a href="#problem">Problem</a>
           <a href="#audit">Audit</a>
@@ -179,53 +179,29 @@
     <div class="cs-hook">Which of these should we fix first? And how do we decide without guessing?</div>
   </section>
 
-  <!-- ══ 03 — TWO LENSES ══ -->
+  <!-- ══ 03 — DUAL-AUDIENCE RESEARCH ══ -->
   <section class="cs-section" id="research">
     <div class="cs-section-num">03 — Research</div>
-    <h2 class="cs-h2">The Two-Lens Method</h2>
+    <h2 class="cs-h2">Same Questions, Two Audiences</h2>
 
-    <p class="cs-p">I could have asked stakeholders what matters most and started designing. That's what most teams do. But I had a hunch that business priorities and user pain wouldn't align perfectly — and the gap between them would be where the real opportunity lived.</p>
-    <p class="cs-p">So I ran the same importance-ranking exercise twice:</p>
-    <p class="cs-p"><strong>First lens — Business.</strong> Internal stakeholders voted on each activity's importance (1-5 scale). I compiled a heat map of what leadership valued most.</p>
-    <p class="cs-p"><strong>Second lens — Users.</strong> I asked the exact same questions to real cashiers on the shop floor. Same format, same scale. A second heat map — this one showing what actually caused daily friction.</p>
-    <p class="cs-p">Then I overlaid both maps.</p>
+    <p class="cs-p">I could have asked stakeholders what matters most and started designing. Instead, I ran the same importance-ranking exercise twice — once with business stakeholders, once with cashiers on the shop floor. Identical scale, identical activity list. Two heat maps. Then I overlaid them.</p>
+
+    <p class="cs-p"><strong>The business map.</strong> Internal stakeholders voted on each activity's importance (1-5 scale). The result told me what leadership thought mattered.</p>
+    <p class="cs-p"><strong>The cashier map.</strong> Same questions, same format, asked of the people doing the work. The result told me what actually caused friction every shift.</p>
 
     <div class="cs-card">
       <div class="cs-card-label">The Surprise</div>
-      <p class="cs-p">Total, Reprint, Void, and Hold scored high on both sides — clear mandate. But the real surprise was <strong>Returns</strong>. Business rated them low — "returns are rare." Cashiers rated them as their #1 frustration.</p>
-      <p class="cs-p">Why? Returns weren't frequent. But every single return had a customer standing there, watching, waiting. The per-incident impact was enormous — and invisible in aggregate data.</p>
+      <p class="cs-p">Total, Reprint, Void, and Hold scored high on both sides — clear mandate. The real surprise was <strong>Returns</strong>. Business rated them low — "returns are rare." Cashiers rated them as their #1 frustration.</p>
+      <p class="cs-p">Why? Returns weren't frequent. But every single return had a customer standing at the counter, watching, waiting. The per-incident impact was enormous — and invisible in aggregate data.</p>
     </div>
 
-    <div class="cs-hook">Now we had evidence-based priorities. Time to redesign — starting with the feature everyone underestimated.</div>
-  </section>
-
-  <!-- Persona Bento -->
-  <section class="cs-section">
-    <div class="cs-section-num">Persona</div>
-    <h2 class="cs-h2">The Cashier</h2>
-    <div class="cs-persona">
-      <div class="cs-persona-card span-2">
-        <div class="cs-persona-role">Primary User</div>
-        <div class="cs-persona-name">The Cashier</div>
-        <div class="cs-persona-desc">Front-line retail operator handling hundreds of transactions per shift. Works under constant time pressure — a queue of customers is always watching. Learned the system through trial and error; nobody formally trained them.</div>
-        <div class="cs-persona-quote">"Cashiers are struggling with the new return process. They can't understand the design... but we don't know why."<cite>— Colleague, Maldives Workshop</cite></div>
-      </div>
-      <div class="cs-persona-card">
-        <div class="cs-persona-stat"><div class="cs-persona-stat-val">0.50</div><div class="cs-persona-stat-label">Clarity score — Day End</div></div>
-      </div>
-      <div class="cs-persona-card">
-        <div class="cs-persona-stat"><div class="cs-persona-stat-val">0.85</div><div class="cs-persona-stat-label">Clarity score — Returns</div></div>
-      </div>
-      <div class="cs-persona-card span-2">
-        <div class="cs-persona-role">Daily Friction</div>
-        <ul class="cs-persona-pain-list">
-          <li>Return process buried so deep, cashiers had to ask a manager — every time</li>
-          <li>Day End was icon-only with no text label — new hires had no chance without help</li>
-          <li>Discounts required two extra clicks for a task done dozens of times daily</li>
-          <li>Receipt Reprint was high-frequency but completely hidden in the interface</li>
-        </ul>
-      </div>
+    <div class="cs-pullquote" style="margin-top:24px">
+      <div class="cs-pullquote-mark">&ldquo;</div>
+      <div class="cs-pullquote-q">Cashiers are struggling with the new return process. They can't understand the design&hellip; but we don't know why.</div>
+      <div class="cs-pullquote-attr">Colleague &middot; Maldives workshop &middot; the sentence that started the project</div>
     </div>
+
+    <div class="cs-hook">Now we had evidence-based priorities. Time to redesign &mdash; starting with the feature everyone underestimated.</div>
   </section>
 
   <!-- KPI Section -->
@@ -304,7 +280,7 @@
       </div>
     </div>
 
-    <p class="cs-p">Return scored highest — the exact feature that started this project, the one business had dismissed as "rare." The data validated the two-lens approach: we were fixing the right thing.</p>
+    <p class="cs-p">Return scored highest &mdash; the exact feature that started this project, the one business had dismissed as "rare." The dual-audience overlay validated the approach: we were fixing the right thing.</p>
 
     <div class="cs-hook">But clarity scores only tell you if people can find things. The real question: would it actually save time at scale?</div>
   </section>
@@ -380,7 +356,14 @@
       </div>
     </div>
 
-    <p class="cs-p">The redesign didn't just make things faster. It made the cost of UX debt visible — and gave stakeholders a framework to evaluate future design investments.</p>
+    <div class="cs-card" style="margin-top:24px">
+      <div class="cs-card-label">How the 427% is calculated</div>
+      <p class="cs-p" style="font-family:var(--mono,monospace);font-size:0.95em">Time saved per return &times; returns/day &times; cashier hourly cost &times; payback window &nbsp;&divide;&nbsp; design investment</p>
+      <p class="cs-p" style="font-family:var(--mono,monospace);font-size:0.95em">= 30s &times; ~1,500 daily transactions across the chain &times; $8/hr cashier cost &times; 6 months &nbsp;&divide;&nbsp; design hours invested</p>
+      <p class="cs-p">Inputs were agreed with the Finance Lead before launch. Time-per-return was measured on the floor before and after deployment (1 minute &rarr; under 30 seconds). The cashier hourly figure and transaction volume came from internal payroll and POS data. The 6-month window is the payback horizon the client used for every internal tooling project — not a number I picked.</p>
+    </div>
+
+    <p class="cs-p">The redesign didn't just make things faster. It made the cost of UX debt visible &mdash; and gave stakeholders a framework to evaluate future design investments.</p>
   </section>
 
   <!-- ══ 07 — LESSONS ══ -->
@@ -402,7 +385,7 @@
     </div>
     <div class="cs-lesson">
       <strong>04 — Data wins stakeholder buy-in.</strong>
-      <p>The two-lens heat map made prioritization objective. When I showed the overlay to leadership, the conversation shifted from "I think we should..." to "the data shows we should..." Stakeholders agreed because it was evidence, not opinion.</p>
+      <p>The overlaid business-vs-cashier heat map made prioritization objective. When I showed it to leadership, the conversation shifted from "I think we should…" to "the data shows we should…" Stakeholders agreed because it was evidence, not opinion.</p>
     </div>
   </section>
 
@@ -501,7 +484,7 @@
       <p>I can answer detailed questions about the process, decisions, and results.</p>
       <div class="chat-suggestions">
         <button class="chat-suggestion" data-q="How was the 427% ROI calculated?">How was the 427% ROI calculated?</button>
-        <button class="chat-suggestion" data-q="How did the Two-Lens Method surface returns as the #1 priority when the business rated it low importance?">How did Two-Lens flip the priority on returns?</button>
+        <button class="chat-suggestion" data-q="How did asking the same questions of business stakeholders and cashiers surface returns as the #1 priority when the business rated it low importance?">How did the dual-audience overlay flip the priority on returns?</button>
         <button class="chat-suggestion" data-q="What made cashiers actually change their behavior after the redesign?">What made cashiers actually change behavior?</button>
         <button class="chat-suggestion" data-q="How do you design for users who have zero training time and learn entirely by doing?">How do you design for zero-training users?</button>
         <button class="chat-suggestion" data-q="What would you have missed if you only did lab testing instead of observing real transactions?">What would lab testing have missed here?</button>

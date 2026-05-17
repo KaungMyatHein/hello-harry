@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HARRY HEIN — SENIOR PRODUCT DESIGNER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* SPACEX — pure black canvas, full-bleed, condensed uppercase */
+:root{
+  --black:#000000; --canvas:#000000;
+  --white:#ffffff; --on-dark-muted:#808080;
+  --hairline:rgba(255,255,255,0.18);
+  --hairline-soft:rgba(255,255,255,0.08);
+  --display:'Barlow Condensed','D-DIN-Bold','Arial Narrow','Helvetica Neue Condensed',sans-serif;
+  --sans:'Inter','Helvetica Neue',Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--black);color:var(--white);font-family:var(--sans);font-size:15px;line-height:1.55;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;padding:24px 32px;display:flex;justify-content:space-between;align-items:center;}
+.nav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.65),rgba(0,0,0,0));pointer-events:none;}
+.nav > *{position:relative;z-index:1;}
+.brand-mark{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:var(--white);}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{font-family:var(--display);font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:2.2px;color:var(--white);}
+.nav-links a:hover{opacity:0.7;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;background:transparent;color:var(--white) !important;padding:14px 42px;border-radius:32px;border:1px solid var(--white);font-family:var(--display);font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:2.2px;transition:all 200ms ease;}
+.btn:hover{background:var(--white);color:var(--black) !important;}
+.btn-solid{background:var(--white);color:var(--black) !important;border:1px solid var(--white);}
+.btn-solid:hover{background:transparent;color:var(--white) !important;}
+
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 32px 96px;overflow:hidden;}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(ellipse 60% 80% at 50% 100%,rgba(255,255,255,0.04),transparent 60%),
+  radial-gradient(circle at 30% 20%,rgba(255,255,255,0.05),transparent 50%),
+  linear-gradient(180deg,#0a0a0a,#000 70%);
+  z-index:0;}
+.hero::after{content:"";position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#1a1a1a 0%,#000 65%);box-shadow:inset 0 -60px 120px rgba(255,255,255,0.05),0 0 200px rgba(255,255,255,0.04);z-index:0;}
+.hero-inner{position:relative;z-index:1;max-width:1400px;margin:0 auto;width:100%;}
+.hero-kicker{font-family:var(--display);font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:3px;color:var(--white);margin-bottom:24px;opacity:0.85;}
+.hero h1{font-family:var(--display);font-size:clamp(72px,12vw,180px);font-weight:700;text-transform:uppercase;letter-spacing:2px;line-height:0.88;margin-bottom:32px;}
+.hero-sub{font-family:var(--display);font-size:clamp(20px,2.4vw,32px);font-weight:400;letter-spacing:1.2px;text-transform:uppercase;line-height:1.2;max-width:920px;margin-bottom:48px;opacity:0.92;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.hero-meta{position:absolute;bottom:32px;right:32px;font-family:var(--display);font-size:11px;letter-spacing:2.2px;text-transform:uppercase;opacity:0.6;text-align:right;z-index:1;}
+
+.ticker{border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:18px 32px;display:flex;gap:48px;justify-content:center;flex-wrap:wrap;}
+.ticker-item{font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;opacity:0.7;}
+
+.mission{position:relative;min-height:90vh;display:flex;align-items:center;padding:96px 32px;overflow:hidden;}
+.mission-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.mission-bg{position:absolute;inset:0;z-index:1;}
+.mission-num{font-family:var(--display);font-size:14px;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;opacity:0.6;}
+.mission-cat{font-family:var(--display);font-size:14px;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;opacity:0.85;}
+.mission h2{font-family:var(--display);font-size:clamp(48px,6vw,96px);font-weight:700;text-transform:uppercase;letter-spacing:1px;line-height:0.95;margin-bottom:24px;}
+.mission p{font-size:17px;line-height:1.6;max-width:520px;margin-bottom:28px;color:rgba(255,255,255,0.82);}
+.mission-stats{display:flex;gap:48px;margin-bottom:28px;flex-wrap:wrap;}
+.mstat-val{font-family:var(--display);font-size:48px;font-weight:700;line-height:1;}
+.mstat-lbl{font-family:var(--display);font-size:11px;letter-spacing:2.2px;text-transform:uppercase;opacity:0.6;margin-top:6px;}
+.mission-side{position:relative;aspect-ratio:1/1;border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.mission-side-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.08),transparent 60%),linear-gradient(135deg,#111,#000);}
+.mission-glyph{position:relative;z-index:1;font-family:var(--display);font-size:clamp(120px,18vw,260px);font-weight:700;letter-spacing:2px;opacity:0.18;line-height:1;}
+.mission-tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+.spec-tag{font-family:var(--display);font-size:11px;letter-spacing:2.2px;text-transform:uppercase;padding:6px 14px;border:1px solid var(--hairline);border-radius:32px;}
+.alt-side .mission-side{order:-1;}
+@media (max-width:980px){.mission-inner{grid-template-columns:1fr;gap:40px;}.alt-side .mission-side{order:0;}.mission-side{aspect-ratio:16/10;}}
+
+.section-dark{padding:96px 32px;border-top:1px solid var(--hairline);}
+.section-inner{max-width:1400px;margin:0 auto;}
+.sec-head{margin-bottom:48px;}
+.sec-num{font-family:var(--display);font-size:12px;letter-spacing:3px;text-transform:uppercase;opacity:0.55;margin-bottom:12px;}
+.sec-title{font-family:var(--display);font-size:clamp(40px,5vw,72px);font-weight:700;text-transform:uppercase;letter-spacing:1px;line-height:0.95;margin-bottom:14px;}
+.sec-sub{font-size:17px;color:rgba(255,255,255,0.7);max-width:680px;}
+
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--hairline);border-left:1px solid var(--hairline);}
+.spec-tile{padding:40px 32px;border-right:1px solid var(--hairline);border-bottom:1px solid var(--hairline);transition:background 200ms ease;color:var(--white);min-height:340px;display:flex;flex-direction:column;justify-content:space-between;}
+.spec-tile:hover{background:rgba(255,255,255,0.04);}
+.spec-tile-num{font-family:var(--display);font-size:12px;letter-spacing:2.4px;text-transform:uppercase;opacity:0.55;margin-bottom:18px;}
+.spec-tile h3{font-family:var(--display);font-size:32px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;line-height:1.0;margin-bottom:16px;}
+.spec-tile p{font-size:14px;line-height:1.55;color:rgba(255,255,255,0.7);margin-bottom:20px;}
+.spec-tile-stats{display:flex;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
+.spec-stat-val{font-family:var(--display);font-size:22px;font-weight:700;line-height:1;}
+.spec-stat-lbl{font-family:var(--display);font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:0.6;margin-top:4px;display:block;}
+.spec-arrow{font-family:var(--display);font-size:12px;letter-spacing:2.4px;text-transform:uppercase;}
+.spec-arrow::after{content:" →";}
+@media (max-width:900px){.spec-grid{grid-template-columns:1fr;}}
+
+.manifest-row{display:grid;grid-template-columns:80px 1.4fr 1fr 1fr 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--hairline);align-items:center;}
+.manifest-row.head{font-family:var(--display);font-size:11px;letter-spacing:2.2px;text-transform:uppercase;opacity:0.55;padding:14px 0;}
+.manifest-no{font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:1px;}
+.manifest-co{font-family:var(--display);font-size:22px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;}
+.manifest-role{font-size:13px;color:rgba(255,255,255,0.75);}
+.manifest-date{font-family:var(--display);font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,0.65);}
+.manifest-status{font-family:var(--display);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.manifest-detail{padding:0 0 28px 104px;font-size:14px;line-height:1.65;color:rgba(255,255,255,0.65);max-width:1080px;border-bottom:1px solid var(--hairline);}
+.manifest-detail li{padding:4px 0;position:relative;padding-left:18px;}
+.manifest-detail li::before{content:"—";position:absolute;left:0;opacity:0.5;}
+@media (max-width:980px){.manifest-row{grid-template-columns:60px 1fr;gap:14px;}.manifest-status,.manifest-date{display:none;}.manifest-detail{padding-left:74px;}.manifest-row.head{display:none;}}
+
+.voices-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--hairline);border-left:1px solid var(--hairline);}
+.voice{padding:48px 36px;border-right:1px solid var(--hairline);border-bottom:1px solid var(--hairline);}
+.voice-num{font-family:var(--display);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;opacity:0.55;margin-bottom:18px;}
+.voice-quote{font-family:var(--display);font-size:24px;font-weight:500;line-height:1.3;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:24px;}
+.voice-name{font-family:var(--display);font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+.voice-role{font-family:var(--display);font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.6;margin-top:4px;}
+@media (max-width:900px){.voices-grid{grid-template-columns:1fr;}}
+
+.edu{display:grid;grid-template-columns:1fr 2fr;gap:64px;border-top:1px solid var(--hairline);padding-top:48px;}
+.edu-degree{font-family:var(--display);font-size:32px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;}
+.edu-school{font-family:var(--display);font-size:14px;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:6px;}
+.edu-period{font-family:var(--display);font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:0.55;}
+.edu ul{display:grid;gap:14px;}
+.edu li{font-size:15px;color:rgba(255,255,255,0.78);padding-left:24px;position:relative;}
+.edu li::before{content:"+";position:absolute;left:0;font-family:var(--display);font-weight:700;opacity:0.55;}
+@media (max-width:900px){.edu{grid-template-columns:1fr;gap:32px;}}
+
+.final{position:relative;min-height:80vh;display:flex;flex-direction:column;justify-content:center;padding:96px 32px;overflow:hidden;text-align:center;}
+.final::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(255,255,255,0.06),transparent 60%),linear-gradient(180deg,#000,#0c0c0c 70%,#000);z-index:0;}
+.final-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;}
+.final-num{font-family:var(--display);font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:0.55;margin-bottom:16px;}
+.final h2{font-family:var(--display);font-size:clamp(56px,9vw,140px);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;line-height:0.92;margin-bottom:24px;}
+.final p{font-family:var(--display);font-size:clamp(18px,2vw,24px);letter-spacing:1.2px;text-transform:uppercase;line-height:1.4;max-width:760px;margin:0 auto 40px;opacity:0.82;}
+.final-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+.footer{padding:32px;text-align:center;font-family:var(--display);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;opacity:0.55;border-top:1px solid var(--hairline);}
+.footer a{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand-mark">Harry Hein</div>
+  <div class="nav-links">
+    <a href="#missions">Missions</a>
+    <a href="#manifest">Manifest</a>
+    <a href="#voices">Voices</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">Senior Product Designer · Available 2026</div>
+    <h1>Design.<br>Ship.<br>Measure.</h1>
+    <p class="hero-sub">AI-first systems for complex enterprise tooling. Seven years of work that ships and gets measured.</p>
+    <div class="hero-cta">
+      <a href="#missions" class="btn btn-solid">View Missions</a>
+      <a href="#contact" class="btn">Initiate Contact</a>
+    </div>
+  </div>
+  <div class="hero-meta">Bangkok · 7Y · Designer + Engineer</div>
+</section>
+
+<div class="ticker">
+  <span class="ticker-item">Product Design</span>
+  <span class="ticker-item">UX Research</span>
+  <span class="ticker-item">Design Systems</span>
+  <span class="ticker-item">AI-First</span>
+  <span class="ticker-item">Interaction</span>
+  <span class="ticker-item">Strategy</span>
+  <span class="ticker-item">Accessibility</span>
+  <span class="ticker-item">Figma</span>
+</div>
+
+<section class="mission" id="missions">
+  <div class="mission-bg" style="background:radial-gradient(ellipse 50% 60% at 30% 50%,rgba(255,255,255,0.04),transparent),linear-gradient(135deg,#050505,#000);"></div>
+  <div class="mission-inner">
+    <div>
+      <div class="mission-num">Mission 01 / Recommended</div>
+      <div class="mission-cat">AI Product · SaaS</div>
+      <h2>Speak,<br>don't click.</h2>
+      <p>Replaced a traditional CRM dashboard with a bilingual intent palette. 28 intents in MVP, 21 already live in production — each rendering an inline action card. Myanmar sellers stop hunting menus and just say what they want.</p>
+      <div class="mission-tags">
+        <span class="spec-tag">AI Product</span>
+        <span class="spec-tag">SaaS</span>
+        <span class="spec-tag">Bilingual UX</span>
+      </div>
+      <div class="mission-stats">
+        <div><div class="mstat-val">21</div><div class="mstat-lbl">Live in Prod</div></div>
+        <div><div class="mstat-val">&lt;50ms</div><div class="mstat-lbl">Match Latency</div></div>
+      </div>
+      <a href="case-study-po-ai-intent-spacex.html" class="btn">Mission Detail</a>
+    </div>
+    <div class="mission-side">
+      <div class="mission-side-bg"></div>
+      <div class="mission-glyph">PO</div>
+    </div>
+  </div>
+</section>
+
+<section class="mission alt-side">
+  <div class="mission-bg" style="background:radial-gradient(ellipse 50% 60% at 70% 50%,rgba(255,255,255,0.045),transparent),linear-gradient(135deg,#000,#080808);"></div>
+  <div class="mission-inner">
+    <div>
+      <div class="mission-num">Mission 02 / Recommended</div>
+      <div class="mission-cat">Design System · Multi-Platform</div>
+      <h2>Three platforms.<br>One truth.</h2>
+      <p>Maintaining one design system across POS, web, and mobile using a federated two-level architecture — shared global foundation plus platform-specific libraries.</p>
+      <div class="mission-tags">
+        <span class="spec-tag">Tokens</span>
+        <span class="spec-tag">Federated</span>
+        <span class="spec-tag">Multi-Platform</span>
+      </div>
+      <div class="mission-stats">
+        <div><div class="mstat-val">Days→Hr</div><div class="mstat-lbl">Handover</div></div>
+        <div><div class="mstat-val">100%</div><div class="mstat-lbl">Consistency</div></div>
+      </div>
+      <a href="case-study-design-system.html" class="btn">Mission Detail</a>
+    </div>
+    <div class="mission-side">
+      <div class="mission-side-bg"></div>
+      <div class="mission-glyph">DS</div>
+    </div>
+  </div>
+</section>
+
+<section class="mission">
+  <div class="mission-bg" style="background:radial-gradient(ellipse 60% 70% at 40% 60%,rgba(255,255,255,0.035),transparent),linear-gradient(180deg,#000,#0a0a0a);"></div>
+  <div class="mission-inner">
+    <div>
+      <div class="mission-num">Mission 03 / Recommended</div>
+      <div class="mission-cat">POS · STO Maldives</div>
+      <h2>Two stores.<br>One system.</h2>
+      <p>Redesigned a legacy Windows POS into a modern touchscreen system for STO's pharmacy and supermarket chains — 14 modules, 200+ screens, as the sole designer.</p>
+      <div class="mission-tags">
+        <span class="spec-tag">POS</span>
+        <span class="spec-tag">UX Redesign</span>
+        <span class="spec-tag">Sole Designer</span>
+      </div>
+      <div class="mission-stats">
+        <div><div class="mstat-val">14+</div><div class="mstat-lbl">Modules</div></div>
+        <div><div class="mstat-val">200+</div><div class="mstat-lbl">Screens</div></div>
+      </div>
+      <a href="case-study-pharmacy-pos.html" class="btn">Mission Detail</a>
+    </div>
+    <div class="mission-side">
+      <div class="mission-side-bg"></div>
+      <div class="mission-glyph">POS</div>
+    </div>
+  </div>
+</section>
+
+<section class="mission alt-side">
+  <div class="mission-bg" style="background:radial-gradient(ellipse 50% 60% at 60% 40%,rgba(255,255,255,0.04),transparent),linear-gradient(135deg,#080808,#000);"></div>
+  <div class="mission-inner">
+    <div>
+      <div class="mission-num">Mission 04 / Retail</div>
+      <div class="mission-cat">Returns Redesign</div>
+      <h2>Feedback →<br>427% ROI.</h2>
+      <p>A broken return process had the CS team drowning in tickets. Four months of research, three rounds of testing, and 427% ROI later — here's how it happened.</p>
+      <div class="mission-tags">
+        <span class="spec-tag">Retail</span>
+        <span class="spec-tag">Research</span>
+      </div>
+      <div class="mission-stats">
+        <div><div class="mstat-val">427%</div><div class="mstat-lbl">ROI</div></div>
+        <div><div class="mstat-val">&gt;50%</div><div class="mstat-lbl">Time Cut</div></div>
+      </div>
+      <a href="case-study-retail.html" class="btn">Mission Detail</a>
+    </div>
+    <div class="mission-side">
+      <div class="mission-side-bg"></div>
+      <div class="mission-glyph">RTL</div>
+    </div>
+  </div>
+</section>
+
+<section class="mission">
+  <div class="mission-bg" style="background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(255,255,255,0.04),transparent),linear-gradient(180deg,#0a0a0a,#000);"></div>
+  <div class="mission-inner">
+    <div>
+      <div class="mission-num">Mission 05 / AI Research</div>
+      <div class="mission-cat">Path Analysis</div>
+      <h2>Prototypes<br>that never<br>sleep.</h2>
+      <p>User testing used to mean weeks of scheduling, facilitation, and synthesis. I designed an AI-simulated path analysis that matched human friction in 9 of 11 flow blockers tested.</p>
+      <div class="mission-tags">
+        <span class="spec-tag">AI Product</span>
+        <span class="spec-tag">Research</span>
+      </div>
+      <div class="mission-stats">
+        <div><div class="mstat-val">9/11</div><div class="mstat-lbl">Blockers</div></div>
+        <div><div class="mstat-val">4.2×</div><div class="mstat-lbl">Avg Runs</div></div>
+      </div>
+      <a href="case-study-golden-paths.html" class="btn">Mission Detail</a>
+    </div>
+    <div class="mission-side">
+      <div class="mission-side-bg"></div>
+      <div class="mission-glyph">AI</div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark" id="more">
+  <div class="section-inner">
+    <div class="sec-head">
+      <div class="sec-num">Auxiliary · 06 Programs</div>
+      <h2 class="sec-title">Side Programs</h2>
+      <p class="sec-sub">Other shipped work. Each one solving a specific operational problem.</p>
+    </div>
+
+    <div class="spec-grid">
+      <a href="case-study-resume-pipeline.html" class="spec-tile">
+        <div>
+          <div class="spec-tile-num">PRG-001 · 2025 · AI Tools</div>
+          <h3>47 Apps,<br>2 Interviews.</h3>
+          <p>Sarah applied to 47 jobs, got 2 interviews. The problem wasn't her resume — it was a 40-minute manual tailoring ritual. I replaced it with a 15-minute AI pipeline.</p>
+          <div class="spec-tile-stats">
+            <div><span class="spec-stat-val">40→15</span><span class="spec-stat-lbl">Min/App</span></div>
+            <div><span class="spec-stat-val">4→1</span><span class="spec-stat-lbl">Tools</span></div>
+          </div>
+        </div>
+        <span class="spec-arrow">Open Brief</span>
+      </a>
+      <a href="case-study-dashboard.html" class="spec-tile">
+        <div>
+          <div class="spec-tile-num">PRG-002 · 2022 · Finance</div>
+          <h3>Daily Ritual<br>to 104% ROI.</h3>
+          <p>Every morning, the finance team opened three different apps to see the same numbers. I made that one screen instead.</p>
+          <div class="spec-tile-stats">
+            <div><span class="spec-stat-val">0.5h</span><span class="spec-stat-lbl">Saved Daily</span></div>
+          </div>
+        </div>
+        <span class="spec-arrow">Open Brief</span>
+      </a>
+      <a href="case-study-tokens.html" class="spec-tile">
+        <div>
+          <div class="spec-tile-num">PRG-003 · 2024 · Plugin</div>
+          <h3>Unified<br>Tokens.</h3>
+          <p>Token exports meant four separate files and four chances for things to drift. I wrote a plugin that made the whole process a single click.</p>
+          <div class="spec-tile-stats">
+            <div><span class="spec-stat-val">50%</span><span class="spec-stat-lbl">Time Cut</span></div>
+            <div><span class="spec-stat-val">~100%</span><span class="spec-stat-lbl">Error Cut</span></div>
+          </div>
+        </div>
+        <span class="spec-arrow">Open Brief</span>
+      </a>
+      <a href="case-study-jar-aye-child.html" class="spec-tile">
+        <div>
+          <div class="spec-tile-num">PRG-004 · 2025 · EdTech · Children</div>
+          <h3>Hard Math,<br>Tractable.</h3>
+          <p>A HOTS mathematics learning app for 6–12 year olds aligned to the Singapore curriculum — keeping children in productive struggle without tipping into frustration.</p>
+          <div class="spec-tile-stats">
+            <div><span class="spec-stat-val">5</span><span class="spec-stat-lbl">HOTS</span></div>
+            <div><span class="spec-stat-val">3</span><span class="spec-stat-lbl">User Types</span></div>
+          </div>
+        </div>
+        <span class="spec-arrow">Open Brief</span>
+      </a>
+      <a href="case-study-jar-aye-parent.html" class="spec-tile">
+        <div>
+          <div class="spec-tile-num">PRG-005 · 2025 · EdTech · Parent</div>
+          <h3>Closing the<br>Visibility Gap.</h3>
+          <p>The companion app that gives non-expert parents meaningful insight into their child's HOTS mathematical development — without overwhelming them.</p>
+          <div class="spec-tile-stats">
+            <div><span class="spec-stat-val">4</span><span class="spec-stat-lbl">Tiers</span></div>
+            <div><span class="spec-stat-val">3</span><span class="spec-stat-lbl">States</span></div>
+          </div>
+        </div>
+        <span class="spec-arrow">Open Brief</span>
+      </a>
+      <a href="https://design-flash-card.vercel.app/" target="_blank" class="spec-tile">
+        <div>
+          <div class="spec-tile-num">PRG-006 · Live · Side Build</div>
+          <h3>Flash Cards.<br>UX Recall.</h3>
+          <p>A bilingual (English/Myanmar) app to master UX principles through active recall. Spaced repetition, category filtering, clean study UI.</p>
+          <div class="spec-tile-stats">
+            <div><span class="spec-stat-val">60+</span><span class="spec-stat-lbl">Principles</span></div>
+            <div><span class="spec-stat-val">$0</span><span class="spec-stat-lbl">To Run</span></div>
+          </div>
+        </div>
+        <span class="spec-arrow">Launch ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark" id="manifest">
+  <div class="section-inner">
+    <div class="sec-head">
+      <div class="sec-num">Manifest · 05 Launches</div>
+      <h2 class="sec-title">Launch Manifest</h2>
+      <p class="sec-sub">Five companies. One career switch from engineering. A lot of Figma files.</p>
+    </div>
+
+    <div>
+      <div class="manifest-row head">
+        <div>NO.</div><div>Company / Role</div><div>Window</div><div>Theater</div><div>Status</div>
+      </div>
+
+      <div class="manifest-row">
+        <div class="manifest-no">01</div>
+        <div><div class="manifest-co">Raytail</div><div class="manifest-role">UX Lead · Multi-product</div></div>
+        <div class="manifest-date">Dec 2023 — Dec 2025</div>
+        <div class="manifest-date">Maldives · Remote</div>
+        <div class="manifest-status">200% UX ROI</div>
+      </div>
+      <ul class="manifest-detail">
+        <li>Drove design work that delivered 200% UX ROI across a multi-product ecosystem</li>
+        <li>Redesigned POS checkout and order workflows — $10K/month saved in operational costs</li>
+        <li>Built a design system from scratch; still the foundation the team runs on today</li>
+        <li>Worked async-first with a fully remote team in Maldives</li>
+        <li>Enforced WCAG accessibility standards across all products</li>
+        <li>Cleared years of design debt through structured A/B testing</li>
+      </ul>
+
+      <div class="manifest-row">
+        <div class="manifest-no">02</div>
+        <div><div class="manifest-co">Lexagle</div><div class="manifest-role">Senior UX Designer</div></div>
+        <div class="manifest-date">Oct 22 — Apr 23</div>
+        <div class="manifest-date">Singapore</div>
+        <div class="manifest-status">Legal Tech</div>
+      </div>
+      <ul class="manifest-detail">
+        <li>Owned obligation management feature end-to-end</li>
+        <li>Built public link form that cut back-and-forth in contract inquiry flow</li>
+        <li>Kept design consistent while moving fast in a small team</li>
+      </ul>
+
+      <div class="manifest-row">
+        <div class="manifest-no">03</div>
+        <div><div class="manifest-co">Treedots</div><div class="manifest-role">UX/UI Designer</div></div>
+        <div class="manifest-date">Nov 21 — Oct 22</div>
+        <div class="manifest-date">Singapore</div>
+        <div class="manifest-status">B2B Portal</div>
+      </div>
+      <ul class="manifest-detail">
+        <li>First month mapping every broken flow before touching Figma</li>
+        <li>Designed B2B Supplier Portal from scratch</li>
+        <li>Launched a design system still used for every new feature</li>
+      </ul>
+
+      <div class="manifest-row">
+        <div class="manifest-no">04</div>
+        <div><div class="manifest-co">Nexlabs</div><div class="manifest-role">Product Designer</div></div>
+        <div class="manifest-date">Sep 20 — Nov 21</div>
+        <div class="manifest-date">Myanmar</div>
+        <div class="manifest-status">Multi-Industry</div>
+      </div>
+      <ul class="manifest-detail">
+        <li>Shipped across healthcare, logistics, fintech, retail in 14 months</li>
+        <li>Research was never optional — every project started with discovery</li>
+        <li>Low-fi wireframes before high-fi work</li>
+      </ul>
+
+      <div class="manifest-row">
+        <div class="manifest-no">05</div>
+        <div><div class="manifest-co">Adventsoft</div><div class="manifest-role">UI/UX Designer · Eng → Design</div></div>
+        <div class="manifest-date">Dec 18 — Sep 20</div>
+        <div class="manifest-date">Myanmar</div>
+        <div class="manifest-status">Career Switch</div>
+      </div>
+      <ul class="manifest-detail">
+        <li>Switched from software engineer to designer here — best call I've made</li>
+        <li>Used prototypes as specs so devs knew what to build before a word was said</li>
+        <li>Reading code meant handoffs were smoother than most designers manage</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark" id="voices">
+  <div class="section-inner">
+    <div class="sec-head">
+      <div class="sec-num">Voices · Crew Reports</div>
+      <h2 class="sec-title">Crew Reports</h2>
+      <p class="sec-sub">Things colleagues and managers actually said — not paraphrased.</p>
+    </div>
+    <div class="voices-grid">
+      <div class="voice">
+        <div class="voice-num">Report 01</div>
+        <p class="voice-quote">"The amount of passion you've put into your work is very much appreciated and truly inspiring. It's incredible how often you exceed expectations."</p>
+        <div class="voice-name">Diana Eddie</div>
+        <div class="voice-role">Design Lead · Treedots</div>
+      </div>
+      <div class="voice">
+        <div class="voice-num">Report 02</div>
+        <p class="voice-quote">"An amazing founder of the local UX design community. He shared his knowledge with the intention for designers to improve their skills."</p>
+        <div class="voice-name">Ricky Aung</div>
+        <div class="voice-role">Product Manager · Veneurific</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="section-inner">
+    <div class="sec-head">
+      <div class="sec-num">Education · Foundation</div>
+      <h2 class="sec-title">Foundation</h2>
+    </div>
+    <div class="edu">
+      <div>
+        <div class="edu-degree">B.Sc. Computer Science</div>
+        <div class="edu-school">UCS Taunggyi</div>
+        <div class="edu-period">2013 — 2018 · Myanmar</div>
+      </div>
+      <ul>
+        <li>Human Computer Interaction & Digital Design focus</li>
+        <li>Graduated with Distinction in Cyber Security</li>
+        <li>Founded CS Club at University</li>
+        <li>Engineering background bridges design & development</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="contact">
+  <div class="final-inner">
+    <div class="final-num">Initiate Mission</div>
+    <h2>Let's build<br>something<br>great.</h2>
+    <p>Looking for a team that ships things and cares whether they work. Open to senior roles in product and UX.</p>
+    <div class="final-cta">
+      <a href="mailto:kaungmyat9702@gmail.com" class="btn btn-solid">Email Me</a>
+      <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" target="_blank" class="btn">LinkedIn ↗</a>
+      <a href="https://designer-os-test.vercel.app/resume/share/84rG99PQ" target="_blank" class="btn">Resume ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2026 Harry Hein · Bangkok TH · <a href="portfolio.html">View original portfolio →</a>
+</footer>
+
+</body>
+</html>

@@ -99,28 +99,28 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
     <div class="cs-bento cs-bento-meta">
       <div class="cs-meta-item">
         <div class="cs-meta-label">Role</div>
-        <div class="cs-meta-val">Sole UX/UI Designer</div>
+        <div class="cs-meta-val">Sole Designer<br>(UX + UI)</div>
       </div>
       <div class="cs-meta-item">
-        <div class="cs-meta-label">Team</div>
-        <div class="cs-meta-val">Design + IS Team<br>+ Development</div>
+        <div class="cs-meta-label">Partners</div>
+        <div class="cs-meta-val">Information Systems team,<br>Compliance, Finance Lead, Devs</div>
       </div>
       <div class="cs-meta-item">
         <div class="cs-meta-label">Client</div>
-        <div class="cs-meta-val">STO Peoples Choice<br>Pharmacy &amp; Supermarket</div>
+        <div class="cs-meta-val">STO Peoples Choice<br>~20 retail + pharmacy stores</div>
       </div>
     </div>
     <div class="cs-bento cs-bento-metric">
-      <div class="cs-metric-num">14+</div>
-      <div class="cs-metric-label">Feature Modules</div>
+      <div class="cs-metric-num">3</div>
+      <div class="cs-metric-label">Deep-Dive Modules<br><span style="font-size:0.7em;opacity:0.6">Login · Tender · E-Prescription</span></div>
     </div>
     <div class="cs-bento cs-bento-metric">
-      <div class="cs-metric-num">200+</div>
-      <div class="cs-metric-label">Screens Designed</div>
+      <div class="cs-metric-num">14</div>
+      <div class="cs-metric-label">Total Modules Shipped</div>
     </div>
     <div class="cs-bento cs-bento-metric">
-      <div class="cs-metric-num">22</div>
-      <div class="cs-metric-label">Figma Files</div>
+      <div class="cs-metric-num">~20</div>
+      <div class="cs-metric-label">Stores In Production</div>
     </div>
   </div>
 </header>
@@ -281,10 +281,15 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
     </div>
   </section>
 
-  <!-- ══ 04 — LOGIN ══ -->
+  <!-- ══ 04 — LOGIN (DEEP DIVE 1/3) ══ -->
   <section class="cs-section">
-    <div class="cs-section-num">04 — Login</div>
-    <h2 class="cs-h2">One Tap In</h2>
+    <div class="cs-section-num">04 — Deep Dive · Login</div>
+    <h2 class="cs-h2">Use the Card They Already Carry</h2>
+
+    <p class="cs-p"><strong>The problem.</strong> The old Windows POS opened on a username/password screen. Cashiers shared logins to skip it. Audit trail broken on day one. The IS team wanted hardened auth; the cashiers wanted to start scanning groceries inside 10 seconds.</p>
+
+    <p class="cs-p"><strong>The constraint that unlocked the decision.</strong> Every cashier already carried an NFC staff card for the building turnstile. The hardware on the new touchscreen POS terminal had an NFC reader built in. No new credential to issue, no extra cost, no behaviour change to teach — just point the existing card at a different surface.</p>
+
     <div class="cs-compare" data-compare>
       <img class="cs-compare-after" src="images/ppos/New Login.webp" alt="Login — After">
       <img class="cs-compare-before" src="images/ppos/PPOS Login.webp" alt="Login — Before">
@@ -293,117 +298,86 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       <div class="cs-compare-label cs-compare-label-before">Before</div>
       <div class="cs-compare-label cs-compare-label-after">After</div>
     </div>
+
+    <p class="cs-p"><strong>What I designed.</strong> Tap-to-login as the primary path, with a manual employee-code fallback for lost/forgotten cards and a forced float-declaration step before the register opens. The fallback exists because hardware fails — but it's the slow path, not the default.</p>
+
     <ul class="cs-list">
-      <li><strong>NFC card tap</strong> — one touch login for busy counters</li>
-      <li><strong>Manual fallback</strong> — employee code + pincode via on-screen keyboard</li>
-      <li><strong>Float gate</strong> — POS won't start without confirmed cash in drawer</li>
+      <li><strong>NFC card tap</strong> — reuse the existing staff badge. Auth in &lt;2s. Audit trail per cashier, not per terminal.</li>
+      <li><strong>Manual fallback</strong> — employee code + pincode via on-screen keyboard. Slow on purpose so it isn't the habit.</li>
+      <li><strong>Float gate</strong> — drawer-count required before checkout opens. Compliance Team requirement; surfaced as a single screen, not a popup chain.</li>
     </ul>
   </section>
 
-  <!-- ══ 05 — CHECKOUT ══ -->
-  <section class="cs-section" id="checkout">
-    <div class="cs-section-num">05 — Checkout</div>
-    <h2 class="cs-h2">The Central Hub</h2>
-    <div class="cs-compare" data-compare>
-      <img class="cs-compare-after" src="images/ppos/New Central Hub.webp" alt="Checkout — After">
-      <img class="cs-compare-before" src="images/ppos/PPOS Central Hub.webp" alt="Checkout — Before">
-      <div class="cs-compare-line"></div>
-      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
-      <div class="cs-compare-label cs-compare-label-before">Before</div>
-      <div class="cs-compare-label cs-compare-label-after">After</div>
-    </div>
-    <ul class="cs-list">
-      <li><strong>Split-screen</strong> — products left (65%), summary right (35%)</li>
-      <li><strong>Inline editing</strong> — qty, unit, batch editable in the table. No modals.</li>
-      <li><strong>Bottom menu</strong> — 2-row shortcuts to all 14 modules</li>
-    </ul>
-  </section>
+  <!-- 05–07 collapsed into Other Modules grid below. -->
 
-  <!-- ══ 06 — ADD ARTICLES ══ -->
+
+  <!-- ══ 09 — E-PRESCRIPTION (DEEP DIVE 2/3) ══ -->
   <section class="cs-section">
-    <div class="cs-section-num">06 — Add Articles</div>
-    <h2 class="cs-h2">Search, Scan, Add</h2>
-    <div class="cs-compare" data-compare>
-      <img class="cs-compare-after" src="images/ppos/New Add Articles.webp" alt="Add Articles — After">
-      <img class="cs-compare-before" src="images/ppos/PPOS Add Articles.webp" alt="Add Articles — Before">
-      <div class="cs-compare-line"></div>
-      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
-      <div class="cs-compare-label cs-compare-label-before">Before</div>
-      <div class="cs-compare-label cs-compare-label-after">After</div>
-    </div>
-    <ul class="cs-list">
-      <li><strong>Autocomplete</strong> — search by code, name, or description with LOT + expiry + price</li>
-      <li><strong>Price override</strong> — supervisor permission + mandatory reason logging</li>
-    </ul>
-  </section>
+    <div class="cs-section-num">09 — Deep Dive · E-Prescription</div>
+    <h2 class="cs-h2">Friction Where It Belongs</h2>
 
-  <!-- ══ 07 — MODIFY QTY/UOM/BATCH ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">07 — Modify Qty, UOM &amp; Batch</div>
-    <h2 class="cs-h2">Edit Without Leaving</h2>
-    <div class="cs-compare" data-compare>
-      <img class="cs-compare-after" src="images/ppos/New Modify Qty.webp" alt="Modify — After">
-      <img class="cs-compare-before" src="images/ppos/PPOS Modify Qty.webp" alt="Modify — Before">
-      <div class="cs-compare-line"></div>
-      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
-      <div class="cs-compare-label cs-compare-label-before">Before</div>
-      <div class="cs-compare-label cs-compare-label-after">After</div>
-    </div>
-    <ul class="cs-list">
-      <li><strong>Inline edit</strong> — quantity (tablet count), UOM (Tab/Box/Strip/Bottle), batch/LOT</li>
-      <li><strong>Promo auto-detect</strong> — promotions trigger automatically when conditions are met</li>
-    </ul>
-  </section>
+    <p class="cs-p"><strong>The problem.</strong> A pharmacy cashier scans a prescription. The system detects two drugs that overlap dangerously. In the old POS, a warning popup appeared and could be dismissed with one tap of "OK". Compliance flagged this: every override left no record of why.</p>
 
-  <!-- ══ 09 — E-PRESCRIPTION ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">09 — E-Prescription</div>
-    <h2 class="cs-h2">The Pharmacy Differentiator</h2>
+    <p class="cs-p"><strong>The two options on the table.</strong></p>
+
+    <div class="cs-data-bento cols-2" style="margin:16px 0 24px">
+      <div class="cs-data-card">
+        <div class="cs-data-num">Option A</div>
+        <div class="cs-data-label">Hard block</div>
+        <div class="cs-data-desc">Refuse the sale outright when the system detects an overlap. Pharmacist must remove the conflict before continuing.</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">Option B &check;</div>
+        <div class="cs-data-label">Override + mandatory reason</div>
+        <div class="cs-data-desc">Allow the sale, but force the pharmacist to type a free-text reason. No skip, no preset dropdown, no "OK" button until the text field has content.</div>
+      </div>
+    </div>
+
+    <p class="cs-p"><strong>Why Option B.</strong> Hard blocks treat the cashier as a hazard. Real pharmacy work has legitimate overrides — a doctor authorising a known interaction, a refill for a patient already stable on the combo. The Compliance Team's actual need wasn't to prevent overrides; it was to make every override <em>auditable</em>. Friction is the audit trail.</p>
+
     <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);aspect-ratio:16/9;overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative">
       <img loading="lazy" decoding="async" src="images/ppos/E Prescription.webp" alt="E-Prescription" style="width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in">
     </div>
+
     <ul class="cs-list">
-      <li><strong>Drug overlap</strong> — mandatory reason before override. Can't dismiss.</li>
-      <li><strong>Partial fulfillment</strong> — track unfulfilled medicines per prescription</li>
-      <li><strong>Pharmacy-only</strong> — this module doesn't exist in supermarket mode</li>
+      <li><strong>Drug overlap</strong> — typed reason required, minimum 10 chars. Submit button disabled until satisfied.</li>
+      <li><strong>Partial fulfillment</strong> — pharmacy can dispense 3 of 5 items now, leave 2 open. Status sticks to the prescription, not the transaction.</li>
+      <li><strong>Pharmacy-only</strong> — module hidden in supermarket-mode terminals. Same codebase, contextual surfacing.</li>
     </ul>
   </section>
 
-  <!-- ══ 10 — BNPL ══ -->
+  <!-- 10–11 collapsed into Other Modules grid below. -->
+
+
+  <!-- ══ 12 — TENDER (DEEP DIVE 3/3) ══ -->
   <section class="cs-section">
-    <div class="cs-section-num">10 — BNPL</div>
-    <h2 class="cs-h2">Buy Now, Pay Later</h2>
-    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);aspect-ratio:16/9;overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative">
-      <img loading="lazy" decoding="async" src="images/ppos/BNPL.webp" alt="BNPL" style="width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in">
+    <div class="cs-section-num">12 — Deep Dive · Tender Operations</div>
+    <h2 class="cs-h2">One Payment at a Time, Not All at Once</h2>
+
+    <p class="cs-p"><strong>The problem.</strong> Ten payment types: Cash MVR, Cash USD, Cards, BNPL, BML, Ooredoo, Insurance, Cheques, Coupon, Loyalty. Some transactions take two of these (rare), most take exactly one. The old POS dropped everything into one dense form regardless.</p>
+
+    <p class="cs-p"><strong>The two options on the table.</strong></p>
+
+    <div class="cs-data-bento cols-2" style="margin:16px 0 24px">
+      <div class="cs-data-card">
+        <div class="cs-data-num">Option A &check;</div>
+        <div class="cs-data-label">Separate screen per payment type</div>
+        <div class="cs-data-desc">Cashier picks the type first, then sees a screen tuned only to that type. To split, they finish one, then start another against the remainder.</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">Option C</div>
+        <div class="cs-data-label">Unified split-tender canvas</div>
+        <div class="cs-data-desc">All ten payment fields visible at once. Cashier fills any combination in one screen and submits.</div>
+      </div>
     </div>
-    <ul class="cs-list">
-      <li><strong>Installment plans</strong> — flexible payment schedules for customers</li>
-      <li><strong>Comic storyboards</strong> — used to pitch the feature to stakeholders</li>
-    </ul>
-  </section>
 
-  <!-- ══ 11 — CUSTOMERS ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">11 — Customers</div>
-    <h2 class="cs-h2">Know Who's Buying</h2>
-    <div class="cs-compare" data-compare>
-      <img class="cs-compare-after" src="images/ppos/New Customers.webp" alt="Customers — After">
-      <img class="cs-compare-before" src="images/ppos/PPOS Customers.webp" alt="Customers — Before">
-      <div class="cs-compare-line"></div>
-      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
-      <div class="cs-compare-label cs-compare-label-before">Before</div>
-      <div class="cs-compare-label cs-compare-label-after">After</div>
-    </div>
-    <ul class="cs-list">
-      <li><strong>Select, add, edit</strong> — customer management from checkout</li>
-      <li><strong>Required for</strong> — BNPL and loyalty points need a linked customer</li>
-    </ul>
-  </section>
+    <p class="cs-p"><strong>Why Option A.</strong> Two reasons, both anchored in how cashiers actually think:</p>
 
-  <!-- ══ 12 — TENDER ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">12 — Tender Operations</div>
-    <h2 class="cs-h2">Ten Ways to Pay</h2>
+    <ul class="cs-list">
+      <li><strong>Split tender is rare.</strong> Most transactions are one payment, full amount. Optimising the screen for the common case (1 method) is the right tradeoff — a unified canvas makes the 90% case slower so the 10% case is faster.</li>
+      <li><strong>Cashiers think one payment at a time.</strong> Watching shifts, I saw the verbal pattern: <em>"that's 240 on cash" → counts → "and the rest on card"</em>. The screen should mirror the speech, not contradict it. Option C asks the cashier to hold the whole split in their head before any field is filled.</li>
+    </ul>
+
     <div class="cs-compare" data-compare>
       <img class="cs-compare-after" src="images/ppos/New Payment Method.webp" alt="Tender — After">
       <img class="cs-compare-before" src="images/ppos/PPOS Payment Method.webp" alt="Tender — Before">
@@ -412,105 +386,76 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
       <div class="cs-compare-label cs-compare-label-before">Before</div>
       <div class="cs-compare-label cs-compare-label-after">After</div>
     </div>
+
+    <p class="cs-p"><strong>What I designed.</strong> A picker grid of 10 payment tiles → one focused screen per type → a persistent "remaining balance" header that updates as each payment posts. Split tender becomes a loop of single payments, not a parallel form.</p>
+
     <ul class="cs-list">
-      <li><strong>10 payment types</strong> — Cash MVR/USD, Cards, BNPL, BML, Ooredoo, Insurance, Cheques, Coupon/Loyalty</li>
-      <li><strong>Split tender</strong> — partial cash + card + points in one transaction</li>
-      <li><strong>Reusable base</strong> — one component pattern across all 10 types</li>
+      <li><strong>10 payment types</strong> — one reusable screen component, configured by type. Cash MVR/USD has denomination buttons; Cards has terminal-reference field; Cheque has bank + serial.</li>
+      <li><strong>Split tender</strong> — sequential, not parallel. Remaining balance always visible at the top.</li>
+      <li><strong>One component pattern</strong> — adding an 11th payment type later is a config change, not a redesign.</li>
     </ul>
   </section>
 
-  <!-- ══ 13 — SECOND SCREEN ══ -->
+  <!-- ══ OTHER MODULES — condensed gallery ══ -->
   <section class="cs-section">
-    <div class="cs-section-num">13 — Second Screen</div>
-    <h2 class="cs-h2">The Customer's View</h2>
-    <div style="width:100vw;margin-left:calc(-1*(100vw - 100%)/2);aspect-ratio:16/9;overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:20px;margin-bottom:20px;position:relative">
-      <img loading="lazy" decoding="async" src="images/ppos/Second Screen.webp" alt="Customer-facing second screen with QR payment" style="width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in">
-    </div>
-    <ul class="cs-list">
-      <li><strong>QR payment</strong> — m-Faisaa scan to pay. No cashier phone handling.</li>
-      <li><strong>Two sizes</strong> — 1920&times;1080 and 1024&times;600 for different hardware</li>
-      <li><strong>Touch + non-touch</strong> — variants for prescription confirmation</li>
-    </ul>
-  </section>
-
-  <!-- ══ 15 — TRANSACTIONS ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">15 — Transactions</div>
-    <h2 class="cs-h2">History &amp; Recovery</h2>
-    <div class="cs-compare" data-compare>
-      <img class="cs-compare-after" src="images/ppos/New Transactions.webp" alt="Transactions — After">
-      <img class="cs-compare-before" src="images/ppos/PPOS Transactions.webp" alt="Transactions — Before">
-      <div class="cs-compare-line"></div>
-      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
-      <div class="cs-compare-label cs-compare-label-before">Before</div>
-      <div class="cs-compare-label cs-compare-label-after">After</div>
-    </div>
-    <ul class="cs-list">
-      <li><strong>Reprint, recall, void, return</strong> — full transaction recovery</li>
-      <li><strong>Supervisor auth</strong> — voids and refunds require approval</li>
-    </ul>
-  </section>
-
-  <!-- ══ 16 — CHECK STOCK ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">16 — Check Stock</div>
-    <h2 class="cs-h2">Inventory at a Glance</h2>
-    <div class="cs-compare" data-compare>
-      <img class="cs-compare-after" src="images/ppos/New Check Stock.webp" alt="Check Stock — After">
-      <img class="cs-compare-before" src="images/ppos/PPOS Check Stock.webp" alt="Check Stock — Before">
-      <div class="cs-compare-line"></div>
-      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
-      <div class="cs-compare-label cs-compare-label-before">Before</div>
-      <div class="cs-compare-label cs-compare-label-after">After</div>
-    </div>
-    <ul class="cs-list">
-      <li><strong>Quick lookup</strong> — search products without leaving checkout</li>
-      <li><strong>Batch details</strong> — LOT numbers, expiry dates, multi-store visibility</li>
-    </ul>
-  </section>
-
-  <!-- ══ 17 — MANAGE CASH ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">17 — Manage Cash</div>
-    <h2 class="cs-h2">Cash Drawer Ops</h2>
-    <div class="cs-compare" data-compare>
-      <img class="cs-compare-after" src="images/ppos/New Cash Drawer.webp" alt="Manage Cash — After">
-      <img class="cs-compare-before" src="images/ppos/PPOS Cash Drawer.webp" alt="Manage Cash — Before">
-      <div class="cs-compare-line"></div>
-      <div class="cs-compare-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div>
-      <div class="cs-compare-label cs-compare-label-before">Before</div>
-      <div class="cs-compare-label cs-compare-label-after">After</div>
-    </div>
-    <ul class="cs-list">
-      <li><strong>Float declaration</strong> — starting cash confirmation at shift start</li>
-      <li><strong>Cash in/out</strong> — track drawer operations throughout the shift</li>
-    </ul>
-  </section>
-
-  <!-- ══ 18 — SUPPORTING FEATURES ══ -->
-  <section class="cs-section">
-    <div class="cs-section-num">18 — Supporting Modules</div>
-    <h2 class="cs-h2">The Rest of the System</h2>
+    <div class="cs-section-num">Also Shipped · The Other 11 Modules</div>
+    <h2 class="cs-h2">Same Patterns, Different Surfaces</h2>
+    <p class="cs-p">The three deep-dives above carry the decision-heavy work. The remaining eleven modules reused those patterns — the same component library, the same prototype-on-hardware loop, the same supervisor-auth + mandatory-reason scaffolding where compliance required it.</p>
     <div class="cs-data-bento cols-2">
       <div class="cs-data-card">
-        <div class="cs-data-num">Scale</div>
-        <div class="cs-data-label">Electronic Scale</div>
-        <div class="cs-data-desc">Hardware integration for weight-based pricing</div>
+        <div class="cs-data-num">05</div>
+        <div class="cs-data-label">Checkout · Central Hub</div>
+        <div class="cs-data-desc">65/35 split — products left, summary right. Inline edit, no modals. 2-row module shortcut bar.</div>
       </div>
       <div class="cs-data-card">
-        <div class="cs-data-num">Alerts</div>
-        <div class="cs-data-label">Notifications</div>
-        <div class="cs-data-desc">Stock, promotions, prescriptions, shift reminders</div>
+        <div class="cs-data-num">06</div>
+        <div class="cs-data-label">Add Articles</div>
+        <div class="cs-data-desc">Autocomplete by code/name/LOT/expiry. Price override = supervisor auth + mandatory reason.</div>
       </div>
       <div class="cs-data-card">
-        <div class="cs-data-num">Config</div>
-        <div class="cs-data-label">Settings</div>
-        <div class="cs-data-desc">Terminal, printer, WiFi, display configuration</div>
+        <div class="cs-data-num">07</div>
+        <div class="cs-data-label">Modify Qty · UOM · Batch</div>
+        <div class="cs-data-desc">Inline edit on the line. Promo auto-detect when conditions met. No popup chain.</div>
       </div>
       <div class="cs-data-card">
-        <div class="cs-data-num">CSAT</div>
-        <div class="cs-data-label">Satisfaction Dashboard</div>
-        <div class="cs-data-desc">Metrics tracking across stores and terminals</div>
+        <div class="cs-data-num">10</div>
+        <div class="cs-data-label">BNPL · Installments</div>
+        <div class="cs-data-desc">Pitched via comic storyboards to stakeholders before any pixel — fastest alignment in the project.</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">11</div>
+        <div class="cs-data-label">Customers</div>
+        <div class="cs-data-desc">Select / add / edit inline. Required for BNPL + loyalty linkage. Reuses the Article-add component.</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">13</div>
+        <div class="cs-data-label">Customer-Facing Second Screen</div>
+        <div class="cs-data-desc">QR pay (m-Faisaa) — cashier never handles the customer's phone. Two resolutions, touch + non-touch variants.</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">15</div>
+        <div class="cs-data-label">Transactions · Recovery</div>
+        <div class="cs-data-desc">Reprint, recall, void, return. Voids and refunds gated by supervisor auth — same auth pattern as price override.</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">16</div>
+        <div class="cs-data-label">Check Stock</div>
+        <div class="cs-data-desc">Search without leaving checkout. LOT, expiry, multi-store visibility on a single panel.</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">17</div>
+        <div class="cs-data-label">Manage Cash · Drawer Ops</div>
+        <div class="cs-data-desc">Float declaration at shift start (paired with the Login float-gate). Cash in/out tracked per cashier.</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">18a</div>
+        <div class="cs-data-label">Scale &amp; Notifications</div>
+        <div class="cs-data-desc">Electronic-scale hardware integration for weight-priced items. Unified notification surface for stock, promo, prescription, and shift events.</div>
+      </div>
+      <div class="cs-data-card">
+        <div class="cs-data-num">18b</div>
+        <div class="cs-data-label">Settings &amp; CSAT</div>
+        <div class="cs-data-desc">Terminal / printer / WiFi / display config. Satisfaction dashboard for cross-store comparison.</div>
       </div>
     </div>
   </section>

@@ -310,15 +310,15 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
     <div class="cs-bento cs-bento-meta">
       <div class="cs-meta-item">
         <div class="cs-meta-label">Role</div>
-        <div class="cs-meta-val">Product Designer + Engineer</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Stack</div>
-        <div class="cs-meta-val">Next.js 16 · React 19<br>TypeScript · Tailwind</div>
+        <div class="cs-meta-val">Product Designer (sole)</div>
       </div>
       <div class="cs-meta-item">
         <div class="cs-meta-label">Users</div>
         <div class="cs-meta-val">Myanmar Live-Sellers<br>Facebook Commerce</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Status</div>
+        <div class="cs-meta-val">Early production<br>Active in Myanmar</div>
       </div>
     </div>
     <div class="cs-bento cs-bento-metric">
@@ -988,44 +988,9 @@ html{scroll-snap-type:y mandatory!important;overflow-y:scroll!important}
   <section class="cs-section">
     <div class="cs-section-num">03b — Inside a Tool</div>
     <h2 class="cs-h2">A Tool Is a Verb the AI Is Allowed to Say.</h2>
-    <p class="cs-p">Each tool is a JSON schema (so the LLM knows when to pick it) + a server handler (the only code that touches the DB). The schema's <em>description</em> is the prompt — bilingual phrases the seller might use go directly into it.</p>
+    <p class="cs-p">Each tool is a JSON schema (so the LLM knows when to pick it) + a server handler (the only code that touches the DB). The schema's <em>description</em> is the prompt — bilingual phrases the seller might use go directly into it. That description doubles as the discovery layer: when a seller types "ပြန်မှာရမယ့်ဟာ ဘာရှိလဲ", the LLM matches that phrase against the description text and picks the right verb.</p>
 
-    <div class="cs-code"><span class="c">// Declaration — the LLM reads this</span>
-{
-  <span class="h">name</span>: <span class="s">'get_smart_reorder'</span>,
-  <span class="h">description</span>:
-    <span class="s">'AI-derived reorder suggestions: per variant, returns velocity </span>
-<span class="s">     (units/day past 30 days), days_left, and suggested reorder qty.</span>
-<span class="s">     Use for "smart reorder", "ဘာတွေ ပြန်မှာရမလဲ",</span>
-<span class="s">     "ပြန်ဖြည့်ဖို့", "stock ကုန်ခါနီးတာ ဘာရှိလဲ".'</span>,
-  <span class="h">parameters</span>: { <span class="h">type</span>: <span class="s">'OBJECT'</span>, <span class="h">properties</span>: {} },
-}
-
-<span class="c">// Handler — the server runs this · scoped to businessId</span>
-<span class="k">async function</span> <span class="f">handleSmartReorder</span>(args, ctx) {
-  <span class="k">const</span> sales = <span class="k">await</span> ctx.prisma.orderItem.<span class="f">groupBy</span>({
-    <span class="h">where</span>: { order: { businessId: ctx.businessId, <span class="h">...last30Days</span> } },
-    <span class="h">_sum</span>: { <span class="h">quantity</span>: <span class="k">true</span> },
-    <span class="h">by</span>: [<span class="s">'variantId'</span>],
-  });
-  <span class="k">return</span> sales.<span class="f">map</span>(velocityToReorder);
-}</div>
-
-    <p class="cs-p">The orchestration loop is dumb on purpose:</p>
-
-    <div class="cs-code"><span class="k">for</span> (<span class="k">let</span> hop = <span class="v">0</span>; hop &lt; <span class="v">MAX_TOOL_HOPS</span>; hop++) {
-  <span class="k">const</span> result = <span class="k">await</span> chat.<span class="f">sendMessage</span>(pending);
-  <span class="k">const</span> calls = result.response.<span class="f">functionCalls</span>() ?? [];
-
-  <span class="k">if</span> (calls.length === <span class="v">0</span>) { finalText = result.response.<span class="f">text</span>(); <span class="k">break</span>; }
-
-  <span class="k">const</span> responseParts = [];
-  <span class="k">for</span> (<span class="k">const</span> call <span class="k">of</span> calls) {
-    <span class="k">const</span> out = <span class="k">await</span> <span class="f">runTool</span>(call.name, call.args, { businessId, prisma });
-    responseParts.<span class="f">push</span>({ <span class="h">functionResponse</span>: { <span class="h">name</span>: call.name, <span class="h">response</span>: { <span class="h">result</span>: out } } });
-  }
-  pending = responseParts; <span class="c">// ← LLM gets the data, decides next move</span>
-}</div>
+    <p class="cs-p">The orchestration loop is intentionally simple — the LLM calls a tool, the server runs it, the result goes back to the LLM, repeat up to 6 hops per turn. No state in the loop. All intelligence lives in the schema descriptions and the tool implementations.</p>
 
     <p class="cs-p">The full vocabulary — 16 tools, grouped:</p>
 

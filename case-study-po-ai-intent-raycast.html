@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PO AI Intent — Raycast Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080a;
+  --surface:#0f1115;
+  --surface-2:#16191f;
+  --line:#1f2229;
+  --line-2:#272a32;
+  --text:#f5f6f7;
+  --muted:#8a8f98;
+  --dim:#6b7079;
+  --red:#ff5757;
+  --red-2:#a1131a;
+  --green:#3dd68c;
+  --yellow:#ffc53d;
+  --blue:#5b9eff;
+  --kbd:#1a1d23;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-feature-settings:"ss03","cv11","cv09";-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+nav{position:sticky;top:0;z-index:50;background:rgba(7,8,10,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;max-width:1120px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
+.brand-mark{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,var(--red) 0%,var(--red-2) 100%);box-shadow:0 0 20px rgba(255,87,87,0.35)}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{font-size:13px;color:var(--muted);padding:6px 10px;border-radius:6px;transition:.15s}
+.nav-links a:hover{color:var(--text);background:var(--surface)}
+.kbd{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 7px;background:var(--kbd);border:1px solid var(--line-2);border-radius:5px;color:var(--muted);box-shadow:0 1px 0 rgba(0,0,0,0.4),inset 0 -1px 0 var(--line)}
+
+.palette{margin:60px auto 40px;max-width:760px;background:var(--surface);border:1px solid var(--line-2);border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.02)}
+.palette-input{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.palette-input input{flex:1;background:transparent;border:0;outline:0;color:var(--text);font-size:17px;font-family:inherit}
+.palette-input input::placeholder{color:var(--dim)}
+.palette-icon{width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,var(--red) 0%,var(--red-2) 100%);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.palette-results{padding:8px}
+.result{display:flex;align-items:center;gap:14px;padding:10px 14px;border-radius:8px;cursor:default}
+.result.active{background:var(--surface-2)}
+.result-icon{width:28px;height:28px;border-radius:6px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:14px;border:1px solid var(--line)}
+.result.active .result-icon{background:var(--bg)}
+.result-text{flex:1}
+.result-title{font-size:14px;font-weight:500}
+.result-sub{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.result-meta{font-size:11px;color:var(--dim);font-family:'JetBrains Mono',monospace}
+
+.hero-meta{margin:24px auto 0;max-width:760px;display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.pill{padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.pill.live{color:var(--green);border-color:rgba(61,214,140,0.3)}
+.pill.live::before{content:"●";margin-right:6px;color:var(--green)}
+
+h1.title{font-size:clamp(38px,5.6vw,72px);font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin:60px 0 18px;max-width:920px}
+h1.title em{font-style:normal;background:linear-gradient(135deg,var(--red) 0%,var(--red-2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em}
+.lede{font-size:18px;color:var(--muted);max-width:680px;line-height:1.6;margin-top:8px}
+
+.metrics{margin:60px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.metric{background:var(--surface);padding:24px 22px}
+.metric-num{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;letter-spacing:-0.02em;color:var(--text)}
+.metric-num.green{color:var(--green)}
+.metric-num.red{color:var(--red)}
+.metric-label{font-size:12px;color:var(--muted);margin-top:6px}
+
+.section{margin:80px 0}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red);text-transform:uppercase;letter-spacing:0.1em}
+.sec-title{font-size:32px;font-weight:700;letter-spacing:-0.02em;margin:6px 0 24px;line-height:1.1}
+.sec-body{font-size:15px;color:var(--muted);line-height:1.7;max-width:760px}
+.sec-body strong{color:var(--text);font-weight:600}
+
+.log{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:24px}
+.log-head{display:grid;grid-template-columns:120px 100px 1fr 140px;gap:16px;padding:12px 18px;background:var(--surface-2);border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+.log-row{display:grid;grid-template-columns:120px 100px 1fr 140px;gap:16px;padding:14px 18px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:13px}
+.log-row:last-child{border-bottom:0}
+.log-row .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;letter-spacing:0.04em}
+.tag.ok{background:rgba(61,214,140,0.12);color:var(--green)}
+.tag.warn{background:rgba(255,197,61,0.12);color:var(--yellow)}
+.tag.err{background:rgba(255,87,87,0.12);color:var(--red)}
+.tag.info{background:rgba(91,158,255,0.12);color:var(--blue)}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;transition:.15s}
+.card:hover{border-color:var(--line-2);background:var(--surface-2)}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-kbd{display:flex;gap:4px}
+.card-title{font-size:15px;font-weight:600;margin-bottom:8px}
+.card-body{font-size:13px;color:var(--muted);line-height:1.6}
+
+.quote{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:8px;padding:24px 28px}
+.quote p{font-size:18px;line-height:1.5;letter-spacing:-0.01em}
+.quote cite{display:block;margin-top:12px;font-style:normal;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+
+.tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:24px}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:12px;display:flex;align-items:center;gap:8px}
+.tool::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(61,214,140,0.6)}
+.tool strong{color:var(--text);font-weight:500}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.compare-col{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px}
+.compare-col.before{border-color:rgba(255,87,87,0.25)}
+.compare-col.after{border-color:rgba(61,214,140,0.25)}
+.compare-label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px}
+.before .compare-label{color:var(--red)}
+.after .compare-label{color:var(--green)}
+.compare-num{font-family:'JetBrains Mono',monospace;font-size:42px;font-weight:600;letter-spacing:-0.02em}
+.compare-col p{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5}
+
+.lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}
+.lesson{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;position:relative}
+.lesson-n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);text-transform:uppercase;letter-spacing:0.08em}
+.lesson-t{font-size:17px;font-weight:600;margin:6px 0 10px}
+.lesson-b{font-size:13px;color:var(--muted);line-height:1.6}
+
+footer{border-top:1px solid var(--line);margin-top:100px;padding:40px 0;color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace}
+footer .wrap{display:flex;justify-content:space-between;align-items:center}
+
+@media (max-width:768px){
+  .metrics,.cards,.tool-grid,.compare,.lessons{grid-template-columns:1fr}
+  .log-head,.log-row{grid-template-columns:90px 80px 1fr;gap:10px;font-size:11px}
+  .log-row > *:last-child,.log-head > *:last-child{display:none}
+}
+
+.media-hero{margin-top:32px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0a0c10;aspect-ratio:16/9;position:relative;box-shadow:0 24px 64px rgba(255,87,87,0.18)}
+.media-hero video,.media-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.media-hero .tag{position:absolute;left:14px;top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#ff5757;background:rgba(10,12,16,0.8);backdrop-filter:blur(10px);border:1px solid var(--line);padding:5px 10px;border-radius:6px;z-index:2;display:inline-flex;gap:6px;align-items:center}
+.media-hero .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#ff5757;animation:rcpulse 2s infinite}
+@keyframes rcpulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.media-wide{margin-top:24px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#0a0c10;aspect-ratio:16/9;position:relative}
+.media-wide video,.media-wide img{width:100%;height:100%;object-fit:cover;display:block}
+.media-caption{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--muted);margin-top:10px;display:flex;gap:8px;align-items:center}
+.media-caption::before{content:"$";color:#ff5757}
+.media-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+.media-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.media-tile{background:#0a0c10;border:1px solid var(--line);border-radius:10px;overflow:hidden;aspect-ratio:9/16;position:relative}
+.media-tile video,.media-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.media-tile .label{position:absolute;left:8px;bottom:8px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#ff5757;background:rgba(10,12,16,0.8);backdrop-filter:blur(8px);border:1px solid var(--line);padding:3px 7px;border-radius:5px}
+@media(max-width:900px){.media-grid{grid-template-columns:repeat(2,1fr)}.media-grid-3{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="lightbox.css">
+</head>
+<body>
+
+<nav>
+  <div class="navbar">
+    <a href="portfolio-raycast.html" class="brand"><div class="brand-mark"></div>Harry · Raycast Edition</a>
+    <div class="nav-links">
+      <a href="portfolio-raycast.html">Home</a>
+      <a href="portfolio-raycast.html#work">Work</a>
+      <span class="kbd">⌘K</span>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="palette">
+    <div class="palette-input">
+      <div class="palette-icon">⌘</div>
+      <input value="open case study po ai intent" />
+      <span class="kbd">↵</span>
+    </div>
+    <div class="palette-results">
+      <div class="result active">
+        <div class="result-icon">🎙️</div>
+        <div class="result-text">
+          <div class="result-title">PO AI Intent — Voice-to-Action for SMB Sellers</div>
+          <div class="result-sub">case-study · 2026 · golden-paths/golden-tools</div>
+        </div>
+        <div class="result-meta">Open ↵</div>
+      </div>
+      <div class="result">
+        <div class="result-icon">📐</div>
+        <div class="result-text">
+          <div class="result-title">Design System</div>
+          <div class="result-sub">case-study · tokens · 8pt</div>
+        </div>
+        <div class="result-meta">⌘1</div>
+      </div>
+      <div class="result">
+        <div class="result-icon">🛒</div>
+        <div class="result-text">
+          <div class="result-title">Pharmacy POS</div>
+          <div class="result-sub">case-study · offline-first</div>
+        </div>
+        <div class="result-meta">⌘2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-meta">
+    <span class="pill live">Live · v1.0</span>
+    <span class="pill">Product Owner / Designer</span>
+    <span class="pill">28 tools · 2 langs · &lt;50ms</span>
+    <span class="pill">ပြီးခဲ့တဲ့ ၂ ပတ်</span>
+  </div>
+
+  <h1 class="title">SMB sellers speak. We turn it into <em>structured action</em>.</h1>
+  <p class="lede">A voice-first AI intent layer that maps Burmese-English mixed utterances to deterministic tool calls — under fifty milliseconds, twenty-eight tools wide, zero hallucinated SKUs.</p>
+
+  <div class="metrics">
+    <div class="metric"><div class="metric-num">21</div><div class="metric-label">Sellers interviewed</div></div>
+    <div class="metric"><div class="metric-num green">&lt;50<span style="font-size:18px;color:var(--muted)">ms</span></div><div class="metric-label">Intent latency p95</div></div>
+    <div class="metric"><div class="metric-num">28<span style="font-size:18px;color:var(--muted)">/28</span></div><div class="metric-label">Tools mapped</div></div>
+    <div class="metric"><div class="metric-num red">0</div><div class="metric-label">Hallucinated SKUs</div></div>
+  </div>
+
+  <div class="media-hero">
+    <span class="tag">live · palette</span>
+    <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/22-chain-restock.mp4" onerror="this.outerHTML='<img src=&quot;images/po-ai/hero-palette.webp&quot; alt=&quot;Po AI palette&quot;>'"></video>
+  </div>
+
+  <section class="section">
+    <div class="sec-num">01 · Problem</div>
+    <h2 class="sec-title">Sellers type with one hand, hold inventory with the other.</h2>
+    <p class="sec-body">In <strong>21 contextual interviews</strong> across Yangon and Mandalay, every seller had the same blocker: switching between Messenger chats, the seller app, and a paper notebook. They wanted to <em>say it once</em> and have the system file the order, deduct stock, print a receipt, and tag the buyer.</p>
+    <div class="log">
+      <div class="log-head"><div>SESSION</div><div>STATUS</div><div>UTTERANCE</div><div>HANDLED</div></div>
+      <div class="log-row"><div>S-014</div><div><span class="tag warn">DROPPED</span></div><div>order လုပ်ပေး, နှစ်ဖူး</div><div>manual entry</div></div>
+      <div class="log-row"><div>S-009</div><div><span class="tag warn">DROPPED</span></div><div>stock ၁၂ ဖြုတ်ပေး</div><div>switched app</div></div>
+      <div class="log-row"><div>S-017</div><div><span class="tag err">FAILED</span></div><div>ဒီနေ့ ဈေး ပြောင်း</div><div>typed on paper</div></div>
+      <div class="log-row"><div>S-021</div><div><span class="tag info">TRIED</span></div><div>last week order ပြန်ပြ</div><div>no path</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-num">02 · Research</div>
+    <h2 class="sec-title">21 interviews. 4 archetypes. 1 shared verb-noun grammar.</h2>
+    <p class="sec-body">I shadowed sellers for 2–3 hours each. The breakthrough: regardless of category — beauty, food, electronics, fashion — sellers spoke in the same shape. <strong>Verb + product + modifier</strong>. The grammar was already there. We just had to listen.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-head"><div class="card-kbd"><span class="kbd">A</span></div></div>
+        <div class="card-title">The Solo Shop Owner</div>
+        <div class="card-body">Runs a Facebook beauty page. Live-sells 4 nights/week. Wants to whisper orders while on camera.</div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-kbd"><span class="kbd">B</span></div></div>
+        <div class="card-title">The Family Operation</div>
+        <div class="card-body">3 family members share one phone. Lots of voice notes traded across rooms.</div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-kbd"><span class="kbd">C</span></div></div>
+        <div class="card-title">The Reseller</div>
+        <div class="card-body">Orders from 3 suppliers, resells to 200 retail buyers. Needs voice-driven re-orders fast.</div>
+      </div>
+    </div>
+    <div class="quote">
+      <p>"ငါက လက်က ထုပ်နေတယ်၊ ပါးစပ်နဲ့ပဲ ပြောချင်တာ။ App က နားလည်ပေးရင် တော်လောက်ပါပြီ။"</p>
+      <cite>— Seller A · Yangon · Mar 14</cite>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-num">03 · Intent Mapping</div>
+    <h2 class="sec-title">From utterance to tool-call: a 6-phase deterministic chain.</h2>
+    <p class="sec-body">No LLM gets to invent verbs. The model selects from a closed <strong>set of 28 named tools</strong>. Each tool has a JSON schema. The model fills slots; the runtime validates and executes. If a slot is missing, the assistant asks one targeted question.</p>
+    <div class="log">
+      <div class="log-head"><div>PHASE</div><div>LATENCY</div><div>FUNCTION</div><div>STATE</div></div>
+      <div class="log-row"><div>01 · Capture</div><div>~8ms</div><div>VAD + on-device denoise + segmenter</div><div><span class="tag ok">OK</span></div></div>
+      <div class="log-row"><div>02 · Transcribe</div><div>~14ms</div><div>Bilingual Whisper-S finetune (my/en)</div><div><span class="tag ok">OK</span></div></div>
+      <div class="log-row"><div>03 · Normalize</div><div>~2ms</div><div>Number digit + unit lemmatizer</div><div><span class="tag ok">OK</span></div></div>
+      <div class="log-row"><div>04 · Classify</div><div>~9ms</div><div>Tool router (28 tools, top-3 + confidence)</div><div><span class="tag ok">OK</span></div></div>
+      <div class="log-row"><div>05 · Slot-fill</div><div>~11ms</div><div>JSON schema validator, reject if invalid</div><div><span class="tag ok">OK</span></div></div>
+      <div class="log-row"><div>06 · Execute</div><div>~4ms</div><div>Tool dispatch, idempotency key, audit log</div><div><span class="tag ok">OK</span></div></div>
+    </div>
+    <div class="media-wide">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/01-palette-empty-state.mp4" onerror="this.parentElement.style.display='none'"></video>
+    </div>
+    <div class="media-caption">replay --capture intent.demo --frame palette-empty</div>
+  </section>
+
+  <section class="section">
+    <div class="sec-num">04 · Golden Tools</div>
+    <h2 class="sec-title">28 tools. Each one is a button the model is allowed to press.</h2>
+    <p class="sec-body">Tools are namespaced by domain. Each call is logged. We never let the model speak freely — every visible word is templated from a tool result.</p>
+    <div class="tool-grid">
+      <div class="tool"><strong>order.create</strong></div>
+      <div class="tool"><strong>order.amend</strong></div>
+      <div class="tool"><strong>order.cancel</strong></div>
+      <div class="tool"><strong>order.lookup</strong></div>
+      <div class="tool"><strong>stock.add</strong></div>
+      <div class="tool"><strong>stock.deduct</strong></div>
+      <div class="tool"><strong>stock.check</strong></div>
+      <div class="tool"><strong>stock.threshold</strong></div>
+      <div class="tool"><strong>price.set</strong></div>
+      <div class="tool"><strong>price.bulk_update</strong></div>
+      <div class="tool"><strong>price.history</strong></div>
+      <div class="tool"><strong>customer.tag</strong></div>
+      <div class="tool"><strong>customer.note</strong></div>
+      <div class="tool"><strong>customer.lookup</strong></div>
+      <div class="tool"><strong>delivery.assign</strong></div>
+      <div class="tool"><strong>delivery.fee</strong></div>
+      <div class="tool"><strong>delivery.track</strong></div>
+      <div class="tool"><strong>report.daily</strong></div>
+      <div class="tool"><strong>report.weekly</strong></div>
+      <div class="tool"><strong>report.top_seller</strong></div>
+      <div class="tool"><strong>receipt.print</strong></div>
+      <div class="tool"><strong>receipt.share</strong></div>
+      <div class="tool"><strong>session.start_live</strong></div>
+      <div class="tool"><strong>session.end_live</strong></div>
+      <div class="tool"><strong>session.pause</strong></div>
+      <div class="tool"><strong>help.fallback</strong></div>
+      <div class="tool"><strong>locale.switch</strong></div>
+      <div class="tool"><strong>echo.confirm</strong></div>
+    </div>
+    <div class="media-grid">
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/17-list-products.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">list-products</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/18-product-detail.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">product-detail</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/19-low-stock.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">low-stock</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/21-stock-history.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">stock-history</div></div>
+    </div>
+    <div class="media-caption">tool.invoke --domain product --render card</div>
+  </section>
+
+  <section class="section">
+    <div class="sec-num">05 · Bilingual</div>
+    <h2 class="sec-title">Burmese-first, English-tolerant, code-switched by default.</h2>
+    <p class="sec-body">Real sellers mix languages every sentence. We trained the router on <strong>4,200 code-switched utterances</strong> from the 21 interviews + diary studies. Zero translation step. The router operates on tokens, not language tags.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-head"><div class="card-kbd"><span class="kbd">my</span></div></div>
+        <div class="card-title">Pure Burmese</div>
+        <div class="card-body" style="font-family:'JetBrains Mono',monospace">"ဆေး နှစ်ဖူး ထည့်ပေး၊ ဈေး နှစ်ထောင်"</div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-kbd"><span class="kbd">en</span></div></div>
+        <div class="card-title">Pure English</div>
+        <div class="card-body" style="font-family:'JetBrains Mono',monospace">"add two units, price two thousand"</div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-kbd"><span class="kbd">mix</span></div></div>
+        <div class="card-title">Code-switched</div>
+        <div class="card-body" style="font-family:'JetBrains Mono',monospace">"stock ၃ ဖူး deduct, receipt print ပေး"</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-num">06 · Inline Confirmation Cards</div>
+    <h2 class="sec-title">No chat bubbles. Just compact, editable result cards.</h2>
+    <p class="sec-body">Every tool result renders as a card the seller can tap to amend. Numbers are big, status is colored, the primary action is always reversible. The card is the source of truth — the voice is the input method.</p>
+    <div class="log">
+      <div class="log-head"><div>CARD TYPE</div><div>FROM TOOL</div><div>FIELDS</div><div>EDITABLE</div></div>
+      <div class="log-row"><div>OrderCreated</div><div>order.create</div><div>buyer · items · total · delivery</div><div><span class="tag ok">YES</span></div></div>
+      <div class="log-row"><div>StockChanged</div><div>stock.deduct</div><div>SKU · before · after · delta</div><div><span class="tag ok">YES</span></div></div>
+      <div class="log-row"><div>PriceUpdated</div><div>price.set</div><div>SKU · old · new · effective</div><div><span class="tag ok">YES</span></div></div>
+      <div class="log-row"><div>ReceiptReady</div><div>receipt.print</div><div>order · QR · print/share</div><div><span class="tag info">PARTIAL</span></div></div>
+    </div>
+    <div class="media-grid-3">
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/02-list-orders.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">list-orders</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/03-order-detail.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">order-detail</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/12-customer-stats.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">customer-stats</div></div>
+    </div>
+    <div class="media-caption">card.render --type result --inline true</div>
+  </section>
+
+  <section class="section">
+    <div class="sec-num">07 · Impact</div>
+    <h2 class="sec-title">Before vs. after the intent layer.</h2>
+    <div class="compare">
+      <div class="compare-col before">
+        <div class="compare-label">Before</div>
+        <div class="compare-num">~45s</div>
+        <p>Median time to file one order: open app, search SKU, type qty, type price, tag buyer, hit confirm.</p>
+      </div>
+      <div class="compare-col after">
+        <div class="compare-label">After</div>
+        <div class="compare-num">~6s</div>
+        <p>Median time to file one order via voice: utter, glance at card, tap confirm. Zero typing.</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:32px">
+      <p>"အရင်က order တစ်ခုကို မိနစ်တစ်ဝက်လောက်လုပ်ရတယ်။ အခုဆို ပြောလိုက်ရုံပဲ။ Live လုပ်နေတဲ့အချိန် အကြိမ်ပေါင်းများစွာ သုံးတယ်။"</p>
+      <cite>— Seller A · post-launch interview · Apr 28</cite>
+    </div>
+    <div class="media-wide">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/16-bulk-update-stock.mp4" onerror="this.parentElement.style.display='none'"></video>
+    </div>
+    <div class="media-caption">bench --target stock.bulk --p95 47ms --halluc 0</div>
+  </section>
+
+  <section class="section">
+    <div class="sec-num">∞ · Reflection</div>
+    <h2 class="sec-title">Four lessons I'll carry into the next AI feature.</h2>
+    <div class="lessons">
+      <div class="lesson">
+        <div class="lesson-n">01</div>
+        <div class="lesson-t">Tools, not freeform text.</div>
+        <div class="lesson-b">The moment we let the model speak unstructured, hallucination crept in. Closing the action set to 28 tools killed an entire class of error.</div>
+      </div>
+      <div class="lesson">
+        <div class="lesson-n">02</div>
+        <div class="lesson-t">Latency is the feature.</div>
+        <div class="lesson-b">Below 50ms feels like causation. Above 200ms feels like a server. We optimized phase-by-phase, not end-to-end.</div>
+      </div>
+      <div class="lesson">
+        <div class="lesson-n">03</div>
+        <div class="lesson-t">Bilingual is one language.</div>
+        <div class="lesson-b">Treating code-switching as a first-class input — not a translation step — cut router complexity in half.</div>
+      </div>
+      <div class="lesson">
+        <div class="lesson-n">04</div>
+        <div class="lesson-t">The card is the truth.</div>
+        <div class="lesson-b">Voice in, card out. The seller never re-listens. They glance, tap, move on. The interface earns the trust the voice can't.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Harry · PO AI Intent · Raycast Edition</div>
+    <div>Press <span class="kbd">⌘</span> <span class="kbd">K</span> to navigate</div>
+  </div>
+</footer>
+
+<script src="lightbox.js" defer></script>
+</body>
+</html>

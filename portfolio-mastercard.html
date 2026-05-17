@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Hein — Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sofia+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* MASTERCARD — cream canvas, signal orange, oversized radii, circular orbits */
+:root{
+  --cream:#F3F0EE; --cream-deep:#E9E4DF; --cream-soft:#FAF8F5;
+  --ink:#141413; --ink-soft:#2a2a26; --slate:#54534f; --muted:#7a786f; --dim:#aaa69d;
+  --signal:#CF4500; --signal-deep:#9d3500; --signal-soft:#ffeadb;
+  --yellow:#F8B92C; --red:#E83A2A;
+  --hairline:#d8d4ce;
+  --display:'Sofia Sans','Inter',sans-serif;
+  --sans:'Inter',-apple-system,system-ui,sans-serif;
+  --radius-card:40px; --radius-tile:32px; --radius-mini:24px; --radius-stadium:9999px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+
+.nav{position:sticky;top:14px;z-index:50;}
+.nav-inner{max-width:1180px;margin:0 auto;padding:0 20px;}
+.nav-pill{background:var(--cream-soft);border:1px solid var(--hairline);border-radius:var(--radius-stadium);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 20px rgba(20,20,19,0.04);}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:600;font-size:18px;color:var(--ink);}
+.brand-orbit{position:relative;width:30px;height:22px;}
+.brand-orbit .c1,.brand-orbit .c2{position:absolute;top:0;width:22px;height:22px;border-radius:50%;}
+.brand-orbit .c1{left:0;background:var(--signal);}
+.brand-orbit .c2{right:0;background:var(--yellow);mix-blend-mode:multiply;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--slate);}
+.nav-links a:hover{color:var(--ink);}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--cream) !important;padding:12px 24px;border-radius:var(--radius-stadium);font-size:14px;font-weight:500;transition:transform 120ms ease,opacity 120ms;}
+.btn:hover{opacity:0.9;transform:translateY(-1px);}
+.btn-signal{background:var(--signal);color:#fff !important;}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink) !important;padding:12px 24px;border-radius:var(--radius-stadium);font-size:14px;font-weight:500;border:1px solid var(--ink);}
+.btn-ghost:hover{background:var(--ink);color:var(--cream) !important;}
+
+.hero{padding:80px 20px 100px;position:relative;overflow:hidden;}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;}
+.hero-orbit{position:absolute;top:60px;right:-80px;width:480px;height:340px;z-index:0;pointer-events:none;}
+.hero-orbit .c1,.hero-orbit .c2{position:absolute;top:0;border-radius:50%;width:340px;height:340px;}
+.hero-orbit .c1{left:0;background:var(--signal);}
+.hero-orbit .c2{left:140px;background:var(--yellow);mix-blend-mode:multiply;opacity:0.9;}
+.hero-content{position:relative;z-index:1;max-width:780px;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--cream-soft);border:1px solid var(--hairline);padding:7px 16px;border-radius:var(--radius-stadium);font-size:13px;color:var(--slate);margin-bottom:32px;}
+.hero-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);}
+.hero h1{font-family:var(--display);font-size:clamp(56px,8vw,108px);font-weight:600;letter-spacing:-3.5px;line-height:0.96;margin-bottom:28px;color:var(--ink);}
+.hero h1 em{font-style:italic;color:var(--signal);font-weight:600;}
+.hero-sub{font-size:21px;color:var(--slate);max-width:560px;margin-bottom:36px;line-height:1.5;}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;}
+
+.section{max-width:1180px;margin:0 auto;padding:80px 20px;}
+.sec-head{margin-bottom:48px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
+.sec-meta{font-size:13px;font-weight:600;color:var(--signal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
+.sec-title{font-family:var(--display);font-size:clamp(40px,5vw,68px);font-weight:600;letter-spacing:-2px;line-height:1.02;color:var(--ink);}
+.sec-sub{font-size:17px;color:var(--slate);margin-top:14px;max-width:600px;line-height:1.5;}
+
+.featured{background:var(--ink);color:var(--cream);border-radius:var(--radius-card);padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.featured::before{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:var(--signal);opacity:0.9;}
+.featured::after{content:"";position:absolute;top:-100px;right:60px;width:400px;height:400px;border-radius:50%;background:var(--yellow);mix-blend-mode:multiply;opacity:0.85;}
+.featured-content{position:relative;z-index:1;}
+.featured-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--cream);opacity:0.7;margin-bottom:18px;font-weight:500;text-transform:uppercase;letter-spacing:1.4px;}
+.featured h3{font-family:var(--display);font-size:54px;font-weight:600;letter-spacing:-1.5px;line-height:1;margin-bottom:18px;}
+.featured-deck{font-size:17px;line-height:1.55;color:rgba(243,240,238,0.78);margin-bottom:26px;max-width:480px;}
+.featured-metrics{display:flex;gap:36px;margin-bottom:32px;}
+.featured-metric .v{font-family:var(--display);font-size:36px;font-weight:600;color:var(--cream);letter-spacing:-1px;}
+.featured-metric .l{font-size:12px;color:rgba(243,240,238,0.6);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+.featured-link{display:inline-flex;align-items:center;gap:10px;background:var(--cream);color:var(--ink) !important;padding:14px 26px;border-radius:var(--radius-stadium);font-size:15px;font-weight:500;}
+@media (max-width:900px){.featured{grid-template-columns:1fr;padding:36px;}}
+
+.grid{display:grid;gap:20px;}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+@media (max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+.tile{display:block;background:var(--cream-soft);border-radius:var(--radius-tile);padding:32px;transition:transform 200ms ease,box-shadow 200ms ease;height:100%;color:var(--ink);position:relative;overflow:hidden;}
+.tile:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(20,20,19,0.08);}
+.tile.signal{background:var(--signal);color:#fff;}
+.tile.yellow{background:var(--yellow);color:var(--ink);}
+.tile.ink{background:var(--ink);color:var(--cream);}
+.tile.red{background:var(--red);color:#fff;}
+.tile-tag{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:16px;opacity:0.7;}
+.tile-h{font-family:var(--display);font-size:30px;font-weight:600;letter-spacing:-0.8px;line-height:1.05;margin-bottom:12px;}
+.tile-h.small{font-size:24px;}
+.tile-deck{font-size:14.5px;line-height:1.55;opacity:0.75;margin-bottom:20px;}
+.tile-metrics{display:flex;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
+.tile-mv{font-family:var(--display);font-size:26px;font-weight:600;letter-spacing:-0.5px;line-height:1;}
+.tile-ml{font-size:11px;text-transform:uppercase;letter-spacing:1px;opacity:0.65;margin-top:4px;}
+.tile-cta{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1.5px solid currentColor;padding-bottom:2px;}
+
+.exp-card{background:var(--cream-soft);border-radius:var(--radius-card);padding:48px;}
+.exp-row{display:grid;grid-template-columns:200px 1fr 220px 1.2fr;gap:32px;padding:24px 0;border-bottom:1px solid var(--hairline);align-items:center;}
+.exp-row:last-child{border-bottom:none;}
+.exp-row.head{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);padding-bottom:14px;font-weight:600;}
+.exp-period{font-size:13.5px;color:var(--muted);font-weight:500;}
+.exp-co{font-family:var(--display);font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-0.4px;display:flex;align-items:center;gap:12px;}
+.exp-orbit{position:relative;width:24px;height:18px;flex-shrink:0;}
+.exp-orbit .a,.exp-orbit .b{position:absolute;top:0;width:18px;height:18px;border-radius:50%;}
+.exp-orbit .a{left:0;}
+.exp-orbit .b{right:0;mix-blend-mode:multiply;}
+.exp-role{font-size:14px;color:var(--slate);}
+.exp-role small{color:var(--muted);font-size:12.5px;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.exp-tag{font-size:11px;font-weight:500;background:var(--cream-deep);color:var(--ink-soft);padding:4px 10px;border-radius:var(--radius-stadium);text-transform:uppercase;letter-spacing:0.6px;}
+@media (max-width:900px){.exp-row{grid-template-columns:1fr;gap:8px;}.exp-row.head{display:none;}.exp-card{padding:28px;}}
+
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+@media (max-width:900px){.testi-grid{grid-template-columns:1fr;}}
+.testi{background:var(--cream-soft);border-radius:var(--radius-tile);padding:36px;position:relative;}
+.testi-mark{font-family:var(--display);font-size:64px;color:var(--signal);line-height:0.6;margin-bottom:14px;}
+.testi-text{font-size:17px;line-height:1.55;color:var(--ink);margin-bottom:20px;}
+.testi-name{font-family:var(--display);font-size:16px;font-weight:600;color:var(--ink);}
+.testi-role{font-size:13px;color:var(--muted);margin-top:2px;}
+
+.edu{background:var(--ink);color:var(--cream);border-radius:var(--radius-card);padding:48px;display:grid;grid-template-columns:1fr 1.5fr;gap:48px;position:relative;overflow:hidden;}
+.edu::before{content:"";position:absolute;bottom:-80px;left:-80px;width:280px;height:280px;border-radius:50%;background:var(--yellow);opacity:0.9;}
+.edu::after{content:"";position:absolute;bottom:-80px;left:100px;width:280px;height:280px;border-radius:50%;background:var(--signal);mix-blend-mode:multiply;}
+.edu > *{position:relative;z-index:1;}
+.edu-degree{font-family:var(--display);font-size:32px;font-weight:600;letter-spacing:-0.8px;line-height:1.05;margin-bottom:8px;}
+.edu-school{font-size:15px;color:rgba(243,240,238,0.7);margin-bottom:4px;}
+.edu-period{font-size:13px;color:rgba(243,240,238,0.5);text-transform:uppercase;letter-spacing:1px;}
+.edu ul{display:grid;gap:12px;}
+.edu li{font-size:15.5px;color:rgba(243,240,238,0.85);padding-left:24px;position:relative;}
+.edu li::before{content:"";position:absolute;left:0;top:7px;width:10px;height:10px;border-radius:50%;background:var(--yellow);}
+@media (max-width:900px){.edu{grid-template-columns:1fr;padding:32px;}}
+
+.cta-band{margin:60px auto;padding:100px 56px;text-align:center;background:var(--signal);color:#fff;border-radius:var(--radius-card);max-width:1180px;position:relative;overflow:hidden;}
+.cta-band::before{content:"";position:absolute;top:-120px;left:-80px;width:300px;height:300px;border-radius:50%;background:var(--yellow);opacity:0.95;}
+.cta-band::after{content:"";position:absolute;bottom:-140px;right:-100px;width:380px;height:380px;border-radius:50%;background:var(--red);mix-blend-mode:multiply;}
+.cta-inner{position:relative;z-index:1;}
+.cta-band h2{font-family:var(--display);font-size:clamp(44px,6vw,80px);font-weight:600;letter-spacing:-2.2px;line-height:0.98;margin-bottom:20px;}
+.cta-band p{font-size:18px;max-width:540px;margin:0 auto 32px;color:rgba(255,255,255,0.92);}
+.cta-band .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta-band .btn-cream{background:#fff;color:var(--ink) !important;}
+.cta-band .btn-cream-ghost{background:transparent;color:#fff !important;border:1px solid rgba(255,255,255,0.6);}
+
+.footer{padding:36px 20px;text-align:center;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;}
+.footer a{color:var(--signal);font-weight:600;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-pill">
+      <div class="brand">
+        <span class="brand-orbit"><span class="c1"></span><span class="c2"></span></span>
+        Harry Hein
+      </div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#voices">Voices</a>
+        <a href="#contact" class="btn btn-signal">Hire me</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-orbit"><span class="c1"></span><span class="c2"></span></div>
+    <div class="hero-content">
+      <div class="hero-tag"><span class="dot"></span>Senior Product Designer · Available 2026</div>
+      <h1>Design. Ship.<br><em>Measure.</em></h1>
+      <p class="hero-sub">AI-first systems for complex enterprise tooling — seven years of work that ships and gets measured.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn">See the work</a>
+        <a href="#contact" class="btn-ghost">Get in touch →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">⬤ Selected Work</div>
+      <h2 class="sec-title">Cases that count.</h2>
+      <p class="sec-sub">Five deep-dives. Each one shipped, measured, and reflected on — with the actual numbers attached.</p>
+    </div>
+  </div>
+
+  <a href="case-study-po-ai-intent-mastercard.html" class="featured">
+    <div class="featured-content">
+      <div class="featured-tag">⬤ Recommended · AI Product</div>
+      <h3>Speak, don't click.</h3>
+      <p class="featured-deck">Replaced a traditional CRM dashboard with a bilingual intent palette. 28 intents in MVP, 21 already live — each rendering an inline action card. Sellers stop hunting menus and just say what they want.</p>
+      <div class="featured-metrics">
+        <div class="featured-metric"><div class="v">21</div><div class="l">Live in Prod</div></div>
+        <div class="featured-metric"><div class="v">&lt;50ms</div><div class="l">Match Latency</div></div>
+      </div>
+      <span class="featured-link">Open case →</span>
+    </div>
+  </a>
+
+  <div class="grid grid-2" style="margin-bottom:20px;">
+    <a href="case-study-design-system.html" class="tile signal">
+      <div class="tile-tag">Recommended · Design System</div>
+      <h3 class="tile-h">Three platforms. One source of truth.</h3>
+      <p class="tile-deck">Maintaining one design system across POS, web, and mobile using a federated two-level architecture.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">Days→Hrs</div><div class="tile-ml">Handover</div></div>
+        <div><div class="tile-mv">100%</div><div class="tile-ml">Consistency</div></div>
+      </div>
+      <span class="tile-cta">Open case →</span>
+    </a>
+    <a href="case-study-pharmacy-pos.html" class="tile yellow">
+      <div class="tile-tag">Recommended · POS</div>
+      <h3 class="tile-h">Two stores. One system.</h3>
+      <p class="tile-deck">Redesigned a legacy Windows POS into a modern touchscreen system for STO's pharmacy and supermarket chains — 14 modules, 200+ screens.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">14+</div><div class="tile-ml">Modules</div></div>
+        <div><div class="tile-mv">200+</div><div class="tile-ml">Screens</div></div>
+      </div>
+      <span class="tile-cta">Open case →</span>
+    </a>
+  </div>
+
+  <div class="grid grid-2">
+    <a href="case-study-retail.html" class="tile">
+      <div class="tile-tag" style="color:var(--signal);opacity:1;">2025 · Retail</div>
+      <h3 class="tile-h">From feedback to 427% ROI.</h3>
+      <p class="tile-deck">A broken return process had CS drowning in tickets. Four months of research, three test rounds, 427% ROI later.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">427%</div><div class="tile-ml">ROI</div></div>
+        <div><div class="tile-mv">&gt;50%</div><div class="tile-ml">Time Cut</div></div>
+      </div>
+      <span class="tile-cta">Open case →</span>
+    </a>
+    <a href="case-study-golden-paths.html" class="tile ink">
+      <div class="tile-tag">2024 · AI Research</div>
+      <h3 class="tile-h">Prototypes that never sleep.</h3>
+      <p class="tile-deck">User testing meant weeks of scheduling, facilitation, synthesis. I designed AI-simulated path analysis that matched human friction in 9 of 11 blockers tested.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">9/11</div><div class="tile-ml">Matched</div></div>
+        <div><div class="tile-mv">4.2×</div><div class="tile-ml">Avg Runs</div></div>
+      </div>
+      <span class="tile-cta">Open case →</span>
+    </a>
+  </div>
+</section>
+
+<section class="section" id="more">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">⬤ More Work</div>
+      <h2 class="sec-title">Side library.</h2>
+    </div>
+  </div>
+
+  <div class="grid grid-3" style="margin-bottom:20px;">
+    <a href="case-study-resume-pipeline.html" class="tile">
+      <div class="tile-tag" style="color:var(--signal);opacity:1;">2025 · AI Tools</div>
+      <h3 class="tile-h small">47 apps. 2 interviews.</h3>
+      <p class="tile-deck">Sarah's resume wasn't the problem — the 40-minute tailoring ritual was. I replaced it with a 15-minute AI pipeline.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">40→15</div><div class="tile-ml">Min/App</div></div>
+        <div><div class="tile-mv">4→1</div><div class="tile-ml">Tools</div></div>
+      </div>
+      <span class="tile-cta">Open →</span>
+    </a>
+    <a href="case-study-dashboard.html" class="tile">
+      <div class="tile-tag" style="color:var(--signal);opacity:1;">2022 · Finance</div>
+      <h3 class="tile-h small">Daily ritual to 104% ROI.</h3>
+      <p class="tile-deck">The finance team opened three apps for the same numbers. I made one screen instead.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">0.5h</div><div class="tile-ml">Saved Daily</div></div>
+      </div>
+      <span class="tile-cta">Open →</span>
+    </a>
+    <a href="case-study-tokens.html" class="tile">
+      <div class="tile-tag" style="color:var(--signal);opacity:1;">2024 · Figma Plugin</div>
+      <h3 class="tile-h small">Unified design tokens.</h3>
+      <p class="tile-deck">Token exports meant four files and four chances to drift. One click instead.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">50%</div><div class="tile-ml">Time Cut</div></div>
+        <div><div class="tile-mv">~100%</div><div class="tile-ml">Error Cut</div></div>
+      </div>
+      <span class="tile-cta">Open →</span>
+    </a>
+  </div>
+
+  <div class="grid grid-2">
+    <a href="case-study-jar-aye-child.html" class="tile">
+      <div class="tile-tag" style="color:var(--signal);opacity:1;">2025 · EdTech · Children</div>
+      <h3 class="tile-h small">Making hard math feel tractable.</h3>
+      <p class="tile-deck">A HOTS mathematics learning app for 6–12 year olds aligned to the Singapore curriculum — productive struggle without frustration.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">5</div><div class="tile-ml">HOTS Strategies</div></div>
+        <div><div class="tile-mv">3</div><div class="tile-ml">User Types</div></div>
+      </div>
+      <span class="tile-cta">Open →</span>
+    </a>
+    <a href="case-study-jar-aye-parent.html" class="tile">
+      <div class="tile-tag" style="color:var(--signal);opacity:1;">2025 · EdTech · Parent UX</div>
+      <h3 class="tile-h small">Closing the visibility gap.</h3>
+      <p class="tile-deck">The companion app that gives non-expert parents meaningful insight into their child's HOTS mathematical development — without data overload.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">4</div><div class="tile-ml">Mastery Tiers</div></div>
+        <div><div class="tile-mv">3</div><div class="tile-ml">Sub States</div></div>
+      </div>
+      <span class="tile-cta">Open →</span>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">⬤ Side Projects</div>
+      <h2 class="sec-title">Built on weekends.</h2>
+    </div>
+  </div>
+  <div class="grid grid-2">
+    <a href="https://design-flash-card.vercel.app/" target="_blank" class="tile yellow">
+      <div class="tile-tag">Live · Web App</div>
+      <h3 class="tile-h">Design flash cards.</h3>
+      <p class="tile-deck">Bilingual (English/Myanmar) app to master UX principles through active recall. Spaced repetition, category filtering, clean study UI.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">60+</div><div class="tile-ml">UX Principles</div></div>
+        <div><div class="tile-mv">2</div><div class="tile-ml">Languages</div></div>
+        <div><div class="tile-mv">$0</div><div class="tile-ml">To Run</div></div>
+      </div>
+      <span class="tile-cta">Open ↗</span>
+    </a>
+    <a href="https://orchestra.figma.site/" target="_blank" class="tile red">
+      <div class="tile-tag">Live · Figma Plugin</div>
+      <h3 class="tile-h">Orchestra syncs.</h3>
+      <p class="tile-deck">A Figma plugin that syncs Variables to GitHub and auto-builds design tokens for Web, iOS, Android, and Flutter.</p>
+      <div class="tile-metrics">
+        <div><div class="tile-mv">4</div><div class="tile-ml">Platforms</div></div>
+        <div><div class="tile-mv">0</div><div class="tile-ml">Manual Steps</div></div>
+      </div>
+      <span class="tile-cta">Open ↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">⬤ Experience</div>
+      <h2 class="sec-title">Where I've shipped.</h2>
+      <p class="sec-sub">Five companies. One career switch from engineering. A lot of Figma files.</p>
+    </div>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-row head">
+      <div>Period</div><div>Company</div><div>Role</div><div>Tags</div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">DEC 2023 — DEC 2025</div>
+      <div class="exp-co"><span class="exp-orbit"><span class="a" style="background:var(--signal);"></span><span class="b" style="background:var(--yellow);"></span></span>Raytail</div>
+      <div class="exp-role">UX Lead<br><small>Maldives · Remote</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">200% UX ROI</span>
+        <span class="exp-tag">$10K Savings</span>
+        <span class="exp-tag">Design System</span>
+        <span class="exp-tag">WCAG</span>
+        <span class="exp-tag">A/B Testing</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">OCT 2022 — APR 2023</div>
+      <div class="exp-co"><span class="exp-orbit"><span class="a" style="background:var(--yellow);"></span><span class="b" style="background:var(--red);"></span></span>Lexagle</div>
+      <div class="exp-role">Senior UX Designer<br><small>Singapore</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">Legal Tech</span>
+        <span class="exp-tag">Feature Ownership</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">NOV 2021 — OCT 2022</div>
+      <div class="exp-co"><span class="exp-orbit"><span class="a" style="background:var(--ink);"></span><span class="b" style="background:var(--signal);"></span></span>Treedots</div>
+      <div class="exp-role">UX/UI Designer<br><small>Singapore</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">B2B Portal</span>
+        <span class="exp-tag">Launched DS</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">SEP 2020 — NOV 2021</div>
+      <div class="exp-co"><span class="exp-orbit"><span class="a" style="background:var(--red);"></span><span class="b" style="background:var(--yellow);"></span></span>Nexlabs</div>
+      <div class="exp-role">Product Designer<br><small>Myanmar</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">Multi-industry</span>
+        <span class="exp-tag">Prototyping</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">DEC 2018 — SEP 2020</div>
+      <div class="exp-co"><span class="exp-orbit"><span class="a" style="background:var(--signal);"></span><span class="b" style="background:var(--ink);"></span></span>Adventsoft</div>
+      <div class="exp-role">UI/UX Designer<br><small>Myanmar</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">Eng → Design</span>
+        <span class="exp-tag">Hi-Fi Prototypes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="voices">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">⬤ Voices</div>
+      <h2 class="sec-title">What they say.</h2>
+      <p class="sec-sub">Things colleagues and managers actually said — not paraphrased.</p>
+    </div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">The amount of passion you've put into your work is very much appreciated and truly inspiring. It's incredible how often you exceed expectations.</p>
+      <div class="testi-name">Diana Eddie</div>
+      <div class="testi-role">Design Lead · Treedots</div>
+    </div>
+    <div class="testi">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">An amazing founder of the local UX design community. He shared his knowledge with the intention for designers to improve their skills.</p>
+      <div class="testi-name">Ricky Aung</div>
+      <div class="testi-role">Product Manager · Veneurific</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">⬤ Education</div>
+      <h2 class="sec-title">Foundation.</h2>
+    </div>
+  </div>
+  <div class="edu">
+    <div>
+      <div class="edu-degree">B.Sc. Computer Science</div>
+      <div class="edu-school">UCS Taunggyi</div>
+      <div class="edu-period">2013 — 2018 · Myanmar</div>
+    </div>
+    <ul>
+      <li>Human Computer Interaction & Digital Design focus</li>
+      <li>Graduated with Distinction in Cyber Security</li>
+      <li>Founded CS Club at University</li>
+      <li>Engineering background bridges design & development</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <div class="cta-inner">
+    <h2>Let's build<br>something great.</h2>
+    <p>Looking for a team that ships things and cares whether they work. Open to senior roles in product and UX.</p>
+    <div class="row">
+      <a href="mailto:kaungmyat9702@gmail.com" class="btn btn-cream">Email me</a>
+      <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" target="_blank" class="btn btn-cream-ghost">LinkedIn ↗</a>
+      <a href="https://designer-os-test.vercel.app/resume/share/84rG99PQ" target="_blank" class="btn btn-cream-ghost">Resume ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2026 Harry Hein · Bangkok TH · <a href="portfolio.html">View original →</a>
+</footer>
+
+</body>
+</html>

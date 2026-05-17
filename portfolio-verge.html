@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Hein — Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* THE VERGE — hazard-tape editorial dark */
+:root{
+  --canvas:#131313; --slate:#2d2d2d;
+  --mint:#3cffd0; --uv:#5200ff; --uv-rule:#3d00bf;
+  --linkhover:#3860be; --hairline:#313131;
+  --white:#ffffff; --gray:#949494; --black:#000000;
+  --yellow:#f5d75e; --pink:#ff64c8;
+  --display:'Anton','Bebas Neue',Impact,sans-serif;
+  --sans:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+  --mono:'Space Mono','Courier New',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--canvas);color:var(--white);font-family:var(--sans);font-size:16px;line-height:1.6;}
+a{color:inherit;text-decoration:none;transition:color 150ms ease;}
+a:hover{color:var(--linkhover);}
+ul{list-style:none;}
+
+.nav{position:sticky;top:0;z-index:50;background:var(--canvas);border-bottom:1px solid var(--white);}
+.nav-inner{max-width:1300px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;}
+.brand-mark{font-family:var(--display);font-size:32px;letter-spacing:1.07px;line-height:0.8;text-transform:uppercase;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;}
+.cta-pill{display:inline-flex;align-items:center;background:var(--mint);color:var(--black) !important;padding:8px 18px;border-radius:24px;font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;line-height:1;transition:background 180ms ease;}
+.cta-pill:hover{background:var(--white);}
+
+.hero{padding:80px 24px 64px;max-width:1300px;margin:0 auto;}
+.kicker{display:inline-block;font-family:var(--sans);font-weight:300;font-size:20px;text-transform:uppercase;letter-spacing:1.9px;color:var(--mint);margin-bottom:20px;}
+.wordmark{font-family:var(--display);font-size:clamp(72px,12vw,140px);line-height:0.95;letter-spacing:1.07px;text-transform:uppercase;margin-bottom:24px;}
+.hero-sub{font-size:32px;font-weight:400;line-height:1.1;max-width:900px;letter-spacing:0.32px;margin-bottom:32px;}
+.hero-meta{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1.1px;color:var(--gray);margin-bottom:32px;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-mint{display:inline-flex;align-items:center;justify-content:center;background:var(--mint);color:var(--black) !important;padding:12px 28px;border-radius:24px;font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;line-height:1;transition:background 180ms ease;}
+.btn-mint:hover{background:var(--white);}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;background:transparent;color:var(--mint) !important;padding:12px 28px;border-radius:40px;border:1px solid var(--mint);font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;line-height:1;transition:all 150ms ease;}
+.btn-outline:hover{background:var(--mint);color:var(--black) !important;}
+
+.section{max-width:1300px;margin:0 auto;padding:64px 24px;}
+.sec-head{margin-bottom:32px;}
+.sec-eyebrow{font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;color:var(--mint);margin-bottom:10px;}
+.sec-title{font-family:var(--display);font-size:clamp(48px,7vw,90px);line-height:0.85;letter-spacing:1.07px;text-transform:uppercase;}
+.sec-sub{font-size:18px;color:var(--gray);max-width:600px;margin-top:14px;}
+
+.stream{border-left:1px dashed var(--uv-rule);padding-left:32px;margin-left:8px;}
+.stream-item{margin-bottom:16px;position:relative;}
+.stream-item::before{content:"";position:absolute;left:-37px;top:24px;width:10px;height:10px;border-radius:50%;background:var(--mint);}
+.stream-time{font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.1px;color:var(--gray);margin-bottom:8px;display:block;}
+
+.tile{display:block;background:var(--canvas);border:1px solid var(--white);border-radius:24px;padding:32px;color:inherit;transition:color 150ms ease;}
+.tile:hover{color:var(--linkhover);}
+.tile.mint{background:var(--mint);color:var(--black);border-color:var(--mint);}
+.tile.uv{background:var(--uv);color:var(--white);border-color:var(--uv);}
+.tile.yellow{background:var(--yellow);color:var(--black);border-color:var(--yellow);}
+.tile.pink{background:var(--pink);color:var(--black);border-color:var(--pink);}
+.tile.white{background:var(--white);color:var(--black);border-color:var(--white);}
+.tile.slate{background:var(--slate);border-color:var(--slate);}
+
+.tile-kicker{font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
+.tile-h{font-family:var(--display);font-size:60px;line-height:0.85;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.tile.small .tile-h{font-size:36px;}
+.tile-deck{font-size:18px;line-height:1.5;margin-bottom:20px;opacity:0.92;}
+.tile.small .tile-deck{font-size:15px;}
+.tile-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.8px;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.12);border:1px solid currentColor;}
+.tile.mint .tag,.tile.yellow .tag,.tile.pink .tag,.tile.white .tag{background:rgba(0,0,0,0.08);}
+.tile-metrics{display:flex;gap:32px;flex-wrap:wrap;padding-top:18px;border-top:1px solid currentColor;margin-bottom:18px;}
+.tile.mint .tile-metrics,.tile.yellow .tile-metrics,.tile.pink .tile-metrics,.tile.white .tile-metrics{border-top-color:rgba(0,0,0,0.15);}
+.metric-val{font-family:var(--display);font-size:36px;line-height:1;letter-spacing:0.5px;text-transform:uppercase;}
+.metric-lbl{font-family:var(--mono);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px;opacity:0.7;}
+.tile-arrow{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;}
+
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.exp-card{background:var(--canvas);border:1px solid var(--white);border-radius:24px;padding:28px;}
+.exp-card.wide{grid-column:span 2;}
+.exp-head{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--hairline);gap:14px;}
+.exp-company{font-family:var(--display);font-size:36px;line-height:0.9;text-transform:uppercase;letter-spacing:0.5px;}
+.exp-role{font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--mint);margin-top:6px;}
+.exp-period{font-family:var(--mono);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:var(--gray);text-align:right;flex-shrink:0;}
+.exp-list li{font-size:14px;line-height:1.55;padding:6px 0 6px 18px;position:relative;}
+.exp-list li::before{content:"";position:absolute;left:0;top:14px;width:5px;height:5px;background:var(--mint);}
+.exp-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;}
+
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.testi-card{background:var(--slate);border-radius:24px;padding:32px;border:1px solid var(--hairline);}
+.testi-mark{font-family:var(--display);font-size:60px;line-height:0.6;color:var(--mint);margin-bottom:10px;}
+.testi-text{font-size:19px;line-height:1.4;margin-bottom:20px;}
+.testi-name{font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;}
+.testi-role{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-top:4px;}
+
+.edu-card{background:var(--uv);border-radius:24px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.edu-degree{font-family:var(--display);font-size:48px;line-height:0.9;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.edu-school{font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
+.edu-period{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;opacity:0.7;}
+.edu-list li{font-size:15px;line-height:1.5;padding:6px 0 6px 18px;position:relative;}
+.edu-list li::before{content:"";position:absolute;left:0;top:14px;width:5px;height:5px;background:var(--mint);}
+
+.cta-band{background:var(--mint);color:var(--black);padding:96px 24px;text-align:center;}
+.cta-band h2{font-family:var(--display);font-size:clamp(56px,9vw,107px);line-height:0.85;text-transform:uppercase;letter-spacing:1.07px;margin-bottom:20px;}
+.cta-band p{font-size:18px;max-width:520px;margin:0 auto 32px;}
+.cta-band .btn-mint{background:var(--black);color:var(--mint) !important;}
+.cta-band .btn-mint:hover{background:var(--white);color:var(--black) !important;}
+.cta-band .btn-outline{border-color:var(--black);color:var(--black) !important;}
+.cta-band .btn-outline:hover{background:var(--black);color:var(--mint) !important;}
+
+.marquee{border-top:1px solid var(--white);border-bottom:1px solid var(--white);overflow:hidden;padding:14px 0;background:var(--canvas);}
+.marquee-track{display:flex;gap:40px;animation:slide 35s linear infinite;white-space:nowrap;}
+.marquee-track span{font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;flex-shrink:0;}
+.marquee-track .sep{color:var(--mint);}
+@keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+.footer{background:var(--canvas);border-top:1px solid var(--white);padding:32px 24px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);}
+.footer a{color:var(--mint);}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+
+@media(max-width:900px){
+  .grid-2,.grid-3,.exp-grid,.testi-grid{grid-template-columns:1fr;}
+  .exp-card.wide{grid-column:span 1;}
+  .edu-card{grid-template-columns:1fr;gap:20px;}
+  .nav-links a:not(.cta-pill){display:none;}
+  .tile-h{font-size:40px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand-mark">Harry Hein</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#voices">Voices</a>
+      <a href="#contact" class="cta-pill">Hire me</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="kicker">Senior Product Designer · Available 2026</div>
+  <h1 class="wordmark">Design.<br>Ship.<br>Measure.</h1>
+  <p class="hero-sub">AI-first systems for complex enterprise tooling. Seven years of work that ships and gets measured.</p>
+  <div class="hero-meta">Bangkok, TH — Designer who codes — 7 yrs experience</div>
+  <div class="hero-cta">
+    <a href="#work" class="btn-mint">See the work</a>
+    <a href="#contact" class="btn-outline">Get in touch</a>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Product Design</span><span class="sep">×</span>
+    <span>UX Research</span><span class="sep">×</span>
+    <span>Design Systems</span><span class="sep">×</span>
+    <span>AI-First Design</span><span class="sep">×</span>
+    <span>Interaction Design</span><span class="sep">×</span>
+    <span>Product Strategy</span><span class="sep">×</span>
+    <span>Accessibility</span><span class="sep">×</span>
+    <span>Figma</span><span class="sep">×</span>
+    <span>Rapid Prototyping</span><span class="sep">×</span>
+    <span>Design Thinking</span><span class="sep">×</span>
+    <span>Product Design</span><span class="sep">×</span>
+    <span>UX Research</span><span class="sep">×</span>
+    <span>Design Systems</span><span class="sep">×</span>
+    <span>AI-First Design</span><span class="sep">×</span>
+    <span>Interaction Design</span><span class="sep">×</span>
+    <span>Product Strategy</span><span class="sep">×</span>
+    <span>Accessibility</span><span class="sep">×</span>
+    <span>Figma</span><span class="sep">×</span>
+  </div>
+</div>
+
+<section class="section" id="work">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Selected Work</div>
+    <h2 class="sec-title">Case Studies</h2>
+    <p class="sec-sub">Five recommended deep-dives. Each one shipped, measured, and reflected on.</p>
+  </div>
+
+  <div class="stream">
+    <div class="stream-item">
+      <span class="stream-time">2026 · MAR 12 · 09:42</span>
+      <a href="case-study-po-ai-intent-verge.html" class="tile mint">
+        <div class="tile-kicker">Recommended · AI Product</div>
+        <h3 class="tile-h">Speak,<br>Don't Click.</h3>
+        <div class="tile-tags">
+          <span class="tag">AI Product</span>
+          <span class="tag">SaaS</span>
+          <span class="tag">Bilingual UX</span>
+        </div>
+        <p class="tile-deck">Replaced a traditional CRM dashboard with a bilingual intent palette. 28 intents in MVP, 21 already live in production — each rendering an inline action card. Myanmar sellers stop hunting menus and just say what they want.</p>
+        <div class="tile-metrics">
+          <div><div class="metric-val">21</div><div class="metric-lbl">Live in Prod</div></div>
+          <div><div class="metric-val">&lt;50ms</div><div class="metric-lbl">Match Latency</div></div>
+        </div>
+        <span class="tile-arrow">View case study →</span>
+      </a>
+    </div>
+
+    <div class="stream-item">
+      <span class="stream-time">2025 · DEC 08 · 14:20</span>
+      <a href="case-study-design-system.html" class="tile">
+        <div class="tile-kicker">Recommended · Design System</div>
+        <h3 class="tile-h small">Three Platforms.<br>One Source of Truth.</h3>
+        <div class="tile-tags">
+          <span class="tag">Design System</span>
+          <span class="tag">Tokens</span>
+          <span class="tag">Multi-Platform</span>
+        </div>
+        <p class="tile-deck">Maintaining one design system across POS, web, and mobile using a federated two-level architecture — shared global foundation plus platform-specific libraries.</p>
+        <div class="tile-metrics">
+          <div><div class="metric-val">Days → Hrs</div><div class="metric-lbl">Handover</div></div>
+          <div><div class="metric-val">100%</div><div class="metric-lbl">Consistency</div></div>
+        </div>
+        <span class="tile-arrow">View case study →</span>
+      </a>
+    </div>
+
+    <div class="stream-item">
+      <span class="stream-time">2025 · OCT 21 · 11:05</span>
+      <a href="case-study-pharmacy-pos.html" class="tile uv">
+        <div class="tile-kicker">Recommended · POS System</div>
+        <h3 class="tile-h">Two Stores.<br>One System.</h3>
+        <div class="tile-tags">
+          <span class="tag">POS</span>
+          <span class="tag">UX Redesign</span>
+          <span class="tag">STO Maldives</span>
+        </div>
+        <p class="tile-deck">Redesigned a legacy Windows POS into a modern touchscreen system for STO's pharmacy and supermarket chains — 14 modules, 200+ screens, as the sole designer.</p>
+        <div class="tile-metrics">
+          <div><div class="metric-val">14+</div><div class="metric-lbl">Modules</div></div>
+          <div><div class="metric-val">200+</div><div class="metric-lbl">Screens</div></div>
+        </div>
+        <span class="tile-arrow">View case study →</span>
+      </a>
+    </div>
+
+    <div class="stream-item">
+      <span class="stream-time">2025 · JUL 14 · 16:55</span>
+      <a href="case-study-retail.html" class="tile yellow">
+        <div class="tile-kicker">Recommended · Retail</div>
+        <h3 class="tile-h">From Feedback<br>to 427% ROI.</h3>
+        <div class="tile-tags">
+          <span class="tag">Retail</span>
+          <span class="tag">Redesign</span>
+        </div>
+        <p class="tile-deck">A broken return process had the CS team drowning in tickets. Four months of research, three rounds of testing, and 427% ROI later — here's how it happened.</p>
+        <div class="tile-metrics">
+          <div><div class="metric-val">427%</div><div class="metric-lbl">ROI</div></div>
+          <div><div class="metric-val">&gt;50%</div><div class="metric-lbl">Time Cut</div></div>
+        </div>
+        <span class="tile-arrow">View case study →</span>
+      </a>
+    </div>
+
+    <div class="stream-item">
+      <span class="stream-time">2024 · NOV 02 · 22:18</span>
+      <a href="case-study-golden-paths.html" class="tile">
+        <div class="tile-kicker">Recommended · AI Research</div>
+        <h3 class="tile-h small">Prototypes That<br>Never Sleep.</h3>
+        <div class="tile-tags">
+          <span class="tag">AI Product</span>
+          <span class="tag">UX Research</span>
+        </div>
+        <p class="tile-deck">User testing used to mean weeks of scheduling, facilitation, and synthesis. I designed an AI-simulated path analysis that matched human friction in 9 of 11 flow blockers tested.</p>
+        <div class="tile-metrics">
+          <div><div class="metric-val">9/11</div><div class="metric-lbl">Blockers Matched</div></div>
+          <div><div class="metric-val">4.2×</div><div class="metric-lbl">Avg Runs</div></div>
+        </div>
+        <span class="tile-arrow">View case study →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="more">
+  <div class="sec-head">
+    <div class="sec-eyebrow">More Work</div>
+    <h2 class="sec-title">Other Projects</h2>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:16px;">
+    <a href="case-study-resume-pipeline.html" class="tile pink small">
+      <div class="tile-kicker">2025 · AI Tools</div>
+      <h3 class="tile-h">47 Apps.<br>2 Interviews.</h3>
+      <p class="tile-deck">Sarah applied to 47 jobs and got 2 interviews. The problem wasn't her resume — it was a 40-minute manual tailoring ritual. I replaced it with a 15-minute AI pipeline.</p>
+      <div class="tile-metrics">
+        <div><div class="metric-val">40→15</div><div class="metric-lbl">Min Per App</div></div>
+        <div><div class="metric-val">4→1</div><div class="metric-lbl">Tools</div></div>
+      </div>
+      <span class="tile-arrow">Open →</span>
+    </a>
+
+    <a href="case-study-dashboard.html" class="tile slate small">
+      <div class="tile-kicker">2022 · Finance</div>
+      <h3 class="tile-h">Daily Ritual<br>to 104% ROI.</h3>
+      <p class="tile-deck">Every morning, the finance team opened three different apps to see the same numbers. I made that one screen instead.</p>
+      <div class="tile-metrics">
+        <div><div class="metric-val">0.5h</div><div class="metric-lbl">Saved Daily</div></div>
+      </div>
+      <span class="tile-arrow">Open →</span>
+    </a>
+
+    <a href="case-study-tokens.html" class="tile white small">
+      <div class="tile-kicker">2024 · Figma Plugin</div>
+      <h3 class="tile-h">Unified<br>Design Tokens.</h3>
+      <p class="tile-deck">Token exports meant four separate files and four chances for things to drift. I wrote a plugin that made the whole process a single click.</p>
+      <div class="tile-metrics">
+        <div><div class="metric-val">50%</div><div class="metric-lbl">Time Cut</div></div>
+        <div><div class="metric-val">~100%</div><div class="metric-lbl">Error Cut</div></div>
+      </div>
+      <span class="tile-arrow">Open →</span>
+    </a>
+  </div>
+
+  <div class="grid-2">
+    <a href="case-study-jar-aye-child.html" class="tile small">
+      <div class="tile-kicker">2025 · EdTech · Children UX</div>
+      <h3 class="tile-h">Making Hard Math Feel Tractable.</h3>
+      <p class="tile-deck">A HOTS mathematics learning app for 6–12 year olds aligned to the Singapore curriculum — keeping children in productive struggle without tipping into frustration or boredom.</p>
+      <div class="tile-metrics">
+        <div><div class="metric-val">5</div><div class="metric-lbl">HOTS Strategies</div></div>
+        <div><div class="metric-val">3</div><div class="metric-lbl">User Types</div></div>
+      </div>
+      <span class="tile-arrow">Open →</span>
+    </a>
+
+    <a href="case-study-jar-aye-parent.html" class="tile small">
+      <div class="tile-kicker">2025 · EdTech · Parent UX</div>
+      <h3 class="tile-h">Closing the Visibility Gap.</h3>
+      <p class="tile-deck">The companion app that gives non-expert parents meaningful insight into their child's HOTS mathematical development — without overwhelming them with data they can't interpret.</p>
+      <div class="tile-metrics">
+        <div><div class="metric-val">4</div><div class="metric-lbl">Mastery Tiers</div></div>
+        <div><div class="metric-val">3</div><div class="metric-lbl">Sub States</div></div>
+      </div>
+      <span class="tile-arrow">Open →</span>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Side Projects</div>
+    <h2 class="sec-title">Built on Weekends</h2>
+  </div>
+  <div class="grid-2">
+    <a href="https://design-flash-card.vercel.app/" target="_blank" class="tile mint small">
+      <div class="tile-kicker">Live · Web App</div>
+      <h3 class="tile-h">Design Flash Cards.</h3>
+      <p class="tile-deck">A bilingual (English/Myanmar) app to master UX principles through active recall. Spaced repetition, category filtering, clean study UI.</p>
+      <div class="tile-metrics">
+        <div><div class="metric-val">60+</div><div class="metric-lbl">UX Principles</div></div>
+        <div><div class="metric-val">2</div><div class="metric-lbl">Languages</div></div>
+        <div><div class="metric-val">$0</div><div class="metric-lbl">To Run</div></div>
+      </div>
+      <span class="tile-arrow">Open ↗</span>
+    </a>
+
+    <a href="https://orchestra.figma.site/" target="_blank" class="tile uv small">
+      <div class="tile-kicker">Live · Figma Plugin</div>
+      <h3 class="tile-h">Orchestra Syncs.</h3>
+      <p class="tile-deck">A Figma plugin that syncs Variables to GitHub and auto-builds design tokens for Web, iOS, Android, and Flutter — change once, update everywhere.</p>
+      <div class="tile-metrics">
+        <div><div class="metric-val">4</div><div class="metric-lbl">Platforms</div></div>
+        <div><div class="metric-val">0</div><div class="metric-lbl">Manual Steps</div></div>
+      </div>
+      <span class="tile-arrow">Open ↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Experience</div>
+    <h2 class="sec-title">Where I've Shipped</h2>
+    <p class="sec-sub">Five companies. One career switch from engineering. A lot of Figma files.</p>
+  </div>
+
+  <div class="exp-grid">
+    <div class="exp-card wide">
+      <div class="exp-head">
+        <div><div class="exp-company">Raytail</div><div class="exp-role">UX Lead</div></div>
+        <div class="exp-period">Dec 2023 — Dec 2025<br>Maldives · Remote</div>
+      </div>
+      <ul class="exp-list">
+        <li>Drove design work that delivered 200% UX ROI across a multi-product ecosystem</li>
+        <li>Redesigned the POS checkout and order workflows — $10K/month saved in operational costs</li>
+        <li>Built a design system from scratch; still the foundation the team runs on today</li>
+        <li>Worked async-first with a fully remote team in Maldives</li>
+        <li>Enforced WCAG accessibility standards across all products</li>
+        <li>Cleared years of design debt through structured A/B testing</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">200% UX ROI</span><span class="tag">$10K Savings</span>
+        <span class="tag">Design System</span><span class="tag">WCAG</span><span class="tag">A/B Testing</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <div><div class="exp-company">Lexagle</div><div class="exp-role">Senior UX Designer</div></div>
+        <div class="exp-period">Oct 22 — Apr 23<br>Singapore</div>
+      </div>
+      <ul class="exp-list">
+        <li>Owned obligation management feature end-to-end</li>
+        <li>Built public link form that cut back-and-forth in contract inquiry flow</li>
+        <li>Kept design consistent while moving fast in a small team</li>
+        <li>Stayed close to PM so design served business, not just the mockup</li>
+      </ul>
+      <div class="exp-tags"><span class="tag">Legal Tech</span><span class="tag">Feature Ownership</span></div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <div><div class="exp-company">Treedots</div><div class="exp-role">UX/UI Designer</div></div>
+        <div class="exp-period">Nov 21 — Oct 22<br>Singapore</div>
+      </div>
+      <ul class="exp-list">
+        <li>First month mapping every broken flow before touching Figma</li>
+        <li>Designed B2B Supplier Portal from scratch</li>
+        <li>Built detailed interactive prototypes that made dev conversations shorter</li>
+        <li>Launched a design system still used for every new feature</li>
+      </ul>
+      <div class="exp-tags"><span class="tag">B2B Portal</span><span class="tag">Launched DS</span></div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <div><div class="exp-company">Nexlabs</div><div class="exp-role">Product Designer</div></div>
+        <div class="exp-period">Sep 20 — Nov 21<br>Myanmar</div>
+      </div>
+      <ul class="exp-list">
+        <li>Shipped across healthcare, logistics, fintech, retail in 14 months</li>
+        <li>Research was never optional — every project started with discovery</li>
+        <li>Low-fi wireframes before high-fi work</li>
+        <li>Learned to explain decisions in terms clients cared about</li>
+      </ul>
+      <div class="exp-tags"><span class="tag">Multi-industry</span><span class="tag">Prototyping</span></div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <div><div class="exp-company">Adventsoft</div><div class="exp-role">UI/UX Designer</div></div>
+        <div class="exp-period">Dec 18 — Sep 20<br>Myanmar</div>
+      </div>
+      <ul class="exp-list">
+        <li>Switched from software engineer to designer here — best call I've made</li>
+        <li>Used prototypes as specs so devs knew what to build before a word was said</li>
+        <li>Presented work to clients in plain language</li>
+        <li>Reading code meant handoffs were smoother than most designers manage</li>
+      </ul>
+      <div class="exp-tags"><span class="tag">Eng → Design</span><span class="tag">Hi-Fi Prototypes</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="voices">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Voices</div>
+    <h2 class="sec-title">What They Say</h2>
+    <p class="sec-sub">Things colleagues and managers actually said — not paraphrased.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">The amount of passion you've put into your work is very much appreciated and truly inspiring. It's incredible how often you exceed expectations.</p>
+      <div class="testi-name">Diana Eddie</div>
+      <div class="testi-role">Design Lead, Treedots</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">An amazing founder of the local UX design community. He shared his knowledge with the intention for designers to improve their skills.</p>
+      <div class="testi-name">Ricky Aung</div>
+      <div class="testi-role">Product Manager, Veneurific</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-eyebrow">Education</div>
+    <h2 class="sec-title">Foundation</h2>
+  </div>
+  <div class="edu-card">
+    <div>
+      <div class="edu-degree">B.Sc. Computer Science</div>
+      <div class="edu-school">UCS Taunggyi</div>
+      <div class="edu-period">2013 — 2018 · Myanmar</div>
+    </div>
+    <ul class="edu-list">
+      <li>Human Computer Interaction & Digital Design focus</li>
+      <li>Graduated with Distinction in Cyber Security</li>
+      <li>Founded CS Club at University</li>
+      <li>Engineering background bridges design & development</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <h2>Let's build<br>something great.</h2>
+  <p>Looking for a team that ships things and cares whether they work. Open to senior roles in product and UX.</p>
+  <div class="hero-cta" style="justify-content:center;">
+    <a href="mailto:kaungmyat9702@gmail.com" class="btn-mint">Email me</a>
+    <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" target="_blank" class="btn-outline">LinkedIn ↗</a>
+    <a href="https://designer-os-test.vercel.app/resume/share/84rG99PQ" target="_blank" class="btn-outline">Resume ↗</a>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2026 Harry Hein · Bangkok, TH · <a href="portfolio.html">View original portfolio →</a>
+</footer>
+
+</body>
+</html>

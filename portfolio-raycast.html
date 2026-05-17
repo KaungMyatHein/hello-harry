@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Hein — Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* RAYCAST — command-palette dark, hairline grid, ss03 */
+:root{
+  --canvas:#07080a; --surface:#0d0e10; --card:#121316; --card-hover:#181a1d;
+  --hairline:#242728; --hairline-soft:#1a1c1f;
+  --ink:#f5f5f7; --text:#e8e9ea; --muted:#9b9ca0; --dim:#6d6e72;
+  --brand-red:#ff5757; --brand-red-deep:#a1131a;
+  --acc-blue:#57c1ff; --acc-red:#ff6161; --acc-green:#59d499;
+  --acc-yellow:#ffc533; --acc-violet:#b48cff; --acc-orange:#ff9b3d; --acc-pink:#ff7eb6;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --radius:10px; --radius-sm:6px; --radius-lg:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--canvas);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.5;font-feature-settings:'calt','kern','liga','ss03';}
+a{color:inherit;text-decoration:none;transition:color 150ms ease;}
+ul{list-style:none;}
+kbd{font-family:var(--mono);font-size:11px;background:rgba(255,255,255,0.08);border:1px solid var(--hairline);color:var(--muted);padding:2px 6px;border-radius:4px;}
+
+.stripes{position:fixed;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--brand-red) 0%,var(--brand-red-deep) 50%,var(--brand-red) 100%);z-index:100;}
+
+.nav{position:sticky;top:5px;z-index:50;background:rgba(7,8,10,0.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--hairline);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:500;font-size:14px;color:var(--ink);}
+.brand-mark{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#ff5757,#a1131a);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;box-shadow:0 0 0 1px rgba(255,87,87,0.3),0 4px 12px rgba(255,87,87,0.2);}
+.nav-links{display:flex;gap:22px;align-items:center;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);}
+.nav-links a:hover{color:var(--ink);}
+.btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000 !important;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;transition:transform 120ms ease,opacity 120ms;}
+.btn:hover{opacity:0.9;}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text) !important;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid var(--hairline);}
+.btn-ghost:hover{background:var(--card);}
+
+.hero{padding:80px 24px 60px;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;top:50%;left:50%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,87,87,0.06) 0%,transparent 60%);transform:translate(-50%,-50%);pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--hairline);padding:5px 12px;border-radius:9999px;font-size:12px;color:var(--muted);margin-bottom:24px;font-family:var(--mono);}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--acc-green);box-shadow:0 0 8px var(--acc-green);}
+.hero h1{font-size:clamp(48px,7vw,82px);font-weight:600;letter-spacing:-2.4px;line-height:1.02;margin-bottom:20px;color:var(--ink);}
+.hero h1 .accent{background:linear-gradient(135deg,var(--brand-red),var(--acc-orange));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero-sub{font-size:20px;font-weight:400;line-height:1.5;color:var(--muted);max-width:640px;margin-bottom:36px;}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:48px;}
+
+/* Command palette mockup */
+.palette{max-width:780px;margin:0 auto;background:var(--card);border:1px solid var(--hairline);border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.03);}
+.palette-search{padding:18px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--hairline);}
+.palette-icon{width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#ff5757,#a1131a);}
+.palette-input{flex:1;background:transparent;border:none;color:var(--ink);font-family:var(--sans);font-size:16px;outline:none;}
+.palette-input::placeholder{color:var(--dim);}
+.palette-shortcut{font-family:var(--mono);font-size:11px;color:var(--dim);}
+.palette-section{padding:6px 20px;font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;background:var(--surface);}
+.palette-row{display:flex;align-items:center;gap:14px;padding:11px 20px;border-bottom:1px solid var(--hairline-soft);}
+.palette-row:last-child{border-bottom:none;}
+.palette-row:hover{background:var(--card-hover);}
+.palette-row.selected{background:rgba(255,87,87,0.08);}
+.palette-row.selected .palette-name{color:var(--ink);}
+.row-icon{width:22px;height:22px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
+.icon-blue{background:rgba(87,193,255,0.15);color:var(--acc-blue);}
+.icon-violet{background:rgba(180,140,255,0.15);color:var(--acc-violet);}
+.icon-yellow{background:rgba(255,197,51,0.15);color:var(--acc-yellow);}
+.icon-red{background:rgba(255,97,97,0.15);color:var(--acc-red);}
+.icon-green{background:rgba(89,212,153,0.15);color:var(--acc-green);}
+.icon-orange{background:rgba(255,155,61,0.15);color:var(--acc-orange);}
+.icon-pink{background:rgba(255,126,182,0.15);color:var(--acc-pink);}
+.palette-name{flex:1;font-size:14px;font-weight:500;color:var(--text);}
+.palette-meta{font-size:12px;color:var(--dim);}
+.palette-footer{padding:10px 20px;display:flex;justify-content:space-between;align-items:center;background:var(--surface);font-size:11px;color:var(--dim);}
+.palette-footer .left,.palette-footer .right{display:flex;gap:14px;align-items:center;}
+
+.section{max-width:1200px;margin:0 auto;padding:80px 24px;}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;padding-bottom:18px;border-bottom:1px solid var(--hairline);}
+.sec-meta{font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.sec-title{font-size:clamp(32px,4vw,44px);font-weight:600;letter-spacing:-1px;line-height:1.1;color:var(--ink);}
+.sec-sub{font-size:15px;color:var(--muted);margin-top:8px;max-width:560px;}
+.sec-action{font-family:var(--mono);font-size:12px;color:var(--muted);}
+
+.card{display:block;background:var(--card);border:1px solid var(--hairline);border-radius:var(--radius);padding:24px;transition:all 180ms ease;height:100%;color:var(--text);}
+.card:hover{border-color:#3a3d40;background:var(--card-hover);transform:translateY(-2px);}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.card-icon{width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;flex-shrink:0;}
+.card-tag{font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.8px;}
+.card-h{font-size:24px;font-weight:600;letter-spacing:-0.6px;line-height:1.2;margin-bottom:10px;color:var(--ink);}
+.card-h.small{font-size:20px;}
+.card-deck{font-size:14px;line-height:1.55;color:var(--muted);margin-bottom:18px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.chip{font-family:var(--mono);font-size:10px;background:rgba(255,255,255,0.04);border:1px solid var(--hairline);color:var(--muted);padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;}
+.metrics{display:flex;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
+.m-val{font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-0.4px;line-height:1.1;}
+.m-lbl{font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+.card-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--acc-blue);}
+
+.grid{display:grid;gap:16px;}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.featured{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:16px;}
+@media (max-width:900px){.grid-2,.grid-3,.featured{grid-template-columns:1fr;}}
+
+.log{background:var(--card);border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;font-family:var(--mono);font-size:13px;}
+.log-row{display:grid;grid-template-columns:140px 1fr 180px 1fr;gap:20px;padding:14px 20px;border-bottom:1px solid var(--hairline-soft);align-items:center;}
+.log-row:last-child{border-bottom:none;}
+.log-row.head{background:var(--surface);font-size:10px;text-transform:uppercase;color:var(--dim);letter-spacing:1px;padding:10px 20px;}
+.log-date{color:var(--dim);}
+.log-co{color:var(--ink);font-weight:500;display:flex;align-items:center;gap:8px;font-family:var(--sans);}
+.log-co .dot{width:6px;height:6px;border-radius:50%;}
+.log-role{color:var(--muted);font-family:var(--sans);font-size:13px;}
+.log-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.log-tag{font-size:10px;color:var(--text);background:rgba(255,255,255,0.04);border:1px solid var(--hairline);padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:0.4px;}
+@media (max-width:900px){.log-row{grid-template-columns:1fr;gap:6px;}.log-row.head{display:none;}}
+
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+@media (max-width:900px){.testi-grid{grid-template-columns:1fr;}}
+.testi{background:var(--card);border:1px solid var(--hairline);border-radius:var(--radius);padding:28px;position:relative;}
+.testi::before{content:"\201C";position:absolute;top:14px;left:24px;font-size:54px;color:var(--brand-red);opacity:0.4;line-height:1;font-family:Georgia,serif;}
+.testi-quote{font-size:16px;line-height:1.55;color:var(--text);margin:24px 0 18px;padding-left:6px;}
+.testi-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--hairline);padding-top:14px;}
+.testi-name{font-size:13px;font-weight:500;color:var(--ink);}
+.testi-role{font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px;}
+
+.edu{background:var(--card);border:1px solid var(--hairline);border-radius:var(--radius);padding:32px;display:grid;grid-template-columns:1fr 1.5fr;gap:32px;}
+@media (max-width:900px){.edu{grid-template-columns:1fr;}}
+.edu-degree{font-size:22px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.edu-school{font-size:14px;color:var(--text);margin-bottom:4px;}
+.edu-period{font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px;}
+.edu ul{display:grid;gap:10px;}
+.edu li{font-size:14px;color:var(--muted);padding-left:22px;position:relative;}
+.edu li::before{content:"→";position:absolute;left:0;color:var(--brand-red);font-family:var(--mono);}
+
+.cta-band{padding:100px 24px;text-align:center;border-top:1px solid var(--hairline);background:radial-gradient(ellipse at center,rgba(255,87,87,0.06) 0%,transparent 60%);}
+.cta-band h2{font-size:clamp(40px,5vw,60px);font-weight:600;letter-spacing:-1.6px;line-height:1.05;margin-bottom:18px;color:var(--ink);}
+.cta-band h2 .accent{background:linear-gradient(135deg,var(--brand-red),var(--acc-orange));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.cta-band p{font-size:17px;color:var(--muted);max-width:540px;margin:0 auto 32px;}
+.cta-band .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+.footer{padding:32px 24px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;border-top:1px solid var(--hairline);}
+.footer a{color:var(--acc-blue);}
+</style>
+</head>
+<body>
+<div class="stripes"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-mark">H</span>Harry Hein</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#voices">Voices</a>
+      <a href="#contact" class="btn">Hire me <kbd>⌘</kbd><kbd>K</kbd></a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Senior Product Designer · Available 2026</div>
+    <h1>Design. Ship.<br><span class="accent">Measure.</span></h1>
+    <p class="hero-sub">AI-first systems for complex enterprise tooling — seven years of work that ships and gets measured.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn">Browse work <kbd>↵</kbd></a>
+      <a href="#contact" class="btn-ghost">Get in touch <kbd>⌘</kbd><kbd>↵</kbd></a>
+    </div>
+
+    <div class="palette">
+      <div class="palette-search">
+        <span class="palette-icon"></span>
+        <input class="palette-input" placeholder="Search Harry's work..." readonly>
+        <span class="palette-shortcut">⌘ K</span>
+      </div>
+      <div class="palette-section">Recommended Case Studies</div>
+      <a href="case-study-po-ai-intent-raycast.html" class="palette-row selected">
+        <span class="row-icon icon-blue">AI</span>
+        <span class="palette-name">Speak, don't click — bilingual intent palette</span>
+        <span class="palette-meta">Case Study</span>
+        <kbd>⌘ 1</kbd>
+      </a>
+      <a href="case-study-design-system.html" class="palette-row">
+        <span class="row-icon icon-violet">DS</span>
+        <span class="palette-name">Three platforms. One source of truth.</span>
+        <span class="palette-meta">Design System</span>
+        <kbd>⌘ 2</kbd>
+      </a>
+      <a href="case-study-pharmacy-pos.html" class="palette-row">
+        <span class="row-icon icon-yellow">PX</span>
+        <span class="palette-name">Two stores. One system. — 200+ screens.</span>
+        <span class="palette-meta">POS</span>
+        <kbd>⌘ 3</kbd>
+      </a>
+      <a href="case-study-retail.html" class="palette-row">
+        <span class="row-icon icon-red">RT</span>
+        <span class="palette-name">From feedback to 427% ROI</span>
+        <span class="palette-meta">Retail</span>
+        <kbd>⌘ 4</kbd>
+      </a>
+      <a href="case-study-golden-paths.html" class="palette-row">
+        <span class="row-icon icon-orange">GP</span>
+        <span class="palette-name">Prototypes that never sleep — 9/11 matched</span>
+        <span class="palette-meta">AI Research</span>
+        <kbd>⌘ 5</kbd>
+      </a>
+      <div class="palette-footer">
+        <span class="left">Open <kbd>↵</kbd></span>
+        <span class="right">Actions <kbd>⌘ K</kbd></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Work · Selected</div>
+      <h2 class="sec-title">Case studies.</h2>
+      <p class="sec-sub">Five deep-dives. Each one shipped, measured, and reflected on — with the actual numbers attached.</p>
+    </div>
+    <div class="sec-action">5 results · ⌘1 to ⌘5</div>
+  </div>
+
+  <div class="featured">
+    <a href="case-study-po-ai-intent-raycast.html" class="card">
+      <div class="card-head">
+        <span class="card-icon icon-blue">AI</span>
+        <span class="card-tag">Recommended · AI Product</span>
+      </div>
+      <h3 class="card-h">Speak, don't click.</h3>
+      <div class="chips">
+        <span class="chip">AI Product</span><span class="chip">SaaS</span><span class="chip">Bilingual UX</span>
+      </div>
+      <p class="card-deck">Replaced a traditional CRM dashboard with a bilingual intent palette. 28 intents in MVP, 21 already live — each rendering an inline action card. Sellers stop hunting menus and just say what they want.</p>
+      <div class="metrics">
+        <div><div class="m-val">21</div><div class="m-lbl">Live in Prod</div></div>
+        <div><div class="m-val">&lt;50ms</div><div class="m-lbl">Match Latency</div></div>
+      </div>
+      <span class="card-cta">Open extension →</span>
+    </a>
+
+    <a href="case-study-design-system.html" class="card">
+      <div class="card-head">
+        <span class="card-icon icon-violet">DS</span>
+        <span class="card-tag">Recommended · Design System</span>
+      </div>
+      <h3 class="card-h small">Three platforms. One source of truth.</h3>
+      <div class="chips">
+        <span class="chip">Tokens</span><span class="chip">Multi-Platform</span>
+      </div>
+      <p class="card-deck">Maintaining one design system across POS, web, and mobile using a federated two-level architecture.</p>
+      <div class="metrics">
+        <div><div class="m-val">Days→Hrs</div><div class="m-lbl">Handover</div></div>
+        <div><div class="m-val">100%</div><div class="m-lbl">Consistency</div></div>
+      </div>
+      <span class="card-cta">Open extension →</span>
+    </a>
+  </div>
+
+  <div class="grid grid-3">
+    <a href="case-study-pharmacy-pos.html" class="card">
+      <div class="card-head"><span class="card-icon icon-yellow">PX</span><span class="card-tag">Recommended · POS</span></div>
+      <h3 class="card-h small">Two stores. One system.</h3>
+      <p class="card-deck">Redesigned a legacy Windows POS into a modern touchscreen system — 14 modules, 200+ screens.</p>
+      <div class="metrics">
+        <div><div class="m-val">14+</div><div class="m-lbl">Modules</div></div>
+        <div><div class="m-val">200+</div><div class="m-lbl">Screens</div></div>
+      </div>
+      <span class="card-cta">Open extension →</span>
+    </a>
+    <a href="case-study-retail.html" class="card">
+      <div class="card-head"><span class="card-icon icon-red">RT</span><span class="card-tag">2025 · Retail</span></div>
+      <h3 class="card-h small">From feedback to 427% ROI.</h3>
+      <p class="card-deck">A broken return process had CS drowning in tickets. Four months of research, three test rounds, 427% ROI later.</p>
+      <div class="metrics">
+        <div><div class="m-val">427%</div><div class="m-lbl">ROI</div></div>
+        <div><div class="m-val">&gt;50%</div><div class="m-lbl">Time Cut</div></div>
+      </div>
+      <span class="card-cta">Open extension →</span>
+    </a>
+    <a href="case-study-golden-paths.html" class="card">
+      <div class="card-head"><span class="card-icon icon-orange">GP</span><span class="card-tag">2024 · AI Research</span></div>
+      <h3 class="card-h small">Prototypes that never sleep.</h3>
+      <p class="card-deck">User testing meant weeks of scheduling, facilitation, synthesis. I designed AI-simulated path analysis that matched human friction in 9 of 11 blockers tested.</p>
+      <div class="metrics">
+        <div><div class="m-val">9/11</div><div class="m-lbl">Matched</div></div>
+        <div><div class="m-val">4.2×</div><div class="m-lbl">Avg Runs</div></div>
+      </div>
+      <span class="card-cta">Open extension →</span>
+    </a>
+  </div>
+</section>
+
+<section class="section" id="more">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Work · More</div>
+      <h2 class="sec-title">More extensions.</h2>
+    </div>
+    <div class="sec-action">5 results</div>
+  </div>
+
+  <div class="grid grid-3" style="margin-bottom:16px;">
+    <a href="case-study-resume-pipeline.html" class="card">
+      <div class="card-head"><span class="card-icon icon-pink">RP</span><span class="card-tag">2025 · AI Tools</span></div>
+      <h3 class="card-h small">47 apps. 2 interviews.</h3>
+      <p class="card-deck">Sarah's resume wasn't the problem — the 40-minute tailoring ritual was. I replaced it with a 15-minute AI pipeline.</p>
+      <div class="metrics">
+        <div><div class="m-val">40→15</div><div class="m-lbl">Min/App</div></div>
+        <div><div class="m-val">4→1</div><div class="m-lbl">Tools</div></div>
+      </div>
+      <span class="card-cta">Open →</span>
+    </a>
+    <a href="case-study-dashboard.html" class="card">
+      <div class="card-head"><span class="card-icon icon-green">FN</span><span class="card-tag">2022 · Finance</span></div>
+      <h3 class="card-h small">Daily ritual to 104% ROI.</h3>
+      <p class="card-deck">The finance team opened three apps for the same numbers. I made one screen instead.</p>
+      <div class="metrics">
+        <div><div class="m-val">0.5h</div><div class="m-lbl">Saved Daily</div></div>
+      </div>
+      <span class="card-cta">Open →</span>
+    </a>
+    <a href="case-study-tokens.html" class="card">
+      <div class="card-head"><span class="card-icon icon-violet">TK</span><span class="card-tag">2024 · Figma Plugin</span></div>
+      <h3 class="card-h small">Unified design tokens.</h3>
+      <p class="card-deck">Token exports meant four files and four chances to drift. One click instead.</p>
+      <div class="metrics">
+        <div><div class="m-val">50%</div><div class="m-lbl">Time Cut</div></div>
+        <div><div class="m-val">~100%</div><div class="m-lbl">Error Cut</div></div>
+      </div>
+      <span class="card-cta">Open →</span>
+    </a>
+  </div>
+
+  <div class="grid grid-2">
+    <a href="case-study-jar-aye-child.html" class="card">
+      <div class="card-head"><span class="card-icon icon-blue">JC</span><span class="card-tag">2025 · EdTech · Children</span></div>
+      <h3 class="card-h small">Making hard math feel tractable.</h3>
+      <p class="card-deck">A HOTS mathematics learning app for 6–12 year olds aligned to the Singapore curriculum — productive struggle without frustration.</p>
+      <div class="metrics">
+        <div><div class="m-val">5</div><div class="m-lbl">HOTS Strategies</div></div>
+        <div><div class="m-val">3</div><div class="m-lbl">User Types</div></div>
+      </div>
+      <span class="card-cta">Open →</span>
+    </a>
+    <a href="case-study-jar-aye-parent.html" class="card">
+      <div class="card-head"><span class="card-icon icon-green">JP</span><span class="card-tag">2025 · EdTech · Parent UX</span></div>
+      <h3 class="card-h small">Closing the visibility gap.</h3>
+      <p class="card-deck">The companion app that gives non-expert parents meaningful insight into their child's HOTS mathematical development — without data overload.</p>
+      <div class="metrics">
+        <div><div class="m-val">4</div><div class="m-lbl">Mastery Tiers</div></div>
+        <div><div class="m-val">3</div><div class="m-lbl">Sub States</div></div>
+      </div>
+      <span class="card-cta">Open →</span>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Side Projects</div>
+      <h2 class="sec-title">Built on weekends.</h2>
+    </div>
+    <div class="sec-action">2 results · Live</div>
+  </div>
+  <div class="grid grid-2">
+    <a href="https://design-flash-card.vercel.app/" target="_blank" class="card">
+      <div class="card-head"><span class="card-icon icon-violet">FC</span><span class="card-tag">Live · Web App</span></div>
+      <h3 class="card-h small">Design flash cards.</h3>
+      <p class="card-deck">Bilingual (English/Myanmar) app to master UX principles through active recall. Spaced repetition, category filtering, clean study UI.</p>
+      <div class="metrics">
+        <div><div class="m-val">60+</div><div class="m-lbl">UX Principles</div></div>
+        <div><div class="m-val">2</div><div class="m-lbl">Languages</div></div>
+        <div><div class="m-val">$0</div><div class="m-lbl">To Run</div></div>
+      </div>
+      <span class="card-cta">Open ↗</span>
+    </a>
+    <a href="https://orchestra.figma.site/" target="_blank" class="card">
+      <div class="card-head"><span class="card-icon icon-orange">OR</span><span class="card-tag">Live · Figma Plugin</span></div>
+      <h3 class="card-h small">Orchestra syncs.</h3>
+      <p class="card-deck">A Figma plugin that syncs Variables to GitHub and auto-builds design tokens for Web, iOS, Android, and Flutter.</p>
+      <div class="metrics">
+        <div><div class="m-val">4</div><div class="m-lbl">Platforms</div></div>
+        <div><div class="m-val">0</div><div class="m-lbl">Manual Steps</div></div>
+      </div>
+      <span class="card-cta">Open ↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Experience · Log</div>
+      <h2 class="sec-title">Where I've shipped.</h2>
+      <p class="sec-sub">Five companies. One career switch from engineering. A lot of Figma files.</p>
+    </div>
+    <div class="sec-action">tail -f career.log</div>
+  </div>
+
+  <div class="log">
+    <div class="log-row head">
+      <div>Period</div><div>Company</div><div>Role</div><div>Tags</div>
+    </div>
+    <div class="log-row">
+      <div class="log-date">2023.12 — 2025.12</div>
+      <div class="log-co"><span class="dot" style="background:var(--acc-violet);"></span>Raytail</div>
+      <div class="log-role">UX Lead<br><span style="color:var(--dim);font-size:11px;">Maldives · Remote</span></div>
+      <div class="log-tags">
+        <span class="log-tag">200% UX ROI</span>
+        <span class="log-tag">$10K Savings</span>
+        <span class="log-tag">Design System</span>
+        <span class="log-tag">WCAG</span>
+        <span class="log-tag">A/B Testing</span>
+      </div>
+    </div>
+    <div class="log-row">
+      <div class="log-date">2022.10 — 2023.04</div>
+      <div class="log-co"><span class="dot" style="background:var(--acc-blue);"></span>Lexagle</div>
+      <div class="log-role">Senior UX Designer<br><span style="color:var(--dim);font-size:11px;">Singapore</span></div>
+      <div class="log-tags">
+        <span class="log-tag">Legal Tech</span>
+        <span class="log-tag">Feature Ownership</span>
+      </div>
+    </div>
+    <div class="log-row">
+      <div class="log-date">2021.11 — 2022.10</div>
+      <div class="log-co"><span class="dot" style="background:var(--acc-green);"></span>Treedots</div>
+      <div class="log-role">UX/UI Designer<br><span style="color:var(--dim);font-size:11px;">Singapore</span></div>
+      <div class="log-tags">
+        <span class="log-tag">B2B Portal</span>
+        <span class="log-tag">Launched DS</span>
+      </div>
+    </div>
+    <div class="log-row">
+      <div class="log-date">2020.09 — 2021.11</div>
+      <div class="log-co"><span class="dot" style="background:var(--acc-orange);"></span>Nexlabs</div>
+      <div class="log-role">Product Designer<br><span style="color:var(--dim);font-size:11px;">Myanmar</span></div>
+      <div class="log-tags">
+        <span class="log-tag">Multi-industry</span>
+        <span class="log-tag">Prototyping</span>
+      </div>
+    </div>
+    <div class="log-row">
+      <div class="log-date">2018.12 — 2020.09</div>
+      <div class="log-co"><span class="dot" style="background:var(--acc-red);"></span>Adventsoft</div>
+      <div class="log-role">UI/UX Designer<br><span style="color:var(--dim);font-size:11px;">Myanmar</span></div>
+      <div class="log-tags">
+        <span class="log-tag">Eng → Design</span>
+        <span class="log-tag">Hi-Fi Prototypes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="voices">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Voices</div>
+      <h2 class="sec-title">What they say.</h2>
+      <p class="sec-sub">Things colleagues and managers actually said — not paraphrased.</p>
+    </div>
+    <div class="sec-action">2 quotes</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi">
+      <p class="testi-quote">The amount of passion you've put into your work is very much appreciated and truly inspiring. It's incredible how often you exceed expectations.</p>
+      <div class="testi-foot">
+        <div class="testi-name">Diana Eddie</div>
+        <div class="testi-role">Design Lead · Treedots</div>
+      </div>
+    </div>
+    <div class="testi">
+      <p class="testi-quote">An amazing founder of the local UX design community. He shared his knowledge with the intention for designers to improve their skills.</p>
+      <div class="testi-foot">
+        <div class="testi-name">Ricky Aung</div>
+        <div class="testi-role">Product Manager · Veneurific</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Education</div>
+      <h2 class="sec-title">Foundation.</h2>
+    </div>
+  </div>
+  <div class="edu">
+    <div>
+      <div class="edu-degree">B.Sc. Computer Science</div>
+      <div class="edu-school">UCS Taunggyi</div>
+      <div class="edu-period">2013 — 2018 · Myanmar</div>
+    </div>
+    <ul>
+      <li>Human Computer Interaction & Digital Design focus</li>
+      <li>Graduated with Distinction in Cyber Security</li>
+      <li>Founded CS Club at University</li>
+      <li>Engineering background bridges design & development</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <h2>Let's build<br><span class="accent">something great.</span></h2>
+  <p>Looking for a team that ships things and cares whether they work. Open to senior roles in product and UX.</p>
+  <div class="row">
+    <a href="mailto:kaungmyat9702@gmail.com" class="btn">Email me <kbd>⌘</kbd><kbd>E</kbd></a>
+    <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+    <a href="https://designer-os-test.vercel.app/resume/share/84rG99PQ" target="_blank" class="btn-ghost">Resume ↗</a>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2026 Harry Hein · Bangkok TH · <a href="portfolio.html">View original →</a>
+</footer>
+
+</body>
+</html>

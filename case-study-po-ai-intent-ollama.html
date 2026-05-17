@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PO AI Intent — Ollama Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --ink:#0a0a0a;
+  --muted:#525252;
+  --dim:#737373;
+  --line:#e5e5e5;
+  --line-2:#d4d4d4;
+  --surface:#fafafa;
+  --term-bg:#0a0a0a;
+  --term-fg:#e5e5e5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+nav{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:50}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:880px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
+.llama{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.nav-links{display:flex;gap:18px;font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+
+header{padding:60px 0 30px;border-bottom:1px solid var(--line)}
+.repo-bar{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:24px}
+.repo-bar .slash{color:var(--dim)}
+.repo-bar .repo{color:var(--ink);font-weight:600}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}
+.tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border:1px solid var(--line-2);border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);background:var(--surface)}
+.tag.live{color:#1a7f37;border-color:#a6e9b5}
+.tag.live::before{content:"●";font-size:8px}
+
+h1{font-size:44px;font-weight:700;letter-spacing:-0.02em;line-height:1.1;margin-top:18px}
+.subtitle{font-size:18px;color:var(--muted);margin-top:12px;max-width:680px}
+
+.term{margin:32px 0;background:var(--term-bg);border-radius:8px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--term-fg)}
+.term-head{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#1a1a1a;border-bottom:1px solid #2a2a2a}
+.term-dot{width:11px;height:11px;border-radius:50%}
+.term-dot.r{background:#ff5f57}.term-dot.y{background:#ffbd2e}.term-dot.g{background:#28c840}
+.term-title{margin-left:auto;color:#737373;font-size:11px}
+.term-body{padding:16px 18px;line-height:1.7;white-space:pre-wrap}
+.term-body .p{color:#7ee787}
+.term-body .c{color:#79c0ff}
+.term-body .k{color:#d2a8ff}
+.term-body .s{color:#f7c52d}
+.term-body .d{color:#737373}
+
+.section{padding:48px 0;border-bottom:1px solid var(--line)}
+.section:last-child{border-bottom:0}
+h2{font-size:28px;font-weight:700;letter-spacing:-0.01em;margin-bottom:6px;line-height:1.2}
+.h2-anchor{font-family:'JetBrains Mono',monospace;color:var(--dim);font-size:14px;font-weight:400;margin-right:8px}
+.lead{font-size:16px;color:var(--muted);max-width:720px;margin-top:8px}
+.lead strong{color:var(--ink);font-weight:600}
+
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:28px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.metric{padding:18px 16px;border-right:1px solid var(--line)}
+.metric:last-child{border-right:0}
+.metric-num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;letter-spacing:-0.02em}
+.metric-num.g{color:#1a7f37}
+.metric-num.r{color:#cf222e}
+.metric-label{font-size:12px;color:var(--muted);margin-top:4px}
+
+pre.code{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);overflow-x:auto;margin:18px 0;line-height:1.7}
+.kw{color:#cf222e;font-weight:600}
+.st{color:#0a3069}
+.cm{color:#6e7781;font-style:italic}
+.fn{color:#8250df;font-weight:600}
+
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+th{background:var(--surface);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);font-family:'JetBrains Mono',monospace}
+tr:last-child td{border-bottom:0}
+td.mono{font-family:'JetBrains Mono',monospace;font-size:13px}
+
+.callout{margin:24px 0;padding:18px 22px;background:var(--surface);border-left:3px solid var(--ink);border-radius:6px}
+.callout-h{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:6px}
+.callout p{font-size:15px}
+.callout cite{display:block;font-style:normal;color:var(--muted);font-size:13px;font-family:'JetBrains Mono',monospace;margin-top:8px}
+
+.toollist{margin:20px 0;font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 22px;line-height:2}
+.toollist span{color:var(--dim)}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.compare-col{border:1px solid var(--line);border-radius:8px;padding:20px;background:var(--surface)}
+.compare-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px}
+.compare-num{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:700;letter-spacing:-0.02em}
+.compare-col p{font-size:13px;color:var(--muted);margin-top:6px}
+.compare-col.after{background:#f0fdf4;border-color:#a6e9b5}
+.compare-col.after .compare-num{color:#1a7f37}
+
+.lessons{margin:20px 0}
+.lesson{display:grid;grid-template-columns:50px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:start}
+.lesson:last-child{border-bottom:0}
+.lesson-n{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--dim);padding-top:2px}
+.lesson-t{font-size:16px;font-weight:600;margin-bottom:4px}
+.lesson-b{font-size:14px;color:var(--muted)}
+
+footer{padding:40px 0;color:var(--muted);font-size:13px;font-family:'JetBrains Mono',monospace}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+@media (max-width:720px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .metric:nth-child(2){border-right:0}
+  .compare{grid-template-columns:1fr}
+}
+
+.media-hero{margin:20px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f6f8fa;aspect-ratio:16/9;position:relative}
+.media-hero video,.media-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.media-hero .tag{position:absolute;left:10px;top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#1a7f37;background:rgba(255,255,255,0.95);border:1px solid var(--line);padding:3px 8px;border-radius:6px;z-index:2;display:inline-flex;gap:6px;align-items:center}
+.media-hero .tag::before{content:"●";color:#1a7f37}
+.media-wide{margin:18px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#f6f8fa;aspect-ratio:16/9;position:relative}
+.media-wide video,.media-wide img{width:100%;height:100%;object-fit:cover;display:block}
+.media-caption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin:6px 0 14px;display:flex;gap:6px;align-items:center}
+.media-caption::before{content:">";color:#1a7f37}
+.media-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+.media-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.media-tile{background:#f6f8fa;border:1px solid var(--line);border-radius:8px;overflow:hidden;aspect-ratio:9/16;position:relative}
+.media-tile video,.media-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.media-tile .label{position:absolute;left:6px;bottom:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text);background:rgba(255,255,255,0.95);border:1px solid var(--line);padding:2px 6px;border-radius:5px}
+@media(max-width:900px){.media-grid{grid-template-columns:repeat(2,1fr)}.media-grid-3{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="lightbox.css">
+</head>
+<body>
+
+<nav>
+  <div class="navbar">
+    <a href="portfolio-ollama.html" class="brand"><span class="llama">🦙</span>harry / case-studies</a>
+    <div class="nav-links">
+      <a href="portfolio-ollama.html">README</a>
+      <a href="portfolio-ollama.html#work">Models</a>
+      <a href="portfolio-ollama.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="repo-bar">
+      <span>harry</span><span class="slash">/</span><span class="repo">po-ai-intent</span>
+      <span class="slash">·</span><span>v1.0.0</span>
+      <span class="slash">·</span><span>main</span>
+    </div>
+    <h1>PO AI Intent — voice → tool calls, fast and local-first.</h1>
+    <p class="subtitle">A README-style case study of how I shipped a Burmese-English voice intent layer for SMB sellers in two weeks.</p>
+    <div class="tag-row">
+      <span class="tag live">live</span>
+      <span class="tag">role: product-owner</span>
+      <span class="tag">tools: 28</span>
+      <span class="tag">langs: my · en</span>
+      <span class="tag">p95: &lt;50ms</span>
+      <span class="tag">ပြီးခဲ့တဲ့ ၂ ပတ်</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="term">
+    <div class="term-head">
+      <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+      <span class="term-title">~ /case-studies/po-ai-intent</span>
+    </div>
+    <div class="term-body"><span class="p">$</span> ollama run po-intent
+<span class="d">pulling manifest...</span>
+<span class="d">verified · 28 tools · my/en bilingual · &lt;50ms p95</span>
+
+&gt;&gt;&gt; <span class="s">"ဆေး နှစ်ဖူး ထည့်ပေး၊ ဈေး နှစ်ထောင်"</span>
+<span class="c">[router]</span> tool=<span class="k">order.create</span> conf=<span class="k">0.97</span>
+<span class="c">[slot]</span>  item=<span class="s">ဆေး</span> qty=<span class="k">2</span> price=<span class="k">2000</span>
+<span class="c">[exec]</span>  ✓ order_id=<span class="k">ord_4f2b</span> latency=<span class="k">41ms</span>
+
+&gt;&gt;&gt; <span class="s">"stock ၁၂ ဖြုတ်ပေး"</span>
+<span class="c">[router]</span> tool=<span class="k">stock.deduct</span> conf=<span class="k">0.94</span>
+<span class="c">[slot]</span>  qty=<span class="k">12</span>
+<span class="c">[exec]</span>  ✓ sku_stock: <span class="k">42 → 30</span> latency=<span class="k">37ms</span>
+
+&gt;&gt;&gt; <span class="d">/exit</span></div>
+  </div>
+
+  <div class="media-hero">
+    <span class="tag">live · po-intent</span>
+    <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/22-chain-restock.mp4" onerror="this.outerHTML='<img src=&quot;images/po-ai/hero-palette.webp&quot; alt=&quot;Po AI palette&quot;>'"></video>
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="metric-num">21</div><div class="metric-label">sellers interviewed</div></div>
+    <div class="metric"><div class="metric-num g">&lt;50ms</div><div class="metric-label">p95 intent latency</div></div>
+    <div class="metric"><div class="metric-num">28/28</div><div class="metric-label">tools mapped</div></div>
+    <div class="metric"><div class="metric-num r">0</div><div class="metric-label">hallucinated SKUs</div></div>
+  </div>
+
+  <section class="section">
+    <h2><span class="h2-anchor">##</span>01 · the problem</h2>
+    <p class="lead">In <strong>21 contextual interviews</strong>, every SMB seller had the same friction: app-switching while their hands were full. Messenger chats, the seller app, a paper notebook. They wanted to <em>say it once</em> and have the system file the order, deduct stock, print a receipt, tag the buyer.</p>
+    <pre class="code"><span class="cm">// observed in interviews</span>
+<span class="kw">while</span> (selling) {
+  hold(product);
+  glance(camera);
+  <span class="fn">switchApp</span>(<span class="st">"messenger"</span>);
+  <span class="fn">typeOrder</span>(); <span class="cm">// blocked — only one free hand</span>
+  <span class="fn">switchApp</span>(<span class="st">"sellerApp"</span>);
+  <span class="fn">deductStock</span>();
+  <span class="fn">scribbleOnPaper</span>(); <span class="cm">// for the receipt later</span>
+}</pre>
+  </section>
+
+  <section class="section">
+    <h2><span class="h2-anchor">##</span>02 · research</h2>
+    <p class="lead">21 interviews · 4 archetypes · 1 shared verb-noun grammar. Regardless of category, sellers spoke in the same shape. <strong>Verb + product + modifier</strong>. The grammar was already there.</p>
+    <table>
+      <thead><tr><th>archetype</th><th>n</th><th>core pain</th><th>voice fit</th></tr></thead>
+      <tbody>
+        <tr><td>Solo Shop Owner</td><td class="mono">8</td><td>live-selling, no free hands</td><td class="mono">★★★★★</td></tr>
+        <tr><td>Family Operation</td><td class="mono">6</td><td>shared phone, async voice notes</td><td class="mono">★★★★☆</td></tr>
+        <tr><td>Reseller</td><td class="mono">5</td><td>bulk re-orders, supplier juggling</td><td class="mono">★★★★☆</td></tr>
+        <tr><td>Pop-up Vendor</td><td class="mono">2</td><td>weekend volume spikes</td><td class="mono">★★★☆☆</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <div class="callout-h">verbatim · seller A · yangon · mar 14</div>
+      <p>"ငါက လက်က ထုပ်နေတယ်၊ ပါးစပ်နဲ့ပဲ ပြောချင်တာ။ App က နားလည်ပေးရင် တော်လောက်ပါပြီ။"</p>
+      <cite>— "My hands are tied up packing. I just want to speak. If the app understands me, that's enough."</cite>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><span class="h2-anchor">##</span>03 · intent mapping</h2>
+    <p class="lead">No LLM gets to invent verbs. The model selects from a closed <strong>set of 28 named tools</strong>. Each tool has a JSON schema. The model fills slots; the runtime validates and executes. If a slot is missing, the assistant asks one targeted question.</p>
+    <table>
+      <thead><tr><th>phase</th><th>function</th><th>latency</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">01 · capture</td><td>VAD + on-device denoise + segmenter</td><td class="mono">~8ms</td></tr>
+        <tr><td class="mono">02 · transcribe</td><td>bilingual Whisper-S finetune</td><td class="mono">~14ms</td></tr>
+        <tr><td class="mono">03 · normalize</td><td>digit + unit lemmatizer</td><td class="mono">~2ms</td></tr>
+        <tr><td class="mono">04 · classify</td><td>tool router (top-3 + conf)</td><td class="mono">~9ms</td></tr>
+        <tr><td class="mono">05 · slot-fill</td><td>JSON schema validator</td><td class="mono">~11ms</td></tr>
+        <tr><td class="mono">06 · execute</td><td>tool dispatch + audit log</td><td class="mono">~4ms</td></tr>
+      </tbody>
+    </table>
+    <div class="media-wide">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/01-palette-empty-state.mp4" onerror="this.parentElement.style.display='none'"></video>
+    </div>
+    <div class="media-caption">demos/palette-empty.mp4 — 45 intents, 6 surfaces</div>
+  </section>
+
+  <section class="section">
+    <h2><span class="h2-anchor">##</span>04 · the 28 tools</h2>
+    <p class="lead">Tools are namespaced by domain. Every visible word is templated from a tool result — the model never speaks freely.</p>
+    <div class="toollist">
+      order.<span>create</span> · order.<span>amend</span> · order.<span>cancel</span> · order.<span>lookup</span><br>
+      stock.<span>add</span> · stock.<span>deduct</span> · stock.<span>check</span> · stock.<span>threshold</span><br>
+      price.<span>set</span> · price.<span>bulk_update</span> · price.<span>history</span><br>
+      customer.<span>tag</span> · customer.<span>note</span> · customer.<span>lookup</span><br>
+      delivery.<span>assign</span> · delivery.<span>fee</span> · delivery.<span>track</span><br>
+      report.<span>daily</span> · report.<span>weekly</span> · report.<span>top_seller</span><br>
+      receipt.<span>print</span> · receipt.<span>share</span><br>
+      session.<span>start_live</span> · session.<span>end_live</span> · session.<span>pause</span><br>
+      help.<span>fallback</span> · locale.<span>switch</span> · echo.<span>confirm</span>
+    </div>
+    <div class="media-grid">
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/17-list-products.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">list-products</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/18-product-detail.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">product-detail</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/19-low-stock.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">low-stock</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/21-stock-history.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">stock-history</div></div>
+    </div>
+    <div class="media-caption">demos/tools/product.*.mp4 — inline card render</div>
+  </section>
+
+  <section class="section">
+    <h2><span class="h2-anchor">##</span>05 · bilingual by default</h2>
+    <p class="lead">Real sellers mix languages every sentence. We trained the router on <strong>4,200 code-switched utterances</strong>. Zero translation step. The router operates on tokens, not language tags.</p>
+    <pre class="code"><span class="cm"># pure burmese</span>
+&gt; <span class="st">"ဆေး နှစ်ဖူး ထည့်ပေး၊ ဈေး နှစ်ထောင်"</span>
+  → order.create(item=ဆေး, qty=2, price=2000)
+
+<span class="cm"># pure english</span>
+&gt; <span class="st">"add two units, price two thousand"</span>
+  → order.create(item=&lt;ambiguous, prompt&gt;, qty=2, price=2000)
+
+<span class="cm"># code-switched</span>
+&gt; <span class="st">"stock ၃ ဖူး deduct, receipt print ပေး"</span>
+  → stock.deduct(qty=3) → receipt.print(ref=last_order)</pre>
+  </section>
+
+  <section class="section">
+    <h2><span class="h2-anchor">##</span>06 · inline confirmation cards</h2>
+    <p class="lead">No chat bubbles. Every tool result renders as a compact, editable card. The card is the source of truth — the voice is the input method.</p>
+    <table>
+      <thead><tr><th>card</th><th>from tool</th><th>fields</th><th>editable</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">OrderCreated</td><td class="mono">order.create</td><td>buyer · items · total · delivery</td><td class="mono">✓</td></tr>
+        <tr><td class="mono">StockChanged</td><td class="mono">stock.deduct</td><td>SKU · before · after · delta</td><td class="mono">✓</td></tr>
+        <tr><td class="mono">PriceUpdated</td><td class="mono">price.set</td><td>SKU · old · new · effective</td><td class="mono">✓</td></tr>
+        <tr><td class="mono">ReceiptReady</td><td class="mono">receipt.print</td><td>order · QR · print/share</td><td class="mono">partial</td></tr>
+      </tbody>
+    </table>
+    <div class="media-grid-3">
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/02-list-orders.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">list-orders</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/03-order-detail.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">order-detail</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/12-customer-stats.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">customer-stats</div></div>
+    </div>
+    <div class="media-caption">demos/cards/*.mp4 — pending → paid, no chat</div>
+  </section>
+
+  <section class="section">
+    <h2><span class="h2-anchor">##</span>07 · impact</h2>
+    <p class="lead">Median time to file one order, before and after the intent layer.</p>
+    <div class="compare">
+      <div class="compare-col">
+        <h4>before</h4>
+        <div class="compare-num">~45s</div>
+        <p>Open app, search SKU, type qty, type price, tag buyer, confirm.</p>
+      </div>
+      <div class="compare-col after">
+        <h4>after</h4>
+        <div class="compare-num">~6s</div>
+        <p>Utter, glance at card, tap confirm. Zero typing.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="callout-h">seller A · post-launch · apr 28</div>
+      <p>"အရင်က order တစ်ခုကို မိနစ်တစ်ဝက်လောက်လုပ်ရတယ်။ အခုဆို ပြောလိုက်ရုံပဲ။ Live လုပ်နေတဲ့အချိန် အကြိမ်ပေါင်းများစွာ သုံးတယ်။"</p>
+      <cite>— "Used to take half a minute per order. Now I just say it. I use it dozens of times during a live session."</cite>
+    </div>
+    <div class="media-wide">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/16-bulk-update-stock.mp4" onerror="this.parentElement.style.display='none'"></video>
+    </div>
+    <div class="media-caption">bench/stock-bulk.mp4 — p95 47ms · halluc 0</div>
+  </section>
+
+  <section class="section">
+    <h2><span class="h2-anchor">##</span>∞ · reflection</h2>
+    <div class="lessons">
+      <div class="lesson"><div class="lesson-n">01.</div><div><div class="lesson-t">Tools, not freeform text.</div><div class="lesson-b">Closing the action set to 28 tools killed an entire class of hallucination error.</div></div></div>
+      <div class="lesson"><div class="lesson-n">02.</div><div><div class="lesson-t">Latency is the feature.</div><div class="lesson-b">Below 50ms feels like causation. Above 200ms feels like a server. Optimize phase-by-phase.</div></div></div>
+      <div class="lesson"><div class="lesson-n">03.</div><div><div class="lesson-t">Bilingual is one language.</div><div class="lesson-b">Treating code-switching as a first-class input — not a translation step — cut router complexity in half.</div></div></div>
+      <div class="lesson"><div class="lesson-n">04.</div><div><div class="lesson-t">The card is the truth.</div><div class="lesson-b">Voice in, card out. The seller never re-listens. They glance, tap, move on.</div></div></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 harry/case-studies · po-ai-intent · ollama edition</div>
+    <div>$ exit</div>
+  </div>
+</footer>
+
+<script src="lightbox.js" defer></script>
+</body>
+</html>

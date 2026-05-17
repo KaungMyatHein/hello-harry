@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PO AI · SPEAK, DON'T CLICK | HARRY HEIN (SpaceX style)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000; --bg-2:#0a0a0a; --paper:#fff;
+  --ink:#fff; --ink-2:#a3a3a3; --ink-3:#525252;
+  --line:rgba(255,255,255,0.12);
+  --display:"Barlow Condensed",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--display);line-height:1.5;text-transform:uppercase;letter-spacing:0.02em;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(0,0,0,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1440px;margin:0 auto;padding:18px 32px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:700;font-size:18px;letter-spacing:0.2em}
+.nav-links{display:flex;gap:32px;font-size:13px;font-weight:500;letter-spacing:0.18em}
+.nav-links a:hover{color:var(--ink-2)}
+
+.wrap{max-width:1440px;margin:0 auto;padding:0 32px}
+
+.hero{position:relative;min-height:88vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 0 64px;border-bottom:1px solid var(--line);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(255,255,255,0.08) 0%,transparent 50%),linear-gradient(180deg,#000 0%,#0a0a0a 50%,#000 100%);z-index:0}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:64px 64px;z-index:1;opacity:0.6}
+.hero-in{position:relative;z-index:2}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:0.3em;color:var(--ink-2);margin-bottom:24px;display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+.kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--ink);box-shadow:0 0 12px rgba(255,255,255,0.6);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.headline{font-size:clamp(72px,14vw,220px);font-weight:800;letter-spacing:-0.02em;line-height:0.85;margin-bottom:32px}
+.dek{font-family:var(--mono);font-size:14px;letter-spacing:0.08em;text-transform:none;color:var(--ink-2);max-width:680px;line-height:1.7;margin-bottom:48px}
+
+.tele{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tele-cell{padding:28px 24px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.tele-cell:last-child{border-right:none}
+.tele-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--ink-3)}
+.tele-cell .v{font-size:48px;font-weight:700;letter-spacing:-0.02em;line-height:1}
+.tele-cell .u{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;color:var(--ink-2)}
+@media(max-width:720px){.tele{grid-template-columns:1fr 1fr}.tele-cell:nth-child(2n){border-right:none}}
+
+section{padding:96px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:160px 1fr;gap:48px;margin-bottom:48px;align-items:start}
+.sec-num{font-family:var(--mono);font-size:13px;letter-spacing:0.18em;color:var(--ink-3);padding-top:18px;border-top:1px solid var(--line)}
+.sec-num strong{color:var(--ink);font-weight:700}
+.sec-title{font-size:clamp(40px,6vw,80px);font-weight:700;letter-spacing:-0.02em;line-height:0.95;max-width:1000px}
+.sec-sub{font-family:var(--mono);font-size:14px;letter-spacing:0.05em;text-transform:none;color:var(--ink-2);line-height:1.7;margin-top:24px;max-width:680px}
+.sec-sub+.sec-sub{margin-top:14px}
+@media(max-width:720px){.sec-head{grid-template-columns:1fr;gap:24px}.sec-num{padding-top:12px}}
+
+.pull{margin:48px 0;padding:48px 32px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:left}
+.pull-q{font-size:clamp(28px,4vw,52px);font-weight:600;letter-spacing:-0.01em;line-height:1.05;max-width:1000px}
+.pull-attr{margin-top:28px;font-family:var(--mono);font-size:12px;letter-spacing:0.15em;color:var(--ink-3)}
+
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:48px}
+.spec{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 24px}
+.spec .l{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--ink-3);margin-bottom:12px}
+.spec .n{font-size:56px;font-weight:700;letter-spacing:-0.02em;line-height:1;margin-bottom:8px}
+.spec .d{font-family:var(--mono);font-size:12px;letter-spacing:0.04em;text-transform:none;color:var(--ink-2);line-height:1.5}
+@media(max-width:720px){.specs{grid-template-columns:1fr}}
+
+.flow{display:grid;grid-template-columns:1fr auto 1fr;gap:48px;margin:48px 0;padding:48px 32px;border:1px solid var(--line);background:var(--bg-2);align-items:center}
+.flow-block .l{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--ink-3);margin-bottom:12px}
+.flow-block .h{font-size:36px;font-weight:700;letter-spacing:-0.02em;line-height:1}
+.flow-block .d{font-family:var(--mono);font-size:13px;letter-spacing:0.04em;text-transform:none;color:var(--ink-2);margin-top:12px;line-height:1.6}
+.flow-arrow{font-size:48px;color:var(--ink-3);font-weight:300}
+@media(max-width:720px){.flow{grid-template-columns:1fr;gap:24px}.flow-arrow{transform:rotate(90deg)}}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:48px}
+.card{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px;display:flex;flex-direction:column;gap:16px;min-height:240px}
+.card .t{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--ink-3)}
+.card .q{font-size:22px;font-weight:600;letter-spacing:-0.01em;line-height:1.2}
+.card .o{font-family:var(--mono);font-size:12px;letter-spacing:0.04em;text-transform:none;color:var(--ink-2);margin-top:auto;line-height:1.55}
+@media(max-width:720px){.grid3{grid-template-columns:1fr}}
+
+.timeline{margin-top:48px;display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.tl-step{flex:1;padding:24px;border:1px solid var(--line);min-width:140px;text-align:center}
+.tl-step.live{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tl-step .n{font-size:42px;font-weight:700;letter-spacing:-0.02em;line-height:1}
+.tl-step .l{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;color:inherit;opacity:0.7;margin-top:8px}
+.tl-arrow{padding:0 12px;color:var(--ink-3);font-family:var(--mono)}
+
+.compare{margin-top:48px;border:1px solid var(--line);border-bottom:none}
+.compare-row{display:grid;grid-template-columns:1.4fr 1.4fr 1.2fr;border-bottom:1px solid var(--line)}
+.compare-row > div{padding:18px 24px;border-right:1px solid var(--line);font-family:var(--mono);font-size:13px;letter-spacing:0.03em;text-transform:none;line-height:1.5;color:var(--ink-2)}
+.compare-row > div:last-child{border-right:none}
+.compare-row.head > div{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-3);background:var(--bg-2)}
+.compare-after{color:var(--ink) !important;font-weight:500 !important;text-transform:uppercase !important;letter-spacing:0.08em !important}
+@media(max-width:720px){.compare-row{grid-template-columns:1fr}.compare-row.head{display:none}}
+
+.lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:48px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.lesson{padding:32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lesson .n{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--ink-3);margin-bottom:14px}
+.lesson .h{font-size:24px;font-weight:700;letter-spacing:-0.01em;line-height:1.15;margin-bottom:14px}
+.lesson p{font-family:var(--mono);font-size:13px;letter-spacing:0.04em;text-transform:none;color:var(--ink-2);line-height:1.6}
+@media(max-width:720px){.lessons{grid-template-columns:1fr}}
+
+footer{padding:120px 0;text-align:center;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at top,rgba(255,255,255,0.08) 0%,transparent 60%)}
+footer h2{font-size:clamp(64px,12vw,160px);font-weight:800;letter-spacing:-0.03em;line-height:0.9}
+footer p{margin-top:24px;font-family:var(--mono);font-size:13px;letter-spacing:0.18em;color:var(--ink-2);text-transform:uppercase}
+.btn{display:inline-block;margin-top:48px;border:1px solid var(--ink);padding:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:0.2em;color:var(--ink);text-decoration:none;text-transform:uppercase;transition:all .2s}
+.btn:hover{background:var(--ink);color:var(--bg)}
+
+.media-hero{margin-top:48px;border:1px solid var(--line);background:#000;aspect-ratio:16/9;position:relative;overflow:hidden}
+.media-hero video,.media-hero img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.95}
+.media-hero .ov{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,0.6));z-index:2}
+.media-hero .tag{position:absolute;left:18px;top:18px;font-family:var(--mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);border:1px solid var(--line);padding:6px 12px;z-index:3}
+.media-wide{margin-top:48px;border:1px solid var(--line);background:#000;aspect-ratio:16/9;position:relative;overflow:hidden}
+.media-wide video,.media-wide img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.95}
+.media-caption{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-2);margin-top:14px;padding-left:14px;border-left:1px solid var(--ink-3)}
+.media-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}
+.media-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
+.media-tile{background:#000;border:1px solid var(--line);aspect-ratio:9/16;position:relative;overflow:hidden}
+.media-tile video,.media-tile img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.92}
+.media-tile .label{position:absolute;left:10px;bottom:10px;font-family:var(--mono);font-size:10px;color:var(--ink);letter-spacing:0.14em;text-transform:uppercase;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);border:1px solid var(--line);padding:4px 8px}
+@media(max-width:900px){.media-grid{grid-template-columns:repeat(2,1fr)}.media-grid-3{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="lightbox.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="portfolio-spacex.html" class="brand">HARRY ✕ HEIN</a>
+    <div class="nav-links">
+      <a href="portfolio-spacex.html">WORK</a>
+      <a href="portfolio-spacex.html">CONTACT</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap hero-in">
+    <div class="kicker"><span class="dot"></span><span>MISSION · PO-AI INTENT PALETTE</span><span>STATUS · LIVE</span><span>YEAR · 2025</span></div>
+    <h1 class="headline">SPEAK,<br>DON'T CLICK.</h1>
+    <p class="dek">A bilingual intent palette wired to Gemini tool-calling. Sellers ask in Myanmar or English. An LLM picks from 16 server-side tools. The page renders the answer as an inline card. No menus. No translation. 21 live in production of 28 MVP intents (45 mapped).</p>
+  </div>
+  <div class="wrap">
+    <div class="tele">
+      <div class="tele-cell"><div class="l">LIVE IN PROD</div><div class="v">21</div><div class="u">/ 28 MVP · 45 MAPPED</div></div>
+      <div class="tele-cell"><div class="l">LATENCY P95</div><div class="v">&lt;50</div><div class="u">MILLISECONDS</div></div>
+      <div class="tele-cell"><div class="l">TOOL VERBS</div><div class="v">16</div><div class="u">SCOPED · BUSINESSID</div></div>
+      <div class="tele-cell"><div class="l">LANGUAGES</div><div class="v">2</div><div class="u">MM · EN · MIXED</div></div>
+    </div>
+    <div class="media-hero">
+      <span class="tag">CAM 01 · PALETTE</span>
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/22-chain-restock.mp4" onerror="this.outerHTML='<img src=&quot;images/po-ai/hero-palette.webp&quot; alt=&quot;Po AI palette&quot;>'"></video>
+      <div class="ov"></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">PHASE <strong>01</strong> · THE PROBLEM</div>
+      <div>
+        <h2 class="sec-title">"SHOW ME PAST 2 WEEKS." THE DASHBOARD COULDN'T.</h2>
+        <p class="sec-sub">A Myanmar live-seller has one question every Sunday: <em>what did I sell in the past 2 weeks?</em> One sentence. Clear intent.</p>
+        <p class="sec-sub">The CRM dashboard turned that one sentence into a five-step hunt — and most sellers gave up halfway. Open. Filter. Translate. Scroll. Rebuild in Excel by hand.</p>
+      </div>
+    </div>
+    <div class="pull">
+      <div class="pull-q">"The seller already knew the question. The system made them prove it."</div>
+      <div class="pull-attr">FIELD OBSERVATION · 5 LIVE SESSIONS</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">PHASE <strong>02</strong> · RESEARCH</div>
+      <div>
+        <h2 class="sec-title">FIVE SELLERS.<br>ONE CRITICAL MOMENT.</h2>
+        <p class="sec-sub">Before mapping intents, I sat with sellers running real Facebook lives. Not a feature list — the moment of greatest friction.</p>
+      </div>
+    </div>
+    <div class="pull">
+      <div class="pull-q">"Every Sunday after the live, I want to know — what did I sell the past 2 weeks? The table has 600 rows. I scroll, lose count, give up."</div>
+      <div class="pull-attr">SELLER A · FASHION LIVE · 4Y EXPERIENCE</div>
+    </div>
+    <div class="specs">
+      <div class="spec"><div class="l">SELLERS</div><div class="n">5</div><div class="d">Interviewed in-context during real live sessions.</div></div>
+      <div class="spec"><div class="l">AVG EXPERIENCE</div><div class="n">4Y</div><div class="d">Live-commerce veterans. Not early adopters.</div></div>
+      <div class="spec"><div class="l">SHARED QUERY</div><div class="n">1</div><div class="d">"Show me the right slice of orders."</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">PHASE <strong>03</strong> · MAPPING</div>
+      <div>
+        <h2 class="sec-title">45 INTENTS. 6 SURFACES.<br>ONE FRONT DOOR.</h2>
+        <p class="sec-sub">From the research, every action a seller takes in a week — mapped. Grouped by domain, not by feature page. Live · Inventory · Orders+Customers · Marketing · Insights · Config.</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl-step"><div class="n">45</div><div class="l">MAPPED</div></div>
+      <div class="tl-arrow">→</div>
+      <div class="tl-step"><div class="n">38</div><div class="l">PRIORITIZED</div></div>
+      <div class="tl-arrow">→</div>
+      <div class="tl-step"><div class="n">28</div><div class="l">MVP SCOPE</div></div>
+      <div class="tl-arrow">→</div>
+      <div class="tl-step live"><div class="n">21</div><div class="l">LIVE IN PROD</div></div>
+    </div>
+    <div class="media-wide">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/01-palette-empty-state.mp4" onerror="this.parentElement.style.display='none'"></video>
+    </div>
+    <div class="media-caption">DEMO 03A · PALETTE EMPTY STATE · 45 INTENTS · 6 SURFACES</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">PHASE <strong>04</strong> · TOOL-CALLING</div>
+      <div>
+        <h2 class="sec-title">LLM AS CLASSIFIER.<br>TOOLS AS VERBS.</h2>
+        <p class="sec-sub">Gemini 2.5 Flash picks 1–6 tools per turn from a 16-verb vocabulary. The server runs them, scoped to businessId. A tool is a verb the AI is allowed to say.</p>
+      </div>
+    </div>
+    <div class="flow">
+      <div class="flow-block"><div class="l">INPUT</div><div class="h">NATURAL LANGUAGE</div><div class="d">"Show me past 2 weeks" — MM or EN or mixed.</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-block"><div class="l">OUTPUT</div><div class="h">INLINE CARD</div><div class="d">Filtered orders. Summary at top. Actions inline.</div></div>
+    </div>
+    <div class="media-grid">
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/17-list-products.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">list-products</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/18-product-detail.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">product-detail</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/19-low-stock.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">low-stock</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/21-stock-history.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">stock-history</div></div>
+    </div>
+    <div class="media-caption">CAM 02 · 4-TOOL CHAIN · CARD RENDER · LATENCY P95 &lt;50MS</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">PHASE <strong>05</strong> · BILINGUAL</div>
+      <div>
+        <h2 class="sec-title">MYANMAR ISN'T ENGLISH<br>IN DIFFERENT GLYPHS.</h2>
+        <p class="sec-sub">Postpositions, subject markers, stacked digits. Each needs first-class support, not retrofits.</p>
+      </div>
+    </div>
+    <div class="grid3">
+      <div class="card"><div class="t">ENGLISH</div><div class="q">"Show me past 2 weeks"</div><div class="o">→ list-orders · range=14d</div></div>
+      <div class="card"><div class="t">MYANMAR</div><div class="q">"ပြီးခဲ့တဲ့ ၂ ပတ်"</div><div class="o">→ list-orders · range=14d</div></div>
+      <div class="card"><div class="t">MIXED</div><div class="q">"customer Hnin past orders"</div><div class="o">→ search-customers + list-orders</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">PHASE <strong>06</strong> · INLINE CARDS</div>
+      <div>
+        <h2 class="sec-title">FROM PENDING TO PAID,<br>WITHOUT LEAVING THE PALETTE.</h2>
+        <p class="sec-sub">Cards, not chat bubbles. Browse the shelf. Spot what's low. Verify payment. Edit catalog. All in-flow.</p>
+      </div>
+    </div>
+    <div class="compare">
+      <div class="compare-row head"><div>TASK</div><div>BEFORE</div><div>AFTER</div></div>
+      <div class="compare-row"><div>See pending orders</div><div>Open Orders → filter PENDING → scroll</div><div class="compare-after">Type. Card. Done.</div></div>
+      <div class="compare-row"><div>Look up a customer</div><div>Customers → search → profile → tab</div><div class="compare-after">Type. Filtered list.</div></div>
+      <div class="compare-row"><div>Build a discount</div><div>Three-screen settings form</div><div class="compare-after">One inline card.</div></div>
+      <div class="compare-row"><div>Weekly revenue</div><div>No view. Ask backend.</div><div class="compare-after">Bar chart card.</div></div>
+      <div class="compare-row"><div>Query in Myanmar</div><div>Translate to English first</div><div class="compare-after">Type natively.</div></div>
+    </div>
+    <div class="media-grid-3">
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/02-list-orders.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">list-orders</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/03-order-detail.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">order-detail</div></div>
+      <div class="media-tile"><video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/12-customer-stats.mp4" onerror="this.parentElement.style.display='none'"></video><div class="label">customer-stats</div></div>
+    </div>
+    <div class="media-caption">CAM 03 · PENDING → PAID · END-TO-END · NO ROUTE CHANGES</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">PHASE <strong>07</strong> · IMPACT</div>
+      <div>
+        <h2 class="sec-title">WHAT I SET OUT TO HIT.</h2>
+        <p class="sec-sub">Output metrics — what the build had to clear before sellers could touch it.</p>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="spec"><div class="l">SHIPPED</div><div class="n">21</div><div class="d">P0 intents, live in production.</div></div>
+      <div class="spec"><div class="l">BILINGUAL COVERAGE</div><div class="n">28/28</div><div class="d">Every intent handles MM + EN.</div></div>
+      <div class="spec"><div class="l">NEW ENDPOINTS</div><div class="n">0</div><div class="d">Shipped on existing /api/b/*.</div></div>
+    </div>
+    <div class="media-wide">
+      <video autoplay loop muted playsinline preload="metadata" src="videos/po-ai/16-bulk-update-stock.mp4" onerror="this.parentElement.style.display='none'"></video>
+    </div>
+    <div class="media-caption">CAM 07 · BULK STOCK UPDATE · 0 HALLUCINATED SKUS · LATENCY P95 &lt;50MS</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">DEBRIEF · REFLECTION</div>
+      <div><h2 class="sec-title">WHAT I LEARNED.</h2></div>
+    </div>
+    <div class="lessons">
+      <div class="lesson"><div class="n">LESSON 01</div><div class="h">A COMMAND PALETTE ISN'T A UI PATTERN. IT'S A CONTRACT.</div><p>The seller speaks naturally; the system promises to meet them there.</p></div>
+      <div class="lesson"><div class="n">LESSON 02</div><div class="h">MYANMAR ISN'T ENGLISH IN DIFFERENT GLYPHS.</div><p>Postpositions and stacked digits need first-class support — not retrofits.</p></div>
+      <div class="lesson"><div class="n">LESSON 03</div><div class="h">MATCHING INTENT IS HALF THE PROBLEM.</div><p>Matching the user's expectation of the result is the other half.</p></div>
+      <div class="lesson"><div class="n">LESSON 04</div><div class="h">REGEX IS A FEATURE, NOT A FALLBACK.</div><p>Predictable behavior is itself a way of reducing what the user has to learn.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h2>LET'S BUILD<br>SOMETHING GREAT.</h2>
+  <p>BILINGUAL PRODUCT DESIGN · AI TOOL-CALLING · LIVE COMMERCE</p>
+  <a class="btn" href="portfolio-spacex.html">← RETURN TO MISSION CONTROL</a>
+</footer>
+
+<script src="lightbox.js" defer></script>
+</body>
+</html>

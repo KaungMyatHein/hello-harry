@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Hein — Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* FIGMA — black/white monochrome frame interrupted by pastel color blocks, magenta accent */
+:root{
+  --canvas:#ffffff; --ink:#000000; --paper:#fafafa;
+  --gray-100:#f4f4f5; --gray-200:#e4e4e7; --gray-400:#a1a1aa; --gray-600:#52525b;
+  --magenta:#ff3d8b; --magenta-deep:#d8246b;
+  --pastel-lime:#dfff7b; --pastel-lilac:#d6c6ff; --pastel-cream:#fff1d6;
+  --pastel-pink:#ffd6e0; --pastel-mint:#c6f3df; --pastel-coral:#ffbeb0;
+  --pastel-sky:#bfe7ff; --pastel-navy:#142340;
+  --sans:'Inter',-apple-system,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;font-weight:450;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+
+.nav{position:sticky;top:0;z-index:50;background:var(--canvas);border-bottom:1px solid var(--ink);}
+.nav-inner{max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--ink);}
+.brand-mark{display:inline-flex;align-items:center;}
+.brand-mark span{width:11px;height:11px;border-radius:50%;display:inline-block;margin-right:-3px;}
+.brand-mark .b1{background:var(--magenta);}
+.brand-mark .b2{background:var(--pastel-lime);}
+.brand-mark .b3{background:var(--pastel-lilac);}
+.brand-mark .b4{background:var(--pastel-coral);}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--ink);}
+.nav-links a:hover{color:var(--magenta);}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff !important;padding:9px 18px;border-radius:var(--radius);font-size:13px;font-weight:500;border:1px solid var(--ink);transition:all 120ms;}
+.btn:hover{background:var(--magenta);border-color:var(--magenta);}
+.btn-magenta{background:var(--magenta);border-color:var(--magenta);color:#fff !important;}
+.btn-magenta:hover{background:var(--magenta-deep);border-color:var(--magenta-deep);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink) !important;padding:9px 18px;border-radius:var(--radius);font-size:13px;font-weight:500;border:1px solid var(--ink);}
+.btn-ghost:hover{background:var(--pastel-lime);}
+
+.hero{padding:0;position:relative;}
+.hero-band{padding:80px 24px 56px;border-bottom:1px solid var(--ink);}
+.hero-inner{max-width:1280px;margin:0 auto;}
+.hero-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;font-family:var(--mono);font-size:11px;color:var(--ink);text-transform:uppercase;letter-spacing:1px;}
+.hero-meta .right{display:flex;gap:24px;}
+.hero-meta .right span{display:inline-flex;align-items:center;gap:6px;}
+.hero-meta .dot{width:7px;height:7px;border-radius:50%;background:#16a34a;display:inline-block;}
+.hero h1{font-size:clamp(64px,10vw,140px);font-weight:700;letter-spacing:-5px;line-height:0.92;color:var(--ink);margin-bottom:32px;}
+.hero h1 .pink{color:var(--magenta);}
+.hero-sub{font-size:21px;color:var(--ink);max-width:680px;margin-bottom:32px;line-height:1.45;font-weight:450;}
+.hero-cta{display:flex;gap:8px;flex-wrap:wrap;}
+
+.layers{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.layer{padding:36px 24px;border-right:1px solid var(--ink);position:relative;}
+.layer:last-child{border-right:none;}
+.layer.lime{background:var(--pastel-lime);}
+.layer.lilac{background:var(--pastel-lilac);}
+.layer.cream{background:var(--pastel-cream);}
+.layer.pink{background:var(--pastel-pink);}
+.layer-num{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+.layer-v{font-size:42px;font-weight:700;letter-spacing:-2px;line-height:1;margin-bottom:6px;}
+.layer-l{font-size:13px;color:var(--ink);opacity:0.7;}
+@media (max-width:900px){.layers{grid-template-columns:repeat(2,1fr);}.layer:nth-child(2){border-right:none;}.layer:nth-child(1),.layer:nth-child(2){border-bottom:1px solid var(--ink);}}
+
+.section{max-width:1280px;margin:0 auto;padding:88px 24px;}
+.sec-head{margin-bottom:40px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--ink);}
+.sec-meta{font-family:var(--mono);font-size:11px;color:var(--ink);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.sec-meta::before{content:"";width:8px;height:8px;background:var(--magenta);display:inline-block;}
+.sec-title{font-size:clamp(40px,5vw,68px);font-weight:700;letter-spacing:-2.4px;line-height:1.02;color:var(--ink);}
+.sec-sub{font-size:16px;color:var(--ink);margin-top:14px;max-width:620px;line-height:1.5;font-weight:450;}
+.sec-count{font-family:var(--mono);font-size:12px;color:var(--ink);}
+
+.featured-frame{display:grid;grid-template-columns:1.4fr 1fr;border:1px solid var(--ink);}
+.featured-frame > a{padding:40px;border-right:1px solid var(--ink);position:relative;}
+.featured-frame > a:last-child{border-right:none;}
+.featured-frame .a{background:var(--pastel-lime);}
+.featured-frame .b{background:var(--magenta);color:#fff;}
+@media (max-width:900px){.featured-frame{grid-template-columns:1fr;}.featured-frame > a{border-right:none;border-bottom:1px solid var(--ink);}}
+
+.grid{display:grid;border:1px solid var(--ink);border-top:none;}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid > a{padding:36px;border-right:1px solid var(--ink);position:relative;}
+.grid > a:last-child{border-right:none;}
+@media (max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr;}.grid > a{border-right:none;border-bottom:1px solid var(--ink);}.grid > a:last-child{border-bottom:none;}}
+
+.cell-tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:18px;display:inline-block;}
+.cell-h{font-size:32px;font-weight:700;letter-spacing:-1.2px;line-height:1.04;margin-bottom:14px;}
+.cell-h.small{font-size:24px;letter-spacing:-0.6px;}
+.cell-deck{font-size:14.5px;line-height:1.55;margin-bottom:20px;font-weight:450;}
+.cell-metrics{display:flex;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
+.cm-v{font-size:26px;font-weight:700;letter-spacing:-0.6px;line-height:1;}
+.cm-l{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;margin-top:4px;opacity:0.75;}
+.cell-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:1px;border-bottom:1.5px solid currentColor;padding-bottom:2px;}
+
+.bg-lime{background:var(--pastel-lime);}
+.bg-lilac{background:var(--pastel-lilac);}
+.bg-cream{background:var(--pastel-cream);}
+.bg-pink{background:var(--pastel-pink);}
+.bg-mint{background:var(--pastel-mint);}
+.bg-coral{background:var(--pastel-coral);}
+.bg-sky{background:var(--pastel-sky);}
+.bg-magenta{background:var(--magenta);color:#fff;}
+.bg-navy{background:var(--pastel-navy);color:#fff;}
+.bg-white{background:#fff;}
+
+.exp-frame{border:1px solid var(--ink);}
+.exp-row{display:grid;grid-template-columns:180px 1fr 200px 1.4fr;gap:24px;padding:22px 28px;border-bottom:1px solid var(--ink);align-items:center;}
+.exp-row:last-child{border-bottom:none;}
+.exp-row.head{background:var(--ink);color:#fff;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1.2px;padding:14px 28px;}
+.exp-period{font-family:var(--mono);font-size:13px;color:var(--ink);}
+.exp-co{font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-0.4px;display:flex;align-items:center;gap:10px;}
+.exp-chip{display:inline-block;width:14px;height:14px;flex-shrink:0;}
+.exp-role{font-size:14px;color:var(--ink);}
+.exp-role small{color:var(--gray-600);font-size:12px;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.exp-tag{font-family:var(--mono);font-size:10px;background:#fff;color:var(--ink);padding:3px 8px;border:1px solid var(--ink);text-transform:uppercase;letter-spacing:0.5px;}
+@media (max-width:900px){.exp-row{grid-template-columns:1fr;gap:6px;padding:18px;}.exp-row.head{display:none;}}
+
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--ink);}
+.testi{padding:40px;border-right:1px solid var(--ink);}
+.testi:last-child{border-right:none;}
+.testi.lilac{background:var(--pastel-lilac);}
+.testi.cream{background:var(--pastel-cream);}
+.testi-mark{font-size:48px;font-weight:700;line-height:0.6;margin-bottom:14px;color:var(--magenta);}
+.testi-text{font-size:19px;line-height:1.5;margin-bottom:22px;font-weight:450;}
+.testi-name{font-size:14px;font-weight:700;}
+.testi-role{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-top:2px;opacity:0.7;}
+@media (max-width:900px){.testi-grid{grid-template-columns:1fr;}.testi{border-right:none;border-bottom:1px solid var(--ink);}.testi:last-child{border-bottom:none;}}
+
+.edu{display:grid;grid-template-columns:1fr 1.5fr;border:1px solid var(--ink);}
+.edu > div{padding:40px;}
+.edu-left{background:var(--magenta);color:#fff;}
+.edu-right{background:var(--pastel-cream);border-left:1px solid var(--ink);}
+.edu-degree{font-size:30px;font-weight:700;letter-spacing:-1px;line-height:1.05;margin-bottom:10px;}
+.edu-school{font-size:15px;margin-bottom:4px;opacity:0.9;}
+.edu-period{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:1px;opacity:0.85;}
+.edu ul{display:grid;gap:12px;}
+.edu li{font-size:15.5px;padding-left:24px;position:relative;font-weight:450;}
+.edu li::before{content:"✓";position:absolute;left:0;font-weight:700;color:var(--magenta);}
+@media (max-width:900px){.edu{grid-template-columns:1fr;}.edu-right{border-left:none;border-top:1px solid var(--ink);}}
+
+.cta-band{padding:120px 24px;text-align:center;background:var(--pastel-lime);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.cta-band h2{font-size:clamp(48px,7vw,108px);font-weight:700;letter-spacing:-3.5px;line-height:0.95;margin-bottom:20px;color:var(--ink);}
+.cta-band h2 .pink{color:var(--magenta);}
+.cta-band p{font-size:18px;max-width:540px;margin:0 auto 32px;color:var(--ink);font-weight:450;}
+.cta-band .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+.footer{padding:32px 24px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink);text-transform:uppercase;letter-spacing:1.2px;}
+.footer a{color:var(--magenta);font-weight:600;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="brand-mark"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></span>
+      Harry Hein
+    </div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#voices">Voices</a>
+      <a href="#contact" class="btn btn-magenta">Hire me</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-band">
+    <div class="hero-inner">
+      <div class="hero-meta">
+        <span>Frame 01 — Index</span>
+        <div class="right">
+          <span><span class="dot"></span>Senior Product Designer</span>
+          <span>Available 2026</span>
+        </div>
+      </div>
+      <h1>Design.<br>Ship.<br><span class="pink">Measure.</span></h1>
+      <p class="hero-sub">AI-first systems for complex enterprise tooling — seven years of work that ships and gets measured.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-magenta">See the work</a>
+        <a href="#contact" class="btn-ghost">Get in touch →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="layers">
+    <div class="layer lime">
+      <div class="layer-num">01 / Experience</div>
+      <div class="layer-v">7 yrs</div>
+      <div class="layer-l">Shipping product</div>
+    </div>
+    <div class="layer lilac">
+      <div class="layer-num">02 / Case studies</div>
+      <div class="layer-v">5</div>
+      <div class="layer-l">Deep-dive features</div>
+    </div>
+    <div class="layer cream">
+      <div class="layer-num">03 / Companies</div>
+      <div class="layer-v">5</div>
+      <div class="layer-l">From Myanmar to Maldives</div>
+    </div>
+    <div class="layer pink">
+      <div class="layer-num">04 / Location</div>
+      <div class="layer-v">BKK</div>
+      <div class="layer-l">Remote-friendly</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">Layer / Selected Work</div>
+      <h2 class="sec-title">Cases that count.</h2>
+      <p class="sec-sub">Five deep-dives. Each one shipped, measured, and reflected on — with the actual numbers attached.</p>
+    </div>
+    <div class="sec-count">5 frames · selected</div>
+  </div>
+
+  <div class="featured-frame">
+    <a href="case-study-po-ai-intent-figma.html" class="a">
+      <div class="cell-tag">▲ Recommended · AI Product</div>
+      <h3 class="cell-h">Speak, don't click.</h3>
+      <p class="cell-deck">Replaced a traditional CRM dashboard with a bilingual intent palette. 28 intents in MVP, 21 already live — each rendering an inline action card. Sellers stop hunting menus and just say what they want.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">21</div><div class="cm-l">Live in Prod</div></div>
+        <div><div class="cm-v">&lt;50ms</div><div class="cm-l">Match Latency</div></div>
+      </div>
+      <span class="cell-cta">Open frame →</span>
+    </a>
+    <a href="case-study-design-system.html" class="b">
+      <div class="cell-tag">▲ Recommended · Design System</div>
+      <h3 class="cell-h small">Three platforms. One source of truth.</h3>
+      <p class="cell-deck">Maintaining one design system across POS, web, and mobile using a federated two-level architecture.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">Days→Hrs</div><div class="cm-l">Handover</div></div>
+        <div><div class="cm-v">100%</div><div class="cm-l">Consistency</div></div>
+      </div>
+      <span class="cell-cta">Open frame →</span>
+    </a>
+  </div>
+
+  <div class="grid grid-3">
+    <a href="case-study-pharmacy-pos.html" class="bg-cream">
+      <div class="cell-tag">▲ Recommended · POS</div>
+      <h3 class="cell-h small">Two stores. One system.</h3>
+      <p class="cell-deck">Redesigned a legacy Windows POS into a modern touchscreen system — 14 modules, 200+ screens.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">14+</div><div class="cm-l">Modules</div></div>
+        <div><div class="cm-v">200+</div><div class="cm-l">Screens</div></div>
+      </div>
+      <span class="cell-cta">Open frame →</span>
+    </a>
+    <a href="case-study-retail.html" class="bg-mint">
+      <div class="cell-tag">2025 · Retail</div>
+      <h3 class="cell-h small">From feedback to 427% ROI.</h3>
+      <p class="cell-deck">A broken return process had CS drowning in tickets. Four months of research, three test rounds, 427% ROI later.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">427%</div><div class="cm-l">ROI</div></div>
+        <div><div class="cm-v">&gt;50%</div><div class="cm-l">Time Cut</div></div>
+      </div>
+      <span class="cell-cta">Open frame →</span>
+    </a>
+    <a href="case-study-golden-paths.html" class="bg-navy">
+      <div class="cell-tag">2024 · AI Research</div>
+      <h3 class="cell-h small">Prototypes that never sleep.</h3>
+      <p class="cell-deck">User testing meant weeks of scheduling, facilitation, synthesis. I designed AI-simulated path analysis that matched human friction in 9 of 11 blockers tested.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">9/11</div><div class="cm-l">Matched</div></div>
+        <div><div class="cm-v">4.2×</div><div class="cm-l">Avg Runs</div></div>
+      </div>
+      <span class="cell-cta">Open frame →</span>
+    </a>
+  </div>
+</section>
+
+<section class="section" id="more">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">Layer / More Work</div>
+      <h2 class="sec-title">Side frames.</h2>
+    </div>
+    <div class="sec-count">5 frames</div>
+  </div>
+
+  <div class="grid grid-3">
+    <a href="case-study-resume-pipeline.html" class="bg-pink">
+      <div class="cell-tag">2025 · AI Tools</div>
+      <h3 class="cell-h small">47 apps. 2 interviews.</h3>
+      <p class="cell-deck">Sarah's resume wasn't the problem — the 40-minute tailoring ritual was. I replaced it with a 15-minute AI pipeline.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">40→15</div><div class="cm-l">Min/App</div></div>
+        <div><div class="cm-v">4→1</div><div class="cm-l">Tools</div></div>
+      </div>
+      <span class="cell-cta">Open →</span>
+    </a>
+    <a href="case-study-dashboard.html" class="bg-sky">
+      <div class="cell-tag">2022 · Finance</div>
+      <h3 class="cell-h small">Daily ritual to 104% ROI.</h3>
+      <p class="cell-deck">The finance team opened three apps for the same numbers. I made one screen instead.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">0.5h</div><div class="cm-l">Saved Daily</div></div>
+      </div>
+      <span class="cell-cta">Open →</span>
+    </a>
+    <a href="case-study-tokens.html" class="bg-coral">
+      <div class="cell-tag">2024 · Figma Plugin</div>
+      <h3 class="cell-h small">Unified design tokens.</h3>
+      <p class="cell-deck">Token exports meant four files and four chances to drift. One click instead.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">50%</div><div class="cm-l">Time Cut</div></div>
+        <div><div class="cm-v">~100%</div><div class="cm-l">Error Cut</div></div>
+      </div>
+      <span class="cell-cta">Open →</span>
+    </a>
+  </div>
+
+  <div class="grid grid-2" style="border-top:none;">
+    <a href="case-study-jar-aye-child.html" class="bg-lime">
+      <div class="cell-tag">2025 · EdTech · Children</div>
+      <h3 class="cell-h small">Making hard math feel tractable.</h3>
+      <p class="cell-deck">A HOTS mathematics learning app for 6–12 year olds aligned to the Singapore curriculum — productive struggle without frustration.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">5</div><div class="cm-l">HOTS Strategies</div></div>
+        <div><div class="cm-v">3</div><div class="cm-l">User Types</div></div>
+      </div>
+      <span class="cell-cta">Open →</span>
+    </a>
+    <a href="case-study-jar-aye-parent.html" class="bg-lilac">
+      <div class="cell-tag">2025 · EdTech · Parent UX</div>
+      <h3 class="cell-h small">Closing the visibility gap.</h3>
+      <p class="cell-deck">The companion app that gives non-expert parents meaningful insight into their child's HOTS mathematical development — without data overload.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">4</div><div class="cm-l">Mastery Tiers</div></div>
+        <div><div class="cm-v">3</div><div class="cm-l">Sub States</div></div>
+      </div>
+      <span class="cell-cta">Open →</span>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">Layer / Side Projects</div>
+      <h2 class="sec-title">Built on weekends.</h2>
+    </div>
+    <div class="sec-count">2 frames · live</div>
+  </div>
+  <div class="grid grid-2">
+    <a href="https://design-flash-card.vercel.app/" target="_blank" class="bg-magenta">
+      <div class="cell-tag">Live · Web App</div>
+      <h3 class="cell-h">Design flash cards.</h3>
+      <p class="cell-deck">Bilingual (English/Myanmar) app to master UX principles through active recall. Spaced repetition, category filtering, clean study UI.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">60+</div><div class="cm-l">UX Principles</div></div>
+        <div><div class="cm-v">2</div><div class="cm-l">Languages</div></div>
+        <div><div class="cm-v">$0</div><div class="cm-l">To Run</div></div>
+      </div>
+      <span class="cell-cta">Open ↗</span>
+    </a>
+    <a href="https://orchestra.figma.site/" target="_blank" class="bg-white">
+      <div class="cell-tag">Live · Figma Plugin</div>
+      <h3 class="cell-h">Orchestra syncs.</h3>
+      <p class="cell-deck">A Figma plugin that syncs Variables to GitHub and auto-builds design tokens for Web, iOS, Android, and Flutter.</p>
+      <div class="cell-metrics">
+        <div><div class="cm-v">4</div><div class="cm-l">Platforms</div></div>
+        <div><div class="cm-v">0</div><div class="cm-l">Manual Steps</div></div>
+      </div>
+      <span class="cell-cta">Open ↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">Layer / Experience</div>
+      <h2 class="sec-title">Where I've shipped.</h2>
+      <p class="sec-sub">Five companies. One career switch from engineering. A lot of Figma files.</p>
+    </div>
+    <div class="sec-count">5 rows</div>
+  </div>
+
+  <div class="exp-frame">
+    <div class="exp-row head">
+      <div>Period</div><div>Company</div><div>Role</div><div>Tags</div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">2023.12 — 2025.12</div>
+      <div class="exp-co"><span class="exp-chip" style="background:var(--magenta);"></span>Raytail</div>
+      <div class="exp-role">UX Lead<br><small>Maldives · Remote</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">200% UX ROI</span>
+        <span class="exp-tag">$10K Savings</span>
+        <span class="exp-tag">Design System</span>
+        <span class="exp-tag">WCAG</span>
+        <span class="exp-tag">A/B Testing</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">2022.10 — 2023.04</div>
+      <div class="exp-co"><span class="exp-chip" style="background:var(--pastel-lime);"></span>Lexagle</div>
+      <div class="exp-role">Senior UX Designer<br><small>Singapore</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">Legal Tech</span>
+        <span class="exp-tag">Feature Ownership</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">2021.11 — 2022.10</div>
+      <div class="exp-co"><span class="exp-chip" style="background:var(--pastel-lilac);"></span>Treedots</div>
+      <div class="exp-role">UX/UI Designer<br><small>Singapore</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">B2B Portal</span>
+        <span class="exp-tag">Launched DS</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">2020.09 — 2021.11</div>
+      <div class="exp-co"><span class="exp-chip" style="background:var(--pastel-coral);"></span>Nexlabs</div>
+      <div class="exp-role">Product Designer<br><small>Myanmar</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">Multi-industry</span>
+        <span class="exp-tag">Prototyping</span>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">2018.12 — 2020.09</div>
+      <div class="exp-co"><span class="exp-chip" style="background:var(--pastel-sky);"></span>Adventsoft</div>
+      <div class="exp-role">UI/UX Designer<br><small>Myanmar</small></div>
+      <div class="exp-tags">
+        <span class="exp-tag">Eng → Design</span>
+        <span class="exp-tag">Hi-Fi Prototypes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="voices">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">Layer / Voices</div>
+      <h2 class="sec-title">What they say.</h2>
+      <p class="sec-sub">Things colleagues and managers actually said — not paraphrased.</p>
+    </div>
+    <div class="sec-count">2 quotes</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi lilac">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">The amount of passion you've put into your work is very much appreciated and truly inspiring. It's incredible how often you exceed expectations.</p>
+      <div class="testi-name">Diana Eddie</div>
+      <div class="testi-role">Design Lead · Treedots</div>
+    </div>
+    <div class="testi cream">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">An amazing founder of the local UX design community. He shared his knowledge with the intention for designers to improve their skills.</p>
+      <div class="testi-name">Ricky Aung</div>
+      <div class="testi-role">Product Manager · Veneurific</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">Layer / Education</div>
+      <h2 class="sec-title">Foundation.</h2>
+    </div>
+  </div>
+  <div class="edu">
+    <div class="edu-left">
+      <div class="edu-degree">B.Sc. Computer Science</div>
+      <div class="edu-school">UCS Taunggyi</div>
+      <div class="edu-period">2013 — 2018 · Myanmar</div>
+    </div>
+    <div class="edu-right">
+      <ul>
+        <li>Human Computer Interaction & Digital Design focus</li>
+        <li>Graduated with Distinction in Cyber Security</li>
+        <li>Founded CS Club at University</li>
+        <li>Engineering background bridges design & development</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <h2>Let's build<br><span class="pink">something great.</span></h2>
+  <p>Looking for a team that ships things and cares whether they work. Open to senior roles in product and UX.</p>
+  <div class="row">
+    <a href="mailto:kaungmyat9702@gmail.com" class="btn btn-magenta">Email me</a>
+    <a href="https://www.linkedin.com/in/kaung-myat-hein-harry/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+    <a href="https://designer-os-test.vercel.app/resume/share/84rG99PQ" target="_blank" class="btn-ghost">Resume ↗</a>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2026 Harry Hein · Bangkok TH · <a href="portfolio.html">View original →</a>
+</footer>
+
+</body>
+</html>

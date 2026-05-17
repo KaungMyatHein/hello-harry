@@ -1140,8 +1140,8 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
           </div>
 
           <h1 class="term-big step" data-step="0.24">Harry <em>Hein.</em></h1>
-          <div class="term-role step" data-step="0.30">Senior Product Designer</div>
-          <div class="term-dim step" data-step="0.36">7 yrs active · 50+ features shipped · Based in Bangkok</div>
+          <div class="term-role step" data-step="0.30">Senior Product Designer — AI-first systems for complex enterprise tooling.</div>
+          <div class="term-dim step" data-step="0.36">7 yrs · designer who codes · Bangkok</div>
 
           <div class="term-sp"></div>
 
@@ -1394,7 +1394,72 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
     </div>
   </div>
 
-  <!-- ── Project 01 — Pharmacy POS ── -->
+  <!-- ── Project 01 — Multi-Level Design System ── -->
+  <div class="project featured sr" data-project data-filters="all recommended design-system">
+    <div class="proj-thumb">
+      <img src="images/DS/★ Showcase — Multi-Palette Demo.webp" alt="Multi-Palette Design System Demo" loading="lazy">
+      <div class="thumb-stat">100%<span>Consistency</span></div>
+    </div>
+    <div class="proj-info">
+      <div class="proj-recommend">Recommended</div>
+
+      <div class="proj-tags">
+        <span class="proj-tag">Design System</span>
+        <span class="proj-tag">Design Tokens</span>
+        <span class="proj-tag">Multi-Platform</span>
+        <span class="proj-tag">2025</span>
+      </div>
+      <h3 class="proj-title">Three Platforms. One Source of Truth.</h3>
+      <p class="proj-desc">Maintaining one design system across three radically different surfaces — POS, web, and mobile — using a federated two-level architecture with a shared global foundation and platform-specific libraries.</p>
+      <div class="proj-metrics">
+        <div><div class="pm-val">Days → Hours</div><div class="pm-label">Handover Time</div></div>
+        <div><div class="pm-val">100%</div><div class="pm-label">Design Consistency</div></div>
+      </div>
+      <a href="case-study-design-system.html" class="case-study-link">
+        View Full Case Study
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="proj-arrow" data-toggle>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="pd-block">
+          <div class="pd-label">What was broken</div>
+          <p class="pd-text">A single shared Figma library served POS terminals, web dashboards, and mobile apps simultaneously — three platforms with radically different interaction models, screen densities, and input methods. Brand changes triggered days of manual synchronisation across files, QA found inconsistencies every sprint, and new designers couldn't determine which component was canonical.</p>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">How I tackled it</div>
+          <ul class="pd-list">
+            <li>Audited existing files — found 47 duplicate colour values and 31 near-identical components</li>
+            <li>Designed a two-level architecture: global foundation (reference tokens, brand identity) + platform-specific libraries (semantic tokens, adapted components)</li>
+            <li>Defined a three-tier token model: reference → semantic → component</li>
+            <li>Established governance separating Foundation Team and Platform Team ownership</li>
+            <li>Built the Figma Variables → code tokens pipeline solo, reviewed with one engineer</li>
+          </ul>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">What shipped</div>
+          <p class="pd-text">A federated design system with one global foundation file and three platform-specific libraries (POS, web, mobile). Brand updates propagate automatically — one token change updates every screen across every platform instantly. Design-to-dev handover dropped from days to hours per component.</p>
+        </div>
+        <div class="pd-metrics">
+          <div class="pd-metric"><div class="pd-metric-val">Days→Hrs</div><div class="pd-metric-label">Handover Time</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">100%</div><div class="pd-metric-label">Design Consistency</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">3</div><div class="pd-metric-label">Platforms Unified</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">Senior PD</div><div class="pd-metric-label">Foundation Team</div></div>
+        </div>
+        <div class="pd-tools">
+          <span class="pd-tools-label">Tools:</span>
+          <span class="pd-tool">Figma</span>
+          <span class="pd-tool">Design Tokens</span>
+          <span class="pd-tool">Component Architecture</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Project 02 — Pharmacy POS ── -->
   <div class="project featured sr" data-project data-filters="all recommended saas">
     <div class="proj-thumb">
       <img src="images/ppos/New Payment Method.webp" alt="Two Stores. One System.">
@@ -1451,134 +1516,6 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
           <span class="pd-tool">Figma</span>
           <span class="pd-tool">FigJam</span>
           <span class="pd-tool">EightShapes Spec</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Project 01 — Golden Paths ── -->
-  <div class="project featured sr" data-project data-filters="all recommended ai saas">
-    <div class="proj-thumb">
-      <video data-src="images/AI%20Test/Showing%20Results.mp4" autoplay loop muted playsinline preload="none" alt="11pm. One Demo. Zero Testers."></video>
-    </div>
-    <div class="proj-info">
-      <div class="proj-recommend">Recommended</div>
-
-      <div class="proj-tags">
-        <span class="proj-tag">AI Product</span>
-        <span class="proj-tag">UX Research</span>
-        <span class="proj-tag">2024</span>
-      </div>
-      <h3 class="proj-title">11pm. One Demo. Zero Testers.</h3>
-      <p class="proj-desc">User testing used to mean weeks of scheduling, facilitation, and synthesis. I designed a feature that replaced that wait with instant AI-simulated path analysis — and it became the top reason users upgraded.</p>
-      <div class="proj-metrics">
-        <div><div class="pm-val">-99%</div><div class="pm-label">Wait Time</div></div>
-        <div><div class="pm-val">-40%</div><div class="pm-label">90-Day Churn</div></div>
-      </div>
-      <a href="case-study-golden-paths.html" class="case-study-link">
-        View Full Case Study
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <div class="proj-arrow" data-toggle>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-      </div>
-    </div>
-    <div class="proj-detail">
-      <div class="proj-detail-inner">
-        <div class="pd-block">
-          <div class="pd-label">What was broken</div>
-          <p class="pd-text">Traditional user testing required weeks of recruiting, scheduling, and synthesizing sessions. Product teams were shipping blindly between cycles. The cost and delay meant most flows never got tested at all — especially edge cases and onboarding paths.</p>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">How I tackled it</div>
-          <ul class="pd-list">
-            <li>Mapped the full spectrum of user testing pain points across PMs and designers</li>
-            <li>Defined the "Golden Path" concept: success goal defined in natural language</li>
-            <li>Designed the AI testing flow: prototype upload → path definition → simulated runs → annotated results</li>
-            <li>Built interactive annotated UI mockups tested with 8 internal users</li>
-            <li>Iterated on the results presentation to surface actionable insights, not just data</li>
-          </ul>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">What shipped</div>
-          <p class="pd-text">An AI-powered testing feature that simulates user paths through any prototype in seconds. Teams define a success goal, upload their design, and receive annotated path analysis with friction points and pass/fail breakdowns — no scheduling required. Became the #1 driver of Studio tier upgrades.</p>
-        </div>
-        <div class="pd-metrics">
-          <div class="pd-metric"><div class="pd-metric-val">-99%</div><div class="pd-metric-label">Wait Time Reduction</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">-40%</div><div class="pd-metric-label">90-Day Churn</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">#1</div><div class="pd-metric-label">Upgrade Driver</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">Instant</div><div class="pd-metric-label">Test Results</div></div>
-        </div>
-        <div class="pd-tools">
-          <span class="pd-tools-label">Tools:</span>
-          <span class="pd-tool">Figma</span>
-          <span class="pd-tool">Claude API</span>
-          <span class="pd-tool">Notion</span>
-          <span class="pd-tool">Miro</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Project 02 — Resume Pipeline ── -->
-  <div class="project featured sr" data-project data-filters="all ai saas">
-    <div class="proj-thumb">
-      <video data-src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mp4" autoplay loop muted playsinline preload="none" alt="47 Applications. 2 Interviews."></video>
-    </div>
-    <div class="proj-info">
-      <div class="proj-recommend">Recommended</div>
-
-      <div class="proj-tags">
-        <span class="proj-tag">AI Tools</span>
-        <span class="proj-tag">Product Design</span>
-        <span class="proj-tag">2025</span>
-      </div>
-      <h3 class="proj-title">47 Applications. 2 Interviews.</h3>
-      <p class="proj-desc">Sarah applied to 47 jobs and got 2 interviews. The problem wasn't her resume — it was the 40-minute manual tailoring ritual that still produced generic output. I replaced it with a 15-minute AI pipeline.</p>
-      <div class="proj-metrics">
-        <div><div class="pm-val">40→15</div><div class="pm-label">Min Per Application</div></div>
-        <div><div class="pm-val">4→1</div><div class="pm-label">Tools Replaced</div></div>
-      </div>
-      <a href="case-study-resume-pipeline.html" class="case-study-link">
-        View Full Case Study
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <div class="proj-arrow" data-toggle>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-      </div>
-    </div>
-    <div class="proj-detail">
-      <div class="proj-detail-inner">
-        <div class="pd-block">
-          <div class="pd-label">What was broken</div>
-          <p class="pd-text">Job seekers spent 90 minutes per application manually tailoring resumes — pasting JDs into Google Docs, highlighting keywords, rewriting bullets — and still produced generic output that recruiters could spot instantly. A 4.2% callback rate when industry average for well-tailored applications is 12–15%.</p>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">How I tackled it</div>
-          <ul class="pd-list">
-            <li>Shadowed job seekers through their application ritual end-to-end</li>
-            <li>Identified three distinct pain points: JD parsing, gap analysis, and cover letter tone</li>
-            <li>Designed a 4-step AI pipeline: JD scan → base resume → gap analysis → tailored output</li>
-            <li>Prototyped and tested with active job seekers across 3 rounds of feedback</li>
-            <li>Shipped within Designer OS as a complete feature workflow</li>
-          </ul>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">What shipped</div>
-          <p class="pd-text">A 4-step AI pipeline that scans the job description, maps it against a user's base resume, surfaces a plain-language gap analysis, and generates a tailored resume + cover letter in under 15 minutes. Reduced application time by 62% — from 40 minutes to 15 minutes per role.</p>
-        </div>
-        <div class="pd-metrics">
-          <div class="pd-metric"><div class="pd-metric-val">62%</div><div class="pd-metric-label">Faster Applications</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">40→15</div><div class="pd-metric-label">Min Per Application</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">&lt;5 min</div><div class="pd-metric-label">Cover Letter</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">4-step</div><div class="pd-metric-label">AI Pipeline</div></div>
-        </div>
-        <div class="pd-tools">
-          <span class="pd-tools-label">Tools:</span>
-          <span class="pd-tool">Figma</span>
-          <span class="pd-tool">Claude API</span>
-          <span class="pd-tool">Notion</span>
-          <span class="pd-tool">Framer</span>
         </div>
       </div>
     </div>
@@ -1648,8 +1585,148 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
     </div>
   </div>
 
-  <!-- ── Project 04 — Dashboard ── -->
-  <div class="project featured sr" data-project data-filters="all saas">
+  <!-- ── Project 04 — Golden Paths ── -->
+  <div class="project featured sr" data-project data-filters="all recommended ai saas">
+    <div class="proj-thumb">
+      <video data-src="images/AI%20Test/Showing%20Results.mp4" autoplay loop muted playsinline preload="none" alt="AI usability testing for prototypes that never sleep."></video>
+    </div>
+    <div class="proj-info">
+      <div class="proj-recommend">Recommended</div>
+
+      <div class="proj-tags">
+        <span class="proj-tag">AI Product</span>
+        <span class="proj-tag">UX Research</span>
+        <span class="proj-tag">2024</span>
+      </div>
+      <h3 class="proj-title">AI Usability Testing for Prototypes That Never Sleep.</h3>
+      <p class="proj-desc">User testing used to mean weeks of scheduling, facilitation, and synthesis. I designed a feature that replaced that wait with instant AI-simulated path analysis — and validated it matched human friction in 9 of 11 flow blockers tested.</p>
+      <div class="proj-metrics">
+        <div><div class="pm-val">9/11</div><div class="pm-label">Blockers Matched</div></div>
+        <div><div class="pm-val">4.2x</div><div class="pm-label">Avg AI Runs/Proto</div></div>
+      </div>
+      <a href="case-study-golden-paths.html" class="case-study-link">
+        View Full Case Study
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="proj-arrow" data-toggle>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="pd-block">
+          <div class="pd-label">What was broken</div>
+          <p class="pd-text">Traditional user testing required weeks of recruiting, scheduling, and synthesizing sessions. 8 product designers interviewed (peer designers, late 2024) — 6 of 8 reported skipping testing entirely under deadline. Edge cases and onboarding paths shipped untested.</p>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">How I tackled it</div>
+          <ul class="pd-list">
+            <li>Interviewed 8 peer product designers — surfaced 3 consistent pain points: scheduling overhead, vague feedback, after-hours need</li>
+            <li>Defined the "Golden Path" concept: success goal defined in natural language</li>
+            <li>Designed the AI testing flow: prototype upload → path definition → simulated runs → annotated results</li>
+            <li>Validated against human testers — AI flagged 9 of 11 navigation blockers independently</li>
+            <li>The 2 misses were visual polish issues — out of scope by design</li>
+          </ul>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">What shipped</div>
+          <p class="pd-text">An AI-powered testing feature that simulates user paths through any prototype in seconds. First 30 early-access sessions averaged 4.2 AI runs per prototype. 10 early adopters all ran at least one validation per major iteration. Became the #1 driver of Studio tier upgrades.</p>
+        </div>
+        <div class="pd-metrics">
+          <div class="pd-metric"><div class="pd-metric-val">9/11</div><div class="pd-metric-label">Blockers Matched</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">4.2x</div><div class="pd-metric-label">Avg AI Runs/Proto</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">10</div><div class="pd-metric-label">Early Adopters</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">#1</div><div class="pd-metric-label">Upgrade Driver</div></div>
+        </div>
+        <div class="pd-tools">
+          <span class="pd-tools-label">Tools:</span>
+          <span class="pd-tool">Figma</span>
+          <span class="pd-tool">Claude API</span>
+          <span class="pd-tool">Notion</span>
+          <span class="pd-tool">Miro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SEE MORE BUTTON -->
+<div class="see-more-wrap">
+  <button class="see-more-btn" id="seeMoreBtn">
+    <span>See Other Case Studies</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</div>
+
+<!-- OTHER CASE STUDIES -->
+<div class="projects projects-extra" id="projectsExtra">
+
+  <!-- ── Project 05 — Resume Pipeline ── -->
+  <div class="project sr" data-project data-filters="all ai saas">
+    <div class="proj-thumb">
+      <video data-src="images/resume-builder-resources/AI%20Suggesst%2C%20Designer%20Decide.mp4" autoplay loop muted playsinline preload="none" alt="47 Applications. 2 Interviews."></video>
+    </div>
+    <div class="proj-info">
+
+      <div class="proj-tags">
+        <span class="proj-tag">AI Tools</span>
+        <span class="proj-tag">Product Design</span>
+        <span class="proj-tag">2025</span>
+      </div>
+      <h3 class="proj-title">47 Applications. 2 Interviews.</h3>
+      <p class="proj-desc">Sarah applied to 47 jobs and got 2 interviews. The problem wasn't her resume — it was the 40-minute manual tailoring ritual that still produced generic output. I replaced it with a 15-minute AI pipeline.</p>
+      <div class="proj-metrics">
+        <div><div class="pm-val">40→15</div><div class="pm-label">Min Per Application</div></div>
+        <div><div class="pm-val">4→1</div><div class="pm-label">Tools Replaced</div></div>
+      </div>
+      <a href="case-study-resume-pipeline.html" class="case-study-link">
+        View Full Case Study
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="proj-arrow" data-toggle>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="pd-block">
+          <div class="pd-label">What was broken</div>
+          <p class="pd-text">Job seekers spent 90 minutes per application manually tailoring resumes — pasting JDs into Google Docs, highlighting keywords, rewriting bullets — and still produced generic output that recruiters could spot instantly. A 4.2% callback rate when industry average for well-tailored applications is 12–15%.</p>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">How I tackled it</div>
+          <ul class="pd-list">
+            <li>Shadowed job seekers through their application ritual end-to-end</li>
+            <li>Identified three distinct pain points: JD parsing, gap analysis, and cover letter tone</li>
+            <li>Designed a 4-step AI pipeline: JD scan → base resume → gap analysis → tailored output</li>
+            <li>Prototyped and tested with active job seekers across 3 rounds of feedback</li>
+            <li>Shipped within Designer OS as a complete feature workflow</li>
+          </ul>
+        </div>
+        <div class="pd-block">
+          <div class="pd-label">What shipped</div>
+          <p class="pd-text">A 4-step AI pipeline that scans the job description, maps it against a user's base resume, surfaces a plain-language gap analysis, and generates a tailored resume + cover letter in under 15 minutes. Reduced application time by 62% — from 40 minutes to 15 minutes per role.</p>
+        </div>
+        <div class="pd-metrics">
+          <div class="pd-metric"><div class="pd-metric-val">62%</div><div class="pd-metric-label">Faster Applications</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">40→15</div><div class="pd-metric-label">Min Per Application</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">&lt;5 min</div><div class="pd-metric-label">Cover Letter</div></div>
+          <div class="pd-metric"><div class="pd-metric-val">4-step</div><div class="pd-metric-label">AI Pipeline</div></div>
+        </div>
+        <div class="pd-tools">
+          <span class="pd-tools-label">Tools:</span>
+          <span class="pd-tool">Figma</span>
+          <span class="pd-tool">Claude API</span>
+          <span class="pd-tool">Notion</span>
+          <span class="pd-tool">Framer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Project 06 — Dashboard ── -->
+  <div class="project sr" data-project data-filters="all saas">
     <div class="proj-thumb">
       <img src="images/dash-ui-new.webp" alt="Dashboard consolidation" loading="lazy">
       <div class="thumb-stat">0.5h<span>saved daily</span></div>
@@ -1711,85 +1788,7 @@ a,button,[data-toggle],.proj-arrow,.filter-btn,.case-study-link,[role="button"]{
     </div>
   </div>
 
-</div>
-
-<!-- SEE MORE BUTTON -->
-<div class="see-more-wrap">
-  <button class="see-more-btn" id="seeMoreBtn">
-    <span>See Other Case Studies</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </button>
-</div>
-
-<!-- OTHER CASE STUDIES -->
-<div class="projects projects-extra" id="projectsExtra">
-
-  <!-- ── Project 05 — Multi-Level Design System ── -->
-  <div class="project sr" data-project data-filters="all recommended design-system">
-    <div class="proj-thumb">
-      <img src="images/DS/★ Showcase — Multi-Palette Demo.webp" alt="Multi-Palette Design System Demo" loading="lazy">
-      <div class="thumb-stat">100%<span>Consistency</span></div>
-    </div>
-    <div class="proj-info">
-      <div class="proj-recommend">Recommended</div>
-
-      <div class="proj-tags">
-        <span class="proj-tag">Design System</span>
-        <span class="proj-tag">Design Tokens</span>
-        <span class="proj-tag">Multi-Platform</span>
-        <span class="proj-tag">2025</span>
-      </div>
-      <h3 class="proj-title">Three Platforms. One Source of Truth.</h3>
-      <p class="proj-desc">Maintaining one design system across three radically different surfaces — POS, web, and mobile — using a federated two-level architecture with a shared global foundation and platform-specific libraries.</p>
-      <div class="proj-metrics">
-        <div><div class="pm-val">70–90%</div><div class="pm-label">Faster Handover</div></div>
-        <div><div class="pm-val">100%</div><div class="pm-label">Design Consistency</div></div>
-      </div>
-      <a href="case-study-design-system.html" class="case-study-link">
-        View Full Case Study
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <div class="proj-arrow" data-toggle>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-      </div>
-    </div>
-    <div class="proj-detail">
-      <div class="proj-detail-inner">
-        <div class="pd-block">
-          <div class="pd-label">What was broken</div>
-          <p class="pd-text">A single shared Figma library served POS terminals, web dashboards, and mobile apps simultaneously — three platforms with radically different interaction models, screen densities, and input methods. Brand changes triggered days of manual synchronisation across files, QA found inconsistencies every sprint, and new designers couldn't determine which component was canonical.</p>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">How I tackled it</div>
-          <ul class="pd-list">
-            <li>Audited existing files — found 47 duplicate colour values and 31 near-identical components</li>
-            <li>Designed a two-level architecture: global foundation (reference tokens, brand identity) + platform-specific libraries (semantic tokens, adapted components)</li>
-            <li>Defined a three-tier token model: reference → semantic → component</li>
-            <li>Established governance model separating foundation team and platform team ownership</li>
-            <li>Documented POS-specific constraints: 48px touch targets, dark surface default, prominent error states</li>
-          </ul>
-        </div>
-        <div class="pd-block">
-          <div class="pd-label">What shipped</div>
-          <p class="pd-text">A federated design system with one global foundation file and three platform-specific libraries (POS, web, mobile). Brand updates propagate automatically — one token change updates every screen across every platform instantly. Design-to-dev handover dropped from 3–5 days to under one day.</p>
-        </div>
-        <div class="pd-metrics">
-          <div class="pd-metric"><div class="pd-metric-val">70–90%</div><div class="pd-metric-label">Faster Handover</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">100%</div><div class="pd-metric-label">Design Consistency</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">50–80%</div><div class="pd-metric-label">Fewer Tickets</div></div>
-          <div class="pd-metric"><div class="pd-metric-val">3</div><div class="pd-metric-label">Platforms Unified</div></div>
-        </div>
-        <div class="pd-tools">
-          <span class="pd-tools-label">Tools:</span>
-          <span class="pd-tool">Figma</span>
-          <span class="pd-tool">Design Tokens</span>
-          <span class="pd-tool">Component Architecture</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Project 06 — Tokens ── -->
+  <!-- ── Project 07 — Tokens ── -->
   <div class="project sr" data-project data-filters="all design-system">
     <div class="proj-thumb">
       <img src="images/coverphoto/4.svg" alt="Design Tokens Generator" loading="lazy">
