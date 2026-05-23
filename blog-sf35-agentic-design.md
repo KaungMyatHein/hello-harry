@@ -236,4 +236,4 @@ Headline:
 
 ---
 
-See the assets repo: [github.com/KaungMyatHein/sf35-case-study-assets](https://github.com/KaungMyatHein/sf35-case-study-assets).
+Explore more case studies and design essays: [Back to portfolio](portfolio-hybrid.html).
