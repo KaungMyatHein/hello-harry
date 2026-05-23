@@ -181,11 +181,15 @@ The handoff doc: 4 component contracts with explicit "Don'ts" sections, 7 design
 | Handoff | ~0.5–1 day | ~19 min | *~15–25×* |
 | **Total** | **~2.5–5.5 working days** | **~1h 53m** | *~10–25×* |
 
-### Where Figma Make still wins
+### Where the traditional process still needs Figma
 
-1. **Visual exploration before constraints are set** — Figma Make diverges faster than ASCII layouts.
-2. **Design-system maintenance** — Figma variables + Code Connect remain the cleanest DS sync.
-3. **Stakeholder reviews and marketing mockups** — pixel-perfect frames are still the right artifact.
+These aren't Figma's intrinsic strengths — they're gaps in the **traditional design process** that pull you back into a Figma file.
+
+1. **Design-system maintenance — traditional process still needs a Figma source of truth.** Without Figma variables + Code Connect, the DS drifts between design and code. The agentic flow ships directly against code tokens with no parallel source; the traditional flow maintains two and Figma is the cleanest second source available.
+2. **Stakeholder reviews — traditional process still needs pixel-perfect frames.** When leadership wants to see the work *before* the working thing exists, traditional teams fabricate slide-ready mockups. The agentic flow shows the running product itself — only if the org will review a working build instead of a deck.
+3. **Visual exploration — traditional process still needs prompt-driven divergence.** When the brief isn't defined yet, Figma Make diverges faster than ASCII. The agentic flow is tuned for convergence once constraints are clear; before that, traditional process still has the edge on raw visual divergence.
+
+Each of these is the traditional process telling on itself — it produces artifacts (design files, slide decks, mood boards) that exist because the working thing doesn't yet. That's where Figma still earns its seat.
 
 ---
 
