@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Figma to Agentic Design — 1h 53m to Shippable · Harry Hein</title>
+
+<!-- SEO -->
+<meta name="description" content="A case study of shipping a real Cmd-K spotlight feature in 1 hour 53 minutes — PRD to engineering-ready handoff — without opening Figma once. Side-by-side against Figma Make + polish.">
+<meta name="author" content="Harry Hein">
+<meta name="keywords" content="Agentic Design, Agent Harry, Claude Code, Figma Make, AI-first Design, Product Design, Cmd-K Spotlight, Harry Hein">
+<link rel="canonical" href="https://hello-harry.vercel.app/blog-sf35-agentic-design.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Figma to Agentic Design — 1h 53m to Shippable">
+<meta property="og:description" content="PRD to engineering-ready handoff in 1h 53m. Zero Figma files opened. A side-by-side against the Figma Make + polish baseline.">
+<meta property="og:image" content="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png">
+<meta property="og:image:secure_url" content="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="SF-35 spotlight modal open inside the real /clinic/dashboard route.">
+<meta property="og:url" content="https://hello-harry.vercel.app/blog-sf35-agentic-design.html">
+<meta property="og:site_name" content="Harry Hein · Portfolio">
+<meta property="article:author" content="Harry Hein">
+<meta property="article:section" content="Design Essays">
+<meta property="article:tag" content="Agentic Design">
+<meta property="article:tag" content="Agent Harry">
+<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="Figma Make">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="From Figma to Agentic Design — 1h 53m to Shippable">
+<meta name="twitter:description" content="PRD to engineering-ready handoff in 1h 53m. Zero Figma files opened.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png">
+<meta name="twitter:image:alt" content="SF-35 spotlight modal open inside the real /clinic/dashboard route.">
+<meta name="twitter:creator" content="@harryhein">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --canvas:#fafafa; --inset:#f4f4f5;
+  --ink:#0a0a0a; --ink-soft:#1f1f22; --muted:#5a5a5f; --dim:#737378;
+  --hairline:#e7e7e8; --hairline-soft:#efefef;
+  --ps-blue:#0066cc; --ps-blue-deep:#003791; --ps-blue-light:#3da5f5;
+  --accent:var(--ps-blue);
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --radius:14px; --radius-sm:8px; --radius-lg:20px; --pill:9999px;
+  --shadow-card:0 1px 2px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.05);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{background:var(--paper);color:var(--ink-soft);font-family:var(--sans);font-size:17px;line-height:1.65;letter-spacing:-0.012em;}
+a{color:inherit;text-decoration:none;transition:color 150ms ease;}
+strong{font-weight:600;color:var(--ink);}
+em{font-style:italic;color:inherit;}
+code{font-family:var(--mono);font-size:0.86em;background:var(--inset);padding:1px 6px;border-radius:5px;color:var(--ink);}
+ul,ol{list-style:none;}
+
+.nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,0.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hairline-soft);}
+.nav-inner{max-width:880px;margin:0 auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+.brand-mark{width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;font-family:var(--mono);}
+.nav-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);font-weight:500;}
+.nav-back::before{content:"‹";font-size:18px;line-height:0;}
+.nav-back:hover{color:var(--ink);}
+
+.hero{padding:88px 28px 40px;}
+.hero-inner{max-width:760px;margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:6px 14px;border-radius:var(--pill);font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--ps-blue);box-shadow:0 0 8px rgba(0,102,204,0.6);}
+h1.title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,68px);line-height:1.04;letter-spacing:-0.02em;color:var(--ink);margin-bottom:22px;}
+.tagline{font-size:clamp(18px,1.8vw,21px);color:var(--ink);line-height:1.5;letter-spacing:-0.012em;max-width:640px;margin-bottom:28px;font-style:italic;}
+.tagline strong{font-style:normal;}
+.meta-row{display:flex;flex-wrap:wrap;gap:18px;padding:18px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);margin-bottom:36px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);}
+.meta-row span strong{color:var(--ink);font-weight:600;letter-spacing:0;text-transform:none;font-family:var(--sans);font-size:13px;margin-left:6px;}
+
+.media{margin:32px 0;border-radius:var(--radius-lg);overflow:hidden;background:#000;box-shadow:var(--shadow-card);position:relative;cursor:zoom-in;transition:transform 0.3s ease,box-shadow 0.3s ease;}
+.media:hover{transform:scale(1.005);box-shadow:0 8px 28px rgba(0,0,0,0.12),0 2px 6px rgba(0,0,0,0.08);}
+.media video,.media img{display:block;width:100%;height:auto;}
+.media::after{content:"";position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 21l-4.35-4.35'/><circle cx='10.5' cy='10.5' r='7.5'/><line x1='10.5' y1='7' x2='10.5' y2='14'/><line x1='7' y1='10.5' x2='14' y2='10.5'/></svg>");background-position:center;background-repeat:no-repeat;background-size:18px;opacity:0;transition:opacity 0.2s ease;pointer-events:none;}
+.media:hover::after{opacity:1;}
+.media-cap{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--dim);text-transform:uppercase;margin-top:10px;text-align:center;}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s ease;}
+.lightbox.open{opacity:1;pointer-events:all;}
+.lightbox-content{max-width:92vw;max-height:90vh;display:flex;align-items:center;justify-content:center;transform:scale(0.96);transition:transform 0.3s cubic-bezier(0.2,0.8,0.3,1);}
+.lightbox.open .lightbox-content{transform:scale(1);}
+.lightbox-content video,.lightbox-content img{max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);background:#000;display:block;}
+.lightbox-close{position:fixed;top:24px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.18);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s ease,transform 0.2s ease;z-index:1001;}
+.lightbox-close:hover{background:rgba(255,255,255,0.18);transform:rotate(90deg);}
+.lightbox-close svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.lightbox-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);z-index:1001;}
+.lightbox-hint kbd{font-family:var(--mono);font-size:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);padding:2px 6px;border-radius:4px;color:#fff;margin:0 2px;}
+
+/* SHARE BAR */
+.share{margin:64px auto 0;max-width:820px;padding:32px 28px;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);}
+.share-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+.share-label{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;}
+.share-label::before{content:"";width:24px;height:1px;background:currentColor;opacity:0.4;}
+.share-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.share-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--paper);border:1px solid var(--hairline);color:var(--ink-soft);cursor:pointer;transition:background 0.18s ease,border-color 0.18s ease,color 0.18s ease,transform 0.18s ease;text-decoration:none;font-family:var(--sans);}
+.share-btn:hover{transform:translateY(-2px);border-color:var(--ink);color:var(--ink);background:var(--canvas);}
+.share-btn svg{width:18px;height:18px;}
+.share-btn.x:hover{background:#0a0a0a;color:#fff;border-color:#0a0a0a;}
+.share-btn.linkedin:hover{background:#0a66c2;color:#fff;border-color:#0a66c2;}
+.share-btn.facebook:hover{background:#1877f2;color:#fff;border-color:#1877f2;}
+.share-btn.copy:hover{background:var(--ps-blue);color:#fff;border-color:var(--ps-blue);}
+.share-btn.native:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.share-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:10px 18px;border-radius:var(--pill);opacity:0;pointer-events:none;transition:opacity 0.25s ease,transform 0.25s ease;z-index:2000;box-shadow:0 8px 24px rgba(0,0,0,0.2);}
+.share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media (max-width:520px){
+  .share{padding:28px 18px;}
+  .share-row{justify-content:center;flex-direction:column;}
+  .share-label{order:-1;}
+}
+
+section{padding:48px 28px;max-width:820px;margin:0 auto;}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,42px);line-height:1.1;letter-spacing:-0.018em;color:var(--ink);margin-bottom:22px;}
+h2 .num{display:inline-block;font-family:var(--mono);font-size:14px;font-weight:500;color:var(--ps-blue);letter-spacing:0.1em;margin-right:14px;vertical-align:middle;}
+h3{font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;margin:28px 0 10px;}
+p{margin-bottom:18px;max-width:680px;}
+p:last-child{margin-bottom:0;}
+
+ul.bullets,ol.numbered{margin:18px 0 22px;padding-left:0;}
+ul.bullets li,ol.numbered li{position:relative;padding:6px 0 6px 28px;font-size:17px;line-height:1.6;color:var(--ink-soft);}
+ul.bullets li::before{content:"";position:absolute;left:8px;top:16px;width:6px;height:6px;border-radius:50%;background:var(--ps-blue);}
+ol.numbered{counter-reset:n;}
+ol.numbered li{counter-increment:n;}
+ol.numbered li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:6px;font-family:var(--mono);font-size:12px;color:var(--ps-blue);font-weight:600;letter-spacing:0.06em;}
+
+.quote{margin:32px 0;padding:24px 28px 24px 32px;background:linear-gradient(135deg,rgba(0,102,204,0.05) 0%,rgba(0,102,204,0.015) 100%);border-left:3px solid var(--ps-blue);border-radius:0 var(--radius-lg) var(--radius-lg) 0;font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--ink);font-style:italic;letter-spacing:-0.012em;}
+
+.tbl{margin:28px 0;border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;background:var(--paper);}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;}
+.tbl th{background:var(--canvas);text-align:left;padding:14px 18px;font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);border-bottom:1px solid var(--hairline);}
+.tbl td{padding:14px 18px;border-bottom:1px solid var(--hairline-soft);color:var(--ink-soft);vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl td:first-child{font-weight:500;color:var(--ink);width:32%;}
+.tbl em{color:var(--ps-blue);font-style:italic;}
+
+.stat-grid{margin:28px 0 36px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media (max-width:680px){.stat-grid{grid-template-columns:repeat(2,1fr);}}
+.stat-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:20px 18px;display:flex;flex-direction:column;gap:6px;}
+.stat-card .num{font-family:var(--serif);font-size:clamp(28px,3.4vw,38px);line-height:1;color:var(--ink);letter-spacing:-0.02em;}
+.stat-card .lbl{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+
+.divider{margin:56px auto;max-width:680px;border:none;border-top:1px solid var(--hairline);}
+
+.cta{margin:64px auto 24px;max-width:760px;padding:40px 32px;background:var(--ink);color:#fff;border-radius:var(--radius-lg);text-align:center;}
+.cta .cta-eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.55);margin-bottom:14px;}
+.cta h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.4vw,36px);color:#fff;letter-spacing:-0.018em;line-height:1.2;margin-bottom:14px;}
+.cta p{color:rgba(255,255,255,0.7);font-size:16px;margin:0 auto 24px;max-width:520px;}
+.cta a.btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--ink);font-weight:500;padding:14px 24px;border-radius:var(--pill);font-size:14px;letter-spacing:-0.005em;transition:transform 150ms ease;}
+.cta a.btn:hover{transform:translateY(-1px);}
+.cta a.btn::after{content:"→";font-size:16px;}
+
+footer{padding:32px 28px 56px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;}
+
+@media (max-width:680px){
+  .nav-inner{padding:0 18px;}
+  .hero{padding:56px 18px 28px;}
+  section{padding:36px 18px;}
+  h1.title{font-size:clamp(36px,9vw,52px);}
+  .quote{padding:20px 22px 20px 26px;font-size:19px;}
+  .tbl table{font-size:14px;}
+  .tbl th,.tbl td{padding:12px 14px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="portfolio-hybrid.html">
+      <span class="brand-mark">H</span>
+      <span class="brand-label">Harry Hein</span>
+    </a>
+    <a class="nav-back" href="portfolio-hybrid.html">Back to work</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span>Blog · Process Essay · May 2026</div>
+    <h1 class="title">From Figma to Agentic Design — 1h 53m to Shippable</h1>
+    <p class="tagline"><strong>Figma is no longer the mandatory tool for shipping a working interaction.</strong></p>
+    <div class="meta-row">
+      <span>Author <strong>Harry Hein</strong></span>
+      <span>Topic <strong>Agentic Design</strong></span>
+      <span>Read <strong>7 min</strong></span>
+    </div>
+    <div class="media">
+      <img src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png" alt="SF-35 spotlight modal open inside the real /clinic/dashboard route. The ⌘K keycap badge sits in the top-bar search input.">
+    </div>
+    <p class="media-cap">SF-35 in use — captured inside the real <code>/clinic/dashboard</code> route.</p>
+  </div>
+</header>
+
+<section>
+  <h2><span class="num">01</span>The 1h 53m benchmark</h2>
+  <p>One Cmd-K spotlight. Multi-branch dental clinic. Burmese receptionists who type the phone number before they say the patient's name.</p>
+  <p>The feature didn't exist at the start of the session. Less than two hours later it was wired into the production headers, opened on every portal route, and shipped with a complete engineering handoff.</p>
+  <p>I designed it without opening Figma once.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">1h 53m</div><div class="lbl">Wall-clock total</div></div>
+    <div class="stat-card"><div class="num">0</div><div class="lbl">Figma files opened</div></div>
+    <div class="stat-card"><div class="num">5</div><div class="lbl">Mandatory states</div></div>
+    <div class="stat-card"><div class="num">4</div><div class="lbl">Component contracts</div></div>
+  </div>
+
+  <p>This essay is the side-by-side: what shipped via <strong>Agent Harry</strong> — my multi-agent pipeline running inside Claude Code — against what the same scope would cost via <strong>Figma Make + polish</strong>, the current default for solo designers doing modern UI work.</p>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Phase</th><th>Wall-clock</th><th>What got shipped</th></tr></thead>
+      <tbody>
+        <tr><td>1 — Discovery</td><td>~3 min</td><td>PRD mirrored from Notion, source of truth set</td></tr>
+        <tr><td>2 — Define</td><td>~48 min</td><td>304-line lo-fi handoff + locked spec + 13 round-2 deltas</td></tr>
+        <tr><td>3 — Deliver</td><td>~43 min</td><td>10 prototype files + 2 new production components wired into real headers</td></tr>
+        <tr><td>4 — Handoff</td><td>~19 min</td><td>4 component contracts · 7 design tokens · 6 telemetry events · 10-step a11y QA script</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <h2><span class="num">02</span>Agent + Grill — where the leverage compounds</h2>
+  <p>The speedup isn't from agents alone. It isn't from grilling alone either. It's from the <strong>combination</strong> — specialised agents that do the work, plus a grilling discipline that calibrates the work to your specific users, data model, and product conventions.</p>
+
+  <h3>The agents that did the work</h3>
+  <p>Agent Harry is a 15-subagent pipeline running inside Claude Code. For SF-35, five agents carried the load:</p>
+
+  <ul class="bullets">
+    <li><strong><code>orchestrator</code></strong> — parsed the kickoff command, fetched SF-35 from the Notion Sub-Features database, queued the downstream agents in dependency order, and held each one until its predecessor's grill round finished.</li>
+    <li><strong><code>lo-fi-designer</code></strong> — produced a 304-line markdown handoff with three ASCII layout alternatives (Primary / Alternative / Risky), a Mermaid userflow, a design-system inventory, and 5 open questions. <em>Never drew only one layout</em> — the agent's own anti-patterns list forbids it.</li>
+    <li><strong><code>design-engineer</code></strong> — three iterations producing real Next.js + React code. 10 prototype files, a mock backend with realistic 800ms <code>Promise.all</code> delay, all 5 mandatory states wired behind a dev chip + query params. Iteration 3 wired the spotlight into the real production headers.</li>
+    <li><strong><code>handoff-engineer</code></strong> — read every prior artifact (PRD, lo-fi, prototype source, audit ledger, production code) and composed a decision-grade engineering doc: 4 component contracts with "Don'ts", 7 design tokens flagged locked-or-swappable, 6 telemetry events with full payload schemas, a 10-step a11y test script.</li>
+    <li><strong><code>grill-me</code></strong> — the calibration layer wrapped around all four. Ran four rounds total: lock the spec, polish the lo-fi, find code bugs, scope the handoff.</li>
+  </ul>
+
+  <p>Each agent has its own anti-patterns list. Each one writes its work product as a versioned local artifact, so the next agent in the chain reads <em>real input</em>, not a verbal handoff. That's what makes the pipeline composable instead of brittle.</p>
+
+  <h3>What grilling adds on top</h3>
+  <p>The agents would still ship something competent without grilling. With grilling, they ship something <em>calibrated</em>. Four rounds, four different leverage points:</p>
+
+  <ul class="bullets">
+    <li><strong>Round 1 (lock the spec, 7 min).</strong> Twelve load-bearing decisions before a pixel is drawn: corpus scope, match fields, ranking tiers, latency budget, cross-branch fallback. The grill flagged that phone matching would table-scan without a new DB index — captured as a backend prerequisite SF before the prototype even started.</li>
+    <li><strong>Round 2 (polish the lo-fi, 30 min).</strong> Thirteen deltas the lo-fi-designer missed: a missing loading state, an action-bar layout shift, a dead-end no-results state, three discoverability layers. Each folded back into the locked spec.</li>
+    <li><strong>Round 3 (grill the code, 12 min).</strong> Five real bugs that pure spec-grilling could not have caught:
+      <ol class="numbered" style="margin-top:14px">
+        <li><strong>Fake database relationship</strong> — patients don't carry a direct branch reference; scope is inferred through appointments. Engineering would have rewritten it.</li>
+        <li><strong>useEffect race</strong> — forced "Loading" state would flash for &lt;1s before debounced search overwrote it.</li>
+        <li><strong>"Open Daw" doesn't mean what you think.</strong> For Burmese patients with honorifics (<em>Daw Khin Mar Lay</em>, <em>U Tin Aung</em>), the first word IS the honorific. Fix: a tiny dictionary stripping Daw / U / Ma / Ko / Maung / Mr / Mrs / Dr.</li>
+        <li><strong>Unspecified affordance</strong> — design-engineer slipped in a "Reset to {branchLabel}" link. Kept it, but documented it as an addition with a kill switch.</li>
+        <li><strong>Mobile sheet wasn't built</strong> — deferred per Round 1, captured as a backlog SF with <code>TODO(SF-35)</code>, not pretended-shipped.</li>
+      </ol>
+    </li>
+    <li><strong>Round 4 (scope the handoff, 7 min).</strong> Seven decisions about what the handoff doc must contain versus what stays open. Telemetry expanded from the PRD's 1 event to 6 events with full payloads. Each component got a "when NOT to use this" section.</li>
+  </ul>
+
+  <div class="quote">"Agents ship the work. Grilling makes sure the work is calibrated to <em>your</em> users, not a generic best-practice average."</div>
+
+  <p>That's the formula. <strong>Specialised agents × four rounds of grilling = 1h 53m end-to-end</strong>, with the cultural detail (Burmese honorifics), the technical prerequisite (DB index), and the contracted surfaces (4 components, 6 events, 10-step a11y script) all caught before engineering sees the code.</p>
+</section>
+
+<hr class="divider">
+
+<section>
+  <h2><span class="num">03</span>What got shipped</h2>
+  <p>Five mandatory states — all reachable via query params, all runtime-verified at HTTP 200. Captured by Playwright inside the real product chrome, not a fabricated shell.</p>
+
+  <div class="media">
+    <img src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png" alt="Populated state — query 'aung' returns 7 ranked patients across all branches.">
+  </div>
+  <p class="media-cap">Populated — 7 ranked patients, Thiri Aung highlighted, footer action bar live</p>
+
+  <div class="media">
+    <img src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/03-real-loading.png" alt="Loading state — 2px progress bar lit under the input, previous rows dimmed at opacity-60.">
+  </div>
+  <p class="media-cap">Loading — 2px progress bar lit, previous rows dimmed at opacity-60, no skeleton flicker</p>
+
+  <div class="media">
+    <img src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/05-real-edge.png" alt="Edge state — query 'a' matches many. List capped at 8 rows. Subheader reads '8 of 24 matches · type more to narrow'.">
+  </div>
+  <p class="media-cap">Edge — list capped at 8 rows, context-sensitive "8 of 24 · type more to narrow"</p>
+
+  <p>And four Playwright-recorded micro-interactions: keyboard navigation, loading transition, no-results recovery, and end-to-end ⌘K from the real <code>/clinic/dashboard</code>. The recording script is 120 lines of Node.js and runs all four end-to-end in under a minute.</p>
+
+  <div class="media">
+    <video src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/videos/real-cmdk.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <p class="media-cap">End-to-end · ⌘K opens over the real multi-branch revenue dashboard</p>
+
+  <p>The handoff doc closed everything out: 4 component contracts with explicit "Don'ts" sections, 7 design tokens flagged locked-or-swappable, 6 telemetry events with full payload schemas — each tied to a specific success metric — and a 10-step screen-reader QA script runnable on NVDA + VoiceOver every release.</p>
+</section>
+
+<hr class="divider">
+
+<section>
+  <h2><span class="num">04</span>Figma Make vs Agentic — side by side</h2>
+  <p>The asymmetry isn't from any one step being magic. It's that the agentic designer's work product <em>is the working thing</em> — code committed. The Figma designer's work product is <em>a spec for the working thing</em> — frames + manual prototype + redlines.</p>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Phase</th><th>Figma Make + polish</th><th>Agentic</th><th>Speedup</th></tr></thead>
+      <tbody>
+        <tr><td>Discovery</td><td>~2 hours</td><td>~3 min</td><td><em>~40×</em></td></tr>
+        <tr><td>Define</td><td>~1–2 days</td><td>~48 min</td><td><em>~10–20×</em></td></tr>
+        <tr><td>Deliver</td><td>~1–2 days designer work</td><td>~43 min</td><td><em>~11–22×</em></td></tr>
+        <tr><td>Handoff</td><td>~0.5–1 day</td><td>~19 min</td><td><em>~15–25×</em></td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>~2.5–5.5 working days</strong></td><td><strong>~1h 53m</strong></td><td><em>~10–25×</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Where Figma Make still wins</h3>
+  <p>The case isn't that Figma is obsolete — it's that Figma is no longer the <em>mandatory</em> tool for shipping a working interaction.</p>
+  <ul class="bullets">
+    <li><strong>Visual exploration before constraints are set.</strong> When you don't know what the product <em>is</em> yet, Figma Make diverges faster than ASCII layouts.</li>
+    <li><strong>Design-system maintenance.</strong> Figma variables + Code Connect remain the cleanest way to keep a DS synced across design and code.</li>
+    <li><strong>Stakeholder reviews and marketing mockups.</strong> When the deliverable is "show this to leadership", pixel-perfect frames are still the right artifact.</li>
+  </ul>
+
+  <p>For everything else — taking a PRD with a clear problem and shipping a working, instrumented, handoff-ready interaction — Figma is no longer the necessary tool.</p>
+</section>
+
+<hr class="divider">
+
+<section>
+  <h2><span class="num">05</span>ROI — what 1h 53m saves at Asia UX designer rates</h2>
+  <p>The 10–25× speedup is abstract until you convert it. Here's the math in USD, anchored at the 2026 Asia mid-level UX designer market median.</p>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Assumption</th><th>Value (USD)</th></tr></thead>
+      <tbody>
+        <tr><td>Mid-level UX designer salary (Asia median, 2026)</td><td>~<strong>$48,000 / year</strong> · ~$4,000 / month</td></tr>
+        <tr><td>Working hours per month</td><td>22 days × 8 hours = 176 hours</td></tr>
+        <tr><td>Effective hourly rate</td><td>~<strong>$22.70 / hour</strong></td></tr>
+        <tr><td>LLM compute cost per SF-35-sized feature</td><td>~$2.12 (this session's actual Claude API spend)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="media-cap" style="text-align:left;margin:0 0 22px;text-transform:none;letter-spacing:0;color:var(--muted);font-family:var(--sans);font-size:14px;">Asia mid-level UX designer market band ranges roughly <strong>$25K (emerging SEA — Bangkok, KL, Jakarta, Manila)</strong> to <strong>$70–90K (tier-1 hubs — Singapore, Tokyo, Hong Kong, Seoul)</strong>. $48K is a representative regional median; substitute your own number to recompute.</p>
+
+  <h3>Per feature</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th></th><th>Figma Make + polish</th><th>Agentic</th></tr></thead>
+      <tbody>
+        <tr><td>Designer time</td><td>20–44 hours (2.5–5.5 days)</td><td><strong>1.88 hours</strong></td></tr>
+        <tr><td>Designer-time cost</td><td>$454 – $999</td><td><strong>~$43</strong></td></tr>
+        <tr><td>LLM compute</td><td>—</td><td>~$2.12</td></tr>
+        <tr><td><strong>Total per feature</strong></td><td><strong>$454 – $999</strong></td><td><strong>~$45</strong></td></tr>
+        <tr><td><strong>Cost reduction</strong></td><td>(baseline)</td><td><strong>90 – 95%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Annualised (~40 features / year)</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th></th><th>Figma Make + polish</th><th>Agentic</th></tr></thead>
+      <tbody>
+        <tr><td>Designer hours</td><td>800–1,760 hours (~5–10 months FTE)</td><td><strong>~75 hours</strong> (~2 weeks)</td></tr>
+        <tr><td>Total cost</td><td>$18,200 – $39,960</td><td><strong>~$1,790</strong> ($1,705 designer + $85 LLM)</td></tr>
+        <tr><td><strong>Saved per year</strong></td><td>—</td><td><strong>$16,400 – $38,200</strong></td></tr>
+        <tr><td><strong>% of annual designer salary recovered</strong></td><td>—</td><td><strong>~34 – 80%</strong></td></tr>
+        <tr><td><strong>Equivalent salary months saved</strong></td><td>—</td><td><strong>~4 – 10 months</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">90–95%</div><div class="lbl">Cost reduction</div></div>
+    <div class="stat-card"><div class="num">91–96%</div><div class="lbl">Time reduction</div></div>
+    <div class="stat-card"><div class="num">$16K–$38K</div><div class="lbl">Saved / year (USD)</div></div>
+    <div class="stat-card"><div class="num">10–20×</div><div class="lbl">Capacity multiplier</div></div>
+  </div>
+
+  <p>Scale the anchor and the savings scale with it. At a Singapore / Tokyo tier-1 rate of <strong>~$75K/year</strong>, the per-feature Figma cost climbs to <strong>$710 – $1,560</strong>, agentic stays at <strong>~$45</strong>, and the annual savings reach <strong>~$26K – $61K</strong> — roughly <strong>4–10 months of designer salary recovered per year</strong>, regardless of which Asia market you're in.</p>
+
+  <p>Framed as capacity instead of cost: the same designer ships <strong>~10–20× more features</strong> without working more hours — assuming engineering review can keep up. The bottleneck shifts off the designer.</p>
+
+  <h3>What I'd carry forward</h3>
+  <ol class="numbered">
+    <li><strong>Specialised agents × grilling — that's the formula.</strong> Agents are what made 1h 53m possible; grilling is what made the output calibrated to <em>this</em> product instead of a generic best-practice average. Either one alone would have shipped something forgettable.</li>
+    <li><strong>Grill the code, not just the spec.</strong> Round 3 caught a fake database field, a useEffect race, a Burmese honorific bug, an unspecified affordance, and a mobile gap — none of which spec-grilling could have surfaced.</li>
+    <li><strong>The handoff is the artifact.</strong> The prototype is theatre. The component contracts with explicit "Don'ts", the telemetry payload schemas, the a11y test script — <em>that's</em> what engineering reads.</li>
+    <li><strong>Production-code modifications need explicit gates.</strong> The pipeline rightly flagged the "wire into real product" step as an anti-pattern and required an explicit override. Treating that as a real gate is the safety an agent without governance would skip.</li>
+  </ol>
+
+  <div class="quote">"The designer's work product is the working thing — not a spec for someone else to rebuild."</div>
+</section>
+
+<section class="share" aria-label="Share this post">
+  <div class="share-row">
+    <div class="share-label">Found this useful? Share it</div>
+    <div class="share-btns">
+      <a class="share-btn x" id="shareX" aria-label="Share on X (Twitter)" rel="noopener" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a class="share-btn linkedin" id="shareLinkedIn" aria-label="Share on LinkedIn" rel="noopener" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a class="share-btn facebook" id="shareFB" aria-label="Share on Facebook" rel="noopener" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <button class="share-btn copy" id="shareCopy" type="button" aria-label="Copy link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+      <button class="share-btn native" id="shareNative" type="button" aria-label="Share via system" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="share-toast" id="shareToast" role="status" aria-live="polite">Link copied</div>
+
+<div class="cta">
+  <div class="cta-eyebrow">Pipeline · Open Source</div>
+  <h3>Agent Harry — the multi-agent design pipeline</h3>
+  <p>A 15-subagent UX pipeline for Claude Code. Covers Discovery → Define → Deliver → Handoff with embedded grilling, lo-fi design, design-engineering and handoff agents.</p>
+  <a class="btn" href="https://github.com/KaungMyatHein/sf35-case-study-assets" target="_blank" rel="noopener">View the SF-35 assets repo</a>
+</div>
+
+<footer>
+  © Harry Hein · 2026
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <div class="lightbox-content" id="lightboxContent"></div>
+  <div class="lightbox-hint">Press <kbd>ESC</kbd> or click outside to close</div>
+</div>
+
+<script>
+(function(){
+  var lb = document.getElementById('lightbox');
+  var content = document.getElementById('lightboxContent');
+  var closeBtn = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.media').forEach(function(el){
+    el.addEventListener('click', function(){
+      var src = el.querySelector('video, img');
+      if(!src) return;
+      content.innerHTML = '';
+      if(src.tagName === 'VIDEO'){
+        var v = document.createElement('video');
+        v.src = src.currentSrc || src.src;
+        v.controls = true;
+        v.autoplay = true;
+        v.loop = true;
+        v.playsInline = true;
+        content.appendChild(v);
+      } else {
+        var img = document.createElement('img');
+        img.src = src.src;
+        img.alt = src.alt || '';
+        content.appendChild(img);
+      }
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function close(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    var v = content.querySelector('video');
+    if(v) v.pause();
+    setTimeout(function(){ content.innerHTML = ''; }, 250);
+  }
+
+  closeBtn.addEventListener('click', function(e){ e.stopPropagation(); close(); });
+  lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && lb.classList.contains('open')) close(); });
+})();
+</script>
+
+<script>
+(function(){
+  var url = window.location.href;
+  var title = document.title.split(' · ')[0];
+  var text = 'From Figma to Agentic Design — 1h 53m to shippable. A case study by Harry Hein.';
+  var enc = encodeURIComponent;
+
+  var xBtn = document.getElementById('shareX');
+  var liBtn = document.getElementById('shareLinkedIn');
+  var fbBtn = document.getElementById('shareFB');
+  var copyBtn = document.getElementById('shareCopy');
+  var nativeBtn = document.getElementById('shareNative');
+  var toast = document.getElementById('shareToast');
+
+  if (xBtn) xBtn.href = 'https://twitter.com/intent/tweet?text=' + enc(text) + '&url=' + enc(url);
+  if (liBtn) liBtn.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + enc(url);
+  if (fbBtn) fbBtn.href = 'https://www.facebook.com/sharer/sharer.php?u=' + enc(url);
+
+  function showToast(msg){
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+  }
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function(){
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function(){ showToast('Link copied'); }).catch(function(){ showToast('Copy failed'); });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showToast('Link copied'); } catch(e){ showToast('Copy failed'); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+
+  if (nativeBtn && navigator.share) {
+    nativeBtn.hidden = false;
+    nativeBtn.addEventListener('click', function(){
+      navigator.share({ title: title, text: text, url: url }).catch(function(){});
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+# From Figma to Agentic Design — 1h 53m to Shippable
+
+> **Figma is no longer the mandatory tool for shipping a working interaction.**
+
+![SF-35 spotlight in use](https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png)
+
+*Captured inside the real `/clinic/dashboard` route. ⌘K keycap visible in the top bar.*
+
+---
+
+## 1. The 1h 53m benchmark
+
+One Cmd-K spotlight. Multi-branch dental clinic. Burmese receptionists who type the phone number before they say the patient's name.
+
+The feature didn't exist at the start of the session. Less than two hours later it was wired into the production headers, opened on every portal route, and shipped with a complete engineering handoff.
+
+I designed it without opening Figma once.
+
+| Stat | Value |
+|---|---|
+| Wall-clock total | **1h 53m** |
+| Figma files opened | **0** |
+| Mandatory states | 5 |
+| Component contracts | 4 |
+
+| Phase | Wall-clock | What got shipped |
+|---|---|---|
+| 1 — Discovery | ~3 min | PRD mirrored from Notion, source of truth set |
+| 2 — Define | ~48 min | 304-line lo-fi handoff + locked spec + 13 round-2 deltas |
+| 3 — Deliver | ~43 min | 10 prototype files + 2 new production components wired into real headers |
+| 4 — Handoff | ~19 min | 4 component contracts · 7 design tokens · 6 telemetry events · 10-step a11y QA script |
+
+---
+
+## 2. Agent + Grill — where the leverage compounds
+
+The speedup isn't from agents alone. It isn't from grilling alone either. It's from the **combination** — specialised agents that do the work, plus a grilling discipline that calibrates the work to your specific users, data model, and product conventions.
+
+### The agents that did the work
+
+Agent Harry is a 15-subagent pipeline running inside Claude Code. For SF-35, five agents carried the load:
+
+- **`orchestrator`** — parsed the kickoff command, fetched SF-35 from Notion, queued downstream agents in dependency order, and held each one until its predecessor's grill round finished.
+- **`lo-fi-designer`** — produced a 304-line markdown handoff with three ASCII layout alternatives (Primary / Alternative / Risky), a Mermaid userflow, a design-system inventory, and 5 open questions. Never drew only one layout — the agent's own anti-patterns list forbids it.
+- **`design-engineer`** — three iterations producing real Next.js + React code. 10 prototype files, a mock backend with 800ms `Promise.all` delay, all 5 mandatory states wired. Iteration 3 wired the spotlight into the real production headers.
+- **`handoff-engineer`** — read every prior artifact (PRD, lo-fi, prototype source, audit ledger, production code) and composed a decision-grade engineering doc: 4 component contracts with "Don'ts", 7 design tokens flagged locked-or-swappable, 6 telemetry events with payload schemas, a 10-step a11y test script.
+- **`grill-me`** — the calibration layer wrapped around all four. Ran four rounds total: lock the spec, polish the lo-fi, find code bugs, scope the handoff.
+
+Each agent has its own anti-patterns list and writes its work product as a versioned local artifact, so the next agent reads *real input*, not a verbal handoff. That's what makes the pipeline composable instead of brittle.
+
+### What grilling adds on top
+
+The agents would still ship something competent without grilling. With grilling, they ship something *calibrated*. Four rounds, four different leverage points:
+
+**Round 1 (lock the spec, 7 min)** — twelve load-bearing decisions before a pixel is drawn:
+- **Corpus scope** — patients only, so the `<2s p95` success metric stays measurable.
+- **Match fields** — name + phone. In Myanmar, phone *is* the patient identifier.
+- **Ranking** — four tiers: exact phone → phone prefix → name prefix → name substring.
+- **Latency budget** — 200ms debounce + the grill flagged a missing DB index as a prerequisite SF.
+- **Cross-branch fallback** — visible scope label + explicit "Search all branches" row.
+
+**Round 2 (polish the lo-fi, 30 min)** — thirteen deltas the lo-fi-designer missed: missing loading state, action-bar layout shift, dead-end no-results, three discoverability layers. Each folded back into the locked spec.
+
+**Round 3 (grill the code, 12 min)** — five real bugs that pure spec-grilling could not have caught:
+
+1. **Fake database relationship** — patients carry no direct branch reference; it's inferred through appointments.
+2. **useEffect race** — forced "Loading" state flashing for <1s before debounced search overwrote it.
+3. **"Open Daw" doesn't mean what you think** — Burmese honorifics (Daw / U / Ma / Ko / Maung) are titles, not first names.
+4. **Unspecified affordance** — design-engineer slipped in a "Reset to {branchLabel}" link. Kept, but documented.
+5. **Mobile sheet wasn't built** — captured as backlog SF with `TODO(SF-35)` in code, not pretended-shipped.
+
+**Round 4 (scope the handoff, 7 min)** — telemetry expanded from the PRD's 1 event to 6 events with full payloads. Each component got a "when NOT to use this" section.
+
+> *"Agents ship the work. Grilling makes sure the work is calibrated to your users, not a generic best-practice average."*
+
+**Specialised agents × four rounds of grilling = 1h 53m end-to-end**, with the cultural detail (Burmese honorifics), the technical prerequisite (DB index), and the contracted surfaces (4 components, 6 events, 10-step a11y script) all caught before engineering sees the code.
+
+---
+
+## 3. What got shipped
+
+Five mandatory states — all reachable via query params, all runtime-verified at HTTP 200. Captured by Playwright inside the real product chrome.
+
+![Populated](https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png)
+![Loading](https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/03-real-loading.png)
+![Edge](https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/05-real-edge.png)
+
+Four Playwright-recorded micro-interactions: keyboard navigation, loading transition, no-results recovery, end-to-end ⌘K from the real `/clinic/dashboard`.
+
+The handoff doc: 4 component contracts with explicit "Don'ts" sections, 7 design tokens flagged locked-or-swappable, 6 telemetry events with full payload schemas, 10-step screen-reader QA script (NVDA + VoiceOver).
+
+---
+
+## 4. Figma Make vs Agentic — side by side
+
+| Phase | Figma Make + polish | Agentic | Speedup |
+|---|---|---|---|
+| Discovery | ~2 hours | ~3 min | *~40×* |
+| Define | ~1–2 days | ~48 min | *~10–20×* |
+| Deliver | ~1–2 days | ~43 min | *~11–22×* |
+| Handoff | ~0.5–1 day | ~19 min | *~15–25×* |
+| **Total** | **~2.5–5.5 working days** | **~1h 53m** | *~10–25×* |
+
+### Where Figma Make still wins
+
+1. **Visual exploration before constraints are set** — Figma Make diverges faster than ASCII layouts.
+2. **Design-system maintenance** — Figma variables + Code Connect remain the cleanest DS sync.
+3. **Stakeholder reviews and marketing mockups** — pixel-perfect frames are still the right artifact.
+
+---
+
+## 5. ROI — what 1h 53m saves at Asia UX designer rates
+
+Anchored at the 2026 Asia mid-level UX designer median: **~$48,000/year** (~$4,000/month → ~$22.70/hour). LLM compute per SF-35-sized feature: ~$2.12 (this session's actual Claude API spend).
+
+> Asia market band: ~$25K (emerging SEA — Bangkok, KL, Jakarta, Manila) → ~$70–90K (tier-1 hubs — Singapore, Tokyo, Hong Kong, Seoul). $48K is a representative regional median; substitute your own number to recompute.
+
+| Per feature | Figma Make + polish | Agentic |
+|---|---|---|
+| Designer time | 20–44 hours | **1.88 hours** |
+| Designer-time cost | $454 – $999 | **~$43** |
+| LLM compute | — | ~$2.12 |
+| **Total** | **$454 – $999** | **~$45** |
+| **Cost reduction** | (baseline) | **90 – 95%** |
+
+Annualised (~40 features/year, anchored at $48K/year):
+
+| | Figma Make + polish | Agentic |
+|---|---|---|
+| Designer hours | 800–1,760 hours (~5–10 mo FTE) | **~75 hours** (~2 weeks) |
+| Total cost | $18,200 – $39,960 | **~$1,790** ($1,705 designer + $85 LLM) |
+| **Saved per year** | — | **$16,400 – $38,200** |
+| **% annual salary recovered** | — | **~34 – 80%** |
+| **Salary months saved** | — | **~4 – 10 months** |
+
+Scale the anchor: at a tier-1 hub rate of **~$75K/year**, per-feature Figma cost climbs to **$710 – $1,560**, agentic stays at **~$45**, and annual savings reach **~$26K – $61K** — still **~4–10 months of designer salary recovered per year**, regardless of which Asia market you're in.
+
+Headline:
+- **Cost reduction:** ~90–95% per feature
+- **Time reduction:** ~91–96% per feature
+- **Saved / year:** $16K–$38K (regional median anchor) · $26K–$61K (tier-1 hub anchor)
+- **Capacity multiplier:** ~10–20×
+
+### What I'd carry forward
+
+1. **Specialised agents × grilling — that's the formula.** Agents made 1h 53m possible; grilling made the output calibrated to *this* product instead of a generic best-practice average. Either alone would have shipped something forgettable.
+2. **Grill the code, not just the spec.**
+3. **The handoff is the artifact** — component contracts, telemetry payloads, a11y test script.
+4. **Production-code modifications need explicit gates.**
+
+> *"The designer's work product is the working thing — not a spec for someone else to rebuild."*
+
+---
+
+See the assets repo: [github.com/KaungMyatHein/sf35-case-study-assets](https://github.com/KaungMyatHein/sf35-case-study-assets).
