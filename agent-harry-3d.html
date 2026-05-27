@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Harry — 3D Office</title>
+<style>
+  :root {
+    --primary-on-dark: #2997ff;
+    --ink: #1d1d1f;
+    --ink-muted-48: #7a7a7a;
+    --canvas: #ffffff;
+    --c-orchestrator: #0066cc;
+    --c-discovery: #5e81ac;
+    --c-competitive: #2c7d6f;
+    --c-positioner: #d97706;
+    --c-prioritizer: #b45309;
+    --c-ideation: #8b5cf6;
+    --c-lo-fi: #06b6d4;
+    --c-figma: #a855f7;
+    --c-engineer: #ec4899;
+    --c-usability: #16a34a;
+    --c-handoff: #525252;
+    --c-critique: #dc2626;
+    --c-strategist: #0891b2;
+    --c-launch: #c2410c;
+    --c-metrics: #65a30d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%; height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    color: var(--ink);
+  }
+  /* Hidden agent SVGs — the three.js script reads rect data out of these
+     to build voxel characters. display:none doesn't break querySelector. */
+  .ag-grid { display: none; }
+
+  /* Chat bubble layer */
+  .hero-chat-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .hero-chat-3d {
+    --c: #0066cc;
+    position: absolute;
+    left: 0; top: 0;
+    transform: translate(-50%, -120%);
+    max-width: 240px;
+    min-width: 120px;
+    padding: 7px 11px 8px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 11.5px;
+    line-height: 1.38;
+    color: #1f2937;
+    opacity: 0;
+    transition: opacity 320ms ease;
+    will-change: transform, opacity;
+  }
+  .hero-chat-3d.show { opacity: 1; }
+  .hero-chat-3d::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -7px;
+    transform: translateX(-50%);
+    width: 14px; height: 7px;
+    background: rgba(255, 255, 255, 0.96);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  }
+  .hero-chat-3d-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c);
+    margin-bottom: 2px;
+  }
+  .hero-chat-3d-name::before {
+    content: "";
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--c);
+    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.85);
+  }
+  .hero-chat-3d-text {
+    display: block;
+    color: #1f2937;
+    font-family: "SF Pro Text", system-ui, sans-serif;
+  }
+  @media (max-width: 720px) {
+    .hero-chat-3d { font-size: 10.5px; max-width: 180px; min-width: 100px; padding: 6px 9px 7px; }
+    .hero-chat-3d-name { font-size: 9px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-chat-3d { transition: opacity 160ms linear; }
+  }
+
+  /* Hero 3D office scene — full-bleed inside iframe */
+  .hero-room {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .hero-room-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 20%, #f8efd9 0%, #ece2c9 45%, #d8cdb1 100%);
+  }
+  .hero-room canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .hero-room-loading {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "SF Pro Text", system-ui, sans-serif;
+    font-size: 12px;
+    color: var(--ink-muted-48);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 600;
+    pointer-events: none;
+    transition: opacity .6s ease;
+  }
+  .hero-room.ready .hero-room-loading { opacity: 0; }
+  .hero-room-tooltip {
+    position: absolute;
+    left: 0; top: 0;
+    pointer-events: none;
+    padding: 6px 10px;
+    background: rgba(15, 23, 42, 0.92);
+    color: #fff;
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    border-radius: 6px;
+    transform: translate(-50%, -140%);
+    opacity: 0;
+    transition: opacity .12s ease;
+    white-space: nowrap;
+    z-index: 4;
+    box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.4);
+  }
+  .hero-room-tooltip.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- Hidden agent SVG cards. The three.js script reads .ag-card .ag-stage svg
+     content to build voxel characters. display:none so only the 3D scene
+     shows on screen. -->
+<div class="ag-grid">
+  <article class="ag-card ag-feature-orch" style="--c: var(--c-orchestrator);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#ffd54f"><rect x="7" y="0" width="1" height="1"/><rect x="6" y="1" width="3" height="1"/></g>
+        <g fill="#0066cc"><rect x="7" y="2" width="1" height="1"/><rect x="6" y="3" width="3" height="1"/><rect x="5" y="4" width="5" height="1"/></g>
+        <rect x="4" y="5" width="7" height="1" fill="#003a7a"/>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#0066cc"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="6" y="12" width="3" height="1"/><rect x="10" y="12" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <g fill="#ffd54f"><rect x="5" y="12" width="1" height="1"/><rect x="9" y="12" width="1" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">Orchestrator</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-discovery);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#3d5a7f"><rect x="5" y="3" width="5" height="2"/><rect x="3" y="5" width="9" height="1"/></g>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#5e81ac"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <rect x="7" y="11" width="1" height="3" fill="#3d5a7f"/>
+      </svg>
+    </div>
+    <div class="ag-name">discovery-researcher</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-competitive);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#1a574c"><rect x="5" y="3" width="5" height="1"/><rect x="4" y="4" width="7" height="1"/><rect x="5" y="5" width="5" height="1"/></g>
+        <rect x="11" y="3" width="1" height="1" fill="#1a574c"/>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="6" y="9" width="3" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="4" y="8" width="2" height="2"/><rect x="9" y="8" width="2" height="2"/><rect x="6" y="8" width="3" height="1"/></g>
+        <g fill="#67e8f9"><rect x="4" y="9" width="1" height="1"/><rect x="10" y="9" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#2c7d6f"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">competitive-analyst</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-positioner);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#5c3a1a"><rect x="5" y="3" width="5" height="1"/><rect x="4" y="4" width="7" height="1"/></g>
+        <rect x="4" y="5" width="7" height="1" fill="#b91c1c"/>
+        <rect x="6" y="5" width="3" height="1" fill="#dc2626"/>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#d97706"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <g fill="#7a4e1f"><rect x="5" y="11" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="7" y="13" width="1" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">product-positioner</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-prioritizer);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#b45309"><rect x="5" y="3" width="5" height="1"/><rect x="4" y="4" width="7" height="1"/></g>
+        <rect x="3" y="5" width="9" height="1" fill="#7a3905"/>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="7" y="10" width="1" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#b45309"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">feature-prioritizer</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-ideation);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#ffd54f"><rect x="6" y="0" width="3" height="1"/><rect x="5" y="1" width="5" height="1"/><rect x="6" y="2" width="3" height="1"/></g>
+        <rect x="6" y="3" width="3" height="1" fill="#9ca3af"/>
+        <g fill="#ffd54f"><rect x="3" y="1" width="1" height="1"/><rect x="11" y="1" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="13" y="3" width="1" height="1"/></g>
+        <g fill="#8b5cf6"><rect x="3" y="5" width="1" height="1"/><rect x="11" y="5" width="1" height="1"/><rect x="4" y="4" width="2" height="1"/><rect x="10" y="4" width="2" height="1"/><rect x="4" y="5" width="7" height="1"/></g>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#8b5cf6"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">ideation-facilitator</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-lo-fi);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="11" y="5" width="1" height="3" fill="#facc15"/>
+        <rect x="11" y="4" width="1" height="1" fill="#525252"/>
+        <rect x="11" y="8" width="1" height="1" fill="#ef4444"/>
+        <g fill="#1d1d1f"><rect x="4" y="3" width="7" height="1"/><rect x="3" y="4" width="9" height="1"/><rect x="3" y="5" width="2" height="1"/><rect x="10" y="5" width="1" height="1"/></g>
+        <g fill="#f5cba7"><rect x="5" y="5" width="5" height="1"/><rect x="4" y="6" width="6" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#06b6d4"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <rect x="5" y="12" width="1" height="1" fill="#a5f3fc"/>
+        <rect x="7" y="12" width="1" height="1" fill="#a5f3fc"/>
+        <rect x="9" y="12" width="1" height="1" fill="#a5f3fc"/>
+        <rect x="6" y="13" width="1" height="1" fill="#a5f3fc"/>
+        <rect x="8" y="13" width="1" height="1" fill="#a5f3fc"/>
+      </svg>
+    </div>
+    <div class="ag-name">lo-fi-designer</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-figma);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="11" y="5" width="1" height="3" fill="#a855f7"/>
+        <rect x="11" y="4" width="1" height="1" fill="#c084fc"/>
+        <rect x="11" y="8" width="1" height="1" fill="#581c87"/>
+        <rect x="12" y="3" width="1" height="1" fill="#e9d5ff"/>
+        <g fill="#a855f7"><rect x="4" y="3" width="7" height="1"/><rect x="3" y="4" width="9" height="1"/><rect x="3" y="5" width="2" height="1"/><rect x="10" y="5" width="1" height="1"/></g>
+        <rect x="7" y="2" width="1" height="1" fill="#c084fc"/>
+        <g fill="#f5cba7"><rect x="5" y="5" width="5" height="1"/><rect x="4" y="6" width="6" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#a855f7"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <rect x="5" y="12" width="2" height="1" fill="#c084fc"/>
+        <rect x="8" y="12" width="2" height="1" fill="#c084fc"/>
+        <rect x="5" y="13" width="2" height="1" fill="#e9d5ff"/>
+        <rect x="8" y="13" width="2" height="1" fill="#e9d5ff"/>
+      </svg>
+    </div>
+    <div class="ag-name">figma-designer</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-engineer);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#be185d"><rect x="4" y="3" width="7" height="1"/><rect x="3" y="4" width="9" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="11" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="11" y="6" width="1" height="1"/></g>
+        <g fill="#f5cba7"><rect x="4" y="5" width="7" height="1"/><rect x="4" y="6" width="7" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="4" y="8" width="3" height="1"/><rect x="8" y="8" width="3" height="1"/><rect x="7" y="8" width="1" height="1"/></g>
+        <rect x="5" y="8" width="1" height="1" fill="#ffffff"/>
+        <rect x="9" y="8" width="1" height="1" fill="#ffffff"/>
+        <g fill="#1d1d1f"><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#ec4899"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <rect x="5" y="13" width="5" height="1" fill="#be185d"/>
+        <rect x="6" y="12" width="1" height="1" fill="#facc15"/>
+        <rect x="8" y="12" width="1" height="1" fill="#facc15"/>
+      </svg>
+    </div>
+    <div class="ag-name">design-engineer</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-usability);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#5c3a1a"><rect x="3" y="4" width="9" height="1"/><rect x="3" y="5" width="9" height="1"/><rect x="5" y="3" width="5" height="1"/></g>
+        <rect x="4" y="3" width="1" height="1" fill="#5c3a1a"/>
+        <rect x="10" y="3" width="1" height="1" fill="#5c3a1a"/>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="9" width="1" height="1"/><rect x="6" y="9" width="3" height="1"/><rect x="10" y="9" width="1" height="1"/><rect x="5" y="10" width="2" height="1"/><rect x="8" y="10" width="2" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="3" y="8" width="2" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="2" height="1"/><rect x="3" y="7" width="1" height="1"/><rect x="11" y="7" width="1" height="1"/></g>
+        <g fill="#67e8f9"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/></g>
+        <rect x="7" y="10" width="1" height="1" fill="#1d1d1f"/>
+        <g fill="#ffffff"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <g fill="#16a34a"><rect x="6" y="11" width="3" height="1"/><rect x="9" y="13" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">usability-tester</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-handoff);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#ffd54f"><rect x="5" y="3" width="5" height="1"/><rect x="4" y="4" width="7" height="1"/><rect x="3" y="5" width="9" height="1"/></g>
+        <rect x="7" y="3" width="1" height="1" fill="#facc15"/>
+        <rect x="6" y="4" width="3" height="1" fill="#facc15"/>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#525252"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <g fill="#facc15"><rect x="4" y="12" width="7" height="1"/><rect x="5" y="13" width="1" height="1"/><rect x="9" y="13" width="1" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">handoff-engineer</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-strategist);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#0891b2"><rect x="4" y="3" width="7" height="1"/><rect x="4" y="4" width="7" height="1"/></g>
+        <rect x="3" y="5" width="9" height="1" fill="#035e7a"/>
+        <rect x="7" y="4" width="1" height="1" fill="#ffd54f"/>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="2" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="7" y="10" width="2" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#0891b2"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <g fill="#ffd54f"><rect x="3" y="11" width="1" height="1"/><rect x="11" y="11" width="1" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">pm-strategist</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-launch);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="7" y="0" width="1" height="2" fill="#d1d5db"/>
+        <rect x="7" y="0" width="1" height="1" fill="#dc2626"/>
+        <g fill="#c2410c"><rect x="4" y="2" width="7" height="1"/><rect x="3" y="3" width="9" height="1"/><rect x="3" y="4" width="1" height="3"/><rect x="11" y="4" width="1" height="3"/><rect x="3" y="7" width="9" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="4" y="4" width="7" height="3"/></g>
+        <g fill="#67e8f9"><rect x="5" y="4" width="2" height="1"/><rect x="5" y="5" width="1" height="1"/></g>
+        <rect x="5" y="8" width="5" height="1" fill="#ea580c"/>
+        <g fill="#c2410c"><rect x="2" y="9" width="11" height="1"/><rect x="3" y="10" width="9" height="1"/><rect x="4" y="11" width="7" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+        <rect x="5" y="12" width="5" height="1" fill="#1d1d1f"/>
+        <rect x="5" y="12" width="1" height="1" fill="#dc2626"/>
+        <rect x="7" y="12" width="1" height="1" fill="#facc15"/>
+        <rect x="9" y="12" width="1" height="1" fill="#16a34a"/>
+        <g fill="#1d1d1f"><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">pm-launch-architect</div>
+  </article>
+
+  <article class="ag-card" style="--c: var(--c-metrics);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#3f3520"><rect x="5" y="3" width="5" height="1"/><rect x="4" y="4" width="7" height="1"/><rect x="4" y="5" width="7" height="1"/></g>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="3" y="8" width="2" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="2" height="1"/></g>
+        <rect x="5" y="8" width="1" height="1" fill="#a5f3fc"/>
+        <rect x="9" y="8" width="1" height="1" fill="#a5f3fc"/>
+        <g fill="#1d1d1f"><rect x="6" y="10" width="3" height="1"/><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#65a30d"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">pm-metrics-architect</div>
+  </article>
+
+  <article class="ag-card ag-feature-crit" style="--c: var(--c-critique);">
+    <div class="ag-stage">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+        <g fill="#7a1c14"><rect x="4" y="2" width="1" height="2"/><rect x="5" y="4" width="1" height="1"/><rect x="10" y="2" width="1" height="2"/><rect x="9" y="4" width="1" height="1"/></g>
+        <g fill="#7a1c14"><rect x="5" y="3" width="5" height="1"/><rect x="4" y="4" width="7" height="1"/><rect x="4" y="5" width="7" height="1"/></g>
+        <g fill="#f5cba7"><rect x="5" y="6" width="5" height="1"/><rect x="4" y="7" width="7" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="3" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="4" y="9" width="7" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="9" y="10" width="2" height="1"/></g>
+        <g fill="#7a1c14"><rect x="4" y="7" width="2" height="1"/><rect x="9" y="7" width="2" height="1"/></g>
+        <g fill="#dc2626"><rect x="5" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="6" y="10" width="2" height="1"/><rect x="8" y="9" width="1" height="1"/></g>
+        <g fill="#1d1d1f"><rect x="4" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/></g>
+        <g fill="#7a1c14"><rect x="2" y="11" width="11" height="1"/></g>
+        <g fill="#dc2626"><rect x="3" y="11" width="9" height="1"/><rect x="4" y="12" width="7" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="4" y="14" width="3" height="1"/><rect x="8" y="14" width="3" height="1"/></g>
+      </svg>
+    </div>
+    <div class="ag-name">Critique Partner</div>
+  </article>
+</div>
+
+<!-- 3D office canvas (only thing actually visible) -->
+<div class="hero-room hero-room--bg">
+  <div class="hero-room-stage">
+    <canvas id="hero-room-canvas"></canvas>
+    <div class="hero-room-loading">Setting the room…</div>
+  </div>
+</div>
+
+<!-- ============ Hero 3D office scene (Three.js) ============ -->
+<script type="module">
+  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+  const VOXEL = 0.22;
+
+  const AGENT_COLORS = {
+    'orchestrator':         '#0066cc',
+    'discovery-researcher': '#5e81ac',
+    'competitive-analyst':  '#2c7d6f',
+    'product-positioner':   '#d97706',
+    'feature-prioritizer':  '#b45309',
+    'ideation-facilitator': '#8b5cf6',
+    'pm-strategist':        '#0891b2',
+    'lo-fi-designer':      '#06b6d4',
+    'figma-designer':       '#a855f7',
+    'design-engineer':      '#ec4899',
+    'usability-tester':     '#16a34a',
+    'handoff-engineer':     '#525252',
+    'pm-launch-architect':  '#c2410c',
+    'pm-metrics-architect': '#65a30d',
+    'critique partner':     '#dc2626',
+  };
+
+  const FACE_BACK  = Math.PI;
+  const FACE_HALL  = 0;
+  const FACE_LEFT  = Math.PI / 2;
+  const FACE_RIGHT = -Math.PI / 2;
+
+  const BACK_Z_PANEL = -7.9;
+  const LEFT_X       = -8.7;
+  const RIGHT_X      =  8.7;
+
+  const PLACEMENTS = {
+    'discovery-researcher': { x: -6.5, y: 0, z: BACK_Z_PANEL, ry: FACE_HALL },
+    'competitive-analyst':  { x: -3.5, y: 0, z: BACK_Z_PANEL, ry: FACE_HALL },
+    'lo-fi-designer':      { x: -0.5, y: 0, z: BACK_Z_PANEL, ry: FACE_HALL },
+    'ideation-facilitator': { x:  2.5, y: 0, z: BACK_Z_PANEL, ry: FACE_HALL },
+    'pm-strategist':        { x:  5.5, y: 0, z: BACK_Z_PANEL, ry: FACE_HALL },
+    'product-positioner':   { x: LEFT_X, y: 0, z: -5,   ry: FACE_LEFT },
+    'feature-prioritizer':  { x: LEFT_X, y: 0, z: -2.5, ry: FACE_LEFT },
+    'design-engineer':      { x: LEFT_X, y: 0, z:  0,   ry: FACE_LEFT },
+    'figma-designer':       { x: LEFT_X, y: 0, z:  2.5, ry: FACE_LEFT },
+    'usability-tester':     { x: LEFT_X, y: 0, z:  5,   ry: FACE_LEFT },
+    'handoff-engineer':     { x: RIGHT_X, y: 0, z: -5, ry: FACE_RIGHT },
+    'pm-launch-architect':  { x: RIGHT_X, y: 0, z: -2, ry: FACE_RIGHT },
+    'pm-metrics-architect': { x: RIGHT_X, y: 0, z:  1, ry: FACE_RIGHT },
+    'critique partner':     { x: RIGHT_X, y: 0, z:  4, ry: FACE_RIGHT },
+    'orchestrator':         { x: 0, y: 0, z: -1.5, ry: FACE_HALL, scale: 1.08 },
+  };
+
+  const AGENT_COLOR_KEY = {
+    'orchestrator':         'orchestrator',
+    'discovery-researcher': 'discovery',
+    'competitive-analyst':  'competitive',
+    'product-positioner':   'positioner',
+    'feature-prioritizer':  'prioritizer',
+    'ideation-facilitator': 'ideation',
+    'lo-fi-designer':      'lo-fi',
+    'figma-designer':       'figma',
+    'design-engineer':      'engineer',
+    'usability-tester':     'usability',
+    'handoff-engineer':     'handoff',
+    'critique partner':     'critique',
+    'pm-strategist':        'strategist',
+    'pm-launch-architect':  'launch',
+    'pm-metrics-architect': 'metrics',
+  };
+
+  const AGENT_LINES = {
+    'orchestrator': [
+      'Routing → feature-prioritizer Mode B.',
+      'Token budget at ~$0.18. Within ceiling.',
+      'Stop Gate fires next. Confirm to proceed.',
+      'Confidence: high on this branch.',
+      "I'll synthesize after this run.",
+    ],
+    'discovery-researcher': [
+      'Funnel drop at verify-phone — 6/12 interviews.',
+      'Two cohorts surface. The smaller one is louder.',
+      'Need one more session before I commit confidence.',
+      'Evidence quote: "I gave up waiting for the SMS."',
+    ],
+    'competitive-analyst': [
+      '3 of 5 competitors use OTP-first. Ours can skip.',
+      'Pattern matrix says guest checkout is table stakes.',
+      'Convention vs. risk — we cross one line, not three.',
+    ],
+    'product-positioner': [
+      'Bet: speed over breadth. Falsifiable in 6 weeks.',
+      'Value prop draft: 3-tap checkout for COD merchants.',
+      'The narrative writes itself once we drop "robust".',
+    ],
+    'feature-prioritizer': [
+      'Guest checkout +18 RICE. Wishlist drops out.',
+      'Re-scored backlog. Top 5 are obvious now.',
+      'Effort estimate flipped on two items — re-rank.',
+    ],
+    'ideation-facilitator': [
+      'Three concepts on the wall. Two converge.',
+      'How might we cut the SMS step entirely?',
+      'Concept C is the dark horse. Worth a sketch.',
+    ],
+    'lo-fi-designer': [
+      'Three layouts on the board. Primary feels safest.',
+      'Risky layout: command bar instead of sidebar.',
+      'DS has TopBar, Sidebar, Tabs. Need new: CommandPalette.',
+      'Userflow Figjam: 5 nodes, 2 error branches.',
+    ],
+    'design-engineer': [
+      'All 5 states wired. Loading skeleton at 800ms.',
+      'prototypes/checkout/page.tsx — 240 lines so far.',
+      'Iteration 2 of 3. One more revise then pivot.',
+      'Mock API returns realistic delay. Empty state ready.',
+    ],
+    'figma-designer': [
+      'DS inventory pulled. 12 components available, 2 missing.',
+      'Frame coverage: 7 of 8 screens. Last one queued.',
+      'Tokens applied. No hex magic, no detached instances.',
+      'use_figma call 2 of 3 — batching the error states.',
+      'Real PRD copy in every frame. No lorem ipsum.',
+    ],
+    'usability-tester': [
+      '4/5 users completed in <90s. One stuck on autofill.',
+      'Task analysis says step 3 is where they slow.',
+      'Severity-1 finding: the back button kills progress.',
+    ],
+    'handoff-engineer': [
+      'Tokens reconciled. 12 states specced.',
+      'Open Qs → 2. Both need a backend confirm.',
+      'Design system delta: 3 new tokens, 0 breaking.',
+    ],
+    'critique partner': [
+      'Counter-metric? Otherwise you win the wrong way.',
+      'This optimizes for the cohort that already converts.',
+      'I disagree because the bet ignores returning users.',
+    ],
+    'pm-strategist': [
+      'Strategy canvas updated. The moat is speed, not features.',
+      'Pricing: anchor at $19, premium at $49.',
+      'Vision still fits. Roadmap needs a cut.',
+    ],
+    'pm-launch-architect': [
+      'Beachhead: COD merchants in SEA. Named accounts: 12.',
+      'GTM motion is sales-led for the first 30 days.',
+      'Kill-switch: if week-6 lift < 18%, we pivot.',
+    ],
+    'pm-metrics-architect': [
+      'North-star locked: checkouts / active merchant / day.',
+      'Counter metric: support tickets / merchant / week.',
+      'Input × 3 — activations, sessions, cart conv.',
+    ],
+  };
+
+  function extractPixels(svg) {
+    const pixels = [];
+    if (!svg) return pixels;
+    svg.querySelectorAll('rect').forEach(rect => {
+      const x = parseInt(rect.getAttribute('x') || '0', 10);
+      const y = parseInt(rect.getAttribute('y') || '0', 10);
+      const w = parseInt(rect.getAttribute('width') || '1', 10);
+      const h = parseInt(rect.getAttribute('height') || '1', 10);
+      let fill = rect.getAttribute('fill');
+      if (!fill || fill === 'none') {
+        let p = rect.parentNode;
+        while (p && p.getAttribute && (!fill || fill === 'none')) {
+          fill = p.getAttribute('fill');
+          p = p.parentNode;
+        }
+      }
+      if (!fill || fill === 'none') return;
+      const opacity = parseFloat(rect.getAttribute('opacity') || '1');
+      if (opacity < 0.3) return;
+      for (let dx = 0; dx < w; dx++) {
+        for (let dy = 0; dy < h; dy++) {
+          pixels.push({ x: x + dx, y: y + dy, color: fill });
+        }
+      }
+    });
+    return pixels;
+  }
+
+  function buildCharacter(pixels) {
+    const wrapper = new THREE.Group();
+    const inner = new THREE.Group();
+    if (pixels.length === 0) { wrapper.add(inner); return { wrapper, inner }; }
+
+    const byColor = new Map();
+    pixels.forEach(p => {
+      const c = p.color.toLowerCase();
+      if (!byColor.has(c)) byColor.set(c, []);
+      byColor.get(c).push(p);
+    });
+
+    const geo = new THREE.BoxGeometry(VOXEL * 1.02, VOXEL * 1.02, VOXEL * 1.4);
+    byColor.forEach((pxs, color) => {
+      const mat = new THREE.MeshLambertMaterial({ color });
+      const mesh = new THREE.InstancedMesh(geo, mat, pxs.length);
+      pxs.forEach((p, i) => {
+        const m = new THREE.Matrix4();
+        m.setPosition((p.x - 7.5) * VOXEL, (15 - p.y) * VOXEL + VOXEL / 2, 0);
+        mesh.setMatrixAt(i, m);
+      });
+      mesh.instanceMatrix.needsUpdate = true;
+      inner.add(mesh);
+    });
+
+    wrapper.add(inner);
+    return { wrapper, inner };
+  }
+
+  function buildOffice(scene) {
+    const floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(40, 24),
+      new THREE.MeshLambertMaterial({ color: '#d9c9a8' })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    scene.add(floor);
+
+    for (let i = -9; i <= 9; i += 2) {
+      const plank = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.8, 24),
+        new THREE.MeshLambertMaterial({ color: '#c8b48a' })
+      );
+      plank.rotation.x = -Math.PI / 2;
+      plank.position.set(i, 0.005, 0);
+      scene.add(plank);
+    }
+
+    const runnerBorder = new THREE.Mesh(
+      new THREE.PlaneGeometry(2.8, 9.6),
+      new THREE.MeshLambertMaterial({ color: '#7da3c8' })
+    );
+    runnerBorder.rotation.x = -Math.PI / 2;
+    runnerBorder.position.set(0, 0.015, -2.5);
+    scene.add(runnerBorder);
+    const runner = new THREE.Mesh(
+      new THREE.PlaneGeometry(2.4, 9.2),
+      new THREE.MeshLambertMaterial({ color: '#a8c7e8' })
+    );
+    runner.rotation.x = -Math.PI / 2;
+    runner.position.set(0, 0.02, -2.5);
+    scene.add(runner);
+
+    const backWall = new THREE.Mesh(
+      new THREE.PlaneGeometry(40, 16),
+      new THREE.MeshLambertMaterial({ color: '#f0eee4' })
+    );
+    backWall.position.set(0, 7, -9);
+    scene.add(backWall);
+
+    const trim = new THREE.Mesh(
+      new THREE.BoxGeometry(40, 0.3, 0.1),
+      new THREE.MeshLambertMaterial({ color: '#cbb78f' })
+    );
+    trim.position.set(0, 0.15, -8.95);
+    scene.add(trim);
+
+    const wbFrame = new THREE.Mesh(
+      new THREE.BoxGeometry(8.5, 4.2, 0.2),
+      new THREE.MeshLambertMaterial({ color: '#9ca3af' })
+    );
+    wbFrame.position.set(0, 5.2, -8.85);
+    scene.add(wbFrame);
+    const wbSurface = new THREE.Mesh(
+      new THREE.BoxGeometry(8, 3.7, 0.05),
+      new THREE.MeshLambertMaterial({ color: '#ffffff' })
+    );
+    wbSurface.position.set(0, 5.2, -8.74);
+    scene.add(wbSurface);
+
+    const wbNotes = [
+      [-2.8, 6.2, '#facc15'], [-1.5, 6.2, '#facc15'], [-0.2, 6.2, '#ec4899'],
+      [ 1.1, 6.2, '#facc15'], [ 2.4, 6.2, '#67e8f9'],
+      [-2.8, 4.9, '#67e8f9'], [-1.2, 4.9, '#facc15'], [ 0.4, 4.9, '#ec4899'],
+      [ 2.0, 4.9, '#facc15'], [-2.8, 3.7, '#facc15'], [ 1.0, 3.7, '#67e8f9'],
+    ];
+    wbNotes.forEach(([x, y, c]) => {
+      const note = new THREE.Mesh(
+        new THREE.BoxGeometry(0.6, 0.6, 0.06),
+        new THREE.MeshLambertMaterial({ color: c })
+      );
+      note.position.set(x, y, -8.7);
+      note.rotation.z = (Math.random() - 0.5) * 0.18;
+      scene.add(note);
+    });
+
+    for (let i = 0; i < 3; i++) {
+      const line = new THREE.Mesh(
+        new THREE.BoxGeometry(2.5, 0.06, 0.03),
+        new THREE.MeshLambertMaterial({ color: '#0066cc' })
+      );
+      line.position.set(0, 5.5 - i * 0.35, -8.71);
+      scene.add(line);
+    }
+
+    const deskWoodMat    = new THREE.MeshLambertMaterial({ color: '#d4b896' });
+    const deskEdgeMat    = new THREE.MeshLambertMaterial({ color: '#a18054' });
+    const deskLegMat     = new THREE.MeshLambertMaterial({ color: '#7a4e1f' });
+    const monBodyMat     = new THREE.MeshLambertMaterial({ color: '#1a1a1c' });
+    const monBaseMat     = new THREE.MeshLambertMaterial({ color: '#27272a' });
+    const monStandMat    = new THREE.MeshLambertMaterial({ color: '#3f3f46' });
+    const chairSeatMat   = new THREE.MeshLambertMaterial({ color: '#525252' });
+    const chairBackMat   = new THREE.MeshLambertMaterial({ color: '#3f3f46' });
+    const chairWheelMat  = new THREE.MeshLambertMaterial({ color: '#1a1a1c' });
+    const keyboardMat    = new THREE.MeshLambertMaterial({ color: '#1a1a1c' });
+    const mugMat         = new THREE.MeshLambertMaterial({ color: '#fafafa' });
+    const coffeeMat      = new THREE.MeshLambertMaterial({ color: '#3f2410' });
+    const paperMat       = new THREE.MeshLambertMaterial({ color: '#fafafa' });
+    const cabinetMat     = new THREE.MeshLambertMaterial({ color: '#a89274' });
+
+    function buildDesk(x, z, ry, color) {
+      const desk = new THREE.Group();
+      desk.position.set(x, 0, z);
+      desk.rotation.y = ry;
+
+      const top = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.08, 0.9), deskWoodMat);
+      top.position.set(0, 1.05, 1.0);
+      desk.add(top);
+      const edge = new THREE.Mesh(new THREE.BoxGeometry(1.72, 0.04, 0.92), deskEdgeMat);
+      edge.position.set(0, 1.00, 1.0);
+      desk.add(edge);
+
+      [[-0.78, 0.6], [0.78, 0.6], [-0.78, 1.4], [0.78, 1.4]].forEach(([lx, lz]) => {
+        const leg = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.0, 0.08), deskLegMat);
+        leg.position.set(lx, 0.5, lz);
+        desk.add(leg);
+      });
+
+      const cabinet = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.7, 0.55), cabinetMat);
+      cabinet.position.set(0.6, 0.4, 1.0);
+      desk.add(cabinet);
+      const handle1 = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.02, 0.02), chairBackMat);
+      handle1.position.set(0.6, 0.55, 1.28);
+      desk.add(handle1);
+      const handle2 = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.02, 0.02), chairBackMat);
+      handle2.position.set(0.6, 0.25, 1.28);
+      desk.add(handle2);
+
+      const stand = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.18, 0.06), monStandMat);
+      stand.position.set(0, 1.18, 1.32);
+      desk.add(stand);
+      const base = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.04, 0.18), monBaseMat);
+      base.position.set(0, 1.10, 1.32);
+      desk.add(base);
+      const body = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.55, 0.06), monBodyMat);
+      body.position.set(0, 1.55, 1.35);
+      desk.add(body);
+      const screen = new THREE.Mesh(
+        new THREE.BoxGeometry(0.86, 0.46, 0.02),
+        new THREE.MeshLambertMaterial({ color, emissive: color, emissiveIntensity: 0.55 })
+      );
+      screen.position.set(0, 1.55, 1.31);
+      desk.add(screen);
+
+      const keyboard = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.04, 0.22), keyboardMat);
+      keyboard.position.set(-0.05, 1.11, 0.75);
+      desk.add(keyboard);
+      const mouse = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.04, 0.18), keyboardMat);
+      mouse.position.set(0.55, 1.11, 0.75);
+      desk.add(mouse);
+      const paper = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.03, 0.26), paperMat);
+      paper.position.set(-0.55, 1.10, 0.95);
+      paper.rotation.y = 0.14;
+      desk.add(paper);
+      const mug = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.09, 0.2, 12), mugMat);
+      mug.position.set(0.55, 1.19, 1.20);
+      desk.add(mug);
+      const coffee = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.085, 0.02, 12), coffeeMat);
+      coffee.position.set(0.55, 1.30, 1.20);
+      desk.add(coffee);
+      const mugHandle = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.018, 6, 10, Math.PI), mugMat);
+      mugHandle.position.set(0.65, 1.20, 1.20);
+      mugHandle.rotation.y = Math.PI / 2;
+      desk.add(mugHandle);
+
+      const chairZ = -0.42;
+      for (let i = 0; i < 5; i++) {
+        const a = (i / 5) * Math.PI * 2;
+        const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.05, 0.08), chairBackMat);
+        spoke.position.set(Math.cos(a) * 0.20, 0.10, chairZ + Math.sin(a) * 0.20);
+        spoke.rotation.y = -a;
+        desk.add(spoke);
+        const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.06, 10), chairWheelMat);
+        wheel.position.set(Math.cos(a) * 0.38, 0.05, chairZ + Math.sin(a) * 0.38);
+        desk.add(wheel);
+      }
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.45, 10), chairBackMat);
+      pole.position.set(0, 0.37, chairZ);
+      desk.add(pole);
+      const cushion = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.32, 0.12, 18), chairSeatMat);
+      cushion.position.set(0, 0.66, chairZ);
+      desk.add(cushion);
+      const backrest = new THREE.Mesh(new THREE.BoxGeometry(0.66, 1.65, 0.10), chairSeatMat);
+      backrest.position.set(0, 1.55, chairZ - 0.32);
+      backrest.rotation.x = -0.06;
+      desk.add(backrest);
+      const headrest = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.22, 0.10), chairSeatMat);
+      headrest.position.set(0, 2.46, chairZ - 0.38);
+      headrest.rotation.x = -0.06;
+      desk.add(headrest);
+      const armPostL = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.45, 0.05), chairBackMat);
+      armPostL.position.set(-0.36, 0.94, chairZ + 0.10);
+      desk.add(armPostL);
+      const armPostR = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.45, 0.05), chairBackMat);
+      armPostR.position.set( 0.36, 0.94, chairZ + 0.10);
+      desk.add(armPostR);
+      const armL = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.05, 0.38), chairSeatMat);
+      armL.position.set(-0.36, 1.18, chairZ);
+      desk.add(armL);
+      const armR = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.05, 0.38), chairSeatMat);
+      armR.position.set( 0.36, 1.18, chairZ);
+      desk.add(armR);
+
+      scene.add(desk);
+      return desk;
+    }
+
+    const desks = {};
+    Object.keys(PLACEMENTS).forEach((name) => {
+      const p = PLACEMENTS[name];
+      const color = AGENT_COLORS[name] || '#888888';
+      const desk = buildDesk(p.x, p.z, p.ry || 0, color);
+      desk.userData.displayName = name;
+      desks[name] = desk;
+    });
+    scene.userData.desks = desks;
+
+    [[-8.5, -7.5], [8.5, -7.5]].forEach(([x, z]) => {
+      const pot = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.5, 0.4, 0.7, 8),
+        new THREE.MeshLambertMaterial({ color: '#8b5e3c' })
+      );
+      pot.position.set(x, 0.35, z);
+      scene.add(pot);
+      for (let i = 0; i < 3; i++) {
+        const leaf = new THREE.Mesh(
+          new THREE.SphereGeometry(0.7 - i * 0.15, 8, 6),
+          new THREE.MeshLambertMaterial({ color: i === 0 ? '#16a34a' : '#22c55e' })
+        );
+        leaf.position.set(x + (i - 1) * 0.35, 1.2 + i * 0.32, z + ((i % 2) ? 0.25 : 0));
+        scene.add(leaf);
+      }
+    });
+
+    const sideWallMat = new THREE.MeshLambertMaterial({ color: '#ece2c9', side: THREE.DoubleSide });
+    [-10.2, 10.2].forEach((wx) => {
+      const wall = new THREE.Mesh(new THREE.PlaneGeometry(14, 10), sideWallMat);
+      wall.rotation.y = wx < 0 ? Math.PI / 2 : -Math.PI / 2;
+      wall.position.set(wx, 5, -2);
+      scene.add(wall);
+      const baseboard = new THREE.Mesh(
+        new THREE.BoxGeometry(0.1, 0.3, 14),
+        new THREE.MeshLambertMaterial({ color: '#cbb78f' })
+      );
+      baseboard.position.set(wx - (wx < 0 ? -0.05 : 0.05), 0.15, -2);
+      scene.add(baseboard);
+    });
+
+    const ceiling = new THREE.Mesh(
+      new THREE.PlaneGeometry(20.4, 18),
+      new THREE.MeshLambertMaterial({ color: '#f4ecd6', side: THREE.DoubleSide })
+    );
+    ceiling.rotation.x = Math.PI / 2;
+    ceiling.position.set(0, 10, -1);
+    scene.add(ceiling);
+
+    [[-4, -4.5], [4, -4.5], [-4, 0], [4, 0]].forEach(([x, z]) => {
+      const housing = new THREE.Mesh(
+        new THREE.BoxGeometry(0.45, 0.10, 2.4),
+        new THREE.MeshLambertMaterial({ color: '#e5e5e7' })
+      );
+      housing.position.set(x, 9.92, z);
+      scene.add(housing);
+      const tube = new THREE.Mesh(
+        new THREE.BoxGeometry(0.30, 0.06, 2.2),
+        new THREE.MeshLambertMaterial({ color: '#fffbe8', emissive: '#fff4c4', emissiveIntensity: 0.7 })
+      );
+      tube.position.set(x, 9.86, z);
+      scene.add(tube);
+    });
+
+    const printerBody = new THREE.Mesh(
+      new THREE.BoxGeometry(1.1, 0.9, 0.8),
+      new THREE.MeshLambertMaterial({ color: '#e5e5e7' })
+    );
+    printerBody.position.set(9.2, 0.45, -7.2);
+    scene.add(printerBody);
+    const printerTop = new THREE.Mesh(
+      new THREE.BoxGeometry(1.12, 0.06, 0.82),
+      new THREE.MeshLambertMaterial({ color: '#3f3f46' })
+    );
+    printerTop.position.set(9.2, 0.93, -7.2);
+    scene.add(printerTop);
+    const printerTray = new THREE.Mesh(
+      new THREE.BoxGeometry(0.5, 0.04, 0.35),
+      new THREE.MeshLambertMaterial({ color: '#fafafa' })
+    );
+    printerTray.position.set(9.2, 0.98, -6.95);
+    scene.add(printerTray);
+
+    const coolerTank = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.32, 0.32, 0.55, 16),
+      new THREE.MeshLambertMaterial({ color: '#9ec8e6', transparent: true, opacity: 0.7 })
+    );
+    coolerTank.position.set(-9.2, 1.55, -7.2);
+    scene.add(coolerTank);
+    const coolerBase = new THREE.Mesh(
+      new THREE.BoxGeometry(0.7, 1.3, 0.55),
+      new THREE.MeshLambertMaterial({ color: '#f4f4f5' })
+    );
+    coolerBase.position.set(-9.2, 0.65, -7.2);
+    scene.add(coolerBase);
+  }
+
+  const STATE = { IDLE: 'idle', WALKING: 'walking' };
+
+  const MEETING_SPOTS = [
+    { x: -1.5, z: -4.6, ry:  Math.atan2( 1.5, -2.2), occupiedBy: null },
+    { x:  1.5, z: -4.6, ry:  Math.atan2(-1.5, -2.2), occupiedBy: null },
+  ];
+
+  function findFreeMeetingSpot() {
+    const free = MEETING_SPOTS.filter(s => s.occupiedBy === null);
+    if (!free.length) return null;
+    return free[Math.floor(Math.random() * free.length)];
+  }
+
+  function pickOrchestratorVisitTarget(agents) {
+    if (!agents.length) return null;
+    for (let attempt = 0; attempt < 8; attempt++) {
+      const a = agents[Math.floor(Math.random() * agents.length)];
+      const h = a.userData.home;
+      const angle = Math.random() * Math.PI * 2;
+      const r = 1.4 + Math.random() * 0.5;
+      const x = h.x + Math.cos(angle) * r;
+      const z = h.z + Math.sin(angle) * r;
+      if (z < -7.0 || z >  2.2) continue;
+      if (x < -5.5 || x >  5.5) continue;
+      return { x, z, ry: Math.atan2(h.x - x, h.z - z) };
+    }
+    const a = agents[Math.floor(Math.random() * agents.length)];
+    return { x: 0, z: Math.max(-6.0, Math.min(0.0, a.userData.home.z)), ry: Math.atan2(a.userData.home.x, a.userData.home.z - 0) };
+  }
+
+  function smoothRotate(curr, target, factor) {
+    let d = target - curr;
+    while (d >  Math.PI) d -= 2 * Math.PI;
+    while (d < -Math.PI) d += 2 * Math.PI;
+    return curr + d * Math.min(1, factor);
+  }
+
+  function planPath(from, to) {
+    return [{ x: to.x, z: to.z, ry: to.ry }];
+  }
+
+  function tickCharacter(g, now, dt, agents) {
+    const ud = g.userData;
+
+    if (ud.state === STATE.IDLE) {
+      if (now >= ud.nextActionTime) {
+        let final = null;
+        if (ud.role === 'orchestrator') {
+          if (ud.atHome) {
+            final = pickOrchestratorVisitTarget(agents);
+            if (!final) {
+              ud.nextActionTime = now + 2500;
+            } else {
+              ud.atHome = false;
+            }
+          } else {
+            final = { x: ud.home.x, z: ud.home.z, ry: ud.home.ry };
+          }
+        } else {
+          if (ud.atHome) {
+            const spot = findFreeMeetingSpot();
+            if (!spot) {
+              ud.nextActionTime = now + 3000 + Math.random() * 4000;
+            } else {
+              spot.occupiedBy = ud.idx;
+              ud.currentSpot = spot;
+              final = { x: spot.x, z: spot.z, ry: spot.ry };
+              ud.atHome = false;
+            }
+          } else {
+            if (ud.currentSpot) { ud.currentSpot.occupiedBy = null; ud.currentSpot = null; }
+            final = { x: ud.home.x, z: ud.home.z, ry: ud.home.ry };
+          }
+        }
+        if (final) {
+          ud.pathQueue = planPath({ x: g.position.x, z: g.position.z }, final);
+          ud.target = ud.pathQueue.shift();
+          ud.state = STATE.WALKING;
+        }
+      }
+    } else if (ud.state === STATE.WALKING) {
+      const dx = ud.target.x - g.position.x;
+      const dz = ud.target.z - g.position.z;
+      const dist = Math.sqrt(dx * dx + dz * dz);
+      if (dist < 0.12) {
+        g.position.x = ud.target.x;
+        g.position.z = ud.target.z;
+        if (ud.pathQueue && ud.pathQueue.length > 0) {
+          ud.target = ud.pathQueue.shift();
+        } else {
+          g.rotation.y = smoothRotate(g.rotation.y, ud.target.ry, 0.6);
+          ud.state = STATE.IDLE;
+          ud.atHome = (Math.abs(ud.target.x - ud.home.x) < 0.5 && Math.abs(ud.target.z - ud.home.z) < 0.5);
+          if (ud.role === 'orchestrator') {
+            ud.nextActionTime = now + (ud.atHome ? 4000 + Math.random() * 5000 : 2200 + Math.random() * 2400);
+          } else {
+            ud.nextActionTime = now + (ud.atHome ? 9000 + Math.random() * 12000 : 3500 + Math.random() * 3500);
+          }
+        }
+      } else {
+        const step = ud.speed * dt;
+        g.position.x += (dx / dist) * step;
+        g.position.z += (dz / dist) * step;
+        const targetRy = Math.atan2(dx, dz);
+        g.rotation.y = smoothRotate(g.rotation.y, targetRy, dt * 8);
+      }
+    }
+
+    if (ud.state === STATE.WALKING) {
+      const stride = now * 0.014 + ud.idx * 0.4;
+      g.position.y = Math.abs(Math.sin(stride)) * 0.18;
+      if (ud.inner) ud.inner.rotation.z = Math.sin(stride) * 0.07;
+    } else {
+      g.position.y = Math.sin(now * 0.002 + ud.idx * 0.7) * 0.05;
+      if (ud.inner) ud.inner.rotation.z *= 0.86;
+    }
+  }
+
+  async function initRoom() {
+    const container = document.querySelector('.hero-room');
+    if (!container) return;
+    const canvas = container.querySelector('#hero-room-canvas');
+    if (!canvas) return;
+
+    const probe = document.createElement('canvas');
+    if (!probe.getContext('webgl2') && !probe.getContext('webgl')) {
+      const ld = container.querySelector('.hero-room-loading');
+      if (ld) ld.textContent = 'WebGL not supported';
+      return;
+    }
+
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    } catch (e) { return; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog('#f4ecd6', 42, 70);
+
+    const camera = new THREE.PerspectiveCamera(42, 16 / 9, 0.1, 100);
+    camera.position.set(0, 9, 19);
+    camera.lookAt(0, 3, -3);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.95));
+    const sun = new THREE.DirectionalLight(0xfff1d6, 0.95);
+    sun.position.set(-8, 14, 8);
+    scene.add(sun);
+    const fillLight = new THREE.DirectionalLight(0xc7e1ff, 0.45);
+    fillLight.position.set(10, 6, 10);
+    scene.add(fillLight);
+    const rimLight = new THREE.DirectionalLight(0xffd8a8, 0.3);
+    rimLight.position.set(0, 4, -10);
+    scene.add(rimLight);
+
+    buildOffice(scene);
+
+    const cards = document.querySelectorAll('.ag-card');
+    const agents = [];
+    let orchestrator = null;
+
+    cards.forEach(card => {
+      const svg = card.querySelector('.ag-stage svg');
+      if (!svg) return;
+      const nameEl = card.querySelector('.ag-name');
+      if (!nameEl) return;
+      const key = nameEl.textContent.trim().toLowerCase();
+      const pixels = extractPixels(svg);
+
+      const place = PLACEMENTS[key];
+      if (!place) return;
+
+      const built = buildCharacter(pixels);
+      const wrapper = built.wrapper;
+      wrapper.position.set(place.x, 0, place.z);
+      wrapper.rotation.y = place.ry || 0;
+      if (place.scale) wrapper.scale.setScalar(place.scale);
+
+      const isOrch = (key === 'orchestrator');
+      wrapper.userData = {
+        inner: built.inner,
+        role: isOrch ? 'orchestrator' : 'agent',
+        home: { x: place.x, z: place.z, ry: place.ry || 0 },
+        state: STATE.IDLE,
+        atHome: true,
+        target: null,
+        pathQueue: null,
+        currentSpot: null,
+        nextActionTime: performance.now() + 1500 + Math.random() * 7000,
+        speed: isOrch ? 1.7 : 1.3,
+        idx: 0,
+        displayName: key,
+      };
+      scene.add(wrapper);
+
+      if (isOrch) {
+        orchestrator = wrapper;
+      } else {
+        wrapper.userData.idx = agents.length;
+        agents.push(wrapper);
+      }
+    });
+
+    if (orchestrator) orchestrator.userData.idx = agents.length;
+
+    const stage = container.querySelector('.hero-room-stage');
+    const tooltip = document.createElement('div');
+    tooltip.className = 'hero-room-tooltip';
+    stage.appendChild(tooltip);
+
+    const hoverTargets = [];
+    agents.forEach(a => hoverTargets.push(a));
+    if (orchestrator) hoverTargets.push(orchestrator);
+    const sceneDesks = scene.userData.desks || {};
+    Object.values(sceneDesks).forEach(d => hoverTargets.push(d));
+
+    const chatLayer = document.createElement('div');
+    chatLayer.className = 'hero-chat-layer';
+    stage.appendChild(chatLayer);
+
+    const bubblesByWrapper = new Map();
+    function buildBubble(wrapper) {
+      const key = wrapper.userData.displayName;
+      const colorKey = AGENT_COLOR_KEY[key] || 'orchestrator';
+      const bubble = document.createElement('div');
+      bubble.className = 'hero-chat-3d';
+      bubble.style.setProperty('--c', `var(--c-${colorKey})`);
+      const name = document.createElement('span');
+      name.className = 'hero-chat-3d-name';
+      name.textContent = key;
+      const text = document.createElement('span');
+      text.className = 'hero-chat-3d-text';
+      bubble.appendChild(name);
+      bubble.appendChild(text);
+      chatLayer.appendChild(bubble);
+      bubblesByWrapper.set(wrapper, {
+        el: bubble,
+        textEl: text,
+        visibleUntil: 0,
+        lastLineIdx: -1,
+      });
+    }
+    agents.forEach(buildBubble);
+    if (orchestrator) buildBubble(orchestrator);
+
+    function isMeeting(wrapper) {
+      const ud = wrapper.userData;
+      if (ud.state !== STATE.IDLE) return false;
+      if (ud.role === 'orchestrator') return !ud.atHome;
+      return ud.currentSpot !== null;
+    }
+
+    function pickAndSpeak() {
+      const now = performance.now();
+      const candidates = [];
+      if (orchestrator && isMeeting(orchestrator)) candidates.push(orchestrator);
+      agents.forEach(a => { if (isMeeting(a)) candidates.push(a); });
+      const free = candidates.filter(w => {
+        const b = bubblesByWrapper.get(w);
+        return b && now >= b.visibleUntil;
+      });
+      if (free.length === 0) {
+        setTimeout(pickAndSpeak, 700 + Math.random() * 900);
+        return;
+      }
+      const speaker = free[Math.floor(Math.random() * free.length)];
+      const key = speaker.userData.displayName;
+      const lines = AGENT_LINES[key] || ['…'];
+      const b = bubblesByWrapper.get(speaker);
+      let idx = Math.floor(Math.random() * lines.length);
+      if (lines.length > 1 && idx === b.lastLineIdx) idx = (idx + 1) % lines.length;
+      b.lastLineIdx = idx;
+      b.textEl.textContent = lines[idx];
+      b.el.classList.add('show');
+      const dwell = 2400 + Math.random() * 1600;
+      b.visibleUntil = now + dwell;
+      setTimeout(pickAndSpeak, 900 + Math.random() * 1200);
+    }
+
+    const _projTmp = new THREE.Vector3();
+    function updateChatBubbles() {
+      const rect = stage.getBoundingClientRect();
+      const w = rect.width, h = rect.height;
+      const now = performance.now();
+      bubblesByWrapper.forEach((b, wrapper) => {
+        const showing = b.el.classList.contains('show');
+        if (showing && (!isMeeting(wrapper) || now >= b.visibleUntil)) {
+          b.el.classList.remove('show');
+          return;
+        }
+        if (!showing) return;
+        _projTmp.set(wrapper.position.x, 3.2, wrapper.position.z);
+        _projTmp.project(camera);
+        if (_projTmp.z < -1 || _projTmp.z > 1) {
+          b.el.classList.remove('show');
+          return;
+        }
+        const px = (_projTmp.x * 0.5 + 0.5) * w;
+        const py = (-_projTmp.y * 0.5 + 0.5) * h;
+        b.el.style.transform = `translate(calc(-50% + ${px}px), calc(-120% + ${py}px))`;
+      });
+    }
+
+    setTimeout(pickAndSpeak, 1800);
+
+    const raycaster = new THREE.Raycaster();
+    const ndc = new THREE.Vector2();
+
+    function findNamedAncestor(obj) {
+      let cur = obj;
+      while (cur) {
+        if (cur.userData && cur.userData.displayName) return cur;
+        cur = cur.parent;
+      }
+      return null;
+    }
+
+    canvas.addEventListener('mousemove', (ev) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = ev.clientX - rect.left;
+      const y = ev.clientY - rect.top;
+      ndc.x = (x / rect.width) * 2 - 1;
+      ndc.y = -(y / rect.height) * 2 + 1;
+      raycaster.setFromCamera(ndc, camera);
+      const hits = raycaster.intersectObjects(hoverTargets, true);
+      let named = null;
+      for (const h of hits) {
+        named = findNamedAncestor(h.object);
+        if (named) break;
+      }
+      if (named) {
+        tooltip.textContent = named.userData.displayName;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top  = y + 'px';
+        tooltip.classList.add('show');
+      } else {
+        tooltip.classList.remove('show');
+      }
+    });
+    canvas.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('show');
+    });
+
+    container.classList.add('ready');
+
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let running = true;
+    let lastT = performance.now();
+
+    function tick(now) {
+      if (!running) return;
+      requestAnimationFrame(tick);
+      const dt = Math.min(0.05, (now - lastT) / 1000);
+      lastT = now;
+
+      if (!reduceMotion) {
+        agents.forEach(g => tickCharacter(g, now, dt, agents));
+        if (orchestrator) tickCharacter(orchestrator, now, dt, agents);
+
+        const sway = Math.sin(now * 0.00025);
+        camera.position.x = sway * 1.6;
+        camera.position.y = 9 + Math.sin(now * 0.00035) * 0.3;
+        camera.lookAt(0, 3, -3);
+      } else {
+        agents.forEach(g => {
+          g.position.set(g.userData.home.x, 0, g.userData.home.z);
+          g.rotation.y = g.userData.home.ry;
+        });
+        if (orchestrator) {
+          orchestrator.position.set(orchestrator.userData.home.x, 0, orchestrator.userData.home.z);
+          orchestrator.rotation.y = orchestrator.userData.home.ry;
+        }
+      }
+
+      updateChatBubbles();
+      renderer.render(scene, camera);
+    }
+
+    function resize() {
+      const stage = container.querySelector('.hero-room-stage');
+      if (!stage) return;
+      const r = stage.getBoundingClientRect();
+      const w = Math.max(1, r.width);
+      const h = Math.max(1, r.height);
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    new ResizeObserver(resize).observe(container);
+
+    requestAnimationFrame(tick);
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const wasRunning = running;
+        running = e.isIntersecting;
+        if (running && !wasRunning) { lastT = performance.now(); requestAnimationFrame(tick); }
+      });
+    }, { threshold: 0.05 });
+    io.observe(container);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => { initRoom().catch(() => {}); });
+  } else {
+    initRoom().catch(() => {});
+  }
+</script>
+
+</body>
+</html>

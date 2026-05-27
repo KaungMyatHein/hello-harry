@@ -58,29 +58,115 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   video[data-lazy-video]{display:none;}
 }
 
-.nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,0.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hairline-soft);}
-@supports not ((backdrop-filter:blur(20px)) or (-webkit-backdrop-filter:blur(20px))){
-  .nav{background:rgba(255,255,255,0.96);}
+/* Floating glass pill nav — centered, no heavy frost blur (just a hint of
+   saturation). The .nav itself is a fixed, full-width, transparent flex
+   container; the .nav-inner is the actual pill that absorbs clicks. */
+.nav{
+  position:fixed;top:18px;left:0;right:0;z-index:50;
+  display:flex;justify-content:center;
+  padding:0 16px;
+  pointer-events:none;
+  background:transparent;border-bottom:0;height:auto;
 }
-.nav-inner{max-width:1180px;margin:0 auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
-.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
-.brand-mark{width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;font-family:var(--mono);}
-.nav-links{display:flex;gap:30px;align-items:center;}
-.nav-links a{font-size:13px;color:var(--ink-soft);font-weight:500;display:inline-flex;align-items:center;min-height:44px;padding:0 4px;}
-.nav-links a:hover{color:var(--ink);}
-.nav-cmd{display:inline-flex;align-items:center;gap:8px;background:var(--inset);border:1px solid var(--hairline);padding:10px 14px;min-height:44px;border-radius:var(--pill);font-size:12px;color:var(--muted);cursor:pointer;transition:border-color 150ms ease;font-family:var(--sans);}
-.nav-cmd:hover{border-color:var(--ink);color:var(--ink);}
-.nav-cmd kbd{font-family:var(--mono);font-size:10px;background:var(--paper);border:1px solid var(--hairline);padding:1px 5px;border-radius:4px;color:var(--ink-soft);}
+.nav-inner{
+  position:relative;
+  pointer-events:auto;
+  max-width:none;width:auto;height:auto;
+  margin:0;padding:7px 7px 7px 14px;
+  display:inline-flex;align-items:center;gap:14px;
+
+  /* Layered glass — base + diagonal specular sweep so the pill reads
+     as a curved surface catching light (Apple Liquid Glass feel). */
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,0.55) 0%,
+      rgba(255,255,255,0.18) 40%,
+      rgba(255,255,255,0.10) 62%,
+      rgba(255,255,255,0.38) 100%
+    ),
+    rgba(255,255,255,0.34);
+  border:0.5px solid rgba(255,255,255,0.95);
+  border-radius:9999px;
+  box-shadow:
+    /* Rim light — bright top, soft sides, slightly darker bottom edge */
+    inset 0 1.4px 0.5px rgba(255,255,255,1),
+    inset 0 -1px 1px rgba(0,0,0,0.05),
+    inset 1px 0 1px rgba(255,255,255,0.55),
+    inset -1px 0 1px rgba(255,255,255,0.55),
+    /* Floating shadow — long, layered, soft */
+    0 22px 50px -10px rgba(0,0,0,0.22),
+    0 10px 22px -6px rgba(0,0,0,0.10),
+    0 2px 4px rgba(0,0,0,0.05);
+  /* Minimal blur — Apple Liquid Glass is ~4-6px, NOT heavy frost. */
+  backdrop-filter:blur(6px) saturate(200%) brightness(1.04);
+  -webkit-backdrop-filter:blur(6px) saturate(200%) brightness(1.04);
+}
+/* Specular sweep — diagonal light streak suggesting a curved glass surface. */
+.nav-inner::before{
+  content:"";
+  position:absolute;inset:0;
+  border-radius:inherit;
+  background:linear-gradient(
+    105deg,
+    transparent 32%,
+    rgba(255,255,255,0.42) 47%,
+    rgba(255,255,255,0.10) 56%,
+    transparent 68%
+  );
+  pointer-events:none;
+  z-index:0;
+  mix-blend-mode:overlay;
+}
+.nav-inner > *{position:relative;z-index:1;}
+@supports not ((backdrop-filter:blur(6px)) or (-webkit-backdrop-filter:blur(6px))){
+  .nav-inner{background:rgba(255,255,255,0.88);}
+}
+.brand{
+  display:flex;align-items:center;gap:9px;
+  font-size:13.5px;font-weight:600;letter-spacing:-0.012em;
+  color:var(--ink);padding:0 8px 0 0;
+}
+.brand-mark{
+  width:28px;height:28px;border-radius:9999px;
+  background:var(--ink);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:600;font-family:var(--mono);
+}
+.nav-links{display:inline-flex;gap:4px;align-items:center;}
+.nav-links a{
+  font-size:13px;color:var(--ink-soft);font-weight:500;
+  display:inline-flex;align-items:center;min-height:36px;
+  padding:6px 12px;border-radius:9999px;
+  transition:background 150ms ease,color 150ms ease;
+}
+.nav-links a:hover{background:rgba(10,10,10,0.06);color:var(--ink);}
+.nav-cmd{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:#fff;border:0;
+  padding:8px 14px;min-height:36px;border-radius:9999px;
+  font-size:12px;font-weight:500;letter-spacing:-0.005em;
+  cursor:pointer;transition:opacity 150ms ease,transform 150ms ease;
+  font-family:var(--sans);
+}
+.nav-cmd:hover{opacity:0.88;transform:translateY(-1px);}
+.nav-cmd svg{color:#fff;}
+.nav-cmd kbd{
+  font-family:var(--mono);font-size:10px;
+  background:rgba(255,255,255,0.16);
+  border:1px solid rgba(255,255,255,0.22);
+  padding:1px 5px;border-radius:4px;color:#fff;
+}
 .nav-cmd-ai{display:none;}
 
 /* === Mobile === */
 @media (max-width:768px){
-  .nav-inner{padding:0 16px;}
-  .nav-links{gap:10px;}
+  .nav{top:12px;padding:0 12px;}
+  .nav-inner{padding:6px 6px 6px 12px;gap:10px;}
+  .nav-links{gap:4px;}
   .nav-links a:not(.nav-cmd){display:none;}
-  .nav-cmd{padding:8px 12px;min-height:36px;gap:6px;}
+  .nav-cmd{padding:7px 12px;min-height:34px;gap:6px;}
   .nav-cmd-text{display:none;}
-  .nav-cmd-ai{display:inline;font-weight:600;font-size:11px;letter-spacing:0.08em;color:var(--ink);}
+  .nav-cmd-ai{display:inline;font-weight:600;font-size:11px;letter-spacing:0.08em;color:#fff;}
   .hero{padding:72px 18px 48px;}
   .hero-bento{margin-top:32px;gap:14px;}
   .section{padding:64px 18px;}
@@ -102,52 +188,31 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 }
 
 .hero{padding:112px 28px 64px;text-align:center;background:var(--paper);position:relative;overflow:hidden;}
-/* No z-index on hero-inner — would create a stacking context that isolates
-   the text ::after mix-blend-mode:difference from the .hero-xray backdrop. */
-.hero-inner{max-width:1200px;margin:0 auto;position:relative;}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2;}
 
-/* X-Ray reveal — SVGs are hidden, only show under cursor spotlight.
-   No z-index either: DOM order alone places this below .hero-inner so the
-   text difference blend can reach it as backdrop. */
-.hero-xray{
-  position:absolute;inset:0;pointer-events:none;
-  background:url("images/hero-xray-bg.svg") center/cover no-repeat;
-  /* Just soften opacity so pure-black SVG strokes read as gray on paper,
-     without inverting (which flipped tones in a way Harry disliked). */
-  opacity:0.45;
-  -webkit-mask-image:
-    linear-gradient(180deg, rgba(0,0,0,0.6) 0%, #000 35%, #000 65%, rgba(0,0,0,0.6) 100%),
-    radial-gradient(circle 130px at var(--mx,-400px) var(--my,-400px), #000 0%, rgba(0,0,0,0.92) 55%, transparent 82%);
-  -webkit-mask-composite:source-in;
-  mask-image:
-    linear-gradient(180deg, rgba(0,0,0,0.6) 0%, #000 35%, #000 65%, rgba(0,0,0,0.6) 100%),
-    radial-gradient(circle 130px at var(--mx,-400px) var(--my,-400px), #000 0%, rgba(0,0,0,0.92) 55%, transparent 82%);
-  mask-composite:intersect;
+/* Hero ambient pulse + particle field — replaces the X-Ray spotlight.
+   Particles drift up gently and dodge away from the cursor; 3 depth
+   layers give it a perfume-in-light feel. */
+.hero-pulse{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 45%, rgba(124,58,237,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 45% at 50% 55%, rgba(161,98,7,0.05) 0%, transparent 70%);
+  animation:heroBreathe 12s ease-in-out infinite alternate;
 }
-/* Paper-colored halo around hero text so the X-Ray illustration lines can
-   never directly touch the glyphs. Text stays fully readable on any backdrop,
-   no blend-mode tricks required. */
-.hero h1,.hero-sub{
-  position:relative;
-  text-shadow:
-    0 0 6px var(--paper),
-    0 0 6px var(--paper),
-    0 0 12px var(--paper),
-    0 0 18px var(--paper);
+@keyframes heroBreathe{
+  from{opacity:0.55;transform:scale(1);}
+  to{opacity:1;transform:scale(1.08);}
 }
-.hero-lens{
-  position:absolute;width:200px;height:200px;
-  left:var(--mx,-400px);top:var(--my,-400px);
-  transform:translate(-50%,-50%);
-  border-radius:50%;
-  border:1px dashed rgba(0,102,204,0.45);
-  mix-blend-mode:difference;
-  pointer-events:none;z-index:4;opacity:0;
-  transition:opacity 180ms ease;
+.hero-particles{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;display:block;z-index:1;
 }
-.hero.xray-on .hero-lens{opacity:1;}
-@media (hover:none){.hero-xray,.hero-lens{display:none;}}
-@media (prefers-reduced-motion:reduce){.hero-xray,.hero-lens{display:none;}}
+.hero-vignette{
+  position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(ellipse 80% 70% at 50% 50%, transparent 50%, rgba(255,255,255,0.5) 100%);
+}
+@media (prefers-reduced-motion:reduce){.hero-pulse{animation:none;}}
 .hero-bento{
   display:grid;grid-template-columns:1.15fr 0.85fr;gap:18px;
   align-items:stretch;margin-top:44px;text-align:left;
@@ -525,7 +590,7 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 .tile:hover .media-frame{transform:translateY(-6px);}
 
 /* Display screen with subtle inner bezel ring */
-.media-frame img,.media-frame video{
+.media-frame img,.media-frame video,.media-frame iframe{
   display:block;width:100%;aspect-ratio:16/10;
   object-fit:contain;background:#000;
   border-radius:3px;
@@ -533,6 +598,7 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
     inset 0 0 0 1px rgba(0,0,0,0.85),
     inset 0 0 0 2px rgba(255,255,255,0.04);
 }
+.media-frame iframe{border:0;background:#ece2c9;}
 
 /* Notch — wider rounded-rectangle cut at top bezel center */
 .media-frame::before{
@@ -569,7 +635,7 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 
 /* Featured (full hero) — bigger MacBook, cinematic 21:10 */
 .tile.full .media-frame{max-width:960px;padding:22px 16px 16px;border-radius:18px 18px 6px 6px;}
-.tile.full .media-frame img,.tile.full .media-frame video{aspect-ratio:16/10;}
+.tile.full .media-frame img,.tile.full .media-frame video,.tile.full .media-frame iframe{aspect-ratio:16/10;}
 .tile.full .media-frame::before{width:120px;height:10px;border-radius:0 0 10px 10px;}
 .tile.full .media-frame::after{bottom:-19px;height:19px;border-radius:4px 3px 18px 18px;}
 
@@ -1191,8 +1257,9 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 </nav>
 
 <section class="hero" id="hero">
-  <div class="hero-xray" aria-hidden="true"></div>
-  <div class="hero-lens" aria-hidden="true"></div>
+  <div class="hero-pulse" aria-hidden="true"></div>
+  <canvas class="hero-particles" id="heroParticles" aria-hidden="true"></canvas>
+  <div class="hero-vignette" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-eyebrow"><span class="dot"></span>Senior Product Designer · Available 2026</div>
     <div class="kiss-expansion-mobile" aria-hidden="true">Keep It Super Simple</div>
@@ -1207,35 +1274,41 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
         <span class="palette-shortcut">⌘ K</span>
       </div>
       <div class="palette-section">Recommended Case Studies</div>
-      <a href="case-study-po-ai-intent-hybrid.html" class="palette-row selected">
+      <a href="case-study-agent-harry.html" class="palette-row selected">
+        <span class="row-icon icon-ai">AH</span>
+        <span class="palette-name">Stop building AI tools. Build AI teams.</span>
+        <span class="palette-meta">Agentic Design</span>
+        <kbd>⌘ 1</kbd>
+      </a>
+      <a href="case-study-po-ai-intent-hybrid.html" class="palette-row">
         <span class="row-icon icon-ai">AI</span>
         <span class="palette-name">Speak, don't click — bilingual intent palette</span>
         <span class="palette-meta">Case Study</span>
-        <kbd>⌘ 1</kbd>
+        <kbd>⌘ 2</kbd>
       </a>
       <a href="case-study-design-system-hybrid.html" class="palette-row">
         <span class="row-icon icon-ds">DS</span>
         <span class="palette-name">Three platforms. One source of truth.</span>
         <span class="palette-meta">Design System</span>
-        <kbd>⌘ 2</kbd>
+        <kbd>⌘ 3</kbd>
       </a>
       <a href="case-study-pharmacy-pos-hybrid.html" class="palette-row">
         <span class="row-icon icon-pos">PX</span>
         <span class="palette-name">Two stores. One system. — 200+ screens.</span>
         <span class="palette-meta">POS</span>
-        <kbd>⌘ 3</kbd>
+        <kbd>⌘ 4</kbd>
       </a>
       <a href="case-study-retail-hybrid.html" class="palette-row">
         <span class="row-icon icon-rt">RT</span>
         <span class="palette-name">From feedback to 427% ROI</span>
         <span class="palette-meta">Retail</span>
-        <kbd>⌘ 4</kbd>
+        <kbd>⌘ 5</kbd>
       </a>
       <a href="case-study-golden-paths-hybrid.html" class="palette-row">
         <span class="row-icon icon-gp">GP</span>
         <span class="palette-name">Prototypes that never sleep — 9/11 matched</span>
         <span class="palette-meta">AI Research</span>
-        <kbd>⌘ 5</kbd>
+        <kbd>⌘ 6</kbd>
       </a>
       <div class="palette-footer">
         <span class="left">Open <kbd>↵</kbd></span>
@@ -1265,12 +1338,27 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
       <h2 class="sec-title">Case studies.</h2>
       <p class="sec-sub">Five deep-dives. Each one shipped, measured, and reflected on — with the actual numbers attached.</p>
     </div>
-    <div class="sec-action">5 results · ⌘1–⌘5</div>
+    <div class="sec-action">6 results · ⌘1–⌘6</div>
   </div>
 
   <div class="bento">
     <div class="tile midnight full">
-      <div class="tile-eyebrow">New · AI Product</div>
+      <div class="tile-eyebrow">New · Agentic Design</div>
+      <h3 class="tile-h">Stop building AI tools.<br>Build AI teams.</h3>
+      <p class="tile-sub">Designed 18 AI agents like a product team — PRD author, lo-fi designer, design engineer, critique partner, and 14 more. Shipped SF-35, a ⌘K patient-search feature for a dental clinic, in 1h 53m.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-agent-harry.html" class="tile-cta-pill">Read case study</a>
+        <a href="blog-sf35-agentic-design.html" class="tile-cta-link">SF-35 build log</a>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <iframe src="agent-harry-3d.html" title="Agent Harry — 3D office scene with 15 voxel agents at work" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile midnight">
+      <div class="tile-eyebrow">AI Product</div>
       <h3 class="tile-h">Speak, don't click.</h3>
       <p class="tile-sub">A bilingual intent palette that replaced an enterprise CRM dashboard. 28 intents in MVP, 21 already live — sellers just say what they want.</p>
       <div class="tile-cta-row">
@@ -1765,6 +1853,7 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 
   // ─── Data ─────────────────────────────────────────────────────────
   const projects = {
+    agentharry: { name:'Stop building AI tools. Build AI teams.', tag:'Agentic Design', summary:'18 AI agents designed like a product team — shipped SF-35, a ⌘K patient-search feature for a dental clinic, in 1h 53m.', img:'https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png', url:'case-study-agent-harry.html', color:'icon-ai', mono:'AH', tint:'midnight' },
     poai:   { name:"Speak, don't click",          tag:'AI Product',     summary:'Bilingual intent palette that replaced a CRM dashboard. 28 intents in MVP, 21 already live.', img:'images/po-ai/hero-palette.webp',                                          video:'videos/po-ai/01-palette-empty-state.mp4', url:'case-study-po-ai-intent-hybrid.html', color:'icon-ai', mono:'AI', tint:'midnight' },
     ds:     { name:'Three platforms, one truth',  tag:'Design System',  summary:'Federated two-level token architecture across POS, web, and mobile. Zero drift after rollout.',     img:'images/DS/%E2%98%85%20Showcase%20%E2%80%94%20Multi-Palette%20Demo.webp',  url:'case-study-design-system-hybrid.html', color:'icon-ds', mono:'DS', tint:'tint-violet' },
     pos:    { name:'Two stores. One system.',     tag:'Enterprise POS', summary:'14 modules, 200+ screens — a legacy Windows POS redesigned for touch.',                              img:'images/ppos/New%20Central%20Hub.webp',                                    url:'case-study-pharmacy-pos-hybrid.html', color:'icon-pos', mono:'PX', tint:'tint-amber' },
@@ -1790,6 +1879,7 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
   function matchProjects(s){
     const hits = new Set();
+    if(/agent\s*harry|agentic\s*design|ai\s*team|build\s*ai\s*teams?|sf-?35|dental|1h\s*53|claude\s*code\s*agents?/.test(s)) hits.add('agentharry');
     if(/po\s*ai|intent\s*palette|bilingual|speak/.test(s)) hits.add('poai');
     if(/design\s*system|tokens?|three\s*platforms?|source\s*of\s*truth/.test(s)) hits.add('ds');
     if(/pharmacy|pos|two\s*stores?/.test(s)) hits.add('pos');
@@ -2283,26 +2373,152 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
     if(e.key === 'Escape' && overlay.classList.contains('open')) close();
   });
 
-  // Hero X-Ray spotlight
-  const hero = document.getElementById('hero');
-  if(hero && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-    let raf = 0, lastX = -400, lastY = -400;
-    function apply(){
-      hero.style.setProperty('--mx', lastX+'px');
-      hero.style.setProperty('--my', lastY+'px');
-      raf = 0;
-    }
-    hero.addEventListener('pointermove', (e)=>{
+  // Hero particle field — 3 depth layers of dust that drift up and dodge
+  // the cursor. Replaces the old X-Ray spotlight pattern.
+  (() => {
+    const canvas = document.getElementById('heroParticles');
+    if (!canvas) return;
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    const ctx = canvas.getContext('2d');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let W = 0, H = 0;
+    let particles = [];
+    let running = true;
+    let mouseX = -9999, mouseY = -9999;
+
+    // 448 particles across 3 depth layers (far / mid / near).
+    const LAYERS = [
+      { count: 240, size:[0.8,1.6], alpha:[0.12,0.30], speed:[0.04,0.10], repel:0.6 },
+      { count: 152, size:[1.4,2.6], alpha:[0.28,0.55], speed:[0.10,0.20], repel:1.0 },
+      { count:  56, size:[2.4,4.0], alpha:[0.45,0.80], speed:[0.18,0.32], repel:1.5 },
+    ];
+    const COLORS = [
+      'rgba(255,240,220,X)','rgba(255,240,220,X)','rgba(255,240,220,X)',
+      'rgba(255,240,220,X)','rgba(255,240,220,X)','rgba(255,240,220,X)',
+      'rgba(255,240,220,X)','rgba(255,240,220,X)',
+      'rgba(124,58,237,X)','rgba(161,98,7,X)',
+    ];
+    const REPEL_RADIUS = 140;
+    const REPEL_FORCE  = 1.8;
+
+    function rand(a, b){ return a + Math.random() * (b - a); }
+
+    function resize(){
       const r = hero.getBoundingClientRect();
-      lastX = e.clientX - r.left; lastY = e.clientY - r.top;
-      if(!raf) raf = requestAnimationFrame(apply);
+      W = r.width; H = r.height;
+      canvas.style.width  = W + 'px';
+      canvas.style.height = H + 'px';
+      canvas.width  = Math.floor(W * dpr);
+      canvas.height = Math.floor(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function spawn(){
+      particles = [];
+      LAYERS.forEach((L, layerIdx) => {
+        for (let i = 0; i < L.count; i++){
+          particles.push({
+            layer: layerIdx,
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: rand(L.size[0], L.size[1]),
+            vx: rand(-0.10, 0.10),
+            vy: -rand(L.speed[0], L.speed[1]),
+            a: rand(L.alpha[0], L.alpha[1]),
+            twinkle: Math.random() * Math.PI * 2,
+            twinkleSpeed: rand(0.5, 1.2),
+            repel: L.repel,
+            color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          });
+        }
+      });
+    }
+
+    function tick(){
+      if (!running) return;
+      ctx.clearRect(0, 0, W, H);
+      const t = performance.now() * 0.001;
+      const repelR2 = REPEL_RADIUS * REPEL_RADIUS;
+
+      for (const p of particles){
+        p.x += p.vx;
+        p.y += p.vy;
+
+        const dx = p.x - mouseX;
+        const dy = p.y - mouseY;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < repelR2 && d2 > 0.0001){
+          const d = Math.sqrt(d2);
+          const force = (1 - d / REPEL_RADIUS) * REPEL_FORCE * p.repel;
+          p.x += (dx / d) * force;
+          p.y += (dy / d) * force;
+        }
+
+        if (p.y < -8){ p.y = H + 8; p.x = Math.random() * W; }
+        if (p.y > H + 8){ p.y = -8; p.x = Math.random() * W; }
+        if (p.x < -8) p.x = W + 8;
+        if (p.x > W + 8) p.x = -8;
+
+        const tw = Math.sin(t * p.twinkleSpeed + p.twinkle) * 0.20 + 0.80;
+        const alpha = p.a * tw;
+
+        if (p.layer === 2){
+          ctx.fillStyle = p.color.replace('X', (alpha * 0.25).toFixed(3));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 2.6, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = p.color.replace('X', alpha.toFixed(3));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function start(){
+      resize();
+      spawn();
+      if (reduce){
+        ctx.clearRect(0, 0, W, H);
+        for (const p of particles){
+          ctx.fillStyle = p.color.replace('X', p.a.toFixed(3));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        return;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    window.addEventListener('resize', () => { resize(); spawn(); }, { passive: true });
+
+    // Mouse repulsion in hero-local coordinates.
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      mouseX = e.clientX - r.left;
+      mouseY = e.clientY - r.top;
+    }, { passive: true });
+    hero.addEventListener('pointerleave', () => {
+      mouseX = -9999; mouseY = -9999;
     });
-    hero.addEventListener('pointerenter', ()=> hero.classList.add('xray-on'));
-    hero.addEventListener('pointerleave', ()=>{
-      hero.classList.remove('xray-on');
-      lastX = -400; lastY = -400; if(!raf) raf = requestAnimationFrame(apply);
-    });
-  }
+
+    // Pause when hero scrolled out of view (saves battery + GPU).
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const wasRunning = running;
+        running = e.isIntersecting;
+        if (running && !wasRunning && !reduce) requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.02 });
+    io.observe(hero);
+
+    start();
+  })();
 })();
 </script>
 

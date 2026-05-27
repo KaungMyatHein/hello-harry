@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stop building AI tools. Build AI teams. — Agent Harry · Harry Hein</title>
+
+<!-- SEO -->
+<meta name="description" content="A case study in agentic product design — 18 AI agents designed like a product team, shipped SF-35, a ⌘K patient-search feature for a dental clinic, in 1h 53m.">
+<meta name="author" content="Harry Hein">
+<meta name="keywords" content="Agentic Design, Agent Harry, Claude Code, AI Agents, Product Design, Multi-Agent Systems, Harry Hein">
+<link rel="canonical" href="https://hello-harry.vercel.app/case-study-agent-harry.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stop building AI tools. Build AI teams.">
+<meta property="og:description" content="Designing 18 AI agents like a product team — shipped SF-35, a ⌘K patient-search feature for a dental clinic, in 1h 53m.">
+<meta property="og:url" content="https://hello-harry.vercel.app/case-study-agent-harry.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png">
+<meta property="og:site_name" content="Harry Hein · Portfolio">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stop building AI tools. Build AI teams.">
+<meta name="twitter:description" content="Designing 18 AI agents like a product team — shipped in 1h 53m.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png">
+<meta name="twitter:creator" content="@harryhein">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═════════════════════════════════════════════════
+   HYBRID CASE-STUDY — Agent Harry · violet accent
+═════════════════════════════════════════════════ */
+:root{
+  --paper:#ffffff; --canvas:#fafafa; --inset:#f4f4f5;
+  --ink:#0a0a0a; --ink-soft:#1f1f22; --muted:#5a5a5f; --dim:#737378;
+  --hairline:#e7e7e8; --hairline-soft:#efefef;
+  --ps-blue:#0066cc; --ps-blue-deep:#003791; --ps-blue-light:#3da5f5;
+  --success:#16a34a; --danger:#dc2626; --warning:#d97706;
+  --violet:#7c3aed; --violet-deep:#5b21b6; --amber:#a16207; --rose:#be185d; --mint:#047857;
+  --accent:var(--violet);
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --radius:14px; --radius-sm:8px; --radius-lg:20px; --pill:9999px;
+  --shadow-card:0 1px 2px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.05);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{background:var(--paper);color:var(--ink-soft);font-family:var(--sans);font-size:17px;line-height:1.55;letter-spacing:-0.012em;}
+a{color:inherit;text-decoration:none;transition:color 150ms ease;}
+ul,ol{list-style:none;}
+em{font-style:italic;color:inherit;}
+strong{font-weight:600;color:var(--ink);}
+code{font-family:var(--mono);font-size:0.86em;background:var(--inset);padding:1px 6px;border-radius:5px;color:var(--ink);}
+:focus{outline:none;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:var(--radius-sm);}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,0.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hairline-soft);}
+.nav-inner{max-width:1180px;margin:0 auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+.brand-mark{width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;font-family:var(--mono);}
+.nav-actions{display:flex;align-items:center;gap:18px;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);font-weight:500;}
+.nav-back::before{content:"‹";font-size:18px;line-height:0;}
+.nav-back:hover{color:var(--ink);}
+
+/* HERO */
+.hero{padding:96px 28px 56px;background:var(--paper);}
+.hero-inner{max-width:1180px;margin:0 auto;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--canvas);border:1px solid var(--hairline);padding:6px 14px;border-radius:var(--pill);font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:28px;}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--violet);box-shadow:0 0 8px rgba(124,58,237,0.6);}
+.hero h1{font-size:clamp(48px,7.4vw,88px);font-weight:600;letter-spacing:-0.035em;line-height:1.02;color:var(--ink);max-width:920px;margin-bottom:26px;}
+.hero h1 em{color:var(--muted);font-style:normal;}
+.hero-sub{font-size:clamp(18px,1.6vw,22px);font-weight:400;color:var(--muted);max-width:680px;line-height:1.5;letter-spacing:-0.011em;margin-bottom:40px;}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:24px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);margin-bottom:40px;}
+@media (max-width:780px){.hero-meta{grid-template-columns:repeat(2,1fr);}}
+.hero-meta-item{display:flex;flex-direction:column;gap:6px;}
+.hero-meta-label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);}
+.hero-meta-val{font-size:14px;font-weight:500;color:var(--ink);letter-spacing:-0.01em;}
+
+/* HERO BENTO */
+.hero-bento{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;margin-top:8px;}
+@media (max-width:900px){.hero-bento{grid-template-columns:1fr;}}
+.hero-stats{display:grid;grid-template-columns:1fr;gap:18px;}
+
+/* TILES */
+.tile{position:relative;border-radius:24px;overflow:hidden;background:var(--canvas);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);padding:36px;display:flex;flex-direction:column;}
+.tile.dark{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.tile.midnight{background:linear-gradient(180deg,#1a0e35 0%,#000 100%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.08);}
+.tile.tint-violet{background:#efeaff;}
+.tile.tint-amber{background:#fff4d6;}
+.tile.tint-blue{background:#e6efff;}
+.tile.tint-mint{background:#dcf7ec;}
+.tile.tint-rose{background:#ffe6ec;}
+.tile-stamp{position:absolute;top:18px;right:22px;z-index:4;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(0,0,0,0.38);pointer-events:none;display:flex;align-items:center;gap:6px;}
+.tile-stamp::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.65;}
+.tile.dark .tile-stamp,.tile.midnight .tile-stamp{color:rgba(255,255,255,0.55);}
+
+.tile.hero-media{padding:0;min-height:420px;}
+.tile.hero-media img,.tile.hero-media video{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;}
+.tile.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,0.65) 100%);pointer-events:none;}
+.tile.hero-media .tile-cap{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;color:#fff;display:flex;align-items:center;gap:12px;}
+.tile.hero-media .play{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:rgba(255,255,255,0.18);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;}
+.tile.hero-media .play::after{content:"";width:0;height:0;margin-left:3px;border-style:solid;border-width:7px 0 7px 11px;border-color:transparent transparent transparent #fff;}
+.tile.hero-media .tile-cap-label{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.78;}
+.tile.hero-media .tile-cap-title{font-size:16px;font-weight:500;letter-spacing:-0.01em;margin-top:2px;}
+
+.tile.metric{padding:30px 32px;}
+.tile.metric .tstat-val{font-size:60px;font-weight:500;letter-spacing:-0.028em;line-height:1;font-variant-numeric:tabular-nums;color:inherit;margin-bottom:10px;}
+.tile.metric .tstat-lbl{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--muted);line-height:1.4;}
+.tile.metric .tstat-foot{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:6px;letter-spacing:0.4px;}
+
+/* SECTION */
+.section{max-width:1180px;margin:0 auto;padding:88px 28px;}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--hairline);}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.6px;}
+.sec-title{font-size:clamp(34px,4.2vw,52px);font-weight:600;letter-spacing:-0.03em;line-height:1.04;color:var(--ink);}
+.sec-title em{font-style:normal;color:var(--muted);}
+.sec-sub{font-size:17px;color:var(--muted);max-width:760px;line-height:1.55;margin-top:6px;}
+
+.p{font-size:17px;line-height:1.65;color:var(--ink-soft);margin-bottom:18px;max-width:820px;}
+.p:last-child{margin-bottom:0;}
+.lede{font-size:21px;line-height:1.5;color:var(--ink);font-weight:400;letter-spacing:-0.014em;max-width:820px;margin-bottom:28px;}
+.subhead{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:var(--violet);margin:36px 0 14px;}
+
+/* TL;DR */
+.tldr{display:grid;grid-template-columns:1.1fr 1.2fr;gap:30px;align-items:start;}
+@media (max-width:900px){.tldr{grid-template-columns:1fr;}}
+.tldr-jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.tldr-jump a{font-family:var(--mono);font-size:11px;color:var(--violet);background:rgba(124,58,237,0.08);padding:6px 12px;border-radius:var(--pill);letter-spacing:0.04em;border:1px solid rgba(124,58,237,0.18);}
+.tldr-jump a:hover{background:rgba(124,58,237,0.16);}
+.tldr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media (max-width:580px){.tldr-grid{grid-template-columns:1fr;}}
+.tldr-item{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;gap:6px;}
+.tldr-item .l{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--violet);}
+.tldr-item .v{font-size:14px;color:var(--ink-soft);line-height:1.5;}
+
+/* PULLQUOTE */
+.pullquote{margin:36px 0;padding:32px 36px 32px 44px;background:linear-gradient(135deg,rgba(124,58,237,0.06) 0%,rgba(124,58,237,0.015) 100%);border-left:3px solid var(--violet);border-radius:0 var(--radius-lg) var(--radius-lg) 0;position:relative;}
+.pullquote::before{content:"\201C";position:absolute;top:6px;left:18px;font-family:Georgia,serif;font-size:64px;line-height:1;color:var(--violet);opacity:0.32;}
+.pullquote-q{font-size:22px;line-height:1.45;color:var(--ink);letter-spacing:-0.012em;font-weight:400;padding-left:26px;}
+.pullquote-attr{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:16px;padding-left:26px;}
+
+/* HOOK */
+.hook{margin-top:28px;padding:24px 28px;background:var(--ink);color:#fff;border-radius:var(--radius-lg);font-size:18px;line-height:1.5;letter-spacing:-0.012em;max-width:820px;}
+.hook em{color:rgba(255,255,255,0.7);font-style:normal;}
+
+/* MEDIA FRAME — browser-framed images */
+.media-frame{position:relative;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow:hidden;margin:28px 0;box-shadow:var(--shadow-card);}
+.media-frame-bar{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#f4f4f5;border-bottom:1px solid var(--hairline);}
+.media-frame-bar::before{content:"";display:flex;gap:6px;width:50px;height:12px;background:radial-gradient(circle 6px,#ff5f57 99%,transparent 100%) 0 50% /16px 100% no-repeat,
+  radial-gradient(circle 6px,#febc2e 99%,transparent 100%) 17px 50% /16px 100% no-repeat,
+  radial-gradient(circle 6px,#28c840 99%,transparent 100%) 34px 50% /16px 100% no-repeat;}
+.media-frame-label{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-left:8px;}
+.media-frame img,.media-frame video{width:100%;display:block;}
+.media-frame video{background:#000;}
+
+/* DEVICE FRAME (laptop-style for hero shots) */
+.device-frame{position:relative;width:100%;max-width:940px;margin:24px auto;background:linear-gradient(180deg,#2e2e30 0%,#1c1c1e 100%);padding:18px 13px 13px;border-radius:14px 14px 5px 5px;filter:drop-shadow(0 24px 40px rgba(0,0,0,0.22));box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);}
+.device-frame img,.device-frame video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#000;border-radius:3px;}
+.device-frame::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;height:8px;background:#0a0a0a;border-radius:0 0 8px 8px;z-index:3;}
+
+/* SURFACE GRID (18-agent bento + comparisons) */
+.surface-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0;}
+@media (max-width:900px){.surface-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:580px){.surface-grid{grid-template-columns:1fr;}}
+.surface-tile{border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.06);position:relative;background:var(--canvas);}
+.surface-tile .num{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:var(--violet);text-transform:uppercase;}
+.surface-tile .name{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:-0.01em;color:var(--ink);}
+.surface-tile .desc{font-size:13px;color:var(--ink-soft);line-height:1.5;}
+.surface-tile.tint-violet{background:#efeaff;}
+.surface-tile.tint-violet .num{color:var(--violet);}
+.surface-tile.tint-amber{background:#fff4d6;}
+.surface-tile.tint-amber .num{color:var(--amber);}
+.surface-tile.tint-blue{background:#e6efff;}
+.surface-tile.tint-blue .num{color:var(--ps-blue);}
+.surface-tile.tint-rose{background:#ffe6ec;}
+.surface-tile.tint-rose .num{color:var(--rose);}
+.surface-tile.tint-mint{background:#dcf7ec;}
+.surface-tile.tint-mint .num{color:var(--mint);}
+.surface-tile.dark{background:var(--ink);color:#fff;}
+.surface-tile.dark .num{color:#a78bfa;}
+.surface-tile.dark .name{color:#fff;}
+.surface-tile.dark .desc{color:rgba(255,255,255,0.74);}
+
+/* PHASE row — divider header above each org-chart group */
+.phase-row{display:flex;align-items:center;gap:14px;margin:36px 0 12px;}
+.phase-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;padding:6px 12px;border-radius:var(--pill);}
+.phase-tag.orch{background:#0a0a0a;color:#fff;}
+.phase-tag.crit{background:#ffe6ec;color:var(--rose);}
+.phase-tag.cross{background:#dcf7ec;color:var(--mint);}
+.phase-tag.disc{background:#e6efff;color:var(--ps-blue);}
+.phase-tag.def{background:#efeaff;color:var(--violet);}
+.phase-tag.deliv{background:#fff4d6;color:var(--amber);}
+.phase-meta{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.06em;}
+.phase-line{flex:1;height:1px;background:var(--hairline);}
+
+/* PIPELINE — horizontal flow visual (SF-35 timeline) */
+.pipeline{display:flex;align-items:stretch;gap:0;margin:24px 0 6px;padding:24px;background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow-x:auto;}
+.pipe-step{flex:1;min-width:140px;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-sm);padding:14px 16px;display:flex;flex-direction:column;gap:6px;}
+.pipe-step:not(:last-child){margin-right:28px;position:relative;}
+.pipe-step:not(:last-child)::after{content:"→";position:absolute;right:-22px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:16px;color:var(--violet);font-weight:600;}
+.pipe-num{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--violet);}
+.pipe-name{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;}
+.pipe-time{font-family:var(--mono);font-size:11px;color:var(--muted);}
+.pipe-caption{font-family:var(--mono);font-size:10px;color:var(--dim);text-align:center;text-transform:uppercase;letter-spacing:0.1em;margin:6px 0 22px;}
+
+/* COMPARE — side-by-side panels (industry vs harry) */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 28px;}
+@media (max-width:780px){.compare{grid-template-columns:1fr;}}
+.compare-panel{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:24px 26px;display:flex;flex-direction:column;gap:10px;}
+.compare-panel.pick{border-color:rgba(124,58,237,0.30);background:linear-gradient(135deg,rgba(124,58,237,0.06) 0%,rgba(124,58,237,0.015) 100%);}
+.compare-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.compare-panel.pick .compare-tag{color:var(--violet);}
+.compare-name{font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-0.014em;}
+.compare-desc{font-size:14.5px;color:var(--ink-soft);line-height:1.55;}
+.compare-desc strong{font-weight:600;color:var(--ink);}
+
+/* KPI grid (SF-35 outputs) */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0;}
+@media (max-width:780px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+.kpi-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px;}
+.kpi-val{font-size:32px;font-weight:500;letter-spacing:-0.028em;color:var(--violet);line-height:1;margin-bottom:10px;font-variant-numeric:tabular-nums;}
+.kpi-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--ink);font-weight:600;}
+.kpi-why{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;}
+
+/* CAUGHT — critique-partner findings */
+.caught{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0;}
+@media (max-width:900px){.caught{grid-template-columns:1fr;}}
+.caught-card{background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:8px;position:relative;}
+.caught-card::before{content:"⚠";position:absolute;top:18px;right:20px;font-size:16px;color:var(--rose);opacity:0.7;}
+.caught-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose);}
+.caught-h{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.012em;line-height:1.3;}
+.caught-d{font-size:13.5px;color:var(--muted);line-height:1.55;}
+
+/* DATA TABLE — before/after */
+.data-table{border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;margin:22px 0;background:var(--paper);}
+.data-row{display:grid;grid-template-columns:1.1fr 1.6fr 1.6fr;gap:0;border-bottom:1px solid var(--hairline-soft);}
+.data-row:last-child{border-bottom:none;}
+.data-row.head{background:var(--canvas);}
+.data-row > div{padding:14px 18px;font-size:14px;color:var(--ink-soft);line-height:1.5;border-right:1px solid var(--hairline-soft);}
+.data-row > div:last-child{border-right:none;}
+.data-row.head > div{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);}
+.data-row .label{font-weight:600;color:var(--ink);}
+.data-row .before{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(220,38,38,0.4);text-decoration-thickness:1px;font-family:var(--mono);font-size:13px;}
+.data-row .after{color:var(--ink);font-weight:500;font-family:var(--mono);font-size:13px;}
+@media (max-width:780px){.data-row{grid-template-columns:1fr;}.data-row > div{border-right:none;border-bottom:1px solid var(--hairline-soft);}.data-row > div:last-child{border-bottom:none;}}
+
+/* OUTCOME grid */
+.outcome-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;margin:28px 0;}
+@media (max-width:900px){.outcome-grid{grid-template-columns:1fr;}}
+.outcome-tile{border-radius:var(--radius-lg);padding:30px;display:flex;flex-direction:column;gap:6px;}
+.outcome-tile.hero{background:linear-gradient(135deg,#efeaff 0%,#f5f0ff 100%);box-shadow:inset 0 0 0 1px rgba(124,58,237,0.2);}
+.outcome-tile.alt{background:var(--ink);color:#fff;}
+.outcome-tile.tint{background:var(--canvas);box-shadow:inset 0 0 0 1px var(--hairline);}
+.outcome-val{font-size:64px;font-weight:500;letter-spacing:-0.03em;line-height:1;color:var(--violet);font-variant-numeric:tabular-nums;margin-bottom:4px;}
+.outcome-tile.alt .outcome-val{color:#fff;font-size:48px;}
+.outcome-tile.tint .outcome-val{color:var(--ink);font-size:48px;}
+.outcome-lbl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink);font-weight:600;}
+.outcome-tile.alt .outcome-lbl{color:rgba(255,255,255,0.7);}
+.outcome-desc{font-size:14px;color:var(--ink-soft);margin-top:8px;line-height:1.5;}
+.outcome-tile.alt .outcome-desc{color:rgba(255,255,255,0.75);}
+
+/* LESSONS */
+.lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px;}
+@media (max-width:780px){.lessons{grid-template-columns:1fr;}}
+.lesson{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--radius-lg);padding:26px 28px;display:flex;flex-direction:column;gap:8px;}
+.lesson-num{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.lesson-h{font-size:19px;font-weight:600;letter-spacing:-0.018em;color:var(--ink);line-height:1.3;}
+.lesson-d{font-size:14.5px;color:var(--ink-soft);line-height:1.6;}
+
+/* CTA */
+.cta-band{padding:120px 28px;text-align:center;background:var(--canvas);border-top:1px solid var(--hairline);position:relative;overflow:hidden;}
+.cta-band::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(124,58,237,0.07),transparent 60%);border-radius:50%;}
+.cta-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;}
+.cta-band h2{font-size:clamp(48px,7vw,84px);font-weight:600;letter-spacing:-0.035em;line-height:1;margin-bottom:22px;color:var(--ink);}
+.cta-band h2 em{font-style:normal;color:var(--muted);}
+.cta-band p{font-size:18px;color:var(--muted);max-width:540px;margin:0 auto 36px;line-height:1.55;}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff !important;padding:13px 26px;border-radius:var(--pill);font-size:14px;font-weight:500;transition:transform 120ms ease,opacity 120ms;letter-spacing:-0.01em;}
+.btn:hover{opacity:0.9;transform:translateY(-1px);}
+.btn.ghost{background:var(--paper);color:var(--ink) !important;border:1px solid var(--hairline);}
+.btn.ghost:hover{border-color:var(--ink);}
+
+footer{padding:48px 28px 64px;border-top:1px solid var(--hairline);text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:0.06em;text-transform:uppercase;}
+
+@media (max-width:768px){
+  .nav-inner{padding:0 16px;}
+  .hero{padding:64px 18px 40px;}
+  .hero h1{font-size:clamp(38px,9vw,56px);margin-bottom:18px;}
+  .hero-sub{font-size:15.5px;}
+  .hero-meta{gap:16px;padding:18px 0;margin-bottom:28px;}
+  .section{padding:56px 18px;}
+  .sec-head{margin-bottom:28px;padding-bottom:16px;}
+  .sec-title{font-size:clamp(26px,7.2vw,40px);}
+  .sec-sub{font-size:15px;}
+  .cta-band{padding:72px 18px;}
+  .cta-band h2{font-size:clamp(36px,9vw,56px);}
+  .cta-band p{font-size:16px;}
+  .tile{padding:24px;}
+  .tile.metric .tstat-val{font-size:48px;}
+  .pipeline{padding:18px 14px;}
+  .pipe-step:not(:last-child){margin-right:22px;}
+  .pipe-step:not(:last-child)::after{right:-18px;}
+  footer{padding:32px 18px 40px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="portfolio-hybrid.html" class="brand"><span class="brand-mark">H</span><span class="brand-label">Harry Hein</span></a>
+    <div class="nav-actions"><a href="portfolio-hybrid.html" class="nav-back">Back to work</a></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Case study &middot; Agentic Design &middot; May 2026</div>
+    <h1>Stop building AI tools.<br>Build <em>AI teams.</em></h1>
+    <p class="hero-sub">Eighteen AI agents designed like a product team. Shipped a dental clinic feature in <strong>1h 53m</strong> — what a Figma → engineer pipeline takes 2.5–5.5 days to do.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Role</span><span class="hero-meta-val">Solo · Designer + Orchestrator</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Team</span><span class="hero-meta-val">18 AI agents · 1 human</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Stack</span><span class="hero-meta-val">Claude Code · Next.js · custom subagents</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Status</span><span class="hero-meta-val">Open-source &middot; Shipped SF-35</span></div>
+    </div>
+
+    <div class="hero-bento">
+      <div class="tile hero-media midnight">
+        <span class="tile-stamp">Live · 30s loop</span>
+        <video src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/videos/real-cmdk.mp4" autoplay muted loop playsinline poster="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png"></video>
+        <div class="tile-cap"><div class="play"></div><div><div class="tile-cap-label">SF-35 · the feature Agent Harry shipped</div><div class="tile-cap-title">⌘K spotlight on the real /clinic/dashboard</div></div></div>
+      </div>
+      <div class="hero-stats">
+        <div class="tile metric tint-violet"><span class="tile-stamp">Team</span><div class="tstat-val">18</div><div class="tstat-lbl">AI agents · 1 human</div><div class="tstat-foot">Discovery · Define · Deliver · Cross-cutting</div></div>
+        <div class="tile metric tint-amber"><span class="tile-stamp">Speed</span><div class="tstat-val">1h 53m</div><div class="tstat-lbl">Kickoff to shipped (SF-35)</div><div class="tstat-foot">Figma baseline: 2.5–5.5 days</div></div>
+        <div class="tile metric tint-mint"><span class="tile-stamp">Cost</span><div class="tstat-val">$2.12</div><div class="tstat-lbl">LLM spend per feature</div><div class="tstat-foot">~$85 projected for 40 features/yr</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TL;DR -->
+<section class="section" id="tldr">
+  <div class="sec-head">
+    <span class="sec-num">At a glance &middot; 60 seconds</span>
+    <h2 class="sec-title">The bottleneck isn't the artifact. <em>It's the handoff.</em></h2>
+  </div>
+  <div class="tldr">
+    <div>
+      <p class="lede">Most AI design tools speed up one phase — PRDs in Notion AI, screens in Figma AI, code in Cursor. None of them fix the part that actually slows teams down: the <strong>handoff</strong> between phases, where intent leaks and context dies. Agent Harry is built around the opposite bet — design the AI for the handoffs, not the tasks.</p>
+      <div class="tldr-jump">
+        <a href="#problem">Problem</a>
+        <a href="#reframe">Reframe</a>
+        <a href="#team">The team</a>
+        <a href="#handoffs">Move 1</a>
+        <a href="#surface">Move 2</a>
+        <a href="#shipped">SF-35</a>
+        <a href="#lessons">Lessons</a>
+      </div>
+    </div>
+    <div class="tldr-grid">
+      <div class="tldr-item"><span class="l">Problem</span><span class="v">AI accelerates each phase but ignores the seams between them — where intent leaks every time.</span></div>
+      <div class="tldr-item"><span class="l">Method</span><span class="v">Treat the agent system like a team, not a toolkit. Design the protocol, not the prompts.</span></div>
+      <div class="tldr-item"><span class="l">Bet</span><span class="v">The journey is the contract. Every agent reads the same structured shape — no guessing at the seams.</span></div>
+      <div class="tldr-item"><span class="l">Surfaces</span><span class="v">Chat as canonical surface. No dashboard. One place to meet, one place to look.</span></div>
+      <div class="tldr-item"><span class="l">Outcome</span><span class="v"><strong>SF-35 shipped in 1h 53m</strong> · $2.12 LLM spend · 10–25× faster than the Figma baseline.</span></div>
+      <div class="tldr-item"><span class="l">Lesson</span><span class="v">Design the connective tissue. The phases solve themselves once the contract is clear.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 PROBLEM -->
+<section class="section" id="problem">
+  <div class="sec-head">
+    <span class="sec-num">01 — Problem</span>
+    <h2 class="sec-title">AI fixed the artifacts. <em>It didn't fix the seams.</em></h2>
+    <p class="sec-sub">Notion AI writes the PRD faster. Figma AI generates screens. Cursor writes code. v0 builds prototypes. Each tool helps one phase. None of them help the part that actually slows teams down.</p>
+  </div>
+
+  <p class="lede">A PRD doesn't slow a team down when the PM writes it. It slows the team down the moment a designer reads it and starts guessing at the parts that aren't written.</p>
+
+  <p class="p">The same is true at every boundary: <strong>PRD to lo-fi sketch · lo-fi to hi-fi · hi-fi to engineering implementation</strong>. Context leaks at every step. Intent gets lost. AI today writes the PRD faster — but it does not fix the guessing.</p>
+
+  <div class="hook">The hard part of product work isn't the individual artifact. <em>It's the connective tissue between phases.</em></div>
+</section>
+
+<!-- 02 REFRAME -->
+<section class="section" id="reframe">
+  <div class="sec-head">
+    <span class="sec-num">02 — Reframe</span>
+    <h2 class="sec-title">Stop building AI tools. <em>Build AI teams.</em></h2>
+    <p class="sec-sub">The conventional way to design an AI agent system is to treat it as software — spec the agents, define their APIs, wire them up. That's the wrong mental model.</p>
+  </div>
+
+  <p class="p">An AI agent system is closer to a team than to a piece of software. A team has roles, but the roles aren't the hard part. The hard part is <strong>how the team communicates, where it meets, who pushes back on whom</strong>.</p>
+
+  <p class="p">When I started thinking about Agent Harry as a team instead of a toolkit, three design questions emerged that I had not been asking:</p>
+
+  <div class="surface-grid">
+    <div class="surface-tile tint-violet">
+      <span class="num">Q1</span>
+      <span class="name">How do agents hand off work?</span>
+      <p class="desc">The protocol between phases — not the prompts inside them — is where speed comes from.</p>
+    </div>
+    <div class="surface-tile tint-blue">
+      <span class="num">Q2</span>
+      <span class="name">Where does the team meet?</span>
+      <p class="desc">A team without a canonical surface defaults to chaos. Chat or dashboard? Pick one.</p>
+    </div>
+    <div class="surface-tile tint-rose">
+      <span class="num">Q3</span>
+      <span class="name">Who tells the team when it's wrong?</span>
+      <p class="desc">A team without a critic ships its mistakes. Quality is structural, not aspirational.</p>
+    </div>
+  </div>
+
+  <div class="pullquote">
+    <div class="pullquote-q">This case study walks through the first two moves. The third — the critique partner — deserves its own essay.</div>
+    <div class="pullquote-attr">Design thesis · Agent Harry v1</div>
+  </div>
+</section>
+
+<!-- 03 MEET THE TEAM -->
+<section class="section" id="team">
+  <div class="sec-head">
+    <span class="sec-num">03 — Meet the team</span>
+    <h2 class="sec-title">Eighteen agents. <em>One human directing.</em></h2>
+    <p class="sec-sub">Grouped by where they sit in the product lifecycle. Each agent has a job, a contract, and a place in the protocol.</p>
+  </div>
+
+  <div class="phase-row">
+    <span class="phase-tag orch">Orchestration · 1</span>
+    <span class="phase-meta">parses kickoff · queues phases · enforces gates</span>
+    <span class="phase-line"></span>
+  </div>
+  <div class="surface-grid">
+    <div class="surface-tile dark">
+      <span class="num">Lead</span>
+      <span class="name">orchestrator</span>
+      <p class="desc">Parses the kickoff, decomposes the goal, sequences the right sub-agents, inserts approval gates, synthesises their outputs into one stream.</p>
+    </div>
+  </div>
+
+  <div class="phase-row">
+    <span class="phase-tag crit">Critique · 1</span>
+    <span class="phase-meta">devil's advocate · stress-tests every output · quality gate</span>
+    <span class="phase-line"></span>
+  </div>
+  <div class="surface-grid">
+    <div class="surface-tile tint-rose">
+      <span class="num">Gate</span>
+      <span class="name">critique-partner</span>
+      <p class="desc">Caught the Burmese honorifics bug. Caught the fake database relationship. Caught the useEffect race. Invoked between phases — never optional.</p>
+    </div>
+  </div>
+
+  <div class="phase-row">
+    <span class="phase-tag cross">Cross-cutting · 2</span>
+    <span class="phase-meta">shared vocabulary · read by every Deliver agent</span>
+    <span class="phase-line"></span>
+  </div>
+  <div class="surface-grid">
+    <div class="surface-tile tint-mint"><span class="num">Curator</span><span class="name">product-fingerprint-curator</span><p class="desc">Curates 3–7 designer-picked references and distils the project's visual language, composition patterns, and anti-patterns.</p></div>
+    <div class="surface-tile tint-mint"><span class="num">Bootstrap</span><span class="name">figma-component-bootstrapper</span><p class="desc">Generates a baseline Figma component library so the team has shared vocabulary before any feature work begins.</p></div>
+  </div>
+
+  <div class="phase-row">
+    <span class="phase-tag disc">Discovery · 4</span>
+    <span class="phase-meta">interview synthesis · competitive scan · ideation · positioning</span>
+    <span class="phase-line"></span>
+  </div>
+  <div class="surface-grid">
+    <div class="surface-tile tint-blue"><span class="num">D-01</span><span class="name">discovery-researcher</span><p class="desc">Synthesises interviews, surveys, JTBD findings. Turns notes into structured insight.</p></div>
+    <div class="surface-tile tint-blue"><span class="num">D-02</span><span class="name">competitive-analyst</span><p class="desc">Competitor teardowns, UI pattern audits, feature-gap analysis, category positioning.</p></div>
+    <div class="surface-tile tint-blue"><span class="num">D-03</span><span class="name">ideation-facilitator</span><p class="desc">Divergent ideation, How-Might-We reframing, Crazy 8s. Runs before any wireframing.</p></div>
+    <div class="surface-tile tint-blue"><span class="num">D-04</span><span class="name">product-positioner</span><p class="desc">Sharpens positioning, value prop, differentiation, naming. Defines what the product isn't.</p></div>
+  </div>
+
+  <div class="phase-row">
+    <span class="phase-tag def">Define · 5</span>
+    <span class="phase-meta">vision · GTM · metrics · prioritization · PRD</span>
+    <span class="phase-line"></span>
+  </div>
+  <div class="surface-grid">
+    <div class="surface-tile tint-violet"><span class="num">P-01</span><span class="name">pm-strategist</span><p class="desc">Works above features. Vision, business model, pricing, north-star, market scan.</p></div>
+    <div class="surface-tile tint-violet"><span class="num">P-02</span><span class="name">pm-launch-architect</span><p class="desc">GTM strategy, beachhead segment, ICP, battlecards, growth loops, pre-mortems.</p></div>
+    <div class="surface-tile tint-violet"><span class="num">P-03</span><span class="name">pm-metrics-architect</span><p class="desc">North-star, input, health, and counter-metrics. Tracking plans, OKRs, instrumentation.</p></div>
+    <div class="surface-tile tint-violet"><span class="num">P-04</span><span class="name">feature-prioritizer</span><p class="desc">RICE, MoSCoW, value-effort. Ranks the backlog, defends scope cuts.</p></div>
+    <div class="surface-tile tint-violet"><span class="num">P-05</span><span class="name">prd-author</span><p class="desc">Writes the PRD. Emits the structured journey shape every downstream agent consumes.</p></div>
+  </div>
+
+  <div class="phase-row">
+    <span class="phase-tag deliv">Deliver · 5</span>
+    <span class="phase-meta">lo-fi · hi-fi · code · usability · handoff</span>
+    <span class="phase-line"></span>
+  </div>
+  <div class="surface-grid">
+    <div class="surface-tile tint-amber"><span class="num">X-01</span><span class="name">lo-fi-designer</span><p class="desc">Markdown wireframes with ASCII layouts and three alternatives per screen.</p></div>
+    <div class="surface-tile tint-amber"><span class="num">X-02</span><span class="name">figma-designer</span><p class="desc">Production Figma files when the flow needs hi-fi before code.</p></div>
+    <div class="surface-tile tint-amber"><span class="num">X-03</span><span class="name">design-engineer</span><p class="desc">Real React/Next code with all five states wired (empty, loading, populated, error, edge). Often skips Figma entirely.</p></div>
+    <div class="surface-tile tint-amber"><span class="num">X-04</span><span class="name">usability-tester</span><p class="desc">Test plans, task scripts, finding synthesis, severity scoring.</p></div>
+    <div class="surface-tile tint-amber"><span class="num">X-05</span><span class="name">handoff-engineer</span><p class="desc">Engineering handoff doc: component contracts, design tokens, telemetry events, accessibility QA.</p></div>
+  </div>
+
+  <div class="hook">One human directs them. They direct each other. <em>The structure of the team is the architecture of Agent Harry.</em></div>
+</section>
+
+<!-- 04 HANDOFFS -->
+<section class="section" id="handoffs">
+  <div class="sec-head">
+    <span class="sec-num">04 — Move 1</span>
+    <h2 class="sec-title">Designing the handoffs.</h2>
+    <p class="sec-sub">The protocol that travels with the work — so no agent has to guess what success looks like.</p>
+  </div>
+
+  <h3 class="subhead">Industry today vs Agent Harry</h3>
+  <div class="compare">
+    <div class="compare-panel">
+      <span class="compare-tag">Industry today</span>
+      <span class="compare-name">PRD → guess → guess → guess</span>
+      <p class="compare-desc">PM writes a PRD in Notion. Designer reads it, sketches lo-fi in FigJam, builds hi-fi in Figma. Engineer opens Dev Mode, jumps to Cursor. Each handoff is a <strong>human guessing at the previous human's intent</strong>. AI tools speed up the artifacts. They don't fix the guessing.</p>
+    </div>
+    <div class="compare-panel pick">
+      <span class="compare-tag">Agent Harry</span>
+      <span class="compare-name">The journey is the contract</span>
+      <p class="compare-desc">Every PRD emits a structured journey: <strong>persona · entry condition · success exit · failure exit</strong>. lo-fi reads the journey. figma reads the journey. design-engineer reads the journey. By the time work reaches code, every agent has the same definition of "what does success look like."</p>
+    </div>
+  </div>
+
+  <h3 class="subhead">The handoff shape — before vs after</h3>
+  <div class="data-table">
+    <div class="data-row head"><div>Field</div><div>Industry brief (prose)</div><div>Agent Harry journey (structured)</div></div>
+    <div class="data-row"><div class="label">Persona</div><div class="before">"…for the receptionist."</div><div class="after">"Burmese receptionist · multi-branch clinic"</div></div>
+    <div class="data-row"><div class="label">Entry</div><div class="before">"…when they need to search."</div><div class="after">"Patient calls · receptionist knows phone, not name yet"</div></div>
+    <div class="data-row"><div class="label">Success exit</div><div class="before">"…fast and accurate."</div><div class="after">"Patient record opened in &lt;2s"</div></div>
+    <div class="data-row"><div class="label">Failure exit</div><div class="before">(unspecified)</div><div class="after">"Not in this branch → fall back cross-branch → walk-in"</div></div>
+    <div class="data-row"><div class="label">Propagated to</div><div class="before">Read once · re-summarised at each step</div><div class="after">Read by every Deliver agent · contract verbatim</div></div>
+  </div>
+
+  <p class="p"><strong>The point isn't that AI writes faster.</strong> The point is that AI agents can be designed to <em>refuse context loss</em> — something human teams cannot enforce. The journey is the smallest object that, once everyone reads from it, makes the seams disappear.</p>
+
+  <div class="hook">Most AI tools today are point solutions for individual phases. <em>The real leverage is designing AI for the handoffs, not the phases.</em></div>
+</section>
+
+<!-- 05 SURFACE -->
+<section class="section" id="surface">
+  <div class="sec-head">
+    <span class="sec-num">05 — Move 2</span>
+    <h2 class="sec-title">Designing where the team meets.</h2>
+    <p class="sec-sub">If a team has two places to look, it has none. Chat is the surface — and that's an org decision before it's a UX one.</p>
+  </div>
+
+  <h3 class="subhead">Two surfaces compared</h3>
+  <div class="compare">
+    <div class="compare-panel">
+      <span class="compare-tag">Dashboard pattern</span>
+      <span class="compare-name">LangChain / AutoGPT style</span>
+      <p class="compare-desc">Agent cards. Run buttons. Status panels. Logs viewer. The default assumption: if you have agents, you need a dashboard to control them. <strong>Built like every other industry tool</strong> — because dashboards are what we know.</p>
+    </div>
+    <div class="compare-panel pick">
+      <span class="compare-tag">Chat-only pattern</span>
+      <span class="compare-name">Agent Harry / Claude Code style</span>
+      <p class="compare-desc">No dashboard at all. Every agent decision — a journey, a PRD section, a Figma spec, a handoff doc — <strong>renders as chat markdown</strong>. The user sees agent output in the same surface they'd see a teammate's message. There is no second place to look.</p>
+    </div>
+  </div>
+
+  <p class="p">This sounds like a UX simplification. It is actually an <strong>org design decision</strong>. When chat is canonical, the team has one place to meet. A dashboard would be a second one — and for a team that already lives in the conversation, one is enough.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-q">People meet where the conversation is, not where the buttons are.</div>
+    <div class="pullquote-attr">Design lesson · Move 2</div>
+  </div>
+</section>
+
+<!-- 06 SHIPPED -->
+<section class="section" id="shipped">
+  <div class="sec-head">
+    <span class="sec-num">06 — Shipped</span>
+    <h2 class="sec-title">SF-35: <em>the proof.</em></h2>
+    <p class="sec-sub">A ⌘K spotlight modal for patient search across three clinic branches. Built end-to-end by the pipeline — no Figma file was opened.</p>
+  </div>
+
+  <p class="p">The receptionists are Burmese, and they search by phone number before they say a name. The feature had to handle Burmese honorifics — <em>Daw, U, Ma, Ko</em> — that English search libraries strip incorrectly. It had to fall back across branches when a patient wasn't local. It had to ship into a production header.</p>
+
+  <p class="p">From kickoff to shipped code: <strong>1 hour 53 minutes</strong>. The same feature, in a traditional Figma → engineer handoff, takes <strong>2.5 to 5.5 days</strong>. That's a <strong>10–25× speedup</strong>, depending on the phase.</p>
+
+  <div class="device-frame">
+    <video src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/videos/real-cmdk.mp4" autoplay muted loop playsinline poster="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png"></video>
+  </div>
+
+  <h3 class="subhead">Five wired states · no toy demos</h3>
+  <div class="media-frame">
+    <div class="media-frame-bar"><span class="media-frame-label">/clinic/dashboard · populated state · query "aung"</span></div>
+    <img src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/01-real-populated.png" alt="SF-35 populated — query 'aung' returns 7 ranked patients across all branches." loading="lazy">
+  </div>
+  <div class="media-frame">
+    <div class="media-frame-bar"><span class="media-frame-label">Loading state · 2px progress bar lit · previous rows dimmed</span></div>
+    <img src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/03-real-loading.png" alt="Loading state — 2px progress bar lit under the input, previous rows dimmed at opacity-60." loading="lazy">
+  </div>
+  <div class="media-frame">
+    <div class="media-frame-bar"><span class="media-frame-label">Edge state · 8 of 24 matches · type more to narrow</span></div>
+    <img src="https://raw.githubusercontent.com/KaungMyatHein/sf35-case-study-assets/main/screenshots/05-real-edge.png" alt="Edge state — query 'a' matches many. List capped at 8 rows." loading="lazy">
+  </div>
+
+  <h3 class="subhead">The pipeline that ran · 1h 53m total</h3>
+  <div class="pipeline">
+    <div class="pipe-step"><span class="pipe-num">Phase 1</span><span class="pipe-name">Discovery</span><span class="pipe-time">3 min</span></div>
+    <div class="pipe-step"><span class="pipe-num">Phase 2</span><span class="pipe-name">Define</span><span class="pipe-time">48 min</span></div>
+    <div class="pipe-step"><span class="pipe-num">Phase 3</span><span class="pipe-name">Deliver</span><span class="pipe-time">43 min</span></div>
+    <div class="pipe-step"><span class="pipe-num">Phase 4</span><span class="pipe-name">Handoff</span><span class="pipe-time">19 min</span></div>
+  </div>
+  <div class="pipe-caption">Discovery → Handoff &middot; Figma baseline 2.5–5.5 days</div>
+
+  <h3 class="subhead">Outputs from the run</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-val">304</div><div class="kpi-label">Lines of lo-fi spec</div><div class="kpi-why">Markdown wireframe with three ASCII layout alternatives per screen.</div></div>
+    <div class="kpi-card"><div class="kpi-val">10</div><div class="kpi-label">Prototype files</div><div class="kpi-why">Wired into the live /clinic/dashboard header, not a sandbox.</div></div>
+    <div class="kpi-card"><div class="kpi-val">5</div><div class="kpi-label">States actually built</div><div class="kpi-why">Empty · loading · populated · error · edge — no "we'll add later".</div></div>
+    <div class="kpi-card"><div class="kpi-val">17</div><div class="kpi-label">Handoff artifacts</div><div class="kpi-why">4 contracts · 7 tokens · 6 telemetry events · 10-step a11y QA.</div></div>
+  </div>
+
+  <h3 class="subhead">What critique-partner caught before it shipped</h3>
+  <div class="caught">
+    <div class="caught-card">
+      <span class="caught-tag">Round 1</span>
+      <h4 class="caught-h">Fake database relationship</h4>
+      <p class="caught-d">design-engineer scaffolded a foreign-key join that didn't exist in the real schema. Caught before it became a prod bug.</p>
+    </div>
+    <div class="caught-card">
+      <span class="caught-tag">Round 2</span>
+      <h4 class="caught-h">useEffect race</h4>
+      <p class="caught-d">A loading-state flash caused by an unguarded effect. Would have shown empty rows for 80ms on every keystroke.</p>
+    </div>
+    <div class="caught-card">
+      <span class="caught-tag">Round 3</span>
+      <h4 class="caught-h">Burmese honorifics gap</h4>
+      <p class="caught-d">English search library was stripping <em>Daw, U, Ma, Ko</em>. Receptionists would have found no one. Caught at lo-fi.</p>
+    </div>
+  </div>
+
+  <div class="outcome-grid">
+    <div class="outcome-tile hero"><div class="outcome-val">1h 53m</div><div class="outcome-lbl">Kickoff → shipped</div><p class="outcome-desc">Same feature in a Figma → engineer pipeline: 2.5–5.5 days. The speedup is the protocol, not the prompts.</p></div>
+    <div class="outcome-tile alt"><div class="outcome-val">10–25×</div><div class="outcome-lbl">vs Figma baseline</div><p class="outcome-desc">Range depends on phase: faster at Discovery and Handoff, narrower at Deliver where craft still anchors the timeline.</p></div>
+    <div class="outcome-tile tint"><div class="outcome-val">$2.12</div><div class="outcome-lbl">LLM spend · per feature</div><p class="outcome-desc">Projected ~$85/year at 40 features. Less than one Figma seat. Less than a coffee, per shipped flow.</p></div>
+  </div>
+</section>
+
+<!-- 07 LESSONS -->
+<section class="section" id="lessons">
+  <div class="sec-head">
+    <span class="sec-num">07 — Lessons</span>
+    <h2 class="sec-title">Four lessons.</h2>
+  </div>
+
+  <div class="lessons">
+    <div class="lesson">
+      <span class="lesson-num">Lesson 01</span>
+      <h3 class="lesson-h">The handoff is the team's communication protocol.</h3>
+      <p class="lesson-d">Most AI tools today are point solutions for individual phases. The real leverage is designing the contract that travels with the work — so no agent has to guess what success looks like.</p>
+    </div>
+    <div class="lesson">
+      <span class="lesson-num">Lesson 02</span>
+      <h3 class="lesson-h">People meet where the conversation is.</h3>
+      <p class="lesson-d">Dashboards feel like the default because that's what every other tool looks like. But a team that already lives in the conversation needs one place to meet, not two.</p>
+    </div>
+    <div class="lesson">
+      <span class="lesson-num">Lesson 03</span>
+      <h3 class="lesson-h">A team without a critic ships its mistakes.</h3>
+      <p class="lesson-d">critique-partner caught a fake DB relationship, a useEffect race, and the Burmese honorifics gap — across four rounds. Quality is structural, not aspirational.</p>
+    </div>
+    <div class="lesson">
+      <span class="lesson-num">Lesson 04</span>
+      <h3 class="lesson-h">Structure beats horsepower.</h3>
+      <p class="lesson-d">The same model, wrapped in the same prompts, with a different protocol — produces a radically different system. Agent Harry's edge is org design, not model choice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-inner">
+    <h2>Read the <em>build log</em>.</h2>
+    <p>The full SF-35 walkthrough — kickoff to shipped code, every agent's output, every grilling round, every Burmese honorific patch.</p>
+    <div class="cta-row">
+      <a href="blog-sf35-agentic-design.html" class="btn">Read the SF-35 build log</a>
+      <a href="portfolio-hybrid.html" class="btn ghost">More case studies</a>
+    </div>
+  </div>
+</section>
+
+<footer>Designed &amp; built by Harry Hein &middot; 2026 &middot; <a href="portfolio-hybrid.html" style="color:inherit;">More work</a></footer>
+
+</body>
+</html>
