@@ -87,7 +87,39 @@ KEY DESIGN DECISIONS:
 - Inline cards over navigation: answer in place, never make the seller leave the palette.
 - Honest funnel reporting: 45 → 38 → 28 → 21 (not a single vanity number).
 
-WHAT'S TRACKED NEXT: per-intent success rate, time-to-answer vs old dashboard flow, % of palette uses ending in zero clicks afterward.`
+WHAT'S TRACKED NEXT: per-intent success rate, time-to-answer vs old dashboard flow, % of palette uses ending in zero clicks afterward.`,
+    'agent-harry': `The user is viewing the "Stop building AI tools. Build AI teams." case study — Agent Harry, an 18-agent product team for Claude Code (2026). Role: Solo Designer + Orchestrator. The thesis is contrarian: AI tools today (Notion AI, Figma AI, Cursor, v0) speed up each phase, but ignore the HANDOFFS between phases, where intent leaks every time. Agent Harry designs the AI for the handoffs, not the artifacts.
+
+TEAM STRUCTURE (18 agents, 1 human):
+- Orchestration (1): orchestrator — parses kickoff, sequences sub-agents, inserts approval gates.
+- Critique (1): critique-partner — devil's advocate, stress-tests every output. Invoked between phases — never optional.
+- Cross-cutting (2): product-fingerprint-curator (visual language, 3–7 references), figma-component-bootstrapper (baseline component library).
+- Discovery (4): discovery-researcher, competitive-analyst, ideation-facilitator, product-positioner.
+- Define (5): pm-strategist, pm-launch-architect, pm-metrics-architect, feature-prioritizer, prd-author.
+- Deliver (5): lo-fi-designer (markdown ASCII wireframes), figma-designer, design-engineer (real React/Next code, all 5 states wired), usability-tester, handoff-engineer.
+
+THE TWO MOVES that make it work:
+1. HANDOFF AS CONTRACT — Every PRD emits a structured "journey": persona, entry condition, success exit, failure exit. lo-fi-designer reads the journey, figma-designer inherits the same journey, design-engineer inherits it again. The journey is the contract that travels with the work — no agent has to guess what success looks like.
+2. CHAT AS CANONICAL SURFACE — No dashboard. Every agent decision renders as chat markdown. When chat is canonical, the team has ONE place to meet. This is an org design decision before it's a UX one.
+
+SF-35 (the proof shipped): a ⌘K spotlight modal for patient search across 3 dental clinic branches. Receptionists are Burmese; search by phone before name. Had to handle Burmese honorifics (Daw, U, Ma, Ko) that English search libraries strip incorrectly. Cross-branch fallback. Shipped into production /clinic/dashboard.
+- Time: 1h 53m kickoff → shipped (Discovery 3min, Define 48min, Deliver 43min, Handoff 19min).
+- Figma → engineer baseline: 2.5–5.5 days. Speedup: 10–25×.
+- LLM cost: $2.12 per feature. Projected ~$85/year at 40 features.
+- Outputs: 304-line lo-fi spec with 3 ASCII alternatives per screen, 10 prototype files wired into the live header, all 5 states built (empty/loading/populated/error/edge), 17 handoff artifacts (4 component contracts, 7 design tokens, 6 telemetry events, 10-step a11y QA).
+
+CRITIQUE-PARTNER CAUGHT (before SF-35 shipped, across 4 grilling rounds):
+- Fake database relationship: design-engineer scaffolded a foreign-key join that didn't exist in the real schema.
+- useEffect race: a loading-state flash that would have shown empty rows for 80ms on every keystroke.
+- Burmese honorifics gap: English search library was stripping Daw/U/Ma/Ko. Receptionists would have found no one.
+
+FOUR LESSONS:
+1. The handoff is the team's communication protocol — the leverage point, not the artifacts.
+2. People meet where the conversation is, not where the buttons are.
+3. A team without a critic ships its mistakes. Quality is structural.
+4. Structure beats horsepower — same model, same prompts, different protocol = radically different system.
+
+Status: Open-source. Agent Harry source on GitHub. SF-35 build log lives at blog-sf35-agentic-design.html.`
   };
 
   let activePrompt = SYSTEM_PROMPT;
