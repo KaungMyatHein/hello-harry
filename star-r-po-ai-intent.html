@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speak, don't click — STAR+R · Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="star-r.css">
+</head>
+<body data-accent="ps-blue">
+
+<div class="progress" id="progress"></div>
+
+<nav class="top-nav">
+  <a href="portfolio.html" class="brand">
+    <span class="brand-mark">H</span>
+    <span class="brand-label">Harry Hein</span>
+  </a>
+  <a href="star-r-interview-prep.html" class="back">‹ All STAR+R</a>
+</nav>
+
+<nav class="side-nav" id="sideNav"></nav>
+
+<div class="kb-hint">
+  <kbd>↓</kbd> next <kbd>↑</kbd> prev
+</div>
+
+<main class="deck" id="deck">
+
+  <section class="slide cover" data-title="Cover">
+    <div class="slide-inner">
+      <div class="cover-eyebrow">
+        <span class="dot"></span>
+        <span>STAR+R · Case Study · AI-native workflow · LLM in production</span>
+      </div>
+      <h1>Speak, <em>don't</em> click.</h1>
+      <p class="cover-sub">An AI intent-design system that replaced menu-based UI with intent-based interactions — shipped 28 intents in MVP, 21 currently live in production.</p>
+
+      <div class="cover-meta">
+        <div><div class="l">Role</div><div class="v">Senior Product Designer</div></div>
+        <div><div class="l">Domain</div><div class="v">Enterprise apps · LLM pipelines</div></div>
+        <div><div class="l">Timeframe</div><div class="v">2025</div></div>
+        <div><div class="l">Output</div><div class="v">28 intents MVP · 21 live · 1 published article</div></div>
+      </div>
+
+      <div class="cover-tools">
+        <span class="tool-chip">Gemini API</span>
+        <span class="tool-chip">Prompt Engineering</span>
+        <span class="tool-chip">Intent Taxonomy</span>
+        <span class="tool-chip">Telemetry Iteration</span>
+        <span class="tool-chip">Cursor</span>
+        <span class="tool-chip">JSON Schema</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Situation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01</span> · Situation</div>
+        <div class="phase-label"><span class="dot"></span> The pain</div>
+      </div>
+      <h2 class="phase-title">Users were <em>drowning in menus</em>.</h2>
+      <p class="phase-body">Enterprise app users were drowning in menu-based navigation — too many screens, too many clicks to reach routine actions like updating an obligation or pulling a report.</p>
+      <p class="phase-body"><strong>The product surface was growing faster than the IA could absorb.</strong></p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Research">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01b</span> · Research</div>
+        <div class="phase-label"><span class="dot"></span> What I discovered</div>
+      </div>
+      <h2 class="phase-title">Menus weren't <em>findable</em> — they were buried.</h2>
+      <div class="method-row">
+        <span class="method-pill">Session-recording analysis</span>
+        <span class="method-pill">Click-depth analytics</span>
+        <span class="method-pill">Support-ticket triage</span>
+        <span class="method-pill">Power-user interviews</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Finding 01</div>
+          <div class="finding-stat">4.2</div>
+          <div class="finding-text"><strong>Avg clicks</strong> to reach a core action — IA growing faster than users could absorb.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 02</div>
+          <div class="finding-stat">27%</div>
+          <div class="finding-text"><strong>Sessions abandoned</strong> mid-menu — users gave up before completing the task.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 03</div>
+          <div class="finding-stat">3 levels</div>
+          <div class="finding-text"><strong>Depth of top-3 reports</strong> — most-used actions were the hardest to find.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Task">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">02</span> · Task</div>
+        <div class="phase-label"><span class="dot"></span> The deliverable</div>
+      </div>
+      <h2 class="phase-title">Replace menus with <em>intent</em>.</h2>
+      <p class="phase-body">Replace the menu-based UI with an <strong>intent-based interaction layer</strong> where users describe what they want in natural language and the system maps it to the right action.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Action">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03</span> · Action</div>
+        <div class="phase-label"><span class="dot"></span> What I did</div>
+      </div>
+      <h2 class="phase-title">A primary paradigm — <em>not a chatbot</em>.</h2>
+      <ul class="action-list">
+        <li>Designed the AI intent-design system from the interaction model up — not a chatbot bolted on, but a <strong>primary navigation paradigm</strong>.</li>
+        <li>Built an LLM pipeline using the <strong>Gemini API</strong> with explicit prompt engineering — locking JSON output so each intent reliably mapped to a structured action schema.</li>
+        <li>Defined the intent taxonomy — enumerating every user goal in the product surface and grouping them into resolvable categories.</li>
+        <li>Prototyped directly in the codebase alongside engineers, iterating on prompt quality based on <strong>real usage telemetry</strong> rather than design reviews.</li>
+        <li>Wrote and published <em>"Intent Design — software that listens to you"</em> (May 2026) to pressure-test the methodology publicly.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Technical">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03a</span> · Technical</div>
+        <div class="phase-label"><span class="dot"></span> How it works under the hood</div>
+      </div>
+      <h2 class="phase-title">Natural language <em>in</em>. Structured action <em>out</em>.</h2>
+
+      <div class="tech-stack">
+        <div class="tech-flow">
+          <div class="flow-step">
+            <div class="step-l">Input</div>
+            <div class="step-t">User intent</div>
+            <div class="step-d">Free-text query typed in command bar</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-l">Layer 01</div>
+            <div class="step-t">System prompt</div>
+            <div class="step-d">Intent taxonomy + product surface map loaded as context</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step active">
+            <div class="step-l">Layer 02</div>
+            <div class="step-t">Gemini API</div>
+            <div class="step-d">JSON mode locked · model resolves intent → action schema</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-l">Layer 03</div>
+            <div class="step-t">Validator</div>
+            <div class="step-d">Action schema validated against allow-list before dispatch</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-l">Output</div>
+            <div class="step-t">Action dispatch</div>
+            <div class="step-d">UI navigates + pre-fills based on resolved params</div>
+          </div>
+        </div>
+
+        <div class="tech-grid-2">
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-lang">JSON Schema</span>
+              <span class="code-file">intent.contract.json</span>
+            </div>
+<pre><span class="p">{</span>
+  <span class="s">"intent"</span><span class="p">:</span> <span class="s">"create_order"</span><span class="p">,</span>
+  <span class="s">"confidence"</span><span class="p">:</span> <span class="n">0.94</span><span class="p">,</span>
+  <span class="s">"action"</span><span class="p">:</span> <span class="s">"navigate.orders.new"</span><span class="p">,</span>
+  <span class="s">"params"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"customer_id"</span><span class="p">:</span> <span class="s">"&lt;optional&gt;"</span><span class="p">,</span>
+    <span class="s">"prefill"</span><span class="p">:</span> <span class="s">"&lt;extracted_fields&gt;"</span>
+  <span class="p">},</span>
+  <span class="s">"fallback"</span><span class="p">:</span> <span class="s">"clarify_intent"</span>
+<span class="p">}</span></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-lang">Prompt</span>
+              <span class="code-file">system.prompt.md</span>
+            </div>
+<pre><span class="c">// System prompt — fragment</span>
+<span class="k">You are</span> an intent router.
+<span class="k">Return ONLY</span> valid JSON matching
+the intent.contract schema.
+
+<span class="k">Allowed intents</span><span class="p">:</span>
+  - list_orders
+  - create_order
+  - verify_payment
+  - <span class="c">… 28 total in MVP …</span>
+
+<span class="k">If unsure</span><span class="p">:</span> return
+<span class="s">"fallback"</span> = <span class="s">"clarify_intent"</span>.</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Highlights">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03b</span> · Highlights</div>
+        <div class="phase-label"><span class="dot"></span> Intents in action</div>
+      </div>
+      <h2 class="phase-title">Intent in. <em>Action</em> out.</h2>
+      <div class="media-grid">
+        <div class="media-card">
+          <video src="videos/po-ai/02-list-orders.mp4" autoplay loop muted playsinline></video>
+          <div class="media-cap">
+            <div class="l">Intent 02</div>
+            <div class="t"><strong>List orders</strong> — natural-language query → filtered table</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <video src="videos/po-ai/04-create-order.mp4" autoplay loop muted playsinline></video>
+          <div class="media-cap">
+            <div class="l">Intent 04</div>
+            <div class="t"><strong>Create order</strong> — typed intent maps to structured form fields</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <video src="videos/po-ai/06-verify-payment.mp4" autoplay loop muted playsinline></video>
+          <div class="media-cap">
+            <div class="l">Intent 06</div>
+            <div class="t"><strong>Verify payment</strong> — Gemini API resolves status in one prompt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Validation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03c</span> · Validation</div>
+        <div class="phase-label"><span class="dot"></span> How I tested</div>
+      </div>
+      <h2 class="phase-title">Telemetry made the <em>shipping decision</em>.</h2>
+      <div class="method-row">
+        <span class="method-pill">Internal alpha · 3 weeks</span>
+        <span class="method-pill">Offline eval suite</span>
+        <span class="method-pill">Live telemetry monitoring</span>
+        <span class="method-pill">Rollback-by-default</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Pass 01</div>
+          <div class="finding-stat">21 / 28</div>
+          <div class="finding-text"><strong>Intents promoted</strong> from MVP to production after offline eval + alpha telemetry.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Pass 02</div>
+          <div class="finding-stat">2</div>
+          <div class="finding-text"><strong>Edge cases rolled back</strong> in week 1 — caught by user-session monitoring, not user reports.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Pass 03</div>
+          <div class="finding-stat">67%</div>
+          <div class="finding-text"><strong>Routine actions</strong> shifted to intent paradigm in active production usage.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Result">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">04</span> · Result</div>
+        <div class="phase-label"><span class="dot"></span> The outcome</div>
+      </div>
+      <h2 class="phase-title">28 in MVP. <em>21 live</em> in production.</h2>
+      <div class="result-grid">
+        <div class="metric-tile">
+          <div class="metric-label">Intents shipped (MVP)</div>
+          <div class="metric-val">28</div>
+          <div class="metric-foot">defined across the product surface, mapped to structured action schemas</div>
+        </div>
+        <div class="metric-tile ghost">
+          <div class="metric-label">Live in production</div>
+          <div class="metric-val">21</div>
+          <div class="metric-foot">after telemetry-driven pruning of low-confidence and rolled-back intents</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Reflection">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">05</span> · Reflection</div>
+        <div class="phase-label"><span class="dot"></span> What I'd do differently</div>
+      </div>
+      <h2 class="phase-title">AI features need a <em>test suite</em>.</h2>
+      <div class="reflection-block">
+        <p class="reflection-q">I would invest earlier in evaluation harnesses — measuring prompt quality with offline eval sets before shipping each intent would have caught <strong>two interaction edge cases</strong> I shipped and rolled back. <span class="lesson">Lesson — AI features need a test suite, not just a design review. Prompts are interface contracts, and contracts without tests rot in production.</span></p>
+        <div class="reflection-attr">Lesson · Speak, don't click · 2025</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="star-r.js"></script>
+</body>
+</html>

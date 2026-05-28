@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAR+R Interview Prep — Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="star-r.css">
+<style>
+  html, body{overflow:visible !important;height:auto !important;}
+  .landing-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--canvas);border:1px solid var(--hairline);
+    padding:6px 14px;border-radius:var(--pill);
+    font-family:var(--mono);font-size:11.5px;color:var(--muted);
+    margin-bottom:32px;
+  }
+  .landing-eyebrow .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--success);
+    box-shadow:0 0 8px rgba(22,163,74,0.6);
+  }
+  .landing-rules{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    max-width:1100px;margin:0 auto 60px;padding:0 56px;
+  }
+  @media (max-width:980px){.landing-rules{grid-template-columns:repeat(2,1fr);padding:0 22px;margin-bottom:40px;}}
+  @media (max-width:520px){.landing-rules{grid-template-columns:1fr;}}
+  .landing-rule{
+    background:var(--canvas);border:1px solid var(--hairline);
+    border-radius:var(--radius);padding:18px 20px;
+  }
+  .landing-rule .n{
+    font-family:var(--mono);font-size:11px;color:var(--accent);
+    letter-spacing:0.1em;margin-bottom:6px;
+  }
+  .landing-rule .t{font-size:14px;color:var(--ink-soft);line-height:1.45;}
+  .landing-rule .t strong{color:var(--ink);font-weight:600;}
+  .landing-footer{
+    padding:60px 56px 80px;max-width:1280px;margin:0 auto;
+    border-top:1px solid var(--hairline);
+  }
+  @media (max-width:980px){.landing-footer{padding:40px 22px 60px;}}
+  .landing-footer h4{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px;
+  }
+  .landing-footer .check-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:30px 60px;
+    margin-bottom:30px;
+  }
+  @media (max-width:760px){.landing-footer .check-grid{grid-template-columns:1fr;}}
+  .check-list{display:flex;flex-direction:column;gap:10px;}
+  .check-list li{
+    position:relative;padding-left:24px;font-size:14.5px;line-height:1.55;color:var(--ink-soft);
+  }
+  .check-list li::before{
+    content:"";position:absolute;left:0;top:5px;
+    width:12px;height:12px;border-radius:3px;border:1.5px solid var(--hairline);
+  }
+  .check-list li strong{color:var(--ink);font-weight:600;}
+  .source-line{
+    font-family:var(--mono);font-size:11px;color:var(--muted);
+    padding-top:24px;border-top:1px solid var(--hairline);line-height:1.6;
+  }
+  .source-line strong{color:var(--ink);font-weight:600;text-transform:uppercase;letter-spacing:0.16em;}
+</style>
+</head>
+<body data-accent="ps-blue">
+
+<nav class="top-nav">
+  <a href="portfolio.html" class="brand">
+    <span class="brand-mark">H</span>
+    <span class="brand-label">Harry Hein</span>
+  </a>
+  <a href="portfolio.html" class="back">‹ Portfolio</a>
+</nav>
+
+<main class="landing">
+
+  <div class="landing-hero">
+    <div class="landing-eyebrow">
+      <span class="dot"></span>
+      <span>Interview prep · 8 case studies · 90–120s spoken each</span>
+    </div>
+    <h1>STAR<em>+R</em> case studies.</h1>
+    <p class="landing-sub">Eight projects, each restructured as a 6-slide STAR+R presentation. Every number traces back to <code>cv.md</code>. Open in interviews. Walk through with confidence.</p>
+  </div>
+
+  <div class="landing-grid">
+
+    <a class="case-card" data-accent="ps-blue" href="star-r-po-ai-intent.html">
+      <div class="case-num">01 · AI-native workflow</div>
+      <h3>Speak, <em>don't</em> click.</h3>
+      <div class="case-meta"><strong>Senior Product Designer</strong> · 2025 · AI intent design · Gemini API</div>
+      <div class="case-metric">
+        <span class="v">28 / 21</span>
+        <span class="l">Intents MVP / live in production</span>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a class="case-card" data-accent="violet" href="star-r-tokens.html">
+      <div class="case-num">02 · Design-engineer hybrid</div>
+      <h3>Unified <em>design</em> tokens.</h3>
+      <div class="case-meta"><strong>AI-Powered Product Engineer</strong> · Raytail · 2024 · Figma Plugin API · TypeScript</div>
+      <div class="case-metric">
+        <span class="v">50%</span>
+        <span class="l">Export time cut · near-zero naming errors</span>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a class="case-card" data-accent="amber" href="star-r-pharmacy-pos.html">
+      <div class="case-num">03 · Outcome ownership · B2B</div>
+      <h3>Two stores. <em>One</em> system.</h3>
+      <div class="case-meta"><strong>UX Lead</strong> · Raytail · 2023–2025 · 200+ screens · 22 Figma files · 14 modules</div>
+      <div class="case-metric">
+        <span class="v">200%</span>
+        <span class="l">UX ROI · $10K monthly operational savings</span>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a class="case-card" data-accent="success" href="star-r-retail.html">
+      <div class="case-num">04 · UX ROI · prioritization</div>
+      <h3>From feedback <em>to</em> 427% ROI.</h3>
+      <div class="case-meta"><strong>UX Designer</strong> · Raytail · 2024 · Two-lens prioritization · A/B tested</div>
+      <div class="case-metric">
+        <span class="v">427%</span>
+        <span class="l">ROI · 50%+ time savings on critical tasks</span>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a class="case-card" data-accent="mint" href="star-r-design-system.html">
+      <div class="case-num">05 · Design systems at scale</div>
+      <h3>Three platforms. <em>One</em> source.</h3>
+      <div class="case-meta"><strong>UX Lead</strong> · Raytail · 2024–2025 · 3-tier token architecture</div>
+      <div class="case-metric">
+        <span class="v">47 → 0</span>
+        <span class="l">Duplicate tokens · onboarding 3d → &lt; 1d</span>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a class="case-card" data-accent="rose" href="star-r-resume-pipeline.html">
+      <div class="case-num">06 · High agency · AI pipeline</div>
+      <h3>47 applications. <em>2</em> interviews.</h3>
+      <div class="case-meta"><strong>AI-Powered Product Engineer</strong> · 2025 · Gemini API · Framer · Notion</div>
+      <div class="case-metric">
+        <span class="v">40 → 15</span>
+        <span class="l">Minutes per tailored application · 62.5% faster</span>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a class="case-card" data-accent="ps-blue-light" href="star-r-golden-paths.html">
+      <div class="case-num">07 · AI-augmented research</div>
+      <h3>Prototypes that <em>never</em> sleep.</h3>
+      <div class="case-meta"><strong>Senior Product Designer</strong> · 2024 · Synthetic personas · Gemini API · Figma</div>
+      <div class="case-metric">
+        <span class="v">9 / 11</span>
+        <span class="l">Friction blockers matched · 82% recall vs. live</span>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+    <a class="case-card" data-accent="warning" href="star-r-dashboard.html">
+      <div class="case-num">08 · Dashboard · Finance UX</div>
+      <h3>Daily ritual <em>to</em> 104% ROI.</h3>
+      <div class="case-meta"><strong>Senior UX Designer</strong> · 2022 · Shadowing · workflow consolidation</div>
+      <div class="case-metric">
+        <span class="v">104%</span>
+        <span class="l">ROI · 5+ tools collapsed into one workflow</span>
+      </div>
+      <div class="case-arrow">↗</div>
+    </a>
+
+  </div>
+
+</main>
+
+</body>
+</html>

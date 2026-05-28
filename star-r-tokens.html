@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unified Design Tokens — STAR+R · Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="star-r.css">
+</head>
+<body data-accent="violet">
+
+<div class="progress" id="progress"></div>
+
+<nav class="top-nav">
+  <a href="portfolio.html" class="brand">
+    <span class="brand-mark">H</span>
+    <span class="brand-label">Harry Hein</span>
+  </a>
+  <a href="star-r-interview-prep.html" class="back">‹ All STAR+R</a>
+</nav>
+
+<nav class="side-nav" id="sideNav"></nav>
+
+<div class="kb-hint">
+  <kbd>↓</kbd> next <kbd>↑</kbd> prev
+</div>
+
+<main class="deck" id="deck">
+
+  <section class="slide cover" data-title="Cover">
+    <div class="slide-inner">
+      <div class="cover-eyebrow">
+        <span class="dot"></span>
+        <span>STAR+R · Case Study · Design-engineer hybrid</span>
+      </div>
+      <h1>Unified <em>design</em> tokens.</h1>
+      <p class="cover-sub">A Figma plugin that automates token export across 6 platforms — cutting export time in half and dropping naming errors to near zero.</p>
+
+      <div class="cover-meta">
+        <div><div class="l">Role</div><div class="v">AI-Powered Product Engineer</div></div>
+        <div><div class="l">Company</div><div class="v">Raytail · Maldives (Remote)</div></div>
+        <div><div class="l">Timeframe</div><div class="v">2024</div></div>
+        <div><div class="l">Scope</div><div class="v">6 platforms · 4 teams migrated · still in use</div></div>
+      </div>
+
+      <div class="cover-tools">
+        <span class="tool-chip">Figma Plugin API</span>
+        <span class="tool-chip">TypeScript</span>
+        <span class="tool-chip">Style Dictionary</span>
+        <span class="tool-chip">JSON</span>
+        <span class="tool-chip">VSCode</span>
+        <span class="tool-chip">Cursor</span>
+        <span class="tool-chip">GitHub</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Situation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01</span> · Situation</div>
+        <div class="phase-label"><span class="dot"></span> The pain</div>
+      </div>
+      <h2 class="phase-title">Tokens were <em>drifting every sprint</em>.</h2>
+      <p class="phase-body">At Raytail, design tokens were drifting across <strong>6 platforms</strong> — POS, Web, Mobile, and three internal surfaces. Designers exported tokens manually, naming conventions diverged across teams, and the design system was leaking integrity every sprint.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Research">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01b</span> · Research</div>
+        <div class="phase-label"><span class="dot"></span> What I discovered</div>
+      </div>
+      <h2 class="phase-title">The drift was <em>everywhere</em>.</h2>
+      <div class="method-row">
+        <span class="method-pill">Token audit · 6 platforms</span>
+        <span class="method-pill">Designer interviews</span>
+        <span class="method-pill">Naming-convention inventory</span>
+        <span class="method-pill">Export-workflow trace</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Finding 01</div>
+          <div class="finding-stat">47</div>
+          <div class="finding-text"><strong>Duplicate tokens</strong> across 6 platforms — same value, different name.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 02</div>
+          <div class="finding-stat">11</div>
+          <div class="finding-text"><strong>Naming conventions</strong> in active use — each team had its own dialect.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 03</div>
+          <div class="finding-stat">4 steps</div>
+          <div class="finding-text"><strong>Manual export</strong> per platform per release — pure tax on every shipped feature.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Task">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">02</span> · Task</div>
+        <div class="phase-label"><span class="dot"></span> The deliverable</div>
+      </div>
+      <h2 class="phase-title">Automate the <em>export step</em>.</h2>
+      <p class="phase-body">Build a Figma plugin that automates token export across all 6 platforms, eliminating the manual export step and the <strong>naming drift</strong> it caused.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Action">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03</span> · Action</div>
+        <div class="phase-label"><span class="dot"></span> What I did</div>
+      </div>
+      <h2 class="phase-title">Built it <em>in the codebase</em>, not in Figma comments.</h2>
+      <ul class="action-list">
+        <li>Built the Figma plugin in <strong>TypeScript</strong> using the Figma Plugin API — handling token traversal, naming normalization, and multi-platform serialization.</li>
+        <li>Integrated with <strong>Style Dictionary</strong> so a single Figma source compiled to CSS variables, iOS, Android, and JSON token files.</li>
+        <li>Shipped as developer-friendly tooling that plugged into existing build pipelines via GitHub — not as a designer-only utility.</li>
+        <li>Wrote and debugged in Cursor and VSCode, iterating on naming conventions directly with engineers rather than over Figma comments.</li>
+        <li>Ran <strong>3 follow-up enablement sessions</strong> to migrate 4 teams off the manual flow — the hardest part was change-management, not the code.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Technical">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03a</span> · Technical</div>
+        <div class="phase-label"><span class="dot"></span> How it works under the hood</div>
+      </div>
+      <h2 class="phase-title">One Figma source. <em>Six</em> compiled targets.</h2>
+
+      <div class="tech-stack">
+        <div class="tech-flow">
+          <div class="flow-step">
+            <div class="step-l">Source</div>
+            <div class="step-t">Figma Variables</div>
+            <div class="step-d">Single source of truth in Figma</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step active">
+            <div class="step-l">Plugin</div>
+            <div class="step-t">TypeScript · Figma Plugin API</div>
+            <div class="step-d">Traverse · normalize names · serialize JSON</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-l">Build</div>
+            <div class="step-t">Style Dictionary</div>
+            <div class="step-d">Transform per-platform config</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-l">Output</div>
+            <div class="step-t">6 platform targets</div>
+            <div class="step-d">CSS · iOS · Android · JSON · POS · Web</div>
+          </div>
+        </div>
+
+        <div class="tech-grid-2">
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-lang">TypeScript</span>
+              <span class="code-file">plugin/export.ts</span>
+            </div>
+<pre><span class="c">// Figma Plugin API — token export</span>
+<span class="k">const</span> <span class="n">collections</span> <span class="p">=</span> figma<span class="p">.</span>variables
+  <span class="p">.</span><span class="n">getLocalVariableCollections</span><span class="p">();</span>
+
+<span class="k">const</span> <span class="n">tokens</span> <span class="p">=</span> collections<span class="p">.</span><span class="n">flatMap</span><span class="p">(</span>c <span class="p">=&gt;</span>
+  c<span class="p">.</span><span class="n">variableIds</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="n">resolveToken</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">return</span> <span class="n">tokens</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="n">toStyleDict</span><span class="p">);</span>
+<span class="c">// → JSON consumed by Style Dictionary</span></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-lang">Style Dictionary</span>
+              <span class="code-file">config.json</span>
+            </div>
+<pre><span class="p">{</span>
+  <span class="s">"source"</span><span class="p">:</span> <span class="p">[</span><span class="s">"tokens/**/*.json"</span><span class="p">],</span>
+  <span class="s">"platforms"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"css"</span><span class="p">:</span>     <span class="p">{</span> <span class="s">"buildPath"</span><span class="p">:</span> <span class="s">"web/"</span> <span class="p">},</span>
+    <span class="s">"ios"</span><span class="p">:</span>     <span class="p">{</span> <span class="s">"buildPath"</span><span class="p">:</span> <span class="s">"ios/"</span> <span class="p">},</span>
+    <span class="s">"android"</span><span class="p">:</span> <span class="p">{</span> <span class="s">"buildPath"</span><span class="p">:</span> <span class="s">"android/"</span> <span class="p">},</span>
+    <span class="s">"pos"</span><span class="p">:</span>     <span class="p">{</span> <span class="s">"buildPath"</span><span class="p">:</span> <span class="s">"pos/"</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c">// GitHub Action → CI build per push</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Highlights">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03b</span> · Highlights</div>
+        <div class="phase-label"><span class="dot"></span> What shipped</div>
+      </div>
+      <h2 class="phase-title">One source. <em>Six platforms</em>.</h2>
+      <div class="media-grid">
+        <div class="media-card">
+          <img src="images/DS/★ Showcase — Color Palette.webp" alt="Color palette token showcase" loading="lazy">
+          <div class="media-cap">
+            <div class="l">Tier 01 · Primitive</div>
+            <div class="t"><strong>Color palette</strong> — single source compiled to CSS, iOS, Android</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <img src="images/DS/★ Showcase — Multi-Palette Demo.webp" alt="Multi-platform token output" loading="lazy">
+          <div class="media-cap">
+            <div class="l">Tier 02 · Semantic</div>
+            <div class="t"><strong>Multi-palette demo</strong> — one source expressed per platform</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <img src="images/DS/★ Showcase — Typography.webp" alt="Typography tokens" loading="lazy">
+          <div class="media-cap">
+            <div class="l">Tier 03 · Component</div>
+            <div class="t"><strong>Typography</strong> — normalized naming across teams</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Validation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03c</span> · Validation</div>
+        <div class="phase-label"><span class="dot"></span> How I tested</div>
+      </div>
+      <h2 class="phase-title">Code review caught what <em>docs missed</em>.</h2>
+      <div class="method-row">
+        <span class="method-pill">Engineer-pair migration</span>
+        <span class="method-pill">Lint-rule enforcement</span>
+        <span class="method-pill">3 enablement sessions</span>
+        <span class="method-pill">Build-pipeline integration</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Pass 01</div>
+          <div class="finding-stat">4 teams</div>
+          <div class="finding-text"><strong>Migrated</strong> off manual flow in 3 sessions — change-management was the work.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Pass 02</div>
+          <div class="finding-stat">100%</div>
+          <div class="finding-text"><strong>Lint coverage</strong> — token-name violations blocked at code review, not after.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Pass 03</div>
+          <div class="finding-stat">Still live</div>
+          <div class="finding-text"><strong>Plugin in active use</strong> across all 6 platforms since 2024.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Result">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">04</span> · Result</div>
+        <div class="phase-label"><span class="dot"></span> The outcome</div>
+      </div>
+      <h2 class="phase-title">Half the time. <em>Near zero</em> errors.</h2>
+      <div class="result-grid">
+        <div class="metric-tile">
+          <div class="metric-label">Export time</div>
+          <div class="metric-val">50<span style="font-size:0.6em;">%</span></div>
+          <div class="metric-foot">reduction across all 6 platforms · validated against pre-plugin baseline</div>
+        </div>
+        <div class="metric-tile ghost">
+          <div class="metric-label">Naming errors</div>
+          <div class="metric-val sm">near zero</div>
+          <div class="metric-foot">still in use today across the Raytail ecosystem</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Reflection">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">05</span> · Reflection</div>
+        <div class="phase-label"><span class="dot"></span> What I'd do differently</div>
+      </div>
+      <h2 class="phase-title">The technical artifact is <em>half the job</em>.</h2>
+      <div class="reflection-block">
+        <p class="reflection-q">I would have built the migration guide alongside v1 instead of after launch — teams adopted faster once I had a <strong>1-page</strong> "how to move off the old flow" doc, and I should have shipped that with the plugin. <span class="lesson">Lesson — in design-engineering work, the technical artifact is half the job; the adoption tooling is the other half.</span></p>
+        <div class="reflection-attr">Lesson · Unified Design Tokens · 2024</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="star-r.js"></script>
+</body>
+</html>

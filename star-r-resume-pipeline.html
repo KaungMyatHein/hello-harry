@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>47 Applications. 2 Interviews. — STAR+R · Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="star-r.css">
+</head>
+<body data-accent="rose">
+
+<div class="progress" id="progress"></div>
+
+<nav class="top-nav">
+  <a href="portfolio.html" class="brand">
+    <span class="brand-mark">H</span>
+    <span class="brand-label">Harry Hein</span>
+  </a>
+  <a href="star-r-interview-prep.html" class="back">‹ All STAR+R</a>
+</nav>
+
+<nav class="side-nav" id="sideNav"></nav>
+
+<div class="kb-hint">
+  <kbd>↓</kbd> next <kbd>↑</kbd> prev
+</div>
+
+<main class="deck" id="deck">
+
+  <section class="slide cover" data-title="Cover">
+    <div class="slide-inner">
+      <div class="cover-eyebrow">
+        <span class="dot"></span>
+        <span>STAR+R · Case Study · High agency · AI pipeline</span>
+      </div>
+      <h1>47 applications.<br><em>2</em> interviews.</h1>
+      <p class="cover-sub">A text-to-app AI pipeline that takes a JD + raw experience and generates tailored applications — preserving voice while cutting application time from 40 minutes to 15.</p>
+
+      <div class="cover-meta">
+        <div><div class="l">Role</div><div class="v">AI-Powered Product Engineer</div></div>
+        <div><div class="l">Domain</div><div class="v">Personal · AI pipeline</div></div>
+        <div><div class="l">Timeframe</div><div class="v">2025</div></div>
+        <div><div class="l">Output</div><div class="v">40 min → 15 min · 62.5% faster</div></div>
+      </div>
+
+      <div class="cover-tools">
+        <span class="tool-chip">Figma</span>
+        <span class="tool-chip">Gemini API</span>
+        <span class="tool-chip">Notion</span>
+        <span class="tool-chip">Framer</span>
+        <span class="tool-chip">Prompt Engineering</span>
+        <span class="tool-chip">User Interviews</span>
+        <span class="tool-chip">Text-to-App</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Situation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01</span> · Situation</div>
+        <div class="phase-label"><span class="dot"></span> The pain</div>
+      </div>
+      <h2 class="phase-title">The bottleneck was <em>application craft</em>, not jobs.</h2>
+      <p class="phase-body">After <strong>47 job applications and only 2 interviews</strong>, I knew the bottleneck was application craft, not job availability.</p>
+      <p class="phase-body">Tailoring each cover letter and resume to a JD was taking <strong>40+ minutes</strong>, and the output still felt generic enough to land in the reject pile.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Research">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01b</span> · Research</div>
+        <div class="phase-label"><span class="dot"></span> What I discovered</div>
+      </div>
+      <h2 class="phase-title">My own funnel was the <em>research subject</em>.</h2>
+      <div class="method-row">
+        <span class="method-pill">Self-audit · 47 applications</span>
+        <span class="method-pill">Job-seeker interviews · 4</span>
+        <span class="method-pill">JD signal analysis</span>
+        <span class="method-pill">Reply-rate funnel tracking</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Finding 01</div>
+          <div class="finding-stat">47 → 2</div>
+          <div class="finding-text"><strong>Apps → interviews</strong> — the bottleneck was application craft, not job supply.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 02</div>
+          <div class="finding-stat">40 min</div>
+          <div class="finding-text"><strong>Per tailored application</strong> — most of it spent re-writing the same sections.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 03</div>
+          <div class="finding-stat">Voice drift</div>
+          <div class="finding-text"><strong>Detected</strong> in early generic AI outputs — recruiters smelled it within seconds.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Task">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">02</span> · Task</div>
+        <div class="phase-label"><span class="dot"></span> The deliverable</div>
+      </div>
+      <h2 class="phase-title">Generate tailored apps — <em>preserve voice</em>.</h2>
+      <p class="phase-body">Build an AI pipeline that takes a JD plus my raw experience and generates a tailored application that <strong>preserves my voice</strong> — without me re-writing from scratch every time.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Action">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03</span> · Action</div>
+        <div class="phase-label"><span class="dot"></span> What I did</div>
+      </div>
+      <h2 class="phase-title">JD signals in. <em>Voice-preserved</em> output.</h2>
+      <ul class="action-list">
+        <li>Designed the prompt architecture in Notion, mapping JD signals — role, tone, must-haves — to specific application sections.</li>
+        <li>Built the pipeline using the <strong>Gemini API</strong> with prompt chains that enforced my voice via a Notion-managed style guide loaded as system context.</li>
+        <li>Prototyped the UI in Figma and shipped a working surface in <strong>Framer</strong> with the pipeline wired in.</li>
+        <li>Conducted user interviews with other job-seekers to test whether "preserve voice" was a generalizable goal beyond my own.</li>
+        <li>Iterated prompt quality based on <strong>which applications got replies</strong> — letting the output funnel drive prompt design, not the other way around.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Technical">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03a</span> · Technical</div>
+        <div class="phase-label"><span class="dot"></span> How it works under the hood</div>
+      </div>
+      <h2 class="phase-title">JD parse → <em>voice-locked</em> generation.</h2>
+
+      <div class="tech-stack">
+        <div class="tech-flow">
+          <div class="flow-step">
+            <div class="step-l">Stage 01</div>
+            <div class="step-t">Parse JD</div>
+            <div class="step-d">Role · tone · must-haves extracted as structured signals</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-l">Stage 02</div>
+            <div class="step-t">Load style guide</div>
+            <div class="step-d">Notion-managed voice rules loaded as system context</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step active">
+            <div class="step-l">Stage 03</div>
+            <div class="step-t">Gemini API chain</div>
+            <div class="step-d">Section-by-section generation · each call inherits voice context</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-l">Stage 04</div>
+            <div class="step-t">Designer review</div>
+            <div class="step-d">Suggested edits surfaced · designer accepts or rewrites</div>
+          </div>
+        </div>
+
+        <div class="tech-grid-2">
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-lang">Prompt Template</span>
+              <span class="code-file">prompts/tailor-section.md</span>
+            </div>
+<pre><span class="c">// Per-section template · voice-locked</span>
+
+<span class="k">SYSTEM</span><span class="p">:</span>
+You write in <span class="t">{{author_voice}}</span>.
+Rules<span class="p">:</span> short sentences. concrete verbs.
+no buzzwords <span class="p">(</span>see banlist below<span class="p">).</span>
+
+<span class="k">CONTEXT</span><span class="p">:</span>
+- Raw experience<span class="p">:</span> <span class="t">{{cv_chunk}}</span>
+- JD signals<span class="p">:</span> <span class="t">{{role, tone, must_haves}}</span>
+- Banned phrases<span class="p">:</span> <span class="t">{{banlist}}</span>
+
+<span class="k">TASK</span><span class="p">:</span>
+Tailor <span class="t">{{section}}</span> to the JD,
+preserving voice. Return Markdown.</pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-lang">Style Guide</span>
+              <span class="code-file">notion://voice-rules</span>
+            </div>
+<pre><span class="c">// Loaded as SYSTEM context per call</span>
+<span class="p">{</span>
+  <span class="s">"voice"</span><span class="p">:</span> <span class="s">"engineering-trained, dry"</span><span class="p">,</span>
+  <span class="s">"sentence_max_words"</span><span class="p">:</span> <span class="n">25</span><span class="p">,</span>
+  <span class="s">"verbs"</span><span class="p">:</span> <span class="p">[</span><span class="s">"shipped"</span><span class="p">,</span> <span class="s">"built"</span><span class="p">,</span> <span class="s">"designed"</span><span class="p">,</span>
+            <span class="s">"prototyped"</span><span class="p">,</span> <span class="s">"validated"</span><span class="p">],</span>
+  <span class="s">"banlist"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">"synergy"</span><span class="p">,</span> <span class="s">"leverage"</span><span class="p">,</span>
+    <span class="s">"stakeholder alignment"</span><span class="p">,</span>
+    <span class="s">"go above and beyond"</span>
+  <span class="p">],</span>
+  <span class="s">"pronouns"</span><span class="p">:</span> <span class="s">"I, not we"</span>
+<span class="p">}</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Highlights">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03b</span> · Highlights</div>
+        <div class="phase-label"><span class="dot"></span> Pipeline stages</div>
+      </div>
+      <h2 class="phase-title">JD in. <em>Tailored app</em> out.</h2>
+      <div class="media-grid">
+        <div class="media-card">
+          <video src="videos/resume-pipeline/stage-02-paste-jd.mp4" autoplay loop muted playsinline></video>
+          <div class="media-cap">
+            <div class="l">Stage 02</div>
+            <div class="t"><strong>Paste JD</strong> — signals parsed: role, tone, must-haves</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <video src="videos/resume-pipeline/stage-03-analyze-gap.mp4" autoplay loop muted playsinline></video>
+          <div class="media-cap">
+            <div class="l">Stage 03</div>
+            <div class="t"><strong>Analyze gap</strong> — Gemini API scores fit + flags missing</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <video src="videos/resume-pipeline/stage-05-ai-suggests.mp4" autoplay loop muted playsinline></video>
+          <div class="media-cap">
+            <div class="l">Stage 05</div>
+            <div class="t"><strong>AI suggests, designer decides</strong> — voice preserved</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Validation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03c</span> · Validation</div>
+        <div class="phase-label"><span class="dot"></span> How I tested</div>
+      </div>
+      <h2 class="phase-title">Reply rate was the <em>only</em> ground truth.</h2>
+      <div class="method-row">
+        <span class="method-pill">Reply-rate batch comparison</span>
+        <span class="method-pill">User interviews · 4 job-seekers</span>
+        <span class="method-pill">Voice-preservation A/B</span>
+        <span class="method-pill">Output funnel telemetry</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Pass 01</div>
+          <div class="finding-stat">40 → 15</div>
+          <div class="finding-text"><strong>Minutes per application</strong> — verified across the next batch of submissions.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Pass 02</div>
+          <div class="finding-stat">Reply ↑</div>
+          <div class="finding-text"><strong>Reply rate climbed</strong> once voice-preservation prompts replaced speed-first prompts.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Pass 03</div>
+          <div class="finding-stat">4 / 4</div>
+          <div class="finding-text"><strong>Job-seekers confirmed</strong> "preserve voice" was the right goal — not unique to me.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Result">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">04</span> · Result</div>
+        <div class="phase-label"><span class="dot"></span> The outcome</div>
+      </div>
+      <h2 class="phase-title">40 → 15. <em>62.5%</em> faster.</h2>
+      <div class="result-grid">
+        <div class="metric-tile">
+          <div class="metric-label">Application time</div>
+          <div class="metric-val">40 → 15</div>
+          <div class="metric-foot">minutes per tailored application · including JD parsing and tone matching</div>
+        </div>
+        <div class="metric-tile ghost">
+          <div class="metric-label">Throughput gain</div>
+          <div class="metric-val sm">62.5%</div>
+          <div class="metric-foot">reduction · scales directly to more applications per week without sacrificing personalization</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Reflection">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">05</span> · Reflection</div>
+        <div class="phase-label"><span class="dot"></span> What I'd do differently</div>
+      </div>
+      <h2 class="phase-title">Output quality <em>over</em> throughput.</h2>
+      <div class="reflection-block">
+        <p class="reflection-q">I optimized for <strong>speed</strong> before optimizing for personalization signal quality, so early versions generated faster but blander applications. <span class="lesson">Lesson — in AI pipelines for personal voice, output quality matters more than throughput. A 30-minute application that gets a reply beats a 5-minute one that doesn't.</span></p>
+        <div class="reflection-attr">Lesson · 47 Applications · 2025</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="star-r.js"></script>
+</body>
+</html>

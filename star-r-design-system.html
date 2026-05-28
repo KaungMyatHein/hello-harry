@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Platforms. One Source of Truth. — STAR+R · Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="star-r.css">
+</head>
+<body data-accent="mint">
+
+<div class="progress" id="progress"></div>
+
+<nav class="top-nav">
+  <a href="portfolio.html" class="brand">
+    <span class="brand-mark">H</span>
+    <span class="brand-label">Harry Hein</span>
+  </a>
+  <a href="star-r-interview-prep.html" class="back">‹ All STAR+R</a>
+</nav>
+
+<nav class="side-nav" id="sideNav"></nav>
+
+<div class="kb-hint">
+  <kbd>↓</kbd> next <kbd>↑</kbd> prev
+</div>
+
+<main class="deck" id="deck">
+
+  <section class="slide cover" data-title="Cover">
+    <div class="slide-inner">
+      <div class="cover-eyebrow">
+        <span class="dot"></span>
+        <span>STAR+R · Case Study · Design systems at scale</span>
+      </div>
+      <h1>Three platforms.<br><em>One</em> source of truth.</h1>
+      <p class="cover-sub">A multi-platform design system architecture for POS, Web, and Mobile — eliminating 47 duplicate tokens and cutting designer onboarding from 3 days to under 1.</p>
+
+      <div class="cover-meta">
+        <div><div class="l">Role</div><div class="v">UX Lead</div></div>
+        <div><div class="l">Company</div><div class="v">Raytail · Maldives (Remote)</div></div>
+        <div><div class="l">Timeframe</div><div class="v">2024–2025</div></div>
+        <div><div class="l">Scope</div><div class="v">3 platforms · 3-tier token architecture</div></div>
+      </div>
+
+      <div class="cover-tools">
+        <span class="tool-chip">Figma Variables</span>
+        <span class="tool-chip">Design Tokens</span>
+        <span class="tool-chip">Information Architecture</span>
+        <span class="tool-chip">Stakeholder Management</span>
+        <span class="tool-chip">Cross-Cultural Design</span>
+        <span class="tool-chip">Lint Rules</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Situation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01</span> · Situation</div>
+        <div class="phase-label"><span class="dot"></span> The pain</div>
+      </div>
+      <h2 class="phase-title">47 duplicate tokens. <em>3-day</em> onboarding.</h2>
+      <p class="phase-body">Raytail's design assets lived in 3 separate Figma files for POS, Web, and Mobile — with <strong>47 duplicate tokens</strong>, conflicting naming, and a designer onboarding ritual that took <strong>3 full days</strong> just to learn which colour to use where.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Research">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01b</span> · Research</div>
+        <div class="phase-label"><span class="dot"></span> What I discovered</div>
+      </div>
+      <h2 class="phase-title">Three files. <em>One inconsistent</em> system.</h2>
+      <div class="method-row">
+        <span class="method-pill">Token audit · 3 Figma files</span>
+        <span class="method-pill">Platform-team interviews</span>
+        <span class="method-pill">Designer onboarding shadow</span>
+        <span class="method-pill">Naming-convention map</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Finding 01</div>
+          <div class="finding-stat">47</div>
+          <div class="finding-text"><strong>Duplicate tokens</strong> across POS, Web, Mobile — same intent, different names.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 02</div>
+          <div class="finding-stat">3 dialects</div>
+          <div class="finding-text"><strong>Naming conventions diverged</strong> per platform — onboarding had to learn each.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 03</div>
+          <div class="finding-stat">3 days</div>
+          <div class="finding-text"><strong>Designer onboarding</strong> ritual — pure system-friction, not product complexity.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Task">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">02</span> · Task</div>
+        <div class="phase-label"><span class="dot"></span> The deliverable</div>
+      </div>
+      <h2 class="phase-title">One source. <em>Three</em> expressions.</h2>
+      <p class="phase-body">Build a single design system architecture serving POS, Web, and Mobile from one source of truth, so token decisions stopped being <strong>re-negotiated per-platform</strong>.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Action">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03</span> · Action</div>
+        <div class="phase-label"><span class="dot"></span> What I did</div>
+      </div>
+      <h2 class="phase-title">Primitive → semantic → <em>component</em>.</h2>
+      <ul class="action-list">
+        <li>Designed a <strong>3-tier token architecture</strong> — primitive, semantic, component — that mapped cleanly across all three platforms.</li>
+        <li>Audited every existing token across the 3 Figma files and consolidated the <strong>47 duplicates</strong> into the primitive layer.</li>
+        <li>Built the semantic layer in Figma Variables so each platform consumed the same source but expressed it natively (POS density different from Mobile).</li>
+        <li>Walked the architecture through each platform team — <strong>IS, Development, CS, Warehouse, Finance</strong> — to sell migration rather than impose it.</li>
+        <li>Partnered with engineering on a <strong>token-name lint rule</strong> so the architecture was enforced in code review, not just docs.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Technical">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03a</span> · Technical</div>
+        <div class="phase-label"><span class="dot"></span> How it works under the hood</div>
+      </div>
+      <h2 class="phase-title">Three tiers. <em>One contract</em> per platform.</h2>
+
+      <div class="tech-stack">
+        <div class="tech-layers">
+          <div class="layer-row">
+            <div class="layer-name">Tier 01 · Primitive</div>
+            <div class="layer-desc"><strong>Raw values</strong> — hex codes, scale steps, motion durations. Never used directly in component code; consumed by Tier 02 only.</div>
+            <div class="layer-tag">~80 primitives</div>
+          </div>
+          <div class="layer-row">
+            <div class="layer-name">Tier 02 · Semantic</div>
+            <div class="layer-desc"><strong>Intent-named bindings</strong> — <code>color.surface.muted</code> → primitive. Bound per platform via Figma Variables (POS density ≠ Mobile density).</div>
+            <div class="layer-tag">~140 semantics</div>
+          </div>
+          <div class="layer-row">
+            <div class="layer-name">Tier 03 · Component</div>
+            <div class="layer-desc"><strong>Component-scoped tokens</strong> — <code>button.primary.bg</code> → semantic. Live closest to the UI, replaceable per surface without touching primitives.</div>
+            <div class="layer-tag">~60 component tokens</div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-head">
+            <span class="code-lang">Lint Rule</span>
+            <span class="code-file">eslint-token-name.js</span>
+          </div>
+<pre><span class="c">// Enforces 3-tier naming · blocks at code review</span>
+<span class="k">const</span> tokenPattern <span class="p">=</span> <span class="p">/</span><span class="s">^(color|space|font|motion)\.</span>
+<span class="s">  (surface|content|border|action)\.</span>
+<span class="s">  (default|hover|active|disabled|muted)$</span><span class="p">/</span><span class="p">;</span>
+
+<span class="k">module.exports</span> <span class="p">=</span> <span class="p">{</span>
+  <span class="n">create</span><span class="p">:</span> ctx <span class="p">=&gt;</span> <span class="p">({</span>
+    <span class="n">Literal</span><span class="p">:</span> node <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(!</span>tokenPattern<span class="p">.</span><span class="n">test</span><span class="p">(</span>node<span class="p">.</span>value<span class="p">))</span>
+        ctx<span class="p">.</span><span class="n">report</span><span class="p">(</span>node<span class="p">,</span> <span class="s">"Token must match 3-tier schema"</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+<span class="p">};</span>
+<span class="c">// → 100% violations caught pre-merge</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Highlights">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03b</span> · Highlights</div>
+        <div class="phase-label"><span class="dot"></span> The 3-tier architecture</div>
+      </div>
+      <h2 class="phase-title">Primitive → semantic → <em>component</em>.</h2>
+      <div class="media-grid">
+        <div class="media-card">
+          <img src="images/DS/★ Showcase — Multi-Palette Demo.webp" alt="Primitive tokens — color palette" loading="lazy">
+          <div class="media-cap">
+            <div class="l">Layer 01 · Primitive</div>
+            <div class="t"><strong>Color &amp; spacing primitives</strong> — single source of truth</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <img src="images/DS/★ Showcase — Typo Variables.webp" alt="Semantic variables in Figma" loading="lazy">
+          <div class="media-cap">
+            <div class="l">Layer 02 · Semantic</div>
+            <div class="t"><strong>Figma Variables</strong> — POS / Web / Mobile bindings</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <img src="images/DS/POS Level Components.webp" alt="POS-level components built from semantic tokens" loading="lazy">
+          <div class="media-cap">
+            <div class="l">Layer 03 · Component</div>
+            <div class="t"><strong>POS components</strong> — composed from semantic tokens</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Validation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03c</span> · Validation</div>
+        <div class="phase-label"><span class="dot"></span> How I tested</div>
+      </div>
+      <h2 class="phase-title">POS migrated first as a <em>pilot</em>.</h2>
+      <div class="method-row">
+        <span class="method-pill">POS pilot migration</span>
+        <span class="method-pill">Visual-regression review</span>
+        <span class="method-pill">Token-name lint rule</span>
+        <span class="method-pill">Onboarding time-trial</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Pass 01</div>
+          <div class="finding-stat">Zero</div>
+          <div class="finding-text"><strong>Visual regressions</strong> on POS pilot — semantic layer absorbed the platform difference cleanly.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Pass 02</div>
+          <div class="finding-stat">100%</div>
+          <div class="finding-text"><strong>Lint catches</strong> all token-name violations — enforced in code review, not docs.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Pass 03</div>
+          <div class="finding-stat">&lt; 1 day</div>
+          <div class="finding-text"><strong>Onboarding time</strong> — measured on the next two designer hires.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Result">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">04</span> · Result</div>
+        <div class="phase-label"><span class="dot"></span> The outcome</div>
+      </div>
+      <h2 class="phase-title">47 → 0. <em>3 days → &lt; 1</em>.</h2>
+      <div class="result-grid">
+        <div class="metric-tile">
+          <div class="metric-label">Duplicate tokens</div>
+          <div class="metric-val">47</div>
+          <div class="metric-foot">eliminated · consolidated into the primitive layer</div>
+        </div>
+        <div class="metric-tile ghost">
+          <div class="metric-label">Designer onboarding</div>
+          <div class="metric-val sm">3 days → &lt; 1</div>
+          <div class="metric-foot">cut · single source of truth replaced platform-by-platform learning</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Reflection">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">05</span> · Reflection</div>
+        <div class="phase-label"><span class="dot"></span> What I'd do differently</div>
+      </div>
+      <h2 class="phase-title">Migration story <em>over</em> token tree elegance.</h2>
+      <div class="reflection-block">
+        <p class="reflection-q">I built the architecture first and the migration playbook second — but the playbook was what actually drove adoption, so it should have been a <strong>v1 deliverable</strong>, not v2. <span class="lesson">Lesson — design systems live or die by their migration story, not by the elegance of their token tree.</span></p>
+        <div class="reflection-attr">Lesson · Three Platforms · 2024</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="star-r.js"></script>
+</body>
+</html>

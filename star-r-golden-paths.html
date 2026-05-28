@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototypes that never sleep — STAR+R · Harry Hein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="star-r.css">
+</head>
+<body data-accent="ps-blue-light">
+
+<div class="progress" id="progress"></div>
+
+<nav class="top-nav">
+  <a href="portfolio.html" class="brand">
+    <span class="brand-mark">H</span>
+    <span class="brand-label">Harry Hein</span>
+  </a>
+  <a href="star-r-interview-prep.html" class="back">‹ All STAR+R</a>
+</nav>
+
+<nav class="side-nav" id="sideNav"></nav>
+
+<div class="kb-hint">
+  <kbd>↓</kbd> next <kbd>↑</kbd> prev
+</div>
+
+<main class="deck" id="deck">
+
+  <section class="slide cover" data-title="Cover">
+    <div class="slide-inner">
+      <div class="cover-eyebrow">
+        <span class="dot"></span>
+        <span>STAR+R · Case Study · AI-augmented research · Golden paths</span>
+      </div>
+      <h1>Prototypes that <em>never</em> sleep.</h1>
+      <p class="cover-sub">AI-augmented usability research that runs hi-fi Figma prototypes against synthetic personas — matched 9 of 11 friction blockers found in subsequent live user testing.</p>
+
+      <div class="cover-meta">
+        <div><div class="l">Role</div><div class="v">Senior Product Designer</div></div>
+        <div><div class="l">Domain</div><div class="v">Research · Synthetic UX</div></div>
+        <div><div class="l">Timeframe</div><div class="v">2024</div></div>
+        <div><div class="l">Validation</div><div class="v">9 / 11 blockers · 82% recall</div></div>
+      </div>
+
+      <div class="cover-tools">
+        <span class="tool-chip">Gemini API</span>
+        <span class="tool-chip">Synthetic Personas</span>
+        <span class="tool-chip">Usability Heuristics</span>
+        <span class="tool-chip">Validation Frameworks</span>
+        <span class="tool-chip">Figma</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Situation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01</span> · Situation</div>
+        <div class="phase-label"><span class="dot"></span> The pain</div>
+      </div>
+      <h2 class="phase-title">Live testing was the <em>bottleneck</em>.</h2>
+      <p class="phase-body">Live usability testing was the bottleneck on every feature — by the time results came back, the design was already in dev, and any uncovered friction meant <strong>costly rework</strong>.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Research">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">01b</span> · Research</div>
+        <div class="phase-label"><span class="dot"></span> What I discovered</div>
+      </div>
+      <h2 class="phase-title">Late friction was <em>expensive</em> friction.</h2>
+      <div class="method-row">
+        <span class="method-pill">Live-testing lead-time audit</span>
+        <span class="method-pill">Prototype-to-live trace</span>
+        <span class="method-pill">Rework-cost analysis</span>
+        <span class="method-pill">Heuristic-failure mapping</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Finding 01</div>
+          <div class="finding-stat">9 days</div>
+          <div class="finding-text"><strong>Avg lead time</strong> for live usability testing — by then designs were already in dev.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 02</div>
+          <div class="finding-stat">4–6 weeks</div>
+          <div class="finding-text"><strong>Late-stage friction</strong> often surfaced post-build — costliest possible moment.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Finding 03</div>
+          <div class="finding-stat">~30%</div>
+          <div class="finding-text"><strong>Rework cost</strong> as a share of design time — paid for cheap upstream testing many times over.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Task">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">02</span> · Task</div>
+        <div class="phase-label"><span class="dot"></span> The deliverable</div>
+      </div>
+      <h2 class="phase-title">Surface friction <em>before</em> live testing.</h2>
+      <p class="phase-body">Build a synthetic-persona testing layer that runs hi-fi Figma prototypes against AI personas before live testing — so designers could surface friction patterns and fix them while the design was still <strong>cheap to change</strong>.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Action">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03</span> · Action</div>
+        <div class="phase-label"><span class="dot"></span> What I did</div>
+      </div>
+      <h2 class="phase-title">Heuristics in. <em>Structured</em> friction out.</h2>
+      <ul class="action-list">
+        <li>Designed a validation framework that mapped <strong>Nielsen heuristics</strong> plus custom usability rules into prompt evaluators.</li>
+        <li>Built synthetic personas with the <strong>Gemini API</strong>, anchored to real archetypes from prior interview data — not invented profiles.</li>
+        <li>Wired the pipeline to Figma prototypes, feeding screen sequences and interaction logs into the personas as input context.</li>
+        <li>Iterated on prompt evaluators until they output <strong>structured friction reports</strong> — blocker, severity, suggested fix — instead of vibes.</li>
+        <li>Validated the system by comparing its output to subsequent live user testing on the same prototype.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Technical">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03a</span> · Technical</div>
+        <div class="phase-label"><span class="dot"></span> How it works under the hood</div>
+      </div>
+      <h2 class="phase-title">Heuristics + personas → <em>structured</em> friction.</h2>
+
+      <div class="tech-stack">
+        <div class="tech-flow">
+          <div class="flow-step">
+            <div class="step-l">Input</div>
+            <div class="step-t">Figma prototype</div>
+            <div class="step-d">Screen sequences + interaction logs</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-l">Context</div>
+            <div class="step-t">Personas + heuristics</div>
+            <div class="step-d">3 archetypes anchored in real interviews · Nielsen + custom rules</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step active">
+            <div class="step-l">Eval</div>
+            <div class="step-t">Gemini API</div>
+            <div class="step-d">Each persona walks the flow · scores each step against heuristics</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-l">Output</div>
+            <div class="step-t">Friction report</div>
+            <div class="step-d">Structured JSON · blocker / severity / suggested fix</div>
+          </div>
+        </div>
+
+        <div class="tech-grid-2">
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-lang">Persona Schema</span>
+              <span class="code-file">personas/skeptic.json</span>
+            </div>
+<pre><span class="p">{</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"Skeptic"</span><span class="p">,</span>
+  <span class="s">"anchored_in"</span><span class="p">:</span> <span class="s">"interview_2024_q2"</span><span class="p">,</span>
+  <span class="s">"traits"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"trust_default"</span><span class="p">:</span> <span class="n">0.3</span><span class="p">,</span>
+    <span class="s">"reads_microcopy"</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span>
+    <span class="s">"abandons_after_clicks"</span><span class="p">:</span> <span class="n">4</span>
+  <span class="p">},</span>
+  <span class="s">"goal"</span><span class="p">:</span> <span class="s">"verify before commit"</span><span class="p">,</span>
+  <span class="s">"checks"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">"presence_of_undo"</span><span class="p">,</span>
+    <span class="s">"data_source_visible"</span><span class="p">,</span>
+    <span class="s">"price_breakdown_clear"</span>
+  <span class="p">]</span>
+<span class="p">}</span></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-lang">Friction Schema</span>
+              <span class="code-file">output/report.json</span>
+            </div>
+<pre><span class="p">{</span>
+  <span class="s">"persona"</span><span class="p">:</span> <span class="s">"skeptic"</span><span class="p">,</span>
+  <span class="s">"screen"</span><span class="p">:</span> <span class="s">"checkout_review"</span><span class="p">,</span>
+  <span class="s">"step"</span><span class="p">:</span> <span class="n">4</span><span class="p">,</span>
+  <span class="s">"blocker"</span><span class="p">:</span> <span class="s">"price_breakdown_hidden"</span><span class="p">,</span>
+  <span class="s">"severity"</span><span class="p">:</span> <span class="s">"high"</span><span class="p">,</span>
+  <span class="s">"heuristic"</span><span class="p">:</span> <span class="s">"visibility_of_system_status"</span><span class="p">,</span>
+  <span class="s">"fix"</span><span class="p">:</span> <span class="s">"surface line-item breakdown</span>
+<span class="s">          inline · don't gate behind tap"</span><span class="p">,</span>
+  <span class="s">"matches_live_test"</span><span class="p">:</span> <span class="k">true</span>      <span class="c">// ground-truth flag</span>
+<span class="p">}</span>
+<span class="c">// → 9 of 11 matched live testing</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Highlights">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03b</span> · Highlights</div>
+        <div class="phase-label"><span class="dot"></span> Pipeline in action</div>
+      </div>
+      <h2 class="phase-title">Plan. <em>Run.</em> Report.</h2>
+      <div class="media-grid">
+        <div class="media-card">
+          <video src="images/AI Test/Planning For AI UT.mp4" autoplay loop muted playsinline></video>
+          <div class="media-cap">
+            <div class="l">Step 01</div>
+            <div class="t"><strong>Plan the test</strong> — define personas + heuristics</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <video src="images/AI Test/Setting Golden Paths.mp4" autoplay loop muted playsinline></video>
+          <div class="media-cap">
+            <div class="l">Step 02</div>
+            <div class="t"><strong>Set golden paths</strong> — wire screen sequences to personas</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <video src="images/AI Test/Showing Results.mp4" autoplay loop muted playsinline></video>
+          <div class="media-cap">
+            <div class="l">Step 03</div>
+            <div class="t"><strong>Structured friction report</strong> — blocker · severity · fix</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Validation">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">03c</span> · Validation</div>
+        <div class="phase-label"><span class="dot"></span> How I tested</div>
+      </div>
+      <h2 class="phase-title">Compared against <em>live ground truth</em>.</h2>
+      <div class="method-row">
+        <span class="method-pill">Live user testing · same prototype</span>
+        <span class="method-pill">Ground-truth matching</span>
+        <span class="method-pill">Friction-blocker comparison</span>
+        <span class="method-pill">Heuristic recall measurement</span>
+      </div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="finding-label">Pass 01</div>
+          <div class="finding-stat">9 / 11</div>
+          <div class="finding-text"><strong>Friction blockers matched</strong> — synthetic personas caught the same procedural pain users felt.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Pass 02</div>
+          <div class="finding-stat">82%</div>
+          <div class="finding-text"><strong>Recall vs. ground truth</strong> — strong enough to use before live testing, not instead of it.</div>
+        </div>
+        <div class="finding-card">
+          <div class="finding-label">Miss</div>
+          <div class="finding-stat">2 affective</div>
+          <div class="finding-text"><strong>Emotional blockers missed</strong> — frustration + hesitation needed richer behavioral signal.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Result">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">04</span> · Result</div>
+        <div class="phase-label"><span class="dot"></span> The outcome</div>
+      </div>
+      <h2 class="phase-title">9 / 11. <em>82% recall</em> vs. live.</h2>
+      <div class="result-grid">
+        <div class="metric-tile">
+          <div class="metric-label">Friction blockers matched</div>
+          <div class="metric-val">9 / 11</div>
+          <div class="metric-foot">against subsequent live user testing on the same prototype</div>
+        </div>
+        <div class="metric-tile ghost">
+          <div class="metric-label">Recall vs. ground truth</div>
+          <div class="metric-val sm">82%</div>
+          <div class="metric-foot">caught before live test · fixable while design was still cheap to change</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Reflection">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="phase-num"><span class="cur">05</span> · Reflection</div>
+        <div class="phase-label"><span class="dot"></span> What I'd do differently</div>
+      </div>
+      <h2 class="phase-title">Affective UX <em>still needs</em> humans.</h2>
+      <div class="reflection-block">
+        <p class="reflection-q">The <strong>2 blockers</strong> I missed were both emotional friction — frustration, hesitation — that the personas couldn't simulate without richer behavioral context. <span class="lesson">Lesson — synthetic personas are strong on procedural usability but weak on affective UX. The human signal still matters where feelings are the friction.</span></p>
+        <div class="reflection-attr">Lesson · Prototypes that never sleep · 2024</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="star-r.js"></script>
+</body>
+</html>
