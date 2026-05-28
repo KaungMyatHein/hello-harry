@@ -278,18 +278,10 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 .hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#16a34a;box-shadow:0 0 8px rgba(22,163,74,0.6);}
 .hero h1{font-size:clamp(48px,7.4vw,88px);font-weight:600;letter-spacing:-0.035em;line-height:1.05;color:var(--ink);margin:0 auto 22px;max-width:920px;}
 
-/* KISS acronym — small "Keep It Super Simple" label sits above the K */
-.kiss-acronym{position:relative;display:inline-block;}
-.kiss-expansion{position:absolute;bottom:calc(100% - 6px);left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:clamp(10px,0.9vw,12px);font-weight:500;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);white-space:nowrap;font-style:normal;}
-.kiss-expansion-mobile{display:none;}
-@media (max-width:768px){
-  .kiss-expansion{display:none;}
-  .kiss-acronym{position:static;}
-  .kiss-expansion-mobile{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);margin-bottom:18px;}
-  .kiss-expansion-mobile::before{content:"";width:18px;height:1px;background:currentColor;opacity:0.4;}
-}
 .hero h1 em{font-style:normal;color:var(--muted);}
-.hero-sub{font-size:clamp(18px,1.6vw,22px);font-weight:400;color:var(--muted);max-width:640px;margin:0 auto 40px;line-height:1.5;letter-spacing:-0.011em;}
+.hero h1 span{font-style:normal;color:var(--ink);}
+.hero-sub{font-size:clamp(18px,1.6vw,22px);font-weight:400;color:var(--muted);max-width:680px;margin:0 auto 40px;line-height:1.5;letter-spacing:-0.011em;}
+.hero-sub-kicker{font-family:var(--mono);font-size:0.85em;color:var(--ink);background:linear-gradient(90deg,transparent 0%,rgba(232,115,74,0.12) 50%,transparent 100%);padding:2px 8px;border-radius:4px;letter-spacing:-0.005em;white-space:nowrap;}
 
 .palette{max-width:680px;margin:0 auto;background:var(--paper);border:1px solid var(--hairline);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lift);text-align:left;}
 .palette-preview{cursor:pointer;transition:border-color 180ms ease,box-shadow 180ms ease,transform 180ms ease;}
@@ -323,6 +315,11 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 .sec-meta{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:10px;}
 .sec-title{font-size:clamp(34px,4.2vw,52px);font-weight:600;letter-spacing:-0.03em;line-height:1.05;color:var(--ink);}
 .sec-sub{font-size:16px;color:var(--muted);margin-top:10px;max-width:580px;line-height:1.55;}
+
+.about-body{max-width:680px;margin:0 auto;}
+.about-body p{font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--ink);margin:0 0 22px;letter-spacing:-0.011em;}
+.about-body p strong{font-weight:600;color:#e8734a;}
+.about-body .about-edu{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:32px;padding-top:24px;border-top:1px solid var(--hairline);letter-spacing:0.02em;line-height:1.6;}
 .sec-action{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
 
 /* APPLE-STYLE BENTO TILES — single row per case study */
@@ -421,6 +418,12 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
 }
 .tile.full .tile-sub{font-size:20px;max-width:640px;}
 .tile.dark .tile-sub,.tile.midnight .tile-sub{color:rgba(255,255,255,0.78);}
+.tile-metrics{
+  font-family:var(--mono);font-size:13px;color:#e8734a;letter-spacing:0.01em;
+  margin:-4px 0 14px;max-width:560px;text-transform:lowercase;
+}
+.tile.full .tile-metrics{font-size:14px;max-width:640px;}
+.tile.dark .tile-metrics,.tile.midnight .tile-metrics{color:#f0a07f;}
 
 .tile-cta-row{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:32px;}
 .tile-cta-pill{
@@ -1242,10 +1245,10 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   <div class="nav-inner">
     <a class="brand" href="#"><span class="brand-mark">H</span><span class="brand-label">Harry Hein</span></a>
     <div class="nav-links">
+      <a href="#about">About</a>
       <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#voices">Voices</a>
       <a href="#writing">Writing</a>
+      <a href="#experience">Experience</a>
       <button class="nav-cmd" id="cmdTrigger" aria-label="Open Harry's AI assistant">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
         <span class="nav-cmd-text">Ask Harry's AI</span>
@@ -1262,9 +1265,8 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   <div class="hero-vignette" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-eyebrow"><span class="dot"></span>Senior Product Designer · Available 2026</div>
-    <div class="kiss-expansion-mobile" aria-hidden="true">Keep It Super Simple</div>
-    <h1 data-text="I KISS your product.">I <span class="kiss-acronym"><span class="kiss-expansion">Keep It Super Simple</span>KISS</span> your <em>product.</em></h1>
-    <p class="hero-sub" data-text="Seven years simplifying enterprise software.">Seven years simplifying enterprise software.</p>
+    <h1 data-text="Complex systems, simple surfaces.">Complex <span>systems,</span> simple <em>surfaces.</em></h1>
+    <p class="hero-sub" data-text="I lead AI-first product design — agentic pipelines, federated design systems, enterprise tooling. KISS your stack.">I lead AI-first product design — agentic pipelines, federated design systems, enterprise tooling. <span class="hero-sub-kicker">KISS your stack.</span></p>
 
     <div class="hero-bento">
     <div class="palette" role="dialog" aria-label="Search palette">
@@ -1274,34 +1276,34 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
         <span class="palette-shortcut">⌘ K</span>
       </div>
       <div class="palette-section">Recommended Case Studies</div>
-      <a href="case-study-agent-harry.html" class="palette-row selected">
-        <span class="row-icon icon-ai">AH</span>
-        <span class="palette-name">Stop building AI tools. Build AI teams.</span>
-        <span class="palette-meta">Agentic Design</span>
+      <a href="case-study-retail-hybrid.html" class="palette-row selected">
+        <span class="row-icon icon-rt">RT</span>
+        <span class="palette-name">From feedback to 427% ROI</span>
+        <span class="palette-meta">Retail</span>
         <kbd>⌘ 1</kbd>
-      </a>
-      <a href="case-study-po-ai-intent-hybrid.html" class="palette-row">
-        <span class="row-icon icon-ai">AI</span>
-        <span class="palette-name">Speak, don't click — bilingual intent palette</span>
-        <span class="palette-meta">Case Study</span>
-        <kbd>⌘ 2</kbd>
-      </a>
-      <a href="case-study-design-system-hybrid.html" class="palette-row">
-        <span class="row-icon icon-ds">DS</span>
-        <span class="palette-name">Three platforms. One source of truth.</span>
-        <span class="palette-meta">Design System</span>
-        <kbd>⌘ 3</kbd>
       </a>
       <a href="case-study-pharmacy-pos-hybrid.html" class="palette-row">
         <span class="row-icon icon-pos">PX</span>
         <span class="palette-name">Two stores. One system. — 200+ screens.</span>
         <span class="palette-meta">POS</span>
+        <kbd>⌘ 2</kbd>
+      </a>
+      <a href="case-study-agent-harry.html" class="palette-row">
+        <span class="row-icon icon-ai">AH</span>
+        <span class="palette-name">Stop building AI tools. Build AI teams.</span>
+        <span class="palette-meta">Agentic Design</span>
+        <kbd>⌘ 3</kbd>
+      </a>
+      <a href="case-study-design-system-hybrid.html" class="palette-row">
+        <span class="row-icon icon-ds">DS</span>
+        <span class="palette-name">Three platforms. One source of truth.</span>
+        <span class="palette-meta">Design System</span>
         <kbd>⌘ 4</kbd>
       </a>
-      <a href="case-study-retail-hybrid.html" class="palette-row">
-        <span class="row-icon icon-rt">RT</span>
-        <span class="palette-name">From feedback to 427% ROI</span>
-        <span class="palette-meta">Retail</span>
+      <a href="case-study-po-ai-intent-hybrid.html" class="palette-row">
+        <span class="row-icon icon-ai">AI</span>
+        <span class="palette-name">Speak, don't click — bilingual intent palette</span>
+        <span class="palette-meta">Case Study</span>
         <kbd>⌘ 5</kbd>
       </a>
       <a href="case-study-golden-paths-hybrid.html" class="palette-row">
@@ -1331,80 +1333,43 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   </div>
 </section>
 
+<section class="section" id="about">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ About · How I got here</div>
+      <h2 class="sec-title">From code to canvas to agents.</h2>
+    </div>
+    <div class="sec-action">Bangkok / Remote</div>
+  </div>
+
+  <div class="about-body">
+    <p>I started as a software engineer. Three years into shipping Java backends, I realized the bottleneck wasn't the code — it was the product decisions before the code. So I pivoted into design.</p>
+
+    <p>Seven years later, I lead enterprise design at Raytail — federated tokens across three platforms, 200+ POS screens, and retail research that drove <strong>427% ROI</strong> on a returns redesign.</p>
+
+    <p>Right now I'm obsessed with agentic design — teaching AI teams to do the parts of design work that should never have needed a human in the first place. Shipped my first feature in <strong>1h 53m</strong> using an 18-subagent pipeline I built (SF-35).</p>
+
+    <p>Based in Bangkok. Open to remote, open to relocating for the right team. Looking for: AI-first product orgs that want a designer who can build their own AI tooling.</p>
+
+    <p class="about-edu">B.Sc. Computer Science, UCS Taunggyi (2013–18) — HCI focus, Distinction in Cyber Security, founded the CS Club &nbsp;·&nbsp; Adventsoft → Nexlabs → Treedots → Lexagle → Raytail</p>
+  </div>
+</section>
+
 <section class="section" id="work">
   <div class="sec-head">
     <div>
       <div class="sec-meta">/ Work · Selected</div>
       <h2 class="sec-title">Case studies.</h2>
-      <p class="sec-sub">Five deep-dives. Each one shipped, measured, and reflected on — with the actual numbers attached.</p>
+      <p class="sec-sub">Six deep-dives. Each one shipped, measured, and reflected on — with the actual numbers attached.</p>
     </div>
     <div class="sec-action">6 results · ⌘1–⌘6</div>
   </div>
 
   <div class="bento">
-    <div class="tile midnight full">
-      <div class="tile-eyebrow">New · Agentic Design</div>
-      <h3 class="tile-h">Stop building AI tools.<br>Build AI teams.</h3>
-      <p class="tile-sub">Designed 18 AI agents like a product team — PRD author, lo-fi designer, design engineer, critique partner, and 14 more. Shipped SF-35, a ⌘K patient-search feature for a dental clinic, in 1h 53m.</p>
-      <div class="tile-cta-row">
-        <a href="case-study-agent-harry.html" class="tile-cta-pill">Read case study</a>
-        <a href="blog-sf35-agentic-design.html" class="tile-cta-link">SF-35 build log</a>
-      </div>
-      <div class="tile-media">
-        <div class="media-frame">
-          <iframe src="agent-harry-3d.html" title="Agent Harry — 3D office scene with 15 voxel agents at work" loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="tile midnight">
-      <div class="tile-eyebrow">AI Product</div>
-      <h3 class="tile-h">Speak, don't click.</h3>
-      <p class="tile-sub">A bilingual intent palette that replaced an enterprise CRM dashboard. 28 intents in MVP, 21 already live — sellers just say what they want.</p>
-      <div class="tile-cta-row">
-        <a href="case-study-po-ai-intent-hybrid.html" class="tile-cta-pill">Read case study</a>
-        <button type="button" class="tile-cta-link briefing-btn" data-briefing="01-po-ai-intent"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
-      </div>
-      <div class="tile-media">
-        <div class="media-frame">
-          <video src="videos/po-ai/01-palette-empty-state.mp4" muted loop playsinline preload="none" data-lazy-video poster="images/po-ai/hero-palette.webp"></video>
-        </div>
-      </div>
-    </div>
-
-    <div class="tile tint-violet">
-      <div class="tile-eyebrow">Design System</div>
-      <h3 class="tile-h">Three platforms. One source of truth.</h3>
-      <p class="tile-sub">A federated two-level token architecture across POS, web, and mobile.</p>
-      <div class="tile-cta-row">
-        <a href="case-study-design-system-hybrid.html" class="tile-cta-pill">Read case study</a>
-        <button type="button" class="tile-cta-link briefing-btn" data-briefing="02-design-system"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
-      </div>
-      <div class="tile-media">
-        <div class="media-frame">
-          <img src="images/DS/%E2%98%85%20Showcase%20%E2%80%94%20Multi-Palette%20Demo.webp" alt="Design system multi-palette demo" loading="lazy">
-        </div>
-      </div>
-    </div>
-
-    <div class="tile tint-amber">
-      <div class="tile-eyebrow">Enterprise · POS</div>
-      <h3 class="tile-h">Two stores.<br>One system.</h3>
-      <p class="tile-sub">14 modules, 200+ screens — a legacy Windows POS redesigned for touch.</p>
-      <div class="tile-cta-row">
-        <a href="case-study-pharmacy-pos-hybrid.html" class="tile-cta-pill">Read case study</a>
-        <button type="button" class="tile-cta-link briefing-btn" data-briefing="03-pharmacy-pos"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
-      </div>
-      <div class="tile-media">
-        <div class="media-frame">
-          <img src="images/ppos/New%20Central%20Hub.webp" alt="Pharmacy POS central hub" loading="lazy">
-        </div>
-      </div>
-    </div>
-
     <div class="tile tint-rose">
       <div class="tile-eyebrow">Retail · 2025</div>
       <h3 class="tile-h">From feedback to 427% ROI.</h3>
+      <div class="tile-metrics">427% ROI · 4-mo research · 3 test rounds</div>
       <p class="tile-sub">A broken returns process had CS drowning in tickets. Four months of research, three test rounds.</p>
       <div class="tile-cta-row">
         <a href="case-study-retail-hybrid.html" class="tile-cta-pill">Read case study</a>
@@ -1417,9 +1382,74 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
       </div>
     </div>
 
+    <div class="tile tint-amber">
+      <div class="tile-eyebrow">Enterprise · POS</div>
+      <h3 class="tile-h">Two stores.<br>One system.</h3>
+      <div class="tile-metrics">200+ screens · 14 modules · 2 store types</div>
+      <p class="tile-sub">14 modules, 200+ screens — a legacy Windows POS redesigned for touch.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-pharmacy-pos-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="03-pharmacy-pos"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <img src="images/ppos/New%20Central%20Hub.webp" alt="Pharmacy POS central hub" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="tile midnight full">
+      <div class="tile-eyebrow">New · Agentic Design</div>
+      <h3 class="tile-h">Stop building AI tools.<br>Build AI teams.</h3>
+      <div class="tile-metrics">1h 53m ship · 18 subagents · agentic pipeline</div>
+      <p class="tile-sub">Designed 18 AI agents like a product team — PRD author, lo-fi designer, design engineer, critique partner, and 14 more. Shipped SF-35, a ⌘K patient-search feature for a dental clinic, in 1h 53m.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-agent-harry.html" class="tile-cta-pill">Read case study</a>
+        <a href="blog-sf35-agentic-design.html" class="tile-cta-link">SF-35 build log</a>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <iframe src="agent-harry-3d.html" title="Agent Harry — 3D office scene with 15 voxel agents at work" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile tint-violet">
+      <div class="tile-eyebrow">Design System</div>
+      <h3 class="tile-h">Three platforms. One source of truth.</h3>
+      <div class="tile-metrics">3 platforms · 1 token source · federated</div>
+      <p class="tile-sub">A federated two-level token architecture across POS, web, and mobile.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-design-system-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="02-design-system"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <img src="images/DS/%E2%98%85%20Showcase%20%E2%80%94%20Multi-Palette%20Demo.webp" alt="Design system multi-palette demo" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="tile midnight">
+      <div class="tile-eyebrow">AI Product</div>
+      <h3 class="tile-h">Speak, don't click.</h3>
+      <div class="tile-metrics">28 intents · 21 shipped · EN + MM</div>
+      <p class="tile-sub">A bilingual intent palette that replaced an enterprise CRM dashboard. 28 intents in MVP, 21 already live — sellers just say what they want.</p>
+      <div class="tile-cta-row">
+        <a href="case-study-po-ai-intent-hybrid.html" class="tile-cta-pill">Read case study</a>
+        <button type="button" class="tile-cta-link briefing-btn" data-briefing="01-po-ai-intent"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
+      </div>
+      <div class="tile-media">
+        <div class="media-frame">
+          <video src="videos/po-ai/01-palette-empty-state.mp4" muted loop playsinline preload="none" data-lazy-video poster="images/po-ai/hero-palette.webp"></video>
+        </div>
+      </div>
+    </div>
+
     <div class="tile dark">
       <div class="tile-eyebrow">AI Research · 2024</div>
       <h3 class="tile-h">Prototypes that never sleep.</h3>
+      <div class="tile-metrics">9/11 blockers matched · AI path analysis · enterprise</div>
       <p class="tile-sub">AI-simulated path analysis that matched human friction in 9 of 11 blockers tested.</p>
       <div class="tile-cta-row">
         <a href="case-study-golden-paths-hybrid.html" class="tile-cta-pill">Read case study</a>
@@ -1440,25 +1470,10 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
       <div class="sec-meta">/ Work · More</div>
       <h2 class="sec-title">More projects.</h2>
     </div>
-    <div class="sec-action">3 results</div>
+    <div class="sec-action">2 results</div>
   </div>
 
   <div class="bento-three" style="margin-bottom:14px;">
-    <div class="tile tint-rose compact">
-      <div class="tile-eyebrow">AI Tools · 2025</div>
-      <h3 class="tile-h">47 apps. 2 interviews.</h3>
-      <p class="tile-sub">A 15-minute AI pipeline replaced Sarah's 40-minute resume ritual.</p>
-      <div class="tile-cta-row">
-        <a href="case-study-resume-pipeline-hybrid.html" class="tile-cta-pill">Read case study</a>
-        <button type="button" class="tile-cta-link briefing-btn" data-briefing="06-resume-pipeline"><span class="briefing-play" aria-hidden="true"></span>View briefing</button>
-      </div>
-      <div class="tile-media">
-        <div class="media-frame">
-          <video src="images/resume-builder-resources/resume-builder-concept-video.mp4" muted loop playsinline preload="none" data-lazy-video poster="images/resume-builder-resources/the-engine.webp"></video>
-        </div>
-      </div>
-    </div>
-
     <div class="tile tint-mint compact">
       <div class="tile-eyebrow">Finance · 2022</div>
       <h3 class="tile-h">Daily ritual to 104% ROI.</h3>
@@ -1524,6 +1539,105 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
     </div>
   </div>
   -->
+</section>
+
+<section class="section" id="writing">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Writing · Notes</div>
+      <h2 class="sec-title">Recent writing.</h2>
+      <p class="sec-sub">Process notes and AI-first design patterns from shipping enterprise tooling in Southeast Asia.</p>
+    </div>
+    <div class="sec-action">2 posts</div>
+  </div>
+
+  <div class="bento-blog">
+    <a href="blog-sf35-agentic-design.html" class="blog-tile tint-violet">
+      <div class="blog-eyebrow">Agentic Design <span class="dot"></span> May 2026</div>
+      <h3 class="blog-h">From Figma to Agentic Design — 1h 53m to shippable.</h3>
+      <p class="blog-sub">A Cmd-K spotlight shipped end-to-end without opening Figma once. Side-by-side against Figma Make + polish, with the Asia designer-salary ROI math in USD.</p>
+      <span class="blog-cta">Read post</span>
+    </a>
+    <a href="blog-intent-design.html" class="blog-tile tint-blue">
+      <div class="blog-eyebrow">AI-First Design <span class="dot"></span> May 2026</div>
+      <h3 class="blog-h">Intent Design — software that listens to you.</h3>
+      <p class="blog-sub">Stop making the user learn the software. Make the software learn the user. A 5-minute essay on the shift from menus to intent.</p>
+      <span class="blog-cta">Read post</span>
+    </a>
+  </div>
+</section>
+
+<section class="section-band-dark" id="code">
+  <canvas class="matrix-rain" aria-hidden="true"></canvas>
+  <div class="section-inner">
+  <div class="sec-head">
+    <div>
+      <div class="sec-meta">/ Code · Practice</div>
+      <h2 class="sec-title">Designer who ships code.</h2>
+      <p class="sec-sub">I don't just hand off Figma files — I live in the repo. Weekend builds, design tooling, and the occasional Figma plugin.</p>
+    </div>
+    <div class="sec-action">@KaungMyatHein</div>
+  </div>
+
+  <div class="gh-bento">
+    <!-- Heatmap tile -->
+    <div class="gh-tile">
+      <div class="gh-tile-eyebrow">
+        <span class="gh-dot"></span>
+        <span>Contributions · last 12 months</span>
+      </div>
+      <div>
+        <h3 class="gh-tile-title">Building publicly.</h3>
+        <p class="gh-tile-sub">Every green square is a day I shipped something — weekend builds, design tooling, or a side project worth opening a PR for.</p>
+      </div>
+      <div class="gh-heatmap-frame">
+        <img class="gh-heatmap"
+             src="images/heatmap.svg"
+             alt="GitHub contribution heatmap for KaungMyatHein over the past year"
+             loading="eager"
+             decoding="async">
+        <div class="gh-legend">
+          <span>Less</span>
+          <span class="gh-legend-scale">
+            <span class="sq sq-0"></span>
+            <span class="sq sq-1"></span>
+            <span class="sq sq-2"></span>
+            <span class="sq sq-3"></span>
+            <span class="sq sq-4"></span>
+          </span>
+          <span>More</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side column: stack + CTA -->
+    <div class="gh-side">
+      <div class="gh-tile">
+        <div class="gh-tile-eyebrow">Stack · 2026</div>
+        <div>
+          <h3 class="gh-tile-title">Languages I ship in.</h3>
+          <p class="gh-tile-sub">I prototype with code, ship Figma plugins, and orchestrate agentic pipelines. The repo is part of my design process.</p>
+        </div>
+        <div class="gh-stack-list">
+          <span class="exp-tag">TypeScript</span>
+          <span class="exp-tag">React</span>
+          <span class="exp-tag">Python</span>
+          <span class="exp-tag">Claude SDK / MCP</span>
+          <span class="exp-tag">Figma Plugins</span>
+          <span class="exp-tag">Design Tokens</span>
+        </div>
+      </div>
+
+      <a class="gh-cta-tile" href="https://github.com/KaungMyatHein" target="_blank" rel="noopener">
+        <div class="gh-tile-eyebrow">@KaungMyatHein</div>
+        <div class="gh-cta-tile-foot">
+          <strong>View profile<br>on GitHub.</strong>
+          <span class="gh-cta-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  </div><!-- /.section-inner -->
 </section>
 
 <section class="section" id="experience">
@@ -1635,78 +1749,6 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   </div>
 </section>
 
-<section class="section-band-dark" id="code">
-  <canvas class="matrix-rain" aria-hidden="true"></canvas>
-  <div class="section-inner">
-  <div class="sec-head">
-    <div>
-      <div class="sec-meta">/ Code · Practice</div>
-      <h2 class="sec-title">Designer who ships code.</h2>
-      <p class="sec-sub">I don't just hand off Figma files — I live in the repo. Weekend builds, design tooling, and the occasional Figma plugin.</p>
-    </div>
-    <div class="sec-action">@KaungMyatHein</div>
-  </div>
-
-  <div class="gh-bento">
-    <!-- Heatmap tile -->
-    <div class="gh-tile">
-      <div class="gh-tile-eyebrow">
-        <span class="gh-dot"></span>
-        <span>Contributions · last 12 months</span>
-      </div>
-      <div>
-        <h3 class="gh-tile-title">Building publicly.</h3>
-        <p class="gh-tile-sub">Every green square is a day I shipped something — weekend builds, design tooling, or a side project worth opening a PR for.</p>
-      </div>
-      <div class="gh-heatmap-frame">
-        <img class="gh-heatmap"
-             src="images/heatmap.svg"
-             alt="GitHub contribution heatmap for KaungMyatHein over the past year"
-             loading="eager"
-             decoding="async">
-        <div class="gh-legend">
-          <span>Less</span>
-          <span class="gh-legend-scale">
-            <span class="sq sq-0"></span>
-            <span class="sq sq-1"></span>
-            <span class="sq sq-2"></span>
-            <span class="sq sq-3"></span>
-            <span class="sq sq-4"></span>
-          </span>
-          <span>More</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Side column: stack + CTA -->
-    <div class="gh-side">
-      <div class="gh-tile">
-        <div class="gh-tile-eyebrow">Stack · 2026</div>
-        <div>
-          <h3 class="gh-tile-title">Languages I ship in.</h3>
-          <p class="gh-tile-sub">Reading code makes handoffs smoother. Writing code makes prototypes real.</p>
-        </div>
-        <div class="gh-stack-list">
-          <span class="exp-tag">HTML / CSS</span>
-          <span class="exp-tag">JavaScript</span>
-          <span class="exp-tag">React</span>
-          <span class="exp-tag">Figma Plugins</span>
-          <span class="exp-tag">Design Tokens</span>
-        </div>
-      </div>
-
-      <a class="gh-cta-tile" href="https://github.com/KaungMyatHein" target="_blank" rel="noopener">
-        <div class="gh-tile-eyebrow">@KaungMyatHein</div>
-        <div class="gh-cta-tile-foot">
-          <strong>View profile<br>on GitHub.</strong>
-          <span class="gh-cta-arrow" aria-hidden="true">→</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  </div><!-- /.section-inner -->
-</section>
-
 <section class="section" id="voices">
   <div class="sec-head">
     <div>
@@ -1735,60 +1777,16 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
   </div>
 </section>
 
-<section class="section" id="education">
-  <div class="sec-head">
-    <div>
-      <div class="sec-meta">/ Education</div>
-      <h2 class="sec-title">Foundation.</h2>
-    </div>
-  </div>
-  <div class="edu">
-    <div>
-      <div class="edu-degree">B.Sc. Computer Science</div>
-      <div class="edu-school">UCS Taunggyi</div>
-      <div class="edu-period">2013 — 2018 · Myanmar</div>
-    </div>
-    <ul>
-      <li>Human Computer Interaction & Digital Design focus</li>
-      <li>Graduated with Distinction in Cyber Security</li>
-      <li>Founded CS Club at University</li>
-      <li>Engineering background bridges design & development</li>
-    </ul>
-  </div>
-</section>
-
-<section class="section" id="writing">
-  <div class="sec-head">
-    <div>
-      <div class="sec-meta">/ Writing · Notes</div>
-      <h2 class="sec-title">Recent writing.</h2>
-      <p class="sec-sub">Process notes and AI-first design patterns from shipping enterprise tooling in Southeast Asia.</p>
-    </div>
-    <div class="sec-action">2 posts</div>
-  </div>
-
-  <div class="bento-blog">
-    <a href="blog-sf35-agentic-design.html" class="blog-tile tint-violet">
-      <div class="blog-eyebrow">Agentic Design <span class="dot"></span> May 2026</div>
-      <h3 class="blog-h">From Figma to Agentic Design — 1h 53m to shippable.</h3>
-      <p class="blog-sub">A Cmd-K spotlight shipped end-to-end without opening Figma once. Side-by-side against Figma Make + polish, with the Asia designer-salary ROI math in USD.</p>
-      <span class="blog-cta">Read post</span>
-    </a>
-    <a href="blog-intent-design.html" class="blog-tile tint-blue">
-      <div class="blog-eyebrow">AI-First Design <span class="dot"></span> May 2026</div>
-      <h3 class="blog-h">Intent Design — software that listens to you.</h3>
-      <p class="blog-sub">Stop making the user learn the software. Make the software learn the user. A 5-minute essay on the shift from menus to intent.</p>
-      <span class="blog-cta">Read post</span>
-    </a>
-  </div>
-</section>
-
 <section class="cta-band" id="contact">
   <div class="cta-inner">
-    <h2>Let's build something<br><em>worth measuring.</em></h2>
-    <p>I'm available for senior product design roles starting 2026 — remote-friendly, Bangkok-based, happy to relocate for the right team.</p>
+    <h2>Complex systems, simple surfaces — <em>let's build the next one together.</em></h2>
+    <p>I'm available for senior IC roles at AI-first or enterprise B2B teams, starting 2026. Bangkok-based, remote-ready, open to relocating for the right product mission.</p>
     <div class="cta-row">
-      <a href="mailto:kaungmyat9702@gmail.com" class="btn">Email Harry</a>
+      <a href="mailto:kaungmyat9702@gmail.com?subject=Senior%20Product%20Designer%20role%20at%20%5Bcompany%5D&body=Hi%20Harry%2C%0A%0AI%27m%20%5Bname%5D%20at%20%5Bcompany%5D.%20We%27re%20hiring%20a%20senior%20product%20designer%20for%20%5Brole%5D.%20Quick%2020-min%20intro%3F%0A%0A%E2%80%94" class="btn">Email Harry</a>
+      <a href="https://calendly.com/kaungmyat9702/new-meeting" target="_blank" rel="noopener" class="btn-ghost">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Book a 20-min intro
+      </a>
       <a href="https://designer-os-test.vercel.app/resume/share/84rG99PQ" target="_blank" rel="noopener" class="btn-ghost">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
         Download resume
@@ -2073,7 +2071,7 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
         ];
       }
       case 'list': {
-        const ids = r.tag === 'ai' ? ['poai','gp'] : ['poai','ds','pos','retail','gp'];
+        const ids = r.tag === 'ai' ? ['agentharry','poai','gp'] : ['retail','pos','agentharry','ds','poai','gp'];
         const parts = [`Showing ${ids.length} project${ids.length>1?'s':''}:`];
         parts.push(renderRail(ids));
         if(ids.length >= 2){
@@ -2230,8 +2228,8 @@ a:focus-visible,button:focus-visible,.nav-cmd:focus-visible,.tile:focus-visible,
     switch(r.intent){
       case 'project':  return `Showing the "${projects[r.id].name}" case-study card.`;
       case 'list':     return r.tag === 'ai'
-        ? `Showing AI case studies: ${names(['poai','gp'])}.`
-        : `Showing all 5 case studies in a horizontal rail: ${names(['poai','ds','pos','retail','gp'])}.`;
+        ? `Showing AI case studies: ${names(['agentharry','poai','gp'])}.`
+        : `Showing all 6 case studies in a horizontal rail: ${names(['retail','pos','agentharry','ds','poai','gp'])}.`;
       case 'compare':  return r.names && r.names.length >= 2
         ? `Showing a side-by-side compare of: ${names(r.names.slice(0,2))}.`
         : `Showing compare chip picker.`;
