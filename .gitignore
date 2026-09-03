@@ -3,3 +3,12 @@ _originals/
 .DS_Store
 .claude/launch.json
 .claude/worktrees/
+
+# Agent Harry
+.harry-audit.jsonl
+
+# Interview prep — never commit
+star-r-interview-prep.html
+statrys-santhosh.html
+statrys-santhosh-notes.md
+star-r-retail.html

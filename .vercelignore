@@ -3,3 +3,9 @@ _originals/
 .DS_Store
 *.mov
 archive/
+
+# Interview prep — never deploy
+star-r-interview-prep.html
+star-r-retail.html
+statrys-santhosh.html
+statrys-santhosh-notes.md
